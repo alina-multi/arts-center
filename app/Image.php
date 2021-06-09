@@ -21,6 +21,8 @@ class Image extends Model
             return 'http://arts2.develop/arts/' . $this->folder . '/' . $this->name;
         } else if (App::environment('staging')) {
             return 'https://arts2.fra1.cdn.digitaloceanspaces.com/' . $this->folder . '/' . $this->name;
+        } else if (App::environment('testing')) {
+            return $this->folder . '/'. $this->name;
         }
     }
 }

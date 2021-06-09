@@ -27,7 +27,7 @@ class BlockController extends Controller
                 Rule::in(['image', 'text', 'grid', 'embed']),
             ],
             'language' => ['required'],
-            'data' => ['array'],
+            'data' => ['present', 'array'],
             'images' => ['array'],
             'order' => ['required', 'numeric']
         ]);
