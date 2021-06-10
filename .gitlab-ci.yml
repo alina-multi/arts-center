@@ -14,4 +14,4 @@ build:
   stage: build
   script:
     - docker build -t my-docker-image .
-    - docker run my-docker-image php artisan test
+    - docker run -it --entrypoint /bin/bash my-docker-image php artisan test
