@@ -11,14 +11,19 @@ RUN apk add --no-cache --virtual .build-deps \
 RUN apk add --no-cache \
     mysql-client \
     zlib-dev \
-    libzip-dev
+    libzip-dev \
+    libpng-dev \
+    libjpeg-turbo \
+    libjpeg-turbo-dev
 
-RUN docker-php-ext-configure zip
+RUN docker-php-ext-configure zip && docker-php-ext-configure gd --with-jpeg
+
 RUN docker-php-ext-install \
     curl \
     pdo \
     pdo_mysql \
-    pcntl
+    pcntl \
+    gd
 
 RUN pecl install redis && docker-php-ext-enable redis
 
