@@ -1,0 +1,7 @@
+image: docker:19.03.12
+
+build:
+  stage: build
+  script:
+    - docker build -t my-docker-image .
+    - docker run my-docker-image php artisan test
