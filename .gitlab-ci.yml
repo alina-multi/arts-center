@@ -13,7 +13,8 @@ before_script:
 build:
   stage: build
   script:
-    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
-    - docker run --entrypoint php $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA artisan test
-    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA .
+    - docker run --entrypoint php $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA artisan test
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA $CI_REGISTRY_IMAGE:latest
     - docker push $CI_REGISTRY_IMAGE:latest
