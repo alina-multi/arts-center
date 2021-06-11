@@ -70,7 +70,7 @@ class WorkAddTest extends TestCase
         Storage::fake('s3');
         $file = UploadedFile::fake()->image('painting.jpg');
 
-        $response = $this->actingAs($user)->postJson('/api/edit/image', [
+        $response = $this->actingAs($user)->postJson('/api/image', [
             'file' => $file,
             'type' => 'image'
         ]);
