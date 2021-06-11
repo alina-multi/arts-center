@@ -2,11 +2,13 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 
 class Image extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'created_at', 'name', 'user_id', 'old_user_id', 'work_id', 'folder'
     ];

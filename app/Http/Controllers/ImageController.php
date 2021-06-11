@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers\Edit;
+namespace App\Http\Controllers;
 
 
 use App\Helpers\ImageHelper;
@@ -17,10 +17,6 @@ class ImageController extends \App\Http\Controllers\Controller
         $photo = file_get_contents($request->file('file'));
         $folder = $request->type === 'grid' ? 'grid' : 'image';
         $image = ImageHelper::upload($folder, $photo, $user->id.'.jpg', $user->id);
-        // Because serialize only returns url
-        return response([
-            'url'=>$image->url,
-            'id'=>$image->id
-        ]);
+        return response($image->makeVisible('id'));
     }
 }

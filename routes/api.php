@@ -39,7 +39,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         '/edit/block' => 'Edit\BlockController',
         '/edit/title' => 'Edit\TitleController'
     ]);
-    Route::post('/image', 'Edit\ImageController');
+    Route::post('/image', 'ImageController');
     Route::post('comment', 'CommentController@store');
     Route::put('comment/{comment}', 'CommentController@update');
     Route::delete('comment/{comment}', 'CommentController@destroy');

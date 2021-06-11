@@ -2,7 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Image;
 use App\Work;
+use App\WorkBlock;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\User;
@@ -40,7 +42,7 @@ class WorkAddTest extends TestCase
         $this->assertDatabaseCount('work_blocks', 1);
     }
 
-    public function testAddHeader()
+    public function testAddTitle()
     {
         $user = User::factory()->create();
         $work = Work::factory()->create();
@@ -84,5 +86,57 @@ class WorkAddTest extends TestCase
         $this->assertDatabaseHas('images', [
             'id' => $responseData['id']
         ]);
+    }
+
+    public function testAddImageBlock()
+    {
+        $user = User::factory()->create();
+        $work = Work::factory()->create();
+        $work->owners()->attach($user->id);
+        $image = Image::factory(['folder'=>'image'])->create();
+
+        $response = $this->actingAs($user)->postJson(
+            '/api/edit/block',
+            [
+                'work_id' => $work->id,
+                'type' => 'image',
+                'language' => 'zz',
+                'order' => '1',
+                'data' => [],
+                'images' => [
+                    $image->makeVisible('id')->toArray()
+                ]
+            ]
+        );
+
+        $response->assertStatus(201)->assertJson(['id' => 1]);
+        $this->assertDatabaseCount('work_blocks', 1);
+        $block = WorkBlock::find(1);
+        $this->assertTrue(sizeof($block->images) === 1);
+    }
+
+    public function testAddGridBlock()
+    {
+        $user = User::factory()->create();
+        $work = Work::factory()->create();
+        $work->owners()->attach($user->id);
+        $images = Image::factory(['folder'=>'grid'])->count(3)->create();
+
+        $response = $this->actingAs($user)->postJson(
+            '/api/edit/block',
+            [
+                'work_id' => $work->id,
+                'type' => 'grid',
+                'language' => 'zz',
+                'order' => '1',
+                'data' => [],
+                'images' => $images->makeVisible('id')->toArray()
+            ]
+        );
+
+        $response->assertStatus(201)->assertJson(['id' => 1]);
+        $this->assertDatabaseCount('work_blocks', 1);
+        $block = WorkBlock::find(1);
+        $this->assertTrue(count($block->images) === 3);
     }
 }
