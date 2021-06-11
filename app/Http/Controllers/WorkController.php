@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\OwnsWork;
 use App\Work;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Tag;
+use Illuminate\Validation\Rule;
 
 class WorkController extends Controller
 {
@@ -27,7 +29,7 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
-        $work = Work::create(['draft'=>1, 'image_id'=>0]);
+        $work = Work::create(['image_id'=>0]);
         $work->owners()->attach(Auth::id());
         return response($work);
     }
@@ -73,7 +75,16 @@ class WorkController extends Controller
      */
     public function update(Request $request, Work $work)
     {
-        //
+        $ownsWork = new OwnsWork();
+        if (!$ownsWork->passes('work_id', $work->id)) {
+            throw new UnauthorizedException();
+        }
+        $this->validate($request, [
+            'published_at' => ['date'],
+            'image_id' => ['exists:images,id']
+        ]);
+        $work->fill($request->all())->save();
+        return $work;
     }
 
     /**

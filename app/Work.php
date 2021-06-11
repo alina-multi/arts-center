@@ -10,7 +10,7 @@ class Work extends Model
     use HasFactory;
 
     protected $fillable = [
-        'created_at', 'old_id', 'user_id', 'image_id', 'rating', 'comments', 'price'
+        'old_id', 'user_id', 'image_id', 'published_at'
     ];
 
     protected $hidden = [

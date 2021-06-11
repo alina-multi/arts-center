@@ -39,7 +39,7 @@ class GalleryController extends Controller
             $query->where('language', $language);
         }, 'image:id,name,folder', 'owners:users.id,old_id,name,username'])->whereHas('titles', function ($query) use ($language) {
             $query->where('language', $language);
-        })->whereHas('image')->where('draft', 0)->offset($offset)->limit($perPage);
+        })->whereHas('image')->whereNull('published_at')->offset($offset)->limit($perPage);
         $users = [];
 
         switch ($request->order){

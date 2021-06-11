@@ -73,7 +73,8 @@ class ConvertWorks extends Command
                         'price' => $oldWork->price,
                         'created_at' => $oldWork->added,
                         'old_id' => $oldWork->id,
-                        'hosts' => $oldWork->hosts
+                        'hosts' => $oldWork->hosts,
+                        'published_at' => $oldWork->added
                     ]);
 
                     // First add image to blocks with ho margin by default, it would be on top

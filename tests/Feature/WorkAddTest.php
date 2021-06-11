@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Image;
 use App\Work;
 use App\WorkBlock;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\User;
@@ -138,5 +139,28 @@ class WorkAddTest extends TestCase
         $this->assertDatabaseCount('work_blocks', 1);
         $block = WorkBlock::find(1);
         $this->assertTrue(count($block->images) === 3);
+    }
+
+    public function testUpdateWork()
+    {
+        $user = User::factory()->create();
+        $work = Work::factory()->create();
+        $work->owners()->attach($user->id);
+        $image = Image::factory(['folder'=>'image'])->create();
+
+        $now = Carbon::now()->format('Y-m-d H:i:s');
+
+        $response = $this->actingAs($user)->putJson(
+            '/api/works/' . $work->id,
+            [
+                'image_id' => $image->id,
+                'published_at' => $now,
+            ]
+        );
+
+        $response->assertStatus(200)->assertJson(['id' => 1]);
+        $updatedWork = $work->fresh();
+        $this->assertTrue($updatedWork->published_at == $now);
+        $this->assertTrue($updatedWork->image_id == $image->id);
     }
 }

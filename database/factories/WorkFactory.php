@@ -22,7 +22,6 @@ class WorkFactory extends Factory
     public function definition()
     {
         return [
-            'draft' => 1,
             'image_id' => 0
         ];
     }
