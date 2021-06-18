@@ -13,9 +13,10 @@ class ImageController extends \App\Http\Controllers\Controller
 {
     public function __invoke(Request $request)
     {
+        // Todo: add validation
         $user = Auth::user();
         $photo = file_get_contents($request->file('file'));
-        $folder = $request->type === 'grid' ? 'grid' : 'image';
+        $folder = $request->type;
         $image = ImageHelper::upload($folder, $photo, $user->id.'.jpg', $user->id);
         return response($image->makeVisible('id'));
     }
