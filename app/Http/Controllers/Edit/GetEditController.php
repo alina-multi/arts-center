@@ -10,6 +10,6 @@ class GetEditController extends Controller
 {
     public function __invoke($id)
     {
-        return Work::where('id', $id)->with('blocks', 'blocks.images', 'titles')->firstOrFail();
+        return Work::where('id', $id)->with('blocks', 'blocks.images', 'titles', 'image')->firstOrFail();
     }
 }

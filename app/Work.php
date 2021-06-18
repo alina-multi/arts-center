@@ -14,7 +14,7 @@ class Work extends Model
     ];
 
     protected $hidden = [
-        'updated_at', 'old_id', 'hosts', 'image_id'
+        'updated_at', 'old_id', 'hosts'
     ];
 
     public function blocks()
