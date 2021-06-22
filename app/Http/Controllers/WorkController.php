@@ -80,7 +80,7 @@ class WorkController extends Controller
             throw new UnauthorizedException();
         }
         $this->validate($request, [
-            'published_at' => ['date'],
+            'published_at' => ['date_format:Y-m-d H:i:s'],
             'image_id' => ['exists:images,id']
         ]);
         $work->fill($request->all())->save();
