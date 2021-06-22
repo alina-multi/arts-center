@@ -63,8 +63,8 @@ class WorkController extends Controller
         $details = [];
         if (!empty($work->details)) {
             $details = $work->details->toArray();
-            $details['blocks'] = $work->blocks;
         }
+        $details['blocks'] = $work->blocks;
         $details['tags'] = $tags->keys();
         return ['details' => $details, 'tags' => $tags, 'owners' => $work->owners->pluck('id')];
     }
