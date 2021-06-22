@@ -60,8 +60,11 @@ class WorkController extends Controller
                 'count' => $item->count
             ];
         });
-        $details = $work->details->toArray();
-        $details['blocks'] = $work->blocks;
+        $details = [];
+        if (!empty($work->details)) {
+            $details = $work->details->toArray();
+            $details['blocks'] = $work->blocks;
+        }
         $details['tags'] = $tags->keys();
         return ['details' => $details, 'tags' => $tags, 'owners' => $work->owners->pluck('id')];
     }
