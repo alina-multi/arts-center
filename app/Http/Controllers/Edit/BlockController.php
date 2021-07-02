@@ -37,8 +37,6 @@ class BlockController extends Controller
             foreach ($images as $image) {
                 if (!empty($image['id'])) {
                     $block->images()->attach($image['id']);
-                } elseif (is_int($image)) {
-                    $block->images()->attach($image);
                 }
             }
         }
