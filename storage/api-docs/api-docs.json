@@ -1,0 +1,31 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Arts 2.0 Api",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/work/{work_id}": {
+            "get": {
+                "summary": "Work details",
+                "description": "Get work details, basic stuff are already provided by gallery endpoint",
+                "operationId": "getWorkDetails",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}

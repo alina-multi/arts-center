@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Tag;
 use Illuminate\Validation\Rule;
 
+/** @OA\Info(title="Arts 2.0 Api", version="0.1") */
 class WorkController extends Controller
 {
     /**
@@ -35,8 +36,19 @@ class WorkController extends Controller
     }
 
     /**
-     * Get work details, basic stuff are already provided by gallery endpoint
-     *
+     * @OA\Get(
+     *     path="/api/work/{work_id}",
+     *     summary="Work details",
+     *     description="Get work details, basic stuff are already provided by gallery endpoint",
+     *     operationId="getWorkDetails",
+     *       @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\JsonContent(
+     *             type="object",
+     *         )
+     *         )
+     *     )
      * @return \Illuminate\Http\Response
      */
     public function show($language, $id)
