@@ -10,7 +10,7 @@ trait TagTrait
     function tagGallery($title, $request)
     {
         if ($title === 'all') {
-            return Work::whereHas('tags');
+            return Work::where('image_id','>','0'); //We don't need this condition but we need to start with query builder
         }
         $title = str_replace('+',' ', $title);
         $title = preg_replace('/[^\w ]/u', '', $title);

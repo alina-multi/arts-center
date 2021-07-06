@@ -8,6 +8,6 @@ trait IndexTrait
 {
     function indexGallery()
     {
-        return Work::orderBy('created_at', 'DESC');
+        return Work::where('rating', '>', '20')->orderBy('created_at', 'DESC');
     }
 }
