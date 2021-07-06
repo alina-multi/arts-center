@@ -21,6 +21,11 @@ class WorkAddTest extends TestCase
         $user = User::factory()->create();
         $response = $this->actingAs($user)->postJson('/api/works');
         $response->assertStatus(200)->assertJson(['id' => 1]);
+        $this->assertDatabaseHas('ownables', [
+            'user_id' => $user->id,
+            'ownable_type' => 'work',
+            'ownable_id' => 1
+        ]);
     }
 
     public function testAddTextBlock()

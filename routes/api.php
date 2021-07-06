@@ -24,11 +24,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResources([
-    'works' => 'WorkController'
-]);
-
 Route::get('tag/category/{language}', 'TagController@getCategory');
+
+
+Route::get('works/{work}  ', 'WorkController@show'); // We don't need auth for this one
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('profile/avatar', 'Profile\AvatarController');
@@ -37,7 +36,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('edit/{id}', 'Edit\GetEditController');
     Route::apiResources([
         '/edit/block' => 'Edit\BlockController',
-        '/edit/title' => 'Edit\TitleController'
+        '/edit/title' => 'Edit\TitleController',
+        'works' => 'WorkController'
     ]);
     Route::post('/image', 'ImageController');
     Route::post('comment', 'CommentController@store');
