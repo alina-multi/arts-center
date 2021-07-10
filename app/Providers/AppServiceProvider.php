@@ -33,7 +33,8 @@ class AppServiceProvider extends ServiceProvider
 
         Relation::morphMap(
             [
-                'work' => 'App\Work'
+                'work' => 'App\Work',
+                'comment' => 'App\Comment'
             ]
         );
     }

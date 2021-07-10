@@ -27,7 +27,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('tag/category/{language}', 'TagController@getCategory');
 
 
-Route::get('works/{work}  ', 'WorkController@show'); // We don't need auth for this one
+// We don't need auth for this ones
+Route::get('works/{work}', 'WorkController@show');
+Route::get('vote/{id}', 'VoteController@show');
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('profile/avatar', 'Profile\AvatarController');
@@ -37,7 +39,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResources([
         '/edit/block' => 'Edit\BlockController',
         '/edit/title' => 'Edit\TitleController',
-        'works' => 'WorkController'
+        'works' => 'WorkController',
+        'vote' => 'VoteController'
     ]);
     Route::post('/image', 'ImageController');
     Route::post('comment', 'CommentController@store');
