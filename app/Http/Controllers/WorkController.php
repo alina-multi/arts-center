@@ -51,7 +51,7 @@ class WorkController extends Controller
                     $query->where('language', $language)
                         ->orWhere('language', 'zz'); //zz means any language
                 })->orderBy('order');
-        }, 'blocks.images', 'owners:users.id,old_id,name,username'])->firstOrFail();
+        }, 'blocks.images', 'owners:users.id,old_id,name,username', 'votes', 'votes.user', 'votes.user.photo'])->firstOrFail();
 
         //Normalize tags
         $tags = $work->tags->keyBy('id')->reject(function ($item) {
@@ -68,7 +68,15 @@ class WorkController extends Controller
         }
         $details['blocks'] = $work->blocks;
         $details['tags'] = $tags->keys();
-        return ['details' => $details, 'tags' => $tags, 'owners' => $work->owners->pluck('id')];
+        $votes = [];
+        $users = [];
+        foreach ($work->votes as $vote) {
+            if (!empty($vote->user)) {
+                $votes[] = $vote->user_id;
+                $users[$vote->user->id] = $vote->user;
+            }
+        }
+        return ['details' => $details, 'tags' => $tags, 'owners' => $work->owners->pluck('id'), 'votes' => $votes, 'users' => $users];
     }
 
     /**

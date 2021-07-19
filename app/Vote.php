@@ -9,6 +9,7 @@ class Vote extends Model
 {
     use HasFactory;
     protected $fillable = ['vote', 'votable_id', 'votable_type', 'ip', 'user_id'];
+    protected $visible = ['id', 'user_id', 'created_at', 'vote', 'user'];
 
     public function user()
     {

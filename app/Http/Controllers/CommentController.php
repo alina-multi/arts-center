@@ -46,7 +46,7 @@ class CommentController extends Controller
 
         $comments = Comment::where('commentable_type', $type)
             ->where('commentable_id', $ident)
-            ->with('user')
+            ->with('user', 'votes', 'votes.user', 'votes.user.photo')
             ->orderBy('depth')
             ->orderBy('created_at')
             ->get()->toArray();
@@ -55,10 +55,28 @@ class CommentController extends Controller
         $users = [];
         $tree = [];
         $idRef = []; //Flat id -> ref in tree
-        foreach ($comments as &$comment) {
-            if (!empty($comment['user']) && empty($users[$comment['user']['id']])) {
-                $users[$comment['user']['id']] = $comment['user'];
+
+        function addToUsers(&$users, $user)
+        {
+            if(empty($users[$user['id']])) {
+                $users[$user['id']] = $user;
             }
+        }
+        foreach ($comments as &$comment) {
+            if (!empty($comment['user'])) {
+                addToUsers($users, $comment['user']);
+                unset($comment['user']);
+            }
+            $userVote = [];
+            foreach ($comment['votes'] as $vote) {
+                if (!empty($vote['user'])) {
+                    addToUsers($users, $vote['user']);
+                    $userVote[] = $vote['user']['id'];
+                }
+            }
+
+            $comment['votes'] = $userVote;
+
             if (!$comment['comment_id']) {
                 $tree[] = &$comment;
                 $idRef[$comment['id']] = &$comment;

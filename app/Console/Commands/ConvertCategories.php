@@ -46,14 +46,14 @@ class ConvertCategories extends Command
                     $title = preg_replace('/[^\w ]/u', '', $title);
                     $tag->titles()->create(['language' => $language, 'title' => $title]);
                 } else {
-                    $translation = $translate->translate($item->ru_name, [
-                        'target' => $language
-                    ]);
-                    if ($translation['text']) {
-                        $title = mb_strtolower($translation['text']);
-                        $title = preg_replace('/[^\w ]/u', '', $title);
-                        $tag->titles()->create(['language' => $language, 'title' => $title]);
-                    }
+//                    $translation = $translate->translate($item->ru_name, [
+//                        'target' => $language
+//                    ]);
+//                    if ($translation['text']) {
+//                        $title = mb_strtolower($translation['text']);
+//                        $title = preg_replace('/[^\w ]/u', '', $title);
+//                        $tag->titles()->create(['language' => $language, 'title' => $title]);
+//                    }
                 }
             }
         }
