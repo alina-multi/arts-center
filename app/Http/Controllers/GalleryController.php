@@ -37,7 +37,7 @@ class GalleryController extends Controller
 
         $works = $this->$actionName($ident, $request)->with(['titles' => function ($query) use ($language) {
             $query->where('language', $language);
-        }, 'image:id,name,folder', 'owners:users.id,old_id,name,username'])->whereHas('titles', function ($query) use ($language) {
+        }, 'image:id,name,folder', 'owners:users.id,old_id,name,username', 'owners.photo'])->whereHas('titles', function ($query) use ($language) {
             $query->where('language', $language);
         })->whereHas('image')->whereNotNull('published_at')->offset($offset)->limit($perPage);
         $users = [];

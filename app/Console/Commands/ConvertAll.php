@@ -22,7 +22,9 @@ class ConvertAll extends Command
     {
         $this->call('convert:cat', ['--clear' => $this->option('clear')]);
         $this->call('convert:users', ['--clear' => $this->option('clear')]);
+        $this->call('convert:avatars');
         $this->call('convert:works', ['--clear' => $this->option('clear')]);
         $this->call('convert:comments', ['--clear' => $this->option('clear')]);
+        $this->call('convert:votes', ['--clear' => $this->option('clear')]);
     }
 }

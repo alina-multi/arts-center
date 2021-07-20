@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name', 'email', 'email_verified_at', 'password', 'created_at', 'username', 'old_id'
     ];
 
+    protected $visible = ['id', 'name', 'username', 'created_at', 'photo'];
+
     /**
      * The attributes that should be hidden for arrays.
      *
