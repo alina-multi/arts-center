@@ -21,7 +21,7 @@ class VoteController extends Controller
     {
         $request->validate(
             [
-                'vote' => [Rule::in([1])],
+                'vote' => [Rule::in([1, -1])],
                 'votable_id' => 'required|integer',
                 'votable_type' => ['required', Rule::in(['work', 'comment'])],
             ]
