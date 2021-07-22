@@ -11,6 +11,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/stepanorda/html-to-quill"
+        },
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
         }
     ],
     "require": {
@@ -23,6 +27,7 @@
         "itsgoingd/clockwork": "^5.0",
         "laravel/framework": "^8.0",
         "laravel/horizon": "^5.2",
+        "laravel/nova": "^3.27",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
@@ -40,7 +45,13 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "http-basic": {
+            "nova.laravel.com": {
+                "username": "stepanorda87@gmail.com",
+                "password": "*cS*g!!6TfhMnbQ"
+            }
+        }
     },
     "extra": {
         "laravel": {
@@ -75,7 +86,8 @@
             "@php artisan key:generate --ansi"
         ],
         "post-update-cmd": [
-            "@php artisan horizon:publish --ansi"
+            "@php artisan horizon:publish --ansi",
+            "@php artisan nova:publish"
         ]
     }
 }

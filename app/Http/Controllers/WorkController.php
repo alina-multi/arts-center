@@ -94,7 +94,8 @@ class WorkController extends Controller
         }
         $this->validate($request, [
             'published_at' => ['date_format:Y-m-d H:i:s'],
-            'image_id' => ['exists:images,id']
+            'image_id' => ['exists:images,id'],
+            'tags.*.id' => ['integer', 'exists:tags,id']
         ]);
         $work->fill($request->all())->save();
         return $work;
