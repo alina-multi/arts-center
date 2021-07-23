@@ -18,3 +18,10 @@ Route::get('/api/mail', function () {
     return (new \App\Notifications\MailResetPasswordNotification())
         ->toMail('dsfbjhsdgfhgdsjfhgsjdg');
 });
+
+Route::get('/vendor/nova/{file}', function ($file) {
+    $filename = public_path('vendor/nova/' . $file);
+    $mime=\GuzzleHttp\Psr7\MimeType::fromFilename($filename);
+    return response(file_get_contents($filename), 200)->header('Content-Type', $mime);
+})->where('file', '.*');;
+

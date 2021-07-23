@@ -98,7 +98,6 @@ return [
     */
 
     'middleware' => [
-        \App\Http\Middleware\TrustProxies::class,
         'web',
         Authenticate::class,
         DispatchServingNovaEvent::class,
