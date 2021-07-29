@@ -17,8 +17,6 @@ class ConvertCategories extends Command
      */
     protected $signature = 'convert:cat  {--clear}';
 
-    protected $languages = ['en', 'ru', 'uk', 'de', 'fr'];
-
     /**
      * Execute the console command.
      *
@@ -40,20 +38,20 @@ class ConvertCategories extends Command
         foreach ($art as $item) {
             if ($item->id === 0) continue;
             $tag = Tag::create(['type_id' => 1, 'old_id'=> $item->id]);
-            foreach ($this->languages as $language) {
+            foreach (config('app.languages') as $language) {
                 if (!empty($item->{$language . '_name'})) {
                     $title = mb_strtolower($item->{$language . '_name'});
                     $title = preg_replace('/[^\w ]/u', '', $title);
                     $tag->titles()->create(['language' => $language, 'title' => $title]);
                 } else {
-//                    $translation = $translate->translate($item->ru_name, [
-//                        'target' => $language
-//                    ]);
-//                    if ($translation['text']) {
-//                        $title = mb_strtolower($translation['text']);
-//                        $title = preg_replace('/[^\w ]/u', '', $title);
-//                        $tag->titles()->create(['language' => $language, 'title' => $title]);
-//                    }
+                    $translation = $translate->translate($item->ru_name, [
+                        'target' => $language
+                    ]);
+                    if ($translation['text']) {
+                        $title = mb_strtolower($translation['text']);
+                        $title = preg_replace('/[^\w ]/u', '', $title);
+                        $tag->titles()->create(['language' => $language, 'title' => $title]);
+                    }
                 }
             }
         }
