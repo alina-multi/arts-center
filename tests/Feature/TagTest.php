@@ -54,13 +54,4 @@ class TagTest extends TestCase
         $response = $this->getJson('/api/tag/верк');
         $response->assertJsonCount(1);
     }
-
-    public function createTags($tag_type, array $titles)
-    {
-        $count = sizeof($titles);
-        $tags = Tag::factory(['type_id' => $tag_type])->count($count)->create();
-        foreach ($titles as $key => $title) {
-            TagTitle::factory(['title' => $title, 'tag_id' => $tags[$key]->id])->create();
-        }
-    }
 }

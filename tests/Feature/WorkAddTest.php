@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Image;
+use App\Tag;
 use App\Work;
 use App\WorkBlock;
 use Carbon\Carbon;
@@ -154,14 +155,20 @@ class WorkAddTest extends TestCase
         $image = Image::factory(['folder'=>'image'])->create();
 
         $now = Carbon::now()->format('Y-m-d H:i:s');
+        $tags = $this->createTags(Tag::TYPE_TAG,['strawberry', 'banana', 'apple']);
+        $category = $this->createTags(Tag::TYPE_CATEGORY,['red', 'blue', 'purple', 'green']);
 
         $response = $this->actingAs($user)->putJson(
             '/api/works/' . $work->id,
             [
                 'image_id' => $image->id,
                 'published_at' => $now,
+                'tags' => $tags->pluck('id')->toArray(),
+                'category' => $category->pluck('id')->toArray()
             ]
         );
+
+        $this->assertDatabaseCount('taggables',7);
 
         $response->assertStatus(200)->assertJson(['id' => 1]);
         $updatedWork = $work->fresh();

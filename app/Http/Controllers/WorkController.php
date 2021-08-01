@@ -124,8 +124,10 @@ class WorkController extends Controller
         $this->validate($request, [
             'published_at' => ['date_format:Y-m-d H:i:s'],
             'image_id' => ['exists:images,id'],
-            'tags.*.id' => ['integer', 'exists:tags,id']
+            'tags.*.id' => ['integer', 'exists:tags,id'],
+            'category.*.id' => ['integer', 'exists:tags,id']
         ]);
+        $work->tags()->sync(array_merge((array) $request->tags, (array) $request->category));
         $work->fill($request->all())->save();
         return $work;
     }
