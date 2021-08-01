@@ -20,7 +20,7 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
-        $work = Work::create(['image_id'=>0]);
+        $work = Work::create(['image_id' => 0]);
         $work->owners()->attach(Auth::id());
         return response($work);
     }
@@ -43,18 +43,39 @@ class WorkController extends Controller
      */
     public function show($language, $id)
     {
-        $work = Work::where('id', $id)->with(['details:work_id,year,width,height,length', 'tags:tags.id', 'tags.titles' => function ($query) use ($language) {
-            $query->where('language', $language);
-        }, 'blocks' => function ($query) use ($language) {
-            $query->select('id', 'work_id', 'type', 'data')
-                ->where(function ($query) use ($language) {
-                    $query->where('language', $language)
-                        ->orWhere('language', 'zz'); //zz means any language
-                })->orderBy('order');
-        }, 'blocks.images', 'owners:users.id,old_id,name,username', 'votes', 'votes.user', 'votes.user.photo'])->firstOrFail();
+        $work = Work::where('id', $id)->with([
+                                                 'details:work_id,year,width,height,length',
+                                                 'category:tags.id',
+                                                 'category.titles' => function ($query) use ($language) {
+                                                     $query->where('language', $language);
+                                                 },
+                                                 'tags:tags.id',
+                                                 'tags.titles',
+                                                 'blocks' => function ($query) use ($language) {
+                                                     $query->select('id', 'work_id', 'type', 'data')
+                                                         ->where(function ($query) use ($language) {
+                                                             $query->where('language', $language)
+                                                                 ->orWhere('language', 'zz'); //zz means any language
+                                                         })->orderBy('order');
+                                                 },
+                                                 'blocks.images',
+                                                 'owners:users.id,old_id,name,username',
+                                                 'votes',
+                                                 'votes.user',
+                                                 'votes.user.photo'
+                                             ])->firstOrFail();
 
         //Normalize tags
         $tags = $work->tags->keyBy('id')->reject(function ($item) {
+            return sizeof($item->titles) === 0; //If there are no title for this tag, delete it
+        })->map(function ($item, $key) {
+            return [
+                'title' => $item->titles[0]->title,
+                'count' => $item->count
+            ];
+        });
+        //Normalize category
+        $category = $work->category->keyBy('id')->reject(function ($item) {
             return sizeof($item->titles) === 0; //If there are no title for this tag, delete it
         })->map(function ($item, $key) {
             return [
@@ -68,6 +89,7 @@ class WorkController extends Controller
         }
         $details['blocks'] = $work->blocks;
         $details['tags'] = $tags->keys();
+        $details['category'] = $category->keys();
         $votes = [];
         $users = [];
         foreach ($work->votes as $vote) {
@@ -76,7 +98,14 @@ class WorkController extends Controller
                 $users[$vote->user->id] = $vote->user;
             }
         }
-        return ['details' => $details, 'tags' => $tags, 'owners' => $work->owners->pluck('id'), 'votes' => $votes, 'users' => $users];
+        return [
+            'details' => $details,
+            'tags' => $tags,
+            'category' => $category,
+            'owners' => $work->owners->pluck('id'),
+            'votes' => $votes,
+            'users' => $users
+        ];
     }
 
     /**

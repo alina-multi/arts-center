@@ -39,7 +39,12 @@ class Work extends Model
 
     public function tags()
     {
-        return $this->morphToMany('App\Tag', 'taggable');
+        return $this->morphToMany('App\Tag', 'taggable')->where('type_id', Tag::TYPE_TAG);
+    }
+
+    public function category()
+    {
+        return $this->morphToMany('App\Tag', 'taggable')->where('type_id', Tag::TYPE_CATEGORY);
     }
 
     public function images()
