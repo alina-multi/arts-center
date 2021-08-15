@@ -12,6 +12,7 @@ use Tests\TestCase;
 use App\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Testing\Fluent\AssertableJson;
 
 class WorkAddTest extends TestCase
 {
@@ -72,21 +73,22 @@ class WorkAddTest extends TestCase
 
     public function testUploadImage()
     {
+        $imageName = 'painting.jpg';
         $user = User::factory()->create();
         $work = Work::factory()->create();
         $work->owners()->attach($user->id);
 
         Storage::fake('s3');
-        $file = UploadedFile::fake()->image('painting.jpg');
+        $file = UploadedFile::fake()->image($imageName);
 
         $response = $this->actingAs($user)->postJson('/api/image', [
             'file' => $file,
             'type' => 'image'
         ]);
 
-        $responseData=$response->decodeResponseJson();
+        $responseData = $response->decodeResponseJson();
 
-        $response->assertJson(['id' => 1]);
+        $response->assertJson(['url' => $responseData['url']]);
 
         Storage::disk('s3')->assertExists($responseData['url']);
 
@@ -100,7 +102,7 @@ class WorkAddTest extends TestCase
         $user = User::factory()->create();
         $work = Work::factory()->create();
         $work->owners()->attach($user->id);
-        $image = Image::factory(['folder'=>'image'])->create();
+        $image = Image::factory(['folder' => 'image'])->create();
 
         $response = $this->actingAs($user)->postJson(
             '/api/edit/block',
@@ -127,7 +129,7 @@ class WorkAddTest extends TestCase
         $user = User::factory()->create();
         $work = Work::factory()->create();
         $work->owners()->attach($user->id);
-        $images = Image::factory(['folder'=>'grid'])->count(3)->create();
+        $images = Image::factory(['folder' => 'grid'])->count(3)->create();
 
         $response = $this->actingAs($user)->postJson(
             '/api/edit/block',
@@ -152,11 +154,11 @@ class WorkAddTest extends TestCase
         $user = User::factory()->create();
         $work = Work::factory()->create();
         $work->owners()->attach($user->id);
-        $image = Image::factory(['folder'=>'image'])->create();
+        $image = Image::factory(['folder' => 'image'])->create();
 
         $now = Carbon::now()->format('Y-m-d H:i:s');
-        $tags = $this->createTags(Tag::TYPE_TAG,['strawberry', 'banana', 'apple']);
-        $category = $this->createTags(Tag::TYPE_CATEGORY,['red', 'blue', 'purple', 'green']);
+        $tags = $this->createTags(Tag::TYPE_TAG, ['strawberry', 'banana', 'apple']);
+        $category = $this->createTags(Tag::TYPE_CATEGORY, ['red', 'blue', 'purple', 'green']);
 
         $response = $this->actingAs($user)->putJson(
             '/api/works/' . $work->id,
@@ -168,7 +170,7 @@ class WorkAddTest extends TestCase
             ]
         );
 
-        $this->assertDatabaseCount('taggables',7);
+        $this->assertDatabaseCount('taggables', 7);
 
         $response->assertStatus(200)->assertJson(['id' => 1]);
         $updatedWork = $work->fresh();
