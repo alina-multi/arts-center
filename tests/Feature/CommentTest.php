@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Vote;
 use App\Work;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 use App\User;
 use App\Comment;
@@ -36,6 +37,10 @@ class CommentTest extends TestCase
         );
         $work->owners()->attach($user->id);
         $response = $this->get('/api/comment/work_' . $work->id);
-        $response->dump();
+        $response->assertJson(fn (AssertableJson $json) =>
+        $json->has('comments', 1)
+            ->has('comments.0.votes', 1)
+            ->has('users', 2)
+        );
     }
 }
