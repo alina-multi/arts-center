@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Subscription;
+use App\User;
+use App\Work;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class SubscriptionController extends Controller
 {
@@ -14,9 +17,44 @@ class SubscriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Subscription::where('user_id',Auth::id())->get();
+        if ($request->get('full')) {
+            $subscriptions = Subscription::where(
+                'user_id',
+                Auth::id()
+            )->with([
+                        'subscribable' => function (
+                            MorphTo $morphTo
+                        ) {
+                            $morphTo->morphWith([
+                                                    Work::class => [
+                                                        'image'
+                                                    ],
+                                                    User::class => [
+                                                        'photo'
+                                                    ]
+                                                ]);
+                        }
+                    ])->get();
+            $users = [];
+            $works = [];
+            foreach ($subscriptions as &$subscription) {
+                if ($subscription->subscribable instanceof User) {
+                    if (empty($users[$subscription->subscribable->id])) {
+                        $users[$subscription->subscribable->id] = $subscription->subscribable;
+                    }
+                } elseif ($subscription->subscribable instanceof Work) {
+                    if (empty($works[$subscription->subscribable->id])) {
+                        $works[$subscription->subscribable->id] = $subscription->subscribable;
+                    }
+                }
+                $subscription->unsetRelation('subscribable');
+            }
+            return compact('subscriptions', 'users', 'works');
+        } else {
+            return Subscription::where('user_id', Auth::id())->get();
+        }
     }
 
     /**
@@ -28,8 +66,12 @@ class SubscriptionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-                               'subscribable_type' => ['required','string', Rule::in(['work', 'user'])],
-                               'subscribable_id' => ['required','integer', Rule::exists($request->subscribable_type.'s','id')],
+                               'subscribable_type' => ['required', 'string', Rule::in(['work', 'user'])],
+                               'subscribable_id' => [
+                                   'required',
+                                   'integer',
+                                   Rule::exists($request->subscribable_type . 's', 'id')
+                               ],
                            ]);
         $data = $request->all();
         $data['user_id'] = Auth::id();

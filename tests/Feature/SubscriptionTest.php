@@ -11,6 +11,7 @@ use App\Work;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Illuminate\Support\Facades\DB;
 
 class SubscriptionTest extends TestCase
 {
@@ -77,5 +78,21 @@ class SubscriptionTest extends TestCase
         $subscriptions = Subscription::factory(['user_id' => $user->id])->count(5)->create();
         $response = $this->actingAs($user)->getJson('api/subscription');
         $response->assertJsonCount(5);
+    }
+
+    public function testGetFullSubscriptions()
+    {
+        DB::connection()->enableQueryLog();
+        $user = User::factory()->create();
+        Subscription::factory(['user_id'=>$user->id])->attachWork()->create();
+        Subscription::factory(['user_id'=>$user->id])->attachUser()->create();
+        $response = $this->actingAs($user)->getJson('api/subscription?full=1');
+        $response->assertJson(fn (AssertableJson $json) =>
+        $json->has('subscriptions', 2)
+            ->has('users', 1)
+            ->has('works', 1)
+            ->has('works.1.image.url')
+        );
+
     }
 }

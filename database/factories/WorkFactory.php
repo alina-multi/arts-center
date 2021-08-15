@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Image;
 use App\Work;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,8 +22,9 @@ class WorkFactory extends Factory
      */
     public function definition()
     {
+        $image = Image::factory()->create();
         return [
-            'image_id' => 0
+            'image_id' => $image->id
         ];
     }
 }
