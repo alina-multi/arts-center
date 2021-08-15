@@ -43,7 +43,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
         'works' => 'WorkController',
         'vote' => 'VoteController',
         'tag' => 'TagController',
-        'subscription' => 'SubscriptionController'
+        'subscription' => 'SubscriptionController',
+        'blacklist' => 'BlacklistController'
     ]);
     Route::post('/image', 'ImageController');
     Route::post('comment', 'CommentController@store');

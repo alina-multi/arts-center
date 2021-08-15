@@ -82,7 +82,6 @@ class SubscriptionTest extends TestCase
 
     public function testGetFullSubscriptions()
     {
-        DB::connection()->enableQueryLog();
         $user = User::factory()->create();
         Subscription::factory(['user_id'=>$user->id])->attachWork()->create();
         Subscription::factory(['user_id'=>$user->id])->attachUser()->create();
