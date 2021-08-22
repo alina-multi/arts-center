@@ -19,4 +19,13 @@ abstract class TestCase extends BaseTestCase
         }
         return $tags;
     }
+
+    public function fakeDeltaJson()
+    {
+        return [
+            "ops" => [
+                ["insert" => "test\n"]
+            ]
+        ];
+    }
 }
