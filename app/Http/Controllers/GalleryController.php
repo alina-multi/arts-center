@@ -63,8 +63,10 @@ class GalleryController extends Controller
                 $owner = $owner->toArray();
                 if (empty($users[$owner['id']])) {
                     $users[$owner['id']] = $owner;
-                    $owners[] = $owner['id'];
                     unset($users[$owner['id']]['pivot']);
+                }
+                if (!in_array($owner['id'], $owners)) {
+                    $owners[] = $owner['id'];
                 }
             }
             $work->unsetRelation('owners');
