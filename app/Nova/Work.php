@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Metrics\WorksPerDay;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
@@ -91,7 +92,7 @@ class Work extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [new WorksPerDay()];
     }
 
     /**

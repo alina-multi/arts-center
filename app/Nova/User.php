@@ -2,6 +2,8 @@
 
 namespace App\Nova;
 
+use App\Nova\Metrics\NewUsers;
+use App\Nova\Metrics\UsersPerDay;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
@@ -76,7 +78,7 @@ class User extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [new UsersPerDay()];
     }
 
     /**
