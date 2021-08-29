@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Feedback;
+use App\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class FeedbackFactory extends Factory
@@ -22,7 +23,11 @@ class FeedbackFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->word,
+            'user_id' => User::factory()->create()->id,
+            'language' => 'en',
+            'body' => ['delta'=>[]],
+            'type'=>''
         ];
     }
 }

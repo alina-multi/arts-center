@@ -14,9 +14,19 @@ class FeedbackController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function idea()
     {
-        //
+        return Feedback::where('type', 'idea')->get();
+    }
+
+    public function feedback()
+    {
+        return Feedback::where('type', 'feedback')->get();
+    }
+
+    public function complaint()
+    {
+        return Feedback::where('type', 'complaint')->get();
     }
 
 

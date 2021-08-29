@@ -31,6 +31,9 @@ Route::get('tag/category/{language}', 'TagController@getCategory');
 Route::get('works/{work}', 'WorkController@show');
 Route::get('vote/{id}', 'VoteController@show');
 Route::get('tag/{search}', 'TagController@show');
+Route::get('feedback/idea', 'FeedbackController@idea');
+Route::get('feedback/feedback', 'FeedbackController@feedback');
+Route::get('feedback/complaint', 'FeedbackController@complaint');
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('profile/avatar', 'Profile\AvatarController');
