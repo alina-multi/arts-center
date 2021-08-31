@@ -6,6 +6,7 @@ use App\Feedback;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class FeedbackController extends Controller
 {
@@ -16,7 +17,7 @@ class FeedbackController extends Controller
      */
     public function idea()
     {
-        return Feedback::where('type', 'idea')->get();
+        return Feedback::where('type', 'idea')->orderBy('rating', 'desc')->get();
     }
 
     public function feedback()
@@ -40,13 +41,26 @@ class FeedbackController extends Controller
     {
         $request->validate([
                                'language' => ['required', Rule::in(config('app.languages'))],
-                               'title' => 'required|string',
-                               'body' => 'required|array',
+                               'title' => [
+                                   Rule::requiredIf($request->type !== 'complaint'),
+                                   'string',
+                                   ],
+                               'body' => [
+                                   Rule::requiredIf($request->type !== 'complaint' || $request->category === 'other')
+                               ],
                                'type' => ['required', Rule::in(array_keys(Feedback::TYPE_CATEGORY))],
                                'category' => [
                                    Rule::requiredIf($request->type === 'complaint'),
                                    Rule::in(Feedback::TYPE_CATEGORY['complaint'])
-                               ]
+                               ],
+                               'feedbackable_id' => [
+                                   Rule::requiredIf($request->type === 'complaint')
+                               ],
+                               'feedbackable_type' => [
+                                   Rule::requiredIf($request->type === 'complaint'),
+                                   Rule::in(array_keys(Relation::morphMap()))
+                               ],
+
                            ]);
         $data = $request->all();
         $data['user_id'] = Auth::id();

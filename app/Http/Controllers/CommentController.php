@@ -8,6 +8,7 @@ use Illuminate\Validation\UnauthorizedException;
 use App\Http\Controllers\Gallery\{IndexTrait, RelatedTrait, TagTrait, UserTrait};
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class CommentController extends Controller
 {
@@ -20,7 +21,7 @@ class CommentController extends Controller
             'commentable_id' => 'required|integer',
             'commentable_type' => [
                 'required',
-                Rule::in($this->commentTypes),
+                Rule::in(array_keys(Relation::morphMap())),
             ],
             'comment_id' => 'integer|exists:comments,id',
             'depth' => 'integer',

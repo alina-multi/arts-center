@@ -9,7 +9,7 @@ class Feedback extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['language', 'title', 'body', 'type', 'category', 'user_id'];
+    protected $fillable = ['language', 'title', 'body', 'type', 'category', 'user_id', 'feedbackable_type', 'feedbackable_id'];
     const TYPE_CATEGORY = [
         'idea' => [
 

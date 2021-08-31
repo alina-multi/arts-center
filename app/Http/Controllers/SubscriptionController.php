@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Subscription;
 use App\User;
 use App\Work;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -66,7 +67,7 @@ class SubscriptionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-                               'subscribable_type' => ['required', 'string', Rule::in(['work', 'user'])],
+                               'subscribable_type' => ['required', 'string', Rule::in(array_keys(Relation::morphMap()))],
                                'subscribable_id' => [
                                    'required',
                                    'integer',

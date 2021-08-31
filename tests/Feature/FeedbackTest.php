@@ -22,28 +22,30 @@ class FeedbackTest extends TestCase
 
     public function testGetFeedback()
     {
-        Feedback::factory(['type'=>'feedback'])->count(5)->create();
+        Feedback::factory(['type' => 'feedback'])->count(5)->create();
         // To test that we don't send things of different type
-        Feedback::factory(['type'=>'idea'])->create();
-        Feedback::factory(['type'=>'complaint'])->create();
+        Feedback::factory(['type' => 'idea'])->create();
+        Feedback::factory(['type' => 'complaint'])->create();
         $response = $this->getJson('api/feedback/feedback');
         $response->assertJsonCount(5);
     }
+
     public function testGetIdea()
     {
-        Feedback::factory(['type'=>'idea'])->count(5)->create();
+        Feedback::factory(['type' => 'idea'])->count(5)->create();
         // To test that we don't send things of different type
-        Feedback::factory(['type'=>'complaint'])->create();
-        Feedback::factory(['type'=>'feedback'])->create();
+        Feedback::factory(['type' => 'complaint'])->create();
+        Feedback::factory(['type' => 'feedback'])->create();
         $response = $this->getJson('api/feedback/idea');
         $response->assertJsonCount(5);
     }
+
     public function testGetComplaint()
     {
-        Feedback::factory(['type'=>'complaint'])->count(5)->create();
+        Feedback::factory(['type' => 'complaint'])->count(5)->create();
         // To test that we don't send things of different type
-        Feedback::factory(['type'=>'idea'])->create();
-        Feedback::factory(['type'=>'feedback'])->create();
+        Feedback::factory(['type' => 'idea'])->create();
+        Feedback::factory(['type' => 'feedback'])->create();
         $response = $this->getJson('api/feedback/complaint');
         $response->assertJsonCount(5);
     }
@@ -60,7 +62,17 @@ class FeedbackTest extends TestCase
 
     public function testSendComplaint()
     {
-        $response = $this->sendAndTestFeedback(['type' => 'complaint', 'category' => Arr::random(Feedback::TYPE_CATEGORY['complaint'])]);
+        $user = User::factory()->create();
+        $response = $this->sendAndTestFeedback(
+            [
+                'type' => 'complaint',
+                'category' => Arr::random(array_slice(Feedback::TYPE_CATEGORY['complaint'],0, -1)), // Remove the last "other"
+                'feedbackable_id' => $user->id,
+                'feedbackable_type' => 'user',
+                'body' => '',
+                'title' => ''
+            ]
+        );
     }
 
     public function sendAndTestFeedback($data = [])
@@ -68,11 +80,12 @@ class FeedbackTest extends TestCase
         $user = User::factory()->create();
         $title = $this->faker()->words(3, true);
         $body = $this->fakeDeltaJson();
-        $data = array_merge([
+        // Array filter remove empty ones. So if we need to remove element just send it with value ''
+        $data = array_filter(array_merge([
                                 'language' => 'en',
                                 'title' => $title,
                                 'body' => $body
-                            ], $data);
+                            ], $data));
         $response = $this->actingAs($user)->postJson(
             'api/feedback',
             $data
