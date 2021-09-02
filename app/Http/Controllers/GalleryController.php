@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Gallery\{IndexTrait, RelatedTrait, TagTrait, UserTrait};
+use App\Http\Controllers\Gallery\{DraftTrait, IndexTrait, RelatedTrait, TagTrait, UserTrait};
 use App\User;
 use Clockwork\Request\Log;
 use Facade\FlareClient\Http\Exceptions\NotFound;
@@ -10,9 +10,9 @@ use Illuminate\Http\Request;
 
 class GalleryController extends Controller
 {
-    use IndexTrait, UserTrait, TagTrait, RelatedTrait;
+    use IndexTrait, UserTrait, TagTrait, RelatedTrait, DraftTrait;
 
-    protected $galleryTypes = ['index', 'user', 'tag', 'related'];
+    protected $galleryTypes = ['index', 'user', 'tag', 'related', 'draft'];
 
     /**
      * Display the specified resource.
@@ -37,9 +37,13 @@ class GalleryController extends Controller
 
         $works = $this->$actionName($ident, $request)->with(['titles' => function ($query) use ($language) {
             $query->where('language', $language);
-        }, 'image:id,name,folder', 'owners:users.id,old_id,name,username', 'owners.photo'])->whereHas('titles', function ($query) use ($language) {
-            $query->where('language', $language);
-        })->whereHas('image')->whereNotNull('published_at')->offset($offset)->limit($perPage);
+        }, 'image:id,name,folder', 'owners:users.id,old_id,name,username', 'owners.photo'])->offset($offset)->limit($perPage);
+
+        if ($type !== 'draft') {
+            $works = $works->whereHas('titles', function ($query) use ($language) {
+                $query->where('language', $language);
+            })->whereHas('image')->whereNotNull('published_at');
+        }
         $users = [];
 
         switch ($request->order){
@@ -55,7 +59,7 @@ class GalleryController extends Controller
         $works=$works->get();
 
         foreach ($works as &$work) {
-            $work->title = $work->titles[0]->title;
+            $work->title = sizeof($work->titles) ? $work->titles[0]->title : '';
             $work->old_user_id = $work->image ? $work->image->old_user_id : null;
             $work->unsetRelation('titles');
             $owners = [];
