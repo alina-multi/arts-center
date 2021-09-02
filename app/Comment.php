@@ -30,4 +30,16 @@ class Comment extends Model
     {
         return $this->morphTo();
     }
+
+    public function canDelete($userId)
+    {
+        if ($this->user_id == $userId) {
+            return true;
+        }
+        if ($this->commentable instanceof Work) {
+            if ($this->commentable->owners->firstWhere('id', $userId)) {
+                return true;
+            }
+        }
+    }
 }

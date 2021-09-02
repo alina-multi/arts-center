@@ -114,7 +114,7 @@ class CommentController extends Controller
     public function update(Request $request, Comment $comment)
     {
         if ($comment->user_id !== Auth::id()) {
-            throw new UnauthorizedException('You can only edit your own comments'.$comment->user_id.' - '.Auth::id());
+            return response()->json(['error' => "You can't edit this"], 401);
         }
         $request->validate(['body' => 'required|array']);
         $comment->body = $request->get('body');
@@ -124,8 +124,8 @@ class CommentController extends Controller
 
     public function destroy(Comment $comment)
     {
-        if ($comment->user_id !== Auth::id()) {
-            throw new UnauthorizedException('You can only delete your own comments'.$comment->user_id.' - '.Auth::id());
+        if (!$comment->canDelete(Auth::id())) {
+            return response()->json(['error' => "You can't delete this"], 401);
         }
         $comment->delete();
     }

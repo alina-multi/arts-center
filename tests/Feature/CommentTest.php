@@ -43,4 +43,57 @@ class CommentTest extends TestCase
             ->has('users', 2)
         );
     }
+
+    public function testDeleteOwnCommentFromWork()
+    {
+        $work = Work::factory()->create();
+        $user = User::factory()->create();
+        $comment = Comment::factory()->create(
+            [
+                'user_id' => $user->id,
+                'commentable_id' => $work->id,
+                'commentable_type' => 'work',
+                'body' => ['test' => 'json']
+            ]
+        );
+        $response = $this->actingAs($user)->deleteJson('/api/comment/'.$comment->id);
+        $response->assertStatus(200);
+    }
+
+    public function testDeleteSomeoneCommentFromYourWork()
+    {
+        $work = Work::factory()->create();
+        $user = User::factory()->create();
+        $owner = User::factory()->create();
+        $comment = Comment::factory()->create(
+            [
+                'user_id' => $user->id,
+                'commentable_id' => $work->id,
+                'commentable_type' => 'work',
+                'body' => ['test' => 'json']
+            ]
+        );
+        $work->owners()->attach($owner->id);
+        $response = $this->actingAs($owner)->deleteJson('/api/comment/' . $comment->id);
+        $response->assertStatus(200);
+    }
+
+    public function testDeleteNotYourCommentFromNotYourWork()
+    {
+        $work = Work::factory()->create();
+        $user = User::factory()->create();
+        $owner = User::factory()->create();
+        $me = User::factory()->create();
+        $comment = Comment::factory()->create(
+            [
+                'user_id' => $user->id,
+                'commentable_id' => $work->id,
+                'commentable_type' => 'work',
+                'body' => ['test' => 'json']
+            ]
+        );
+        $work->owners()->attach($owner->id);
+        $response = $this->actingAs($me)->deleteJson('/api/comment/'.$comment->id);
+        $response->assertStatus(401);
+    }
 }
