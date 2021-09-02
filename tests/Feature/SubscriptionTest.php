@@ -92,6 +92,21 @@ class SubscriptionTest extends TestCase
             ->has('works', 1)
             ->has('works.1.image.url')
         );
+    }
 
+    public function testDoubleSubscribe()
+    {
+        $user = User::factory()->create();
+        $work = Work::factory()->create();
+        $response1 = $this->actingAs($user)->postJson('api/subscription', [
+            'subscribable_type' => 'work',
+            'subscribable_id' => $work->id
+        ]);
+        $response1->assertStatus(201);
+        $response2 = $this->actingAs($user)->postJson('api/subscription', [
+            'subscribable_type' => 'work',
+            'subscribable_id' => $work->id
+        ]);
+        $response2->assertStatus(422);
     }
 }

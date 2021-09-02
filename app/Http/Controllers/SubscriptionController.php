@@ -71,7 +71,11 @@ class SubscriptionController extends Controller
                                'subscribable_id' => [
                                    'required',
                                    'integer',
-                                   Rule::exists($request->subscribable_type . 's', 'id')
+                                   Rule::exists($request->subscribable_type . 's', 'id'),
+                                   Rule::unique('subscriptions')->where(function ($query) use ($request) {
+                                       return $query->where('subscribable_type', $request->subscribable_type)
+                                           ->where('subscribable_id', $request->subscribable_id);
+                                   })
                                ],
                            ]);
         $data = $request->all();
