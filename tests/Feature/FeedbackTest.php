@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Comment;
 use App\Feedback;
-use App\Subscription;
+use App\Follow;
 use App\Tag;
 use App\TagTitle;
 use App\User;

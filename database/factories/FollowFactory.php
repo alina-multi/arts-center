@@ -2,19 +2,19 @@
 
 namespace Database\Factories;
 
-use App\Subscription;
+use App\Follow;
 use App\Work;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\User;
 
-class SubscriptionFactory extends Factory
+class FollowFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Subscription::class;
+    protected $model = Follow::class;
 
     /**
      * Define the model's default state.
@@ -25,8 +25,8 @@ class SubscriptionFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'subscribable_type' => $this->faker->randomElement(['work', 'user']),
-            'subscribable_id' => $this->faker->unique()->randomNumber
+            'followable_type' => $this->faker->randomElement(['work', 'user']),
+            'followable_id' => $this->faker->unique()->randomNumber
         ];
     }
 
@@ -35,8 +35,8 @@ class SubscriptionFactory extends Factory
         return $this->state(function () {
             $work = Work::factory()->create();
             return [
-                'subscribable_type' => 'work',
-                'subscribable_id' => $work->id
+                'followable_type' => 'work',
+                'followable_id' => $work->id
             ];
         });
     }
@@ -46,8 +46,8 @@ class SubscriptionFactory extends Factory
         return $this->state(function () {
             $user = User::factory()->create();
             return [
-                'subscribable_type' => 'user',
-                'subscribable_id' => $user->id
+                'followable_type' => 'user',
+                'followable_id' => $user->id
             ];
         });
     }

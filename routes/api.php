@@ -46,7 +46,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         'works' => 'WorkController',
         'vote' => 'VoteController',
         'tag' => 'TagController',
-        'subscription' => 'SubscriptionController',
+        'follow' => 'FollowController',
         'blacklist' => 'BlacklistController',
         'feedback' => 'FeedbackController'
     ]);

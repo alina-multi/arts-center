@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Subscription;
+use App\Follow;
 use App\User;
 use App\Work;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class SubscriptionController extends Controller
+class FollowController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,11 +21,11 @@ class SubscriptionController extends Controller
     public function index(Request $request)
     {
         if ($request->get('full')) {
-            $subscriptions = Subscription::where(
+            $follows = Follow::where(
                 'user_id',
                 Auth::id()
             )->with([
-                        'subscribable' => function (
+                        'followable' => function (
                             MorphTo $morphTo
                         ) {
                             $morphTo->morphWith([
@@ -40,21 +40,21 @@ class SubscriptionController extends Controller
                     ])->get();
             $users = [];
             $works = [];
-            foreach ($subscriptions as &$subscription) {
-                if ($subscription->subscribable instanceof User) {
-                    if (empty($users[$subscription->subscribable->id])) {
-                        $users[$subscription->subscribable->id] = $subscription->subscribable;
+            foreach ($follows as &$follow) {
+                if ($follow->followable instanceof User) {
+                    if (empty($users[$follow->followable->id])) {
+                        $users[$follow->followable->id] = $follow->followable;
                     }
-                } elseif ($subscription->subscribable instanceof Work) {
-                    if (empty($works[$subscription->subscribable->id])) {
-                        $works[$subscription->subscribable->id] = $subscription->subscribable;
+                } elseif ($follow->followable instanceof Work) {
+                    if (empty($works[$follow->followable->id])) {
+                        $works[$follow->followable->id] = $follow->followable;
                     }
                 }
-                $subscription->unsetRelation('subscribable');
+                $follow->unsetRelation('followable');
             }
-            return compact('subscriptions', 'users', 'works');
+            return compact('follows', 'users', 'works');
         } else {
-            return Subscription::where('user_id', Auth::id())->get();
+            return Follow::where('user_id', Auth::id())->get();
         }
     }
 
@@ -67,30 +67,30 @@ class SubscriptionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-                               'subscribable_type' => ['required', 'string', Rule::in(array_keys(Relation::morphMap()))],
-                               'subscribable_id' => [
+                               'followable_type' => ['required', 'string', Rule::in(array_keys(Relation::morphMap()))],
+                               'followable_id' => [
                                    'required',
                                    'integer',
-                                   Rule::exists($request->subscribable_type . 's', 'id'),
-                                   Rule::unique('subscriptions')->where(function ($query) use ($request) {
-                                       return $query->where('subscribable_type', $request->subscribable_type)
-                                           ->where('subscribable_id', $request->subscribable_id);
+                                   Rule::exists($request->followable_type . 's', 'id'),
+                                   Rule::unique('follows')->where(function ($query) use ($request) {
+                                       return $query->where('followable_type', $request->followable_type)
+                                           ->where('followable_id', $request->followable_id);
                                    })
                                ],
                            ]);
         $data = $request->all();
         $data['user_id'] = Auth::id();
-        return Subscription::create($data);
+        return Follow::create($data);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Subscription $subscription
+     * @param \App\Follow $follow
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subscription $subscription)
+    public function update(Request $request, Follow $follow)
     {
         //
     }
@@ -98,13 +98,13 @@ class SubscriptionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Subscription $subscription
+     * @param \App\Follow $follow
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subscription $subscription)
+    public function destroy(Follow $follow)
     {
-        if ($subscription->user_id == Auth::id()) {
-            $subscription->delete();
+        if ($follow->user_id == Auth::id()) {
+            $follow->delete();
         } else {
             abort(401);
         }
