@@ -20,12 +20,14 @@ class GalleryTest extends TestCase
         $draft->owners()->attach($user);
         // Add published work to test that it's not in drafts
         Work::factory(['published_at'=>date('Y-m-d H:i:s')])->create();
-        $response = $this->getJson('api/gallery/en/draft?order=new');
+        $response = $this->actingAs($user)->getJson("api/gallery/en/draft_$user->id?order=new");
         $response->assertStatus(200);
         $response->assertJson(fn (AssertableJson $json) =>
             $json->has('works', 1)
             ->has('users',1)
             ->has('works.0.owners', 1)
         );
+        $response = $this->getJson("api/gallery/en/draft_999?order=new");
+        $response->assertStatus(404);
     }
 }

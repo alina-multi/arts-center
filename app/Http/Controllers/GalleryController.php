@@ -35,9 +35,14 @@ class GalleryController extends Controller
 
         $actionName = $type . 'Gallery';
 
-        $works = $this->$actionName($ident, $request)->with(['titles' => function ($query) use ($language) {
-            $query->where('language', $language);
-        }, 'image:id,name,folder', 'owners:users.id,old_id,name,username', 'owners.photo'])->offset($offset)->limit($perPage);
+        $works = $this->$actionName($ident, $request);
+        if ($works === null) {
+            return response('Not found', 404);
+        }
+
+        $works = $works->with(['titles' => function ($query) use ($language) {
+        $query->where('language', $language);
+    }, 'image:id,name,folder', 'owners:users.id,old_id,name,username', 'owners.photo'])->offset($offset)->limit($perPage);
 
         if ($type !== 'draft') {
             $works = $works->whereHas('titles', function ($query) use ($language) {
