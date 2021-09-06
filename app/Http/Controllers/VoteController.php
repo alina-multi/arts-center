@@ -22,8 +22,13 @@ class VoteController extends Controller
         $request->validate(
             [
                 'vote' => [Rule::in([1, -1])],
-                'votable_id' => 'required|integer',
                 'votable_type' => ['required', Rule::in(array_keys(Relation::morphMap()))],
+                'votable_id' => ['required', 'integer',
+                Rule::unique('votes')->where(function ($query) use ($request) {
+                    return $query->where('votable_type', $request->votable_type)
+                        ->where('user_id', Auth::id());
+                })
+            ],
             ]
         );
 
@@ -51,8 +56,8 @@ class VoteController extends Controller
     public function show($type_id)
     {
         list($type, $id) = explode('_', $type_id);
-        if (!in_array($type,['comment', 'work'])) {
-            throw new AccessDeniedException();
+        if (!in_array($type, array_keys(Relation::morphMap()))) {
+            return response()->json(['error' => 'Not found'], 404);
         }
         return Vote::where('votable_type', $type)->where('votable_id', $id)->with('user')->get();
     }
