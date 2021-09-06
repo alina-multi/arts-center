@@ -22,6 +22,11 @@ class VoteTest extends TestCase
         $response = $this->doVote('comment');
     }
 
+    public function testVoteForFeedback()
+    {
+        $response = $this->doVote('feedback');
+    }
+
     public function testGetVotes()
     {
         // Create 4 votes from 4 users

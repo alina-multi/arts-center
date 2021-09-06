@@ -23,7 +23,7 @@ class VoteController extends Controller
             [
                 'vote' => [Rule::in([1, -1])],
                 'votable_id' => 'required|integer',
-                'votable_type' => ['required', Rule::in(['work', 'comment'])],
+                'votable_type' => ['required', Rule::in(array_keys(Relation::morphMap()))],
             ]
         );
 
