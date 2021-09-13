@@ -8,16 +8,13 @@ Route::post('auth/password/reset', 'Auth\ResetPasswordController@reset')->name('
 Route::get('auth/user', function () {
     return Auth::user();
 });
-Route::get('password/reset/{token}',function () {
-   //This is a dummy url that would be actually handled by frontend.
-})->name('password.reset');
+//This is a dummy urls that would be actually handled by frontend.
+Route::get('password/reset/{token}',function () {})->name('password.reset');
+Route::get('login',function () {})->name('login');
+Route::get('/',function () {})->name('home');
+
 Route::post('auth/logout', 'Auth\LoginController@logout');
 
-
-Route::get('/api/mail', function () {
-    return (new \App\Notifications\MailResetPasswordNotification())
-        ->toMail('dsfbjhsdgfhgdsjfhgsjdg');
-});
 
 Route::get('/vendor/nova/{file}', function ($file) {
     $filename = public_path('vendor/nova/' . $file);
@@ -25,3 +22,4 @@ Route::get('/vendor/nova/{file}', function ($file) {
     return response(file_get_contents($filename), 200)->header('Content-Type', $mime);
 })->where('file', '.*');;
 
+Route::get('auth/subscription/redirect', 'SubscriptionController@redirect')->middleware('auth');
