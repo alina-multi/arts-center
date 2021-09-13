@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 class CommentController extends Controller
 {
 
-    protected $commentTypes = ['work'];
+    protected $commentTypes = ['work', 'feedback'];
 
     public function rules()
     {
