@@ -15,7 +15,7 @@ trait TagTrait
         $title = str_replace('+',' ', $title);
         $title = preg_replace('/[^\w ]/u', '', $title);
         $tag = TagTitle::where('title', $title)->firstOrFail();
-        return Work::whereHas('tags', function ($query) use ($tag) {
+        return Work::whereHas('category', function ($query) use ($tag) {
             $query->where('taggables.tag_id', $tag->id);
         });
     }

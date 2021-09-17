@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Image;
 use App\Work;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class WorkFactory extends Factory
