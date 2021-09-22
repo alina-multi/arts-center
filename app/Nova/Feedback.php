@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\ApproveRecord;
 use Ek0519\Quilljs\Quilljs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,7 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Hidden;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 
@@ -56,6 +58,9 @@ class Feedback extends Resource
             Code::make('body')->json()->required(),
             Select::make('language')->options(config('app.languages'))->required(),
             Hidden::make('user_id')->default(Auth::id()),
+            DateTime::make('created_at'),
+            DateTime::make('updated_at'),
+            DateTime::make('approved_at'),
 
         ];
     }
@@ -101,6 +106,10 @@ class Feedback extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            (new ApproveRecord)->showOnTableRow()->canSee(function () {
+                return !$this->resource->approved_at;
+            }),
+        ];
     }
 }

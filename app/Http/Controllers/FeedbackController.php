@@ -17,7 +17,7 @@ class FeedbackController extends Controller
      */
     public function idea()
     {
-        return Feedback::where('type', 'idea')->orderBy('rating', 'desc')->get();
+        return Feedback::where('type', 'idea')->whereNotNull('approved_at')->orderBy('rating', 'desc')->get();
     }
 
     public function feedback()

@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Nova\Actions\Actionable;
 
 class Feedback extends Model
 {
-    use HasFactory;
+    use HasFactory, Actionable;
 
     protected $fillable = [
         'language',
@@ -17,7 +18,8 @@ class Feedback extends Model
         'category',
         'user_id',
         'feedbackable_type',
-        'feedbackable_id'
+        'feedbackable_id',
+        'approved_at'
     ];
     const TYPE_CATEGORY = [
         'idea' => [
@@ -40,5 +42,6 @@ class Feedback extends Model
 
     protected $casts = [
         'body' => 'array',
+        'approved_at'=> 'datetime'
     ];
 }
