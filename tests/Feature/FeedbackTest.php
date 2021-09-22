@@ -9,6 +9,7 @@ use App\Tag;
 use App\TagTitle;
 use App\User;
 use App\Work;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Arr;
@@ -32,10 +33,11 @@ class FeedbackTest extends TestCase
 
     public function testGetIdea()
     {
-        Feedback::factory(['type' => 'idea'])->count(5)->create();
-        // To test that we don't send things of different type
+        Feedback::factory(['type' => 'idea', 'approved_at'=>Carbon::now()])->count(5)->create();
+        // To test that we don't send things of different type and not approved yet
         Feedback::factory(['type' => 'complaint'])->create();
         Feedback::factory(['type' => 'feedback'])->create();
+        Feedback::factory(['type' => 'idea'])->create();
         $response = $this->getJson('api/feedback/idea');
         $response->assertJsonCount(5);
     }
