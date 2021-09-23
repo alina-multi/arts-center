@@ -124,7 +124,7 @@ class WorkAddTest extends TestCase
         $this->assertTrue(sizeof($block->images) === 1);
     }
 
-    public function testAddGridBlock()
+    public function testAddAndUpdateGridBlock()
     {
         $user = User::factory()->create();
         $work = Work::factory()->create();
@@ -138,15 +138,39 @@ class WorkAddTest extends TestCase
                 'type' => 'grid',
                 'language' => 'zz',
                 'order' => '1',
-                'data' => [],
+                'data' => ['one' => 'two'],
                 'images' => $images->makeVisible('id')->toArray()
             ]
         );
 
-        $response->assertStatus(201)->assertJson(['id' => 1]);
         $this->assertDatabaseCount('work_blocks', 1);
         $block = WorkBlock::find(1);
         $this->assertTrue(count($block->images) === 3);
+        $response->assertStatus(201)->assertJson(
+            fn(AssertableJson $json) => $json->has('images', 3)
+                ->where('order', '1')
+                ->where('data.one', 'two')
+                ->etc()
+        );
+
+        //Now let's update the same block
+        $images = Image::factory(['folder' => 'grid'])->count(2)->create();
+
+        $response = $this->actingAs($user)->putJson(
+            '/api/edit/block/' . $block->id,
+            [
+                'order' => '3',
+                'data' => ['foo' => 'bar'],
+                'images' => $images->makeVisible('id')->toArray()
+            ]
+        );
+
+        $response->assertStatus(200)->assertJson(
+            fn(AssertableJson $json) => $json->has('images', 2)
+                ->where('order', '3')
+                ->where('data.foo', 'bar')
+                ->etc()
+        );
     }
 
     public function testUpdateWork()

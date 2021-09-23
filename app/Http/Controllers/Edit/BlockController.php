@@ -33,13 +33,15 @@ class BlockController extends Controller
         ]);
         $block = WorkBlock::create($request->all());
         $images = $request->input('images');
+        $syncImages = [];
         if ($images) {
             foreach ($images as $image) {
                 if (!empty($image['id'])) {
-                    $block->images()->attach($image['id']);
+                    $syncImages[]=$image['id'];
                 }
             }
         }
+        $block->images()->sync($syncImages);
         $block->load('images');
         return $block;
     }
@@ -65,20 +67,19 @@ class BlockController extends Controller
             'order' => ['numeric']
         ]);
 
-        $data = $request->input('data');
-        if ($data) {
-            $block->data = $data;
-            $block->save();
-        }
+        $block->fill($request->toArray());
+        $block->save();
 
         $images = $request->input('images');
+        $syncImages = [];
         if ($images) {
             foreach ($images as $image) {
                 if (!empty($image['id'])) {
-                    $block->images()->attach($image['id']);
+                    $syncImages[]=$image['id'];
                 }
             }
         }
+        $block->images()->sync($syncImages);
         $block->load('images');
         return $block;
     }
