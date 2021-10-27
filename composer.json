@@ -35,6 +35,7 @@
         "league/flysystem-aws-s3-v3": "^1.0",
         "league/flysystem-cached-adapter": "^1.1",
         "limedeck/nova-cashier-overview": "^3.0",
+        "monarobase/country-list": "^3.2",
         "sentry/sentry-laravel": "^2.6"
     },
     "require-dev": {

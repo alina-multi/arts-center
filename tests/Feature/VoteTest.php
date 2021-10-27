@@ -2,12 +2,16 @@
 
 namespace Tests\Feature;
 
+use App\Jobs\RecountUserRatings;
+use App\Tag;
+use App\TagTitle;
 use App\Vote;
 use App\Work;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\User;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\Bus;
 
 class VoteTest extends TestCase
 {
@@ -52,7 +56,26 @@ class VoteTest extends TestCase
         $this->actingAs($user)->postJson('/api/vote', $json);
         $response2 = $this->actingAs($user)->postJson('/api/vote', $json);
         $response2->assertStatus(422);
-        $this->assertDatabaseCount('votes',1);
+        $this->assertDatabaseCount('votes', 1);
+    }
+
+    public function testVoteWorkTagRating()
+    {
+        Bus::fake();
+        $user = User::factory()->create();
+        $owner = User::factory()->create();
+        $work = Work::factory()->create();
+        $tag = Tag::factory()->create();
+        TagTitle::factory(['tag_id' => $tag->id, 'title' => 'test'])->create();
+        $work->tags()->attach($tag->id);
+        $work->owners()->attach($owner->id);
+        $json = [
+            'vote' => 1,
+            'votable_type' => 'work',
+            'votable_id' => $work->id
+        ];
+        $this->actingAs($user)->postJson('/api/vote', $json);
+        Bus::assertDispatched(RecountUserRatings::class);
     }
 
     public function doVote($type, $vote = 1)
@@ -61,7 +84,7 @@ class VoteTest extends TestCase
         $user = User::factory()->create();
         $user2 = User::factory()->create();
         $entity = $class::factory()->create();
-        $json =  [
+        $json = [
             'vote' => $vote,
             'votable_type' => $type,
             'votable_id' => $entity->id
@@ -96,5 +119,23 @@ class VoteTest extends TestCase
             ]
         );
         return $response;
+    }
+
+    public function testRecountUserRatings()
+    {
+        $owner = User::factory()->create();
+        $work = Work::factory(['rating'=>5])->create();
+        $work2 = Work::factory(['rating'=>3])->create();
+        $tag = Tag::factory(['type_id'=>Tag::TYPE_CATEGORY])->create();
+        $tag2 = Tag::factory(['type_id'=>Tag::TYPE_CATEGORY])->create();
+        $work->category()->attach($tag->id);
+        $work->owners()->attach($owner->id);
+        $work2->category()->attach($tag->id);
+        $work2->category()->attach($tag2->id);
+        $work2->owners()->attach($owner->id);
+        RecountUserRatings::dispatchSync($owner->id);
+        $this->assertDatabaseHas('user_ratings', ['ratable_type' => 'tag', 'ratable_id' => $tag->id, 'rating' => 8]);
+        $this->assertDatabaseHas('user_ratings', ['ratable_type' => 'tag', 'ratable_id' => $tag2->id, 'rating' => 3]);
+        $this->assertDatabaseHas('user_ratings', ['ratable_type' => 'user', 'ratable_id' => $owner->id, 'rating' => 8]);
     }
 }

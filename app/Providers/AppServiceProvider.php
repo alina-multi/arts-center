@@ -33,7 +33,8 @@ class AppServiceProvider extends ServiceProvider
                 'work' => 'App\Work',
                 'comment' => 'App\Comment',
                 'user' => 'App\User',
-                'feedback' => 'App\Feedback'
+                'feedback' => 'App\Feedback',
+                'tag' => 'App\Tag'
             ]
         );
     }

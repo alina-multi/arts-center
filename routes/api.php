@@ -17,10 +17,11 @@ Route::get('gallery/{language}/{id}', 'GalleryController@show');
 
 Route::get('work/{language}/{id}', 'WorkController@show');
 Route::get('user/{language}/{id}', 'UserController@show');
+Route::get('user', 'UserController@index');
 
 Route::get('comment/{id}', 'CommentController@show');
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/init', function (Request $request) {
     return $request->user();
 });
 

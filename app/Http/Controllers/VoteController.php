@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\RecountUserRatings;
 use App\Vote;
+use App\Work;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,6 +46,14 @@ class VoteController extends Controller
                 );
         $model->rating = $newRating;
         $model->save();
+        if ($model instanceof Work) {
+            foreach ($model->owners as $owner) {
+                RecountUserRatings::dispatch($owner->id);
+            }
+        } elseif (!empty($model->user_id)) {
+            RecountUserRatings::dispatch($model->user_id);
+        }
+
         return ['rating' => $newRating, 'vote' => $vote];
     }
 

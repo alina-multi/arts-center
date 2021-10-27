@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'email_verified_at', 'password', 'created_at', 'username', 'old_id'
+        'name', 'email', 'email_verified_at', 'password', 'created_at', 'username', 'old_id', 'country'
     ];
 
     protected $visible = ['id', 'name', 'username', 'created_at', 'photo'];
@@ -46,5 +46,10 @@ class User extends Authenticatable
     public function images()
     {
         return $this->morphToMany('App\Image', 'imageable');
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany('App\UserRatings', 'user_id');
     }
 }
