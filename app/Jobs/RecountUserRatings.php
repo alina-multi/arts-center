@@ -11,7 +11,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class RecountUserRatings implements ShouldQueue
+class RecountUserRatings implements ShouldQueue, ShouldBeUnique
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -25,6 +25,11 @@ class RecountUserRatings implements ShouldQueue
     public function __construct($user)
     {
         $this->user = $user;
+    }
+
+    public function uniqueId()
+    {
+        return $this->user;
     }
 
     /**

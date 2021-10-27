@@ -33,7 +33,9 @@ class ConvertCountry extends Command
             ->orderBy('id', 'DESC')
             ->where('checked', 1)
             ->chunk(100, function ($oldUsers) {
-                DB::where('old_id', $oldUsers->id)->update(['country' => $oldUsers->country_alpha2]);
+                foreach ($oldUsers as $oldUser) {
+                    DB::table('users')->where('old_id', $oldUser->id)->update(['country' => $oldUser->country_alpha2]);
+                }
             });
     }
 }
