@@ -32,7 +32,7 @@ class RecountUsersRating extends Command
     {
         $userIds = DB::table('users')->select('id')->get();
         foreach ($userIds as $user) {
-            RecountUsersRatings::dispatch($user->id);
+            RecountUserRatings::dispatch($user->id);
         }
     }
 }
