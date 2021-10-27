@@ -46,8 +46,13 @@ class UserController extends Controller
         if ($order === 'rating') {
             $users = User::join('user_ratings', function ($join) use ($ratable_type, $ratable_id) {
                 $join->on('users.id', '=', 'user_ratings.user_id')
-                    ->on('user_ratings.ratable_type', '=', $ratable_type)
-                    ->on('user_ratings.ratable_id', '=', $ratable_id);
+                    ->where('user_ratings.ratable_type',  $ratable_type);
+                if (is_numeric($ratable_id)) {
+                    $join->where('user_ratings.ratable_id',  $ratable_id);
+                } else {
+                    $join->whereColumn('user_ratings.ratable_id',  $ratable_id);
+                }
+
             })->orderBy('user_ratings.rating', 'DESC')->where('user_ratings.rating', '>', 0);
         } elseif ($order === 'new') {
             $users = User::orderBy('id', 'desc');
@@ -57,7 +62,12 @@ class UserController extends Controller
         // For rating filtering tag is already handled with join
         if (isset($tag) && $order !== 'rating') {
             $users->whereHas('ratings', function (Builder $query) use ($ratable_type, $ratable_id) {
-                $query->where('ratable_type', $ratable_type)->where('ratable_id', $ratable_id)->where('rating', '>', 0);
+                $query->where('ratable_type', $ratable_type)->where('rating', '>', 0);
+                if (is_numeric($ratable_id)) {
+                    $query->where('ratable_id',  $ratable_id);
+                } else {
+                    $query->whereColumn('ratable_id',  $ratable_id);
+                }
             });
         }
 
