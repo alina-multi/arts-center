@@ -19,8 +19,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'email_verified_at', 'password', 'created_at', 'username', 'old_id', 'country'
+        'name',
+        'email',
+        'email_verified_at',
+        'password',
+        'created_at',
+        'username',
+        'old_id',
+        'country'
     ];
+
+    public $highlights;
 
     protected $visible = ['id', 'name', 'username', 'created_at', 'photo'];
 
@@ -40,7 +49,7 @@ class User extends Authenticatable
 
     public function photo()
     {
-        return $this->hasOne(Image::class,'id','image_id');
+        return $this->hasOne(Image::class, 'id', 'image_id');
     }
 
     public function images()
@@ -51,5 +60,15 @@ class User extends Authenticatable
     public function ratings()
     {
         return $this->hasMany('App\UserRatings', 'user_id');
+    }
+
+    public function getHighlightsAttribute()
+    {
+        return Work::whereHas('owners', function ($query) {
+            $query->where('ownables.user_id', $this->id);
+        })->with([
+                                                           'image:id,name,folder',
+                                                           'titles'
+                                                       ])->orderBy('rating', 'desc')->limit(3)->get()->keyBy('id');
     }
 }

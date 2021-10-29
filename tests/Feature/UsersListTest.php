@@ -6,6 +6,7 @@ use App\Tag;
 use App\TagTitle;
 use App\User;
 use App\UserRatings;
+use App\Work;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Testing\Fluent\AssertableJson;
@@ -19,13 +20,13 @@ class UsersListTest extends TestCase
         $users = $this->createUsers([1, 5, 2, 0]);
         $response = $this->getJson('api/user');
         $response->assertJson(
-            fn(AssertableJson $json) => $json->has('users',3) // Last one has rating 0, so shouldn't be displayed here
+            fn(AssertableJson $json) => $json->has('users', 3) // Last one has rating 0, so shouldn't be displayed here
             // Second user, has the biggest rating and should be returned first
             ->has('users.0', fn($json) => $json->where('id', $users[1]['user']->id)
                 ->where('name', $users[1]['user']->name)
                 ->missing('password')
                 ->etc()
-            )
+            )->etc()
         );
     }
 
@@ -37,13 +38,13 @@ class UsersListTest extends TestCase
         $users = $this->createUsers([1, 5, 2, 0], $tag);
         $response = $this->getJson('api/user?tag=' . $tag);
         $response->assertJson(
-            fn(AssertableJson $json) => $json->has('users',3) // Last one has rating 0, so shouldn't be displayed here
+            fn(AssertableJson $json) => $json->has('users', 3) // Last one has rating 0, so shouldn't be displayed here
             // Second user, has the biggest rating and should be returned first
             ->has('users.0', fn($json) => $json->where('id', $users[1]['user']->id)
                 ->where('name', $users[1]['user']->name)
                 ->missing('password')
                 ->etc()
-            )
+            )->etc()
         );
     }
 
@@ -53,7 +54,7 @@ class UsersListTest extends TestCase
         $users2 = $this->createUsers([1, 0, null], 'tag2');
         $response = $this->getJson('api/user?order=new');
         $response->assertJson(
-            fn(AssertableJson $json) => $json->has('users',5) // Including both tags and 0 and no rating at all
+            fn(AssertableJson $json) => $json->has('users', 5) // Including both tags and 0 and no rating at all
             ->has('users.0',
                 fn($json) => $json->where(
                     'id',
@@ -62,7 +63,7 @@ class UsersListTest extends TestCase
                 ->where('name', $users2[2]['user']->name)
                     ->missing('password')
                     ->etc()
-            )
+            )->etc()
         );
     }
 
@@ -72,7 +73,7 @@ class UsersListTest extends TestCase
         $users2 = $this->createUsers([1, 0, null, 5], 'tag2');
         $response = $this->getJson('api/user?order=new&tag=tag2');
         $response->assertJson(
-            fn(AssertableJson $json) => $json->has('users',2) // Should not include 0 and null rating
+            fn(AssertableJson $json) => $json->has('users', 2) // Should not include 0 and null rating
             ->has('users.0',
                 fn($json) => $json->where(
                     'id',
@@ -81,7 +82,7 @@ class UsersListTest extends TestCase
                 ->where('name', $users2[3]['user']->name)
                     ->missing('password')
                     ->etc()
-            )
+            )->etc()
         );
     }
 
@@ -92,7 +93,8 @@ class UsersListTest extends TestCase
         $response = $this->getJson('api/user?country=ua');
         $response->assertJson(
         // Users from different country and with 0 rating should be ignored
-            fn(AssertableJson $json) => $json->has('users',
+            fn(AssertableJson $json) => $json->has(
+                'users',
                 3
             )
                 // Second user, has the biggest rating and should be returned first
@@ -100,7 +102,23 @@ class UsersListTest extends TestCase
                     ->where('name', $users[1]['user']->name)
                     ->missing('password')
                     ->etc()
-                )
+                )->etc()
+        );
+    }
+
+    public function testUserWorks()
+    {
+        $users = $this->createUsers([1, 5, 2, 0]);
+        $this->createWorksForUsers($users);
+        $response = $this->getJson('api/user');
+        $response->assertJson(
+            fn(AssertableJson $json) => $json->has('users', 3) // Last one has rating 0, so shouldn't be displayed here
+            // Second user, has the biggest rating and should be returned first
+            ->has('users.0', fn($json) => $json->where('id', $users[1]['user']->id)
+                ->where('name', $users[1]['user']->name)
+                ->missing('password')
+                ->etc()
+            )->etc()
         );
     }
 
@@ -125,5 +143,15 @@ class UsersListTest extends TestCase
             $returnUsers[] = ['user' => $user, 'rating' => $rating];
         }
         return $returnUsers;
+    }
+
+    public function createWorksForUsers($users, $count = 3, $workFactory = [])
+    {
+        foreach ($users as $user) {
+            for ($i = 1; $i <= $count; $i++) {
+                $work = Work::factory(['rating' => $i] + $workFactory)->create();
+                $work->owners()->attach($user['user']->id);
+            }
+        }
     }
 }

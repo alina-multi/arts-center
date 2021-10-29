@@ -46,13 +46,12 @@ class UserController extends Controller
         if ($order === 'rating') {
             $users = User::join('user_ratings', function ($join) use ($ratable_type, $ratable_id) {
                 $join->on('users.id', '=', 'user_ratings.user_id')
-                    ->where('user_ratings.ratable_type',  $ratable_type);
+                    ->where('user_ratings.ratable_type', $ratable_type);
                 if (is_numeric($ratable_id)) {
-                    $join->where('user_ratings.ratable_id',  $ratable_id);
+                    $join->where('user_ratings.ratable_id', $ratable_id);
                 } else {
-                    $join->whereColumn('user_ratings.ratable_id',  $ratable_id);
+                    $join->whereColumn('user_ratings.ratable_id', $ratable_id);
                 }
-
             })->orderBy('user_ratings.rating', 'DESC')->where('user_ratings.rating', '>', 0);
         } elseif ($order === 'new') {
             $users = User::orderBy('id', 'desc');
@@ -64,9 +63,9 @@ class UserController extends Controller
             $users->whereHas('ratings', function (Builder $query) use ($ratable_type, $ratable_id) {
                 $query->where('ratable_type', $ratable_type)->where('rating', '>', 0);
                 if (is_numeric($ratable_id)) {
-                    $query->where('ratable_id',  $ratable_id);
+                    $query->where('ratable_id', $ratable_id);
                 } else {
-                    $query->whereColumn('ratable_id',  $ratable_id);
+                    $query->whereColumn('ratable_id', $ratable_id);
                 }
             });
         }
@@ -76,8 +75,19 @@ class UserController extends Controller
             $users->where('country', $country);
         }
 
-        $usersList = $users->offset($offset)->limit($perPage)->get();
-        return ['users' => $usersList];
+        $usersList = $users->with('photo')->with('ratings')->offset($offset)->limit($perPage)->get()->append(
+            'highlights'
+        )->makeVisible('works');
+        $works = [];
+        foreach ($usersList as $user) {
+            $highlights = $user['highlights'];
+            if ($highlights) {
+                $works += $highlights->toArray();
+            }
+            $user->works = $highlights->pluck('id');
+        }
+
+        return ['users' => $usersList->toArray(), 'works' => $works];
     }
 
     /**
