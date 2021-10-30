@@ -75,9 +75,9 @@ class UserController extends Controller
             $users->where('country', $country);
         }
 
-        $usersList = $users->with('photo')->with('ratings')->offset($offset)->limit($perPage)->get()->append(
-            'highlights'
-        )->makeVisible('works');
+        $usersList = $users->with('photo')->with('ratings')->offset($offset)->limit($perPage)->get()
+            ->append(['highlights']
+            )->makeVisible(['works', 'rating']); //This magically adds rating from joined table
         $works = [];
         foreach ($usersList as $user) {
             $highlights = $user['highlights'];

@@ -70,7 +70,7 @@ class ConvertUsers extends Command
                         'email' => $oldUser['email'],
                         'email_verified_at' => $now,
                         'password' => $oldUser['password'],
-                        'created_at' => $oldUser['reg_date'],
+                        'created_at' => $oldUser['reg_date'].' 00:00:00',
                         'username' => $oldUser['username'],
                         'old_id' => $oldUser['id']
                     ]);

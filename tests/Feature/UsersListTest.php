@@ -118,7 +118,7 @@ class UsersListTest extends TestCase
                 ->where('name', $users[1]['user']->name)
                 ->missing('password')
                 ->etc()
-            )->etc()
+            )->has('works', 9)
         );
     }
 

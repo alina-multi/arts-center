@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Cache;
 
 class User extends Authenticatable
 {
@@ -64,11 +65,13 @@ class User extends Authenticatable
 
     public function getHighlightsAttribute()
     {
-        return Work::whereHas('owners', function ($query) {
-            $query->where('ownables.user_id', $this->id);
-        })->with([
-                                                           'image:id,name,folder',
-                                                           'titles'
-                                                       ])->orderBy('rating', 'desc')->limit(3)->get()->keyBy('id');
+        return Cache::remember("user.$this->id.highlights", 60*60*5, function () {
+            return Work::whereHas('owners', function ($query) {
+                $query->where('ownables.user_id', $this->id);
+            })->with([
+                         'image:id,name,folder',
+                         'titles'
+                     ])->orderBy('rating', 'desc')->limit(3)->get()->keyBy('id');
+        });
     }
 }
