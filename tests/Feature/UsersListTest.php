@@ -18,7 +18,7 @@ class UsersListTest extends TestCase
     public function testIndex()
     {
         $users = $this->createUsers([1, 5, 2, 0]);
-        $response = $this->getJson('api/user');
+        $response = $this->getJson('api/user?language=en');
         $response->assertJson(
             fn(AssertableJson $json) => $json->has('users', 3) // Last one has rating 0, so shouldn't be displayed here
             // Second user, has the biggest rating and should be returned first
@@ -36,7 +36,7 @@ class UsersListTest extends TestCase
         // Couple with different tag shouldn't appear in result
         $this->createUsers([1, 5], 'somethingElse');
         $users = $this->createUsers([1, 5, 2, 0], $tag);
-        $response = $this->getJson('api/user?tag=' . $tag);
+        $response = $this->getJson('api/user?language=en&tag=' . $tag);
         $response->assertJson(
             fn(AssertableJson $json) => $json->has('users', 3) // Last one has rating 0, so shouldn't be displayed here
             // Second user, has the biggest rating and should be returned first
@@ -90,7 +90,7 @@ class UsersListTest extends TestCase
     {
         $this->createUsers([1, 5], 'all', ['country' => 'de']);
         $users = $this->createUsers([1, 5, 2, 0], 'all', ['country' => 'ua']);
-        $response = $this->getJson('api/user?country=ua');
+        $response = $this->getJson('api/user?country=ua&language=en');
         $response->assertJson(
         // Users from different country and with 0 rating should be ignored
             fn(AssertableJson $json) => $json->has(
@@ -110,7 +110,7 @@ class UsersListTest extends TestCase
     {
         $users = $this->createUsers([1, 5, 2, 0]);
         $this->createWorksForUsers($users);
-        $response = $this->getJson('api/user');
+        $response = $this->getJson('api/user?language=en');
         $response->assertJson(
             fn(AssertableJson $json) => $json->has('users', 3) // Last one has rating 0, so shouldn't be displayed here
             // Second user, has the biggest rating and should be returned first

@@ -26,6 +26,7 @@ class UserController extends Controller
         $order = $request->input('order', 'rating');
         $country = $request->input('country');
         $tagTitle = $request->input('tag', 'all');
+        $language = $request->input('language');
         $page = $request->input('page', 1);
         $perPage = 30;
         $offset = ($page - 1) * $perPage;
@@ -44,9 +45,13 @@ class UserController extends Controller
 
 
         if ($order === 'rating') {
-            $users = User::join('user_ratings', function ($join) use ($ratable_type, $ratable_id) {
+            if (empty($language)) {
+                abort(422, "Language required for rating sorting");
+            }
+            $users = User::join('user_ratings', function ($join) use ($ratable_type, $ratable_id, $language) {
                 $join->on('users.id', '=', 'user_ratings.user_id')
-                    ->where('user_ratings.ratable_type', $ratable_type);
+                    ->where('user_ratings.ratable_type', $ratable_type)
+                    ->where('user_ratings.language', $language);
                 if (is_numeric($ratable_id)) {
                     $join->where('user_ratings.ratable_id', $ratable_id);
                 } else {
