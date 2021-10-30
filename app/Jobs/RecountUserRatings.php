@@ -46,17 +46,17 @@ class RecountUserRatings implements ShouldQueue, ShouldBeUnique
         $categoryLanguageRating = [];
         $userRating = [];
         foreach ($works as $work) {
-            foreach ($work->category as $category) {
-                foreach ($work->titles as $title) {
-                    if (!isset($categoryLanguageRating[$category->id][$title->language])) {
-                        $categoryLanguageRating[$category->id] = 0;
+            foreach ($work->titles as $title) {
+                foreach ($work->category as $category) {
+                    if (empty($categoryLanguageRating[$category->id][$title->language])) {
+                        $categoryLanguageRating[$category->id][$title->language] = 0;
                     }
                     $categoryLanguageRating[$category->id][$title->language] += $work->rating;
-                    if (!isset($userRating[$title->language])) {
-                        $userRating[$title->language] = 0;
-                    }
-                    $userRating[$title->language] += $work->rating;
                 }
+                if (empty($userRating[$title->language])) {
+                    $userRating[$title->language] = 0;
+                }
+                $userRating[$title->language] += $work->rating;
             }
         }
         foreach ($userRating as $language => $rating) {
