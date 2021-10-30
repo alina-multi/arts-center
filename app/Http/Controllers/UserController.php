@@ -48,7 +48,7 @@ class UserController extends Controller
             if (empty($language)) {
                 abort(422, "Language required for rating sorting");
             }
-            $users = User::join('user_ratings', function ($join) use ($ratable_type, $ratable_id, $language) {
+            $users = User::select('users.*','rating')->join('user_ratings', function ($join) use ($ratable_type, $ratable_id, $language) {
                 $join->on('users.id', '=', 'user_ratings.user_id')
                     ->where('user_ratings.ratable_type', $ratable_type)
                     ->where('user_ratings.language', $language);
