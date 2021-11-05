@@ -1,0 +1,93 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: arts2-horizon
+  labels:
+    app: arts2
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: arts2
+    tier: horizon
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: horizon-deployment
+  labels:
+    app: arts2
+spec:
+  selector:
+    matchLabels:
+      app: arts2
+      tier: horizon
+  template:
+    metadata:
+      labels:
+        app: arts2
+        tier: horizon
+    spec:
+      containers:
+        - name: horizon
+          image: registry.gitlab.com/new-arts/backend
+          command: ["php"]
+          args: ["/var/www/artisan", "horizon"]
+          env:
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-pass
+                  key: host
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-pass
+                  key: port
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-pass
+                  key: db
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-pass
+                  key: user
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-pass
+                  key: password
+            - name: OLD_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-pass
+                  key: password
+            - name: S3_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: s3-pass
+                  key: id
+            - name: S3_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-pass
+                  key: key
+            - name: S3_URL
+              valueFrom:
+                secretKeyRef:
+                  name: s3-pass
+                  key: url
+            - name: S3_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: s3-pass
+                  key: bucket
+            - name: S3_DEFAULT_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: s3-pass
+                  key: region
+      imagePullSecrets:
+        - name: gitlab
