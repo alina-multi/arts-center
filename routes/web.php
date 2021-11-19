@@ -22,7 +22,8 @@ Route::get('password/reset/{token}',function () {})->name('password.reset');
 Route::get('login',function () {})->name('login');
 Route::get('/',function () {})->name('home');
 Route::get('/work/{id}',function () {})->name('work');
-Route::get('/{user}',function () {})->name('user');
+// Don't forget to add exceptions here for paths like /name
+Route::get('/{user}',function () {})->name('user')->where('user', '!nova');
 
 
 Route::post('auth/logout', 'Auth\LoginController@logout');
