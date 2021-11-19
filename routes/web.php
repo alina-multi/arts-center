@@ -23,14 +23,14 @@ Route::get('login',function () {})->name('login');
 Route::get('/',function () {})->name('home');
 Route::get('/work/{id}',function () {})->name('work');
 // Don't forget to add exceptions here for paths like /name
-Route::get('/{user}',function () {})->name('user')->where('user', '!nova');
+Route::get('/{user}',function () {})->name('user')->where('user', '!(nova|horizon)');
 
 
 Route::post('auth/logout', 'Auth\LoginController@logout');
 
 
-Route::get('/vendor/nova/{file}', function ($file) {
-    $filename = public_path('vendor/nova/' . $file);
+Route::get('/vendor/{file}', function ($file) {
+    $filename = public_path('vendor/' . $file);
     $mime=\GuzzleHttp\Psr7\MimeType::fromFilename($filename);
     return response(file_get_contents($filename), 200)->header('Content-Type', $mime);
 })->where('file', '.*');;

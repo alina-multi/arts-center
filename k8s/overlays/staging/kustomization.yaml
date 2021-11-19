@@ -1,12 +1,6 @@
 resources:
   - ../../base
 patches:
-  - path: horizon-patch.json
-    target:
-      group: apps
-      version: v1
-      kind: Deployment
-      name: horizon-deployment
   - path: backend-patch.json
     target:
       group: apps
