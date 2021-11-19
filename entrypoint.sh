@@ -7,8 +7,6 @@ do
   sleep 5
 done
 
-php artisan migrate --force
-
 exec docker-php-entrypoint "$@"
 
 
