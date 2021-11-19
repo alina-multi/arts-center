@@ -50,7 +50,7 @@ class ConvertWorks extends Command
         $now = date('Y-m-d H:i:s');
         $idsAllreadyInDb = Work::get()->pluck('old_id')->toArray();
         DB::connection('old')->table('gallery')
-            ->orderBy('id', 'DESC')
+            ->orderBy('id', 'ASC')
             ->select('id', 'img', 'art', 'user', 'title', 'technique', 'year', 'desc', 'added', 'price', 'size', 'rate', 'hosts', 'en_title', 'de_title', 'fr_title', 'en_desc', 'de_desc', 'fr_desc', 'en_technique', 'de_technique', 'fr_technique')
             ->whereNotIn('id', $idsAllreadyInDb)->chunk(200, function ($oldWorks) use ($now, $oldArtToTags) {
                 foreach ($oldWorks as $oldWork) {

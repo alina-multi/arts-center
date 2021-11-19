@@ -41,7 +41,7 @@ class ConvertUsers extends Command
         $GLOBALS['emailsAllreadyInDb'] = array_map('strtolower', $GLOBALS['emailsAllreadyInDb']);
         DB::connection('old')->table('user')
             ->select('id', 'username', 'password', 'name', 'lastname', 'email', 'reg_date')
-            ->orderBy('id', 'DESC')
+            ->orderBy('id', 'ASC')
             ->whereNotIn('id', $idsAllreadyInDb)
             ->where('checked',1)
             ->chunk(100, function ($oldUsers) use ($now) {
