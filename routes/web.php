@@ -1,9 +1,27 @@
 <?php
-
 Route::domain('arts.in.ua')->group(function () {
     Route::get('/artists/{username}/w/{work}/', 'RedirectOldController@work');
     Route::get('/artists/{username}/', 'RedirectOldController@user');
     Route::get('/art/{art}/', 'RedirectOldController@art');
+    Route::permanentRedirect('/', 'https://arts.center/ru');
+    Route::fallback(function () {
+        return redirect('https://arts.center/ru',301);
+    });
+});
+
+Route::domain('{username}.arts.in.ua')->group(function () {
+    Route::get('/gallery/w/{work}/', 'RedirectOldController@work');
+    Route::get('/', 'RedirectOldController@user');
+    Route::fallback(function () {
+        return redirect('https://arts.center/ru',301);
+    });
+});
+
+Route::domain('arts-ua.com')->group(function () {
+    Route::get('/artists/{username}/{folder?}/{work}/', 'RedirectOldController@enWork');
+    Route::get('/artists/{username}/', 'RedirectOldController@enUser');
+    Route::get('/art/{art}/', 'RedirectOldController@enArt');
+    Route::permanentRedirect('/', 'https://arts.center');
     Route::fallback(function () {
         return redirect('https://arts.center',301);
     });
