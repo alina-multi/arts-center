@@ -2,3 +2,21 @@ resources:
   - backend-deployment.yaml
   - horizon-deployment.yaml
   - migration-job.yaml
+patches:
+  - path: shared-env-patch.json
+    target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: backend-deployment
+  - path: shared-env-patch.json
+    target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: horizon-deployment
+  - path: shared-env-patch.json
+    target:
+      version: v1
+      kind: Job
+      name: migrate

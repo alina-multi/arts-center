@@ -9,30 +9,4 @@ spec:
         - name: migrate
           image: registry.gitlab.com/new-arts/backend
           args: ["php", "/var/www/artisan", "migrate", "--force"]
-          env:
-            - name: DB_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-pass
-                  key: host
-            - name: DB_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-pass
-                  key: port
-            - name: DB_DATABASE
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-pass
-                  key: db
-            - name: DB_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-pass
-                  key: user
-            - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-pass
-                  key: password
       restartPolicy: Never
