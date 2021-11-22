@@ -23,6 +23,8 @@ class Image extends Model
             return 'http://arts2.develop/arts/' . $this->folder . '/' . $this->name;
         } else if (App::environment('staging')) {
             return 'https://i.arts2.art/' . $this->folder . '/' . $this->name;
+        } else if (App::environment('production')) {
+            return 'https://i.arts.center/' . $this->folder . '/' . $this->name;
         } else if (App::environment('testing')) {
             return $this->folder . '/'. $this->name;
         }

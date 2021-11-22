@@ -117,8 +117,10 @@ class ConvertWorks extends Command
                     $work->owners()->attach($userId);
 
                     //Add tag for art
-                    $work->tags()->attach($oldArtToTags[$oldWork->art]);
-                    $oldArtToTags[$oldWork->art]->count++;
+                    if ($oldWork->art) {
+                        $work->tags()->attach($oldArtToTags[$oldWork->art]);
+                        $oldArtToTags[$oldWork->art]->count++;
+                    }
 
                     //Titles for all languages
                     foreach ($this->languages as $lang) {
