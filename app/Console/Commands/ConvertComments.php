@@ -111,10 +111,12 @@ class ConvertComments extends Command
 
     function convertBbcodeToDelta($text)
     {
+        $text = trim($text);
         if (!$text or $text === ' ') {
             return;
         }
         $html = $this->parseBBCode($text);
+
         if (!$html or mb_strlen($html) < 2) {
             return;
         }
