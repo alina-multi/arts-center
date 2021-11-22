@@ -52,7 +52,7 @@ class ConvertWorks extends Command
         DB::connection('old')->table('gallery')
             ->orderBy('id', 'ASC')
             ->select('id', 'img', 'art', 'user', 'title', 'technique', 'year', 'desc', 'added', 'price', 'size', 'rate', 'hosts', 'en_title', 'de_title', 'fr_title', 'en_desc', 'de_desc', 'fr_desc', 'en_technique', 'de_technique', 'fr_technique')
-            ->whereNotIn('id', $idsAllreadyInDb)->chunk(100, function ($oldWorks) use ($now, $oldArtToTags) {
+            ->whereNotIn('id', $idsAllreadyInDb)->chunk(50, function ($oldWorks) use ($now, $oldArtToTags) {
                 foreach ($oldWorks as $oldWork) {
                     $order = 0; //For work blocks
 
