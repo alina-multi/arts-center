@@ -42,6 +42,7 @@ class ConvertComments extends Command
         }
         DB::table('works')
             ->orderBy('id', 'DESC')
+            ->where('comments',0) // So we can run it again
             ->select('id', 'old_id')->chunk(200, function ($works) {
                 foreach ($works as $work) {
                     $oldComments = DB::connection('old')->table('comments')

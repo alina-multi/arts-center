@@ -48,11 +48,11 @@ class ConvertWorks extends Command
         }
         $oldArtToTags = Tag::where('type_id', 1)->get()->keyBy('old_id');
         $now = date('Y-m-d H:i:s');
-        $idsAllreadyInDb = Work::get()->pluck('old_id')->toArray();
+        $lastIdInDB = Work::max('old_id');
         DB::connection('old')->table('gallery')
             ->orderBy('id', 'ASC')
             ->select('id', 'img', 'art', 'user', 'title', 'technique', 'year', 'desc', 'added', 'price', 'size', 'rate', 'hosts', 'en_title', 'de_title', 'fr_title', 'en_desc', 'de_desc', 'fr_desc', 'en_technique', 'de_technique', 'fr_technique')
-            ->whereNotIn('id', $idsAllreadyInDb)->chunk(50, function ($oldWorks) use ($now, $oldArtToTags) {
+            ->where('id', '>', $lastIdInDB)->chunk(200, function ($oldWorks) use ($now, $oldArtToTags) {
                 foreach ($oldWorks as $oldWork) {
                     $order = 0; //For work blocks
 
@@ -66,6 +66,10 @@ class ConvertWorks extends Command
                         "https://i.arts.in.ua/i/f_$oldWork->user/$oldWork->img.jpg",
                         "https://i.arts.in.ua/i/$oldWork->user/$oldWork->img.jpg"
                     ];
+
+                    if ((int) substr($oldWork->added,0,1) > 2) {
+                        $oldWork->added = $now; //Couple of works are from year 9000 :D
+                    }
 
                     $work = Work::create([
                         'image_id' => 0, // Will be replaced in job later once uploaded

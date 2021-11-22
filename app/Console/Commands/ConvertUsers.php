@@ -60,6 +60,7 @@ class ConvertUsers extends Command
                     );
                     if ($validator->fails()) {
                         print_r($validator->errors());
+                        print_r($oldUser);
                         continue;
                     }
                     print $oldUser['email'] . "\n";
