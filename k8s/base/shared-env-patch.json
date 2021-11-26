@@ -139,15 +139,6 @@
         }
       },
       {
-        "name": "REDIS_USERNAME",
-        "valueFrom": {
-          "secretKeyRef": {
-            "name": "redis-pass",
-            "key": "user"
-          }
-        }
-      },
-      {
         "name": "REDIS_PASSWORD",
         "valueFrom": {
           "secretKeyRef": {
@@ -162,6 +153,15 @@
           "secretKeyRef": {
             "name": "redis-pass",
             "key": "port"
+          }
+        }
+      },
+      {
+        "name": "REDIS_SCHEME",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "redis-pass",
+            "key": "scheme"
           }
         }
       }

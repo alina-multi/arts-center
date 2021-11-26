@@ -47,21 +47,22 @@ class GalleryController extends Controller
                      ])->offset($offset)->limit($perPage);
 
         if ($type !== 'draft') {
-            $works->whereHas('titles', function ($query) use ($language) {
-                $query->where('language', $language);
-            })->whereHas('image')->whereNotNull('published_at');
+            $works->select('works.*')
+            ->join('work_titles', function ($join) use ($language) {
+                $join->on('work_titles.work_id','=','works.id')->where('work_titles.language', $language);
+            })->where('image_id', '!=', 0)->whereNotNull('published_at');
         }
         $users = [];
 
         switch ($request->order) {
             case 'new':
-                $works->orderBy('created_at', 'DESC');
+                $works->orderBy('works.created_at', 'DESC');
                 break;
             case 'sale':
-                $works->where('price', '>', 0)->orderBy('created_at', 'DESC');
+                $works->where('price', '>', 0)->orderBy('works.created_at', 'DESC');
                 break;
             default:
-                $works->where('rating', '>', '20')->orderBy('created_at', 'DESC');
+                $works->where('rating', '>', '20')->orderBy('works.created_at', 'DESC');
         }
         $works = $works->get();
         foreach ($works as &$work) {

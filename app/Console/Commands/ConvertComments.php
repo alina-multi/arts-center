@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Console\Traits\getNewUserId;
+use http\Params;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -42,9 +43,10 @@ class ConvertComments extends Command
         }
         DB::table('works')
             ->orderBy('id', 'DESC')
-            ->where('comments',0) // So we can run it again
+            ->where('comments','=',0) // So we can run it again
             ->select('id', 'old_id')->chunk(200, function ($works) {
                 foreach ($works as $work) {
+                    print "Converting for work: $work->id  \n";
                     $oldComments = DB::connection('old')->table('comments')
                         ->orderBy('id', 'DESC')
                         ->select('id', 'date', 'text', 'user')
@@ -53,10 +55,10 @@ class ConvertComments extends Command
                         ->where('deleted_by',0)
                         ->get();
                     $commentsCount = 0;
+
                     foreach ($oldComments as $oldComment) {
                         print "Converting comment: " . $oldComment->id . ": " . $oldComment->text . "\n";
-                        print "------------------\n";
-                        $convertedText = $this->convertSmilyToEmoji($oldComment->text);
+                        $convertedText = $this->convertSmilyToEmoji(trim($oldComment->text));
                         $convertedDelta = $this->convertBbcodeToDelta($convertedText);
                         if ($convertedDelta) { // For some reason we have empty comments
                             DB::table('comments')->insert([
@@ -111,7 +113,6 @@ class ConvertComments extends Command
 
     function convertBbcodeToDelta($text)
     {
-        $text = trim($text);
         if (!$text or $text === ' ') {
             return;
         }

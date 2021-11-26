@@ -50,10 +50,8 @@ class DownloadAndSaveImage implements ShouldQueue
         }
         //Get the first available image
         foreach ($this->url as $url) {
-            if (file_exists($url)) {
-                $photo = file_get_contents($url);
-            }
-            if ($photo) {
+            $photo = @file_get_contents($url);
+            if (!empty($photo)) {
                 break;
             }
         }

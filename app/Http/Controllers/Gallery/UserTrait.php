@@ -10,6 +10,6 @@ trait UserTrait
     {
         return Work::whereHas('owners', function ($query) use ($id) {
             $query->where('ownables.user_id', $id);
-        })->orderBy('created_at', 'DESC');
+        });
     }
 }
