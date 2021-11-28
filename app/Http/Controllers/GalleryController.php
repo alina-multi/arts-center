@@ -56,13 +56,13 @@ class GalleryController extends Controller
 
         switch ($request->order) {
             case 'new':
-                $works->orderBy('works.created_at', 'DESC');
+                $works->orderBy('works.published_at', 'DESC');
                 break;
             case 'sale':
-                $works->where('price', '>', 0)->orderBy('works.created_at', 'DESC');
+                $works->where('price', '>', 0)->orderBy('works.published_at', 'DESC');
                 break;
             default:
-                $works->where('rating', '>', '20')->orderBy('works.created_at', 'DESC');
+                $works->where('rating', '>', '20')->orderBy('works.published_at', 'DESC');
         }
         $works = $works->get();
         foreach ($works as &$work) {
