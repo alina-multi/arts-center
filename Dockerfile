@@ -51,6 +51,8 @@ RUN composer install --no-scripts --no-autoloader
 #Now copy files that invalidate cache
 COPY . /var/www
 
+COPY .env.docker /var/www/.env
+
 RUN chmod 0777 -R /var/www/storage/
 
 #And run scripts and generate autoloader

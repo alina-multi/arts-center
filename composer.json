@@ -37,7 +37,8 @@
         "league/flysystem-cached-adapter": "^1.1",
         "limedeck/nova-cashier-overview": "^3.0",
         "monarobase/country-list": "^3.2",
-        "sentry/sentry-laravel": "^2.6"
+        "sentry/sentry-laravel": "^2.6",
+        "spatie/laravel-responsecache": "^7.1"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
