@@ -36,9 +36,8 @@ RUN curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/
 # Cleanup dev dependencies
 RUN apk del -f .build-deps
 
-# 256mb should be enough? I hope
-RUN echo "php_admin_value[memory_limit] = 256M" >> /usr/local/etc/php-fpm.d/www.conf
-RUN echo "php_admin_flag[log_errors] = on" >> /usr/local/etc/php-fpm.d/www.conf
+# Override defaults
+COPY php.ini /usr/local/etc/php/conf.d/php.ini
 
 # Setup working directory
 WORKDIR /var/www
