@@ -23,7 +23,8 @@ RUN docker-php-ext-install \
     pdo \
     pdo_mysql \
     pcntl \
-    gd
+    gd \
+    opcache
 
 RUN pecl install redis && docker-php-ext-enable redis
 
@@ -36,8 +37,12 @@ RUN curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/
 # Cleanup dev dependencies
 RUN apk del -f .build-deps
 
+ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS="0"
+
 # Override defaults
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 COPY php.ini /usr/local/etc/php/conf.d/php.ini
+COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
 # Setup working directory
 WORKDIR /var/www
@@ -57,7 +62,6 @@ RUN composer dump-autoload --optimize
 #Cache and optimize stuff so it will work fast!
 RUN php artisan optimize
 RUN php artisan view:cache
-RUN php artisan route:cache
 
 COPY entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["entrypoint.sh"]
