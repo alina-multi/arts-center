@@ -42,7 +42,7 @@ class GalleryController extends Controller
                              $query->where('language', $language);
                          },
                          'image:id,name,folder',
-                         'owners:users.id,old_id,name,username',
+                         'owners:users.id,old_id,name,username,image_id',
                          'owners.photo'
                      ])->offset($offset)->limit($perPage);
 
