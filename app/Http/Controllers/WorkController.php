@@ -59,7 +59,8 @@ class WorkController extends Controller
                                                          })->orderBy('order');
                                                  },
                                                  'blocks.images',
-                                                 'owners:users.id,old_id,name,username',
+                                                 'owners:users.id,old_id,name,username,image_id',
+                                                 'owners.photo',
                                                  'votes',
                                                  'votes.user',
                                                  'votes.user.photo'
