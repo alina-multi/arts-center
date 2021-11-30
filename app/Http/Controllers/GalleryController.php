@@ -47,10 +47,7 @@ class GalleryController extends Controller
                      ])->offset($offset)->limit($perPage);
 
         if ($type !== 'draft') {
-            $works->select('works.*')
-            ->join('work_titles', function ($join) use ($language) {
-                $join->on('work_titles.work_id','=','works.id')->where('work_titles.language', $language);
-            })->where('image_id', '!=', 0)->whereNotNull('published_at');
+            $works->where("show_$language", 1)->where('image_id', '!=', 0)->whereNotNull('published_at');
         }
         $users = [];
 

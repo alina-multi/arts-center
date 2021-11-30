@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Builder;
+use Spatie\ResponseCache\Facades\ResponseCache;
 
 class UserController extends Controller
 {
@@ -134,6 +135,7 @@ class UserController extends Controller
         if ($user->id === Auth::id()) {
             $user->fill($request->all());
             $user->save();
+            ResponseCache::clear(['user']); // For now let's make it super simple and clear all cache to all users
             return response()->json($user);
         } else {
             return response()->json(['error' => 'Unauthenticated.'], 401);

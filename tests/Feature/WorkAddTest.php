@@ -6,6 +6,7 @@ use App\Image;
 use App\Tag;
 use App\Work;
 use App\WorkBlock;
+use App\WorkTitle;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -68,6 +69,9 @@ class WorkAddTest extends TestCase
         $this->assertDatabaseHas('work_titles', [
             'title' => 'text',
             'language' => 'en'
+        ]);
+        $this->assertDatabaseHas('works', [
+            'show_en' => 1
         ]);
     }
 
@@ -178,11 +182,19 @@ class WorkAddTest extends TestCase
         $user = User::factory()->create();
         $work = Work::factory()->create();
         $work->owners()->attach($user->id);
+        WorkTitle::factory()->create(['work_id' => $work->id, 'language' => 'en']);
         $image = Image::factory(['folder' => 'image'])->create();
 
         $now = Carbon::now()->format('Y-m-d H:i:s');
         $tags = $this->createTags(Tag::TYPE_TAG, ['strawberry', 'banana', 'apple']);
         $category = $this->createTags(Tag::TYPE_CATEGORY, ['red', 'blue', 'purple', 'green']);
+
+        // Test that before saving gallery is empty, and it will cache
+        $this->getJson("api/gallery/en/tag_all?order=new&page=1")
+            ->assertJson(fn(AssertableJson $json) =>
+            $json->has('works', 0)
+            ->has('users', 0)
+        );
 
         $response = $this->actingAs($user)->putJson(
             '/api/works/' . $work->id,
@@ -194,11 +206,20 @@ class WorkAddTest extends TestCase
             ]
         );
 
-        $this->assertDatabaseCount('taggables', 7);
-
         $response->assertStatus(200)->assertJson(['id' => 1]);
         $updatedWork = $work->fresh();
-        $this->assertTrue($updatedWork->published_at == $now);
-        $this->assertTrue($updatedWork->image_id == $image->id);
+        $this->assertTrue($updatedWork->published_at == $now, 'works.published_at is wrong');
+        $this->assertTrue($updatedWork->image_id == $image->id, 'works.image_id is wrong');
+        $this->assertTrue($updatedWork->show_en == 1, 'works.show_en is not set');
+
+        $this->assertDatabaseCount('taggables', 7);
+
+        // And now we have 1 work and cache is invalidated
+        $this->getJson("api/gallery/en/tag_all?order=new&page=1")
+            ->assertJson(fn(AssertableJson $json) =>
+            $json->has('works', 1)
+                ->has('users', 1)
+                ->has('works.0.owners', 1)
+            );
     }
 }

@@ -24,7 +24,7 @@ class CommentTest extends TestCase
                 'user_id' => $user->id,
                 'commentable_id' => $work->id,
                 'commentable_type' => 'work',
-                'body' => ['test' => 'json']
+                'body' => ["ops" => [["insert" => "test\n"]]]
             ]
         );
         $vote = Vote::factory()->create(
@@ -37,8 +37,7 @@ class CommentTest extends TestCase
         );
         $work->owners()->attach($user->id);
         $response = $this->get('/api/comment/work_' . $work->id);
-        $response->assertJson(fn (AssertableJson $json) =>
-        $json->has('comments', 1)
+        $response->assertJson(fn(AssertableJson $json) => $json->has('comments', 1)
             ->has('comments.0.votes', 1)
             ->has('users', 2)
         );
@@ -56,8 +55,19 @@ class CommentTest extends TestCase
                 'body' => ['test' => 'json']
             ]
         );
-        $response = $this->actingAs($user)->deleteJson('/api/comment/'.$comment->id);
-        $response->assertStatus(200);
+        // Load it so it will cache
+        $this->get('/api/comment/work_' . $work->id)->assertJson(fn(AssertableJson $json) =>
+        $json->has('comments', 1)
+            ->has('users', 1)
+        );
+        $this->actingAs($user)->deleteJson('/api/comment/' . $comment->id)
+            ->assertStatus(200);
+        // And now let's check that it's actually deleted and cache is invalidated
+        $this->get('/api/comment/work_' . $work->id)->assertJson(fn(AssertableJson $json) =>
+        $json->has('comments', 0)
+            ->has('users', 0)
+        );
+
     }
 
     public function testDeleteSomeoneCommentFromYourWork()
@@ -93,7 +103,32 @@ class CommentTest extends TestCase
             ]
         );
         $work->owners()->attach($owner->id);
-        $response = $this->actingAs($me)->deleteJson('/api/comment/'.$comment->id);
+        $response = $this->actingAs($me)->deleteJson('/api/comment/' . $comment->id);
         $response->assertStatus(401);
+    }
+
+    public function testPostComment()
+    {
+        $work = Work::factory()->create();
+        $owner = User::factory()->create();
+        $me = User::factory()->create();
+        $work->owners()->attach($owner->id);
+        // Load it so it will cache
+        $this->get('/api/comment/work_' . $work->id)->assertJson(fn(AssertableJson $json) =>
+        $json->has('comments', 0)
+            ->has('users', 0)
+        );
+        $this->actingAs($me)->postJson('api/comment',
+                                       [
+                                           'commentable_id' => $work->id,
+                                           'commentable_type' => 'work',
+                                           'body' => ["ops" => [["insert" => "test\n"]]]
+                                       ]
+        );
+        // And now we can check both that comment added and cache is invalidated
+        $this->get('/api/comment/work_' . $work->id)->assertJson(fn(AssertableJson $json) =>
+        $json->has('comments', 1)
+            ->has('users', 1)
+        );
     }
 }

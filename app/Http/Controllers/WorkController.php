@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Tag;
 use Illuminate\Validation\Rule;
+use Spatie\ResponseCache\Facades\ResponseCache;
 
 /** @OA\Info(title="Arts 2.0 Api", version="0.1") */
 class WorkController extends Controller
@@ -129,7 +130,14 @@ class WorkController extends Controller
             'category.*.id' => ['integer', 'exists:tags,id']
         ]);
         $work->tags()->sync(array_merge((array) $request->tags, (array) $request->category));
-        $work->fill($request->all())->save();
+        $work->fill($request->all());
+        foreach ($work->titles as $title) {
+            if ($title->language) {
+                $work->{'show_' . $title->language} = 1;
+            }
+        }
+        $work->save();
+        ResponseCache::clear(['gallery', 'work']); // For now let's make it super simple and clear all gallery and work cache
         return $work;
     }
 

@@ -11,13 +11,14 @@ use App\WorkTitle;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\UnauthorizedException;
+use Spatie\ResponseCache\Facades\ResponseCache;
 
 class TitleController extends Controller
 {
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -40,7 +41,13 @@ class TitleController extends Controller
                 ],
             ]
         );
-        return WorkTitle::create($request->all());
+        ResponseCache::clear(['gallery', 'work']
+        ); // For now let's make it super simple and clear all gallery and work cache
+        $title = WorkTitle::create($request->all());
+        $work = $title->work;
+        $work->{"show_$title->language"} = 1;
+        $work->save();
+        return $title;
     }
 
 
@@ -65,13 +72,15 @@ class TitleController extends Controller
         $title->title = $request->input('title');
         $title->save();
 
+        ResponseCache::clear(['gallery', 'work']
+        ); // For now let's make it super simple and clear all gallery and work cache
         return $title;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(WorkTitle $title)
@@ -80,7 +89,13 @@ class TitleController extends Controller
         if (!$ownsWork->passes('work_id', $title->work_id)) {
             throw new UnauthorizedException();
         }
+        $work = $title->work;
+        $work->{"show_$title->language"} = 0;
+        $work->save();
+
         $title->delete();
+        ResponseCache::clear(['gallery', 'work']
+        ); // For now let's make it super simple and clear all gallery and work cache
         return response()->noContent();
     }
 }

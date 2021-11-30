@@ -9,6 +9,7 @@ use App\Http\Controllers\Gallery\{IndexTrait, RelatedTrait, TagTrait, UserTrait}
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Spatie\ResponseCache\Facades\ResponseCache;
 
 class CommentController extends Controller
 {
@@ -57,21 +58,15 @@ class CommentController extends Controller
         $tree = [];
         $idRef = []; //Flat id -> ref in tree
 
-        function addToUsers(&$users, $user)
-        {
-            if(empty($users[$user['id']])) {
-                $users[$user['id']] = $user;
-            }
-        }
         foreach ($comments as &$comment) {
             if (!empty($comment['user'])) {
-                addToUsers($users, $comment['user']);
+                $this->addToUsers($users, $comment['user']);
                 unset($comment['user']);
             }
             $userVote = [];
             foreach ($comment['votes'] as $vote) {
                 if (!empty($vote['user'])) {
-                    addToUsers($users, $vote['user']);
+                    $this->addToUsers($users, $vote['user']);
                     $userVote[] = $vote['user']['id'];
                 }
             }
@@ -92,11 +87,17 @@ class CommentController extends Controller
         return ['comments' => $tree, 'users' => $users];
     }
 
+    function addToUsers(&$users, $user)
+    {
+        if(empty($users[$user['id']])) {
+            $users[$user['id']] = $user;
+        }
+    }
+
     public function store(Request $request)
     {
         $request->validate($this->rules());
         $data = $request->all();
-        $data['commentable_type'] = $data['commentable_type'];
         $data['user_id'] = Auth::id();
         if (!empty($data['comment_id'])) {
             $parent = Comment::where('id',$request->comment_id)->firstOrFail();
@@ -108,6 +109,7 @@ class CommentController extends Controller
             }
             $data['depth'] = $newDepth;
         }
+        ResponseCache::clear(['comment']); // For now let's make it super simple
         return Comment::create($data);
     }
 
@@ -119,6 +121,7 @@ class CommentController extends Controller
         $request->validate(['body' => 'required|array']);
         $comment->body = $request->get('body');
         $comment->save();
+        ResponseCache::clear(['comment']); // For now let's make it super simple
         return $comment;
     }
 
@@ -128,6 +131,7 @@ class CommentController extends Controller
             return response()->json(['error' => "You can't delete this"], 401);
         }
         $comment->delete();
+        ResponseCache::clear(['comment']); // For now let's make it super simple
     }
 
 }

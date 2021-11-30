@@ -13,19 +13,19 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('gallery/{language}/{id}', 'GalleryController@show');
+Route::get('gallery/{language}/{id}', 'GalleryController@show')->middleware('cache:3000,gallery');
 
-Route::get('work/{language}/{id}', 'WorkController@show');
-Route::get('user/{language}/{id}', 'UserController@show');
+Route::get('work/{language}/{id}', 'WorkController@show')->middleware('cache:3000,work');
+Route::get('user/{language}/{id}', 'UserController@show')->middleware('cache:3000,user');
 Route::get('user', 'UserController@index');
 
-Route::get('comment/{id}', 'CommentController@show');
+Route::get('comment/{id}', 'CommentController@show')->middleware('cache:3000,comment');
 
 Route::middleware('auth:sanctum')->get('/init', function (Request $request) {
     return $request->user();
 });
 
-Route::get('tag/category/{language}', 'TagController@getCategory');
+Route::get('tag/category/{language}', 'TagController@getCategory')->middleware('cache:3000,tags');;
 
 
 // We don't need auth for this ones

@@ -39,10 +39,10 @@ class GalleryTest extends TestCase
     public function testCategoryGallery()
     {
         $work = Work::factory(
-            ['rating' => 100, 'published_at' => date('Y-m-d H:i:s', time() - 100)]
+            ['rating' => 100, 'published_at' => date('Y-m-d H:i:s', time() - 100), 'show_en'=>1 ]
         )->create();
 
-        $workTitle = WorkTitle::factory(['language' => 'en', 'title' => 'test', 'work_id' => $work->id])->create();
+        WorkTitle::factory(['language' => 'en', 'title' => 'test', 'work_id' => $work->id])->create();
 
         $user = User::factory()->create();
         $category = Tag::factory(['type_id' => Tag::TYPE_CATEGORY])->has(
