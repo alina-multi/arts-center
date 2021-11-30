@@ -6,6 +6,7 @@ do
   # wait for 5 seconds before check again
   sleep 5
 done
+php artisan config:cache
 
 exec docker-php-entrypoint "$@"
 
