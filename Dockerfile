@@ -59,9 +59,6 @@ RUN chmod 0777 -R /var/www/storage/
 
 #And run scripts and generate autoloader
 RUN composer dump-autoload --optimize
-#Cache and optimize stuff so it will work fast!
-RUN php artisan optimize
-RUN php artisan view:cache
 
 COPY entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["entrypoint.sh"]
