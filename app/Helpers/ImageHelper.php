@@ -10,7 +10,7 @@ use Illuminate\Http\File;
 
 class ImageHelper
 {
-    static function upload($folder, $file, $name, $userId = null)
+    static function upload($folder, $file, $name, $extension, $userId = null)
     {
         if (!$userId) {
             $userId = Auth::id();
@@ -18,7 +18,8 @@ class ImageHelper
         $image = Image::create([
             "name" => $name,
             "user_id" => $userId,
-            "folder" => $folder
+            "folder" => $folder,
+            "extension" => $extension
         ]);
         $name = str_replace('.', '-' . $image->id . '.', $name); //Insert Id as part of name
         //Remove dash if string starts with it
@@ -26,7 +27,7 @@ class ImageHelper
         // And this is silly but we need to save it again :(
         $image->name = $name;
         $image->save();
-        $imageFile = Storage::disk('s3')->put($folder . '/' . $name, $file, 'public');
+        $imageFile = Storage::disk('s3')->put($folder . '/' . $name. '.' . $extension, $file, 'public');
 
         // If upload failed, delete the image from DB
         if (!$imageFile) {

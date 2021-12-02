@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "74e64448a8458bc241493c43483ea5e3",
+    "content-hash": "207eb6162b8ad3cf8b86d33828103678",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -9753,6 +9753,56 @@
                 }
             ],
             "time": "2021-07-29T06:20:01+00:00"
+        },
+        {
+            "name": "tigroid3/php-imaginary",
+            "version": "1.03",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tigroid3/php-imaginary.git",
+                "reference": "b02279fbd316434509ce6f0e4fbe42ceaedeaccb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tigroid3/php-imaginary/zipball/b02279fbd316434509ce6f0e4fbe42ceaedeaccb",
+                "reference": "b02279fbd316434509ce6f0e4fbe42ceaedeaccb",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": ">=6.0",
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "tigroid3\\phpimaginary\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Oleg Kretinin",
+                    "email": "sarge_tigra@mail.ru",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "SDK for https://github.com/h2non/imaginary",
+            "homepage": "https://github.com/tigroid3/php-imaginary",
+            "keywords": [
+                "h2non",
+                "imaginary",
+                "php",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/tigroid3/php-imaginary/issues",
+                "source": "https://github.com/tigroid3/php-imaginary/tree/master"
+            },
+            "time": "2020-06-30T20:32:50+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

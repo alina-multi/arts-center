@@ -52,12 +52,13 @@ class DownloadAndSaveImage implements ShouldQueue
         foreach ($this->url as $url) {
             $photo = @file_get_contents($url);
             if (!empty($photo)) {
+                $extension = pathinfo($url, PATHINFO_EXTENSION);
                 break;
             }
         }
 
         if ($photo) {
-            $image = ImageHelper::upload($this->folder, $photo, $this->filename, $this->user->id);
+            $image = ImageHelper::upload($this->folder, $photo, $this->filename, $extension, $this->user->id);
             $this->user->images()->syncWithoutDetaching([$image->id]);
             if ($this->folder == 'photos') {
                 $this->user->image_id = $image->id;

@@ -9,24 +9,58 @@ use Illuminate\Support\Facades\App;
 class Image extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'created_at', 'name', 'user_id', 'old_user_id', 'work_id', 'folder'
+        'created_at',
+        'name',
+        'user_id',
+        'old_user_id',
+        'work_id',
+        'folder',
+        'extension'
     ];
 
-    protected $appends = ['url'];
+    protected $appends = ['url', 'srcset'];
 
-    protected $visible = ['url'];
+    protected $visible = ['url', 'srcset'];
+
+    public function getPathAttribute()
+    {
+        return '/' . $this->folder . '/' . $this->name;
+    }
 
     public function getUrlAttribute()
     {
+        foreach ([300, 600, 1200, 2400] as $width) {
+            if ($this->{"w$width"}) {
+                return $this->addDomain($this->path) . "-w$width.webp";
+            }
+        }
+        // Original file only as fallback
+        return $this->addDomain($this->path) . '.' . $this->extension;
+    }
+
+    public function getSrcsetAttribute()
+    {
+        $src = [];
+        foreach ([300, 600, 1200, 2400] as $width) {
+            if ($this->{"w$width"}) {
+                $src[] = $this->addDomain("$this->path-w$width.webp w$width");
+            }
+        }
+        return join(", ", $src);
+    }
+
+    private function addDomain($path)
+    {
         if (App::environment('local')) {
-            return 'http://arts2.develop/arts/' . $this->folder . '/' . $this->name;
-        } else if (App::environment('staging')) {
-            return 'https://i.arts2.art/' . $this->folder . '/' . $this->name;
-        } else if (App::environment('production')) {
-            return 'https://i.arts.center/' . $this->folder . '/' . $this->name;
-        } else if (App::environment('testing')) {
-            return $this->folder . '/'. $this->name;
+            return 'http://arts2.develop/arts' . $path;
+        } elseif (App::environment('staging')) {
+            return 'https://i.arts2.art' . $path;
+        } elseif (App::environment('production')) {
+            return 'https://i.arts.center' . $path;
+        } elseif (App::environment('testing')) {
+            return $path;
         }
     }
 }

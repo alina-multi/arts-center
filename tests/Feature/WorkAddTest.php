@@ -3,12 +3,14 @@
 namespace Tests\Feature;
 
 use App\Image;
+use App\Jobs\ConvertImage;
 use App\Tag;
 use App\Work;
 use App\WorkBlock;
 use App\WorkTitle;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Bus;
 use Tests\TestCase;
 use App\User;
 use Illuminate\Http\UploadedFile;
@@ -77,6 +79,7 @@ class WorkAddTest extends TestCase
 
     public function testUploadImage()
     {
+        Bus::fake();
         $imageName = 'painting.jpg';
         $user = User::factory()->create();
         $work = Work::factory()->create();
@@ -87,8 +90,9 @@ class WorkAddTest extends TestCase
 
         $response = $this->actingAs($user)->postJson('/api/image', [
             'file' => $file,
-            'type' => 'image'
+            'type' => 'works'
         ]);
+        Bus::assertDispatched(ConvertImage::class);
 
         $responseData = $response->decodeResponseJson();
 

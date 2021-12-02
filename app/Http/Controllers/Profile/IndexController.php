@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Profile;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\ResponseCache\Facades\ResponseCache;
 
 class IndexController extends Controller
 {
@@ -15,6 +16,7 @@ class IndexController extends Controller
         ]);
         $user = Auth::user();
         $user->fill($request->attributes);
+        ResponseCache::clear(['user']);
         return response()->json($user);
     }
 }
