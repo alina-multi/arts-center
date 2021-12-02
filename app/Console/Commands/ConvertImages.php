@@ -6,7 +6,7 @@ use App\Image;
 use App\Jobs\ConvertImage;
 use Illuminate\Console\Command;
 
-class ConvertOldImages extends Command
+class ConvertImages extends Command
 {
     /**
      * The name and signature of the console command.
@@ -22,7 +22,13 @@ class ConvertOldImages extends Command
      */
     public function handle()
     {
-        Image::chunk(100, function ($images) {
+        // Find only the ones without a single converted variant
+        Image::where([
+            ['w300', '=', 0],
+            ['w600', '=', 0],
+            ['w1200', '=', 0],
+            ['w2400', '=', 0],
+                     ])->chunk(100, function ($images) {
             foreach ($images as $image) {
                 ConvertImage::dispatch($image);
                 print "$image->id\n";
