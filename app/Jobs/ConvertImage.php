@@ -17,7 +17,6 @@ class ConvertImage implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private ImaginaryClient $imaginary;
     private Image $image;
     private array $targets = [
         'works' => [1200, 2400],
