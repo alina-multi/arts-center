@@ -45,6 +45,11 @@ class GalleryTest extends TestCase
         WorkTitle::factory(['language' => 'en', 'title' => 'test', 'work_id' => $work->id])->create();
 
         $user = User::factory()->create();
+        // So we have at least 2 tags because there were false positive before
+        Tag::factory(['type_id' => Tag::TYPE_CATEGORY])->has(
+            TagTitle::factory(['title' => 'graphic', 'language' => 'en']),
+            'titles'
+        )->create();
         $category = Tag::factory(['type_id' => Tag::TYPE_CATEGORY])->has(
             TagTitle::factory(['title' => 'painting', 'language' => 'en']),
             'titles'

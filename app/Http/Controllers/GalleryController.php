@@ -32,7 +32,7 @@ class GalleryController extends Controller
 
         $actionName = $type . 'Gallery';
 
-        $works = $this->$actionName($ident, $request);
+        $works = $this->$actionName($ident, $language);
         if ($works === null) {
             return response('Not found', 404);
         }
