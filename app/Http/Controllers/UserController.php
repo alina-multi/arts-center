@@ -6,6 +6,7 @@ use App\TagTitle;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Builder;
 use Spatie\ResponseCache\Facades\ResponseCache;
@@ -49,16 +50,19 @@ class UserController extends Controller
             if (empty($language)) {
                 abort(422, "Language required for rating sorting");
             }
-            $users = User::select('users.*','rating')->join('user_ratings', function ($join) use ($ratable_type, $ratable_id, $language) {
-                $join->on('users.id', '=', 'user_ratings.user_id')
-                    ->where('user_ratings.ratable_type', $ratable_type)
-                    ->where('user_ratings.language', $language);
-                if (is_numeric($ratable_id)) {
-                    $join->where('user_ratings.ratable_id', $ratable_id);
-                } else {
-                    $join->whereColumn('user_ratings.ratable_id', $ratable_id);
+            $users = User::select('users.*', 'rating')->join(
+                'user_ratings',
+                function ($join) use ($ratable_type, $ratable_id, $language) {
+                    $join->on('users.id', '=', 'user_ratings.user_id')
+                        ->where('user_ratings.ratable_type', $ratable_type)
+                        ->where('user_ratings.language', $language);
+                    if (is_numeric($ratable_id)) {
+                        $join->where('user_ratings.ratable_id', $ratable_id);
+                    } else {
+                        $join->whereColumn('user_ratings.ratable_id', $ratable_id);
+                    }
                 }
-            })->orderBy('user_ratings.rating', 'DESC')->where('user_ratings.rating', '>', 0);
+            )->orderBy('user_ratings.rating', 'DESC')->where('user_ratings.rating', '>', 0);
         } elseif ($order === 'new') {
             $users = User::orderBy('id', 'desc');
         } elseif ($order === 'online') {
@@ -151,5 +155,20 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function csv()
+    {
+        $output='';
+        $output .= "email,first_name,last_name,country\n";
+        $users = DB::connection('old')->table('user')->where('rate','>', 0)->select(['name', 'lastname', 'email', 'country_alpha2'])->get();
+        foreach ($users as $user) {
+            if (filter_var($user->email, FILTER_VALIDATE_EMAIL)) {
+                $user->name = htmlspecialchars($user->name);
+                $user->lastname = htmlspecialchars($user->lastname);
+                $output .= "$user->email,$user->name,$user->lastname,$user->country_alpha2\n";
+            }
+        }
+        return response($output, 200, ["Content-type" => "text/csv"]);
     }
 }

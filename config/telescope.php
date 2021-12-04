@@ -121,7 +121,7 @@ return [
 
         Watchers\CommandWatcher::class => [
             'enabled' => env('TELESCOPE_COMMAND_WATCHER', true),
-            'ignore' => ['vendor:publish', 'test'],
+            'ignore' => ['vendor:publish', 'test', 'make'],
         ],
 
         Watchers\DumpWatcher::class => env('TELESCOPE_DUMP_WATCHER', false),

@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+//Route::get('usercsv', 'UserController@csv'); todo: secure this somehow
 Route::get('gallery/{language}/{id}', 'GalleryController@show')->middleware('cache:3000,gallery');
 
 Route::get('work/{language}/{id}', 'WorkController@show')->middleware('cache:3000,work');

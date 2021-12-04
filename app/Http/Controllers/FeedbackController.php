@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Feedback;
+use App\Mail\NewIdeaPosted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
@@ -64,7 +66,9 @@ class FeedbackController extends Controller
                            ]);
         $data = $request->all();
         $data['user_id'] = Auth::id();
-        return Feedback::create($data);
+        $feedback = Feedback::create($data);
+        Mail::to('stepan@arts.center')->send(new NewIdeaPosted($feedback));
+        return $feedback;
     }
 
     /**
