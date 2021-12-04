@@ -44,4 +44,9 @@ class Feedback extends Model
         'body' => 'array',
         'approved_at'=> 'datetime'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
