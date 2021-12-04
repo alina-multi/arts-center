@@ -9,4 +9,14 @@ class UserRatings extends Model
 {
     protected $fillable = ['ratable_type', 'ratable_id', 'user_id', 'language'];
     use HasFactory;
+
+    public function ratable()
+    {
+        return $this->morphTo();
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 }

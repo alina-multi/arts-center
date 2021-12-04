@@ -54,7 +54,7 @@ class Image extends Model
     private function addDomain($path)
     {
         if (App::environment('local')) {
-            return 'http://arts2.develop/arts' . $path;
+            return 'https://arts2.develop/arts' . $path;
         } elseif (App::environment('staging')) {
             return 'https://i.arts2.art' . $path;
         } elseif (App::environment('production')) {

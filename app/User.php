@@ -60,7 +60,17 @@ class User extends Authenticatable
 
     public function ratings()
     {
-        return $this->hasMany('App\UserRatings', 'user_id');
+        return $this->hasMany(UserRatings::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function works()
+    {
+        return $this->morphedByMany(Work::class, 'ownable','ownables');
     }
 
     public function getHighlightsAttribute()
