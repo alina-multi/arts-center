@@ -6,6 +6,7 @@ use App\Nova\Actions\ApproveRecord;
 use Ek0519\Quilljs\Quilljs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Code;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
@@ -52,6 +53,7 @@ class Feedback extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
+            BelongsTo::make('user'),
             Text::make('title')->required(),
             Select::make('type')->options(array_combine(array_keys(\App\Feedback::TYPE_CATEGORY), array_keys(\App\Feedback::TYPE_CATEGORY)))->required(),
             Select::make('category')->options(array_combine(\App\Feedback::TYPE_CATEGORY['complaint'], \App\Feedback::TYPE_CATEGORY['complaint'])),
