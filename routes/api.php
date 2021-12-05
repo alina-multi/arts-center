@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+// We don't need auth for this ones
 //Route::get('usercsv', 'UserController@csv'); todo: secure this somehow
 Route::get('gallery/{language}/{id}', 'GalleryController@show')->middleware('cache:3000,gallery');
 
@@ -27,9 +28,6 @@ Route::middleware('auth:sanctum')->get('/init', function (Request $request) {
 
 Route::get('tag/category/{language}', 'TagController@getCategory')->middleware('cache:3000,tags');;
 
-
-// We don't need auth for this ones
-Route::get('works/{work}', 'WorkController@show');
 Route::get('vote/{id}', 'VoteController@show');
 Route::get('tag/{search}', 'TagController@show');
 Route::get('feedback/idea', 'FeedbackController@idea');

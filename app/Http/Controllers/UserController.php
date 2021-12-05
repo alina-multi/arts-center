@@ -120,7 +120,7 @@ class UserController extends Controller
     public function show($lang, $id)
     {
         $field = is_numeric($id) ? 'id' : 'username';
-        $user = User::where($field, $id)->with('photo')->firstOrFail();
+        $user = User::where($field, $id)->with('photo', 'ratings')->firstOrFail()->makeVisible('country');
         return $user;
     }
 

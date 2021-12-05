@@ -79,7 +79,7 @@ class User extends Authenticatable
             return Work::whereHas('owners', function ($query) {
                 $query->where('ownables.user_id', $this->id);
             })->with([
-                         'image:id,name,folder',
+                         'image:id,name,folder,extension',
                          'titles'
                      ])->orderBy('rating', 'desc')->limit(3)->get()->keyBy('id');
         });
