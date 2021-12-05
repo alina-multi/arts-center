@@ -120,7 +120,12 @@ class UserController extends Controller
     public function show($lang, $id)
     {
         $field = is_numeric($id) ? 'id' : 'username';
-        $user = User::where($field, $id)->with('photo', 'ratings')->firstOrFail()->makeVisible('country', 'ratings');
+        $user = User::where($field, $id)->with([
+                                                   'photo',
+                                                   'ratings' => function ($query) use ($lang) {
+                                                       $query->where('language', '=', $lang);
+                                                   }
+                                               ])->firstOrFail()->makeVisible('country', 'ratings');
         return $user;
     }
 
@@ -159,9 +164,11 @@ class UserController extends Controller
 
     public function csv()
     {
-        $output='';
+        $output = '';
         $output .= "email,first_name,last_name,country\n";
-        $users = DB::connection('old')->table('user')->where('rate','>', 0)->select(['name', 'lastname', 'email', 'country_alpha2'])->get();
+        $users = DB::connection('old')->table('user')->where('rate', '>', 0)->select(
+            ['name', 'lastname', 'email', 'country_alpha2']
+        )->get();
         foreach ($users as $user) {
             if (filter_var($user->email, FILTER_VALIDATE_EMAIL)) {
                 $user->name = htmlspecialchars($user->name);
