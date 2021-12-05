@@ -45,7 +45,7 @@ class Image extends Model
         $src = [];
         foreach ([300, 600, 1200, 2400] as $width) {
             if ($this->{"w$width"}) {
-                $src[] = $this->addDomain("$this->path-w$width.webp w$width");
+                $src[] = $this->addDomain("$this->path-w$width.webp {$width}w");
             }
         }
         return join(", ", $src);
