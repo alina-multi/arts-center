@@ -119,8 +119,7 @@ class UserController extends Controller
      */
     public function show($lang, $id)
     {
-        $field = is_numeric($id) ? 'id' : 'username';
-        $user = User::where($field, $id)->with([
+        $user = User::where('username', $id)->with([
                                                    'photo',
                                                    'ratings' => function ($query) use ($lang) {
                                                        $query->where('language', '=', $lang);

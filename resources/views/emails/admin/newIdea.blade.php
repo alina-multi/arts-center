@@ -3,5 +3,3 @@ New feedback posted:
 @php
     echo (new \nadar\quill\Lexer($idea->body))->render();
 @endphp
-<br>
-<a href="https://arts.center/nova/resources/feedback">Validate it on admin page</a>

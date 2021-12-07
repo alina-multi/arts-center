@@ -29,6 +29,6 @@ class NewIdeaPosted extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.admin.newIdea')->subject('New feedback: '.$this->idea->title);
+        return $this->view('emails.admin.newIdea')->subject('New feedback: ' . $this->idea->title)->from($this->idea->user->email, $this->idea->user->name);
     }
 }
