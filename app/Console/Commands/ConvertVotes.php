@@ -37,6 +37,7 @@ class ConvertVotes extends Command
         print "Getting ready to convert votes\n";
 
         DB::table('works')
+            ->where('old_id','>',557756)
             ->orderBy('id', 'DESC')
             ->select('id', 'old_id')->chunk(
                 200,

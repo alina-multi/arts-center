@@ -43,7 +43,7 @@ class ConvertComments extends Command
         }
         DB::table('works')
             ->orderBy('id', 'DESC')
-            ->where('comments','=',0) // So we can run it again
+            ->where('old_id','>',557756)
             ->select('id', 'old_id')->chunk(200, function ($works) {
                 foreach ($works as $work) {
                     print "Converting for work: $work->id  \n";
