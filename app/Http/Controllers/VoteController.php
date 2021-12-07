@@ -46,6 +46,7 @@ class VoteController extends Controller
                 );
         $model->rating = $newRating;
         $model->save();
+        // todo: logic to send to feed if newRating is equal to certain threshold
         if ($model instanceof Work) {
             foreach ($model->owners as $owner) {
                 RecountUserRatings::dispatch($owner->id);

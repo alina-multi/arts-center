@@ -38,6 +38,8 @@
         "limedeck/nova-cashier-overview": "^3.0",
         "monarobase/country-list": "^3.2",
         "nadar/quill-delta-parser": "^2.7",
+        "psr/log": "^1.0",
+        "pusher/pusher-php-server": "^7.0",
         "sentry/sentry-laravel": "^2.6",
         "spatie/laravel-responsecache": "^7.1",
         "tigroid3/php-imaginary": "^1.03"
