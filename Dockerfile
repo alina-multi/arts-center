@@ -43,6 +43,7 @@ ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS="0"
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 COPY php.ini /usr/local/etc/php/conf.d/php.ini
 COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+COPY www.conf /usr/local/etc/php-fpm.d/www.conf
 
 # Setup working directory
 WORKDIR /var/www
