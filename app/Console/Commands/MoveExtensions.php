@@ -22,7 +22,7 @@ class MoveExtensions extends Command
     public function handle()
     {
         DB::table('images')
-            ->orderBy('id', 'ASC')
+            ->orderBy('id', 'DESC')
             ->chunk(200, function ($images) {
                 foreach ($images as $image) {
                     if (strtolower(substr($image->name, -4)) === '.jpg') {
