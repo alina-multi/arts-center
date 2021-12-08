@@ -44,6 +44,7 @@ class ConvertUsers extends Command
             ->orderBy('id', 'ASC')
             ->whereNotIn('id', $idsAllreadyInDb)
             ->where('checked',1)
+            ->where('old_id', '>', 64353)
             ->chunk(100, function ($oldUsers) use ($now) {
                 foreach ($oldUsers as $oldUser) {
                     $oldUser=(array) $oldUser;
