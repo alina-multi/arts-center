@@ -28,6 +28,7 @@ class VoteController extends Controller
                 'votable_id' => ['required', 'integer',
                 Rule::unique('votes')->where(function ($query) use ($request) {
                     return $query->where('votable_type', $request->votable_type)
+                        ->where('votable_id', $request->votable_id)
                         ->where('user_id', Auth::id());
                 })
             ],
