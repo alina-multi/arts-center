@@ -2,8 +2,12 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\WorkPublished;
 use App\Nova\Metrics\WorksPerDay;
+use App\Product;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
@@ -24,16 +28,15 @@ class Work extends Resource
 
     public function title()
     {
-        if (sizeof($this->titles)>0) {
+        if (sizeof($this->titles) > 0) {
             $returnTitle = $this->id;
             foreach ($this->titles as $title) {
-                $returnTitle.=" $title->language: $title->title";
+                $returnTitle .= " $title->language: $title->title";
             }
             return $returnTitle;
         } else {
             return $this->id;
         }
-
     }
 
     /**
@@ -48,15 +51,15 @@ class Work extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function fields(Request $request)
     {
-        $getTitle = function($language) {
+        $getTitle = function ($language) {
             if (sizeof($this->titles) > 0) {
-               $titleModel = $this->titles->firstWhere('language', $language);
-               return $titleModel ? $titleModel->title : '';
+                $titleModel = $this->titles->firstWhere('language', $language);
+                return $titleModel ? $titleModel->title : '';
             }
         };
         return [
@@ -66,28 +69,35 @@ class Work extends Resource
             })->thumbnail(function ($value, $disk) {
                 return $value ? $value->url : '';
             }),
-            HasMany::make('WorkTitles','titles'),
-            Text::make('en', function () use ($getTitle) {
-                return $getTitle('en');
-            }),
-            Text::make('ru', function () use ($getTitle) {
-                return $getTitle('ru');
-            }),
-            Text::make('uk', function () use ($getTitle) {
-                return $getTitle('uk');
-            }),
+            Boolean::make('Published','published_at'),
+            HasMany::make('WorkTitles', 'titles'),
+            Text::make('Titles', function () use ($getTitle) {
+                $titles = [];
+                foreach (['ru', 'en', 'uk'] as $lang) {
+                    $local = $getTitle($lang);
+                    if ($local) {
+                        $titles[] = "<div><b>$lang</b>: " . $getTitle($lang) . "</div>";
+                    }
+                }
+                return '<div class="divide-y divide-light-blue-400">' . join("\n", $titles) . '</div>';
+            })->asHtml(),
             Number::make('rating')->sortable(),
             Number::make('comments')->sortable(),
             Number::make('price')->sortable(),
+            Boolean::make('show_en')->hideFromIndex(),
+            Boolean::make('show_ru')->hideFromIndex(),
+            Boolean::make('show_uk')->hideFromIndex(),
+            Text::make('created_at')->hideFromIndex(),
+            Text::make('updated_at')->hideFromIndex(),
+            Text::make('published_at')->hideFromIndex(),
         ];
     }
-
 
 
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -98,18 +108,18 @@ class Work extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function filters(Request $request)
     {
-        return [];
+        return [new WorkPublished()];
     }
 
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -120,7 +130,7 @@ class Work extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function actions(Request $request)

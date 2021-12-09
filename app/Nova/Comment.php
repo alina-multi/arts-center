@@ -2,17 +2,18 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\CommentType;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Code;
 use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Comment extends Resource
 {
-    public static $displayInNavigation = false;
     /**
      * The model the resource corresponds to.
      *
@@ -50,9 +51,15 @@ class Comment extends Resource
         return [
             ID::make(__('ID'), 'id')->sortable(),
             Code::make('body')->json()->required(),
-            Number::make('rating')->readonly(),
+            Text::make('commentable_type'),
+            Number::make('commentable_id'),
+            Text::make('Text', function () {
+                return (new \nadar\quill\Lexer($this->body))->render();
+            })->asHtml(),
+            Number::make('rating')->readonly()->sortable(),
+
             HasOne::make('User'),
-            MorphTo::make('Commentable','commentable')
+            MorphTo::make('Commentable', 'commentable')
         ];
     }
 
@@ -75,7 +82,7 @@ class Comment extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [new CommentType()];
     }
 
     /**
