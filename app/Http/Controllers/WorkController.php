@@ -134,7 +134,10 @@ class WorkController extends Controller
         $work->fill($request->all());
         foreach ($work->titles as $title) {
             if ($title->language) {
-                $work->{'show_' . $title->language} = 1;
+                $field = 'show_' . $title->language;
+                if (isset($work->$field)) { // We can have language that don't have fields in DB yet
+                    $work->$field = 1;
+                }
             }
         }
         $work->save();
