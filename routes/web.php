@@ -33,7 +33,7 @@ Route::post('auth/password/email', 'Auth\ForgotPasswordController@sendResetLinkE
 Route::get('auth/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 Route::post('auth/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 Route::get('auth/user', function () {
-    return Auth::user();
+    return Auth::user()->load('photo');
 });
 //This is a dummy urls that would be actually handled by frontend.
 Route::get('password/reset/{token}',function () {})->name('password.reset');

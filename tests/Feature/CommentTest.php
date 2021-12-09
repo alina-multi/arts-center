@@ -38,8 +38,9 @@ class CommentTest extends TestCase
         $work->owners()->attach($user->id);
         $response = $this->get('/api/comment/work_' . $work->id);
         $response->assertJson(fn(AssertableJson $json) => $json->has('comments', 1)
-            ->has('comments.0.votes', 1)
             ->has('users', 2)
+            ->has('votes', 1)
+            ->has('ratings', 1)
         );
     }
 
@@ -59,6 +60,7 @@ class CommentTest extends TestCase
         $this->get('/api/comment/work_' . $work->id)->assertJson(fn(AssertableJson $json) =>
         $json->has('comments', 1)
             ->has('users', 1)
+            ->etc()
         );
         $this->actingAs($user)->deleteJson('/api/comment/' . $comment->id)
             ->assertStatus(200);
@@ -66,6 +68,7 @@ class CommentTest extends TestCase
         $this->get('/api/comment/work_' . $work->id)->assertJson(fn(AssertableJson $json) =>
         $json->has('comments', 0)
             ->has('users', 0)
+            ->etc()
         );
 
     }
@@ -117,6 +120,7 @@ class CommentTest extends TestCase
         $this->get('/api/comment/work_' . $work->id)->assertJson(fn(AssertableJson $json) =>
         $json->has('comments', 0)
             ->has('users', 0)
+            ->etc()
         );
         $this->actingAs($me)->postJson('api/comment',
                                        [
@@ -129,6 +133,7 @@ class CommentTest extends TestCase
         $this->get('/api/comment/work_' . $work->id)->assertJson(fn(AssertableJson $json) =>
         $json->has('comments', 1)
             ->has('users', 1)
+            ->etc()
         );
     }
 }

@@ -8,6 +8,7 @@ use App\Follow;
 use App\Tag;
 use App\TagTitle;
 use App\User;
+use App\Vote;
 use App\Work;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -21,35 +22,26 @@ class FeedbackTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
-    public function testGetFeedback()
-    {
-        Feedback::factory(['type' => 'feedback'])->count(5)->create();
-        // To test that we don't send things of different type
-        Feedback::factory(['type' => 'idea'])->create();
-        Feedback::factory(['type' => 'complaint'])->create();
-        $response = $this->getJson('api/feedback/feedback');
-        $response->assertJsonCount(5);
-    }
-
     public function testGetIdea()
     {
-        Feedback::factory(['type' => 'idea', 'approved_at'=>Carbon::now()])->count(5)->create();
+        $voteUser = User::factory()->create();
+        $ideas = Feedback::factory(['type' => 'idea', 'approved_at' => Carbon::now()])->count(5)->create();
+        // Fake one vote for first of ideas
+        Vote::factory()->create(
+            ['votable_type' => 'feedback', 'votable_id' => $ideas[0]->id, 'user_id' => $voteUser->id, 'vote' => 1]
+        );
+        $ideas[0]->rating = 2;
+        $ideas[0]->save();
         // To test that we don't send things of different type and not approved yet
         Feedback::factory(['type' => 'complaint'])->create();
         Feedback::factory(['type' => 'feedback'])->create();
         Feedback::factory(['type' => 'idea'])->create();
-        $response = $this->getJson('api/feedback/idea');
-        $response->assertJsonCount(5);
-    }
-
-    public function testGetComplaint()
-    {
-        Feedback::factory(['type' => 'complaint'])->count(5)->create();
-        // To test that we don't send things of different type
-        Feedback::factory(['type' => 'idea'])->create();
-        Feedback::factory(['type' => 'feedback'])->create();
-        $response = $this->getJson('api/feedback/complaint');
-        $response->assertJsonCount(5);
+        $response = $this->getJson('api/feedback/idea/en');
+        $response->assertJson(fn(AssertableJson $json) => $json->has('votes', 1)
+            ->has('users', 6) // 1x5 ideas + 1 from voting
+            ->has('ratings', 5)
+            ->has('feedbacks', 5)
+        );
     }
 
     public function testSendFeedback()
@@ -68,7 +60,8 @@ class FeedbackTest extends TestCase
         $response = $this->sendAndTestFeedback(
             [
                 'type' => 'complaint',
-                'category' => Arr::random(array_slice(Feedback::TYPE_CATEGORY['complaint'],0, -1)), // Remove the last "other"
+                'category' => Arr::random(array_slice(Feedback::TYPE_CATEGORY['complaint'], 0, -1)),
+                // Remove the last "other"
                 'feedbackable_id' => $user->id,
                 'feedbackable_type' => 'user',
                 'body' => '',
@@ -83,11 +76,13 @@ class FeedbackTest extends TestCase
         $title = $this->faker()->words(3, true);
         $body = $this->fakeDeltaJson();
         // Array filter remove empty ones. So if we need to remove element just send it with value ''
-        $data = array_filter(array_merge([
-                                'language' => 'en',
-                                'title' => $title,
-                                'body' => $body
-                            ], $data));
+        $data = array_filter(
+            array_merge([
+                            'language' => 'en',
+                            'title' => $title,
+                            'body' => $body
+                        ], $data)
+        );
         $response = $this->actingAs($user)->postJson(
             'api/feedback',
             $data

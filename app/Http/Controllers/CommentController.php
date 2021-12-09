@@ -48,13 +48,15 @@ class CommentController extends Controller
 
         $comments = Comment::where('commentable_type', $type)
             ->where('commentable_id', $ident)
-            ->with('user', 'votes', 'votes.user', 'votes.user.photo')
+            ->with('user','user.photo', 'votes', 'votes.user', 'votes.user.photo')
             ->orderBy('depth')
             ->orderBy('created_at')
             ->get()->toArray();
 
 
         $users = [];
+        $votes = [];
+        $ratings = [];
         $tree = [];
         $idRef = []; //Flat id -> ref in tree
 
@@ -71,7 +73,9 @@ class CommentController extends Controller
                 }
             }
 
-            $comment['votes'] = $userVote;
+            $votes['comment_' . $comment['id']] = $userVote;
+            $ratings['comment_' . $comment['id']] = $comment['rating'];
+            unset($comment['votes'],$comment['rating']);
 
             if (!$comment['comment_id']) {
                 $tree[] = &$comment;
@@ -84,7 +88,7 @@ class CommentController extends Controller
                $idRef[$comment['id']] = &$comment;
             }
         }
-        return ['comments' => $tree, 'users' => $users];
+        return ['comments' => $tree, 'users' => $users, 'votes'=> $votes, 'ratings' => $ratings];
     }
 
     function addToUsers(&$users, $user)

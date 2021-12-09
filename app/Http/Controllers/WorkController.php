@@ -106,7 +106,8 @@ class WorkController extends Controller
             'category' => $category,
             'owners' => $work->owners->pluck('id'),
             'votes' => $votes,
-            'users' => $users
+            'users' => $users,
+            'rating' => $work->rating
         ];
     }
 

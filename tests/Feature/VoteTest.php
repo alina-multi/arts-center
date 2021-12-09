@@ -9,6 +9,7 @@ use App\Vote;
 use App\Work;
 use App\WorkTitle;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 use App\User;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -42,7 +43,9 @@ class VoteTest extends TestCase
         }
 
         $response = $this->getJson('/api/vote/work_1');
-        $response->assertStatus(200)->assertJsonCount(4);
+        $response->assertStatus(200)->assertJson(fn(AssertableJson $json) => $json->has('users', 4)
+            ->has('votes', 4)
+        );
     }
 
     public function testDoubleVote()
@@ -125,12 +128,12 @@ class VoteTest extends TestCase
     public function testRecountUserRatings()
     {
         $owner = User::factory()->create();
-        $work = Work::factory(['rating'=>5])->create();
+        $work = Work::factory(['rating' => 5])->create();
         WorkTitle::factory(['work_id' => $work->id])->create();
         // This work has titles in en and ru so it should add user rating in both languages
-        $work2 = Work::factory(['rating'=>3])->create();
+        $work2 = Work::factory(['rating' => 3])->create();
         WorkTitle::factory(['work_id' => $work2->id])->create();
-        WorkTitle::factory(['work_id' => $work2->id, 'language'=>'ru'])->create();
+        WorkTitle::factory(['work_id' => $work2->id, 'language' => 'ru'])->create();
         $tag = Tag::factory(['type_id' => Tag::TYPE_CATEGORY])->create();
         $tag2 = Tag::factory(['type_id' => Tag::TYPE_CATEGORY])->create();
         $work->category()->attach($tag->id);
@@ -140,16 +143,24 @@ class VoteTest extends TestCase
         $work2->owners()->attach($owner->id);
         RecountUserRatings::dispatchSync($owner->id);
         // 2 works in english with this tag 3+5 = 8
-        $this->assertDatabaseHas('user_ratings',
-                                 ['ratable_type' => 'tag', 'ratable_id' => $tag->id, 'language'=>'en', 'rating' => 8]);
+        $this->assertDatabaseHas(
+            'user_ratings',
+            ['ratable_type' => 'tag', 'ratable_id' => $tag->id, 'language' => 'en', 'rating' => 8]
+        );
         // One work in english with this tag 3
-        $this->assertDatabaseHas('user_ratings',
-                                 ['ratable_type' => 'tag', 'ratable_id' => $tag2->id, 'language'=>'en', 'rating' => 3]);
+        $this->assertDatabaseHas(
+            'user_ratings',
+            ['ratable_type' => 'tag', 'ratable_id' => $tag2->id, 'language' => 'en', 'rating' => 3]
+        );
         // 2 works in english for this user 3+5 = 8
-        $this->assertDatabaseHas('user_ratings',
-                                 ['ratable_type' => 'user', 'ratable_id' => $owner->id, 'language'=>'en', 'rating' => 8]);
+        $this->assertDatabaseHas(
+            'user_ratings',
+            ['ratable_type' => 'user', 'ratable_id' => $owner->id, 'language' => 'en', 'rating' => 8]
+        );
         // 1 work in russian for this user 3
-        $this->assertDatabaseHas('user_ratings',
-                                 ['ratable_type' => 'user', 'ratable_id' => $owner->id, 'language'=>'ru', 'rating' => 3]);
+        $this->assertDatabaseHas(
+            'user_ratings',
+            ['ratable_type' => 'user', 'ratable_id' => $owner->id, 'language' => 'ru', 'rating' => 3]
+        );
     }
 }

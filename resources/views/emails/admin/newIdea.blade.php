@@ -1,8 +1,8 @@
 New feedback posted:
 <h1>{{$idea->title}}</h1>
 <ul>
-    @if($idea->title)
-        <li>Type: {{$idea->title}}</li>
+    @if($idea->type)
+        <li>Type: {{$idea->type}}</li>
     @endif
     @if($idea->category)
         <li>Category: {{$idea->category}}</li>

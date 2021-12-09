@@ -17,21 +17,67 @@ class FeedbackController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function idea()
+    public function idea($language)
     {
-        return Feedback::where('type', 'idea')->whereNotNull('approved_at')->orderBy('rating', 'desc')->get();
+        $feedbacks = Feedback::where('type', 'idea')
+            ->where('language', $language)
+            ->whereNotNull('approved_at')
+            ->orderBy('rating', 'desc')
+            ->with('user', 'user.photo', 'votes', 'votes.user', 'votes.user.photo')
+            ->get();
+        return $this->denormilizeOutput($feedbacks);
     }
 
-    public function feedback()
+    public function feedback($language)
     {
-        return Feedback::where('type', 'feedback')->get();
+        $feedbacks = Feedback::where('type', 'feedback')
+            ->where('language', $language)
+            ->whereNotNull('approved_at')
+            ->orderBy('rating', 'desc')
+            ->with('user', 'user.photo', 'votes', 'votes.user', 'votes.user.photo')
+            ->get();
+        return $this->denormilizeOutput($feedbacks);
     }
 
-    public function complaint()
+    public function complaint($language)
     {
-        return Feedback::where('type', 'complaint')->get();
+        $feedbacks = Feedback::where('type', 'complaint')
+            ->where('language', $language)
+            ->whereNotNull('approved_at')
+            ->orderBy('rating', 'desc')
+            ->with('user', 'user.photo', 'votes', 'votes.user', 'votes.user.photo')
+            ->get();
+        return $this->denormilizeOutput($feedbacks);
     }
 
+
+    function denormilizeOutput($feedbacks)
+    {
+        $votes = [];
+        $users = [];
+        $ratings = [];
+        $feedbacksOutput = [];
+        foreach ($feedbacks as $feedback) {
+            $this->addToUsers($users, $feedback->user);
+            foreach ($feedback->votes as $vote) {
+                $this->addToUsers($users, $vote->user);
+                $votes['feedback_' . $feedback->id][] = $vote->user->id;
+            }
+            $feedbackArray = $feedback->toArray();
+            $ratings['feedback_' . $feedback->id] = $feedback->rating;
+
+            unset($feedbackArray['user'], $feedbackArray['votes'], $feedbackArray['rating']);
+            $feedbacksOutput[] = $feedbackArray;
+        }
+        return ['votes' => $votes, 'users' => $users, 'ratings' => $ratings, 'feedbacks' => $feedbacksOutput];
+    }
+
+    function addToUsers(&$users, $user)
+    {
+        if (empty($users[$user['id']])) {
+            $users[$user['id']] = $user;
+        }
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -46,7 +92,7 @@ class FeedbackController extends Controller
                                'title' => [
                                    Rule::requiredIf($request->type !== 'complaint'),
                                    'string',
-                                   ],
+                               ],
                                'body' => [
                                    Rule::requiredIf($request->type !== 'complaint' || $request->category === 'other')
                                ],

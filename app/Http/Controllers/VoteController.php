@@ -71,7 +71,16 @@ class VoteController extends Controller
         if (!in_array($type, array_keys(Relation::morphMap()))) {
             return response()->json(['error' => 'Not found'], 404);
         }
-        return Vote::where('votable_type', $type)->where('votable_id', $id)->with('user')->get();
+        $users = [];
+        $votes = [];
+        $data =  Vote::where('votable_type', $type)->where('votable_id', $id)->with('user', 'user.photo')->get();
+        foreach ($data as $vote) {
+            if ($vote->user) {
+                $users[$vote->user->id] = $vote->user;
+                $votes[] = $vote->user->id;
+            }
+        }
+        return ['users' => $users, 'votes' => $votes];
     }
 
     /**
