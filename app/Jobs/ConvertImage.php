@@ -23,6 +23,7 @@ class ConvertImage implements ShouldQueue
         'preview' => [300, 600],
         'photos' => [300, 600],
         'grids' => [300, 600, 1200, 2400],
+        'grid' => [300, 600, 1200, 2400],
     ];
 
     /**
