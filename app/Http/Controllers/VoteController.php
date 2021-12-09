@@ -39,7 +39,7 @@ class VoteController extends Controller
         $data['ip'] = $request->ip();
         $data['user_id'] = Auth::id();
         $class = Relation::getMorphedModel($data['votable_type']);
-        $model = $class::firstOrFail('id', $data['votable_id']);
+        $model = $class::findOrFail($data['votable_id']);
         $vote = Vote::create($data);
         $newRating = 1 + (int) Vote::where('votable_id', $data['votable_id'])
                 ->where('votable_type', $data['votable_type'])->sum(
