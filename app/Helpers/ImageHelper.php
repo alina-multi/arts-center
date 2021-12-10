@@ -21,7 +21,7 @@ class ImageHelper
             "folder" => $folder,
             "extension" => $extension
         ]);
-        $name = str_replace('.', '-' . $image->id . '.', $name); //Insert Id as part of name
+        $name .= '-'.$image->id; //Insert Id as part of name
         //Remove dash if string starts with it
         $name = ltrim($name, '-');
         // And this is silly but we need to save it again :(
