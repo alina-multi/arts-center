@@ -63,7 +63,7 @@ class TitleController extends Controller
     {
         $ownsWork = new OwnsWork();
         if (!$ownsWork->passes('work_id', $title->work_id)) {
-            throw new UnauthorizedException();
+            abort(401);
         }
         $this->validate($request, [
             'title' => ['required', 'string', 'max:30'],
@@ -87,7 +87,7 @@ class TitleController extends Controller
     {
         $ownsWork = new OwnsWork();
         if (!$ownsWork->passes('work_id', $title->work_id)) {
-            throw new UnauthorizedException();
+            abort(401);
         }
         $work = $title->work;
         $work->{"show_$title->language"} = 0;

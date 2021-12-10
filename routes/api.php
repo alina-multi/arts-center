@@ -45,7 +45,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResources([
         '/edit/block' => 'Edit\BlockController',
         '/edit/title' => 'Edit\TitleController',
-        'works' => 'WorkController',
+        'work' => 'WorkController',
         'vote' => 'VoteController',
         'tag' => 'TagController',
         'follow' => 'FollowController',

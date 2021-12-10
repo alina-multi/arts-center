@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Tag;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\UnauthorizedException;
 use Spatie\ResponseCache\Facades\ResponseCache;
 
 /** @OA\Info(title="Arts 2.0 Api", version="0.1") */
@@ -122,10 +123,10 @@ class WorkController extends Controller
     {
         $ownsWork = new OwnsWork();
         if (!$ownsWork->passes('work_id', $work->id)) {
-            throw new UnauthorizedException();
+            abort(401);
         }
         $this->validate($request, [
-            'published_at' => ['date_format:Y-m-d H:i:s'],
+            'published_at' => ['nullable', 'date_format:Y-m-d H:i:s'],
             'image_id' => ['exists:images,id'],
             'tags.*.id' => ['integer', 'exists:tags,id'],
             'category.*.id' => ['integer', 'exists:tags,id']
@@ -153,6 +154,12 @@ class WorkController extends Controller
      */
     public function destroy(Work $work)
     {
-        //
+        $ownsWork = new OwnsWork();
+        if (!$ownsWork->passes('work_id', $work->id)) {
+            abort(401);
+        }
+        $work->delete();
+        ResponseCache::clear(['gallery', 'work']); // For now let's make it super simple and clear all gallery and work cache
+        return response()->noContent();
     }
 }

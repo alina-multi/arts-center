@@ -24,7 +24,7 @@ class WorkAddTest extends TestCase
     public function testCreateWork()
     {
         $user = User::factory()->create();
-        $response = $this->actingAs($user)->postJson('/api/works');
+        $response = $this->actingAs($user)->postJson('/api/work');
         $response->assertStatus(200)->assertJson(['id' => 1]);
         $this->assertDatabaseHas('ownables', [
             'user_id' => $user->id,
@@ -183,9 +183,9 @@ class WorkAddTest extends TestCase
 
     public function testUpdateWork()
     {
-        $user = User::factory()->create();
+        list($owner, $hacker) = User::factory()->count(2)->create();
         $work = Work::factory()->create();
-        $work->owners()->attach($user->id);
+        $work->owners()->attach($owner->id);
         WorkTitle::factory()->create(['work_id' => $work->id, 'language' => 'en']);
         $image = Image::factory(['folder' => 'image'])->create();
 
@@ -200,17 +200,21 @@ class WorkAddTest extends TestCase
             ->has('users', 0)
         );
 
-        $response = $this->actingAs($user)->putJson(
-            '/api/works/' . $work->id,
-            [
-                'image_id' => $image->id,
-                'published_at' => $now,
-                'tags' => $tags->pluck('id')->toArray(),
-                'category' => $category->pluck('id')->toArray()
-            ]
-        );
+        $form = [
+            'image_id' => $image->id,
+            'published_at' => $now,
+            'tags' => $tags->pluck('id')->toArray(),
+            'category' => $category->pluck('id')->toArray()
+        ];
+        // This should not work
+        $response = $this->putJson('/api/work/' . $work->id, $form)
+            ->assertStatus(401);
+        // This should say - fuck you
+        $response = $this->actingAs($hacker)->putJson('/api/work/' . $work->id, $form)
+            ->assertStatus(401);
+        $response = $this->actingAs($owner)->putJson('/api/work/' . $work->id, $form)
+            ->assertStatus(200)->assertJson(['id' => 1]);
 
-        $response->assertStatus(200)->assertJson(['id' => 1]);
         $updatedWork = $work->fresh();
         $this->assertTrue($updatedWork->published_at == $now, 'works.published_at is wrong');
         $this->assertTrue($updatedWork->image_id == $image->id, 'works.image_id is wrong');
@@ -224,6 +228,51 @@ class WorkAddTest extends TestCase
             $json->has('works', 1)
                 ->has('users', 1)
                 ->has('works.0.owners', 1)
+            );
+
+        // Now lets remove it from publish
+        $response = $this->actingAs($owner)->putJson(
+            '/api/work/' . $work->id,
+            [
+                'published_at' => '',
+            ]
+        )->assertStatus(200);
+
+        // And now we have 0 works and confirm cache is invalidated once again
+        $this->getJson("api/gallery/en/tag_all?order=new&page=1")
+            ->assertJson(fn(AssertableJson $json) =>
+            $json->has('works', 0)
+                ->has('users', 0)
+            );
+    }
+
+    public function testDeleteWork()
+    {
+        list($owner, $hacker) = User::factory()->count(2)->create();
+        $work = Work::factory([
+            'published_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'show_en'=>1
+                              ])->create();
+        $work->owners()->attach($owner->id);
+        // And now we have 1 work and it's cached now
+        $this->getJson("api/gallery/en/tag_all?order=new&page=1")
+            ->assertJson(fn(AssertableJson $json) =>
+            $json->has('works', 1)
+                ->has('users', 1)
+                ->has('works.0.owners', 1)
+            );
+        // This should redirect to login
+        $this->delete("api/work/$work->id")->assertStatus(302);
+        // This should say - fuck you
+        $this->actingAs($hacker)->delete("api/work/$work->id")->assertStatus(401);
+        // This should actually delete
+        $this->actingAs($owner)->delete("api/work/$work->id")->assertStatus(204);
+        $work->refresh();
+        $this->assertTrue($work->deleted_at!==null,'Work not deleted');
+        // Cache should be invalidated and no works now
+        $this->getJson("api/gallery/en/tag_all?order=new&page=1")
+            ->assertJson(fn(AssertableJson $json) =>
+            $json->has('works', 0)->etc()
             );
     }
 }

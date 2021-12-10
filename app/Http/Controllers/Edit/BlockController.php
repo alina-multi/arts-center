@@ -59,7 +59,7 @@ class BlockController extends Controller
     {
         $ownsWork = new OwnsWork();
         if (!$ownsWork->passes('work_id', $block->work_id)) {
-            throw new UnauthorizedException();
+            abort(401);
         }
         $this->validate($request, [
             'data' => ['array'],
@@ -94,7 +94,7 @@ class BlockController extends Controller
     {
         $ownsWork = new OwnsWork();
         if (!$ownsWork->passes('work_id', $block->work_id)) {
-            throw new UnauthorizedException();
+            abort(401);
         }
         $block->delete();
         return response()->noContent();
