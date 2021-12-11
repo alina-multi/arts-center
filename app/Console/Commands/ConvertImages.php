@@ -22,13 +22,7 @@ class ConvertImages extends Command
      */
     public function handle()
     {
-        // Find only the ones without a single converted variant
-        Image::where([
-            ['w300', '=', 0],
-            ['w600', '=', 0],
-            ['w1200', '=', 0],
-            ['w2400', '=', 0],
-                     ])->chunk(100, function ($images) {
+        Image::chunk(100, function ($images) {
             foreach ($images as $image) {
                 ConvertImage::dispatch($image);
                 print "$image->id\n";

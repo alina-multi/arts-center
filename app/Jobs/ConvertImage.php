@@ -25,6 +25,7 @@ class ConvertImage implements ShouldQueue
         'grids' => [300, 600, 1200, 2400],
         'grid' => [300, 600, 1200, 2400],
     ];
+    private Client $client;
 
     /**
      * Create a new job instance.
@@ -43,6 +44,7 @@ class ConvertImage implements ShouldQueue
      */
     public function handle()
     {
+        $this->client = new Client();
         foreach ($this->targets[$this->image->folder] as $width) {
             $this->convert($width);
         }
@@ -54,20 +56,34 @@ class ConvertImage implements ShouldQueue
         $url = $this->image->url;
         // So it will work locally
         if (App::environment('local')) {
-            $url = str_replace('http://arts2.develop/', 'http://arts2-s3:9000/', $url);
+            $url = str_replace('https://arts2.develop', 'http://arts2-s3:9000', $url);
         }
-        $client = new Client();
-        $response = $client->get('http://arts2-imaginary:9000/resize', [
-            'query' => [
-                'width' => $width,
-                'type' => 'webp',
-                'url' => $url,
-                'stripmeta' => true
-            ]
-        ]);
-        list($imageNameWithoutExtension) = explode('.', $this->image->name);
-        $newFile = $this->image->folder . '/'. $imageNameWithoutExtension. "-w$width.webp";
-        Storage::disk('s3')->put($newFile, $response->getBody(),  'public');
-        $this->image->{"w$width"}=1;
+        $path = $this->image->path;
+
+        foreach (['webp', 'jpeg'] as $format) {
+            $newFile = "$path-w$width.$format";
+
+            if (!Storage::exists($newFile)) {
+                $infoRequest = $this->client->get('http://arts2-imaginary:9000/info', ['query' => ['url' => $url]]);
+                $data = json_decode($infoRequest->getBody());
+                $originalWidth = $data->width;
+
+                // Don't save if it's already smaller than this breakpoint
+                if ($originalWidth > $width) {
+                    $response = $this->client->get('http://arts2-imaginary:9000/resize', [
+                        'query' => [
+                            'width' => $width,
+                            'type' => $format,
+                            'url' => $url,
+                            'stripmeta' => true
+                        ]
+                    ]);
+                    if ($response->getStatusCode() === 200) {
+                        $this->image->{"w$width"}=1;
+                        Storage::disk('s3')->put($newFile, $response->getBody(),  'public');
+                    }
+                }
+            }
+        }
     }
 }
