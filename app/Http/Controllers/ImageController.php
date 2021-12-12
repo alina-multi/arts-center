@@ -22,7 +22,7 @@ class ImageController extends \App\Http\Controllers\Controller
                 'required',
                 Rule::in(['preview', 'works', 'grid']),
             ],
-            'file' => ['required', 'mimes:jpg,webp,png', 'max:20000'],
+            'file' => ['required', 'mimes:jpg,webp,png,heif', 'max:20000'],
         ]);
         $user = Auth::user();
         $file = file_get_contents($request->file('file'));
