@@ -90,4 +90,8 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
     }
+
+    public function index()
+    {
+    }
 }

@@ -33,7 +33,7 @@ class Image extends Model
     {
         foreach ([300, 600, 1200, 2400] as $width) {
             if ($this->{"w$width"}) {
-                return $this->addDomain($this->path) . "-w$width.webp";
+                return $this->addDomain($this->path) . "-w$width.jpeg";
             }
         }
         // Original file only as fallback
@@ -46,6 +46,7 @@ class Image extends Model
         foreach ([300, 600, 1200, 2400] as $width) {
             if ($this->{"w$width"}) {
                 $src[] = $this->addDomain("$this->path-w$width.webp {$width}w");
+                $src[] = $this->addDomain("$this->path-w$width.jpeg {$width}w");
             }
         }
         return join(", ", $src);

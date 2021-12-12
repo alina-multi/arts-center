@@ -44,30 +44,30 @@ class ConvertImage implements ShouldQueue
      */
     public function handle()
     {
+        $url = $this->image->url;
+        // So it will work locally
+        if (App::environment('local')) {
+            $url = str_replace('http://arts2.develop', 'http://arts2-s3:9000', $url);
+            $url = str_replace('https://arts2.develop', 'http://arts2-s3:9000', $url);
+        }
         $this->client = new Client();
+        $infoRequest = $this->client->get('http://arts2-imaginary:9000/info', ['query' => ['url' => $url]]);
+        $data = json_decode($infoRequest->getBody());
+        $originalWidth = $data->width;
+
         foreach ($this->targets[$this->image->folder] as $width) {
-            $this->convert($width);
+            $this->convert($width, $url, $originalWidth);
         }
         $this->image->save();
     }
 
-    public function convert($width)
+    public function convert($width, $url, $originalWidth)
     {
-        $url = $this->image->url;
-        // So it will work locally
-        if (App::environment('local')) {
-            $url = str_replace('https://arts2.develop', 'http://arts2-s3:9000', $url);
-        }
         $path = $this->image->path;
 
         foreach (['webp', 'jpeg'] as $format) {
             $newFile = "$path-w$width.$format";
-
             if (!Storage::exists($newFile)) {
-                $infoRequest = $this->client->get('http://arts2-imaginary:9000/info', ['query' => ['url' => $url]]);
-                $data = json_decode($infoRequest->getBody());
-                $originalWidth = $data->width;
-
                 // Don't save if it's already smaller than this breakpoint
                 if ($originalWidth > $width) {
                     $response = $this->client->get('http://arts2-imaginary:9000/resize', [
