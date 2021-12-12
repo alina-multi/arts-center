@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\TranslateWork;
 use App\Rules\OwnsWork;
 use App\Work;
 use Illuminate\Support\Facades\Auth;
@@ -142,7 +143,14 @@ class WorkController extends Controller
             }
         }
         $work->save();
-        ResponseCache::clear(['gallery', 'work']); // For now let's make it super simple and clear all gallery and work cache
+        if ($work->published_at) {
+            ResponseCache::clear(['gallery', 'work']); // For now let's make it super simple and clear all gallery and work cache
+            // If there is something to translate do it now
+            if (sizeof($work->titles) < 3) {
+                TranslateWork::dispatch($work);
+            }
+        }
+
         return $work;
     }
 
