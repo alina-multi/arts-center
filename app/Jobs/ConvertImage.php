@@ -81,6 +81,8 @@ class ConvertImage implements ShouldQueue
                     if ($response->getStatusCode() === 200) {
                         $this->image->{"w$width"}=1;
                         Storage::disk('s3')->put($newFile, $response->getBody(),  'public');
+                    } else {
+                        die("Imaginary failed with message:".$response->getBody());
                     }
                 }
             }

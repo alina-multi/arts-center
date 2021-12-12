@@ -18,6 +18,10 @@ class Work extends Model
         'updated_at', 'old_id', 'hosts'
     ];
 
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
+
     public function blocks()
     {
         return $this->hasMany(WorkBlock::class);

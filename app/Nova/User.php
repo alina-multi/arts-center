@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\ClearCacheByTag;
 use App\Nova\Metrics\NewUsers;
 use App\Nova\Metrics\UsersPerDay;
 use Illuminate\Http\Request;
@@ -122,6 +123,6 @@ class User extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [(new ClearCacheByTag('user'))->standalone()];
     }
 }

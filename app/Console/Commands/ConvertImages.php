@@ -22,7 +22,7 @@ class ConvertImages extends Command
      */
     public function handle()
     {
-        Image::chunk(100, function ($images) {
+        Image::orderBy('id')->chunk(100, function ($images) {
             foreach ($images as $image) {
                 ConvertImage::dispatch($image);
                 print "$image->id\n";

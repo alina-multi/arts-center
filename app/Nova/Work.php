@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\ClearCacheByTag;
 use App\Nova\Filters\WorkPublished;
 use App\Nova\Metrics\WorksPerDay;
 use App\Product;
@@ -69,7 +70,6 @@ class Work extends Resource
             })->thumbnail(function ($value, $disk) {
                 return $value ? $value->url : '';
             }),
-            Boolean::make('Published','published_at'),
             HasMany::make('WorkTitles', 'titles'),
             Text::make('Titles', function () use ($getTitle) {
                 $titles = [];
@@ -84,6 +84,7 @@ class Work extends Resource
             Number::make('rating')->sortable(),
             Number::make('comments')->sortable(),
             Number::make('price')->sortable(),
+            DateTime::make('Published', 'published_at')->readonly()->sortable(),
             Boolean::make('show_en')->hideFromIndex(),
             Boolean::make('show_ru')->hideFromIndex(),
             Boolean::make('show_uk')->hideFromIndex(),
@@ -135,6 +136,6 @@ class Work extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [(new ClearCacheByTag(['work', 'gallery']))->standalone()];
     }
 }
