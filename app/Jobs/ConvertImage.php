@@ -44,7 +44,7 @@ class ConvertImage implements ShouldQueue
      */
     public function handle()
     {
-        $url = $this->image->url;
+        $url = $this->image->original;
         // So it will work locally
         if (App::environment('local')) {
             $url = str_replace('http://arts2.develop', 'http://arts2-s3:9000', $url);
