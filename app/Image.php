@@ -40,6 +40,11 @@ class Image extends Model
         return $this->addDomain($this->path) . '.' . $this->extension;
     }
 
+    public function getOriginalAttribute()
+    {
+        return $this->addDomain($this->path) . '.' . $this->extension;
+    }
+
     public function getSrcsetAttribute()
     {
         $src = [];
