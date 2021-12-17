@@ -36,6 +36,7 @@ spec:
             - containerPort: 9000
       imagePullSecrets:
         - name: gitlab
+      priorityClassName: site
 ---
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
