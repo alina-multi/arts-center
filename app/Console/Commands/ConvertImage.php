@@ -21,7 +21,7 @@ class ConvertImage extends Command
      */
     public function handle()
     {
-        $name = $this->option('name');
+        $name = $this->argument('name');
         $image = Image::where('name', $name)->firstOrFail();
         \App\Jobs\ConvertImage::dispatch($image);
     }

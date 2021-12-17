@@ -21,7 +21,7 @@ class TranslateWork extends Command
      */
     public function handle()
     {
-        $id = $this->option('id');
+        $id = $this->argument('id');
         $work = Work::findOrFail($id);
         \App\Jobs\TranslateWork::dispatch($work);
     }
