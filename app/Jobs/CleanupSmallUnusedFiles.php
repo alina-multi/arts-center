@@ -43,8 +43,12 @@ class CleanupSmallUnusedFiles implements ShouldQueue
         foreach ([2400, 1200, 600, 300] as $width) {
             if ($originalWidth < $width) {
                 $this->image->{"w$width"}=0;
-                $pathsToDelete[] = $this->image->folder . '/' . $this->image->name . "-w$width.webp";
-                $pathsToDelete[] = $this->image->folder . '/' . $this->image->name . "-w$width.jpeg";
+                foreach (['webp', 'jpeg'] as $format) {
+                    $path = $this->image->folder . '/' . $this->image->name . "-w$width.$format";
+                    if (Storage::disk('s3')->exists($path)) {
+                        $pathsToDelete[] = $path;
+                    }
+                }
             }
         }
         $this->image->save();
