@@ -58,7 +58,7 @@ class TranslateWork implements ShouldQueue
                                           ]);
                         if ($newTitle) {
                             $field = 'show_' . $targetLanguage;
-                            $this->work->$field;
+                            $this->work->$field = 1;
                         }
                     }
                 }
