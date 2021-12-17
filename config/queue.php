@@ -13,7 +13,9 @@ return [
     |
     */
 
+    'low' => env('QUEUE_CONNECTION', 'redis'),
     'default' => env('QUEUE_CONNECTION', 'redis'),
+    'high' => env('QUEUE_CONNECTION', 'redis'),
 
     /*
     |--------------------------------------------------------------------------

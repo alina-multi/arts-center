@@ -29,7 +29,7 @@ class ImageController extends \App\Http\Controllers\Controller
 
         $folder = $request->type;
         $image = ImageHelper::upload($folder, $file, $user->id , $request->file('file')->extension(), $user->id);
-        ConvertImage::dispatch($image);
+        ConvertImage::dispatch($image)->onQueue('high');
         return response($image->makeVisible('id'));
     }
 }

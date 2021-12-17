@@ -23,7 +23,7 @@ class TranslateAllWorks extends Command
     {
         Work::whereNotNull('published_at')->has('titles', '<', 3)->orderBy('id')->chunk(200, function ($works) {
             foreach ($works as $work) {
-                \App\Jobs\TranslateWork::dispatch($work);
+                \App\Jobs\TranslateWork::dispatch($work)->onQueue('low');
                 print "$work->id\n";
             }
         });
