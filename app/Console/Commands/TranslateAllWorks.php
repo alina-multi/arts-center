@@ -21,7 +21,7 @@ class TranslateAllWorks extends Command
      */
     public function handle()
     {
-        Work::whereNotNull('published_at')->orderBy('id')->chunk(200, function ($works) {
+        Work::whereNotNull('published_at')->has('titles', '<', 3)->orderBy('id')->chunk(200, function ($works) {
             foreach ($works as $work) {
                 \App\Jobs\TranslateWork::dispatch($work);
                 print "$work->id\n";
