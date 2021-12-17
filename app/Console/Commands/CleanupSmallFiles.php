@@ -23,7 +23,7 @@ class CleanupSmallFiles extends Command
      */
     public function handle()
     {
-        Image::where('w300', '=', 1)->where('w600', '=', 1)->where('w1200', '=', 0)->chunk(100, function ($images) {
+        Image::orderBy('id')->chunk(100, function ($images) {
             $pathsToDelete = [];
             foreach ($images as $image) {
                 CleanupSmallUnusedFiles::dispatch($image)->onQueue('low');
