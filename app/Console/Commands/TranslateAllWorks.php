@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\TranslateWork;
 use App\Work;
 use Illuminate\Console\Command;
 
@@ -23,10 +22,10 @@ class TranslateAllWorks extends Command
     public function handle()
     {
         Work::whereNotNull('published_at')->orderBy('id')->chunk(200, function ($works) {
-           foreach ($works as $work) {
-               TranslateWork::dispatch($work);
-               print "$work->id\n";
-           }
+            foreach ($works as $work) {
+                \App\Jobs\TranslateWork::dispatch($work);
+                print "$work->id\n";
+            }
         });
     }
 }

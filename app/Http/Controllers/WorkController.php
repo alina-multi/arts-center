@@ -147,7 +147,7 @@ class WorkController extends Controller
             ResponseCache::clear(['gallery', 'work']); // For now let's make it super simple and clear all gallery and work cache
             // If there is something to translate do it now
             if (sizeof($work->titles) < 3) {
-                TranslateWork::dispatch($work);
+                TranslateWork::dispatch($work)->delay(now()->addSeconds(5));
             }
         }
 
