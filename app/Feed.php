@@ -21,6 +21,11 @@ class Feed extends Model
         return $this->morphTo();
     }
 
+    public function user()
+    {
+        return $this->belongsTo(\App\User::class);
+    }
+
     public function broadcastOn($event)
     {
         return [new PrivateChannel('user.' . $this->user_id)];

@@ -13,11 +13,11 @@ class Blacklist extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class,'id','user_id');
+        return $this->belongsTo(User::class);
     }
 
     public function blacklist()
     {
-        return $this->hasOne(User::class,'id','blacklist_user_id');
+        return $this->belongsTo(User::class,'blacklist_user_id');
     }
 }

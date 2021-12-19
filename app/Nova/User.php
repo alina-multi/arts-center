@@ -75,10 +75,12 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
-
+            MorphedByMany::make('Works'),
             HasMany::make('User Ratings', 'ratings'),
             HasMany::make('Comments'),
-            MorphedByMany::make('Works'),
+            HasMany::make('Feeds'),
+            HasMany::make('Follows'),
+            HasMany::make('Blacklists')
         ];
     }
 

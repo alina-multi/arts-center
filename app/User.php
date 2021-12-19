@@ -84,4 +84,19 @@ class User extends Authenticatable
                      ])->orderBy('rating', 'desc')->limit(3)->get()->keyBy('id');
         });
     }
+
+    public function feeds()
+    {
+        return $this->hasMany(Feed::class);
+    }
+
+    public function follows()
+    {
+        return $this->hasMany(Follow::class);
+    }
+
+    public function blacklists()
+    {
+        return $this->hasMany(Blacklist::class);
+    }
 }
