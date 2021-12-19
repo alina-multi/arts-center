@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Image;
 use App\Jobs\ConvertImage;
+use App\Jobs\TranslateWork;
 use App\Tag;
 use App\Work;
 use App\WorkBlock;
@@ -183,6 +184,7 @@ class WorkAddTest extends TestCase
 
     public function testUpdateWork()
     {
+        Bus::fake();
         list($owner, $hacker) = User::factory()->count(2)->create();
         $work = Work::factory()->create();
         $work->owners()->attach($owner->id);
@@ -214,6 +216,7 @@ class WorkAddTest extends TestCase
             ->assertStatus(401);
         $response = $this->actingAs($owner)->putJson('/api/work/' . $work->id, $form)
             ->assertStatus(200)->assertJson(['id' => 1]);
+        Bus::assertDispatched(TranslateWork::class);
 
         $updatedWork = $work->fresh();
         $this->assertTrue($updatedWork->published_at == $now, 'works.published_at is wrong');
@@ -230,13 +233,16 @@ class WorkAddTest extends TestCase
                 ->has('works.0.owners', 1)
             );
 
-        // Now lets remove it from publish
-        $response = $this->actingAs($owner)->putJson(
+        // We shouldn't be able to change published_at once set
+        $this->actingAs($owner)->putJson(
             '/api/work/' . $work->id,
             [
                 'published_at' => '',
             ]
-        )->assertStatus(200);
+        )->assertStatus(422);
+
+        // Now lets remove work and test that this invalidates cache
+        $this->actingAs($owner)->deleteJson('/api/work/' . $work->id)->assertStatus(204);
 
         // And now we have 0 works and confirm cache is invalidated once again
         $this->getJson("api/gallery/en/tag_all?order=new&page=1")

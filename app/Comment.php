@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\CommentAdded;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,6 +15,10 @@ class Comment extends Model
 
     protected $casts = [
         'body' => 'array',
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => CommentAdded::class,
     ];
 
     public function user()
@@ -29,6 +34,11 @@ class Comment extends Model
     public function commentable()
     {
         return $this->morphTo();
+    }
+
+    public function parent()
+    {
+        return $this->hasOne(Comment::class);
     }
 
     public function canDelete($userId)

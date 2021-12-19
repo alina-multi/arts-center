@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Events\PublishedWorkUpdated;
+use App\Events\WorkDeleted;
+use App\Events\WorkPublished;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -21,6 +24,24 @@ class Work extends Model
     protected $casts = [
         'published_at' => 'datetime',
     ];
+
+    protected $dispatchesEvents = [
+        'deleted' => WorkDeleted::class,
+    ];
+
+    protected static function booted()
+    {
+        static::updated(function ($work) {
+            if ($work->published_at) {
+                if (!$work->getOriginal('published_at')) {
+                    WorkPublished::dispatch($work);
+                } else {
+                    PublishedWorkUpdated::dispatch($work);
+                }
+            }
+        });
+    }
+
 
     public function blocks()
     {

@@ -11,7 +11,6 @@ use App\WorkTitle;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\UnauthorizedException;
-use Spatie\ResponseCache\Facades\ResponseCache;
 
 class TitleController extends Controller
 {
@@ -41,8 +40,6 @@ class TitleController extends Controller
                 ],
             ]
         );
-        ResponseCache::clear(['gallery', 'work']
-        ); // For now let's make it super simple and clear all gallery and work cache
         $title = WorkTitle::create($request->all());
         $work = $title->work;
         $work->{"show_$title->language"} = 1;
@@ -72,8 +69,6 @@ class TitleController extends Controller
         $title->title = $request->input('title');
         $title->save();
 
-        ResponseCache::clear(['gallery', 'work']
-        ); // For now let's make it super simple and clear all gallery and work cache
         return $title;
     }
 
@@ -94,8 +89,6 @@ class TitleController extends Controller
         $work->save();
 
         $title->delete();
-        ResponseCache::clear(['gallery', 'work']
-        ); // For now let's make it super simple and clear all gallery and work cache
         return response()->noContent();
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Events\CommentAdded;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\UnauthorizedException;
 use App\Http\Controllers\Gallery\{IndexTrait, RelatedTrait, TagTrait, UserTrait};
@@ -113,7 +114,6 @@ class CommentController extends Controller
             }
             $data['depth'] = $newDepth;
         }
-        ResponseCache::clear(['comment']); // For now let's make it super simple
         return Comment::create($data);
     }
 

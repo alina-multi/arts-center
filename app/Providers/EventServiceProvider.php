@@ -18,6 +18,23 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        \App\Events\CommentAdded::class => [
+            \App\Listeners\SendNotifications::class,
+            \App\Listeners\AddToFeeds::class,
+            \App\Listeners\ClearCache::class,
+        ],
+        \App\Events\WorkPublished::class => [
+            \App\Listeners\SendNotifications::class,
+            \App\Listeners\AddToFeeds::class,
+            \App\Listeners\ClearCache::class,
+            \App\Listeners\TranslateWork::class,
+        ],
+        \App\Events\PublishedWorkUpdated::class => [
+            \App\Listeners\ClearCache::class,
+        ],
+        \App\Events\WorkDeleted::class => [
+            \App\Listeners\ClearCache::class,
+        ]
     ];
 
     /**

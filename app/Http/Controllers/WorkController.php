@@ -127,7 +127,14 @@ class WorkController extends Controller
             abort(401);
         }
         $this->validate($request, [
-            'published_at' => ['nullable', 'date_format:Y-m-d H:i:s'],
+            'published_at' => [
+                'date_format:Y-m-d H:i:s',
+                function ($attribute, $value, $fail) use ($work) {
+                    if ($work->published_at) {
+                        $fail('validation.change_denied');
+                    }
+                },
+            ],
             'image_id' => ['exists:images,id'],
             'tags.*.id' => ['integer', 'exists:tags,id'],
             'category.*.id' => ['integer', 'exists:tags,id']
@@ -143,14 +150,6 @@ class WorkController extends Controller
             }
         }
         $work->save();
-        if ($work->published_at) {
-            ResponseCache::clear(['gallery', 'work']); // For now let's make it super simple and clear all gallery and work cache
-            // If there is something to translate do it now
-            if (sizeof($work->titles) < 3) {
-                TranslateWork::dispatch($work)->delay(now()->addSeconds(5))->onQueue('high');
-            }
-        }
-
         return $work;
     }
 
@@ -167,7 +166,6 @@ class WorkController extends Controller
             abort(401);
         }
         $work->delete();
-        ResponseCache::clear(['gallery', 'work']); // For now let's make it super simple and clear all gallery and work cache
         return response()->noContent();
     }
 }
