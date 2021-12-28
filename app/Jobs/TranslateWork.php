@@ -10,7 +10,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Spatie\ResponseCache\Facades\ResponseCache;
 
 class TranslateWork implements ShouldQueue
 {
@@ -64,7 +63,6 @@ class TranslateWork implements ShouldQueue
                 }
             }
             $this->work->save();
-            ResponseCache::clear(['gallery', 'work']);
         }
     }
 }

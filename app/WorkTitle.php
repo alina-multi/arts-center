@@ -30,6 +30,6 @@ class WorkTitle extends Model
 
     public function work ()
     {
-        return $this->belongsTo(Work::class,'work_id');
+        return $this->belongsTo(Work::class);
     }
 }

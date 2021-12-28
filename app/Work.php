@@ -18,7 +18,7 @@ class Work extends Model
     ];
 
     protected $hidden = [
-        'updated_at', 'old_id', 'hosts'
+        'updated_at', 'old_id', 'hosts', 'show_en', 'show_ru', 'show_uk', 'old_user_id'
     ];
 
     protected $casts = [

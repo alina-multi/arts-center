@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Events\CommentAdded;
+use App\Events\CommentChanged;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -18,7 +18,10 @@ class Comment extends Model
     ];
 
     protected $dispatchesEvents = [
-        'created' => CommentAdded::class,
+        'created' => CommentChanged::class,
+        'updated' => CommentChanged::class,
+        'deleted' => CommentChanged::class,
+        'restored' => CommentChanged::class,
     ];
 
     public function user()

@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
-use App\Events\CommentAdded;
+use App\Events\CommentChanged;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\UnauthorizedException;
 use App\Http\Controllers\Gallery\{IndexTrait, RelatedTrait, TagTrait, UserTrait};
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Spatie\ResponseCache\Facades\ResponseCache;
 
 class CommentController extends Controller
 {
@@ -89,7 +88,7 @@ class CommentController extends Controller
                $idRef[$comment['id']] = &$comment;
             }
         }
-        return ['comments' => $tree, 'users' => $users, 'votes'=> $votes, 'ratings' => $ratings];
+        return response()->json(['comments' => $tree, 'users' => $users, 'votes'=> $votes, 'ratings' => $ratings]);
     }
 
     function addToUsers(&$users, $user)
@@ -125,7 +124,6 @@ class CommentController extends Controller
         $request->validate(['body' => 'required|array']);
         $comment->body = $request->get('body');
         $comment->save();
-        ResponseCache::clear(['comment']); // For now let's make it super simple
         return $comment;
     }
 
@@ -135,7 +133,6 @@ class CommentController extends Controller
             return response()->json(['error' => "You can't delete this"], 401);
         }
         $comment->delete();
-        ResponseCache::clear(['comment']); // For now let's make it super simple
     }
 
 }

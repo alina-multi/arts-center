@@ -14,19 +14,19 @@ use Illuminate\Http\Request;
 */
 // We don't need auth for this ones
 //Route::get('usercsv', 'UserController@csv'); todo: secure this somehow
-Route::get('gallery/{language}/{id}', 'GalleryController@show')->middleware('cache:3000,gallery');
+Route::get('gallery/{language}/{id}', 'GalleryController@show');
 
-Route::get('work/{language}/{id}', 'WorkController@show')->middleware('cache:3000,work');
-Route::get('user/{language}/{id}', 'UserController@show')->middleware('cache:3000,user');
+Route::get('work/{language}/{id}', 'WorkController@show')->middleware('cache:' . 60*60*24);
+Route::get('user/{language}/{id}', 'UserController@show');
 Route::get('user', 'UserController@index');
 
-Route::get('comment/{id}', 'CommentController@show')->middleware('cache:3000,comment');
+Route::get('comment/{id}', 'CommentController@show')->middleware('cache:'. 60*60*24*10); // This one is really easy to invalidate
 
 Route::middleware('auth:sanctum')->get('/init', function (Request $request) {
     return $request->user();
 });
 
-Route::get('tag/category/{language}', 'TagController@getCategory')->middleware('cache:3000,tags');;
+Route::get('tag/category/{language}', 'TagController@getCategory')->middleware('cache:'. 60*60*24*10); // Doesn't really change much
 
 Route::get('vote/{id}', 'VoteController@show');
 Route::get('tag/{search}', 'TagController@show');

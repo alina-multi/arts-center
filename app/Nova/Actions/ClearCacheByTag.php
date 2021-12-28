@@ -9,7 +9,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Artisan;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
-use Spatie\ResponseCache\Facades\ResponseCache;
 
 class ClearCacheByTag extends Action
 {
@@ -32,7 +31,7 @@ class ClearCacheByTag extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {
-        ResponseCache::clear($this->tags);
+        // todo: new cache clear
     }
 
     /**

@@ -18,7 +18,7 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        \App\Events\CommentAdded::class => [
+        \App\Events\CommentChanged::class => [
             \App\Listeners\SendNotifications::class,
             \App\Listeners\AddToFeeds::class,
             \App\Listeners\ClearCache::class,

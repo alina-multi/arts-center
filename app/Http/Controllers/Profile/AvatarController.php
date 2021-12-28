@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
-use Spatie\ResponseCache\Facades\ResponseCache;
 
 class AvatarController extends Controller
 {
@@ -28,7 +27,6 @@ class AvatarController extends Controller
         $image->height = $dimensions[1];
         $user->image_id = $image->id;
         $user->save();
-        ResponseCache::clear(['user']);
         ConvertImage::dispatch($image);
         return response()->noContent();
     }

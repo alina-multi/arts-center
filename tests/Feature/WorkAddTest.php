@@ -195,13 +195,6 @@ class WorkAddTest extends TestCase
         $tags = $this->createTags(Tag::TYPE_TAG, ['strawberry', 'banana', 'apple']);
         $category = $this->createTags(Tag::TYPE_CATEGORY, ['red', 'blue', 'purple', 'green']);
 
-        // Test that before saving gallery is empty, and it will cache
-        $this->getJson("api/gallery/en/tag_all?order=new&page=1")
-            ->assertJson(fn(AssertableJson $json) =>
-            $json->has('works', 0)
-            ->has('users', 0)
-        );
-
         $form = [
             'image_id' => $image->id,
             'published_at' => $now,
@@ -225,7 +218,6 @@ class WorkAddTest extends TestCase
 
         $this->assertDatabaseCount('taggables', 7);
 
-        // And now we have 1 work and cache is invalidated
         $this->getJson("api/gallery/en/tag_all?order=new&page=1")
             ->assertJson(fn(AssertableJson $json) =>
             $json->has('works', 1)
@@ -240,16 +232,6 @@ class WorkAddTest extends TestCase
                 'published_at' => '',
             ]
         )->assertStatus(422);
-
-        // Now lets remove work and test that this invalidates cache
-        $this->actingAs($owner)->deleteJson('/api/work/' . $work->id)->assertStatus(204);
-
-        // And now we have 0 works and confirm cache is invalidated once again
-        $this->getJson("api/gallery/en/tag_all?order=new&page=1")
-            ->assertJson(fn(AssertableJson $json) =>
-            $json->has('works', 0)
-                ->has('users', 0)
-            );
     }
 
     public function testDeleteWork()
@@ -260,7 +242,7 @@ class WorkAddTest extends TestCase
             'show_en'=>1
                               ])->create();
         $work->owners()->attach($owner->id);
-        // And now we have 1 work and it's cached now
+
         $this->getJson("api/gallery/en/tag_all?order=new&page=1")
             ->assertJson(fn(AssertableJson $json) =>
             $json->has('works', 1)

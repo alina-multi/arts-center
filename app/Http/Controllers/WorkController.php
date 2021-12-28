@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use App\Tag;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\UnauthorizedException;
-use Spatie\ResponseCache\Facades\ResponseCache;
 
 /** @OA\Info(title="Arts 2.0 Api", version="0.1") */
 class WorkController extends Controller

@@ -3,13 +3,14 @@
 namespace App\Listeners;
 
 use App\Comment;
-use App\Events\CommentAdded;
+use App\Events\CommentChanged;
 use App\Events\PublishedWorkUpdated;
 use App\Events\WorkPublished;
 use App\Work;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use Spatie\ResponseCache\Facades\ResponseCache;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
 class ClearCache
 {
@@ -24,9 +25,12 @@ class ClearCache
         // For now let's make it super simple
         if (isset($event->model)) {
             if ($event->model instanceof Comment) {
-                ResponseCache::clear(['comment']);
+                $key = '/api/comment/' . $event->model->commentable_type . '_' . $event->model->commentable_id;
+                Redis::connection('externalCache')->del($key);
             } elseif ($event->model instanceof Work) {
-                ResponseCache::clear(['gallery', 'work']);
+                $work = $event->model;
+                $workKey = "/api/work/en/$work->id";
+                Redis::connection('externalCache')->del($workKey);
             }
         }
     }
