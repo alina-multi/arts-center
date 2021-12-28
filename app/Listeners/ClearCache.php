@@ -29,8 +29,10 @@ class ClearCache
                 Redis::connection('externalCache')->del($key);
             } elseif ($event->model instanceof Work) {
                 $work = $event->model;
-                $workKey = "/api/work/en/$work->id";
-                Redis::connection('externalCache')->del($workKey);
+                foreach (['en','ru','uk'] as $lang) {
+                    $workKey = "/api/work/$lang/$work->id";
+                    Redis::connection('externalCache')->del($workKey);
+                }
             }
         }
     }
