@@ -13,8 +13,19 @@ class Feed extends Model
 {
     use HasFactory, BroadcastsEvents;
 
+    public $work, $comment;
     protected $fillable = ['feedable_type', 'feedable_id', 'user_id'];
     protected $visible = ['feedable_type', 'feedable_id', 'user_id', 'created_at', 'feedable'];
+
+    public function getWorkAttribute()
+    {
+        return $this->work;
+    }
+
+    public function getCommentAttribute()
+    {
+        return $this->comment;
+    }
 
     public function feedable()
     {

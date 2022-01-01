@@ -17,6 +17,10 @@ class Comment extends Model
         'body' => 'array',
     ];
 
+    protected $hidden = [
+        'deleted_at', 'depth'
+    ];
+
     protected $dispatchesEvents = [
         'created' => CommentChanged::class,
         'updated' => CommentChanged::class,

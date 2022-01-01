@@ -56,6 +56,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('comment', 'CommentController@store');
     Route::put('comment/{comment}', 'CommentController@update');
     Route::delete('comment/{comment}', 'CommentController@destroy');
+    Route::get('feed/{language}', 'FeedController');
 });
 
 

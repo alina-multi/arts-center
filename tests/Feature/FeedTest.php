@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Comment;
+use App\Feed;
 use App\Follow;
 use App\Jobs\RecountUserRatings;
 use App\Tag;
@@ -92,6 +93,26 @@ class FeedTest extends TestCase
         $this->assertDatabaseCount('feeds', 2);
         // And that it's broadcasted 3 times
         Bus::assertDispatchedTimes(BroadcastEvent::class, 2);
+    }
+
+    public function testFeedApi()
+    {
+        Bus::fake();
+        $user = User::factory()->create();
+        // They will be in reverse order
+        Feed::factory(['user_id' => $user->id])->work()->create();
+        Feed::factory(['user_id' => $user->id])->commentTowork()->create();
+
+        $this->actingAs($user)->getJson('/api/feed/en')
+            ->assertJson(fn(AssertableJson $json) => $json
+                ->has('feeds', 2)
+                ->has('feeds.0.comment.id')
+                ->where('feeds.0.work',2)
+                ->where('feeds.1.comment', null)
+                ->where('feeds.1.work', 1)
+                ->has('users', 3)
+                ->has('works', 2)
+            );
     }
 
     public function follow($user_id, $followable_type, $followable_id)
