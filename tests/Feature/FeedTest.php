@@ -27,8 +27,8 @@ class FeedTest extends TestCase
     function testAddComment()
     {
         Bus::fake();
-        list ($workOwner, $commentOwner, $workSubscriber, $userSubscriber, $subscribedToBoth) = User::factory()->count(
-            5
+        list ($workOwner, $commentOwner, $workSubscriber, $userSubscriber, $subscribedToBoth, $notSubscribed) = User::factory()->count(
+            6
         )->create();
         $work = Work::factory()->create();
         $work->owners()->attach($workOwner->id);
@@ -56,6 +56,10 @@ class FeedTest extends TestCase
                 'user_id' => $user->id
             ]);
         }
+        // Check that user that is not subscribed don't receive stuff
+        $this->assertDatabaseMissing('feeds', [
+            'user_id' => $notSubscribed->id
+        ]);
         // Check that total number of records is 3 (checking there are no duplicates for user who subscribed to both
         $this->assertDatabaseCount('feeds', 3);
         // And that it's broadcasted 3 times
@@ -66,8 +70,8 @@ class FeedTest extends TestCase
     {
         $now = Carbon::now()->format('Y-m-d H:i:s');
         Bus::fake();
-        list ($workOwner, $subscriber1, $subscriber2) = User::factory()->count(
-            5
+        list ($workOwner, $subscriber1, $subscriber2, $notSubscribed) = User::factory()->count(
+            6
         )->create();
         $work = Work::factory()->create();
         $work->owners()->attach($workOwner->id);
@@ -89,6 +93,10 @@ class FeedTest extends TestCase
                 'user_id' => $user->id
             ]);
         }
+        // Check that user that is not subscribed don't receive stuff
+        $this->assertDatabaseMissing('feeds', [
+            'user_id' => $notSubscribed->id
+        ]);
         // Check that total number of records is 3 (checking there are no duplicates for user who subscribed to both
         $this->assertDatabaseCount('feeds', 2);
         // And that it's broadcasted 3 times

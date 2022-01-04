@@ -34,14 +34,19 @@ class AddToFeeds
             }
             $this->attachToUserFeedsBasedOnCriteria($model);
         } elseif ($model instanceof Work) {
-            $this->extractOwnersFromModel($model);
+            foreach ($this->extractOwnersFromModel($model) as $user) {
+                $this->addCriteria('user', $user->id);
+            }
             $this->attachToUserFeedsBasedOnCriteria($model);
         }
     }
 
     public function addCriteria($followable_type, $followable_id)
     {
-        $this->followableCriteria[] = [['followable_type', '=', $followable_type], ['followable_id', '=', $followable_id]];
+        $this->followableCriteria[] = [
+            ['followable_type', '=', $followable_type],
+            ['followable_id', '=', $followable_id]
+        ];
     }
 
     public function extractOwnersFromModel($model)
@@ -56,19 +61,21 @@ class AddToFeeds
 
     public function attachToUserFeedsBasedOnCriteria($model)
     {
-        $query = Follow::groupBy('user_id');
-        foreach ($this->followableCriteria as $where) {
-            $query->orWhere($where);
-        }
-        $users = $query->get(['user_id'])->pluck(
-            'user_id'
-        )->toArray();
-        foreach ($users as $user) {
-            $feed = new Feed();
-            $feed->feedable_type = $model->getMorphClass();
-            $feed->feedable_id = $model->id;
-            $feed->user_id = $user;
-            $feed->save();
+        if (sizeof($this->followableCriteria)) {
+            $query = Follow::groupBy('user_id');
+            foreach ($this->followableCriteria as $where) {
+                $query->orWhere($where);
+            }
+            $users = $query->get(['user_id'])->pluck(
+                'user_id'
+            )->toArray();
+            foreach ($users as $user) {
+                $feed = new Feed();
+                $feed->feedable_type = $model->getMorphClass();
+                $feed->feedable_id = $model->id;
+                $feed->user_id = $user;
+                $feed->save();
+            }
         }
     }
 }
