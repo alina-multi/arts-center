@@ -56,9 +56,9 @@ class Feed extends Resource
             Number::make('user_id')->sortable(),
             Number::make('feedable_id')->sortable(),
             Text::make('feedable_type')->sortable(),
-            DateTime::make('created_at')->readonly(),
-            MorphTo::make('Feedable'),
-            BelongsTo::make('User')
+            DateTime::make('created_at')->readonly()->hideWhenCreating()->hideWhenUpdating(),
+            MorphTo::make('Feedable')->hideWhenCreating()->hideWhenUpdating(),
+            BelongsTo::make('User')->hideWhenCreating()->hideWhenUpdating()
         ];
     }
 

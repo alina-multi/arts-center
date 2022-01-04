@@ -63,9 +63,6 @@ class GalleryController extends Controller
         }
         $works = $works->get();
         foreach ($works as &$work) {
-            $work->title = sizeof($work->titles) ? $work->titles[0]->title : '';
-            $work->old_user_id = $work->image ? $work->image->old_user_id : null;
-            $work->unsetRelation('titles');
             $owners = [];
             foreach ($work->owners as $owner) {
                 $owner = $owner->toArray();

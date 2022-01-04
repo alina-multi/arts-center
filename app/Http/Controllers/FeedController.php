@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Auth;
 
 class FeedController extends Controller
 {
-    public function __invoke(Request $request)
+    public $language;
+
+    public function index(Request $request, $language)
     {
+        $this->language = $language;
         $user = Auth::user();
         if ($user) {
             $perPage = 30;
@@ -32,7 +35,10 @@ class FeedController extends Controller
                                $morphTo->morphWith([
                                                        Work::class => [
                                                            'image',
-                                                           'owners'
+                                                           'owners',
+                                                           'titles' => function ($query) {
+                                                               $query->where('language', $this->language);
+                                                           },
                                                        ],
                                                        Comment::class => [
                                                            'user',
@@ -40,7 +46,14 @@ class FeedController extends Controller
                                                                $morphTo->morphWith([
                                                                                        Work::class => [
                                                                                            'image',
-                                                                                           'owners'
+                                                                                           'owners',
+                                                                                           'titles' => function ($query
+                                                                                           ) {
+                                                                                               $query->where(
+                                                                                                   'language',
+                                                                                                   $this->language
+                                                                                               );
+                                                                                           },
                                                                                        ]
                                                                                    ]);
                                                            }

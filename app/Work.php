@@ -18,7 +18,11 @@ class Work extends Model
     ];
 
     protected $hidden = [
-        'updated_at', 'old_id', 'hosts', 'show_en', 'show_ru', 'show_uk', 'old_user_id'
+        'updated_at', 'old_id', 'hosts', 'show_en', 'show_ru', 'show_uk', 'old_user_id', 'titles'
+    ];
+
+    protected $appends = [
+        'title'
     ];
 
     protected $casts = [
@@ -86,5 +90,10 @@ class Work extends Model
     public function votes()
     {
         return $this->morphMany(Vote::class,'votable');
+    }
+
+    public function getTitleAttribute()
+    {
+        return sizeof($this->titles) ? $this->titles[0]->title : '';
     }
 }
