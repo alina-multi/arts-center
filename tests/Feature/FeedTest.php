@@ -48,8 +48,8 @@ class FeedTest extends TestCase
             ['user_id' => $commentOwner->id, 'commentable_type' => 'work', 'commentable_id' => $work->id]
         )->create();
 
-        // All users should now have records in feed
-        foreach ([$workSubscriber, $userSubscriber, $subscribedToBoth] as $user) {
+        // All users and work owner should now have records in feed
+        foreach ([$workSubscriber, $userSubscriber, $subscribedToBoth, $workOwner] as $user) {
             $this->assertDatabaseHas('feeds', [
                 'feedable_id' => $comment->id,
                 'feedable_type' => 'comment',
@@ -60,10 +60,10 @@ class FeedTest extends TestCase
         $this->assertDatabaseMissing('feeds', [
             'user_id' => $notSubscribed->id
         ]);
-        // Check that total number of records is 3 (checking there are no duplicates for user who subscribed to both
-        $this->assertDatabaseCount('feeds', 3);
-        // And that it's broadcasted 3 times
-        Bus::assertDispatchedTimes(BroadcastEvent::class, 3);
+        // Check that total number of records is 4 (checking there are no duplicates for user who subscribed to both
+        $this->assertDatabaseCount('feeds', 4);
+        // And that it's broadcasted 4 times
+        Bus::assertDispatchedTimes(BroadcastEvent::class, 4);
     }
 
     public function testPublishWork()

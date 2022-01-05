@@ -28,13 +28,19 @@ class AddToFeeds
             // If subscribed to object that gets commented
             if ($model->commentable) {
                 $this->addCriteria($model->commentable_type, $model->commentable_id);
-                foreach ($this->extractOwnersFromModel($model->commentable) as $user) {
+                // Send to people subscribed to this commentable owners
+                $owners = $this->extractOwnersFromModel($model->commentable);
+                foreach ($owners as $user) {
                     $this->addCriteria('user', $user->id);
                 }
+                // Also attach to commentable owner feed
+                $this->attachToUsers($model, $owners);
             }
             $this->attachToUserFeedsBasedOnCriteria($model);
         } elseif ($model instanceof Work) {
-            foreach ($this->extractOwnersFromModel($model) as $user) {
+            // Send to people subscribed to this work owners
+            $owners = $this->extractOwnersFromModel($model);
+            foreach ($owners as $user) {
                 $this->addCriteria('user', $user->id);
             }
             $this->attachToUserFeedsBasedOnCriteria($model);
@@ -69,13 +75,19 @@ class AddToFeeds
             $users = $query->get(['user_id'])->pluck(
                 'user_id'
             )->toArray();
-            foreach ($users as $user) {
-                $feed = new Feed();
-                $feed->feedable_type = $model->getMorphClass();
-                $feed->feedable_id = $model->id;
-                $feed->user_id = $user;
-                $feed->save();
-            }
+            $this->attachToUsers($model, $users);
+        }
+    }
+
+    public function attachToUsers ($model, $owners)
+    {
+        foreach ($owners as $owner) {
+            $userId = is_object($owner) ? $owner->id : $owner;
+            $feed = new Feed();
+            $feed->feedable_type = $model->getMorphClass();
+            $feed->feedable_id = $model->id;
+            $feed->user_id = $userId;
+            $feed->save();
         }
     }
 }
