@@ -12,6 +12,7 @@ use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -81,6 +82,8 @@ class Work extends Resource
                 }
                 return '<div class="divide-y divide-light-blue-400">' . join("\n", $titles) . '</div>';
             })->asHtml(),
+            MorphMany::make('Owners', 'owners', User::class),
+            HasMany::make('Blacklists', 'blacklist', User::class),
             Number::make('rating')->sortable(),
             Number::make('comments')->sortable(),
             Number::make('price')->sortable(),

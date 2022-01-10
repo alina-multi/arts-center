@@ -51,6 +51,7 @@ WORKDIR /var/www
 #So we have a nice cache of vendor
 COPY composer.lock /var/www
 COPY composer.json /var/www
+COPY nova-components /var/www/nova-components
 RUN composer install --no-scripts --no-autoloader
 
 #Now copy files that invalidate cache

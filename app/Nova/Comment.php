@@ -13,6 +13,7 @@ use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\DateTime;
+use Stepanorda\NovaQuill\NovaQuill;
 
 class Comment extends Resource
 {
@@ -52,12 +53,9 @@ class Comment extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Code::make('body')->json()->required(),
             Text::make('commentable_type'),
             Number::make('commentable_id'),
-            Text::make('Text', function () {
-                return (new \nadar\quill\Lexer($this->body))->render();
-            })->asHtml(),
+            NovaQuill::make('Body'),
             Number::make('rating')->readonly()->sortable(),
             DateTime::make('created_at')->readonly(),
 

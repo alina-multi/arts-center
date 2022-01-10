@@ -15,6 +15,10 @@
         {
             "type": "composer",
             "url": "https://nova.laravel.com"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/NovaQuill"
         }
     ],
     "require": {
@@ -41,7 +45,8 @@
         "psr/log": "^1.0",
         "pusher/pusher-php-server": "^7.0",
         "sentry/sentry-laravel": "^2.6",
-        "tigroid3/php-imaginary": "^1.03"
+        "tigroid3/php-imaginary": "^1.03",
+        "stepanorda/nova-quill": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
