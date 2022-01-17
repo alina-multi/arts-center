@@ -93,11 +93,15 @@ class FeedController extends Controller
         $owners = [];
         if ($work->owners) {
             foreach ($work->owners as $user) {
-                $users[$user->id] = $user;
-                $owners[] = $user->id;
+                if (is_object($user)) {
+                    $users[$user->id] = $user;
+                    $owners[] = $user->id;
+                }
             }
-            $work->unsetRelation('owners');
-            $work->owners = $owners;
+            if (sizeof($owners)) {
+                $work->unsetRelation('owners');
+                $work->owners = $owners;
+            }
         }
         $works[$work->id] = $work;
     }
