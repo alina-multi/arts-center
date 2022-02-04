@@ -10,6 +10,10 @@ class BlogTranslation extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+      'language', 'title', 'about'
+    ];
+
     protected $casts = [
         'about' => 'array',
     ];
