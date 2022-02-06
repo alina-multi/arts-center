@@ -40,7 +40,9 @@ class AppServiceProvider extends ServiceProvider
                 'comment' => 'App\Comment',
                 'user' => 'App\User',
                 'feedback' => 'App\Feedback',
-                'tag' => 'App\Tag'
+                'tag' => 'App\Tag',
+                'blog' => 'App\Blog',
+                'post' => 'App\Post',
             ]
         );
     }

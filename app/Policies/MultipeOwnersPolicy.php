@@ -11,10 +11,16 @@ class MultipeOwnersPolicy
 
     public function update(User $user, $model)
     {
+        $owners = $model->owners()->toSql();
         foreach ($model->owners as $owner) {
             if ($owner->id == $user->id) {
                 return true;
             }
         }
+    }
+
+    public function destroy(User $user, $model)
+    {
+        return $this->update($user, $model);
     }
 }

@@ -51,7 +51,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
         'follow' => 'FollowController',
         'blacklist' => 'BlacklistController',
         'feedback' => 'FeedbackController',
-        'blog' => 'BlogController'
+        'blog' => 'BlogController',
+        'post' => 'PostController'
     ]);
     Route::post('/image', 'ImageController');
     Route::post('comment', 'CommentController@store');

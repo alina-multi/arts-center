@@ -10,6 +10,10 @@ class PostTranslation extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+      'title', 'language', 'body'
+    ];
+
     protected $casts = [
         'body' => 'array',
     ];

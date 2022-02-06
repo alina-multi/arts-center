@@ -51,4 +51,20 @@ class BlogTest extends TestCase
         $this->assertDatabaseHas('blog_translations', ['language' => 'ru', 'title' => 'test']);
         $this->assertDatabaseCount('blog_translations', 3);
     }
+
+    public function testDestroyBlogByOtherUser()
+    {
+        list ($owner, $user) = User::factory()->count(2)->create();
+        $blog = Blog::factory()->hasTranslations(3)->create();
+        $blog->owners()->attach($owner->id);
+        $this->actingAs($user)->deleteJson("/api/blog/$blog->id")->assertStatus(403);
+    }
+
+    public function testDestroyBlog()
+    {
+        $owner = User::factory()->create();
+        $blog = Blog::factory()->hasTranslations(3)->create();
+        $blog->owners()->attach($owner->id);
+        $this->actingAs($owner)->deleteJson("/api/blog/$blog->id")->assertStatus(200);
+    }
 }

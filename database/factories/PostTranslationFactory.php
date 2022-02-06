@@ -14,7 +14,9 @@ class PostTranslationFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->word,
+            'language' => $this->faker->unique()->randomElement(config('app.languages')),
+            'body' => ['delta' => []]
         ];
     }
 }

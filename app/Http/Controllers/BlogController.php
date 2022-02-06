@@ -18,6 +18,7 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {
+
     }
 
 
@@ -62,12 +63,9 @@ class BlogController extends Controller
      * @param \App\Blacklist $blacklist
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blacklist $blacklist)
+    public function destroy(Blog $blog)
     {
-        if ($blacklist->user_id == Auth::id()) {
-            $blacklist->delete();
-        } else {
-            abort(401);
-        }
+        $this->authorize('destroy', $blog);
+        return $blog->delete();
     }
 }
