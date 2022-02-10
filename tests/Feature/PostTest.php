@@ -90,4 +90,9 @@ class PostTest extends TestCase
         $post = Post::factory(['blog_id' => $blog->id])->hasTranslations(3)->create();
         $this->actingAs($owner)->deleteJson("/api/post/$post->id")->assertStatus(200);
     }
+
+    public function testGetPost()
+    {
+
+    }
 }

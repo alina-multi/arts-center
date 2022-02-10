@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+    public function index(Blog $blog)
+    {
+        return $blog->posts()->orderBy('published_at','DESC')->get();
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -54,7 +59,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $this->authorize('destroy', $post->blog);
+        $this->authorize('delete', $post->blog);
         return $post->delete();
     }
 }

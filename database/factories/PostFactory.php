@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\PostTranslation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
@@ -14,7 +15,6 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            //
         ];
     }
 }

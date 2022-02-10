@@ -36,7 +36,6 @@ Route::get('feedback/idea/{language}', 'FeedbackController@idea');
 Route::get('feedback/feedback/{language}', 'FeedbackController@feedback');
 Route::get('feedback/complaint/{language}', 'FeedbackController@complaint');
  */
-
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('profile/avatar', 'Profile\AvatarController');
     Route::post('profile', 'Profile\IndexController');
@@ -60,5 +59,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('comment/{comment}', 'CommentController@destroy');
     Route::get('feed/{language}', 'FeedController@index');
 });
-
+// We don't need auth for this ones
+Route::get('blog/{blog}', 'BlogController@show');
+Route::get('post/{post}', 'PostController@show');
 

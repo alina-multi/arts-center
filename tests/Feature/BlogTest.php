@@ -3,8 +3,10 @@
 namespace Tests\Feature;
 
 use App\Blog;
+use App\Post;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class BlogTest extends TestCase
@@ -66,5 +68,14 @@ class BlogTest extends TestCase
         $blog = Blog::factory()->hasTranslations(3)->create();
         $blog->owners()->attach($owner->id);
         $this->actingAs($owner)->deleteJson("/api/blog/$blog->id")->assertStatus(200);
+    }
+
+    public function testGetBlog()
+    {
+        $blog = Blog::factory()->has(Post::factory()->count(10))->create();
+        $this->getJson("/api/blog/$blog->id")->assertJson(fn(AssertableJson $json) => $json
+            ->has('blog.id')
+            ->has('posts', 10)
+        );
     }
 }

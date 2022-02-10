@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Blacklist;
 use App\Blog;
 use App\Http\Requests\BlogRequest;
+use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -19,6 +20,13 @@ class BlogController extends Controller
     public function index(Request $request)
     {
 
+    }
+
+    public function show(Blog $blog)
+    {
+        $posts = Post::with('translations')->where('blog_id', $blog->id)->orderBy('id', 'desc')->get();
+        $blog->load('translations', 'owners');
+        return compact('blog', 'posts');
     }
 
 
@@ -65,7 +73,7 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
-        $this->authorize('destroy', $blog);
+        $this->authorize('delete', $blog);
         return $blog->delete();
     }
 }

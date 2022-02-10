@@ -19,7 +19,7 @@ class MultipeOwnersPolicy
         }
     }
 
-    public function destroy(User $user, $model)
+    public function delete(User $user, $model)
     {
         return $this->update($user, $model);
     }
