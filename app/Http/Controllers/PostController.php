@@ -62,4 +62,11 @@ class PostController extends Controller
         $this->authorize('delete', $post->blog);
         return $post->delete();
     }
+
+    public function show(Post $post)
+    {
+        $post->load('translations');
+        $post->translations->makeVisible('body');
+        return $post;
+    }
 }

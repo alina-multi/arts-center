@@ -10,6 +10,9 @@ class PostTranslation extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $hidden = [
+        'post_id', 'body', 'deleted_at', 'created_at', 'updated_at'
+    ];
     protected $fillable = [
       'title', 'language', 'body'
     ];

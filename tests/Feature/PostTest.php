@@ -6,6 +6,7 @@ use App\Blog;
 use App\Post;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class PostTest extends TestCase
@@ -93,6 +94,14 @@ class PostTest extends TestCase
 
     public function testGetPost()
     {
-
+        $owner = User::factory()->create();
+        $blog = Blog::factory()->create();
+        $blog->owners()->attach($owner->id);
+        $post = Post::factory(['blog_id' => $blog->id])->hasTranslations(3)->create();
+        $this->getJson("/api/post/$post->id")->assertJson(fn(AssertableJson $json) => $json
+            ->has('id')
+            ->has('translations', 3)
+            ->etc()
+        );
     }
 }
