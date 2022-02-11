@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\HasManyThrough;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphMany;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Number;
@@ -21,12 +22,18 @@ class Blog extends Resource
      */
     public static $model = \App\Blog::class;
 
-    /**
-     * The single value that should be used to represent the resource when being displayed.
-     *
-     * @var string
-     */
-    public static $title = 'id';
+    public function title()
+    {
+        if (sizeof($this->translations) > 0) {
+            $returnTitle = $this->id;
+            foreach ($this->translations as $title) {
+                $returnTitle .= " $title->language: $title->title";
+            }
+            return $returnTitle;
+        } else {
+            return $this->id;
+        }
+    }
 
     /**
      * The columns that should be searched.
@@ -36,6 +43,8 @@ class Blog extends Resource
     public static $search = [
         'id',
     ];
+
+    public static $with = ['translations'];
 
     /**
      * Get the fields displayed by the resource.
@@ -47,6 +56,13 @@ class Blog extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
+            Text::make('Titles', function () {
+                $titles = [];
+                foreach ($this->translations as $translation) {
+                    $titles[] = "<div><b>$translation->language</b>: $translation->title </div>";
+                }
+                return '<div class="divide-y divide-light-blue-400">' . join("\n", $titles) . '</div>';
+            })->asHtml(),
             Boolean::make('Featured'),
             Number::make('Rating'),
             DateTime::make('created_at'),
@@ -54,7 +70,7 @@ class Blog extends Resource
             DateTime::make('deleted_at'),
             HasMany::make('Translations', 'translations', BlogTranslation::class),
             HasMany::make('Posts'),
-            MorphMany::make('Owners', 'owners', User::class)
+            MorphMany::make('Owners', 'owners', User::class),
         ];
     }
 

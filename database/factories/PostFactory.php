@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\PostTranslation;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
@@ -15,6 +16,7 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
+            'published_at' => Carbon::now()->subMinutes($this->faker->randomNumber())
         ];
     }
 }

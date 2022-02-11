@@ -11,6 +11,7 @@ use Stepanorda\NovaQuill\NovaQuill;
 
 class BlogTranslation extends Resource
 {
+    public static $displayInNavigation = false;
     /**
      * The model the resource corresponds to.
      *
@@ -23,7 +24,7 @@ class BlogTranslation extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.

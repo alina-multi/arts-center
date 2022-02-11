@@ -10,6 +10,8 @@ class Blog extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $hidden = ['created_at','deleted_at','updated_at'];
+
     public function posts()
     {
         return $this->hasMany(Post::class);

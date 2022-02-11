@@ -99,4 +99,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Blacklist::class);
     }
+
+    public function isAdmin()
+    {
+        return $this->email === 'stepanorda87@gmail.com';
+    }
 }

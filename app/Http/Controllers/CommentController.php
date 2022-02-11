@@ -14,8 +14,6 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 class CommentController extends Controller
 {
 
-    protected $commentTypes = ['work', 'feedback'];
-
     public function rules()
     {
         return [
@@ -42,7 +40,7 @@ class CommentController extends Controller
         $type = $parts[0];
         $ident = empty($parts[1]) ?: $parts[1];
 
-        if (!in_array($type, $this->commentTypes)) {
+        if (!in_array($type, array_keys(Relation::morphMap()))) {
             abort(404);
         }
 

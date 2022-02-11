@@ -17,10 +17,31 @@ class MultipeOwnersPolicy
                 return true;
             }
         }
+        return $user->isAdmin();
     }
 
     public function delete(User $user, $model)
     {
         return $this->update($user, $model);
+    }
+
+    public function create()
+    {
+        return true;
+    }
+
+    public function viewAny()
+    {
+        return true;
+    }
+
+    public function view()
+    {
+        return true;
+    }
+
+    public function restore(User $user)
+    {
+        return $user->isAdmin();
     }
 }

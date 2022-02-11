@@ -24,7 +24,7 @@ class BlogController extends Controller
 
     public function show(Blog $blog)
     {
-        $posts = Post::with('translations')->where('blog_id', $blog->id)->orderBy('id', 'desc')->get();
+        $posts = Post::with('translations')->published()->where('blog_id', $blog->id)->orderBy('published_at', 'desc')->get();
         $blog->load('translations', 'owners');
         return compact('blog', 'posts');
     }

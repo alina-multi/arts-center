@@ -4,10 +4,14 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Stepanorda\NovaQuill\NovaQuill;
 
 class PostTranslation extends Resource
 {
+    public static $displayInNavigation = false;
     /**
      * The model the resource corresponds to.
      *
@@ -20,7 +24,7 @@ class PostTranslation extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -41,6 +45,13 @@ class PostTranslation extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
+            Select::make('Language')->options([
+                'en' => 'English',
+                'ru' => 'Russian',
+                'uk' => 'Ukrainian',
+            ]),
+            Text::make('Title'),
+            NovaQuill::make('Body')
         ];
     }
 
