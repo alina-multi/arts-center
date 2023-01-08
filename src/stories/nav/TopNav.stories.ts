@@ -1,18 +1,18 @@
 import TopNav from "$lib/components/nav/TopNav.svelte";
-import type { Meta, StoryFn } from '@storybook/svelte';
+import type {Meta} from '@storybook/svelte';
 
 export default {
     title: "Nav/TopNav",
     component: TopNav,
+    argTypes: {
+        test: {control: 'text'},
+    }
 } satisfies Meta<TopNav>
 
-const Template:StoryFn<typeof TopNav> = (args) => ({
+const Template = (args) => ({
     Component: TopNav,
-    props: args,
-    argTypes: {
-        test: { control: 'text' },
-    }
+    props: args
 });
 
 export const Primary = Template.bind({});
-Primary.args = { test: "test" }
+Primary.args = {test: 'test'};

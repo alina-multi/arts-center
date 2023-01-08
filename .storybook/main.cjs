@@ -1,4 +1,3 @@
-const path = require('path');
 module.exports = {
   "stories": [
     "../src/**/*.mdx",
@@ -7,8 +6,7 @@ module.exports = {
   "addons": [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
-    "storybook-tailwind-dark-mode"
+    "@storybook/addon-interactions"
   ],
   "framework": {
     "name": "@storybook/sveltekit",
