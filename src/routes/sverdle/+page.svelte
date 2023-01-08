@@ -3,6 +3,7 @@
 	import { enhance } from '$app/forms';
 	import type { PageData, ActionData } from './$types';
 	import { reduced_motion } from './reduced-motion';
+	import TopNav from "@/nav/TopNav.svelte";
 
 	export let data: PageData;
 
@@ -80,6 +81,8 @@
 			?.dispatchEvent(new MouseEvent('click', { cancelable: true }));
 	}
 </script>
+
+<TopNav />
 
 <svelte:window on:keydown={keydown} />
 
