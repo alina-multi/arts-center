@@ -2,11 +2,12 @@
     <div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
         <div class="flex items-center h-16 justify-between ">
             <DisclosurePanel><slot/></DisclosurePanel>
-            wtf?????
+            {test}
         </div>
     </div>
 </Disclosure>
 
 <script lang="ts">
     import { Disclosure, DisclosurePanel } from "@rgossiaux/svelte-headlessui"
+    export let test
 </script>
