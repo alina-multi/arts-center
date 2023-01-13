@@ -1,54 +1,45 @@
 <script lang="ts">
-    export let type;
-    export let label;
-    export let spanLabel;
-    export let placeholder;
-    export let inputType;
+    import newUniqueId from 'locally-unique-id-generator'
 
-let value = '';
-let ariaInvalid = "false";
-let ariaDescribedby = "email-description";
-let style;
-let primary = "border-zinc-300 focus:border-indigo-300 focus:ring-indigo-200";
-let error = "border-red-300 focus:border-red-300 focus:ring-red-200";
-    
+    export let label, description, placeholder, value, error;
 
 
+    // Generate a unique ID for the fields
+    const id = newUniqueId();
+    const descriptionId = id + "-description"
+    const errorId = id + "-error"
 
-  $: if (inputType === "primary") {
-    style = primary;
-  } else if (inputType === "error") {
-    style = error;
-    ariaInvalid = "true";
-    ariaDescribedby = "email-error";
-    spanLabel = "Please enter a valid email address";
-    
-  } else {
-    style = primary;
-  }
+    let primaryClass = "border-zinc-300 focus:border-indigo-300 focus:ring-indigo-200";
+    let errorClass = "border-red-300 focus:border-red-300 focus:ring-red-200";
+    let ariaDescribedBy
+    $: ariaDescribedBy = (error) ? errorId : descriptionId;
 
 </script>
 
 
-    <div class="flex items-center justify-center bg-white p-8">
-        <div class="mx-auto w-full max-w-xs">
-            <div>
-                <label for="email" class="block text-sm font-medium text-zinc-900">{label}</label>
-                <div class="mt-1">
-                  <input 
-                  {value}
-                  type={type} 
-                  name="email" 
-                  id="email"
-                  placeholder={placeholder}
-                  aria-invalid={ariaInvalid} 
-                  aria-describedby={ariaDescribedby}
-                  class='block w-full rounded-md sm:text-sm {style}'/>
-                  
-                </div>
-                <p class="mt-2 text-sm text-gray-500" id="email-description">{spanLabel}</p>
-              </div>
+<div class="flex items-center justify-center bg-white p-8">
+    <div class="mx-auto w-full max-w-xs">
+        <div>
+            <label for={id} class="block text-sm font-medium text-zinc-900">
+                {#if label}{label}{/if}
+            </label>
+            <input
+                    {value}
+                    id={id}
+                    placeholder={placeholder}
+                    aria-invalid={error}
+                    aria-describedby={ariaDescribedBy}
+                    class='block w-full rounded-md border sm:text-sm {error ? errorClass : primaryClass}'/>
+
+            {#if error}
+                <p id={errorId} class="mt-2 text-sm text-gray-500">{error}</p>
+            {/if}
+
+            {#if description}
+                <p id={descriptionId} class="mt-2 text-sm text-gray-500">{description}</p>
+            {/if}
+        </div>
     </div>
-    </div>
+</div>
 
 
