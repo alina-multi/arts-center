@@ -26,6 +26,7 @@ Primary.args = {
     placeholder: "Placeholder",
     value: "test@email.com",
     error: "",
+    type: "email",
 }
 
 

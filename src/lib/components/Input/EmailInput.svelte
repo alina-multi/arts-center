@@ -1,7 +1,7 @@
 <script lang="ts">
     import newUniqueId from 'locally-unique-id-generator'
 
-    export let label, description, placeholder, value, error;
+    export let label, description, placeholder, value, error, type;
 
 
     // Generate a unique ID for the fields
@@ -25,8 +25,9 @@
             </label>
             <input
                     {value}
-                    id={id}
-                    placeholder={placeholder}
+                    {type}
+                    {id}
+                    {placeholder}
                     aria-invalid={error}
                     aria-describedby={ariaDescribedBy}
                     class='block w-full rounded-md border sm:text-sm {error ? errorClass : primaryClass}'/>
@@ -41,5 +42,8 @@
         </div>
     </div>
 </div>
+
+
+
 
 
