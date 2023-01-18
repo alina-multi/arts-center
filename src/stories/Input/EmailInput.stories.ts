@@ -22,11 +22,11 @@ const Template: StoryFn<typeof EmailInput> = (args) => ({
 export const Primary = Template.bind({});
 Primary.args = {
     label: "Email",
-    description: "Description",
-    placeholder: "Placeholder",
-    value: "test@email.com",
+    name: 'email',
+    description: "",
+    placeholder: "test@email.com",
+    value: "",
     error: "",
-    type: "email",
 }
 
 
