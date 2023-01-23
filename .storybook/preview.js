@@ -23,7 +23,7 @@ export const globalTypes = {
         { value: 'dark', icon:'circle', title: 'Dark' },
       ],
       // Property that specifies if the name of the item will be displayed
-      showName: true,
+      name: true,
       // Change title based on selected value
       dynamicTitle: true,
     },
