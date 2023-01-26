@@ -1,4 +1,4 @@
-FROM phpswoole/swoole:5.0.1-php8.2
+FROM phpswoole/swoole:php8.2
 
 # Setup working directory
 WORKDIR /var/www
