@@ -46,7 +46,7 @@ COPY --from=composer/composer:latest-bin /composer /usr/bin/composer
 COPY composer.lock /var/www
 COPY composer.json /var/www
 COPY nova-components /var/www/nova-components
-RUN composer install --no-scripts --no-autoloader
+RUN composer install --no-scripts --no-autoloader --no-dev --prefer-dist
 
 #Now copy files that invalidate cache
 COPY . /var/www
