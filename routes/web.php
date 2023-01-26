@@ -57,3 +57,7 @@ Route::get('/vendor/{file}', function ($file) {
 })->where('file', '.*');;
 
 Route::get('auth/subscription/redirect', 'SubscriptionController@redirect')->middleware('auth');
+
+Route::get('health', function () {
+    return response('OK', 200);
+});
