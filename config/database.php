@@ -62,14 +62,6 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
-        'old' => [
-            'url' => 'mysql://arts_ro:MXJSdLAJB1Zm@148.251.123.80/arts',
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'prefix_indexes' => true,
-            'strict' => true,
-        ],
 
         'pgsql' => [
             'driver' => 'pgsql',
