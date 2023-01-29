@@ -49,8 +49,8 @@ const config: Config = {
 
 export const defaultLocale = 'en';
 
-export function correctLocale(lang: string) {
-    return config?.translations?.hasOwnProperty(lang);
+export function correctLocale(lang: string):boolean {
+    return config?.translations?.hasOwnProperty(lang) || false;
 }
 
 export function checkUrlLocale(event: RequestEvent): string {
