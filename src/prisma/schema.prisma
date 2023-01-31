@@ -1,0 +1,434 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model action_events {
+  id              BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  batch_id        String    @db.Char(36)
+  user_id         BigInt    @db.UnsignedBigInt
+  name            String
+  actionable_type String
+  actionable_id   BigInt    @db.UnsignedBigInt
+  target_type     String
+  target_id       BigInt    @db.UnsignedBigInt
+  model_type      String
+  model_id        BigInt?   @db.UnsignedBigInt
+  fields          String    @db.Text
+  status          String    @default("running") @db.VarChar(25)
+  exception       String    @db.Text
+  created_at      DateTime? @db.Timestamp(0)
+  updated_at      DateTime? @db.Timestamp(0)
+  original        String?   @db.MediumText
+  changes         String?   @db.MediumText
+
+  @@index([actionable_type, actionable_id], map: "action_events_actionable_type_actionable_id_index")
+  @@index([batch_id, model_type, model_id], map: "action_events_batch_id_model_type_model_id_index")
+  @@index([user_id], map: "action_events_user_id_index")
+}
+
+model blacklists {
+  id                BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  user_id           BigInt
+  blacklist_user_id BigInt
+  created_at        DateTime? @db.Timestamp(0)
+  updated_at        DateTime? @db.Timestamp(0)
+}
+
+model blog_translations {
+  id         BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  blog_id    Int
+  language   String    @db.Char(2)
+  title      String
+  about      String    @db.LongText
+  deleted_at DateTime? @db.Timestamp(0)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+
+  @@unique([blog_id, language], map: "blog_translations_blog_id_language_unique")
+}
+
+model blogs {
+  id         BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  featured   Boolean   @default(false)
+  rating     Int?      @default(0)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  deleted_at DateTime? @db.Timestamp(0)
+
+  @@index([featured], map: "blogs_featured_index")
+  @@index([rating], map: "blogs_rating_index")
+}
+
+model comments {
+  id               BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  commentable_id   BigInt
+  commentable_type String
+  body             String    @db.LongText
+  comment_id       BigInt?   @default(0)
+  user_id          BigInt
+  deleted_at       DateTime? @db.Timestamp(0)
+  created_at       DateTime? @db.Timestamp(0)
+  updated_at       DateTime? @db.Timestamp(0)
+  depth            Int       @default(0) @db.TinyInt
+  rating           Int       @default(1) @db.SmallInt
+}
+
+model failed_jobs {
+  id         BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  connection String   @db.Text
+  queue      String   @db.Text
+  payload    String   @db.LongText
+  exception  String   @db.LongText
+  failed_at  DateTime @default(now()) @db.Timestamp(0)
+}
+
+model feedback {
+  id                BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  rating            Int       @default(1) @db.SmallInt
+  comments          Int       @default(0) @db.SmallInt
+  user_id           BigInt
+  category          String?   @default("")
+  body              String?   @db.LongText
+  created_at        DateTime? @db.Timestamp(0)
+  updated_at        DateTime? @db.Timestamp(0)
+  title             String?
+  type              String
+  language          String    @db.VarChar(2)
+  feedbackable_type String?
+  feedbackable_id   String?
+  approved_at       DateTime? @db.Timestamp(0)
+
+  @@index([type, category], map: "feedback_type_category_index")
+  @@index([user_id], map: "feedback_user_id_index")
+}
+
+model feeds {
+  id            BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  feedable_id   BigInt
+  feedable_type String
+  user_id       BigInt    @default(0)
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+
+  @@index([feedable_id, feedable_type, user_id], map: "feeds_feedable_id_feedable_type_user_id_index")
+}
+
+model follows {
+  id              BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  user_id         BigInt
+  followable_type String
+  followable_id   BigInt
+  created_at      DateTime? @db.Timestamp(0)
+  updated_at      DateTime? @db.Timestamp(0)
+}
+
+model imageables {
+  id             BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  image_id       BigInt
+  imageable_id   BigInt
+  imageable_type String
+}
+
+model images {
+  id          BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  name        String
+  user_id     BigInt
+  work_id     BigInt?
+  old_user_id BigInt?
+  created_at  DateTime? @db.Timestamp(0)
+  updated_at  DateTime? @db.Timestamp(0)
+  folder      String
+  w300        Boolean   @default(false)
+  w600        Boolean   @default(false)
+  w1200       Boolean   @default(false)
+  w2400       Boolean   @default(false)
+  extension   String    @default("jpg") @db.Char(4)
+
+  @@index([folder], map: "images_folder_index")
+}
+
+model languages {
+  id         Int       @id @default(autoincrement()) @db.UnsignedInt
+  code       String    @db.Char(2)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+}
+
+model migrations {
+  id        Int    @id @default(autoincrement()) @db.UnsignedInt
+  migration String
+  batch     Int
+}
+
+model ownables {
+  id           BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  user_id      BigInt
+  ownable_id   BigInt
+  ownable_type String
+
+  @@index([ownable_id, ownable_type], map: "ownables_ownable_id_ownable_type_index")
+  @@index([user_id], map: "ownables_user_id_index")
+}
+
+model password_resets {
+  id         BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  email      String
+  token      String
+  created_at DateTime? @db.Timestamp(0)
+
+  @@index([email], map: "password_resets_email_index")
+}
+
+model personal_access_tokens {
+  id             BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  tokenable_type String
+  tokenable_id   BigInt    @db.UnsignedBigInt
+  name           String
+  token          String    @unique(map: "personal_access_tokens_token_unique") @db.VarChar(64)
+  abilities      String?   @db.Text
+  last_used_at   DateTime? @db.Timestamp(0)
+  created_at     DateTime? @db.Timestamp(0)
+  updated_at     DateTime? @db.Timestamp(0)
+
+  @@index([tokenable_type, tokenable_id], map: "personal_access_tokens_tokenable_type_tokenable_id_index")
+}
+
+model post_translations {
+  id         BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  post_id    Int
+  language   String    @db.Char(2)
+  title      String
+  body       String    @db.LongText
+  deleted_at DateTime? @db.Timestamp(0)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+
+  @@unique([post_id, language], map: "post_translations_post_id_language_unique")
+}
+
+model posts {
+  id           BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  blog_id      Int
+  rating       Int?      @default(0)
+  comments     Int?      @default(0)
+  published_at DateTime? @db.Timestamp(0)
+  deleted_at   DateTime? @db.Timestamp(0)
+  created_at   DateTime? @db.Timestamp(0)
+  updated_at   DateTime? @db.Timestamp(0)
+
+  @@index([blog_id], map: "posts_blog_id_index")
+  @@index([comments], map: "posts_comments_index")
+  @@index([published_at], map: "posts_published_at_index")
+  @@index([rating], map: "posts_rating_index")
+}
+
+model subscription_items {
+  id              BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  subscription_id BigInt    @db.UnsignedBigInt
+  stripe_id       String    @unique(map: "subscription_items_stripe_id_unique")
+  stripe_product  String
+  stripe_price    String
+  quantity        Int?
+  created_at      DateTime? @db.Timestamp(0)
+  updated_at      DateTime? @db.Timestamp(0)
+
+  @@unique([subscription_id, stripe_price], map: "subscription_items_subscription_id_stripe_price_unique")
+}
+
+model subscriptions {
+  id            BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  user_id       BigInt    @db.UnsignedBigInt
+  name          String
+  stripe_id     String    @unique(map: "subscriptions_stripe_id_unique")
+  stripe_status String
+  stripe_price  String?
+  quantity      Int?
+  trial_ends_at DateTime? @db.Timestamp(0)
+  ends_at       DateTime? @db.Timestamp(0)
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+
+  @@index([user_id, stripe_status], map: "subscriptions_user_id_stripe_status_index")
+}
+
+model tag_groups {
+  id         BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  name       String
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+}
+
+model tag_titles {
+  id       BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  tag_id   BigInt
+  language String @db.Char(2)
+  title    String @db.VarChar(40)
+
+  @@index([tag_id, language], map: "tag_titles_tag_id_language_index")
+}
+
+model tag_types {
+  id               BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  name             String?
+  max_tags         Int?      @db.SmallInt
+  allow_user_input Boolean
+  created_at       DateTime? @db.Timestamp(0)
+  updated_at       DateTime? @db.Timestamp(0)
+}
+
+model taggables {
+  id            BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  tag_id        BigInt
+  taggable_id   BigInt
+  taggable_type String @db.Char(20)
+
+  @@index([taggable_type], map: "taggables_taggable_type_index")
+}
+
+model tags {
+  id          BigInt  @id @default(autoincrement()) @db.UnsignedBigInt
+  count       Int?    @db.UnsignedInt
+  group_id    BigInt? @db.UnsignedBigInt
+  groups_main Boolean @default(false)
+  type_id     BigInt  @db.UnsignedBigInt
+  old_id      BigInt  @db.UnsignedBigInt
+}
+
+model telescope_entries {
+  sequence                BigInt                   @id @default(autoincrement()) @db.UnsignedBigInt
+  uuid                    String                   @unique(map: "telescope_entries_uuid_unique") @db.Char(36)
+  batch_id                String                   @db.Char(36)
+  family_hash             String?
+  should_display_on_index Boolean                  @default(true)
+  type                    String                   @db.VarChar(20)
+  content                 String                   @db.LongText
+  created_at              DateTime?                @db.DateTime(0)
+  telescope_entries_tags  telescope_entries_tags[]
+
+  @@index([batch_id], map: "telescope_entries_batch_id_index")
+  @@index([created_at], map: "telescope_entries_created_at_index")
+  @@index([family_hash], map: "telescope_entries_family_hash_index")
+  @@index([type, should_display_on_index], map: "telescope_entries_type_should_display_on_index_index")
+}
+
+model telescope_entries_tags {
+  id                BigInt            @id @default(autoincrement()) @db.UnsignedBigInt
+  entry_uuid        String            @db.Char(36)
+  tag               String
+  telescope_entries telescope_entries @relation(fields: [entry_uuid], references: [uuid], onDelete: Cascade, onUpdate: Restrict, map: "telescope_entries_tags_entry_uuid_foreign")
+
+  @@index([entry_uuid, tag], map: "telescope_entries_tags_entry_uuid_tag_index")
+  @@index([tag], map: "telescope_entries_tags_tag_index")
+}
+
+model telescope_monitoring {
+  id  BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  tag String
+}
+
+model user_ratings {
+  id           BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  ratable_type String
+  ratable_id   BigInt
+  rating       Int       @default(0)
+  user_id      BigInt
+  created_at   DateTime? @db.Timestamp(0)
+  updated_at   DateTime? @db.Timestamp(0)
+  language     String    @db.Char(2)
+
+  @@unique([ratable_type, ratable_id, user_id, language], map: "user_ratings_ratable_type_ratable_id_user_id_language_unique")
+}
+
+model users {
+  id                BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  name              String
+  email             String?   @unique(map: "users_email_unique")
+  email_verified_at DateTime? @db.Timestamp(0)
+  password          String
+  username          String    @unique(map: "users_username_unique")
+  old_id            BigInt?
+  remember_token    String?   @db.VarChar(100)
+  created_at        DateTime? @db.Timestamp(0)
+  updated_at        DateTime? @db.Timestamp(0)
+  stripe_id         String?
+  pm_type           String?
+  pm_last_four      String?   @db.VarChar(4)
+  trial_ends_at     DateTime? @db.Timestamp(0)
+  image_id          BigInt?
+  country           String?   @db.Char(2)
+
+  @@index([country], map: "users_country_index")
+  @@index([stripe_id], map: "users_stripe_id_index")
+}
+
+model votes {
+  id           BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  votable_type String
+  votable_id   BigInt
+  user_id      BigInt
+  ip           String    @db.VarChar(45)
+  vote         Int       @db.TinyInt
+  created_at   DateTime? @db.Timestamp(0)
+  updated_at   DateTime? @db.Timestamp(0)
+}
+
+model work_blocks {
+  id         BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  work_id    BigInt
+  language   String    @db.Char(2)
+  type       String
+  order      Int
+  data       String    @db.LongText
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+
+  @@index([work_id, language], map: "work_blocks_work_id_language_index")
+}
+
+model work_details {
+  id         BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  work_id    BigInt    @unique(map: "work_details_work_id_unique")
+  year       Int?      @db.Year
+  width      Int?
+  height     Int?
+  length     Int?
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+}
+
+model work_titles {
+  id         BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  work_id    BigInt
+  language   String    @db.Char(2)
+  title      String    @db.Char(30)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+
+  @@unique([work_id, language], map: "work_titles_work_id_language_unique")
+}
+
+model works {
+  id           BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  image_id     BigInt    @default(0)
+  rating       Int       @default(0) @db.SmallInt
+  comments     Int       @default(0) @db.SmallInt
+  hosts        Int       @default(0)
+  price        Int       @default(0) @db.UnsignedInt
+  old_id       BigInt?
+  created_at   DateTime? @db.Timestamp(0)
+  updated_at   DateTime? @db.Timestamp(0)
+  published_at DateTime? @db.Timestamp(0)
+  show_en      Boolean   @default(false)
+  show_ru      Boolean   @default(false)
+  show_uk      Boolean   @default(false)
+  deleted_at   DateTime? @db.Timestamp(0)
+
+  @@index([show_en], map: "works_show_en_index")
+  @@index([show_ru], map: "works_show_ru_index")
+  @@index([show_uk], map: "works_show_uk_index")
+}
