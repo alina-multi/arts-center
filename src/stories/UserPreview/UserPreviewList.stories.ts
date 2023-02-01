@@ -1,24 +1,21 @@
-import UserPreviewFull from '@/UserPreview/UserPreviewFull.svelte';
+import UserPreviewList from '@/UserPreview/UserPreviewList.svelte';
 import type { Meta, StoryFn } from '@storybook/svelte';
 
 export default {
-	title: 'UserPreview/UserPreviewFull',
-	component: UserPreviewFull,
-	argTypes: {
-		
-	
-	}
-} satisfies Meta<UserPreviewFull>;
+	title: 'UserPreview/UserPreviewList',
+	component: UserPreviewList,
+	argTypes: {}
+} satisfies Meta<UserPreviewList>;
 
-const Template: StoryFn<typeof UserPreviewFull> = (args) => ({
-	Component: UserPreviewFull,
+const Template: StoryFn<typeof UserPreviewList> = (args) => ({
+	Component: UserPreviewList,
 	props: args
 });
 
 // Todo: figure out why ts complains here
-export const Full = Template.bind({});
-Full.args = {
-	id: 6455,
+export const List = Template.bind({});
+List.args = {
+
 	users: [
 		{
 			id: 6455,
@@ -53,7 +50,7 @@ Full.args = {
 			]
 		},
 		{
-			id: 6455,
+			id: 655455,
 			subscribed: false,
 			name: 'Атаманський  Святослав',
 			username: 'Gabriolis',
@@ -85,7 +82,7 @@ Full.args = {
 			]
 		},
 		{
-			id: 6455,
+			id: 5556455,
 			subscribed: false,
 			name: 'Атаманський  Святослав',
 			username: 'Gabriolis',
