@@ -5,10 +5,9 @@ export default {
 	title: 'Rating/RatingPreviewVote',
 	component: RatingPreviewVote,
 	argTypes: {
-		allowDown: { control: 'boolean' },
+		allowDownVote: { control: 'boolean' },
 		showVotedPreview: { control: 'boolean' },
-		isLiked: { control: 'boolean' },
-		isDisliked: { control: 'boolean' },
+		typeOfVote: { control: 'boolean' },
 		rating: { control: 'text' },
 
 	}
@@ -22,12 +21,11 @@ const Template: StoryFn<typeof RatingPreviewVote> = (args) => ({
 // Todo: figure out why ts complains here
 export const VoteButtons = Template.bind({});
 VoteButtons.args = {
+	allowDownVote: true,
 	showVotedPreview: false,
-	allowDown: false,
 	rating: 34567,
-	dislikes: 3456,
-	isLiked: false,
-	isDisliked: false,
+	typeOfVote: null,
+
 	usersList: [
 		{
 			avatar: 'https://api.lorem.space/image/face?w=280&h=280',

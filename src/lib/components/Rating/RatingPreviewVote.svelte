@@ -1,113 +1,110 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { HandThumbDown, HandThumbUp } from '@steeze-ui/heroicons';
-	export let allowDown: boolean, rating: number, dislikes: number, showVotedPreview: boolean, isLiked: boolean, isDisliked: boolean, usersList: any;
+	import { HandThumbDown, HandThumbUp, Heart } from '@steeze-ui/heroicons';
+	export let allowDownVote: boolean,
+		rating: number,
+		showVotedPreview: boolean,
+		typeOfVote: boolean | null,
+		usersList: any;
 
 	let isModalOpen = false;
+	let type = typeOfVote;
 
-	const onLike = () => {
-		if (showVotedPreview && isLiked) {
+	const onVote = (value) => {
+		if (value === 'like' && type === 'like') {
 			return;
 		}
-
-		if (showVotedPreview) {
+		if (value === 'dislike' && type === 'dislike') {
+			return;
+		}
+		if ((value === 'like' && !type) || (value === 'like' && type === 'dislike')) {
 			rating++;
-			isLiked = true;
+			type = 'like';
 			return;
 		}
 
-		if (isLiked) {
+		if ((value === 'dislike' && !type) || (value === 'dislike' && type === 'like')) {
 			rating--;
-			isLiked = false;
+			type = 'dislike';
 			return;
 		}
-		if (isDisliked) {
-			dislikes--;
-			isDisliked = false;
-		}
-
-		rating++;
-		isLiked = true;
 	};
 
-	const onDislike = () => {
-		if (isDisliked) {
-			dislikes--;
-			isDisliked = false;
+	const onSwitch = () => {
+		if (!type) {
+			onVote('like');
 			return;
 		}
-		if (isLiked) {
-			rating--;
-			isLiked = false;
+		if (type === 'like') {
+			onVote('dislike');
+			return;
 		}
-		dislikes++;
-		isDisliked = true;
+
+		if (type === 'dislike') {
+			onVote('like');
+			return;
+		}
 	};
 </script>
 
 <div
-	class="inline-flex items-center gap-3 dark:text-zinc-100 cursor-pointer 
+	class="inline-flex items-center gap-2 dark:text-zinc-100 cursor-pointer 
     {showVotedPreview
 		? ''
-		: 'dark:border dark:border-zinc-500 dark:bg-zinc-900 px-3 py-1 rounded-full'}"
+		: 'dark:border dark:border-zinc-500 dark:bg-zinc-900 rounded-full dark:px-2  dark:py-1'}"
 >
-	{#if showVotedPreview}
-		
-			{#if !isLiked}
-				<span on:click={onLike}>
-					<Icon src={HandThumbUp} class="w-6 h-6 hover:text-green-600 active:animate-ping" />
-				</span>
+	{#if allowDownVote}
+		<div class="flex items-center gap-2">
+			<span on:click={() => onVote('like')}>
+				<Icon
+					src={HandThumbUp}
+					class=" w-7 h-7 active:text-green-600 hover:scale-125 {type === 'like'
+						? 'text-green-600'
+						: ''}"
+				/></span
+			>
+			{#if rating}
+				<span>{rating.toLocaleString('ru-RU')}</span>
 			{/if}
-
-			{#if rating > 0}
-				<span
-					on:click={() => (isModalOpen = true)}
-					class="hover:underline {isLiked ? 'text-green-600' : ''}">
-					{rating.toLocaleString('ru-RU')}
-				</span>
-
-        <div class="inline-flex -space-x-2 ">
-            {#each usersList as user}
-			<a href={user.userPage}
-				><img
-					class="inline-block h-10 w-10 rounded-full border border-zinc-100"
-					src={user.avatar}
-					alt='Avatar {user.name}'
-				/>
-            </a>
-            {/each}
-          
-		</div> 
-        {/if}
+		</div>
+		<div class="flex items-center gap-2">
+			<span on:click={() => onVote('dislike')}>
+				<Icon
+					src={HandThumbDown}
+					class="w-7 h-7  hover:scale-105 {type === 'dislike' ? 'text-red-600' : ''}  "
+				/></span
+			>
+		</div>
+		
 	{:else}
-
-<div class="flex items-center gap-2"> 
-		<span on:click={onLike}>
+		<span on:click={() => onSwitch()}>
 			<Icon
-				src={HandThumbUp}
-				class=" w-6 h-6 active:text-green-600 hover:scale-125 {isLiked ? 'text-green-600' : ''}"
-			/></span
-		>
-		{#if rating > 0}
-			<span>{rating.toLocaleString('ru-RU')}</span>
+				src={Heart}
+				class="w-7 h-7 hover:text-red-600 {type === 'like'
+					? 'fill-red-600 stroke-red-600'
+					: 'active:animate-ping '}"
+			/>
+		</span>
+		{#if rating}
+			<span on:click={() => (isModalOpen = true)} class="hover:underline ">
+				{rating.toLocaleString('ru-RU')}
+			</span>
 		{/if}
-	</div>
 
-	{#if allowDown}
-    <div class="flex items-center gap-2"> 
-		<span on:click={onDislike}>
-			<Icon
-				src={HandThumbDown}
-				class="w-6 h-6  hover:scale-105 active:text-red-600 {isDisliked ? 'text-red-600' : ''}"
-			/></span
-		>
-		{#if dislikes > 0}
-			<span>{dislikes.toLocaleString('ru-RU')}</span>
+		{#if showVotedPreview && rating}
+			<div class="flex -space-x-2 ">
+				{#each usersList as user}
+					<a href={user.userPage}
+						><img
+							class="inline-block rounded-full border border-zinc-100 h-8 w-8"
+							src={user.avatar}
+							alt="Avatar {user.name}"
+						/>
+					</a>
+				{/each}
+			</div>
 		{/if}
-    </div>
 	{/if}
-    {/if}
-
 </div>
 
 {#if isModalOpen}
