@@ -14,7 +14,8 @@ const Template: StoryFn<typeof TagInput> = (args) => ({
 		label: { control: 'text' },
 		name: { control: 'text' },
 		errorDescription: { control: 'text' },
-		placeholder: { control: 'text' }
+		placeholder: { control: 'text' },
+	
 	}
 });
 
@@ -22,7 +23,17 @@ export const Tag = Template.bind({});
 Tag.args = {
 	label: 'Add tags',
 	name: 'tags',
+	value: '',
 	placeholder: 'Enter some tags',
 	tags: ['tag1', 'tag2'],
-	errorDescription: 'Tag should be more than 3 characters'
+	error: false,
+	// options: ['tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6', 'tag7', 'tag8', 'tag9', 'tag10'],
+	options: function () {
+		return new Promise((resolve) => {
+			setTimeout(() => {
+				resolve(['tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6', 'tag7', 'tag8', 'tag9', 'tag10']);
+			}, 1000);
+		});
+	}
+
 };
