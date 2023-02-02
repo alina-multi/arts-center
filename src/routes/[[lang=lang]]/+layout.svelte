@@ -2,11 +2,7 @@
 	import "$lib/css/app.css";
 	import { localePath, switchLocalePath, locale} from "$lib/translations";
 	import { page } from '$app/stores';
-	import { afterUpdate } from 'svelte';
 	import { t } from '$lib/translations';
-	afterUpdate(() => {
-		console.log('the component just updated', locale.get());
-	});
 </script>
 
 <div class="app">
