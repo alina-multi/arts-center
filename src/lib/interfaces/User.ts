@@ -1,7 +1,7 @@
 import type {Image} from "$lib/interfaces/Image";
 
 export interface UserPreview {
-    id: number;
+    id: bigint;
     username: string;
     avatar: Image;
     name: string;
