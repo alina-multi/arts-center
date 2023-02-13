@@ -8,7 +8,7 @@ export interface WorkPreview {
     hosts: number;
     price: number;
     titles: WorkTitle[];
-    image: Image;
+    image: Image | null;
     owners: UserPreview[];
 }
 

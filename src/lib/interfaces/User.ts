@@ -3,7 +3,7 @@ import type {Image} from "$lib/interfaces/Image";
 export interface UserPreview {
     id: bigint;
     username: string;
-    avatar: Image;
+    avatar: Image | null;
     name: string;
 }
 

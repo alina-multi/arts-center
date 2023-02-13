@@ -1,9 +1,13 @@
-import type {ownables, users} from "@prisma/client";
+import type {users, images} from "@prisma/client";
 import type {User} from "$lib/interfaces/User";
 import {imageMap} from "./image";
 
-
-export function ownersMap(owners: {user: users}[]): User[] {
+interface Owner {
+    user: users & {
+        avatar: images | null;
+    }
+}
+export function ownersMap(owners: Owner[]): User[] {
     return owners.map(({user}) => {
         return {
             id: user.id,
