@@ -149,6 +149,7 @@ model images {
   w2400       Boolean   @default(false)
   extension   String    @default("jpg") @db.Char(4)
   works       works[]
+  users       users[]
 
   @@index([folder], map: "images_folder_index")
 }
@@ -171,6 +172,8 @@ model ownables {
   user_id      BigInt
   ownable_id   BigInt
   ownable_type String
+  work         works? @relation(fields: [ownable_id], references: [id])
+  user         users  @relation(fields: [user_id], references: [id])
 
   @@index([ownable_id, ownable_type], map: "ownables_ownable_id_ownable_type_index")
   @@index([user_id], map: "ownables_user_id_index")
@@ -346,22 +349,24 @@ model user_ratings {
 }
 
 model users {
-  id                BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  id                BigInt     @id @default(autoincrement()) @db.UnsignedBigInt
   name              String
-  email             String?   @unique(map: "users_email_unique")
-  email_verified_at DateTime? @db.Timestamp(0)
+  email             String?    @unique(map: "users_email_unique")
+  email_verified_at DateTime?  @db.Timestamp(0)
   password          String
-  username          String    @unique(map: "users_username_unique")
+  username          String     @unique(map: "users_username_unique")
   old_id            BigInt?
-  remember_token    String?   @db.VarChar(100)
-  created_at        DateTime? @db.Timestamp(0)
-  updated_at        DateTime? @db.Timestamp(0)
+  remember_token    String?    @db.VarChar(100)
+  created_at        DateTime?  @db.Timestamp(0)
+  updated_at        DateTime?  @db.Timestamp(0)
   stripe_id         String?
   pm_type           String?
-  pm_last_four      String?   @db.VarChar(4)
-  trial_ends_at     DateTime? @db.Timestamp(0)
+  pm_last_four      String?    @db.VarChar(4)
+  trial_ends_at     DateTime?  @db.Timestamp(0)
   image_id          BigInt?
-  country           String?   @db.Char(2)
+  country           String?    @db.Char(2)
+  ownables          ownables[]
+  avatar            images?    @relation(fields: [image_id], references: [id])
 
   @@index([country], map: "users_country_index")
   @@index([stripe_id], map: "users_stripe_id_index")
@@ -430,6 +435,7 @@ model works {
   show_uk      Boolean       @default(false)
   deleted_at   DateTime?     @db.Timestamp(0)
   titles       work_titles[]
+  owners       ownables[]
   image        images?       @relation(fields: [image_id], references: [id])
 
   @@index([show_en], map: "works_show_en_index")

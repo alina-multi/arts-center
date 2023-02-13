@@ -1,4 +1,5 @@
 import {PrismaClient} from '@prisma/client'
+import type {Prisma} from "@prisma/client";
 
 const prisma = new PrismaClient({
     log: [
@@ -13,7 +14,6 @@ prisma.$on('query', (e) => {
     console.log('Params: ' + e.params)
     console.log('Duration: ' + e.duration + 'ms')
 })
-import type {Prisma} from "@prisma/client";
 
 const PAGE_SIZE = 20;
 
@@ -41,6 +41,21 @@ export function query(where: Prisma.worksWhereInput = {}, orderBy: Prisma.worksO
                     w300: true,
                     w600: true
                 }
+            },
+            owners: {
+                select: {
+                    user: {
+                        select: {
+                            id: true,
+                            username: true,
+                            name: true,
+                            avatar: true
+                        }
+                    }
+                },
+                where: {
+                    ownable_type: 'work'
+                }
             }
         },
         where: {
@@ -61,3 +76,5 @@ export function indexQuery(page = 0) {
         published_at: 'desc'
     }, page);
 }
+
+export type Gallery = Prisma.PromiseReturnType<typeof query>
