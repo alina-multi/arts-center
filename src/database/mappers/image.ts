@@ -13,7 +13,7 @@ export function imageMap(image: images | null): Image | null {
     let srcset = []
     for (let width of [300, 600, 1200, 2400]) {
         if (image[`w${width}`]) {
-            for (let extention of ['jpeg', 'webp']) {
+            for (let extention of ['jpg', 'webp']) {
                 srcset.push(`${getUrl(image, width, extention)} ${width}w`)
             }
         }
