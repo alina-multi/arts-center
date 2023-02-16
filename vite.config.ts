@@ -8,6 +8,10 @@ const config: UserConfig = {
         port: 3000,
         strictPort: false,
     },
+    preview: {
+        port: 3000,
+        strictPort: false,
+    },
     test: {
         include: ['src/**/*.{test,spec}.{js,ts}']
     },
