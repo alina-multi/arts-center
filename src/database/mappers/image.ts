@@ -25,7 +25,7 @@ export function imageMap(image: images | null): Image | null {
     }
 }
 
-function getUrl(image: images, width: number = 0, extention: 'jpeg'|'webp' = 'jpeg'): string {
+function getUrl(image: images, width: number = 0, extention: 'jpg'|'webp' = 'jpg'): string {
     let url =`${PUBLIC_IMAGE_HOST}/${image.folder}/${image.name}`
     if (width) {
         url += `-w${width}`
