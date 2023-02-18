@@ -40,6 +40,7 @@ export function query(
 			},
 			image: {
 				select: {
+					id: true,
 					name: true,
 					folder: true,
 					w300: true,

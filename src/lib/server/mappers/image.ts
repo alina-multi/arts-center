@@ -4,10 +4,10 @@ import { PUBLIC_IMAGE_HOST } from '$env/static/public';
 
 export function imageMap(image: images | null): Image | null {
 	if (image === null) return null;
-	if (PUBLIC_IMAGE_HOST === undefined) {
+	if (!PUBLIC_IMAGE_HOST) {
 		return {
-			src: 'https://picsum.photos/300/225',
-			srcset: 'https://picsum.photos/300/225 300w, https://picsum.photos/600/450 600w'
+			src: `https://picsum.photos/id/${image.id}/300/225`,
+			srcset: 'https://picsum.photos/id/${image.id}/300/225 300w, https://picsum.photos/id/${image.id}/600/450 600w'
 		};
 	}
 	const srcset = [];
