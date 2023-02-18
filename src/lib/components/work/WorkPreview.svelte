@@ -1,7 +1,7 @@
 <script lang="ts">
-	import WorkItem from '@/WorkItem.svelte';
-	import UserPreviewInline from '@/./UserPreview/UserPreviewInline.svelte';
-	import RatingPreview from '@/./RatingPreview/RatingPreview.svelte';
+	import WorkItem from './WorkItem.svelte';
+	import UserPreviewInline from '$lib/components/user/UserPreviewInline.svelte';
+	import RatingPreview from '$lib/components/rating/RatingPreview.svelte';
 	export let works;
 </script>
 

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import UserPreview from '@/UserPreview/UserPreview.svelte';
-	import UserPreviewPremium from '@/UserPreview/UserPreviewPremium.svelte';
+	import UserPreview from '$lib/components/user/UserPreview.svelte';
+	import UserPreviewPremium from '$lib/components/user/UserPreviewPremium.svelte';
 
 	export let users: Array<object>, tags, lastWorks;
 </script>
