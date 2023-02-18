@@ -10,7 +10,6 @@
 	export let open: boolean;
 </script>
 
-
 <Transition show={open}>
 	<Dialog {open} on:close={() => (open = false)} class="relative z-10">
 		<TransitionChild

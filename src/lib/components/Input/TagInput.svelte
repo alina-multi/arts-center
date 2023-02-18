@@ -9,7 +9,7 @@
 		tags: Array<string>,
 		placeholder: string,
 		error: boolean,
-		options: Array<string>|Function;
+		options: Array<string> | Function;
 
 	// Generate a unique ID for the fields
 	const id = newUniqueId();
@@ -48,15 +48,16 @@
 
 		value = e.target.value.trim();
 
-		if(options instanceof Function) {
+		if (options instanceof Function) {
 			options().then((options) => {
-				visibleOptions = options.filter((option) => option.toLowerCase().includes(value.toLowerCase()));
+				visibleOptions = options.filter((option) =>
+					option.toLowerCase().includes(value.toLowerCase())
+				);
 			});
 		} else {
 			searchOptions(value).then((options) => {
 				visibleOptions = options;
 			});
-		 
 		}
 	};
 

@@ -4,10 +4,7 @@ import type { Meta, StoryFn } from '@storybook/svelte';
 export default {
 	title: 'UserPreview/UserPreviewPremium',
 	component: UserPreviewPremium,
-	argTypes: {
-		
-	
-	}
+	argTypes: {}
 } satisfies Meta<UserPreviewPremium>;
 
 const Template: StoryFn<typeof UserPreviewPremium> = (args) => ({
@@ -17,7 +14,7 @@ const Template: StoryFn<typeof UserPreviewPremium> = (args) => ({
 
 // Todo: figure out why ts complains here
 export const UserPremium = Template.bind({});
-UserPremium.args =  {
+UserPremium.args = {
 	id: 6455,
 	name: 'Атаманський  Святослав',
 	username: 'Gabriolis',
@@ -64,8 +61,6 @@ UserPremium.args =  {
 		{ rating: 150, name: 'Blala', url: '/', id: 2 },
 		{ rating: 3000, name: 'Lorem', url: '/', id: 3 },
 		{ rating: 150, name: 'Blala', url: '/', id: 4 },
-        { rating: 150, name: 'Blala', url: '/', id: 5 },
+		{ rating: 150, name: 'Blala', url: '/', id: 5 }
 	]
-
-
 };

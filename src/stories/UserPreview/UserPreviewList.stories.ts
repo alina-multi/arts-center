@@ -15,7 +15,6 @@ const Template: StoryFn<typeof UserPreviewList> = (args) => ({
 // Todo: figure out why ts complains here
 export const List = Template.bind({});
 List.args = {
-
 	users: [
 		{
 			id: 6455,
@@ -150,6 +149,6 @@ List.args = {
 		{ rating: 150, name: 'Blala', url: '/', id: 2 },
 		{ rating: 3000, name: 'Lorem', url: '/', id: 3 },
 		{ rating: 150, name: 'Blala', url: '/', id: 4 },
-        { rating: 150, name: 'Blala', url: '/', id: 5 },
+		{ rating: 150, name: 'Blala', url: '/', id: 5 }
 	]
 };

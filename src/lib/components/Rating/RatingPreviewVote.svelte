@@ -75,7 +75,6 @@
 				/></span
 			>
 		</div>
-		
 	{:else}
 		<span on:click={() => onSwitch()}>
 			<Icon

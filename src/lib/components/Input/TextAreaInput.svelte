@@ -25,7 +25,7 @@
 			{id}
 			{placeholder}
 			{name}
-			bind:value={value}
+			bind:value
 			rows="4"
 			class="block w-full rounded-md border-zinc-300 shadow-sm mt-1 {error
 				? 'border-red-300 focus:border-red-300 focus:ring-red-200'

@@ -3,8 +3,12 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Eye, EyeSlash } from '@steeze-ui/heroicons';
 
-
-	export let label:string, description:string, placeholder:string, value:string, error:string, name: string;
+	export let label: string,
+		description: string,
+		placeholder: string,
+		value: string,
+		error: string,
+		name: string;
 	let type = 'password';
 
 	// Generate a unique ID for the fields
@@ -42,13 +46,12 @@
 				class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 cursor-pointer"
 				on:click={() => (show_password = !show_password)}
 			>
-		
 				{#if show_password}
 					<Icon src={Eye} class="h-6 text-gray-700" />
 				{:else}
 					<Icon src={EyeSlash} class="h-6 text-gray-700" />
 				{/if}
-				</a>
+			</a>
 		</div>
 		{#if error}
 			<p id={errorId} class="mt-2 text-sm text-red-600">

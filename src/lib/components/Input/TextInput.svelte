@@ -20,7 +20,7 @@
 			<label for={id} class="block text-sm font-medium text-zinc-700 mb-1"> {label}</label>
 		{/if}
 		<input
-			bind:value={value}
+			bind:value
 			type="text"
 			{name}
 			{id}

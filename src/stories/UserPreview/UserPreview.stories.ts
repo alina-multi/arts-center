@@ -61,8 +61,6 @@ UserSimple.args = {
 		{ rating: 150, name: 'Blala', url: '/', id: 2 },
 		{ rating: 3000, name: 'Lorem', url: '/', id: 3 },
 		{ rating: 150, name: 'Blala', url: '/', id: 4 },
-        { rating: 150, name: 'Blala', url: '/', id: 5 },
+		{ rating: 150, name: 'Blala', url: '/', id: 5 }
 	]
-
-
 };

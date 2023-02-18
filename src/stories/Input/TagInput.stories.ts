@@ -14,8 +14,7 @@ const Template: StoryFn<typeof TagInput> = (args) => ({
 		label: { control: 'text' },
 		name: { control: 'text' },
 		errorDescription: { control: 'text' },
-		placeholder: { control: 'text' },
-	
+		placeholder: { control: 'text' }
 	}
 });
 
@@ -35,5 +34,4 @@ Tag.args = {
 			}, 1000);
 		});
 	}
-
 };

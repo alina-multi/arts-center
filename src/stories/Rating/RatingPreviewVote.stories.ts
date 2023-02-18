@@ -8,8 +8,7 @@ export default {
 		allowDownVote: { control: 'boolean' },
 		showVotedPreview: { control: 'boolean' },
 		typeOfVote: { control: 'boolean' },
-		rating: { control: 'text' },
-
+		rating: { control: 'text' }
 	}
 } satisfies Meta<RatingPreviewVote>;
 
@@ -31,19 +30,19 @@ VoteButtons.args = {
 			avatar: 'https://api.lorem.space/image/face?w=280&h=280',
 			userPage: '/',
 			name: 'user1',
-			userId: 1,
+			userId: 1
 		},
 		{
 			avatar: 'https://api.lorem.space/image/movie?w=280&h=280',
 			userPage: '/',
 			name: 'user1',
-			userId: 1,
+			userId: 1
 		},
 		{
 			avatar: 'https://api.lorem.space/image/fashion?w=280&h=280',
 			userPage: '/',
 			name: 'user1',
-			userId: 1,
+			userId: 1
 		}
 	]
 };

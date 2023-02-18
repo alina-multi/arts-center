@@ -4,9 +4,7 @@ import type { Meta, StoryFn } from '@storybook/svelte';
 export default {
 	title: 'Rating/RatingPreview',
 	component: RatingPreview,
-	argTypes: {
-	
-	}
+	argTypes: {}
 } satisfies Meta<RatingPreview>;
 
 const Template: StoryFn<typeof RatingPreview> = (args) => ({
@@ -18,6 +16,5 @@ const Template: StoryFn<typeof RatingPreview> = (args) => ({
 export const Primary = Template.bind({});
 Primary.args = {
 	rating: 45678,
-	comments: 456,
-	
+	comments: 456
 };

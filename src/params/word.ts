@@ -1,7 +1,5 @@
-import type {ParamMatcher} from "@sveltejs/kit";
+import type { ParamMatcher } from '@sveltejs/kit';
 
 export const match = ((param) => {
-    return /^[\wабвгґдеєжзиіїйклмнопрстуфхцчшщьюя]+$/ui.test(param);
+	return /^[\wабвгґдеєжзиіїйклмнопрстуфхцчшщьюя]+$/iu.test(param);
 }) satisfies ParamMatcher;
-
-
