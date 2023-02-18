@@ -1,6 +1,6 @@
 import type { WorkPreview } from '$lib/interfaces/Work';
 import { imageMap } from './image';
-import type { Gallery } from '../../database/repositories/gallery';
+import type { Gallery } from '$server/repositories/gallery';
 import { ownersMap } from './owners';
 
 export function worksPreviewMap(works: Gallery): WorkPreview[] {

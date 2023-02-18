@@ -7,4 +7,4 @@ export interface UserPreview {
 	name: string;
 }
 
-export interface User extends UserPreview {}
+export type User = UserPreview

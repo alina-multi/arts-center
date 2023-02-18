@@ -10,10 +10,10 @@ export function imageMap(image: images | null): Image | null {
 			srcset: 'https://picsum.photos/300/225 300w, https://picsum.photos/600/450 600w'
 		};
 	}
-	let srcset = [];
-	for (let width of [300, 600, 1200, 2400]) {
+	const srcset = [];
+	for (const width of [300, 600, 1200, 2400]) {
 		if (image[`w${width}`]) {
-			for (let extention of ['jpg', 'webp']) {
+			for (const extention of ['jpg', 'webp']) {
 				srcset.push(`${getUrl(image, width, extention)} ${width}w`);
 			}
 		}
@@ -25,7 +25,7 @@ export function imageMap(image: images | null): Image | null {
 	};
 }
 
-function getUrl(image: images, width: number = 0, extention: 'jpg' | 'webp' = 'jpg'): string {
+function getUrl(image: images, width = 0, extention: 'jpg' | 'webp' = 'jpg'): string {
 	let url = `${PUBLIC_IMAGE_HOST}/${image.folder}/${image.name}`;
 	if (width) {
 		url += `-w${width}`;

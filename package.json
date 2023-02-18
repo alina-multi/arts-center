@@ -71,6 +71,6 @@
 		"sveltekit-i18n": "^2.2.2"
 	},
 	"prisma": {
-		"schema": "src/database/schema.prisma"
+		"schema": "src/lib/server/database/schema.prisma"
 	}
 }

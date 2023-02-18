@@ -12,7 +12,7 @@ export interface WorkPreview {
 	owners: UserPreview[];
 }
 
-export interface Work extends WorkPreview {}
+export type Work = WorkPreview
 
 export interface WorkTitle {
 	title: string;
