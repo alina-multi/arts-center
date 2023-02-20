@@ -7,7 +7,7 @@
 </script>
 <TopNav>
     <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-        <TopNavLink href="{localePath('/')}">{$t('global.menu.gallery')}</TopNavLink>
+        <TopNavLink href={localePath('/')}>{$t('global.menu.gallery')}</TopNavLink>
         <TopNavLink href={localePath('/users')}>{$t('global.menu.users')}</TopNavLink>
     </div>
     <div class="flex flex-1 justify-end gap-2">
