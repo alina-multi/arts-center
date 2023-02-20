@@ -22,8 +22,8 @@ class WorkTitleFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->name,
-            'language' => 'en'
+            'title' => $this->faker->realText(30),
+            'language' => 'de'
         ];
     }
 }

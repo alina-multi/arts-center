@@ -24,7 +24,7 @@ class ImageFactory extends Factory
         return [
             'name' => $this->faker->name.'.jpg',
             'user_id' => 1,
-            'folder' => 0
+            'folder' => $this->faker->word
         ];
     }
 }
