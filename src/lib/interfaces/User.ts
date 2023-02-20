@@ -7,4 +7,16 @@ export interface UserPreview {
 	name: string;
 }
 
+export interface UserPage extends UserPreview {
+	country: string;
+	ratings: UserRating[];
+}
+
+interface UserRating {
+	rating: number;
+	ratable_type: string;
+	ratable_id: bigint;
+	language: string;
+}
+
 export type User = UserPreview
