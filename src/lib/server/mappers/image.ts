@@ -6,8 +6,8 @@ export function imageMap(image: images | null): Image | null {
 	if (image === null) return null;
 	if (!PUBLIC_IMAGE_HOST) {
 		return {
-			src: `https://picsum.photos/id/${image.id}/300/225`,
-			srcset: 'https://picsum.photos/id/${image.id}/300/225 300w, https://picsum.photos/id/${image.id}/600/450 600w'
+			src: `https://picsum.photos/id/${image.id}/600/450`,
+			srcset: `https://picsum.photos/id/${image.id}/1200/900 1200w`
 		};
 	}
 	const srcset = [];

@@ -12,7 +12,7 @@
     <div class="group/item relative">
         <a href="/work/{work.id}" class="grid gap-2">
             {#if work.image}
-                <img class="rounded-md" src={work.image.src} alt="User"/>
+                <img class="rounded-md" src={work.image.src} srcset={work.image.srcset}  alt="User"/>
             {/if}
             <div class=" inline-flex items-start justify-between font-medium text-gray-900 dark:text-zinc-100">
                 <h3 class=" text-lg lg:text-sm">{title}</h3>

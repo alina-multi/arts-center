@@ -7,7 +7,7 @@
 
 <div class="app { $darkTheme ? 'dark bg-black': 'bg-white'}">
     <MainNav/>
-    <main class="mt-3 p-3">
+    <main class="mt-3 p-3 container mx-auto">
         <slot/>
     </main>
 </div>
