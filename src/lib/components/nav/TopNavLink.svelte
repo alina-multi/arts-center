@@ -4,6 +4,8 @@
     export let href: string;
     export let exact: boolean = false;
     export let active: boolean|undefined;
+    export let reload: boolean = false;
+    export let preload: string = 'hover';
 
     function isActive(exact, pathname, active): boolean {
         if (active !== undefined) return active;
@@ -18,6 +20,8 @@
         { computedActive ? 'border-amber-500 text-gray-900'
         : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
         }"
+        data-sveltekit-reload="{reload ? '' : 'off'}"
+        data-sveltekit-preload-data="{preload}"
 >
     <slot/>
 </a>

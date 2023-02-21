@@ -6,6 +6,6 @@
     export let lang:string;
     $: active = locale.get() == lang;
 </script>
-<TopNavLink href={switchLocalePath(lang, $page.url.pathname)} data-sveltekit-preload-data="off" data-sveltekit-reload {active}>
+<TopNavLink href={switchLocalePath(lang, $page.url.pathname)} preload="off" reload {active}>
     {$t(`lang.${lang}`)}
 </TopNavLink>
