@@ -12,9 +12,23 @@ export interface WorkPreview {
 	owners: UserPreview[];
 }
 
-export type Work = WorkPreview
+export interface WorkPage extends WorkPreview {
+	blocks: WorkBlock[];
+	year?: number;
+	width?: number;
+	height?: number;
+	length?: number;
+	image?: Image;
+}
 
 export interface WorkTitle {
 	title: string;
 	language: string;
+}
+
+export interface WorkBlock {
+	id: bigint;
+	language: string;
+	type: string;
+	data: object;
 }

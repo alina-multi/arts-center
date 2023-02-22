@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+  import WorkPage from '$lib/components/work/WorkPage.svelte';
 
 	export let data: PageData;
 </script>
 
-work page id: {data.work.id}
+<WorkPage work={data.work} />
