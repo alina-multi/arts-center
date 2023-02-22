@@ -5,9 +5,11 @@ import { PUBLIC_IMAGE_HOST } from '$env/static/public';
 export function imageMap(image: images | null): Image | null {
 	if (image === null) return null;
 	if (!PUBLIC_IMAGE_HOST) {
+		const heights = [450, 600, 1200];
+		const height = heights[Math.floor(Math.random()*heights.length)];
 		return {
-			src: `https://picsum.photos/id/${image.id}/600/450`,
-			srcset: `https://picsum.photos/id/${image.id}/1200/900 1200w`
+			src: `https://picsum.photos/id/${image.id}/600/${height}`,
+			srcset: ``
 		};
 	}
 	const srcset = [];
