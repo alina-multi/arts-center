@@ -1,6 +1,7 @@
 import type { WorkPage } from '$lib/interfaces/Work';
 import type { works, work_blocks, work_details, work_titles, users } from '@prisma/client';
 import type { WorkBlock } from '$lib/interfaces/Work';
+import { imagesMap } from './image';
 import { ownersMap } from './owners';
 
 interface worksWithRelations extends works {
@@ -24,7 +25,8 @@ function blocksMap(blocks: work_blocks[]): WorkBlock[] {
 			id: row.id,
 			language: row.language,
 			type: row.type,
-			data: JSON.parse(row.data)
+			data: JSON.parse(row.data),
+			images: imagesMap(row.images)
 		};
 	});
 }

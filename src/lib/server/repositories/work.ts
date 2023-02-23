@@ -9,6 +9,11 @@ const prisma = new PrismaClient({
 		}
 	]
 });
+prisma.$on("query", (e) => {
+  console.log("Query: " + e.query);
+  console.log("Params: " + e.params);
+  console.log("Duration: " + e.duration + "ms");
+});
 
 const PAGE_SIZE = 20;
 
@@ -56,7 +61,23 @@ export function get(id: bigint) {
 					language: true,
 					type: true,
 					order: true,
-					data: true
+					data: true,
+					images: {
+						select: {
+							image: {
+								select: {
+									id: true,
+									name: true,
+									folder: true,
+									w1200: true,
+									w2400: true
+								}
+							}
+						},
+						where: {
+							imageable_type: 'App\\WorkBlock'
+						}
+					}
 				},
 				orderBy: {
 					order: 'asc'

@@ -2,6 +2,9 @@ import type { Image } from '$lib/interfaces/Image';
 import type { images } from '@prisma/client';
 import { PUBLIC_IMAGE_HOST } from '$env/static/public';
 
+export function imagesMap(images: images[]): (Image | null)[] {
+	return images.map((image) => imageMap(image.image));
+}
 export function imageMap(image: images | null): Image | null {
 	if (image === null) return null;
 	if (!PUBLIC_IMAGE_HOST) {
