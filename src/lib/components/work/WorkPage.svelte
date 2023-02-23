@@ -1,8 +1,10 @@
 <script lang="ts">
 	import type { WorkPage } from '../../interfaces/Work';
-
+	BigInt.prototype.toJSON = function () {
+		return this.toString();
+	};
 	export let work: WorkPage;
 </script>
 
-Work id: {work.id}
-Work title: {work.titles[0].title}
+<h1>Work data for test:</h1>
+{JSON.stringify(work)}

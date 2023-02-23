@@ -392,6 +392,7 @@ model work_blocks {
   data       String    @db.LongText
   created_at DateTime? @db.Timestamp(0)
   updated_at DateTime? @db.Timestamp(0)
+  work       works?    @relation(fields: [work_id], references: [id])
 
   @@index([work_id, language], map: "work_blocks_work_id_language_index")
 }
@@ -405,6 +406,7 @@ model work_details {
   length     Int?
   created_at DateTime? @db.Timestamp(0)
   updated_at DateTime? @db.Timestamp(0)
+  work       works     @relation(fields: [work_id], references: [id])
 }
 
 model work_titles {
@@ -437,6 +439,8 @@ model works {
   titles       work_titles[]
   owners       ownables[]
   image        images?       @relation(fields: [image_id], references: [id])
+  details      work_details?
+  blocks       work_blocks[]
 
   @@index([show_en], map: "works_show_en_index")
   @@index([show_ru], map: "works_show_ru_index")
