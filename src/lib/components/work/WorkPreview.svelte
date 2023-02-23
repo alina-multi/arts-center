@@ -2,25 +2,24 @@
 	import RatingPreview from '$lib/components/rating/RatingPreview.svelte';
 	import UserPreviewInline from '$lib/components/user/UserPreviewInline.svelte';
 	import type { Work } from '../../interfaces/Work';
-    import image_not_found from '$lib/image_not_found.svg';
-    import { browser } from "$app/environment";
+	import image_not_found from '$lib/image_not_found.svg';
+	import { browser } from '$app/environment';
 	export let work: Work;
 	let title: string;
 	$: title = work.titles[0].title; // For now, later use language
-  
-    export const handleImgError = (event) => {
-        console.log( event);
-     if (browser) {
-        event.target.onerror = null;
-        event.target.srcset = image_not_found;
-        event.target.src = image_not_found;
-        event.target.style = 'object-fit: contain; object-position: center;';
-    }
-}
 
+	export const handleImgError = (event) => {
+		console.log(event);
+		if (browser) {
+			event.target.onerror = null;
+			event.target.srcset = image_not_found;
+			event.target.src = image_not_found;
+			event.target.style = 'object-fit: contain; object-position: center;';
+		}
+	};
 </script>
 
-<!-- onerror="this.onerror=null;this.srcset='{image_not_found}'; this.src='{image_not_found}'; this.style='object-fit: contain; object-position: center;';" //////    works, but sometimes only on the first load of the page, and sometimes not at all --> 
+<!-- onerror="this.onerror=null;this.srcset='{image_not_found}'; this.src='{image_not_found}'; this.style='object-fit: contain; object-position: center;';" //////    works, but sometimes only on the first load of the page, and sometimes not at all -->
 
 <li
 	class="flex flex-col gap-2 rounded-md overflow-hidden lg:w-80 xl:w-[19rem]  md:w-[23rem] {work.subscribed
@@ -36,9 +35,7 @@
 						src={work.image.src}
 						srcset={work.image.srcset}
 						alt="Work Name: {title}"
-                        on:error={(event) => handleImgError(event)}
-                      
-                        
+						on:error={(event) => handleImgError(event)}
 					/>
 				{/if}
 			</div>

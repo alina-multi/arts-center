@@ -6,7 +6,7 @@ export function imageMap(image: images | null): Image | null {
 	if (image === null) return null;
 	if (!PUBLIC_IMAGE_HOST) {
 		const heights = [450, 600, 1200];
-		const height = heights[Math.floor(Math.random()*heights.length)];
+		const height = heights[Math.floor(Math.random() * heights.length)];
 		return {
 			src: `https://picsum.photos/id/${image.id}/600/${height}`,
 			srcset: ``
