@@ -39,13 +39,15 @@ class WorkSeeder extends Seeder
                 'order' => 2,
                 'language' => 'uk',
                 'data' => [
-                    'text' => $faker->realText($maxNbChars = 200, $indexSize = 2)
+                    'ops' => [
+                        ["insert" => $faker->realText($maxNbChars = 200, $indexSize = 2)]
+                    ]
                 ]
             ])->create();
             // Then grid
             $gridBlock = WorkBlock::factory([
                 'work_id' => $work->id,
-                'type' => 'text',
+                'type' => 'grid',
                 'order' => 2,
                 'language' => 'uk',
                 'data' => [
