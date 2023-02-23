@@ -22,7 +22,10 @@ class WorkDetailsFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'year'=> $this->faker->year,
+            'width'=> $this->faker->numberBetween(10, 100),
+            'height'=> $this->faker->numberBetween(10, 100),
+            'length'=> $this->faker->numberBetween(10, 100),
         ];
     }
 }

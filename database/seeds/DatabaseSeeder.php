@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\GallerySeeder;
+use Database\Seeders\WorkSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,5 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(GallerySeeder::class);
+        $this->call(WorkSeeder::class);
     }
 }
