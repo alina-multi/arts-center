@@ -50,7 +50,7 @@ const config: Config = {
 export const defaultLocale = 'en';
 
 export function correctLocale(lang: string): boolean {
-	return Object.hasOwn(config.translations, lang) || false;
+	return ['uk', 'en'].includes(lang);
 }
 
 export function checkUrlLocale(event: RequestEvent): string {
