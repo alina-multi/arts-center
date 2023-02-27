@@ -2,7 +2,7 @@
 	import RatingPreview from '$lib/components/rating/RatingPreview.svelte';
 	import UserPreviewInline from '$lib/components/user/UserPreviewInline.svelte';
 	import type { Work } from '../../interfaces/Work';
-    import image_not_found from '$lib/image_not_found.svg';
+    import image_not_found from '$lib/images/image_not_found.svg';
     import { browser } from "$app/environment";
 	export let work: Work;
 	let title: string;
@@ -14,16 +14,15 @@
         event.target.onerror = null;
         event.target.srcset = image_not_found;
         event.target.src = image_not_found;
-        event.target.style = 'object-fit: contain; object-position: center;';
+        event.target.style = 'object-fit: contain; object-position: center; width: 100%; height: 100%; stroke: #ffffff; fill: black';
     }
 }
 
 </script>
 
 <!-- onerror="this.onerror=null;this.srcset='{image_not_found}'; this.src='{image_not_found}'; this.style='object-fit: contain; object-position: center;';" //////    works, but sometimes only on the first load of the page, and sometimes not at all --> 
-
 <li
-	class="flex flex-col gap-2 rounded-md overflow-hidden lg:w-80 xl:w-[19rem]  md:w-[23rem] {work.subscribed
+	class="flex flex-col gap-1 rounded-md overflow-hidden lg:w-80 md:w-[23rem] xl:w-[19rem] 2xl:w-[18rem] {work.subscribed
 		? ' '
 		: ''} "
 >
@@ -45,7 +44,7 @@
 			<div
 				class=" inline-flex items-start justify-between font-medium text-gray-900 dark:text-zinc-100"
 			>
-				<h3 class=" text-lg lg:text-sm">{title}</h3>
+				<h3 class=" text-md  ">{title}</h3>
 				{#if work.price}
 					<p class="ml-2 lg:text-sm bg-green-600 px-2 py-1 rounded-md text-white">
 						${work.price}
@@ -59,7 +58,7 @@
 		</div>
 	</div>
 
-	<div class="flex justify-between items-center text-base font-medium lg:text-sm mt-auto">
+	<div class="flex justify-between items-center text-base  mt-auto">
 		{#each work.owners as user}
 			<UserPreviewInline {user} />
 		{/each}

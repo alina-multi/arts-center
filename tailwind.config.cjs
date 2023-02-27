@@ -8,7 +8,13 @@ module.exports = {
 	],
 	mode: 'jit',
 	theme: {
-		extend: {}
+		extend: {},
+		fontFamily: {
+			sans: [
+				'Helvetica, sans-serif',
+			 
+			],
+		  },
 	},
 	plugins: [
 		require('@tailwindcss/forms'),
