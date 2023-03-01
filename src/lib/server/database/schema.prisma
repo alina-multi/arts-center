@@ -128,28 +128,31 @@ model follows {
 }
 
 model imageables {
-  id             BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  id             BigInt       @id @default(autoincrement()) @db.UnsignedBigInt
   image_id       BigInt
   imageable_id   BigInt
   imageable_type String
+  work_blocks    work_blocks? @relation(fields: [imageable_id], references: [id])
+  image          images       @relation(fields: [image_id], references: [id])
 }
 
 model images {
-  id          BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  id          BigInt       @id @default(autoincrement()) @db.UnsignedBigInt
   name        String
   user_id     BigInt
   work_id     BigInt?
   old_user_id BigInt?
-  created_at  DateTime? @db.Timestamp(0)
-  updated_at  DateTime? @db.Timestamp(0)
+  created_at  DateTime?    @db.Timestamp(0)
+  updated_at  DateTime?    @db.Timestamp(0)
   folder      String
-  w300        Boolean   @default(false)
-  w600        Boolean   @default(false)
-  w1200       Boolean   @default(false)
-  w2400       Boolean   @default(false)
-  extension   String    @default("jpg") @db.Char(4)
+  w300        Boolean      @default(false)
+  w600        Boolean      @default(false)
+  w1200       Boolean      @default(false)
+  w2400       Boolean      @default(false)
+  extension   String       @default("jpg") @db.Char(4)
   works       works[]
   users       users[]
+  imageables  imageables[]
 
   @@index([folder], map: "images_folder_index")
 }
@@ -384,14 +387,16 @@ model votes {
 }
 
 model work_blocks {
-  id         BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  id         BigInt       @id @default(autoincrement()) @db.UnsignedBigInt
   work_id    BigInt
-  language   String    @db.Char(2)
+  language   String       @db.Char(2)
   type       String
   order      Int
-  data       String    @db.LongText
-  created_at DateTime? @db.Timestamp(0)
-  updated_at DateTime? @db.Timestamp(0)
+  data       String       @db.LongText
+  created_at DateTime?    @db.Timestamp(0)
+  updated_at DateTime?    @db.Timestamp(0)
+  work       works?       @relation(fields: [work_id], references: [id])
+  images     imageables[]
 
   @@index([work_id, language], map: "work_blocks_work_id_language_index")
 }
@@ -405,6 +410,7 @@ model work_details {
   length     Int?
   created_at DateTime? @db.Timestamp(0)
   updated_at DateTime? @db.Timestamp(0)
+  work       works     @relation(fields: [work_id], references: [id])
 }
 
 model work_titles {
@@ -437,6 +443,8 @@ model works {
   titles       work_titles[]
   owners       ownables[]
   image        images?       @relation(fields: [image_id], references: [id])
+  details      work_details?
+  blocks       work_blocks[]
 
   @@index([show_en], map: "works_show_en_index")
   @@index([show_ru], map: "works_show_ru_index")

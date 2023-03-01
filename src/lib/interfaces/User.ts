@@ -19,4 +19,4 @@ interface UserRating {
 	language: string;
 }
 
-export type User = UserPreview
+export type User = UserPreview;

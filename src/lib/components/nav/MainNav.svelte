@@ -8,6 +8,7 @@
     import logo from '$lib/images/logo.svg';
    
 </script>
+
 <TopNav>
     <div class="hidden sm:flex sm:space-x-8 ">
         <a href={localePath('/')} class="text-amber-700 inline-flex items-center pt-1">

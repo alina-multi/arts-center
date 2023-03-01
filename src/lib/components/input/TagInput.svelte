@@ -3,13 +3,14 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { XMark } from '@steeze-ui/heroicons';
 
+	type MyFnType = () => Array<string>;
 	export let label: string,
 		name: string,
 		value: string,
 		tags: Array<string>,
 		placeholder: string,
 		error: boolean,
-		options: Array<string> | Function;
+		options: Array<string> | MyFnType;
 
 	// Generate a unique ID for the fields
 	const id = newUniqueId();

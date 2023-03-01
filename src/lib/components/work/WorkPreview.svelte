@@ -35,9 +35,7 @@
 						src={work.image.src}
 						srcset={work.image.srcset}
 						alt="Work Name: {title}"
-                        on:error={(event) => handleImgError(event)}
-                      
-                        
+						on:error={(event) => handleImgError(event)}
 					/>
 				{/if}
 			</div>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { UserCircle } from '@steeze-ui/heroicons';
-	import type {User} from "../../interfaces/User";
+	import type { User } from '../../interfaces/User';
 
 	export let user: User;
 </script>
