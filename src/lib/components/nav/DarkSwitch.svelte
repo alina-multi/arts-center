@@ -11,8 +11,8 @@
 	on:click={toggleDark}
 >
 	{#if $darkTheme}
-		<Icon src={Sun} theme="solid" class="text-amber-300 h-4 w-4" />
+		<Icon src={Sun} theme="solid" class="text-amber-300 h-6 w-6" />
 	{:else}
-		<Icon src={Moon} theme="solid" class="text-amber-800 h-4 w-4" />
+		<Icon src={Moon} theme="solid" class="text-amber-800 h-6 w-6" />
 	{/if}
 </div>

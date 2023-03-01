@@ -5,14 +5,16 @@
 	import TopNavLink from './TopNavLink.svelte';
 	import TopNavLangLink from './TopNavLangLink.svelte';
 	import DarkSwitch from './DarkSwitch.svelte';
+	import logo from '$lib/images/logo.svg';
 </script>
 
 <TopNav>
-	<div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-		<a
-			href={localePath('/')}
-			class="text-amber-700 inline-flex items-center text-2xl dark:text-amber-200">arts.center</a
-		>
+	<div class="hidden sm:flex sm:space-x-8 ">
+		<a href={localePath('/')} class="text-amber-700 inline-flex items-center pt-1">
+			<svg class="w-[10rem] dark:fill-white dark:stroke-white">
+				<use href="{logo}#logo" />
+			</svg>
+		</a>
 		<TopNavLink exact href={localePath('/')}>{$t('global.menu.gallery')}</TopNavLink>
 		<TopNavLink href={localePath('/users')}>{$t('global.menu.users')}</TopNavLink>
 	</div>
