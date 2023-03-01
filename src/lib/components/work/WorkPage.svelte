@@ -3,16 +3,17 @@
 	import TextBlock from '$lib/components/work/TextBlock.svelte';
 	import ImageBlock from '$lib/components/work/ImageBlock.svelte';
 	import GridBlock from '$lib/components/work/GridBlock.svelte';
-	import { languageFilter } from '$lib/translations';
+	import { languageFilter, languageFind } from '$lib/translations';
 
 	BigInt.prototype.toJSON = function () {
 		return this.toString();
 	};
 	export let work: WorkPage;
 	$: blocks = languageFilter(work.blocks);
+	$: title = languageFind(work.titles)?.title;
 </script>
 
-<h1 class="text-2xl font-bold">{work.titles[0].title}</h1>
+<h1 class="text-2xl font-bold">{title}</h1>
 {#each blocks as block}
 	{#if block.type === 'text'}
 		<TextBlock {block} />
