@@ -10,11 +10,8 @@ module.exports = {
 	theme: {
 		extend: {},
 		fontFamily: {
-			sans: [
-				'Helvetica, sans-serif',
-			 
-			],
-		  },
+			sans: ['Helvetica, sans-serif']
+		}
 	},
 	plugins: [
 		require('@tailwindcss/forms'),
