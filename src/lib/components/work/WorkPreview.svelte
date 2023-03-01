@@ -1,12 +1,14 @@
 <script lang="ts">
 	import RatingPreview from '$lib/components/rating/RatingPreview.svelte';
 	import UserPreviewInline from '$lib/components/user/UserPreviewInline.svelte';
-	import type { Work } from '../../interfaces/Work';
+	import type { Work } from '$lib/interfaces/Work';
 	import image_not_found from '$lib/images/image_not_found.svg';
 	import { browser } from '$app/environment';
+	import { languageFind } from '$lib/translations';
+
 	export let work: Work;
 	let title: string;
-	$: title = work.titles[0].title; // For now, later use language
+	$: title = languageFind(work.titles)?.title;
 
 	export const handleImgError = (event) => {
 		console.log(event);
