@@ -4,11 +4,12 @@
 	import type { Work } from '$lib/interfaces/Work';
 	import image_not_found from '$lib/images/image_not_found.svg';
 	import { browser } from '$app/environment';
-	import { languageFind } from '$lib/translations';
+	import { languageFind, localePath } from '$lib/translations';
 
 	export let work: Work;
 	let title: string;
 	$: title = languageFind(work.titles)?.title;
+	$: href = localePath(`/work/${work.id}`);
 
 	export const handleImgError = (event) => {
 		console.log(event);
@@ -29,7 +30,7 @@
 		: ''} "
 >
 	<div class="group/item relative">
-		<a href="/work/{work.id}" class="grid gap-2">
+		<a {href} class="grid gap-2">
 			<div class="bg-zinc-300  aspect-[4/3] w-full rounded-md">
 				{#if work.image}
 					<img
@@ -42,9 +43,9 @@
 				{/if}
 			</div>
 			<div
-				class=" inline-flex items-start justify-between font-medium text-gray-900 dark:text-zinc-100"
+				class="inline-flex items-start justify-between font-medium text-gray-900 dark:text-zinc-100"
 			>
-				<h3 class=" text-md  ">{title}</h3>
+				<h3 class="text-md">{title}</h3>
 				{#if work.price}
 					<p class="ml-2 lg:text-sm bg-green-600 px-2 py-1 rounded-md text-white">
 						${work.price}
