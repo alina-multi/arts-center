@@ -1,10 +1,13 @@
-import type { PageLoad } from './$types';
-import { get } from '$lib/server/repositories/work';
-import { workMap } from '$lib/server/mappers/work';
+import type { PageLoad } from "./$types";
+import { get } from "$lib/server/repositories/work";
+import { workMap } from "$lib/server/mappers/work";
 
 export const load = (async ({ params }) => {
-	const work = workMap(await get(BigInt(params.id)));
-	return {
-		work
-	};
+  return Promise.all([
+    get(BigInt(params.id))
+  ]).then((values) => {
+    return {
+      work: workMap(values[0])
+    };
+  });
 }) satisfies PageLoad;
