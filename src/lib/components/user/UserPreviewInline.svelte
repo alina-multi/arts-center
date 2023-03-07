@@ -8,7 +8,7 @@
 
 <a
 	href="/{user.username}"
-	class="group inline text-sm pr-3 text-zinc-600 hover:text-zinc-500 dark:hover:text-zinc-400 dark:text-zinc-300"
+	class="group inline-flex  hover:underline dark:hover:text-gray-400 dark:text-gray-300"
 >
 	<div class="inline-flex items-center gap-2">
 		<div class="bg-zinc-300 rounded-full">

@@ -28,7 +28,7 @@
 >
 	<div class="group/item relative">
 		<a href="/work/{work.id}" class="grid gap-2">
-			<div class="bg-zinc-300  aspect-[4/3] w-full rounded-md">
+			<div class="bg-gray-300  aspect-[4/3] w-full rounded-md">
 				{#if work.image}
 					<img
 						class="rounded-md  aspect-[4/3] w-full object-cover "
@@ -40,7 +40,7 @@
 				{/if}
 			</div>
 			<div
-				class=" inline-flex items-start justify-between font-medium text-gray-900 dark:text-zinc-100"
+				class=" inline-flex items-start justify-between font-medium text-gray-900 dark:text-gray-100"
 			>
 				<h3 class=" text-md  ">{title}</h3>
 				{#if work.price}
@@ -56,14 +56,14 @@
 		</div>
 	</div>
 
-	<div class="flex justify-between items-center text-base  mt-auto">
+	<div class="flex justify-between items-center text-sm text-gray-500 mt-auto">
 		{#each work.owners as user}
 			<UserPreviewInline {user} />
 		{/each}
 
 		{#if work.subscribed}
 			<span
-				class="mr-2 shadow-md text-lg lg:text-base font-medium border border-amber-500 rounded-md px-2 dark:text-zinc-100"
+				class="mr-2 shadow-md text-lg lg:text-base font-medium border border-amber-500 rounded-md px-2 dark:text-gray-100"
 				>Pro</span
 			>
 		{/if}
