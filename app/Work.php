@@ -93,6 +93,11 @@ class Work extends Model
         return $this->morphMany(Vote::class,'votable');
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class,'commentable');
+    }
+
     public function getTitleAttribute()
     {
         return sizeof($this->titles) ? $this->titles[0]->title : '';

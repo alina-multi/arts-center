@@ -25,7 +25,11 @@ class CommentFactory extends Factory
             'commentable_id' => 1,
             'commentable_type' => 'work',
             'user_id' => 1,
-            'body' => ['delta'=>[]]
+            'body' => [
+                'ops' => [
+                    ["insert" => $this->faker->realText($maxNbChars = 300, $indexSize = 2)]
+                ]
+            ]
         ];
     }
 }

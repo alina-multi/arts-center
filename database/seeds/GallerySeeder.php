@@ -20,7 +20,6 @@ class GallerySeeder extends Seeder
         Event::fake();
         $works = Work::factory()
             ->hasOwners(1)
-            ->addComments(1, 10)
             ->has(WorkTitle::factory()->sequence(
                     ['language' => 'uk'],
                     ['language' => 'en'],
