@@ -12,7 +12,13 @@ export interface WorkPreview {
 	owners: UserPreview[];
 }
 
-export interface Work extends WorkPreview {}
+export interface Work extends WorkPreview {
+	details?: {
+		width: number;
+		height: number;
+		length: number;
+	};
+}
 
 export interface WorkTitle {
 	title: string;

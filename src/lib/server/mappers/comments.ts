@@ -3,13 +3,12 @@ import type { Comment } from '$lib/interfaces/Comment';
 import { ownerMap } from './owners';
 
 export function commentsMap(comments: comments[]): Comment[] {
-	let tree = [];
-	let idRef = {};
+	const tree = [];
+	const idRef = {};
 
-	for (let comment of comments) {
-		let generatedComment = commentMap(comment);
+	for (const comment of comments) {
+		const generatedComment = commentMap(comment);
 		if (!comment.comment_id) {
-			let generatedComment = commentMap(comment);
 			tree.push(generatedComment);
 			idRef[comment.id] = generatedComment;
 		} else {
