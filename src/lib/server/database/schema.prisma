@@ -76,6 +76,7 @@ model comments {
   updated_at       DateTime? @db.Timestamp(0)
   depth            Int       @default(0) @db.TinyInt
   rating           Int       @default(1) @db.SmallInt
+  owner            users     @relation(fields: [user_id], references: [id])
 }
 
 model failed_jobs {
@@ -370,6 +371,7 @@ model users {
   country           String?    @db.Char(2)
   ownables          ownables[]
   avatar            images?    @relation(fields: [image_id], references: [id])
+  comments          comments[]
 
   @@index([country], map: "users_country_index")
   @@index([stripe_id], map: "users_stripe_id_index")

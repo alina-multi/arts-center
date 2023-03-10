@@ -9,11 +9,15 @@ interface Owner {
 }
 export function ownersMap(owners: Owner[]): User[] {
 	return owners.map(({ user }) => {
-		return {
-			id: user.id,
-			username: user.username,
-			name: user.name,
-			avatar: imageMap(user.avatar)
-		};
+		return ownerMap(user);
 	});
+}
+
+export function ownerMap(user: users): User {
+	return {
+		id: user.id,
+		username: user.username,
+		name: user.name,
+		avatar: imageMap(user.avatar)
+	};
 }
