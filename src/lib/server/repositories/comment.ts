@@ -40,7 +40,8 @@ export function get(commentable_id: bigint, commentable_type: string) {
       ],
       where: {
         commentable_type,
-        commentable_id
+        commentable_id,
+        deleted_at: null
       }
     }
   );
