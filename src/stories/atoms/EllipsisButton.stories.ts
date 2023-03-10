@@ -5,7 +5,7 @@ export default {
 	title: 'Atoms/EllipsisButton',
 	component: EllipsisButton,
 	argTypes: {
-	options: { control: 'array' },
+		options: { control: 'array' }
 	}
 } satisfies Meta<EllipsisButton>;
 
@@ -20,5 +20,6 @@ EllipsisPopUp.args = {
 	options: [
 		{ label: 'Edit', value: 'edit', href: '/' },
 		{ label: 'Delete', value: 'delete', href: '/' },
-		{ label: 'View', value: 'view', href: '/' }]
+		{ label: 'View', value: 'view', href: '/' }
+	]
 };

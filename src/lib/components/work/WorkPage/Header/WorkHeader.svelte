@@ -9,11 +9,13 @@
 		{#each work.owners as user}
 			<UserPreviewInline {user} />
 			<div class="w-1 h-1 rounded-full bg-amber-500" />
-			<button class="hover:underline dark:px-3 dark:py-1 dark:border dark:text-sm dark:border-gray-500 dark:rounded-md dark:bg-gray-900 dark:text-gray-300">Follow</button>
+			<button
+				class="hover:underline dark:px-3 dark:py-1 dark:border dark:text-sm dark:border-gray-500 dark:rounded-md dark:bg-gray-900 dark:text-gray-300"
+				>Follow</button
+			>
 		{/each}
 	</div>
 	<div class="hidden lg:block"><EllipsisButton /></div>
-	
 </div>
 <div />
 <div class="flex justify-between items-start">

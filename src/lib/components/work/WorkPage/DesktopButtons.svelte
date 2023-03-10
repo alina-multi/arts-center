@@ -9,12 +9,12 @@
 		CheckCircle,
 		Share,
 		PlusCircle,
-        BookmarkSlash,
+		BookmarkSlash
 	} from '@steeze-ui/heroicons';
 	export let type;
 	export let isAddedToCart = true;
-    export let isLiked = true;
-    export let isBookmarked = false;
+	export let isLiked = true;
+	export let isBookmarked = false;
 </script>
 
 {#if type === 'cart'}
@@ -42,7 +42,9 @@
 
 {#if type === 'like'}
 	<button
-		class=" border p-2 rounded-md  hover:text-sky-700 hover:shadow-md  hover:bg-gray-50 dark:hover:bg-gray-900  dark:hover:border-gray-400 {isLiked ? 'text-sky-700' : 'text-gray-500'}"
+		class=" border p-2 rounded-md  hover:text-sky-700 hover:shadow-md  hover:bg-gray-50 dark:hover:bg-gray-900  dark:hover:border-gray-400 {isLiked
+			? 'text-sky-700'
+			: 'text-gray-500'}"
 	>
 		<Icon src={HandThumbUp} theme="solid" class="w-6 h-6 " />
 	</button>
@@ -52,11 +54,11 @@
 	<button
 		class="  border p-2 rounded-md hover:shadow-md  hover:text-rose-800 hover:bg-gray-50 dark:hover:bg-gray-900  dark:hover:border-gray-400 "
 	>
-        {#if isBookmarked}
-            <Icon src={Bookmark} theme="solid" class="w-6 h-6" />
-        {:else}
-            <Icon src={BookmarkSlash} theme="solid" class="w-6 h-6" />
-        {/if}
+		{#if isBookmarked}
+			<Icon src={Bookmark} theme="solid" class="w-6 h-6" />
+		{:else}
+			<Icon src={BookmarkSlash} theme="solid" class="w-6 h-6" />
+		{/if}
 	</button>
 {/if}
 

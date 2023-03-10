@@ -12,15 +12,19 @@
 		return this.toString();
 	};
 	export let work: WorkPage;
-	let tags = [ { name:'Abstract', href: '/' }, { name:'Illustration', href: '/'},{ name:'Abstract', href: '/' }, { name:'Illustration', href: '/'}];
-
+	let tags = [
+		{ name: 'Abstract', href: '/' },
+		{ name: 'Illustration', href: '/' },
+		{ name: 'Abstract', href: '/' },
+		{ name: 'Illustration', href: '/' }
+	];
 </script>
 
 <div class="lg:hidden ">
 	<div class="flex justify-between items-center ">
-	<Icons type="arrowBack" />
-	<div><EllipsisButton /></div>
-</div>
+		<Icons type="arrowBack" />
+		<div><EllipsisButton /></div>
+	</div>
 </div>
 
 <div
@@ -39,23 +43,23 @@
 			<div class="sticky top-8 right-10 hidden md:block ">
 				<div class="absolute top-28 -right-[72px] xl:-right-[90px]">
 					<div class="flex flex-col gap-3 text-gray-400 dark:text-gray-500 ">
-					<ButtonsDesktop type="cart" />
-					<ButtonsDesktop type="like" />
-					<ButtonsDesktop type="bookmark" />
-					<ButtonsDesktop type="comment" />	
-					<ButtonsDesktop type="share" />
-				</div>
+						<ButtonsDesktop type="cart" />
+						<ButtonsDesktop type="like" />
+						<ButtonsDesktop type="bookmark" />
+						<ButtonsDesktop type="comment" />
+						<ButtonsDesktop type="share" />
+					</div>
 				</div>
 			</div>
 		</div>
 		<WorkFooter {work} />
 
-	{#if tags.length > 0}
-		<div class=" flex items-center justify-start flex-wrap gap-1 lg:gap-3 text-xs md:text-base lg:text-base border px-3 py-3 dark:rounded-md bg-gray-100 dark:text-gray-100 dark:bg-gray-900 dark:border-transparent"><TagButton {tags} />
-		</div>
-	
-	{/if}
+		{#if tags.length > 0}
+			<div
+				class=" flex items-center justify-start flex-wrap gap-1 lg:gap-3 text-xs md:text-base lg:text-base border px-3 py-3 dark:rounded-md bg-gray-100 dark:text-gray-100 dark:bg-gray-900 dark:border-transparent"
+			>
+				<TagButton {tags} />
+			</div>
+		{/if}
+	</div>
 </div>
-</div>
-
-
