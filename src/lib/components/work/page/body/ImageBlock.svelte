@@ -4,7 +4,6 @@
 	$: srcset = block?.images[0]?.srcset;
 </script>
 
-<h3>This is image block</h3>
-<div>
-	<img {src} {srcset} />
+<div class="flex justify-between ">
+	<img class=" h-full w-full " {src} {srcset} />
 </div>

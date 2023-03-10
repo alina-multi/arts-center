@@ -1,48 +1,44 @@
-import { PrismaClient } from "@prisma/client";
-import type { Prisma } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
+import type { Prisma } from '@prisma/client';
 
 const prisma = new PrismaClient({
-  log: [
-    {
-      emit: "event",
-      level: "query"
-    }
-  ]
+	log: [
+		{
+			emit: 'event',
+			level: 'query'
+		}
+	]
 });
-prisma.$on("query", (e) => {
-  console.log("Query: " + e.query);
-  console.log("Params: " + e.params);
-  console.log("Duration: " + e.duration + "ms");
+prisma.$on('query', (e) => {
+	console.log('Query: ' + e.query);
+	console.log('Params: ' + e.params);
+	console.log('Duration: ' + e.duration + 'ms');
 });
 
 export function get(commentable_id: bigint, commentable_type: string) {
-  return prisma.comments.findMany({
-      select: {
-        id: true,
-        body: true,
-        rating: true,
-        deleted_at: true,
-        created_at: true,
-        updated_at: true,
-        comment_id: true,
-        owner: {
-          select: {
-            id: true,
-            username: true,
-            name: true,
-            avatar: true
-          }
-        }
-      },
-      orderBy: [
-        { depth: "asc" },
-        { id: "asc" }
-      ],
-      where: {
-        commentable_type,
-        commentable_id,
-        deleted_at: null
-      }
-    }
-  );
+	return prisma.comments.findMany({
+		select: {
+			id: true,
+			body: true,
+			rating: true,
+			deleted_at: true,
+			created_at: true,
+			updated_at: true,
+			comment_id: true,
+			owner: {
+				select: {
+					id: true,
+					username: true,
+					name: true,
+					avatar: true
+				}
+			}
+		},
+		orderBy: [{ depth: 'asc' }, { id: 'asc' }],
+		where: {
+			commentable_type,
+			commentable_id,
+			deleted_at: null
+		}
+	});
 }

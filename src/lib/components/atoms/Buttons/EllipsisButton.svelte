@@ -1,0 +1,49 @@
+<script>
+	import { Icon } from '@steeze-ui/svelte-icon';
+	import { EllipsisVertical } from '@steeze-ui/heroicons';
+	import { Popover, PopoverButton, PopoverPanel, Transition } from '@rgossiaux/svelte-headlessui';
+
+	export let options = [
+		{
+			label: 'Edit',
+			href: '#'
+		},
+		{
+			label: 'Delete',
+			href: '#'
+		}
+	];
+</script>
+
+<div class="relative inline-block ">
+	<Popover let:open>
+		<PopoverButton class="hover:bg-gray-100 cursor-pointer dark:hover:bg-gray-900 rounded-md py-1">
+			<Icon src={EllipsisVertical} class="w-8 h-8 stroke-gray-00 dark:stroke-gray-100 " />
+		</PopoverButton>
+
+		{#if open}
+			<Transition
+				enter="transition duration-100 ease-out"
+				enterFrom="transform scale-95 opacity-0"
+				enterTo="transform scale-100 opacity-100"
+				leave="transition duration-75 ease-out"
+				leaveFrom="transform scale-100 opacity-100"
+				leaveTo="transform scale-95 opacity-0"
+			>
+				<PopoverPanel
+					class="absolute right-0 z-10 w-40 mt-2 origin-top-right rounded-md  bg-white text-gray-700 dark:text-gray-100  dark:bg-gray-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-4 "
+				>
+					<div class="flex flex-col space-y-2">
+						{#each options as option}
+							<a
+								href={option.href}
+								class="hover:text-gray-900 hover:bg-gray-100  dark:bg-gray-700  dark:hover:text-gray-200  dark:hover:bg-gray-600 px-3 py-1 rounded-md"
+								>{option.label}</a
+							>
+						{/each}
+					</div>
+				</PopoverPanel>
+			</Transition>
+		{/if}
+	</Popover>
+</div>
