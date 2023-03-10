@@ -1,14 +1,17 @@
   <script lang="ts">
     import { Icon } from '@steeze-ui/svelte-icon';
     import { UserCircle, Star } from '@steeze-ui/heroicons';
+  
+
     export let work;
+
   </script>
   
   <div class="flex items-center ">
     {#each work.owners as user}
         <a
-            href="/{user.username}"
-            class="inline-flex pr-3"
+            href={user.username}
+            class="inline-flex pr-3 "
         >
             <div class="bg-gray-300 rounded-full">
                 {#if user.avatar}
@@ -27,9 +30,9 @@
         </a>
 
         <div class="flex flex-col gap-1 dark:text-gray-300 text-gray-800 md:text-lg ">
-           <div class="flex items-center gap-2 "><a href="/{user.username}" class="  hover:text-gray-500 dark:hover:text-gray-400 dark:text-gray-300">{user.name}</a>
+           <div class="flex items-center gap-2 "><a href={user.username} class=" hover:text-gray-500 dark:hover:text-gray-400 dark:text-gray-300">{user.name}</a>
             <div class="w-1 h-1 rounded-full bg-gray-400 hidden sm:block" />
-            <span class="hidden sm:block">Follow</span>
+            <span class="hidden sm:block  hover:text-gray-500 dark:hover:text-gray-400 dark:text-gray-300">Follow</span>
         </div> 
 
 

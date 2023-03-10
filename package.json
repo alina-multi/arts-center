@@ -70,6 +70,7 @@
 	},
 	"dependencies": {
 		"@prisma/client": "^4.10.1",
+		"photoswipe": "^5.3.6",
 		"prisma": "^4.10.1"
 	},
 	"type": "module",

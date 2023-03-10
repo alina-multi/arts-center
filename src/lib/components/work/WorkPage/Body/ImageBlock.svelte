@@ -2,7 +2,6 @@
 	export let block: any;
 	$: src = block?.images[0]?.src;
 	$: srcset = block?.images[0]?.srcset;
-	console.log(block);
 </script>
 
 

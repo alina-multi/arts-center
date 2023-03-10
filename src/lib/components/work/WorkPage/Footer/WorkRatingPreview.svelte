@@ -2,18 +2,13 @@
 import { Icon } from '@steeze-ui/svelte-icon';
 import {UserCircle, Heart} from '@steeze-ui/heroicons';
 export let work;
+console.log(work);
 </script> 
  
 
-<div> 
-    <!-- <button class="hidden md:flex items-center  px-4 py-2 rounded-md   bg-white text-gray-600 dark:bg-gray-900 dark:border-gray-500 dark:text-gray-100 gap-2 "> 
-<Icon src={Heart} class="w-7 h-7" />
-</button> -->
-</div>
-
 <div class="dark:text-gray-400 text-sm">
 <div class="flex gap-3 items-center">
- <div>Comments: 45678</div>
+ <div>Comments: {work.comments}</div>
 <div class="flex items-center gap-2">
     <div class="hover:underline ">
         <span class="">Liked by</span>
