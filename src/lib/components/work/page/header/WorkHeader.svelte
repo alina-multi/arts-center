@@ -1,6 +1,6 @@
 <script lang="ts">
 	import UserPreviewInline from '$lib/components/user/UserPreviewInline.svelte';
-	import EllipsisButton from '../../../atoms/Buttons/EllipsisButton.svelte';
+	import EllipsisButton from '$lib/components/atoms/Buttons/EllipsisButton.svelte';
 	export let work;
 </script>
 

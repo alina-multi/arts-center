@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { page } from '../../interfaces/Work';
+	import type { page } from '$lib//interfaces/Work';
 	import WorkHeader from '$lib/components/work/page/header/WorkHeader.svelte';
 	import WorkBody from '$lib/components/work/page/body/WorkBody.svelte';
 	import WorkFooter from '$lib/components/work/page/footer/WorkFooter.svelte';
-	import EllipsisButton from '../atoms/buttons/EllipsisButton.svelte';
+	import EllipsisButton from '$lib/components/atoms/buttons/EllipsisButton.svelte';
 	import Icons from '$lib/components/atoms/Icons.svelte';
 	import TagButton from '$lib/components/atoms/TagButtons.svelte';
 	import ButtonsDesktop from './page/DesktopButtons.svelte';
