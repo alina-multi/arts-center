@@ -1,15 +1,15 @@
-import type { comments } from "@prisma/client";
-import type { Comment } from "$lib/interfaces/Comment";
-import { ownerMap } from "./owners";
+import type { comments } from '@prisma/client';
+import type { Comment } from '$lib/interfaces/Comment';
+import { ownerMap } from './owners';
 
 export function commentsMap(comments: comments[]): Comment[] {
 	let tree = [];
 	let idRef = {};
 
 	for (let comment of comments) {
-		let generatedComment = commentMap(comment)
+		let generatedComment = commentMap(comment);
 		if (!comment.comment_id) {
-			let generatedComment = commentMap(comment)
+			let generatedComment = commentMap(comment);
 			tree.push(generatedComment);
 			idRef[comment.id] = generatedComment;
 		} else {

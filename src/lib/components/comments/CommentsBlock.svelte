@@ -1,13 +1,12 @@
 <script lang="ts">
-  import CommentBlock from './CommentBlock.svelte';
-  import type { Comment } from "$lib/interfaces/Comment";
-  export let comments: Comment[]
+	import CommentBlock from './CommentBlock.svelte';
+	import type { Comment } from '$lib/interfaces/Comment';
+	export let comments: Comment[];
 </script>
 
 <div class="-mb-10">
-  <h3 class="sr-only">Comments</h3>
-  {#each comments as comment}
-    <CommentBlock comment={comment} />
-  {/each}
+	<h3 class="sr-only">Comments</h3>
+	{#each comments as comment}
+		<CommentBlock {comment} />
+	{/each}
 </div>
-
