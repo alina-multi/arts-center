@@ -1,14 +1,15 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { UserCircle } from '@steeze-ui/heroicons';
-	import type { User } from '../../interfaces/User';
-
+	import type { User } from '$lib/interfaces/User';
+	import { localePath } from '$lib/translations';
+	$: href = localePath(`/${user.username}`);
 	export let user: User;
 </script>
 
 <a
-	href="/{user.username}"
-	class="group inline-flex  hover:underline dark:hover:text-gray-400 dark:text-gray-300"
+	{href}
+	class="group inline text-sm pr-3 text-zinc-600 hover:text-zinc-500 dark:hover:text-zinc-400 dark:text-zinc-300"
 >
 	<div class="inline-flex items-center gap-2">
 		<div class="bg-zinc-300 rounded-full">

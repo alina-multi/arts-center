@@ -1,8 +1,7 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import type { UserConfig } from 'vite';
-import * as path from 'path';
+import { defineConfig } from 'vitest/config';
 
-const config: UserConfig = {
+export default defineConfig({
 	plugins: [sveltekit()],
 	server: {
 		port: 3000,
@@ -12,11 +11,7 @@ const config: UserConfig = {
 		port: 3000,
 		strictPort: false
 	},
-	resolve: {
-		alias: {
-			$lib: path.resolve(__dirname, './src/lib')
-		}
+	test: {
+		include: ['src/**/*.{test,spec}.{js,ts}']
 	}
-};
-
-export default config;
+});
