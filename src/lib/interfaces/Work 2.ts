@@ -12,7 +12,7 @@ export interface WorkPreview {
 	owners: UserPreview[];
 }
 
-export interface WorkPage extends WorkPreview {
+export interface page extends WorkPreview {
 	blocks: WorkBlock[];
 	year?: number;
 	width?: number;

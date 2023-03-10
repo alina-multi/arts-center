@@ -1,7 +1,7 @@
 <script lang="ts">
-	import UserFooter from '$lib/components/work/WorkPage/Footer/UserFooter.svelte';
-	import WorkRatingPreview from '$lib/components/work/WorkPage/Footer/WorkRatingPreview.svelte';
-	import MobileButton from '$lib/components/work/WorkPage/MobileButtons.svelte';
+	import UserFooter from '$lib/components/work/page/footer/UserFooter.svelte';
+	import WorkRatingPreview from '$lib/components/work/page/footer/WorkRatingPreview.svelte';
+	import MobileButton from '$lib/components/work/page/MobileButtons.svelte';
 	export let work;
 </script>
 

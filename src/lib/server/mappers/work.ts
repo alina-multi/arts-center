@@ -1,4 +1,4 @@
-import type { WorkPage } from '$lib/interfaces/Work';
+import type { page } from '$lib/interfaces/Work';
 import type { works, work_blocks, work_details, work_titles, users } from '@prisma/client';
 import type { WorkBlock } from '$lib/interfaces/Work';
 import { imagesMap } from './image';
@@ -10,7 +10,7 @@ interface worksWithRelations extends works {
 	details: work_details;
 	owners: users[];
 }
-export function workMap(data: worksWithRelations): WorkPage {
+export function workMap(data: worksWithRelations): page {
 	return {
 		...data,
 		blocks: blocksMap(data.blocks),
