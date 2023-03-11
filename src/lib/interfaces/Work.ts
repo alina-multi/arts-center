@@ -8,19 +8,27 @@ export interface WorkPreview {
 	hosts: number;
 	price: number;
 	titles: WorkTitle[];
-	image: Image | null;
+	image?: Image;
 	owners: UserPreview[];
 }
 
 export interface Work extends WorkPreview {
-	details?: {
-		width: number;
-		height: number;
-		length: number;
-	};
+	blocks: WorkBlock[];
+	year?: number;
+	width?: number;
+	height?: number;
+	length?: number;
+	image?: Image;
 }
 
 export interface WorkTitle {
 	title: string;
 	language: string;
+}
+
+export interface WorkBlock {
+	id: bigint;
+	language: string;
+	type: string;
+	data: object;
 }
