@@ -5,10 +5,10 @@ export interface UserPreview {
 	username: string;
 	avatar: Image | null;
 	name: string;
+	country: string | null;
 }
 
 export interface UserPage extends UserPreview {
-	country: string;
 	ratings: UserRating[];
 }
 

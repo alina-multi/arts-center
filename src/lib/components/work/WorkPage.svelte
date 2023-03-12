@@ -17,42 +17,35 @@
 	];
 </script>
 
-
-	
-
-
 <div
 	class=" p-3 relative text-gray-900 dark:text-gray-100  md:border-gray-100 md:shadow-xl md:border w-full xl:w-10/12  mx-auto dark:md:border-gray-900 "
 >
-<div class=" md:hidden flex justify-between items-center">
-	<Icons type="arrowBack" />
-	<div><EllipsisButton /></div>
-</div>
+	<div class=" md:hidden flex justify-between items-center">
+		<Icons type="arrowBack" />
+		<div><EllipsisButton /></div>
+	</div>
 	<div class="hidden md:block md:absolute top-4 lg:left-16 md:left-10 ">
 		<Icons type="arrowBack" />
 	</div>
 	<div class="w-full md:w-3/4  mx-auto">
 		<div>
-		<div class="sticky top-0 right-10 hidden md:block">
-			<div class="absolute top-28 -right-[72px] xl:-right-[90px]">
-				<div class="flex flex-col gap-3 text-gray-400 dark:text-gray-500 ">
-					<ButtonsDesktop type="cart" />
-					<ButtonsDesktop type="like" />
-					<ButtonsDesktop type="bookmark" />
-					<ButtonsDesktop type="comment" />
-					<ButtonsDesktop type="share" />
+			<div class="sticky top-0 right-10 hidden md:block">
+				<div class="absolute top-28 -right-[72px] xl:-right-[90px]">
+					<div class="flex flex-col gap-3 text-gray-400 dark:text-gray-500 ">
+						<ButtonsDesktop type="cart" />
+						<ButtonsDesktop type="like" />
+						<ButtonsDesktop type="bookmark" />
+						<ButtonsDesktop type="comment" />
+						<ButtonsDesktop type="share" />
+					</div>
 				</div>
 			</div>
-		
-	</div>
-			
+
 			<div class="flex flex-col mx-auto gap-1">
 				<WorkHeader {work} />
 				<WorkBody {work} />
-			
+			</div>
 		</div>
-
-	</div>
 		<WorkFooter {work} />
 
 		{#if tags.length > 0}

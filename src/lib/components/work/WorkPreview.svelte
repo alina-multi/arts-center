@@ -61,7 +61,7 @@
 
 	<div class="flex justify-between items-center text-sm text-gray-500 mt-auto">
 		{#each work.owners as user}
-		<div class="mr-3"><UserPreviewInline {user} /></div>	
+			<div class="mr-3"><UserPreviewInline {user} /></div>
 		{/each}
 
 		{#if work.subscribed}
