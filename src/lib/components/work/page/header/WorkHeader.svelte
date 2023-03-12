@@ -5,7 +5,7 @@
 </script>
 
 <div class="flex justify-between">
-	<div class="flex text-base items-center   gap-2  text-gray-500">
+	<div class="flex text-base items-center gap-2  text-gray-600">
 		{#each work.owners as user}
 			<UserPreviewInline {user} />
 			<div class="w-1 h-1 rounded-full bg-amber-500" />
