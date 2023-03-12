@@ -18,7 +18,7 @@ export function imageMap(image: images | null): Image | null {
 	const srcset = [];
 	for (const width of [300, 600, 1200, 2400]) {
 		if (image[`w${width}`]) {
-			for (const extention of ['jpg', 'webp']) {
+			for (const extention of ['webp', 'jpg']) {
 				srcset.push(`${getUrl(image, width, extention)} ${width}w`);
 			}
 		}
