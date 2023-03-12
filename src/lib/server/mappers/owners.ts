@@ -18,6 +18,7 @@ export function ownerMap(user: users): User {
 		id: user.id,
 		username: user.username,
 		name: user.name,
-		avatar: imageMap(user.avatar)
+		avatar: imageMap(user.avatar),
+		country: user.country
 	};
 }

@@ -34,7 +34,8 @@ export function get(id: bigint) {
 							id: true,
 							username: true,
 							name: true,
-							avatar: true
+							avatar: true,
+							country: true
 						}
 					}
 				},
