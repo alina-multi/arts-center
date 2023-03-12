@@ -3,7 +3,6 @@
 	import { darkTheme } from '$lib/stores/dark';
 	import MainNav from '$lib/components/nav/MainNav.svelte';
 	BigInt.prototype.toJSON = (val) => val.toString();
-	// So we can use class:dark
 </script>
 
 <div class="app {$darkTheme ? 'dark bg-black' : 'bg-white'}">
