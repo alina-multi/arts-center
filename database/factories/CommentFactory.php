@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Comment;
+use App\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CommentFactory extends Factory
@@ -24,7 +25,7 @@ class CommentFactory extends Factory
         return [
             'commentable_id' => 1,
             'commentable_type' => 'work',
-            'user_id' => 1,
+            'user_id' => User::inRandomOrder()->first()->id,
             'body' => [
                 'ops' => [
                     ["insert" => $this->faker->realText($maxNbChars = 300, $indexSize = 2)]
