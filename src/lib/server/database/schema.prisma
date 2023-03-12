@@ -76,7 +76,7 @@ model comments {
   updated_at       DateTime? @db.Timestamp(0)
   depth            Int       @default(0) @db.TinyInt
   rating           Int       @default(1) @db.SmallInt
-  owner            users?     @relation(fields: [user_id], references: [id])
+  owner            users?    @relation(fields: [user_id], references: [id])
 }
 
 model failed_jobs {
@@ -276,6 +276,7 @@ model tag_titles {
   tag_id   BigInt
   language String @db.Char(2)
   title    String @db.VarChar(40)
+  tags     tags?  @relation(fields: [tag_id], references: [id])
 
   @@index([tag_id, language], map: "tag_titles_tag_id_language_index")
 }
@@ -299,12 +300,13 @@ model taggables {
 }
 
 model tags {
-  id          BigInt  @id @default(autoincrement()) @db.UnsignedBigInt
-  count       Int?    @db.UnsignedInt
-  group_id    BigInt? @db.UnsignedBigInt
-  groups_main Boolean @default(false)
-  type_id     BigInt  @db.UnsignedBigInt
-  old_id      BigInt  @db.UnsignedBigInt
+  id          BigInt       @id @default(autoincrement()) @db.UnsignedBigInt
+  count       Int?         @db.UnsignedInt
+  group_id    BigInt?      @db.UnsignedBigInt
+  groups_main Boolean      @default(false)
+  type_id     BigInt       @db.UnsignedBigInt
+  old_id      BigInt       @db.UnsignedBigInt
+  titles      tag_titles[]
 }
 
 model telescope_entries {

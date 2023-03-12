@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { localePath } from '$lib/translations';
-	import { t } from '$lib/translations';
+	import { localePath, t } from '$lib/translations';
 	import TopNav from './TopNav.svelte';
 	import TopNavLink from './TopNavLink.svelte';
 	import TopNavLangLink from './TopNavLangLink.svelte';

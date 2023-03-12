@@ -6,3 +6,5 @@
 </script>
 
 <Gallery gallery={data.gallery} />
+
+{JSON.stringify(data.categories)}
