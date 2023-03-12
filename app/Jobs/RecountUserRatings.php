@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\UserRatings;
-use App\Work;
+use App\Models\UserRatings;
+use App\Models\Work;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;

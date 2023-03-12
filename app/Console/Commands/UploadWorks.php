@@ -3,17 +3,17 @@
 namespace App\Console\Commands;
 
 use App\Console\Traits\getNewUserId;
-use App\Image;
+use App\Models\Image;
 use App\Jobs\DownloadAndSaveImage;
-use App\Tag;
-use App\User;
-use App\WorkBlock;
-use App\WorkDescription;
-use App\WorkDetails;
-use App\WorkTitle;
+use App\Models\Tag;
+use App\Models\User;
+use App\Models\WorkBlock;
+use App\Models\WorkDescription;
+use App\Models\WorkDetails;
+use App\Models\WorkTitle;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use App\Work;
+use App\Models\Work;
 
 class UploadWorks extends Command
 {

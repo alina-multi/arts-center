@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use App\Blog;
+use App\Models\Blog;
 use App\Policies\MultipeOwnersPolicy;
-use App\Work;
+use App\Models\Work;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider

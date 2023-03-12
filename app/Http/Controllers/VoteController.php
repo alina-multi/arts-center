@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\RecountUserRatings;
-use App\Vote;
-use App\Work;
+use App\Models\Vote;
+use App\Models\Work;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
@@ -16,8 +17,8 @@ class VoteController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -62,8 +63,8 @@ class VoteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Vote $votes
-     * @return \Illuminate\Http\Response
+     * @param Vote $votes
+     * @return Response
      */
     public function show($type_id)
     {
@@ -86,9 +87,9 @@ class VoteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Vote $votes
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Vote $votes
+     * @return Response
      */
     public function update(Request $request, Vote $votes)
     {
@@ -98,8 +99,8 @@ class VoteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Vote $votes
-     * @return \Illuminate\Http\Response
+     * @param Vote $votes
+     * @return Response
      */
     public function destroy(Vote $votes)
     {

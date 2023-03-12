@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Schema\Builder;
 use Illuminate\Support\Facades\Schema;
 
 class CreateTelescopeEntriesTable extends Migration
@@ -9,7 +10,7 @@ class CreateTelescopeEntriesTable extends Migration
     /**
      * The database schema.
      *
-     * @var \Illuminate\Database\Schema\Builder
+     * @var Builder
      */
     protected $schema;
 
@@ -42,7 +43,7 @@ class CreateTelescopeEntriesTable extends Migration
     {
         $this->schema->create('telescope_entries', function (Blueprint $table) {
             $table->bigIncrements('sequence');
-            $table->uuid('uuid');
+            $table->uuid();
             $table->uuid('batch_id');
             $table->string('family_hash')->nullable();
             $table->boolean('should_display_on_index')->default(true);

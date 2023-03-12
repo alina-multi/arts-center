@@ -1,24 +1,23 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class BlogTranslation extends Model
+class PostTranslation extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $hidden = [
-        'blog_id', 'deleted_at', 'created_at', 'updated_at'
+        'post_id', 'body', 'deleted_at', 'created_at', 'updated_at'
     ];
-
     protected $fillable = [
-      'language', 'title', 'about'
+      'title', 'language', 'body'
     ];
 
     protected $casts = [
-        'about' => 'array',
+        'body' => 'array',
     ];
 }

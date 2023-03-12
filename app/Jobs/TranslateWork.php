@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\WorkTitle;
+use App\Models\WorkTitle;
 use Google\Cloud\Translate\V2\TranslateClient;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;

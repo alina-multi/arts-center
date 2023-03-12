@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\WorkPublished;
-use App\Work;
+use App\Models\Work;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -12,7 +12,7 @@ class TranslateWork
     /**
      * Handle the event.
      *
-     * @param  \App\Events\WorkPublished  $event
+     * @param WorkPublished $event
      * @return void
      */
     public function handle(WorkPublished $event)

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Feedback;
+use App\Models\Feedback;
 use App\Mail\NewIdeaPosted;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
@@ -15,7 +16,7 @@ class FeedbackController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function idea($language)
     {
@@ -82,8 +83,8 @@ class FeedbackController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -120,8 +121,8 @@ class FeedbackController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Feedback $feedback
-     * @return \Illuminate\Http\Response
+     * @param Feedback $feedback
+     * @return Response
      */
     public function show(Feedback $feedback)
     {
@@ -131,9 +132,9 @@ class FeedbackController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Feedback $feedback
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Feedback $feedback
+     * @return Response
      */
     public function update(Request $request, Feedback $feedback)
     {
@@ -143,8 +144,8 @@ class FeedbackController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Feedback $feedback
-     * @return \Illuminate\Http\Response
+     * @param Feedback $feedback
+     * @return Response
      */
     public function destroy(Feedback $feedback)
     {

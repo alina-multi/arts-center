@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Blacklist;
-use App\Blog;
+use App\Models\Blacklist;
+use App\Models\Blog;
 use App\Http\Requests\BlogRequest;
-use App\Post;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
@@ -15,7 +16,7 @@ class BlogController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index(Request $request)
     {
@@ -33,8 +34,8 @@ class BlogController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(BlogRequest $request)
     {
@@ -68,8 +69,8 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Blacklist $blacklist
-     * @return \Illuminate\Http\Response
+     * @param Blacklist $blacklist
+     * @return Response
      */
     public function destroy(Blog $blog)
     {

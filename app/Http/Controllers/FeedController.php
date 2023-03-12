@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
-use App\Feed;
-use App\Follow;
-use App\User;
-use App\Work;
+use App\Models\Comment;
+use App\Models\Feed;
+use App\Models\Follow;
+use App\Models\User;
+use App\Models\Work;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

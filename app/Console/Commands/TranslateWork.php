@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Work;
+use App\Models\Work;
 use Illuminate\Console\Command;
 
 class TranslateWork extends Command

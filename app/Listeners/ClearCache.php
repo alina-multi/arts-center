@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Comment;
+use App\Models\Comment;
 use App\Events\CommentChanged;
 use App\Events\PublishedWorkUpdated;
 use App\Events\WorkPublished;
-use App\Work;
+use App\Models\Work;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Cache;

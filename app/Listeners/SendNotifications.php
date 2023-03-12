@@ -22,7 +22,7 @@ class SendNotifications
     /**
      * Handle the event.
      *
-     * @param  \App\Events\CommentChanged|\App\Events\WorkPublished  $event
+     * @param CommentChanged|WorkPublished $event
      * @return void
      */
     public function handle(CommentChanged|WorkPublished $event)

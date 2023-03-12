@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Gallery;
 
-use App\TagTitle;
-use App\Work;
+use App\Models\TagTitle;
+use App\Models\Work;
 
 trait TagTrait
 {

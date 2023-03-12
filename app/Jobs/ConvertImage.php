@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Image;
+use App\Models\Image;
 use GuzzleHttp\Client;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;

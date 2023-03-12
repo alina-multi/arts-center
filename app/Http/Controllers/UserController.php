@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\TagTitle;
-use App\User;
+use App\Models\TagTitle;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -20,7 +21,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index(Request $request)
     {
@@ -102,8 +103,8 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -114,7 +115,7 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($lang, $id)
     {
@@ -130,9 +131,9 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $language, $id)
     {
@@ -152,7 +153,7 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
@@ -161,8 +162,7 @@ class UserController extends Controller
 
     public function csv()
     {
-        $output = '';
-        $output .= "email,first_name,last_name,country\n";
+        $output = "email,first_name,last_name,country\n";
         $users = DB::connection('old')->table('user')->where('rate', '>', 0)->select(
             ['name', 'lastname', 'email', 'country_alpha2']
         )->get();

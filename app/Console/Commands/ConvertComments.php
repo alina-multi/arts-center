@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Console\Traits\getNewUserId;
-use http\Params;
+use Everyday\HtmlToQuill\HtmlConverter;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -37,7 +37,7 @@ class ConvertComments extends Command
      */
     public function handle()
     {
-        $this->quill = new \Everyday\HtmlToQuill\HtmlConverter();
+        $this->quill = new HtmlConverter();
         if ($this->option('clear')) {
             DB::table('comments')->truncate();
         }

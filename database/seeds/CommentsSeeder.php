@@ -33,7 +33,7 @@ class CommentsSeeder extends Seeder
                     ])->count($subCommentsCount)->create(['comment_id' => $comment->id, 'depth' => 2]);
                     foreach ($subComments as $subComment) {
                         $subSubCommentsCount = rand(0, 5);
-                        if ($subCommentsCount) {
+                        if ($subSubCommentsCount) {
                             Comment::factory([
                                 'commentable_id' => $work->id,
                                 'commentable_type' => $work->getMorphClass(),

@@ -1,4 +1,7 @@
 <?php
+
+use GuzzleHttp\Psr7\MimeType;
+
 Route::domain('arts.in.ua')->group(function () {
     Route::get('/artists/{username}/w/{work}/', 'RedirectOldController@work');
     Route::get('/artists/{username}/', 'RedirectOldController@user');
@@ -52,7 +55,7 @@ Route::post('auth/logout', 'Auth\LoginController@logout');
 
 Route::get('/vendor/{file}', function ($file) {
     $filename = public_path('vendor/' . $file);
-    $mime=\GuzzleHttp\Psr7\MimeType::fromFilename($filename);
+    $mime= MimeType::fromFilename($filename);
     return response(file_get_contents($filename), 200)->header('Content-Type', $mime);
 })->where('file', '.*');;
 

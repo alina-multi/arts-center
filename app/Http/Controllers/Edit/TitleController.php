@@ -6,19 +6,21 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BlockPut;
 use App\Rules\BlockData;
 use App\Rules\OwnsWork;
-use App\WorkBlock;
-use App\WorkTitle;
+use App\Models\WorkBlock;
+use App\Models\WorkTitle;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\UnauthorizedException;
+use Illuminate\Validation\ValidationException;
 
 class TitleController extends Controller
 {
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -54,7 +56,7 @@ class TitleController extends Controller
      * @param BlockPut $request
      * @param WorkBlock $block
      * @return WorkBlock
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
     public function update(Request $request, WorkTitle $title)
     {
@@ -76,7 +78,7 @@ class TitleController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(WorkTitle $title)
     {

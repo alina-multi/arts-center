@@ -2,6 +2,14 @@
 
 namespace App\Providers;
 
+use App\Events\CommentChanged;
+use App\Events\PublishedWorkUpdated;
+use App\Events\WorkDeleted;
+use App\Events\WorkPublished;
+use App\Listeners\AddToFeeds;
+use App\Listeners\ClearCache;
+use App\Listeners\SendNotifications;
+use App\Listeners\TranslateWork;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,22 +26,22 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        \App\Events\CommentChanged::class => [
-            \App\Listeners\SendNotifications::class,
-            \App\Listeners\AddToFeeds::class,
-            \App\Listeners\ClearCache::class,
+        CommentChanged::class => [
+            SendNotifications::class,
+            AddToFeeds::class,
+            ClearCache::class,
         ],
-        \App\Events\WorkPublished::class => [
-            \App\Listeners\SendNotifications::class,
-            \App\Listeners\AddToFeeds::class,
-            \App\Listeners\ClearCache::class,
-            \App\Listeners\TranslateWork::class,
+        WorkPublished::class => [
+            SendNotifications::class,
+            AddToFeeds::class,
+            ClearCache::class,
+            TranslateWork::class,
         ],
-        \App\Events\PublishedWorkUpdated::class => [
-            \App\Listeners\ClearCache::class,
+        PublishedWorkUpdated::class => [
+            ClearCache::class,
         ],
-        \App\Events\WorkDeleted::class => [
-            \App\Listeners\ClearCache::class,
+        WorkDeleted::class => [
+            ClearCache::class,
         ]
     ];
 

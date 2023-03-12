@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Tag;
-use App\TagTitle;
+use App\Models\Tag;
+use App\Models\TagTitle;
 use Google\Cloud\Translate\V2\TranslateClient;
-use http\Exception\BadQueryStringException;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 class TagController extends Controller

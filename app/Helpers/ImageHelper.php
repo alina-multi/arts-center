@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 
-use App\Image;
+use App\Models\Image;
 use GPBMetadata\Google\Api\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;

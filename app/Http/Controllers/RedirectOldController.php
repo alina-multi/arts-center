@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\TagTitle;
-use App\User;
-use App\Work;
+use App\Models\TagTitle;
+use App\Models\User;
+use App\Models\Work;
 use Illuminate\Http\Request;
 
 class RedirectOldController extends Controller

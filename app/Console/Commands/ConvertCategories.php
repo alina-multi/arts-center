@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Tag;
-use App\TagTitle;
+use App\Models\Tag;
+use App\Models\TagTitle;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Google\Cloud\Translate\V2\TranslateClient;

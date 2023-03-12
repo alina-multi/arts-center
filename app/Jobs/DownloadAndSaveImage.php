@@ -3,8 +3,8 @@
 namespace App\Jobs;
 
 use App\Helpers\ImageHelper;
-use App\User;
-use App\Work;
+use App\Models\User;
+use App\Models\Work;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

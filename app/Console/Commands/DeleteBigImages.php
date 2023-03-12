@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Image;
+use App\Models\Image;
 use App\Jobs\ConvertImage;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;

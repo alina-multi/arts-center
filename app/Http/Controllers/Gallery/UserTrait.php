@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Gallery;
 
-use App\Work;
+use App\Models\Work;
 
 trait UserTrait
 {

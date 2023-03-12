@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Edit;
 
 use App\Http\Controllers\Controller;
 use App\Rules\OwnsWork;
-use App\Work;
+use App\Models\Work;
 
 class GetEditController extends Controller
 {
