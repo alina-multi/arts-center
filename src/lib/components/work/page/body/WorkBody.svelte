@@ -5,7 +5,7 @@
 	export let work;
 </script>
 
-<div class="space-y-6">
+<div class="space-y-3">
 	{#each work.blocks as block}
 		{#if block.type === 'image'}
 			<ImageBlock {block} />

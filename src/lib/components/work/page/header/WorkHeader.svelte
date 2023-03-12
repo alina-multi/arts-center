@@ -3,7 +3,8 @@
 	import EllipsisButton from '$lib/components/atoms/buttons/EllipsisButton.svelte';
 	export let work;
 </script>
-
+<div class="space-y-1">
+	
 <div class="flex justify-between">
 	<div class="flex text-base items-center gap-2  text-gray-600">
 		{#each work.owners as user}
@@ -15,9 +16,9 @@
 			>
 		{/each}
 	</div>
-	<div class="hidden lg:block"><EllipsisButton /></div>
+	<div class="hidden md:block"><EllipsisButton /></div>
 </div>
-<div />
+
 <div class="flex justify-between items-start">
 	<h1 class=" text-2xl  text-gray-00 dark:text-gray-100">
 		{work.titles[0].title}
@@ -32,6 +33,7 @@
 	{/if}
 </div>
 
-<div class="flex items-center gap-2  text-gray-600 text-sm">
+<p class="text-gray-600 text-sm">
 	Published at {work.published_at.toLocaleDateString('Ru-ru')}
+</p>
 </div>
