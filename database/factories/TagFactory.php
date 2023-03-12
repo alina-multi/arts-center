@@ -22,8 +22,9 @@ class TagFactory extends Factory
     public function definition()
     {
         return [
-            'type_id' => 2,
-            'old_id' => 1
+            'type_id' => 1,
+            'old_id' => 1,
+            'count' => 0,
         ];
     }
 }
