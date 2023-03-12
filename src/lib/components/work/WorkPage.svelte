@@ -32,6 +32,7 @@
 		<Icons type="arrowBack" />
 	</div>
 	<div class="w-full md:w-3/4  mx-auto">
+		<div>
 		<div class="sticky top-0 right-10 hidden md:block">
 			<div class="absolute top-28 -right-[72px] xl:-right-[90px]">
 				<div class="flex flex-col gap-3 text-gray-400 dark:text-gray-500 ">
@@ -51,7 +52,7 @@
 			
 		</div>
 
-			
+	</div>
 		<WorkFooter {work} />
 
 		{#if tags.length > 0}
