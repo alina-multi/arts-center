@@ -2,22 +2,57 @@
 	import type { Comment } from '$lib/interfaces/Comment';
 	import { QuillDeltaToHtmlConverter } from 'quill-delta-to-html';
 	import UserPreviewInline from '$lib/components/user/UserPreviewInline.svelte';
+	import RatingPreviewVote from '../rating/RatingPreviewVote.svelte';
+	import { Icon } from '@steeze-ui/svelte-icon';
+	import { ArrowUturnLeft } from '@steeze-ui/heroicons';
+	import CommentInput from './CommentInput.svelte';
 
-	export let comment: Comment;
+	let isReply = false;
+	let value = '';
+
+	export let comment: Comment,
+		autorized = false;
 	$: html = new QuillDeltaToHtmlConverter(comment?.body?.ops, {}).convert();
+
+	const onReplay = () => {
+		isReply = true;
+	};
 </script>
 
-<div class="flex space-x-4 text-sm text-gray-500 border-l-2">
-	<div class="py-10 ">
-		<UserPreviewInline user={comment.owner} />
-		<div class="prose prose-sm mt-4 max-w-none text-gray-500">
-			{@html html}
+{#if autorized}
+	<div class="pt-6"><CommentInput /></div>
+{/if}
+<div class="text-sm text-gray-500 dark:text-gray-400 ">
+	<div class="pt-6">
+		<div class="border  p-3 rounded-md  dark:bg-gray-900 dark:border-gray-600">
+			<UserPreviewInline user={comment.owner} />
+			<div class="prose prose-sm max-w-none  ">
+				{@html html}
+			</div>
+			{#if autorized}
+				<div class="flex justify-end items-center gap-6 ">
+					<button on:click={onReplay} class="flex gap-2  items-center hover:text-gray-600">
+						<Icon src={ArrowUturnLeft} class="w-4 h-4" />
+						<span>Reply</span>
+					</button>
+					<RatingPreviewVote rating={comment.rating} allowDownVote={true} />
+				</div>
+			{/if}
 		</div>
+
+		{#if isReply}
+			<div class="my-6">
+				<CommentInput />
+			</div>
+		{/if}
+
 		{#if comment?.answers}
-			<div class="ml-5">
-				{#each comment.answers as reply}
-					<svelte:self comment={reply} />
-				{/each}
+			<div class="ml-12 ">
+				<div class=" border-l pl-9 dark:border-gray-600 ">
+					{#each comment.answers as reply}
+						<svelte:self comment={reply} />
+					{/each}
+				</div>
 			</div>
 		{/if}
 	</div>

@@ -58,8 +58,9 @@
 			<span on:click={() => onVote('like')}>
 				<Icon
 					src={HandThumbUp}
-					class=" w-7 h-7 active:text-green-600 hover:scale-125 {type === 'like'
-						? 'text-green-600'
+					theme={type === 'like' ? 'solid' : 'outline'}
+					class=" w-5 h-5 active:text-sky-700 hover:scale-125 hover:text-sky-700 {type === 'like'
+						? 'fill-sky-600'
 						: ''}"
 				/></span
 			>
@@ -71,7 +72,7 @@
 			<span on:click={() => onVote('dislike')}>
 				<Icon
 					src={HandThumbDown}
-					class="w-7 h-7  hover:scale-105 {type === 'dislike' ? 'text-red-600' : ''}  "
+					class="w-5 h-5  hover:scale-105 {type === 'dislike' ? 'text-red-600' : ''}  "
 				/></span
 			>
 		</div>

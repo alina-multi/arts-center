@@ -5,6 +5,4 @@
 	export let data: PageData;
 </script>
 
-<WorkPage work={data.work} />
-
-<CommentsBlock comments={data.comments} />
+<WorkPage work={data.work} comments={data.comments} />
