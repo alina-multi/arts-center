@@ -4,6 +4,6 @@
 	$: html = new QuillDeltaToHtmlConverter(block?.data?.ops, {}).convert();
 </script>
 
-<div class="text-base md:text-lg">
+<div class="text-base md:text-lg dark:text-gray-300">
 	{@html html}
 </div>

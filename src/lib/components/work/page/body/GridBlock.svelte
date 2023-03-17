@@ -16,7 +16,7 @@
 </script>
 
 <div class="pswp-gallery" id={galleryID}>
-	<div class="grid grid-cols-2 sm:grid-cols-3 gap-3 lg:flex">
+	<div class="grid grid-cols-2 sm:grid-cols-3 gap-1 lg:flex">
 		{#each block.images as image}
 			<a
 				href={image.src}
@@ -24,6 +24,7 @@
 				data-pswp-height="800"
 				target="_blank"
 				rel="noreferrer"
+				class="rounded-sm overflow-hidden"
 			>
 				<img
 					src={image.src}

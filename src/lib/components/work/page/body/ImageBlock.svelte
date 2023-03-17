@@ -4,4 +4,4 @@
 	$: srcset = block?.images[0]?.srcset;
 </script>
 
-<img class=" h-full w-full " {src} {srcset} />
+<img class=" h-full w-full rounded-sm" {src} {srcset} />

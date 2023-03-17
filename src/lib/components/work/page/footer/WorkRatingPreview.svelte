@@ -5,16 +5,16 @@
 	export let work;
 </script>
 
-<div class="dark:text-gray-400 text-sm">
+<div class="dark:text-gray-400 ">
 	<div class="flex gap-3 items-center">
 		<div>Comments: {work.comments}</div>
 		<div class="flex items-center gap-2">
-			<div class="hover:underline ">
+			<div class="hover:underline cursor-pointer ">
 				<span class="">Liked by</span>
 				{work.rating}
 			</div>
 
-			<div class="flex -space-x-3">
+			<div class="flex -space-x-3 cursor-pointer">
 				<Icon
 					src={UserCircle}
 					theme="solid"

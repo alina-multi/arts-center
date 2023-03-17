@@ -6,14 +6,12 @@
 
 <div class="space-y-1">
 	<div class="flex justify-between">
-		<div class="flex text-base items-center gap-2  text-gray-600">
+		<div class="flex text-base items-center gap-3">
 			{#each work.owners as user}
 				<UserPreviewInline {user} />
-				<div class="w-1 h-1 rounded-full bg-amber-500" />
-				<a
-					href={user.username}
-					class="hover:underline dark:px-3 dark:py-1 dark:border dark:text-sm dark:border-gray-500 dark:rounded-md dark:bg-gray-900 dark:text-gray-300"
-					>Follow</a
+				<butoon
+					class="  dark:bg-gray-900 dark:border-sky-700 dark:border rounded-full px-3 py-1 text-xs text-white bg-sky-700 font-semibold shadow-sm  hover:bg-sky-600 dark:hover:bg-sky-700 dark:text-gray-100 hover:text-white cursor-pointer"
+					>Follow</butoon
 				>
 			{/each}
 		</div>
@@ -33,8 +31,4 @@
 			</div>
 		{/if}
 	</div>
-
-	<p class="text-gray-600 text-sm">
-		Published at {work.published_at.toLocaleDateString('Ru-ru')}
-	</p>
 </div>

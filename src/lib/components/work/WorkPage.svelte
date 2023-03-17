@@ -19,49 +19,48 @@
 	];
 </script>
 
-<div
-	class=" py-3 px-3 md:px-0 relative text-gray-900 dark:text-gray-100  md:border-gray-100  md:border w-full  mx-auto dark:md:border-gray-900 "
->
-	<div class=" md:hidden flex justify-between items-center">
-		<Icons type="arrowBack" />
+<div class=" px-3 md:p-3  relative text-gray-900 mx-auto  ">
+	<div class=" md:hidden flex justify-between items-center text-gray-600">
+		<div class="rounded-md hover:scale-110 "><Icons type="arrowBack" /></div>
 		<div><EllipsisButton /></div>
 	</div>
-	<div class="hidden md:block md:absolute top-4 lg:left-16 md:left-10 ">
-		<Icons type="arrowBack" />
-	</div>
-	<div class="w-full md:w-3/4  mx-auto">
-		<div>
-			<div class="sticky  hidden md:block">
-				<div class="absolute top-28 -right-[72px] xl:-right-[90px]">
-					<div class="flex flex-col gap-3 text-gray-400 dark:text-gray-500 ">
-						<ButtonsDesktop type="cart" />
-						<ButtonsDesktop type="like" />
-						<ButtonsDesktop type="bookmark" />
-						<ButtonsDesktop type="comment" />
-						<ButtonsDesktop type="share" />
-					</div>
+
+	<div>
+		<div class="sticky top-0 hidden lg:block">
+			<div class="absolute top-[90px] -right-[60px] xl:-right-[66px]">
+				<div class="flex flex-col gap-3 text-gray-400 dark:text-gray-500 ">
+					<ButtonsDesktop type="cart" />
+					<ButtonsDesktop type="like" />
+					<ButtonsDesktop type="bookmark" />
+					<ButtonsDesktop type="comment" />
+					<ButtonsDesktop type="share" />
 				</div>
 			</div>
-
-			<div class="flex flex-col mx-auto gap-1">
-				<WorkHeader {work} />
-				<WorkBody {work} />
-			</div>
 		</div>
-		<WorkFooter {work} />
+
+		<div class="flex flex-col mx-auto gap-3">
+			<WorkHeader {work} />
+			<WorkBody {work} />
+		</div>
 	</div>
 
 	{#if tags.length > 0}
 		<div
-			class=" flex items-center justify-start flex-wrap gap-1 lg:gap-3 text-xs md:text-base lg:text-base border px-3 py-3 dark:rounded-md bg-gray-100 dark:text-gray-100 dark:bg-gray-900 dark:border-transparent"
+			class=" hidden lg:flex items-center justify-start flex-wrap mt-3 gap-1 lg:gap-3 text-xs md:text-base p-3 rounded-md border dark:rounded-md bg-gray-50 dark:text-gray-100 dark:bg-gray-900 dark:border-transparent"
 		>
 			<TagButton {tags} />
 		</div>
-	{:else}
-		<div class=" border-b" />
 	{/if}
 
-	<div class="w-full md:w-3/4  mx-auto  ">
-		<CommentsBlock {comments} />
-	</div>
+	<WorkFooter {work} />
+
+	{#if tags.length > 0}
+		<div
+			class=" flex lg:hidden items-center justify-start flex-wrap  gap-1 text-xs   p-3 rounded-sm border dark:rounded-md bg-gray-100 dark:text-gray-100 dark:bg-gray-900 dark:border-transparent"
+		>
+			<TagButton {tags} />
+		</div>
+	{/if}
+
+	<CommentsBlock {comments} />
 </div>

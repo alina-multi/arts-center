@@ -22,9 +22,9 @@
 {#if autorized}
 	<div class="pt-6"><CommentInput /></div>
 {/if}
-<div class="text-sm text-gray-500 dark:text-gray-400 ">
+<div class="text-sm text-gray-800 dark:text-gray-400 ">
 	<div class="pt-6">
-		<div class="border  p-3 rounded-md  dark:bg-gray-900 dark:border-gray-600">
+		<div class="border  p-3 rounded-md bg-gray-50 dark:bg-gray-900 dark:border-gray-600">
 			<UserPreviewInline user={comment.owner} />
 			<div class="prose prose-sm max-w-none  ">
 				{@html html}
