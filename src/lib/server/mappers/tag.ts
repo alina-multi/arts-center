@@ -10,7 +10,7 @@ interface taggablesWithRelations extends taggables {
 	tag: tagsWithRelations;
 }
 export function tagsMap(tags: tagsWithRelations[]): Tag[] {
-	return tags.map((tag) => {
+	return tags?.map((tag) => {
 		return {
 			...tag
 		};
@@ -18,7 +18,7 @@ export function tagsMap(tags: tagsWithRelations[]): Tag[] {
 }
 
 export function taggableMap(taggables: taggablesWithRelations[]): Tag[] {
-	return taggables.map((taggable) => {
+	return taggables?.map((taggable) => {
 		return {
 			...taggable.tag
 		};

@@ -4,7 +4,7 @@ import type { Gallery } from '$server/repositories/gallery';
 import { ownersMap } from './owners';
 
 export function worksPreviewMap(works: Gallery): WorkPreview[] {
-	return works.map((work) => {
+	return works?.map((work) => {
 		return {
 			id: work.id,
 			published_at: work.published_at,

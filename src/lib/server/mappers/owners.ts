@@ -8,7 +8,7 @@ interface Owner {
 	};
 }
 export function ownersMap(owners: Owner[]): User[] {
-	return owners.map(({ user }) => {
+	return owners?.map(({ user }) => {
 		return ownerMap(user);
 	});
 }
