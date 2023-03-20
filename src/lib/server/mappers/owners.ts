@@ -8,9 +8,11 @@ interface Owner {
 	};
 }
 export function ownersMap(owners: Owner[]): User[] {
-	return owners?.filter(({user})=>user).map(({ user }) => {
-		return ownerMap(user);
-	});
+	return owners
+		?.filter(({ user }) => user)
+		.map(({ user }) => {
+			return ownerMap(user);
+		});
 }
 
 export function ownerMap(user: users): User {

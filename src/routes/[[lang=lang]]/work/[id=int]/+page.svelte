@@ -4,4 +4,5 @@
 	import CommentsBlock from '$lib/components/comments/CommentsBlock.svelte';
 	export let data: PageData;
 </script>
+
 <WorkPage work={data.work} comments={data.comments} />
