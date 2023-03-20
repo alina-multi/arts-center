@@ -1,9 +1,17 @@
 import type { Work } from '$lib/interfaces/Work';
-import type { works, work_blocks, work_details, work_titles, users, taggables, votes } from "@prisma/client";
+import type {
+	works,
+	work_blocks,
+	work_details,
+	work_titles,
+	users,
+	taggables,
+	votes
+} from '@prisma/client';
 import type { WorkBlock } from '$lib/interfaces/Work';
 import { imagesMap } from './image';
 import { ownersMap } from './owners';
-import { taggableMap } from "./tag";
+import { taggableMap } from './tag';
 
 interface worksWithRelations extends works {
 	blocks: work_blocks[];
@@ -19,7 +27,7 @@ export function workMap(data: worksWithRelations): Work {
 		blocks: blocksMap(data.blocks),
 		owners: ownersMap(data.owners),
 		tags: taggableMap(data.tags),
-		votes: ownersMap(data.votes),
+		votes: ownersMap(data.votes)
 	};
 }
 

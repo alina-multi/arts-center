@@ -1,6 +1,6 @@
 import type { Image } from './Image';
 import type { UserPreview } from './User';
-import type { Tag } from "./Tag";
+import type { Tag } from './Tag';
 export interface WorkPreview {
 	id: bigint;
 	published_at: Date | null;

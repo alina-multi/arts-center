@@ -4,6 +4,7 @@
 	import CommentsBlock from '$lib/components/comments/CommentsBlock.svelte';
 	export let data: PageData;
 </script>
+
 {JSON.stringify(data.work.tags)}
 
 <WorkPage work={data.work} comments={data.comments} />

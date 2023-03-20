@@ -1,4 +1,4 @@
-import type { taggables, tags } from "@prisma/client";
+import type { taggables, tags } from '@prisma/client';
 import type { Tag } from '$lib/interfaces/Tag';
 import type { TagTitle } from '../../interfaces/Tag';
 
@@ -22,5 +22,5 @@ export function taggableMap(taggables: taggablesWithRelations[]): Tag[] {
 		return {
 			...taggable.tag
 		};
-	})
+	});
 }
