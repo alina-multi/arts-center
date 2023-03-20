@@ -2,7 +2,7 @@
 	import { localePath, languageFind } from '../../translations';
 
 	export let tag;
-	const { title } = languageFind(tag.titles);
+	const { title } = languageFind(tag.titles) || { title: 'not translated' };
 	export let href = localePath(`/tag/${title}`);
 </script>
 
