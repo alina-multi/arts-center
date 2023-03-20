@@ -5,18 +5,14 @@
 	import WorkFooter from '$lib/components/work/page/footer/WorkFooter.svelte';
 	import EllipsisButton from '$lib/components/atoms/buttons/EllipsisButton.svelte';
 	import Icons from '$lib/components/atoms/Icons.svelte';
-	import TagButton from '$lib/components/atoms/TagButtons.svelte';
+	import TagButtons from '$lib/components/atoms/TagButtons.svelte';
 	import ButtonsDesktop from './page/DesktopButtons.svelte';
 	import CommentsBlock from '$lib/components/comments/CommentsBlock.svelte';
+	import type { Comment } from "../../interfaces/Comment";
 
 	export let work: Work;
-	export let comments: any;
-	let tags = [
-		{ name: 'Abstract', href: '/' },
-		{ name: 'Illustration', href: '/' },
-		{ name: 'Abstract', href: '/' },
-		{ name: 'Illustration', href: '/' }
-	];
+	export let comments: Comment[];
+	const tags = work.tags;
 </script>
 
 <div class=" px-3 md:p-3  relative text-gray-900 mx-auto  ">
@@ -48,7 +44,7 @@
 		<div
 			class=" hidden lg:flex items-center justify-start flex-wrap mt-3 gap-1 lg:gap-3 text-xs md:text-base p-3 rounded-md border dark:rounded-md bg-gray-50 dark:text-gray-100 dark:bg-gray-900 dark:border-transparent"
 		>
-			<TagButton {tags} />
+			<TagButtons {tags} />
 		</div>
 	{/if}
 
@@ -58,7 +54,7 @@
 		<div
 			class=" flex lg:hidden items-center justify-start flex-wrap  gap-1 text-xs   p-3 rounded-sm border dark:rounded-md bg-gray-100 dark:text-gray-100 dark:bg-gray-900 dark:border-transparent"
 		>
-			<TagButton {tags} />
+			<TagButtons {tags} />
 		</div>
 	{/if}
 

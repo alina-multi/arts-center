@@ -272,11 +272,13 @@ model tag_groups {
 }
 
 model tag_titles {
-  id       BigInt @id @default(autoincrement()) @db.UnsignedBigInt
-  tag_id   BigInt
-  language String @db.Char(2)
-  title    String @db.VarChar(40)
-  tags     tags?  @relation(fields: [tag_id], references: [id])
+  id          BigInt     @id @default(autoincrement()) @db.UnsignedBigInt
+  tag_id      BigInt
+  language    String     @db.Char(2)
+  title       String     @db.VarChar(40)
+  tags        tags?      @relation(fields: [tag_id], references: [id])
+  taggables   taggables? @relation(fields: [taggablesId], references: [id])
+  taggablesId BigInt?    @db.UnsignedBigInt
 
   @@index([tag_id, language], map: "tag_titles_tag_id_language_index")
 }
@@ -291,10 +293,13 @@ model tag_types {
 }
 
 model taggables {
-  id            BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  id            BigInt       @id @default(autoincrement()) @db.UnsignedBigInt
   tag_id        BigInt
   taggable_id   BigInt
-  taggable_type String @db.Char(20)
+  taggable_type String       @db.Char(20)
+  tag           tags?        @relation(fields: [tag_id], references: [id])
+  works         works?       @relation(fields: [taggable_id], references: [id])
+  tag_titles    tag_titles[]
 
   @@index([taggable_type], map: "taggables_taggable_type_index")
 }
@@ -307,6 +312,7 @@ model tags {
   type_id     BigInt       @db.UnsignedBigInt
   old_id      BigInt       @db.UnsignedBigInt
   titles      tag_titles[]
+  taggables   taggables[]
 }
 
 model telescope_entries {
@@ -374,6 +380,7 @@ model users {
   ownables          ownables[]
   avatar            images?    @relation(fields: [image_id], references: [id])
   comments          comments[]
+  votes             votes[]
 
   @@index([country], map: "users_country_index")
   @@index([stripe_id], map: "users_stripe_id_index")
@@ -388,6 +395,8 @@ model votes {
   vote         Int       @db.TinyInt
   created_at   DateTime? @db.Timestamp(0)
   updated_at   DateTime? @db.Timestamp(0)
+  works        works?    @relation(fields: [votable_id], references: [id])
+  user         users?    @relation(fields: [user_id], references: [id])
 }
 
 model work_blocks {
@@ -449,6 +458,8 @@ model works {
   image        images?       @relation(fields: [image_id], references: [id])
   details      work_details?
   blocks       work_blocks[]
+  votes        votes[]
+  tags         taggables[]
 
   @@index([show_en], map: "works_show_en_index")
   @@index([show_ru], map: "works_show_ru_index")
