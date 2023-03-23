@@ -36,13 +36,13 @@ class AppServiceProvider extends ServiceProvider
 
         Relation::morphMap(
             [
-                'work' => 'App\Work',
-                'comment' => 'App\Comment',
-                'user' => 'App\User',
-                'feedback' => 'App\Feedback',
-                'tag' => 'App\Tag',
-                'blog' => 'App\Blog',
-                'post' => 'App\Post',
+                'work' => 'App\Models\Work',
+                'comment' => 'App\Models\Comment',
+                'user' => 'App\Models\User',
+                'feedback' => 'App\Models\Feedback',
+                'tag' => 'App\Models\Tag',
+                'blog' => 'App\Models\Blog',
+                'post' => 'App\Models\Post',
             ]
         );
     }

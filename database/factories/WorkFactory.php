@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Comment;
-use App\Image;
-use App\Work;
+use App\Models\Comment;
+use App\Models\Image;
+use App\Models\Work;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

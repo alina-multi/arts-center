@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Image;
-use App\User;
+use App\Models\Image;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;

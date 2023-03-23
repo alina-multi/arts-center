@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\PostTranslation;
+use App\Models\PostTranslation;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

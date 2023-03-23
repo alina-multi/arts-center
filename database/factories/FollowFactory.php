@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Follow;
-use App\Work;
+use App\Models\Follow;
+use App\Models\Work;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\User;
+use App\Models\User;
 
 class FollowFactory extends Factory
 {

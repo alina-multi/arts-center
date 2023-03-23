@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\blacklist;
-use App\User;
+use App\Models\Blacklist;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BlacklistFactory extends Factory
@@ -13,7 +13,7 @@ class BlacklistFactory extends Factory
      *
      * @var string
      */
-    protected $model = blacklist::class;
+    protected $model = Blacklist::class;
 
     /**
      * Define the model's default state.

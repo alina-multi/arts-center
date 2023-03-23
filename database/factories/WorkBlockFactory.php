@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\WorkBlock;
+use App\Models\WorkBlock;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class WorkBlockFactory extends Factory
