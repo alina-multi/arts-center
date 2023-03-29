@@ -12,6 +12,12 @@ const prisma = new PrismaClient({
 	]
 });
 
+prisma.$on('query', (e) => {
+	console.log('Query: ' + e.query);
+	console.log('Params: ' + e.params);
+	console.log('Duration: ' + e.duration + 'ms');
+});
+
 const PAGE_SIZE = 20;
 
 export function query(
@@ -90,11 +96,13 @@ export async function filteredQuery(tag: string, lang: string, order = 'popular'
 		if (!tagTitle) throw error(404, { message: `Tag: ${tag} not found` });
 		where = {
 			tags: {
-				every: {
-					tag_id: {
-						equals: tagTitle.tag_id
+				none: {
+					NOT: {
+						tag_id: {
+							equals: tagTitle.tag_id
+						}
 					}
-				}
+				},
 			}
 		};
 	}
