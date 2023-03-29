@@ -96,7 +96,7 @@ export async function filteredQuery(tag: string, lang: string, order = 'popular'
 		if (!tagTitle) throw error(404, { message: `Tag: ${tag} not found` });
 		where = {
 			tags: {
-				every: {
+				some: {
 					tag_id: {
 						equals: tagTitle.tag_id
 					},
