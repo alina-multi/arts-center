@@ -39,21 +39,21 @@
 		</div>
 	</div>
 
-	{#if tags.length > 0}
+	{#if work.tags.length > 0}
 		<div
 			class=" hidden lg:flex items-center justify-start flex-wrap mt-3 gap-1 lg:gap-3 text-xs md:text-base p-3 rounded-md border dark:rounded-md bg-gray-50 dark:text-gray-100 dark:bg-gray-900 dark:border-transparent"
 		>
-			<TagButtons {tags} />
+			<TagButtons tags={work.tags} />
 		</div>
 	{/if}
 
 	<WorkFooter {work} />
 
-	{#if tags.length > 0}
+	{#if work.tags.length > 0}
 		<div
 			class=" flex lg:hidden items-center justify-start flex-wrap  gap-1 text-xs   p-3 rounded-sm border dark:rounded-md bg-gray-100 dark:text-gray-100 dark:bg-gray-900 dark:border-transparent"
 		>
-			<TagButtons {tags} />
+			<TagButtons tags={work.tags} />
 		</div>
 	{/if}
 
