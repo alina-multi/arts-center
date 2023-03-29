@@ -8,11 +8,10 @@
 	import TagButtons from '$lib/components/atoms/TagButtons.svelte';
 	import ButtonsDesktop from './page/DesktopButtons.svelte';
 	import CommentsBlock from '$lib/components/comments/CommentsBlock.svelte';
-	import type { Comment } from '../../interfaces/Comment';
+	import type { Comment } from '$lib/interfaces/Comment';
 
 	export let work: Work;
 	export let comments: Comment[];
-	const tags = work.tags;
 </script>
 
 <div class=" px-3 md:p-3  relative text-gray-900 mx-auto  ">

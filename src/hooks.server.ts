@@ -11,9 +11,10 @@ export const handle = (({ event, resolve }) => {
 
 SentryNode.init({
 	dsn: 'https://c2838269ac4d4b72995864bb70794bab@o740081.ingest.sentry.io/4504873190424576',
-	tracesSampleRate: 0.05,
+	tracesSampleRate: 0.01,
 	// Add the Http integration for tracing
-	integrations: [new SentryNode.Integrations.Http()]
+	integrations: [new SentryNode.Integrations.Http()],
+	environment: process.env.NODE_ENV
 });
 
 SentryNode.setTag('svelteKit', 'server');
