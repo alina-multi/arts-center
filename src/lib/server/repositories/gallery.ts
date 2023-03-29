@@ -96,13 +96,12 @@ export async function filteredQuery(tag: string, lang: string, order = 'popular'
 		if (!tagTitle) throw error(404, { message: `Tag: ${tag} not found` });
 		where = {
 			tags: {
-				none: {
-					NOT: {
-						tag_id: {
-							equals: tagTitle.tag_id
-						}
-					}
-				},
+				every: {
+					tag_id: {
+						equals: tagTitle.tag_id
+					},
+					taggable_type: 'work'
+				}
 			}
 		};
 	}
