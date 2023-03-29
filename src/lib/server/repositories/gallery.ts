@@ -1,5 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import type { Prisma } from '@prisma/client';
+import { titleToId } from './tag';
+import { error } from '@sveltejs/kit';
 
 const prisma = new PrismaClient({
 	log: [
@@ -74,6 +76,49 @@ export function indexQuery(page = 0) {
 				gte: 20
 			}
 		},
+		{
+			published_at: 'desc'
+		},
+		page
+	);
+}
+
+export async function filteredQuery(tag: string, lang: string, order = 'popular', page = 0) {
+	let where = {};
+	if (tag !== 'all') {
+		let tagTitle = await titleToId(tag, lang);
+		if (!tagTitle) throw error(404, { message: `Tag: ${tag} not found` });
+		where = {
+			tags: {
+				every: {
+					tag_id: {
+						equals: tagTitle.tag_id
+					}
+				}
+			}
+		};
+	}
+
+	if (order === 'popular') {
+		where = {
+			...where,
+			rating: {
+				gte: 20
+			}
+		};
+	}
+
+	if (order === 'sale') {
+		where = {
+			...where,
+			price: {
+				gt: 0
+			}
+		};
+	}
+
+	return query(
+		where,
 		{
 			published_at: 'desc'
 		},

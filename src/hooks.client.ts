@@ -1,7 +1,7 @@
 import * as SentrySvelte from '@sentry/svelte';
 import { BrowserTracing } from '@sentry/tracing';
 import type { HandleClientError } from '@sveltejs/kit';
-import { PUBLIC_ENV } from "$env/static/public";
+import { PUBLIC_ENV } from '$env/static/public';
 
 SentrySvelte.init({
 	dsn: 'https://c2838269ac4d4b72995864bb70794bab@o740081.ingest.sentry.io/4504873190424576',

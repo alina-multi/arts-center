@@ -1,5 +1,5 @@
 import type { Tag } from '$lib/interfaces/Tag';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, tag_titles } from '@prisma/client';
 
 const prisma = new PrismaClient({
 	log: [
@@ -31,6 +31,22 @@ export function getCategories() {
 		},
 		orderBy: {
 			count: 'desc'
+		}
+	});
+}
+
+export function titleToId(title: string, language: string) {
+	return prisma.tag_titles.findFirst({
+		select: {
+			tag_id: true
+		},
+		where: {
+			title: {
+				equals: title
+			},
+			language: {
+				equals: language
+			}
 		}
 	});
 }
