@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client';
-import type { Prisma } from '@prisma/client';
 
 const prisma = new PrismaClient({
 	log: [
@@ -8,11 +7,6 @@ const prisma = new PrismaClient({
 			level: 'query'
 		}
 	]
-});
-prisma.$on('query', (e) => {
-	console.log('Query: ' + e.query);
-	console.log('Params: ' + e.params);
-	console.log('Duration: ' + e.duration + 'ms');
 });
 
 export function get(commentable_id: bigint, commentable_type: string) {

@@ -1,16 +1,17 @@
 <script lang="ts">
-	import UserPreview from '$lib/components/user/UserPreview.svelte';
+	import UserPreviewRegular from '$lib/components/user/UserPreviewRegular.svelte';
 	import UserPreviewPremium from '$lib/components/user/UserPreviewPremium.svelte';
+	import type { UserPrview } from '$lib/interfaces/User.ts';
 
-	export let users: Array<object>, tags, lastWorks;
+	export let users: UserPrview[];
 </script>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 ">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-3 mt-3 p-3 ">
 	{#each users as user (user.id)}
 		{#if user.subscribed}
-			<UserPreviewPremium {...user} {tags} {lastWorks} />
+			<UserPreviewPremium {...user} />
 		{:else}
-			<UserPreview {...user} {tags} {lastWorks} />
+			<UserPreviewRegular {...user} />
 		{/if}
 	{/each}
 </div>

@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { Icon } from '@steeze-ui/svelte-icon';
-	import { UserCircle } from '@steeze-ui/heroicons';
+	import Avatar from '$lib/components/atoms/Avatar.svelte';
 	import type { User } from '$lib/interfaces/User';
 	import { localePath } from '$lib/translations';
 	$: href = localePath(`/${user.username}`);
@@ -12,17 +11,7 @@
 	class="group inline-flex  text-gray-600 hover:text-gray-500 dark:hover:text-gray-400 dark:text-gray-300"
 >
 	<div class="inline-flex items-center gap-2">
-		<div class="bg-zinc-300 rounded-full">
-			{#if user.avatar}
-				<img
-					src={user.avatar.src}
-					alt={user.name}
-					class="flex-none h-8 w-8 rounded-full object-cover"
-				/>
-			{:else}
-				<Icon src={UserCircle} class="h-8 w-8 rounded-full stroke-zinc-600 dark:stroke-zinc-400" />
-			{/if}
-		</div>
+		<Avatar {...user} />
 		<p>{user.name}</p>
 	</div>
 </a>

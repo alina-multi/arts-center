@@ -2,25 +2,13 @@
 	import RatingPreview from '$lib/components/rating/RatingPreview.svelte';
 	import UserPreviewInline from '$lib/components/user/UserPreviewInline.svelte';
 	import type { Work } from '$lib/interfaces/Work';
-	import image_not_found from '$lib/images/image_not_found.svg';
-	import { browser } from '$app/environment';
 	import { languageFind, localePath } from '$lib/translations';
+	import { handleImgError } from '$lib/helpers';
 
 	export let work: Work;
 	let title: string;
 	$: title = languageFind(work.titles)?.title;
 	$: href = localePath(`/work/${work.id}`);
-
-	export const handleImgError = (event) => {
-		console.log(event);
-		if (browser) {
-			event.target.onerror = null;
-			event.target.srcset = image_not_found;
-			event.target.src = image_not_found;
-			event.target.style =
-				'object-fit: contain; object-position: center; width: 100%; height: 100%; stroke: #ffffff; fill: black';
-		}
-	};
 </script>
 
 <!-- onerror="this.onerror=null;this.srcset='{image_not_found}'; this.src='{image_not_found}'; this.style='object-fit: contain; object-position: center;';" //////    works, but sometimes only on the first load of the page, and sometimes not at all -->

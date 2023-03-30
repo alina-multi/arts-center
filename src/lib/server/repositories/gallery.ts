@@ -12,22 +12,15 @@ const prisma = new PrismaClient({
 	]
 });
 
-prisma.$on('query', (e) => {
-	console.log('Query: ' + e.query);
-	console.log('Params: ' + e.params);
-	console.log('Duration: ' + e.duration + 'ms');
-});
-
-const PAGE_SIZE = 20;
-
 export function query(
 	where: Prisma.worksWhereInput = {},
 	orderBy: Prisma.worksOrderByWithRelationInput = {},
-	page = 0
+	page = 0,
+	perPage = 20
 ) {
 	return prisma.works.findMany({
-		take: PAGE_SIZE,
-		skip: page * PAGE_SIZE,
+		take: perPage,
+		skip: page * perPage,
 		select: {
 			id: true,
 			published_at: true,
@@ -92,7 +85,7 @@ export function indexQuery(page = 0) {
 export async function filteredQuery(tag: string, lang: string, order = 'popular', page = 0) {
 	let where = {};
 	if (tag !== 'all') {
-		let tagTitle = await titleToId(tag, lang);
+		const tagTitle = await titleToId(tag, lang);
 		if (!tagTitle) throw error(404, { message: `Tag: ${tag} not found` });
 		where = {
 			tags: {

@@ -2,7 +2,7 @@
 	import type { Comment } from '$lib/interfaces/Comment';
 	import { QuillDeltaToHtmlConverter } from 'quill-delta-to-html';
 	import UserPreviewInline from '$lib/components/user/UserPreviewInline.svelte';
-	import RatingPreviewVote from '../rating/RatingPreviewVote.svelte';
+	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ArrowUturnLeft } from '@steeze-ui/heroicons';
 	import CommentInput from './CommentInput.svelte';

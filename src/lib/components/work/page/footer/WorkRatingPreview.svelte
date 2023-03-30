@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { UserCircle } from '@steeze-ui/heroicons';
-	import type { Work } from '../../../../interfaces/Work';
-	import { localePath } from '../../../../translations';
+	import type { Work } from '$lib/interfaces/Work';
+	import { localePath } from '$lib/translations';
 
 	export let work: Work;
 	// For now let's just show the first 3 votes

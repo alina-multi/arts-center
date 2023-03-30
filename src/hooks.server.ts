@@ -24,6 +24,6 @@ export const handleError = (({ error, event }) => {
 	SentryNode.captureException(error, { contexts: { sveltekit: { event } } });
 
 	return {
-		message: error.message
+		message: error
 	};
 }) satisfies HandleServerError;

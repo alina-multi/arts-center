@@ -1,8 +1,7 @@
-<script>
-	import { t } from '$lib/translations';
-	import Filters from '$lib/components/nav/Filters.svelte';
+<script lang="ts">
+	import UserPreviewList from '$lib/components/user/UserPreviewList.svelte';
+	import type { PageData } from './$types';
+	export let data: PageData;
 </script>
 
-<Filters label="test" options={[]} filters={[]} />
-<h1>{$t('users.title')}</h1>
-<p>{@html $t('users.text')}</p>
+<UserPreviewList {...data} />

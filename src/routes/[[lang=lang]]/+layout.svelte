@@ -2,7 +2,7 @@
 	import '$lib/css/app.css';
 	import { darkTheme } from '$lib/stores/dark';
 	import MainNav from '$lib/components/nav/MainNav.svelte';
-	import { navigating } from "$app/stores";
+	import { navigating } from '$app/stores';
 	import Loader from '$lib/components/atoms/Loader.svelte';
 	BigInt.prototype.toJSON = (val) => val.toString();
 </script>

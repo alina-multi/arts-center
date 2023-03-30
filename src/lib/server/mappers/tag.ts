@@ -1,6 +1,6 @@
 import type { taggables, tags } from '@prisma/client';
 import type { Tag } from '$lib/interfaces/Tag';
-import type { TagTitle } from '../../interfaces/Tag';
+import type { TagTitle } from '$lib/interfaces/Tag';
 
 interface tagsWithRelations extends tags {
 	titles: TagTitle[];
