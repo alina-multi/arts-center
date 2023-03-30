@@ -4,6 +4,6 @@ import type { PageServerLoad } from './$types';
 
 export const load = (async ({ params }) => {
 	return {
-		users: usersMap(await query())
+		users: await usersMap(await query())
 	};
 }) satisfies PageServerLoad;
