@@ -21,7 +21,7 @@ export async function usersMap(users: users[]): Promise<Userlist[]> {
 				0,
 				3
 			);
-			works = await worksPreviewMap(works);
+			works = worksPreviewMap(works);
 
 			return {
 				...user,
