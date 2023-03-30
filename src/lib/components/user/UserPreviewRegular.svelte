@@ -14,7 +14,7 @@
 			<a href="/" class="border border-gray-100 rounded-full shadow-sm"
 				><img
 					class=" w-14 h-14  rounded-full object-cover"
-					src={avatar.src}
+					src={avatar?.src}
 					alt="{name} Avatar"
 				/></a
 			>
@@ -64,8 +64,8 @@
 					<div class="bg-zinc-300  aspect-[4/3] w-full rounded-md">
 						<img
 							class="rounded-md  aspect-[4/3] w-full object-cover "
-							src={work.image.src}
-							srcset={work.image.srcset}
+							src={work?.image?.src}
+							srcset={work?.image?.srcset}
 						/>
 					</div>
 				</a>
