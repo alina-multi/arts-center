@@ -5,8 +5,9 @@ import type { PageServerLoad } from './$types';
 export const load = (async ({ params }) => {
 	let users = await query();
 	users = await usersMap(users);
-	console.log(users[0].works);
-	return {
-		users
-	};
+	return structuredClone(
+		{
+			users
+		}
+	)
 }) satisfies PageServerLoad;
