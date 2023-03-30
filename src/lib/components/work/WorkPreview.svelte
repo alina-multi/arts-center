@@ -3,7 +3,7 @@
 	import UserPreviewInline from '$lib/components/user/UserPreviewInline.svelte';
 	import type { Work } from '$lib/interfaces/Work';
 	import { languageFind, localePath } from '$lib/translations';
-	import { handleImgError } from '$lib/helpers';
+	import { handleImgError } from '$lib/helpers/handleImgError.ts';
 
 	export let work: Work;
 	let title: string;
