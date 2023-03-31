@@ -26,8 +26,9 @@
 
 <section aria-labelledby="filter-heading">
 	<h2 id="filter-heading" class="sr-only">Filters</h2>
-	<div class=" flex  gap-6  py-4 px-3  justify-between ">
+	<div class=" relative flex gap-1 md:gap-6   justify-between md:text-sm xl:text-base">
 		<FilterOrder orders={options.order} {href} selectedOrder={selected.order} {onOrder} />
+
 		<FilterTag tags={options.tags} {href} selectedTag={selected.tags} {onTag} />
 	</div>
 </section>

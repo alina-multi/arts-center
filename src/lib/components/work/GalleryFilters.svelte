@@ -9,7 +9,6 @@
 		order?: string;
 	};
 
-	console.log('params', params);
 	// Map for current language
 	const tags = categories.map((category) => {
 		return languageFind(category.titles);

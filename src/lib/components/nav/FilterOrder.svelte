@@ -19,7 +19,10 @@
 	let:open
 >
 	<ListboxButton
-		class="group inline-flex space-x-2 justify-center items-center  border px-4 py-2 rounded-md text-gray-900 hover:bg-sky-600 hover:text-white hover:shadow-sm dark:text-zinc-300 dark:hover:text-zinc-100"
+		class="group inline-flex space-x-2 justify-center items-center  border px-4 py-2 rounded-md text-gray-900 hover:bg-sky-700 hover:text-white hover:shadow-sm dark:text-zinc-300 dark:hover:text-zinc-100 {selectedOrder !=
+		'popular'
+			? 'bg-sky-700 text-white shadow-sm'
+			: ''}"
 	>
 		<span>{selectedOrder}</span>
 		{#if open}
