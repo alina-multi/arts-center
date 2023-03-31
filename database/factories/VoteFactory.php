@@ -17,7 +17,7 @@ class VoteFactory extends Factory
         return [
             'vote' => 1,
             'ip' => '127.0.0.1',
-            'user_id' => User::factory(),
+            'user_id' => User::all()->random()->id,
         ];
     }
 }

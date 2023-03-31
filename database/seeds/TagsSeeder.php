@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\TagTitle;
-use App\Tag;
-use App\Work;
+use App\Models\TagTitle;
+use App\Models\Tag;
+use App\Models\Work;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

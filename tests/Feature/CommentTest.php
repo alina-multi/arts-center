@@ -2,13 +2,13 @@
 
 namespace Tests\Feature;
 
-use App\Vote;
-use App\Work;
+use App\Models\Vote;
+use App\Models\Work;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
-use App\User;
-use App\Comment;
+use App\Models\User;
+use App\Models\Comment;
 
 class CommentTest extends TestCase
 {

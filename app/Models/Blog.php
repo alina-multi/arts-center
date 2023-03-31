@@ -24,6 +24,6 @@ class Blog extends Model
 
     public function owners()
     {
-        return $this->morphToMany('App\User', 'ownable');
+        return $this->morphToMany(User::class, 'ownable');
     }
 }

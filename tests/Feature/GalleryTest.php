@@ -2,12 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Image;
-use App\Tag;
-use App\TagTitle;
-use App\User;
-use App\Work;
-use App\WorkTitle;
+use App\Models\Image;
+use App\Models\Tag;
+use App\Models\TagTitle;
+use App\Models\User;
+use App\Models\Work;
+use App\Models\WorkTitle;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;

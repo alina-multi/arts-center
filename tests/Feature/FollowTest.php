@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Follow;
-use App\User;
-use App\Work;
+use App\Models\Follow;
+use App\Models\User;
+use App\Models\Work;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Testing\Fluent\AssertableJson;

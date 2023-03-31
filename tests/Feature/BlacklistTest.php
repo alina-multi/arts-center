@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Blacklist;
-use App\User;
+use App\Models\Blacklist;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Testing\Fluent\AssertableJson;

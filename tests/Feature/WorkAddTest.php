@@ -2,18 +2,18 @@
 
 namespace Tests\Feature;
 
-use App\Image;
+use App\Models\Image;
 use App\Jobs\ConvertImage;
 use App\Jobs\TranslateWork;
-use App\Tag;
-use App\Work;
-use App\WorkBlock;
-use App\WorkTitle;
+use App\Models\Tag;
+use App\Models\Work;
+use App\Models\WorkBlock;
+use App\Models\WorkTitle;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Bus;
 use Tests\TestCase;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\Fluent\AssertableJson;

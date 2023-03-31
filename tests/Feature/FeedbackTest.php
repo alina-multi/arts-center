@@ -2,14 +2,14 @@
 
 namespace Tests\Feature;
 
-use App\Comment;
-use App\Feedback;
-use App\Follow;
-use App\Tag;
-use App\TagTitle;
-use App\User;
-use App\Vote;
-use App\Work;
+use App\Models\Comment;
+use App\Models\Feedback;
+use App\Models\Follow;
+use App\Models\Tag;
+use App\Models\TagTitle;
+use App\Models\User;
+use App\Models\Vote;
+use App\Models\Work;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;

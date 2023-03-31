@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Database\Seeders\GallerySeeder;
-use Database\Seeders\WorkSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,9 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(GallerySeeder::class);
-        $this->call(WorkSeeder::class);
-        $this->call(CommentsSeeder::class);
-        $this->call(TagsSeeder::class);
+        $this->call(\Database\Seeders\UsersSeeder::class);
+        $this->call(\Database\Seeders\GallerySeeder::class);
+        $this->call(\Database\Seeders\WorkSeeder::class);
+        $this->call(\Database\Seeders\CommentsSeeder::class);
+        $this->call(\Database\Seeders\TagsSeeder::class);
     }
 }

@@ -28,11 +28,11 @@ class WorkBlock extends Model
 
     public function images()
     {
-        return $this->morphToMany('App\Image', 'imageable');
+        return $this->morphToMany(Image::class, 'imageable');
     }
 
     public function work()
     {
-        return $this->belongsTo('App\Work');
+        return $this->belongsTo(Work::class);
     }
 }

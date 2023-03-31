@@ -3,15 +3,15 @@
 namespace Tests\Feature;
 
 use App\Jobs\RecountUserRatings;
-use App\Tag;
-use App\TagTitle;
-use App\Vote;
-use App\Work;
-use App\WorkTitle;
+use App\Models\Tag;
+use App\Models\TagTitle;
+use App\Models\Vote;
+use App\Models\Work;
+use App\Models\WorkTitle;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Bus;
 

@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Tag;
-use App\TagTitle;
-use App\User;
-use App\UserRatings;
-use App\Work;
+use App\Models\Tag;
+use App\Models\TagTitle;
+use App\Models\User;
+use App\Models\UserRatings;
+use App\Models\Work;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Testing\Fluent\AssertableJson;

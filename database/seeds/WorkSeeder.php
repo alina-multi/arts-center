@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Image;
-use App\Work;
-use App\WorkBlock;
+use App\Models\Image;
+use App\Models\Work;
+use App\Models\WorkBlock;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 

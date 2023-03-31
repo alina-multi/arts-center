@@ -70,22 +70,22 @@ class Work extends Model
 
     public function tags()
     {
-        return $this->morphToMany('App\Tag', 'taggable')->where('type_id', Tag::TYPE_TAG);
+        return $this->morphToMany(Tag::class, 'taggable')->where('type_id', Tag::TYPE_TAG);
     }
 
     public function category()
     {
-        return $this->morphToMany('App\Tag', 'taggable')->where('type_id', Tag::TYPE_CATEGORY);
+        return $this->morphToMany(Tag::class, 'taggable')->where('type_id', Tag::TYPE_CATEGORY);
     }
 
     public function images()
     {
-        return $this->morphToMany('App\Image', 'imageable');
+        return $this->morphToMany(Image::class, 'imageable');
     }
 
     public function owners()
     {
-        return $this->morphToMany('App\User', 'ownable');
+        return $this->morphToMany(User::class, 'ownable');
     }
 
     public function votes()

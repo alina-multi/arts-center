@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Comment;
-use App\Work;
+use App\Models\Comment;
+use App\Models\Work;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
