@@ -2,10 +2,16 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Response;
+use App\Models\Comment;
+use App\Models\Feedback;
+use App\Models\Post;
+use App\Models\Tag;
+use App\Models\User;
+use App\Models\Work;
+use App\Models\WorkBlock;
+use App\Nova\Blog;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Laravel\Telescope\Telescope;
 
@@ -36,13 +42,14 @@ class AppServiceProvider extends ServiceProvider
 
         Relation::morphMap(
             [
-                'work' => 'App\Models\Work',
-                'comment' => 'App\Models\Comment',
-                'user' => 'App\Models\User',
-                'feedback' => 'App\Models\Feedback',
-                'tag' => 'App\Models\Tag',
-                'blog' => 'App\Models\Blog',
-                'post' => 'App\Models\Post',
+                'work' => Work::class,
+                'comment' => Comment::class,
+                'user' => User::class,
+                'feedback' => Feedback::class,
+                'tag' => Tag::class,
+                'blog' => Blog::class,
+                'post' => Post::class,
+                'work_block' => WorkBlock::class,
             ]
         );
     }

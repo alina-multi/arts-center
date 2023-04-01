@@ -29,7 +29,7 @@ class WorkFactory extends Factory
             'show_uk' => true,
             'show_en' => true,
             'price' => $this->faker->numberBetween(100, 10000),
-            'rating' => $this->faker->numberBetween(0, 40),
+            'rating' => $this->faker->numberBetween(0, 30),
             'comments' => $this->faker->numberBetween(0, 500),
             'image_id'=> Image::factory()->create(),
         ];
