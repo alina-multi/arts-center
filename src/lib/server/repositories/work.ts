@@ -103,7 +103,7 @@ export function get(id: bigint) {
 							}
 						},
 						where: {
-							imageable_type: 'App\\WorkBlock'
+							imageable_type: 'work_block'
 						}
 					}
 				},
