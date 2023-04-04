@@ -2,10 +2,12 @@ import type { users, images } from '@prisma/client';
 import type { User } from '$lib/interfaces/User';
 import { imageMap } from './image';
 
-interface Owner {
-	user: users & {
-		avatar: images | null;
-	};
+export interface Owner {
+	user: UserWithRelations
+}
+
+interface UserWithRelations extends users {
+	avatar: images | null;
 }
 export function ownersMap(owners: Owner[]): User[] {
 	return owners
@@ -15,7 +17,7 @@ export function ownersMap(owners: Owner[]): User[] {
 		});
 }
 
-export function ownerMap(user: users): User {
+export function ownerMap(user: UserWithRelations): User {
 	return {
 		id: user.id,
 		username: user.username,

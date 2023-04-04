@@ -31,3 +31,35 @@ export function query(
 		orderBy
 	});
 }
+
+export function get(username: string) {
+	return prisma.users.findUnique({
+		select: {
+			id: true,
+			username: true,
+			name: true,
+			avatar: true,
+			country: true,
+			created_at: true,
+			ratings: {
+				select: {
+					rating: true,
+					language: true,
+					tag: {
+						select: {
+							titles: {
+								select: {
+									title: true,
+									language: true
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		where: {
+			username
+		}
+	});
+}

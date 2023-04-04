@@ -1,10 +1,16 @@
 import type { WorkPreview } from '$lib/interfaces/Work';
 import { imageMap } from './image';
-import type { Gallery } from '$server/repositories/gallery';
 import { ownersMap } from './owners';
+import type { Owner } from './owners';
+import type { images, works, users, work_titles, ownables } from "@prisma/client";
 
-export function worksPreviewMap(works: Gallery): WorkPreview[] {
-	return works?.map((work) => {
+type Gallery = works &{
+	owners: Owner[];
+	image: images;
+	titles: work_titles[];
+}
+export function worksPreviewMap(works: Gallery[]): WorkPreview[] {
+	return works?.map(work => {
 		return {
 			id: work.id,
 			published_at: work.published_at,

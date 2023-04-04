@@ -9,7 +9,7 @@ export interface WorkPreview {
 	hosts: number;
 	price: number;
 	titles: WorkTitle[];
-	image?: Image;
+	image: Image | null;
 	owners: UserPreview[];
 }
 
@@ -19,7 +19,7 @@ export interface Work extends WorkPreview {
 	width?: number;
 	height?: number;
 	length?: number;
-	image?: Image;
+	image: Image | null;
 	tags: Tag[];
 	votes?: UserPreview[];
 }

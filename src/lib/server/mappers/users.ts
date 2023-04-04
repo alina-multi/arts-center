@@ -1,13 +1,17 @@
-import type { Userlist } from '$lib/interfaces/User';
+import type { User, UserList } from '$lib/interfaces/User';
 import type { users } from '.prisma/client';
 import { imageMap } from './image';
 import { query } from '$lib/server/repositories/gallery';
 import { worksPreviewMap } from './gallery';
+import type { images } from "@prisma/client";
 
-export async function usersMap(users: users[]): Promise<Userlist[]> {
+type userWithRelations = users & {
+	avatar: images | null;
+}
+export async function usersMap(users: userWithRelations[]): Promise<UserList[]> {
 	return await Promise.all(
-		users.map(async (user) => {
-			let works = await query(
+		users.map(async (user: userWithRelations) => {
+			let tmpWorks = await query(
 				{
 					owners: {
 						some: {
@@ -21,7 +25,7 @@ export async function usersMap(users: users[]): Promise<Userlist[]> {
 				0,
 				3
 			);
-			works = worksPreviewMap(works);
+			let works = worksPreviewMap(tmpWorks);
 
 			return {
 				...user,
@@ -30,4 +34,11 @@ export async function usersMap(users: users[]): Promise<Userlist[]> {
 			};
 		})
 	);
+}
+
+export async function userMap(user: userWithRelations): Promise<User> {
+	return {
+		...user,
+		avatar: imageMap(user.avatar)
+	}
 }

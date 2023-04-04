@@ -125,5 +125,3 @@ export async function filteredQuery(tag: string, lang: string, order = 'popular'
 		page
 	);
 }
-
-export type Gallery = Prisma.PromiseReturnType<typeof query>;

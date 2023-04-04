@@ -11,7 +11,7 @@ export interface UserPreview {
 }
 
 export interface UserList extends UserPreview {
-	created_at: Date;
+	created_at: Date | null;
 }
 
 interface UserRating {
