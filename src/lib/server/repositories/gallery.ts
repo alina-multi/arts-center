@@ -82,6 +82,23 @@ export function indexQuery(page = 0) {
 	);
 }
 
+export async function userQuery(user_id: bigint, page = 0) {
+	return query(
+		{
+			owners: {
+				some: {
+					user_id,
+					ownable_type: 'work'
+				}
+			}
+		},
+		{
+			published_at: 'desc'
+		},
+		page
+	);
+}
+
 export async function filteredQuery(tag: string, lang: string, order = 'popular', page = 0) {
 	let where = {};
 	if (tag !== 'all') {
