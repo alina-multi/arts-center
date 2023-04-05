@@ -4,7 +4,7 @@
 	export let comments: Comment[];
 </script>
 
-<div class="-mb-10">
+<div>
 	<h3 class="sr-only">Comments</h3>
 	{#each comments as comment}
 		<CommentBlock {comment} />

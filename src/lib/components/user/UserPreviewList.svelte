@@ -11,7 +11,11 @@
 		{#if user.subscribed}
 			<UserPreviewPremium {...user} />
 		{:else}
-			<UserPreviewRegular {...user} />
+			<div
+				class=" flex flex-col border border-gray-200 dark:border-gray-700 gap-3 p-3 rounded-md shadow-sm"
+			>
+				<UserPreviewRegular {...user} />
+			</div>
 		{/if}
 	{/each}
 </div>

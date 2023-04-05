@@ -4,15 +4,11 @@
 	export let work;
 </script>
 
-<div class="space-y-1">
+<div class="space-y-1 py-2">
 	<div class="flex justify-between">
-		<div class="flex text-base items-center gap-3">
+		<div class="flex flex-col">
 			{#each work.owners as user}
-				<UserPreviewInline {user} />
-				<butoon
-					class="  dark:bg-gray-900 dark:border-sky-700 dark:border rounded-full px-3 py-1 text-xs text-white bg-sky-700 font-semibold shadow-sm  hover:bg-sky-600 dark:hover:bg-sky-700 dark:text-gray-100 hover:text-white cursor-pointer"
-					>Follow</butoon
-				>
+				<UserPreviewInline {user} followButton={true} />
 			{/each}
 		</div>
 		<div class="hidden md:block"><EllipsisButton /></div>

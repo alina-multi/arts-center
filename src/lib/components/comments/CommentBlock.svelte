@@ -5,7 +5,7 @@
 	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ArrowUturnLeft } from '@steeze-ui/heroicons';
-	import CommentInput from './CommentInput.svelte';
+	import CommentInput from '$lib/components/comments/CommentInput.svelte';
 
 	let isReply = false;
 	let value = '';
@@ -19,9 +19,6 @@
 	};
 </script>
 
-{#if autorized}
-	<div class="pt-6"><CommentInput /></div>
-{/if}
 <div class="text-sm text-gray-800 dark:text-gray-400 ">
 	<div class="pt-6">
 		<div class="border  p-3 rounded-md bg-gray-50 dark:bg-gray-900 dark:border-gray-600">

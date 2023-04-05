@@ -5,6 +5,8 @@
 	import WorkFooter from '$lib/components/work/page/footer/WorkFooter.svelte';
 	import EllipsisButton from '$lib/components/atoms/buttons/EllipsisButton.svelte';
 	import Icons from '$lib/components/atoms/Icons.svelte';
+	import { HandThumbUp } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 	import TagButtons from '$lib/components/atoms/TagButtons.svelte';
 	import ButtonsDesktop from './page/DesktopButtons.svelte';
 	import CommentsBlock from '$lib/components/comments/CommentsBlock.svelte';
@@ -15,11 +17,11 @@
 	export let comments: Comment[];
 </script>
 
-<div class=" relative text-gray-900 mx-auto border px-14 py-3 ">
-	<div class=" md:hidden flex justify-between items-center text-gray-600">
-		<!-- <div class="rounded-md hover:scale-110 "><Icons type="arrowBack" /></div> -->
+<div class=" relative text-gray-900 mx-auto lg:border border-t-transparent lg:px-14 py-3 ">
+	<!-- <div class=" md:hidden flex justify-between items-center text-gray-600">
+		<div class="rounded-md hover:scale-110 "><Icons type="arrowBack" /></div>
 		<div><EllipsisButton /></div>
-	</div>
+	</div> -->
 
 	<div>
 		<div class="sticky top-0 hidden lg:block">
@@ -38,34 +40,26 @@
 			<WorkHeader {work} />
 			<WorkBody {work} />
 			<div
-				class="flex items-center gap-2 text-xs sm:text-base  py-1 lg:py-3 justify-end  min-[500px]:justify-between  text-gray-800  dark:text-gray-500"
+				class="flex items-center gap-2 text-base  lg:py-3 pb-3 pr-3 justify-between  text-gray-800  dark:text-gray-500 max-lg:border-b"
 			>
-				<p class="text-gray-500   hidden min-[500px]:block dark:text-gray-400">
-					Published at {work.published_at.toLocaleDateString('Ru-ru')}
-				</p>
+				{#if work.tags.length > 0}
+					<div
+						class=" hidden lg:flex items-center justify-start flex-wrap gap-3  dark:text-gray-100 "
+					>
+						<span>Tags:</span>
+						<TagButtons tags={work.tags} />
+					</div>
+				{/if}
 
 				<WorkRatingPreview {work} />
+				<button
+					class="  flex lg:hidden  bg-sky-700 text-white border p-2 rounded-full  hover:text-sky-700 hover:shadow-md  hover:bg-gray-50 dark:hover:bg-gray-900  dark:hover:border-gray-400 text"
+				>
+					<Icon src={HandThumbUp} theme="solid" class="w-6 h-6 " />
+				</button>
 			</div>
 		</div>
 	</div>
 </div>
 
-{#if work.tags.length > 0}
-	<div
-		class=" hidden lg:flex items-center justify-start flex-wrap mt-3 gap-1 lg:gap-3    dark:text-gray-100 "
-	>
-		<TagButtons tags={work.tags} />
-	</div>
-{/if}
-
-<WorkFooter {work} />
-
-{#if work.tags.length > 0}
-	<div
-		class=" flex lg:hidden items-center justify-start flex-wrap  gap-1 text-xs   p-3 rounded-sm border dark:rounded-md bg-gray-100 dark:text-gray-100 dark:bg-gray-900 dark:border-transparent"
-	>
-		<TagButtons tags={work.tags} />
-	</div>
-{/if}
-
-<CommentsBlock {comments} />
+<WorkFooter {work} {comments} />
