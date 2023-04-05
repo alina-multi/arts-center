@@ -22,18 +22,18 @@
 	};
 </script>
 
-<div class="flex flex-col grow">
+<div class="flex flex-col text-gray-800 dark:text-gray-300">
 	{#if autorizated}
 		<div class="flex flex-col  border border-b-transparent p-6 rounded-t-md ">
 			<CommentInput />
 		</div>
 	{/if}
-	<div class="border py-1  bg-gray-50 text-gray-800">
+	<div class="border py-1  bg-gray-50  dark:bg-gray-900 dark:border-gray-800 ">
 		<span class="px-6 text-sm ">Comments: {count}</span>
 	</div>
 
 	<div
-		class="flex flex-col border-b  md:border border-t-transparent md:px-6 pb-6 gap-6 md:rounded-b-md "
+		class="flex flex-col border-b  md:border border-t-transparent md:px-6 pb-6 gap-6 md:rounded-b-md dark:border-gray-800"
 	>
 		{#if comments.length > 0}
 			<CommentsBlock comments={visibleComments} />

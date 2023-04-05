@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { UserCircle } from '@steeze-ui/heroicons';
+	import { User } from '@steeze-ui/heroicons';
 	import { handleAvatarError } from '$lib/helpers/handleImgError';
 	import { localePath } from '$lib/translations';
 
@@ -14,7 +14,7 @@
 
 <a {href} class="inline-flex">
 	<div class="inline-flex items-center gap-2">
-		<div class="bg-zinc-300 rounded-full">
+		<div class="bg-zinc-300 dark:bg-gray-800 rounded-full">
 			{#if user.avatar}
 				<img
 					src={user.avatar.src}
@@ -24,8 +24,9 @@
 				/>
 			{:else}
 				<Icon
-					src={UserCircle}
-					class="{size} border rounded-full stroke-zinc-600 dark:stroke-zinc-400"
+					theme="solid"
+					src={User}
+					class="{size} rounded-full fill-white dark:fill-gray-200 p-[5px]"
 				/>
 			{/if}
 		</div>

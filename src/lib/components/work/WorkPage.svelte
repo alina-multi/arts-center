@@ -17,7 +17,9 @@
 	export let comments: Comment[];
 </script>
 
-<div class=" relative text-gray-900 mx-auto lg:border border-t-transparent lg:px-14 py-3 ">
+<div
+	class=" relative mx-auto lg:border border-t-transparent lg:px-14 py-3 dark:border-gray-800 dark:border-t-transparent "
+>
 	<!-- <div class=" md:hidden flex justify-between items-center text-gray-600">
 		<div class="rounded-md hover:scale-110 "><Icons type="arrowBack" /></div>
 		<div><EllipsisButton /></div>
@@ -40,20 +42,20 @@
 			<WorkHeader {work} />
 			<WorkBody {work} />
 			<div
-				class="flex items-center gap-2 text-base  lg:py-3 pb-3 pr-3 justify-between  text-gray-800  dark:text-gray-500 max-lg:border-b"
+				class="flex items-center justify-between   gap-2 text-base  lg:py-3 pb-3 	max-lg:pr-3  text-gray-800  dark:text-gray-500 max-lg:border-b"
 			>
-				{#if work.tags.length > 0}
-					<div
-						class=" hidden lg:flex items-center justify-start flex-wrap gap-3  dark:text-gray-100 "
-					>
+				<div
+					class=" hidden lg:flex items-center justify-start flex-wrap gap-3  dark:text-gray-100 "
+				>
+					{#if work.tags.length > 0}
 						<span>Tags:</span>
 						<TagButtons tags={work.tags} />
-					</div>
-				{/if}
+					{/if}
+				</div>
 
 				<WorkRatingPreview {work} />
 				<button
-					class="  flex lg:hidden  bg-sky-700 text-white border p-2 rounded-full  hover:text-sky-700 hover:shadow-md  hover:bg-gray-50 dark:hover:bg-gray-900  dark:hover:border-gray-400 text"
+					class="  flex lg:hidden  bg-sky-700 text-white border p-2 rounded-full  hover:text-sky-700 hover:shadow-md  hover:bg-gray-50 dark:hover:bg-gray-900  dark:hover:border-gray-400"
 				>
 					<Icon src={HandThumbUp} theme="solid" class="w-6 h-6 " />
 				</button>

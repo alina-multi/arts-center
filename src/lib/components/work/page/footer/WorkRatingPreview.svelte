@@ -21,14 +21,14 @@
 	</ul>
 </ModalWindow>
 
-<div class="flex items-end gap-3 dark:text-gray-400 max-[400px]:text-xs max-[400px]:gap-1">
+<div class="flex items-end gap-1 dark:text-gray-300 max-[400px]:text-xs ">
 	<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointer ">
 		<span class="">Liked by</span>
 		{work.rating}
 	</button>
 
 	{#if work.votes.length > 0}
-		<div class="flex -space-x-1 cursor-pointer">
+		<div class="flex -space-x-3 cursor-pointer">
 			{#each votesPreview as user}
 				<Avatar {user} />
 			{/each}

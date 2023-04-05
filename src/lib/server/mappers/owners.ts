@@ -3,7 +3,7 @@ import type { User } from '$lib/interfaces/User';
 import { imageMap } from './image';
 
 export interface Owner {
-	user: UserWithRelations
+	user: UserWithRelations;
 }
 
 interface UserWithRelations extends users {

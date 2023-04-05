@@ -18,6 +18,7 @@
 				alt="{name} Avatar"
 			/></a
 		>
+		<!-- <Avatar user={{ name, avatar }}  size={" w-14 h-14"}/> -->
 	</div>
 
 	<div class="gap-1 flex flex-col items-start ">

@@ -17,6 +17,6 @@ export const handleAvatarError = (event) => {
 		event.target.onerror = null;
 		event.target.srcset = avatar_not_found;
 		event.target.src = avatar_not_found;
-		event.target.style = 'object-fit: contain; object-position: center; width: 100%; height: 100%;';
+		event.target.style = ' object-position: center;';
 	}
 };
