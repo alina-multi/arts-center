@@ -19,10 +19,8 @@ export function imageMap(image: images): Image {
 	}
 	const srcset = [];
 	for (const width of [300, 600, 1200, 2400]) {
-		// @ts-ignore no idea how to fix this and keep concise
 		if (image[`w${width}`]) {
 			for (const extention of ['webp', 'jpg']) {
-				// @ts-ignore
 				srcset.push(`${getUrl(image, width, extention)} ${width}w`);
 			}
 		}

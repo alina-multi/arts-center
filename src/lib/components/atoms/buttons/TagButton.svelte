@@ -5,7 +5,7 @@
 		active: boolean,
 		clickHandler: () => void,
 		title: string,
-		dots: boolean = false;
+		dots = false;
 	if (!href) {
 		href = localePath(`/tag/${title}`);
 	}

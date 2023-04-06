@@ -4,7 +4,9 @@
 
 	export let tags: Tag[],
 		active = (tag: string) => false,
-		clickHandler = (tag: string) => {},
+		clickHandler = (tag: string) => {
+			/**/
+		},
 		href: string,
 		dots: boolean;
 </script>
