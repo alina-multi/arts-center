@@ -10,12 +10,10 @@
 	};
 
 	// Map for current language
-	const tags = categories.map((category) => {
-		return languageFind(category.titles);
-	});
+	
 
 	const options = {
-		tags: tags,
+		tags: categories,
 		order: [
 			{
 				title: 'popular'
@@ -41,7 +39,7 @@
 		selected.order = params.order;
 	}
 
-	const urlGenerator = (selected) => {
+	let urlGenerator = (selected) => {
 		if (selected.tags === 'all' && selected.order === 'popular') {
 			return localePath('/');
 		}

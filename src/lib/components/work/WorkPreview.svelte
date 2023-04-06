@@ -11,14 +11,14 @@
 	$: href = localePath(`/work/${work.id}`);
 </script>
 
-<!-- onerror="this.onerror=null;this.srcset='{image_not_found}'; this.src='{image_not_found}'; this.style='object-fit: contain; object-position: center;';" //////    works, but sometimes only on the first load of the page, and sometimes not at all -->
+
 <li
-	class="flex flex-col gap-1 rounded-md overflow-hidden lg:w-80 md:w-[23rem] xl:w-[19rem] 2xl:w-[18rem] {work.subscribed
+	class="flex flex-col  rounded-md overflow-hidden lg:w-80 md:w-[23rem] xl:w-[19rem] 2xl:w-[18rem] {work.subscribed
 		? ' '
 		: ''} "
 >
 	<div class="group/item relative">
-		<a {href} class="grid gap-2">
+		<a {href} class="grid gap-1">
 			<div class="bg-zinc-300  aspect-[4/3] w-full rounded-md">
 				{#if work.image}
 					<img
@@ -33,9 +33,9 @@
 			<div
 				class=" inline-flex items-start justify-between font-medium text-gray-900 dark:text-gray-100"
 			>
-				<h3 class="text-md">{title}</h3>
+				<h3 class="text-sm">{title}</h3>
 				{#if work.price}
-					<p class="ml-2 lg:text-sm bg-green-600 px-2 py-1 rounded-md text-white">
+					<p class="ml-2 text-xs bg-green-600 px-2 py-1 rounded-md text-white">
 						${work.price}
 					</p>{/if}
 			</div>
@@ -47,14 +47,14 @@
 		</div>
 	</div>
 
-	<div class="flex justify-between items-center text-sm text-gray-500 mt-auto">
+	<div class="flex justify-between items-center text-xs text-gray-500 mt-auto">
 		{#each work.owners as user}
 			<div class="mr-3"><UserPreviewInline {user} /></div>
 		{/each}
 
 		{#if work.subscribed}
 			<span
-				class="mr-2 shadow-md text-lg lg:text-base font-medium border border-amber-500 rounded-md px-2 dark:text-gray-100"
+				class="mr-2 shadow-md text-xs lg:text-base font-medium border border-amber-500 rounded-md px-2 dark:text-gray-100"
 				>Pro</span
 			>
 		{/if}

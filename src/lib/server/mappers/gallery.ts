@@ -3,6 +3,7 @@ import { imageMap } from './image';
 import { ownersMap } from './owners';
 import type { Owner } from './owners';
 import type { images, works, users, work_titles, ownables } from '@prisma/client';
+import { languageFind } from '$lib/translations';
 
 type Gallery = works & {
 	owners: Owner[];

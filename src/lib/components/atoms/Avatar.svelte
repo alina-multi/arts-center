@@ -8,7 +8,7 @@
 	$: href = localePath(`/${user.username}`);
 
 	if (!size) {
-		size = 'h-8 w-8';
+		size = 'h-6 w-6';
 	}
 </script>
 

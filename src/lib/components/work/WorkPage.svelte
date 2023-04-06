@@ -3,7 +3,7 @@
 	import WorkHeader from '$lib/components/work/page/header/WorkHeader.svelte';
 	import WorkBody from '$lib/components/work/page/body/WorkBody.svelte';
 	import WorkFooter from '$lib/components/work/page/footer/WorkFooter.svelte';
-	import EllipsisButton from '$lib/components/atoms/buttons/EllipsisButton.svelte';
+	import EllipsisButton from '$lib/components/atoms/EllipsisButton.svelte';
 	import Icons from '$lib/components/atoms/Icons.svelte';
 	import { HandThumbUp } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
@@ -49,7 +49,7 @@
 				>
 					{#if work.tags.length > 0}
 						<span>Tags:</span>
-						<TagButtons tags={work.tags} />
+						<TagButtons tags={work.tags} dots />
 					{/if}
 				</div>
 

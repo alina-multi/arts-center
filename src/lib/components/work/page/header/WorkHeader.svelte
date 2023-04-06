@@ -1,14 +1,14 @@
 <script lang="ts">
 	import UserPreviewInline from '$lib/components/user/UserPreviewInline.svelte';
-	import EllipsisButton from '$lib/components/atoms/buttons/EllipsisButton.svelte';
+	import EllipsisButton from '$lib/components/atoms/EllipsisButton.svelte';
 	export let work;
 </script>
 
 <div class="space-y-1 py-2">
-	<div class="flex justify-between">
+	<div class="flex justify-between items-center">
 		<div class="flex flex-col">
 			{#each work.owners as user}
-				<UserPreviewInline {user} followButton={true} />
+				<UserPreviewInline {user} followButton={true} size={"w-8 h-8"} />
 			{/each}
 		</div>
 		<div class="hidden md:block"><EllipsisButton /></div>

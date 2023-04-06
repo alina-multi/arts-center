@@ -2,21 +2,17 @@
 	import { Popover, PopoverButton, PopoverPanel, Transition } from '@rgossiaux/svelte-headlessui';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ChevronDown, ChevronUp } from '@steeze-ui/heroicons';
+	import TagButtons from '$lib/components/atoms/TagButtons.svelte';
 	import TagButton from '$lib/components/atoms/buttons/TagButton.svelte';
-
-	export let tags: Array<{ title: string; language: string }> = [],
+	
+	export let tags,
 		href: string,
 		selectedTag: string,
 		onTag: (tag: string) => void;
 
-	const visibleTags = tags.slice(0, 8);
-	const hiddenTags = tags.slice(8);
-	const isHiddenTagSelected = hiddenTags.filter((tag) => tag.title === selectedTag);
-
-	if (isHiddenTagSelected.length > 0) {
-		visibleTags.push(isHiddenTagSelected[0]);
-		hiddenTags.splice(hiddenTags.indexOf(isHiddenTagSelected[0]), 1);
-	}
+	let  visibleTags = tags.slice(0, 8);
+     let  hiddenTags = tags.slice(8);
+$: isHiddenTag = hiddenTags.filter((tag)=> tag.title === selectedTag);
 
 	$: isActive = (tag: string) => {
 		return tag === selectedTag;
@@ -28,15 +24,14 @@
 	<Popover class="relative inline-block text-left z-50 text-gray-800 dark:text-gray-200" let:open>
 		<div class="flex flex-wrap justify-end gap-3 ">
 			<TagButton {href} clickHandler={() => onTag('all')} active={isActive('all')} title={'all'} />
-
-			{#each visibleTags as { title, language }}
-				<TagButton {href} clickHandler={() => onTag(title)} active={isActive(title)} {title} />
-			{/each}
-
+				<TagButtons tags={visibleTags} {href} clickHandler={onTag} active={isActive}  />
 			<PopoverButton
 				class="flex items-center gap-2  border px-3 py-1 rounded-md hover:border-amber-500 "
 			>
 				other
+				{#if selectedTag !== 'all' && isHiddenTag.length > 0  }
+					<span class="text-sm bg-amber-600 text-white px-1 rounded-md">{selectedTag}</span>
+				{/if}
 				{#if !open}
 					<Icon src={ChevronDown} class="w-5" />
 				{/if}
@@ -55,11 +50,9 @@
 		>
 			<PopoverPanel
 				class="absolute left-0 z-10 mt-2 origin-top-left rounded-md bg-white dark:bg-black/90 shadow-2xl ring-1 ring-black dark:ring-zinc-500 ring-opacity-5 focus:outline-none overflow-hidden"
-			>
-				<div class="flex  gap-3 flex-wrap flex-row-reverse p-3 ">
-					{#each hiddenTags as { title, language }}
-						<TagButton {href} clickHandler={() => onTag(title)} active={isActive(title)} {title} />
-					{/each}
+				let:close >
+				<div class="flex  gap-3 flex-wrap flex-row-reverse p-3" on:click={()=>close()}>
+					<TagButtons tags={hiddenTags} {href} clickHandler={onTag} active={isActive}  />
 				</div>
 			</PopoverPanel>
 		</Transition>
@@ -90,9 +83,8 @@
 			class="absolute origin-top-right right-0 w-full  z-10 mt-2 rounded-md bg-white dark:bg-black/90 shadow-2xl ring-1 ring-black dark:ring-zinc-500 ring-opacity-5 focus:outline-none overflow-hidden"
 		>
 			<div class="flex  gap-2 flex-wrap text-sm  p-3 flex-row-reverse ">
-				{#each tags as { title, language }}
-					<TagButton {href} clickHandler={() => onTag(title)} active={isActive(title)} {title} />
-				{/each}
+				<TagButton {href} clickHandler={() => onTag('all')} active={isActive('all')} title={'all'} />
+				<TagButtons {tags} {href} clickHandler={onTag} active={isActive} />
 			</div>
 		</PopoverPanel>
 	</Popover>

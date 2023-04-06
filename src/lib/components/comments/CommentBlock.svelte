@@ -20,10 +20,10 @@
 </script>
 
 <div class="text-sm text-gray-800 dark:text-gray-400 ">
-	<div class="pt-6">
-		<div class="border  p-3 rounded-md bg-gray-50 dark:bg-gray-900 dark:border-gray-600">
+	<div class="pt-3 lg:pt-6">
+		<div class="">
 			<UserPreviewInline user={comment.owner} />
-			<div class="prose prose-sm max-w-none  ">
+			<div class="prose prose-sm max-w-none  border  p-3 rounded-md bg-gray-50 dark:bg-gray-900 dark:border-gray-600">
 				{@html html}
 			</div>
 			{#if autorized}
@@ -44,8 +44,8 @@
 		{/if}
 
 		{#if comment?.answers}
-			<div class="ml-12 ">
-				<div class=" border-l pl-9 dark:border-gray-600 ">
+			<div class="lg:ml-12 ">
+				<div class=" border-l pl-3 lg:pl-9 dark:border-gray-600 ">
 					{#each comment.answers as reply}
 						<svelte:self comment={reply} />
 					{/each}
