@@ -103,7 +103,10 @@ export function get(id: bigint) {
 							}
 						},
 						where: {
-							imageable_type: 'work_block'
+							imageable_type: {
+								// todo: once this is fixed, remove the workaround
+								in: ['work_block', 'App\\WorkBlock']
+							}
 						}
 					}
 				},
