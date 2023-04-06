@@ -9,6 +9,12 @@ export function imagesMap(images: imageablesWithRelations[]): Image[] | undefine
 	return images?.map((image) => imageMap(image.image));
 }
 export function imageMap(image: images): Image {
+	if (!image) {
+		return {
+			src: '',
+			srcset: ''
+		};
+	}
 	if (!PUBLIC_IMAGE_HOST) {
 		const heights = [450, 600, 1200];
 		const height = heights[Math.floor(Math.random() * heights.length)];
