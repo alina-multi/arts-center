@@ -1,11 +1,11 @@
 import type { WorkPreview } from '$lib/interfaces/Work';
 import { imageMap } from './image';
-import type { Owner } from './owners';
+import type { ownableWithRelations } from './owners';
 import { ownersMap } from './owners';
 import type { images, work_titles, works } from '@prisma/client';
 
 type Gallery = works & {
-	owners: Owner[];
+	owners: ownableWithRelations[];
 	image: images;
 	titles: work_titles[];
 };

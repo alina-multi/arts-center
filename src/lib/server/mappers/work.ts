@@ -27,10 +27,10 @@ export function workMap(data: worksWithRelations): Work {
 		owners: ownersMap(data.owners),
 		tags: taggableMap(data.tags),
 		votes: ownersMap(data.votes),
-		width: data.details.width,
-		height: data.details.height,
-		length: data.details.length,
-		year: data.details.year
+		width: data?.details?.width,
+		height: data?.details?.height,
+		length: data?.details?.length,
+		year: data?.details?.year
 	};
 }
 
