@@ -1,0 +1,29 @@
+<script lang ts>
+	import { Icon } from '@steeze-ui/svelte-icon';
+	import { Star, MapPin } from '@steeze-ui/heroicons';
+
+	export let user;
+	const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+</script>
+
+<div class="flex  flex-wrap text-sm  text-gray-500/90 dark:text-gray-300 gap-2 items-center ">
+	{#if user.totalRating > 0}
+		<div class="flex items-center  ">
+			<Icon src={Star} theme="solid" class=" h-[17px] w-[17px] fill-amber-600 " />
+			<span> {user.totalRating}</span>
+		</div>
+	{/if}
+
+	<span>@{user.username}</span>
+
+	{#if user.country}
+		<div class="inline-flex  items-center">
+			<Icon
+				src={MapPin}
+				theme="solid"
+				class=" h-[17px] w-[17px] fill-green-900/80 dark:stroke-gray-300"
+			/>
+			<span>{regionNames.of(user.country)}</span>
+		</div>
+	{/if}
+</div>
