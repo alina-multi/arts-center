@@ -1,5 +1,4 @@
-import type { Tag } from '$lib/interfaces/Tag';
-import { PrismaClient, tag_titles } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient({
 	log: [

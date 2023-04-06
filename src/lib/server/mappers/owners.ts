@@ -1,4 +1,4 @@
-import type { users, images } from '@prisma/client';
+import type { images, users } from '@prisma/client';
 import type { User } from '$lib/interfaces/User';
 import { imageMap } from './image';
 

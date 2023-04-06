@@ -1,6 +1,7 @@
 <script lang="ts">
 	import WorkPreview from '$lib/components/work/WorkPreview.svelte';
 	import GalleryFilters from '$lib/components/work/GalleryFilters.svelte';
+
 	export let gallery;
 	export let categories;
 	export let params;

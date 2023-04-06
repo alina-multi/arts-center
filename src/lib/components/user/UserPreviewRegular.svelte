@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { UserCircle, Star, MapPin } from '@steeze-ui/heroicons';
+	import { MapPin, Star } from '@steeze-ui/heroicons';
+
 	export let name, avatar, country, totalRating, username, works;
 	totalRating = 1234;
 	const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });

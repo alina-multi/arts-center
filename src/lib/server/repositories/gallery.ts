@@ -1,5 +1,5 @@
-import { PrismaClient } from '@prisma/client';
 import type { Prisma } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { titleToId } from './tag';
 import { error } from '@sveltejs/kit';
 

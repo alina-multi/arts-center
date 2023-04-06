@@ -1,15 +1,16 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import {
-		ShoppingCart,
-		ChatBubbleLeftRight,
-		HandThumbUp,
 		Bookmark,
+		BookmarkSlash,
+		ChatBubbleLeftRight,
 		CheckCircle,
-		Share,
+		HandThumbUp,
 		PlusCircle,
-		BookmarkSlash
+		Share,
+		ShoppingCart
 	} from '@steeze-ui/heroicons';
+
 	export let type;
 	export let isAddedToCart = true;
 	export let isLiked = true;

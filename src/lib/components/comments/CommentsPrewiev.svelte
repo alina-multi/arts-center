@@ -1,6 +1,7 @@
 <script lang="ts">
 	import CommentsBlock from '$lib/components/comments/CommentsBlock.svelte';
 	import CommentInput from '$lib/components/comments/CommentInput.svelte';
+
 	export let comments,
 		count,
 		autorizated = false;

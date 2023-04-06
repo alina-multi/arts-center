@@ -2,6 +2,7 @@
 	import type { Work } from '$lib/interfaces/Work';
 	import Avatar from '$lib/components/atoms/Avatar.svelte';
 	import ModalWindow from '$lib/components/ModalWindow.svelte';
+
 	export let work: Work;
 	let showLikedByModal = false;
 	// For now let's just show the first 3 votes

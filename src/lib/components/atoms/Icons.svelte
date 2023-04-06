@@ -1,6 +1,7 @@
 <script lanf="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ArrowLongLeft } from '@steeze-ui/heroicons';
+
 	export let type;
 </script>
 

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { HandThumbDown, HandThumbUp, Heart } from '@steeze-ui/heroicons';
+
 	export let allowDownVote: boolean,
 		rating: number,
 		showVotedPreview: boolean,

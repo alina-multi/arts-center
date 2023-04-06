@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Switch } from '@rgossiaux/svelte-headlessui';
+
 	export let enabled;
 </script>
 

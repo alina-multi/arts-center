@@ -1,6 +1,7 @@
 <script lang="ts">
 	import FilterOrder from './FilterOrder.svelte';
 	import FilterTag from './FilterTag.svelte';
+
 	export let options: {
 			order: Array<{ title: string; language: string }>;
 			tags: Array<{ title: string; language: string }>;

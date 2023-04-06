@@ -2,8 +2,8 @@
 	import {
 		Listbox,
 		ListboxButton,
-		ListboxOptions,
 		ListboxOption,
+		ListboxOptions,
 		Transition
 	} from '@rgossiaux/svelte-headlessui';
 	import { Icon } from '@steeze-ui/svelte-icon';

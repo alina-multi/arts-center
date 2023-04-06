@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { localePath, languageFind } from '$lib/translations';
+	import { languageFind, localePath } from '$lib/translations';
 
 	export let tag;
 	const { title } = languageFind(tag.titles) || {};

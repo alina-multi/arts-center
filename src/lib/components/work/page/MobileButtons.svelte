@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import {
-		Heart,
-		ShoppingCart,
-		ChatBubbleLeftRight,
+		Bookmark,
 		BookmarkSlash,
-		Bookmark
+		ChatBubbleLeftRight,
+		Heart,
+		ShoppingCart
 	} from '@steeze-ui/heroicons';
+
 	export let type;
 </script>
 

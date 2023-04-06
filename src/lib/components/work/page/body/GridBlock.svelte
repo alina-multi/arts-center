@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import PhotoSwipeLightbox from 'photoswipe/lightbox';
 	import 'photoswipe/style.css';
+
 	let galleryID = 'work-gallery';
 	export let block: any;
 

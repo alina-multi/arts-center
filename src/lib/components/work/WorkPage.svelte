@@ -3,13 +3,10 @@
 	import WorkHeader from '$lib/components/work/page/header/WorkHeader.svelte';
 	import WorkBody from '$lib/components/work/page/body/WorkBody.svelte';
 	import WorkFooter from '$lib/components/work/page/footer/WorkFooter.svelte';
-	import EllipsisButton from '$lib/components/atoms/EllipsisButton.svelte';
-	import Icons from '$lib/components/atoms/Icons.svelte';
 	import { HandThumbUp } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import TagButtons from '$lib/components/atoms/TagButtons.svelte';
 	import ButtonsDesktop from './page/DesktopButtons.svelte';
-	import CommentsBlock from '$lib/components/comments/CommentsBlock.svelte';
 	import WorkRatingPreview from '$lib/components/work/page/footer/WorkRatingPreview.svelte';
 	import type { Comment } from '$lib/interfaces/Comment';
 

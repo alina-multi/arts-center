@@ -1,11 +1,12 @@
 <script lang="ts">
 	import {
 		Dialog,
-		DialogOverlay,
 		DialogDescription,
+		DialogOverlay,
 		DialogTitle,
 		Transition
 	} from '@rgossiaux/svelte-headlessui';
+
 	export let open: boolean;
 </script>
 

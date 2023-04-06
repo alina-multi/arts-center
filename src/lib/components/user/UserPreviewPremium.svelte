@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { UserCircle, Calendar, Star, MapPin } from '@steeze-ui/heroicons';
+	import { Calendar, MapPin, Star, UserCircle } from '@steeze-ui/heroicons';
+
 	export let name, photo, totalRating, username, country, created_at, tags, lastWorks;
 </script>
 

@@ -1,6 +1,6 @@
+import type { Config } from 'sveltekit-i18n';
 import i18n from 'sveltekit-i18n';
 import lang from './lang.json';
-import type { Config } from 'sveltekit-i18n';
 import type { RequestEvent } from '@sveltejs/kit';
 import { error, redirect } from '@sveltejs/kit';
 import type { Translatable } from '../interfaces/Translatable';

@@ -16,9 +16,9 @@ export default defineConfig({
 		include: ['src/**/*.{test,spec}.{js,ts}']
 	},
 	// This is already added by sveltekit, but phpstorm doesn't know that
-	resolve:{
-		alias:{
-			'$lib' : path.resolve(__dirname, './src/lib')
-		},
-	},
+	resolve: {
+		alias: {
+			$lib: path.resolve(__dirname, './src/lib')
+		}
+	}
 });

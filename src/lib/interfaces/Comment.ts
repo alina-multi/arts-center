@@ -1,4 +1,5 @@
 import type { User } from './User';
+
 export interface Comment {
 	id: bigint;
 	body: object;

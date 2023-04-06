@@ -1,4 +1,5 @@
 import type { ParamMatcher } from '@sveltejs/kit';
+
 const excluded = ['uk'];
 
 export const match = ((param) => {

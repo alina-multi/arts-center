@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { languageFind, localePath } from '$lib/translations';
+	import { localePath } from '$lib/translations';
 	import type { Tag } from '$lib/interfaces/Tag';
 	import FiltersBase from '$lib/components/nav/FiltersBase.svelte';
 

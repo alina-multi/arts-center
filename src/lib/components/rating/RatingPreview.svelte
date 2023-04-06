@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { ChatBubbleLeftRight } from '@steeze-ui/heroicons';
-	import { Heart } from '@steeze-ui/heroicons';
+	import { ChatBubbleLeftRight, Heart } from '@steeze-ui/heroicons';
 
 	export let rating: number, comments: number;
 </script>

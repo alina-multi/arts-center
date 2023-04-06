@@ -1,12 +1,11 @@
-import type { Work } from '$lib/interfaces/Work';
-import type { works, work_blocks, work_details, work_titles, votes } from '@prisma/client';
-import type { WorkBlock } from '$lib/interfaces/Work';
+import type { Work, WorkBlock } from '$lib/interfaces/Work';
+import type { votes, work_blocks, work_details, work_titles, works } from '@prisma/client';
 import type { imageablesWithRelations } from './image';
-import type { taggablesWithRelations } from './tag';
-import type { ownableWithRelations, usersWithRelations } from './owners';
 import { imagesMap } from './image';
-import { ownersMap } from './owners';
+import type { taggablesWithRelations } from './tag';
 import { taggableMap } from './tag';
+import type { ownableWithRelations, usersWithRelations } from './owners';
+import { ownersMap } from './owners';
 
 interface workBlocksWithRelations extends work_blocks {
 	images: imageablesWithRelations[];
