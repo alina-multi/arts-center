@@ -1,12 +1,14 @@
 import type { Image } from '$lib/interfaces/Image';
-import type { images } from '@prisma/client';
+import type { imageables, images } from '@prisma/client';
 import { PUBLIC_IMAGE_HOST } from '$env/static/public';
 
-export function imagesMap(images: images[]): (Image | null)[] {
+export type imageablesWithRelations = imageables & {
+	image: images;
+};
+export function imagesMap(images: imageablesWithRelations[]): Image[] | undefined {
 	return images?.map((image) => imageMap(image.image));
 }
-export function imageMap(image: images | null): Image | null {
-	if (image === null) return null;
+export function imageMap(image: images): Image {
 	if (!PUBLIC_IMAGE_HOST) {
 		const heights = [450, 600, 1200];
 		const height = heights[Math.floor(Math.random() * heights.length)];
@@ -17,8 +19,10 @@ export function imageMap(image: images | null): Image | null {
 	}
 	const srcset = [];
 	for (const width of [300, 600, 1200, 2400]) {
+		// @ts-ignore no idea how to fix this and keep concise
 		if (image[`w${width}`]) {
 			for (const extention of ['webp', 'jpg']) {
+				// @ts-ignore
 				srcset.push(`${getUrl(image, width, extention)} ${width}w`);
 			}
 		}

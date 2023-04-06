@@ -23,7 +23,9 @@
 	<div class="pt-3 lg:pt-6">
 		<div class="">
 			<UserPreviewInline user={comment.owner} />
-			<div class="prose prose-sm max-w-none  border  p-3 rounded-md bg-gray-50 dark:bg-gray-900 dark:border-gray-600">
+			<div
+				class="prose prose-sm max-w-none  border  p-3 rounded-md bg-gray-50 dark:bg-gray-900 dark:border-gray-600"
+			>
 				{@html html}
 			</div>
 			{#if autorized}

@@ -8,7 +8,7 @@
 	<div class="flex justify-between items-center">
 		<div class="flex flex-col">
 			{#each work.owners as user}
-				<UserPreviewInline {user} followButton={true} size={"w-8 h-8"} />
+				<UserPreviewInline {user} followButton={true} size={'w-8 h-8'} />
 			{/each}
 		</div>
 		<div class="hidden md:block"><EllipsisButton /></div>

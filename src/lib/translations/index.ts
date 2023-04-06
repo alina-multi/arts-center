@@ -3,6 +3,7 @@ import lang from './lang.json';
 import type { Config } from 'sveltekit-i18n';
 import type { RequestEvent } from '@sveltejs/kit';
 import { error, redirect } from '@sveltejs/kit';
+import type { Translatable } from '../interfaces/Translatable';
 
 const config: Config = {
 	translations: {
@@ -90,13 +91,13 @@ function removeTrailingSlash(str: string): string {
 
 export const { t, locale, locales, loading, loadTranslations, translations } = new i18n(config);
 
-export function languageFilter(rows: any): object[] {
-	return rows.filter((row) => {
+export function languageFilter<Type extends Translatable>(rows: Type[]): Type[] {
+	return rows?.filter((row) => {
 		// By convention language zz means show on all languages
 		return row.language == locale.get() || row.language == 'zz';
 	});
 }
 
-export function languageFind(rows: any): object {
-	return rows.find((row) => row.language == locale.get());
+export function languageFind<Type extends Translatable>(rows: Type[]): Type | undefined {
+	return rows?.find((row) => row.language == locale.get());
 }

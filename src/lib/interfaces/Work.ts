@@ -7,20 +7,19 @@ export interface WorkPreview {
 	rating: number;
 	comments: number;
 	hosts: number;
-	price: number;
+	price: number | null;
 	titles: WorkTitle[];
-	image: Image | null;
+	image?: Image;
 	owners: UserPreview[];
 }
 
 export interface Work extends WorkPreview {
-	blocks: WorkBlock[];
-	year?: number;
-	width?: number;
-	height?: number;
-	length?: number;
-	image: Image | null;
-	tags: Tag[];
+	blocks?: WorkBlock[];
+	year: number | null;
+	width: number | null;
+	height: number | null;
+	length: number | null;
+	tags?: Tag[];
 	votes?: UserPreview[];
 }
 
@@ -34,4 +33,5 @@ export interface WorkBlock {
 	language: string;
 	type: string;
 	data: object;
+	images?: Image[];
 }

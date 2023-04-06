@@ -6,7 +6,7 @@
 	export let work,
 		autorizated = false,
 		comments;
-		console.log(work);	
+	console.log(work);
 </script>
 
 <div
@@ -50,7 +50,7 @@
 			>
 				<div class="flex  items-center justify-start flex-wrap gap-3  dark:text-gray-100 ">
 					<span>Tags:</span>
-					<TagButtons tags={work.tags} dots/>
+					<TagButtons tags={work.tags} dots />
 				</div>
 			</div>
 		{/if}

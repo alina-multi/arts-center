@@ -10,7 +10,6 @@
 	};
 
 	// Map for current language
-	
 
 	const options = {
 		tags: categories,

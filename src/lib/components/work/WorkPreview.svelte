@@ -11,7 +11,6 @@
 	$: href = localePath(`/work/${work.id}`);
 </script>
 
-
 <li
 	class="flex flex-col  rounded-md overflow-hidden lg:w-80 md:w-[23rem] xl:w-[19rem] 2xl:w-[18rem] {work.subscribed
 		? ' '
