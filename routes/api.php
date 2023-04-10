@@ -64,5 +64,5 @@ Route::get('blog/{blog}', 'BlogController@show');
 Route::get('post/{post}', 'PostController@show');
 
 Route::get('health', function () {
-    return response('OK', 200);
+    return response('OK 1', 200);
 });
