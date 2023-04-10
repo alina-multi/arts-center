@@ -13,7 +13,7 @@
 <ModalWindow bind:open={showLikedByModal}>
 	<h2 slot="header" class="flex justify-between text-lg font-semibold text-gray-800 ">Liked by</h2>
 
-	<ul slot="main" class="flex flex-col gap-3  text-sm pt-6 ">
+	<ul class="flex flex-col gap-3  text-sm pt-6 ">
 		{#each work.votes as user}
 			<li class="flex items-center gap-3 text-base text-gray-700">
 				<Avatar {user} withName />

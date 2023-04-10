@@ -18,6 +18,8 @@
 		<TopNavLink href={localePath('/users')}>{$t('global.menu.users')}</TopNavLink>
 	</div>
 	<div class="flex flex-1 justify-end gap-2">
+		<TopNavLink href={localePath('/login')}> {$t('global.menu.login')}</TopNavLink>
+		<TopNavLink href={localePath('/register')}> {$t('global.menu.register')}</TopNavLink>
 		<TopNavLangLink lang="en" />
 		<TopNavLangLink lang="uk" />
 		<DarkSwitch />

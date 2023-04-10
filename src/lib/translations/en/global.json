@@ -1,6 +1,8 @@
 {
 	"menu": {
 		"gallery": "GALLERY",
-		"users": "ARTISTS"
+		"users": "ARTISTS",
+		"login": "LOGIN",
+		"register": "REGISTER"
 	}
 }
