@@ -22,7 +22,8 @@
 	class="inline-flex items-center border-b-2 px-1 pt-1 text-lg font-medium 
         {computedActive
 		? 'border-amber-500'
-		: 'border-transparent hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-300'} {clazz || ''}"
+		: 'border-transparent hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-300'} {clazz ||
+		''}"
 	data-sveltekit-reload={reload ? '' : 'off'}
 	data-sveltekit-preload-data={preload}
 >

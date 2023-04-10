@@ -20,9 +20,9 @@
 			>
 				<div class="flex flex-col gap-3">
 					{#if $$slots.header}
-					<DialogTitle as="h3" class="text-lg font-medium leading-6">
-						<slot name="header" />
-					</DialogTitle>
+						<DialogTitle as="h3" class="text-lg font-medium leading-6">
+							<slot name="header" />
+						</DialogTitle>
 					{/if}
 					<slot />
 					{#if $$slots.footer}
