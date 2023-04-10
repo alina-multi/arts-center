@@ -24,4 +24,6 @@ COPY .env.production .env
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 8000
 
+ENV LOG_CHANNEL=stderr
+
 CMD ["php", "artisan", "octane:start", "--host=0.0.0.0"]
