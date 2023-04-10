@@ -32,7 +32,7 @@
 	<div class="flex flex-col sm:flex-row lg:flex-col  gap-6  lg:w-2/6 ">
 		{#if !autorizated}
 			<div
-				class="hidden lg:flex flex-col border  border-gray-200 dark:border-gray-800 gap-6 p-6 rounded-md shadow-sm "
+				class="hidden lg:flex flex-col border  border-gray-200 dark:border-gray-800 gap-3 p-3 rounded-md shadow-sm "
 			>
 				<h3 class="text-lg font-semibold">Sign in to comment this work</h3>
 				<p class="text-gray-500">
@@ -56,17 +56,11 @@
 		{/if}
 
 		<div
-			class=" flex flex-col border  border-gray-200 dark:border-gray-800 gap-6 p-6 rounded-md shadow-sm "
+			class=" flex flex-col border  border-gray-200 dark:border-gray-800 gap-3 p-3 rounded-md shadow-sm "
 		>
 			{#each work.owners as user}
-				<UserPreviewRegular {...user} />
+				<UserPreviewRegular {...user} followButton={'block'} />
 			{/each}
-
-			<butoon
-				class="  dark:bg-gray-900 text-center dark:border-sky-700 dark:border rounded-full py-1 text-white bg-sky-700 font-semibold shadow-sm  hover:bg-sky-600 dark:hover:bg-sky-700 dark:text-gray-100 hover:text-white cursor-pointer"
-				>Follow
-				<span /></butoon
-			>
 		</div>
 	</div>
 </div>

@@ -2,45 +2,21 @@
 	import RatingPreview from '$lib/components/rating/RatingPreview.svelte';
 	import UserPreviewInline from '$lib/components/user/UserPreviewInline.svelte';
 	import type { Work } from '$lib/interfaces/Work';
-	import { languageFind, localePath } from '$lib/translations';
-	import { handleImgError } from '$lib/helpers/handleImgError.ts';
+
+	import ImageWork from '$lib/components/atoms/ImageWork.svelte';
 
 	export let work: Work;
-	let title: string;
-	$: title = languageFind(work.titles)?.title;
-	$: href = localePath(`/work/${work.id}`);
 </script>
 
 <li
-	class="flex flex-col  rounded-md overflow-hidden lg:w-80 md:w-[23rem] xl:w-[19rem] 2xl:w-[18rem] {work.subscribed
+	class="flex flex-col  overflow-hidden lg:w-80 md:w-[23rem] xl:w-[19rem] 2xl:w-[18rem] {work.subscribed
 		? ' '
 		: ''} "
 >
-	<div class="group/item relative">
-		<a {href} class="grid gap-1">
-			<div class="bg-zinc-300  aspect-[4/3] w-full rounded-md">
-				{#if work.image}
-					<img
-						class="rounded-md  aspect-[4/3] w-full object-cover "
-						src={work.image.src}
-						srcset={work.image.srcset}
-						alt="Work Name: {title}"
-						on:error={(event) => handleImgError(event)}
-					/>
-				{/if}
-			</div>
-			<div
-				class=" inline-flex items-start justify-between font-medium text-gray-900 dark:text-gray-100"
-			>
-				<h3 class="text-sm">{title}</h3>
-				{#if work.price}
-					<p class="ml-2 text-xs bg-green-600 px-2 py-1 rounded-md text-white">
-						${work.price}
-					</p>{/if}
-			</div>
-		</a>
+	<div class="group/item relative  ">
+		<ImageWork {work} withDesription />
 		<div
-			class="group/edit invisible group-hover/item:visible absolute top-3 right-3 text-white bg-black/50 pt-1 px-1 rounded-md transition-all"
+			class="group/edit hidden group-hover/item:block absolute top-3 right-3 text-white bg-black/50 pt-1 px-1  transition-all rounded-md"
 		>
 			<RatingPreview rating={work.rating} comments={work.comments} />
 		</div>
@@ -48,7 +24,7 @@
 
 	<div class="flex justify-between items-center text-xs text-gray-500 mt-auto">
 		{#each work.owners as user}
-			<div class="mr-3"><UserPreviewInline {user} /></div>
+			<UserPreviewInline {user} />
 		{/each}
 
 		{#if work.subscribed}

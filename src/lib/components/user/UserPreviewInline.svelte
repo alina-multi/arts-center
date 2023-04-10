@@ -3,8 +3,7 @@
 	import type { User } from '$lib/interfaces/User';
 
 	export let user: User,
-		followButton = false,
-		size;
+		followButton = false;
 </script>
 
 <div

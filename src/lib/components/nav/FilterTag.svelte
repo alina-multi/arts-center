@@ -3,7 +3,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ChevronDown, ChevronUp } from '@steeze-ui/heroicons';
 	import TagButtons from '$lib/components/atoms/TagButtons.svelte';
-	import TagButton from '$lib/components/atoms/buttons/TagButton.svelte';
+	import TagButton from '$lib/components/atoms/TagButton.svelte';
 
 	export let tags, href: string, selectedTag: string, onTag: (tag: string) => void;
 
@@ -49,6 +49,7 @@
 				class="absolute left-0 z-10 mt-2 origin-top-left rounded-md bg-white dark:bg-black/90 shadow-2xl ring-1 ring-black dark:ring-zinc-500 ring-opacity-5 focus:outline-none overflow-hidden"
 				let:close
 			>
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<div class="flex  gap-3 flex-wrap flex-row-reverse p-3" on:click={() => close()}>
 					<TagButtons tags={hiddenTags} {href} clickHandler={onTag} active={isActive} />
 				</div>
