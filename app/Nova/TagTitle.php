@@ -22,7 +22,7 @@ class TagTitle extends Resource
      *
      * @var string
      */
-    public static $model = \App\TagTitle::class;
+    public static $model = \App\Models\TagTitle::class;
 
 
     /**

@@ -17,7 +17,7 @@ class PostTranslation extends Resource
      *
      * @var string
      */
-    public static $model = \App\PostTranslation::class;
+    public static $model = \App\Models\PostTranslation::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

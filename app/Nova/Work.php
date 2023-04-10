@@ -24,7 +24,7 @@ class Work extends Resource
      *
      * @var string
      */
-    public static $model = \App\Work::class;
+    public static $model = \App\Models\Work::class;
 
     public static $with = ['titles', 'image'];
 

@@ -22,7 +22,7 @@ class Blacklist extends Resource
      *
      * @var string
      */
-    public static $model = \App\Blacklist::class;
+    public static $model = \App\Models\Blacklist::class;
 
     public static $with = ['user', 'blacklist'];
 

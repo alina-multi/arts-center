@@ -23,7 +23,7 @@ class Feedback extends Resource
      *
      * @var string
      */
-    public static $model = \App\Feedback::class;
+    public static $model = \App\Models\Feedback::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

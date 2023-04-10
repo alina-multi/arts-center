@@ -22,7 +22,7 @@ class Comment extends Resource
      *
      * @var string
      */
-    public static $model = \App\Comment::class;
+    public static $model = \App\Models\Comment::class;
 
     public static $with = ['user', 'commentable'];
 

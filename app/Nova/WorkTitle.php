@@ -16,7 +16,7 @@ class WorkTitle extends Resource
      *
      * @var string
      */
-    public static $model = \App\WorkTitle::class;
+    public static $model = \App\Models\WorkTitle::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

@@ -17,7 +17,7 @@ class BlogTranslation extends Resource
      *
      * @var string
      */
-    public static $model = \App\BlogTranslation::class;
+    public static $model = \App\Models\BlogTranslation::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

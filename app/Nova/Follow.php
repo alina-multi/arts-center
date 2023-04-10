@@ -22,7 +22,7 @@ class Follow extends Resource
      *
      * @var string
      */
-    public static $model = \App\Follow::class;
+    public static $model = \App\Models\Follow::class;
 
     public static $with = ['followable'];
 

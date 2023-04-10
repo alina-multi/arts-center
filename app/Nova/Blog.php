@@ -20,7 +20,7 @@ class Blog extends Resource
      *
      * @var string
      */
-    public static $model = \App\Blog::class;
+    public static $model = \App\Models\Blog::class;
 
     public function title()
     {

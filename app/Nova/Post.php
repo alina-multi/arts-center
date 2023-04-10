@@ -18,7 +18,7 @@ class Post extends Resource
      *
      * @var string
      */
-    public static $model = \App\Post::class;
+    public static $model = \App\Models\Post::class;
 
     public function title()
     {

@@ -22,7 +22,7 @@ class Feed extends Resource
      *
      * @var string
      */
-    public static $model = \App\Feed::class;
+    public static $model = \App\Models\Feed::class;
 
     public static $with = ['feedable'];
 
