@@ -11,11 +11,11 @@
 		dots: boolean;
 </script>
 
-{#each tags as { title }}
+{#each tags as tag}
 	<TagButton
-		{title}
-		clickHandler={() => clickHandler(title)}
-		active={active(title)}
+		title={tag?.title}
+		clickHandler={() => clickHandler(tag?.title)}
+		active={active(tag?.title)}
 		{href}
 		{dots}
 	/>
