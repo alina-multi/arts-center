@@ -4,6 +4,7 @@ import { imageMap } from './image';
 import { query } from '$lib/server/repositories/gallery';
 import { worksPreviewMap } from './gallery';
 import type { images } from '@prisma/client';
+import { ratingsMap } from './ratings';
 
 type userWithRelations = users & {
 	avatar: images | null;
@@ -39,6 +40,7 @@ export async function usersMap(users: userWithRelations[]): Promise<UserList[]> 
 export async function userMap(user: userWithRelations): Promise<User> {
 	return {
 		...user,
+		ratings: ratingsMap(user.ratings),
 		avatar: imageMap(user.avatar)
 	};
 }

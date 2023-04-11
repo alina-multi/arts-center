@@ -1,8 +1,10 @@
 <script lang="ts">
-	import type { PageData } from './$types';
+	import UserPage from '$lib/components/user/UserPage.svelte';
+	import type { PageData } from '../$types';
 
 	export let data: PageData;
 </script>
 
-{JSON.stringify(data)}
-user personal page
+<div class="mt-3">
+	<UserPage {...data} />
+</div>

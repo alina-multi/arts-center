@@ -48,4 +48,4 @@
 	};
 </script>
 
-<FiltersBase {options} {selected} {urlGenerator} />
+<FiltersBase {options} {selected} {urlGenerator} type={'galleryPage'} />

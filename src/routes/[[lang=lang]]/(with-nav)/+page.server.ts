@@ -4,7 +4,7 @@ import { worksPreviewMap } from '$lib/server/mappers/gallery';
 import { getCategories } from '$lib/server/repositories/tag';
 import { tagsMap } from '$lib/server/mappers/tag';
 
-export const load = (async ({ params }) => {
+export const load = (async () => {
 	return Promise.all([
 		indexQuery().then((works) => worksPreviewMap(works)),
 		getCategories().then((categories) => tagsMap(categories))

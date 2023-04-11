@@ -47,6 +47,7 @@ export function get(username: string) {
 					language: true,
 					tag: {
 						select: {
+							id: true,
 							titles: {
 								select: {
 									title: true,

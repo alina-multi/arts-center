@@ -8,6 +8,7 @@ export const load = async ({ params }) => {
 	const gallery = await worksPreviewMap(await userQuery(user.id));
 	return {
 		user,
-		gallery
+		gallery,
+		params
 	};
 };
