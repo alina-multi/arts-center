@@ -23,8 +23,8 @@
 		<div class="flex gap-3 flex-wrap text-sm justify-center">
 			{#each user.ratings as tag}
 				<div class="flex px-2 py-1 border rounded-md gap-1">
-					<div>{tag.tag.title}</div>
-					<span class="bg-amber-600 rounded-full text-white px-1">{tag.rating}</span>
+					<div>{tag?.tag?.title}</div>
+					<span class="bg-amber-600 rounded-full text-white px-1">{tag?.rating}</span>
 				</div>
 			{/each}
 		</div>
