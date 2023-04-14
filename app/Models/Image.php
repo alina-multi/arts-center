@@ -20,16 +20,16 @@ class Image extends Model
         'extension'
     ];
 
-    protected $appends = ['url', 'srcset'];
+    protected $appends = ['src', 'srcset'];
 
-    protected $visible = ['url', 'srcset'];
+    protected $visible = ['src', 'srcset'];
 
     public function getPathAttribute()
     {
         return '/' . $this->folder . '/' . $this->name;
     }
 
-    public function getUrlAttribute()
+    public function getSrcAttribute()
     {
         foreach ([300, 600, 1200, 2400] as $width) {
             if ($this->{"w$width"}) {
@@ -60,7 +60,7 @@ class Image extends Model
     private function addDomain($path)
     {
         if (App::environment('local')) {
-            return 'https://arts2.develop/arts' . $path;
+            return "https://picsum.photos/id/{$this->id}/600/600";
         } elseif (App::environment('staging')) {
             return 'https://i.arts2.art' . $path;
         } elseif (App::environment('production')) {

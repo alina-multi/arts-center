@@ -13,10 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/init', function (Request $request) {
-    return $request->user();
-});
-
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('profile/avatar', 'Profile\AvatarController');
     Route::post('profile', 'Profile\IndexController');
@@ -43,4 +39,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 Route::get('health', function () {
     return response('OK 2', 200);
+});
+
+Route::middleware(['auth:sanctum'])->get('/init', function (Request $request) {
+    return $request->user()->load('avatar');
 });

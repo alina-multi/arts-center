@@ -48,10 +48,11 @@
         "tigroid3/php-imaginary": "^1.03"
     },
     "require-dev": {
-        "spatie/laravel-ignition": "^1.0",
         "fzaninotto/faker": "^1.4",
+        "laravel/breeze": "^1.19",
         "mockery/mockery": "^1.0",
-        "phpunit/phpunit": "^9.0"
+        "phpunit/phpunit": "^9.0",
+        "spatie/laravel-ignition": "^1.0"
     },
     "config": {
         "optimize-autoloader": true,
@@ -62,6 +63,9 @@
                 "username": "stepanorda87@gmail.com",
                 "password": "*cS*g!!6TfhMnbQ"
             }
+        },
+        "allow-plugins": {
+            "php-http/discovery": true
         }
     },
     "extra": {

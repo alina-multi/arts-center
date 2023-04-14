@@ -32,7 +32,7 @@ class User extends Authenticatable
 
     public $highlights;
 
-    protected $visible = ['id', 'name', 'username', 'created_at', 'photo'];
+    protected $visible = ['id', 'name', 'username', 'created_at', 'photo', 'avatar'];
 
     /**
      * The attributes that should be cast to native types.
@@ -49,6 +49,11 @@ class User extends Authenticatable
     }
 
     public function photo()
+    {
+        return $this->hasOne(Image::class, 'id', 'image_id');
+    }
+
+    public function avatar()
     {
         return $this->hasOne(Image::class, 'id', 'image_id');
     }
