@@ -17,7 +17,7 @@
 	$: ariaDescribedBy = error ? errorId : descriptionId;
 </script>
 
-<div class="flex items-center justify-center bg-white p-8">
+<div class="flex items-center justify-center bg-white">
 	<div class="mx-auto w-full max-w-xs">
 		{#if label}
 			<label for={id} class="block text-sm font-medium text-zinc-900">

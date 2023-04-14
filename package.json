@@ -73,8 +73,10 @@
 		"@sentry/node": "^7.44.1",
 		"@sentry/svelte": "^7.44.1",
 		"@sentry/tracing": "^7.44.1",
+		"node-cache": "^5.1.2",
 		"photoswipe": "^5.3.6",
-		"prisma": "^4.10.1"
+		"prisma": "^4.10.1",
+		"set-cookie-parser": "^2.6.0"
 	},
 	"type": "module",
 	"prisma": {

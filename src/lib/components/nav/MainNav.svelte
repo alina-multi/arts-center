@@ -5,6 +5,7 @@
 	import TopNavLangLink from './TopNavLangLink.svelte';
 	import DarkSwitch from './DarkSwitch.svelte';
 	import logo from '$lib/images/logo.svg';
+	export let user;
 </script>
 
 <TopNav>
@@ -18,8 +19,13 @@
 		<TopNavLink href={localePath('/users')}>{$t('global.menu.users')}</TopNavLink>
 	</div>
 	<div class="flex flex-1 justify-end gap-2">
-		<TopNavLink href={localePath('/login')}>{$t('global.menu.login')}</TopNavLink>
-		<TopNavLink href={localePath('/register')}>{$t('global.menu.register')}</TopNavLink>
+		{#if user}
+			<TopNavLink href={localePath('/profile')}>{$t('global.menu.profile')}</TopNavLink>
+			<TopNavLink href={localePath('/logout')}>{$t('global.menu.logout')}</TopNavLink>
+		{:else}
+			<TopNavLink href={localePath('/login')}>{$t('global.menu.login')}</TopNavLink>
+			<TopNavLink href={localePath('/register')}>{$t('global.menu.register')}</TopNavLink>
+		{/if}
 		<TopNavLangLink lang="en" />
 		<TopNavLangLink lang="uk" />
 		<DarkSwitch />
