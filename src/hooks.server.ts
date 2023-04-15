@@ -23,7 +23,7 @@ SentryNode.init({
 SentryNode.setTag("svelteKit", "server");
 
 async function checkAuth(event) {
-  const session = event?.cookies?.get("artsinua_session");
+  const session = event?.cookies?.get("laravel_session");
   if (session) {
     const user = await cacheGet(session, async () => {
       let response = await api({ method: "GET", path: "/api2/init", event })
