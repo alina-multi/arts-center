@@ -7,8 +7,6 @@
 	export let user, gallery, params;
 
 	let userTags = user.ratings.map((rating) => rating.tag);
-	console.log(userTags);
-	console.log(params);
 </script>
 
 <div class="flex gap-3">

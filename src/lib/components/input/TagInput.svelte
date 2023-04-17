@@ -38,7 +38,6 @@
 		tags = [...tags, newTag];
 		value = '';
 		openList = false;
-		console.log(error);
 	};
 
 	const onInput = (e) => {

@@ -15,7 +15,7 @@
 <Listbox
 	value={selectedOrder}
 	on:change={(e) => onOrder(e.detail)}
-	class="relative inline-block text-left z-50"
+	class="relative inline-block text-left z-40"
 	let:open
 >
 	<ListboxButton

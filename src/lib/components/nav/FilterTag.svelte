@@ -24,7 +24,7 @@
 
 <!-- DESkTOP -->
 <div class="hidden md:block">
-	<Popover class="relative inline-block text-left z-50 text-gray-800 dark:text-gray-200" let:open>
+	<Popover class="relative inline-block text-left z-40 text-gray-800 dark:text-gray-200" let:open>
 		<div class="flex flex-wrap  gap-3 ">
 			<TagButton {href} clickHandler={() => onTag('all')} active={isActive('all')} title={'all'} />
 			<TagButtons tags={visibleTags} {href} clickHandler={onTag} active={isActive} />
@@ -69,7 +69,7 @@
 </div>
 
 <!-- MOBILE -->
-<div class="flex md:hidden  text-left z-50 flex-row-reverse">
+<div class="flex md:hidden  text-left z-40 flex-row-reverse">
 	<Popover class=" inline-block   text-gray-800 dark:text-gray-200 " let:open>
 		<div class="flex flex-wrap gap-3 ">
 			<PopoverButton

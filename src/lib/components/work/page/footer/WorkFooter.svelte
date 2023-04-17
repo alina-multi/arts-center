@@ -6,7 +6,6 @@
 	export let work,
 		autorizated = false,
 		comments;
-	console.log(work);
 </script>
 
 <div

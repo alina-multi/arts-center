@@ -2,11 +2,12 @@
 	import logo from '$lib/images/logo.svg';
 	import { localePath } from '$lib/translations';
 	import type { PageData, ActionData } from './$types';
-	import EmailInput from "$lib/components/input/EmailInput.svelte";
-	import PasswordInput from "$lib/components/input/PasswordInput.svelte";
+	import EmailInput from '$lib/components/input/EmailInput.svelte';
+	import PasswordInput from '$lib/components/input/PasswordInput.svelte';
 	export let data: PageData;
 	export let form: ActionData;
 </script>
+
 <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
 	<div class="sm:mx-auto sm:w-full sm:max-w-md">
 		<a href={localePath('/')} class="flex justify-center">
@@ -22,8 +23,8 @@
 	<div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
 		<div class="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
 			<form class="space-y-6" method="POST">
-			<EmailInput name="email" label="Email" error={form?.errors?.email} />
-			<PasswordInput name="password" label="Password"/>
+				<EmailInput name="email" label="Email" error={form?.errors?.email} />
+				<PasswordInput name="password" label="Password" />
 
 				<div class="flex items-center justify-between">
 					<div class="flex items-center">
