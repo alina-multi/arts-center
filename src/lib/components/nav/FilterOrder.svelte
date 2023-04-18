@@ -9,7 +9,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ChevronDown, ChevronUp } from '@steeze-ui/heroicons';
 
-	export let orders, selectedOrder, href, onOrder;
+	export let option, selectedOrder, params, type, urlGenerator;
 </script>
 
 <Listbox
@@ -44,17 +44,17 @@
 			class="absolute left-0 z-10 mt-2 w-40 origin-top-left rounded-md bg-white dark:bg-black/90 shadow-2xl ring-1 ring-black dark:ring-zinc-500 ring-opacity-5 focus:outline-none overflow-hidden"
 			role="menu"
 		>
-			{#each orders as order}
+			{#each option as { title }}
 				<ListboxOption
 					class={({ active }) => (active ? 'bg-gray-100 dark:bg-zinc-900  ' : '')}
-					value={order.title}
+					value={title}
 					let:selected
 				>
 					<a
-						{href}
+						href={urlGenerator(type, title, params)}
 						class={selected
-							? ' text-gray-900 dark:text-white block px-4 py-2'
-							: 'text-gray-600 dark:text-zinc-300 block px-4 py-2'}>{order.title}</a
+							? ' bg-gray-200 dark:text-white block px-4 py-2'
+							: 'text-gray-600 dark:text-zinc-300 block px-4 py-2'}>{title}</a
 					>
 				</ListboxOption>
 			{/each}

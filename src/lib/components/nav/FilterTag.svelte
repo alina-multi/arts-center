@@ -1,12 +1,18 @@
 <script lang="ts">
+	import type { Tag } from '$lib/interfaces/Tag';
 	import { Popover, PopoverButton, PopoverPanel, Transition } from '@rgossiaux/svelte-headlessui';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ChevronDown, ChevronUp } from '@steeze-ui/heroicons';
 	import TagButtons from '$lib/components/atoms/TagButtons.svelte';
-	import TagButton from '$lib/components/atoms/TagButton.svelte';
 
-	export let tags, href: string, selectedTag: string, onTag: (tag: string) => void;
+	export let tags: Tag[],
+		selected: string,
+		params: { tag: string; order: string },
+		urlGenerator,
+		type: string;
+
 	let visibleTags, hiddenTags;
+
 	$: if (tags.length > 8) {
 		visibleTags = tags.slice(0, 8);
 		hiddenTags = tags.slice(8);
@@ -15,10 +21,10 @@
 		hiddenTags = [];
 	}
 
-	$: isHiddenTag = hiddenTags.filter((tag) => tag.title === selectedTag);
+	$: isHiddenTag = hiddenTags.filter((tag) => tag.title === selected);
 
 	$: isActive = (tag: string) => {
-		return tag === selectedTag;
+		return tag === selected;
 	};
 </script>
 
@@ -26,15 +32,15 @@
 <div class="hidden md:block">
 	<Popover class="relative inline-block text-left z-40 text-gray-800 dark:text-gray-200" let:open>
 		<div class="flex flex-wrap  gap-3 ">
-			<TagButton {href} clickHandler={() => onTag('all')} active={isActive('all')} title={'all'} />
-			<TagButtons tags={visibleTags} {href} clickHandler={onTag} active={isActive} />
+			<TagButtons tags={visibleTags} {urlGenerator} {params} active={isActive} />
+
 			{#if hiddenTags.length > 0}
 				<PopoverButton
 					class="flex items-center gap-2  border px-3 py-1 rounded-md hover:border-amber-500 "
 				>
 					other
-					{#if selectedTag !== 'all' && isHiddenTag.length > 0}
-						<span class="text-sm bg-amber-600 text-white px-1 rounded-md">{selectedTag}</span>
+					{#if selected !== 'all' && isHiddenTag.length > 0}
+						<span class="text-sm bg-amber-600 text-white px-1 rounded-md">{selected}</span>
 					{/if}
 					{#if !open}
 						<Icon src={ChevronDown} class="w-5" />
@@ -60,7 +66,7 @@
 				>
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
 					<div class="flex  gap-3 flex-wrap flex-row-reverse p-3" on:click={() => close()}>
-						<TagButtons tags={hiddenTags} {href} clickHandler={onTag} active={isActive} />
+						<TagButtons tags={hiddenTags} {urlGenerator} {params} active={isActive} />
 					</div>
 				</PopoverPanel>
 			</Transition>
@@ -76,8 +82,8 @@
 				class="flex items-center gap-2  border px-4 py-2 rounded-md hover:border-amber-500 "
 			>
 				filters
-				{#if selectedTag !== 'all'}
-					<span class="text-sm bg-amber-600 text-white px-1 rounded-md">{selectedTag}</span>
+				{#if selected !== 'all'}
+					<span class="text-sm bg-amber-600 text-white px-1 rounded-md">{selected}</span>
 				{/if}
 				{#if !open}
 					<Icon src={ChevronDown} class="w-5" />
@@ -90,15 +96,11 @@
 
 		<PopoverPanel
 			class="absolute origin-top-right right-0 w-full  z-10 mt-2 rounded-md bg-white dark:bg-black/90 shadow-2xl ring-1 ring-black dark:ring-zinc-500 ring-opacity-5 focus:outline-none overflow-hidden"
+			let:close
 		>
-			<div class="flex  gap-2 flex-wrap text-sm  p-3 flex-row-reverse ">
-				<TagButton
-					{href}
-					clickHandler={() => onTag('all')}
-					active={isActive('all')}
-					title={'all'}
-				/>
-				<TagButtons {tags} {href} clickHandler={onTag} active={isActive} />
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<div class="flex  gap-2 flex-wrap text-sm  p-3 flex-row-reverse " on:click={() => close()}>
+				<TagButtons {tags} {urlGenerator} {params} active={isActive} />
 			</div>
 		</PopoverPanel>
 	</Popover>

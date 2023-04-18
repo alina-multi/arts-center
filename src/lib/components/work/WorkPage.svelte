@@ -5,7 +5,6 @@
 	import WorkFooter from '$lib/components/work/page/footer/WorkFooter.svelte';
 	import { HandThumbUp } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import TagButtons from '$lib/components/atoms/TagButtons.svelte';
 	import ButtonsDesktop from './page/DesktopButtons.svelte';
 	import WorkRatingPreview from '$lib/components/work/page/footer/WorkRatingPreview.svelte';
 	import type { Comment } from '$lib/interfaces/Comment';
@@ -42,11 +41,17 @@
 				class="flex items-center justify-between   gap-2 text-base  lg:py-3 pb-3 	max-lg:pr-3  text-gray-800  dark:text-gray-500 max-lg:border-b"
 			>
 				<div
-					class=" hidden lg:flex items-center justify-start flex-wrap gap-3  dark:text-gray-100 "
+					class=" hidden lg:flex items-center text-gray-800 justify-start flex-wrap gap-3  dark:text-gray-100 "
 				>
 					{#if work.tags.length > 0}
 						<span>Tags:</span>
-						<TagButtons tags={work.tags} dots />
+						{#each work.tags as { title }}
+							<a
+								href={`/tag/${title}/popular`}
+								class="border shadow-sm px-3 rounded-full hover:border-amber-600 hover:shadow-sm"
+								>#{title}</a
+							>
+						{/each}
 					{/if}
 				</div>
 
