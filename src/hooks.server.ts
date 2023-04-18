@@ -28,7 +28,7 @@ async function checkAuth(event) {
 		const user = await cacheGet(
 			session,
 			async () => {
-				let response = await api({ method: 'GET', path: '/api2/init', event });
+				let response = await api({ method: 'GET', path: '/api2/me', event });
 				if (response.ok) {
 					return await response.json();
 				}

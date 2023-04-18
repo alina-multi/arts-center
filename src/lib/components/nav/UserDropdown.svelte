@@ -28,7 +28,7 @@
 		>
 			<MenuItem let:active>
 				<a
-					href={localePath('/profile')}
+					href={localePath('/my/profile')}
 					class={`${(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}`}
 					>Edit profile</a
 				>
