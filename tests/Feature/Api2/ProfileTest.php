@@ -31,7 +31,7 @@ class ProfileTest extends TestCase
                 'data' => [
                     'id' => $user->id,
                     'name' => $user->name,
-                    'username' => $user->name,
+                    'username' => $user->username,
                     'email' => $user->email,
                     'email_verified_at' => $user->email_verified_at->toJson(),
                     'country' => $user->country,
