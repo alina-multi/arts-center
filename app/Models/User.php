@@ -78,6 +78,11 @@ class User extends Authenticatable
         return $this->morphedByMany(Work::class, 'ownable','ownables');
     }
 
+    public function bios()
+    {
+        return $this->hasMany(UserBio::class);
+    }
+
     public function getHighlightsAttribute()
     {
         return Cache::remember("user.$this->id.highlights", 60*60*5, function () {
