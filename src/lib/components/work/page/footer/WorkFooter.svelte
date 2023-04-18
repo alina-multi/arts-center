@@ -1,7 +1,6 @@
 <script lang="ts">
 	import UserPreviewRegular from '$lib/components/user/UserPreviewRegular.svelte';
 	import CommentsPrewiev from '$lib/components/comments/CommentsPrewiev.svelte';
-	import TagButtons from '$lib/components/atoms/TagButtons.svelte';
 
 	export let work,
 		autorizated = false,
@@ -28,7 +27,7 @@
 
 	<div class="lg:w-4/6"><CommentsPrewiev {comments} count={work.comments} /></div>
 
-	<div class="flex flex-col sm:flex-row lg:flex-col  gap-6  lg:w-2/6 ">
+	<div class="flex flex-col sm:flex-row lg:flex-col  gap-3 sm:gap-6  lg:w-2/6 ">
 		{#if !autorizated}
 			<div
 				class="hidden lg:flex flex-col border  border-gray-200 dark:border-gray-800 gap-3 p-3 rounded-md shadow-sm "
@@ -43,14 +42,18 @@
 				>
 			</div>
 		{/if}
-		{#if work.tags.length > 0}
+
+		{#if work?.tags.length > 0}
 			<div
-				class="lg:hidden  flex  flex-col border  border-gray-200 dark:border-gray-800  gap-6 p-6 rounded-md shadow-sm  sm:w-1/2"
+				class="lg:hidden  flex flex-wrap items-start justify-start border  border-gray-200 dark:border-gray-800  p-3 gap-3 sm:p-6 rounded-md shadow-sm  sm:w-1/2"
 			>
-				<div class="flex  items-center justify-start flex-wrap gap-3  dark:text-gray-100 ">
-					<span>Tags:</span>
-					<TagButtons tags={work.tags} dots />
-				</div>
+				{#each work.tags as { title }}
+					<a
+						href={`/tag/${title}/popular`}
+						class="border shadow-sm px-3 rounded-full hover:border-amber-600 hover:shadow-sm"
+						>#{title}</a
+					>
+				{/each}
 			</div>
 		{/if}
 

@@ -15,7 +15,7 @@ export const load = (async ({ params }) => {
 		return {
 			gallery: values[0],
 			categories: values[1],
-			params: params
+			params: { order: 'popular', tag: 'all', ...params }
 		};
 	});
 }) satisfies PageServerLoad;

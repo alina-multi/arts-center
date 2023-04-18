@@ -24,28 +24,42 @@
 		]
 	};
 
-	const selected = {
-		tags: 'all',
-		order: 'popular'
-	};
+	let urlGenerator = (type: string, title: string, params: { tag?: string; order?: string }) => {
+		const selected = {
+			tags: 'all',
+			order: 'popular'
+		};
 
-	if (params?.tag) {
-		selected.tags = params.tag;
-	}
-	if (params?.order) {
-		selected.order = params.order;
-	}
-
-	let urlGenerator = (selected) => {
-		if (selected.tags === 'all' && selected.order === 'popular') {
-			return localePath('/');
+		if (params?.tag) {
+			selected.tags = params.tag;
 		}
-		if (selected.order === 'popular') {
-			return localePath(`/tag/${selected.tags}`);
+		if (params?.order) {
+			selected.order = params.order;
 		}
 
-		return localePath(`/tag/${selected.tags}/${selected.order}`);
+		let url = '/';
+
+		if (type === 'order') {
+			url += `tag/${selected.tags}/${title}`;
+		}
+
+		if (type === 'tags') {
+			if (title === selected.tags) {
+				url += `tag/all/${selected.order}`;
+			} else {
+				url += `tag/${title}/${selected.order}`;
+			}
+		}
+
+		if (type === 'order' && title === 'popular' && selected.tags === 'all') {
+			url = '/';
+		}
+		if (type === 'tags' && title === 'all' && selected.order === 'popular') {
+			url = '/';
+		}
+
+		return localePath(url);
 	};
 </script>
 
-<FiltersBase {options} {selected} {urlGenerator} type={'galleryPage'} />
+<FiltersBase {options} {params} {urlGenerator} type={'galleryPage'} />

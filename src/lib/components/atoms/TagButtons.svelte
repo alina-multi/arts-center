@@ -4,19 +4,13 @@
 
 	export let tags: Tag[],
 		active = (tag: string) => false,
-		clickHandler = (tag: string) => {
-			/**/
+		params: {
+			tag?: string;
+			order?: string;
 		},
-		href: string,
-		dots: boolean;
+		urlGenerator;
 </script>
 
-{#each tags as tag}
-	<TagButton
-		title={tag?.title}
-		clickHandler={() => clickHandler(tag?.title)}
-		active={active(tag?.title)}
-		{href}
-		{dots}
-	/>
+{#each tags as { title }}
+	<TagButton {title} href={urlGenerator('tags', title, params)} active={active(title)} />
 {/each}

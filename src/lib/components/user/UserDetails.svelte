@@ -6,7 +6,9 @@
 	const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
 </script>
 
-<div class="flex  flex-wrap text-sm  text-gray-500/90 dark:text-gray-300 gap-2 items-center ">
+<div
+	class="flex  flex-wrap text-xs md:text-sm  text-gray-500/90 dark:text-gray-300 gap-1 md:gap-2  items-center "
+>
 	{#if user.totalRating > 0}
 		<div class="flex items-center  ">
 			<Icon src={Star} theme="solid" class=" h-[17px] w-[17px] fill-amber-600 " />

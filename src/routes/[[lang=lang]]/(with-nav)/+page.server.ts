@@ -11,7 +11,8 @@ export const load = (async () => {
 	]).then((values) => {
 		return {
 			gallery: values[0],
-			categories: values[1]
+			categories: values[1],
+			params: { order: 'popular', tag: 'all' }
 		};
 	});
 }) satisfies PageServerLoad;
