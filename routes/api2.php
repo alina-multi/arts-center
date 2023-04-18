@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('profile', \App\Http\Controllers\Api2\ProfileController::class . '@update');
     Route::get('profile', \App\Http\Controllers\Api2\ProfileController::class . '@index');
-    Route::get('init', function (Request $request) {
+    Route::get('me', function (Request $request) {
         return $request->user()->load('avatar');
     });
 });
