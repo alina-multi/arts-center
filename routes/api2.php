@@ -20,3 +20,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return $request->user()->load('avatar');
     });
 });
+
+Route::get('health', function () {
+    return response('OK 2', 200);
+});
