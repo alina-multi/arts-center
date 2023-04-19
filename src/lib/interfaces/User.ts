@@ -21,4 +21,11 @@ interface UserRating {
 	language: string;
 }
 
-export type User = UserPreview;
+interface UserBio {
+	language: string;
+	text: string;
+}
+
+export interface User extends UserList {
+	bio?: string;
+}

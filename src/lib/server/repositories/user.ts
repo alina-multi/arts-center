@@ -57,6 +57,12 @@ export function get(username: string) {
 						}
 					}
 				}
+			},
+			bios: {
+				select: {
+					text: true,
+					language: true
+				}
 			}
 		},
 		where: {

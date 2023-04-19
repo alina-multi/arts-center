@@ -5,6 +5,7 @@ import { query } from '$lib/server/repositories/gallery';
 import { worksPreviewMap } from './gallery';
 import type { images } from '@prisma/client';
 import { ratingsMap } from './ratings';
+import { languageFind } from "../../translations";
 
 type userWithRelations = users & {
 	avatar: images | null;
@@ -41,6 +42,8 @@ export async function userMap(user: userWithRelations): Promise<User> {
 	return {
 		...user,
 		ratings: ratingsMap(user.ratings),
-		avatar: imageMap(user.avatar)
+		avatar: imageMap(user.avatar),
+		bio: languageFind(user.bios)?.text,
+		bios: undefined
 	};
 }

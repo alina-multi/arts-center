@@ -4,7 +4,6 @@
 
 	export let data: PageData;
 </script>
-
 <div class="mt-3">
 	<UserPage {...data} />
 </div>
