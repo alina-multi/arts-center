@@ -50,6 +50,8 @@ const config: Config = {
 
 export const defaultLocale = 'en';
 
+export const availableLocales = ['en', 'uk'];
+
 export function correctLocale(lang: string): boolean {
 	return ['uk', 'en'].includes(lang);
 }
