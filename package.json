@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"license": "UNLICENSED",
 	"engines": {
-		"node": "19.x"
+		"node": "18.x"
 	},
 	"scripts": {
 		"dev": "vite dev",
