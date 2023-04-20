@@ -5,7 +5,7 @@ import { query } from '$lib/server/repositories/gallery';
 import { worksPreviewMap } from './gallery';
 import type { images } from '@prisma/client';
 import { ratingsMap } from './ratings';
-import { languageFind } from "../../translations";
+import { languageFind } from '../../translations';
 
 type userWithRelations = users & {
 	avatar: images | null;

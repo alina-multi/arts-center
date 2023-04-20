@@ -1,8 +1,9 @@
-<script lang ts>
+<script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Star, MapPin } from '@steeze-ui/heroicons';
+	import type { User } from '$lib/interfaces/User';
 
-	export let user;
+	export let user: User;
 	const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
 </script>
 

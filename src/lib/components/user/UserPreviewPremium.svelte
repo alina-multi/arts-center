@@ -12,7 +12,11 @@
 	<div class="flex gap-3 sm:gap-6 items-center sm:items-start">
 		<div class="flex items-start w-32 h-32 sm:h-44 sm:w-44 shrink-0 ">
 			<a href="/"
-				><img class="shadow-lg rounded-full object-cover" src={user.avatar.src} alt="Avatar: {user.name}" /></a
+				><img
+					class="shadow-lg rounded-full object-cover"
+					src={user.avatar.src}
+					alt="Avatar: {user.name}"
+				/></a
 			>
 		</div>
 		<div class="gap-1 flex flex-col">

@@ -35,6 +35,7 @@
 	<button
 		class="  dark:bg-gray-900 text-center  dark:border-sky-700 dark:border rounded-full py-1 text-white bg-sky-700 font-semibold shadow-sm  hover:bg-sky-600 dark:hover:bg-sky-700 dark:text-gray-100 hover:text-white cursor-pointer"
 		>Follow
-		<span /></button>
+		<span /></button
+	>
 {/if}
 <!-- </div> -->

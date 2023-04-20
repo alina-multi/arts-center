@@ -12,12 +12,7 @@
 	export let option, selectedOrder, params, type, urlGenerator;
 </script>
 
-<Listbox
-	value={selectedOrder}
-	on:change={(e) => onOrder(e.detail)}
-	class="relative inline-block text-left z-40"
-	let:open
->
+<Listbox value={selectedOrder} class="relative inline-block text-left z-40" let:open>
 	<ListboxButton
 		class="group inline-flex space-x-2 justify-center items-center  border px-4 py-2 rounded-md text-gray-900 hover:bg-sky-700 hover:text-white hover:shadow-sm dark:text-zinc-300 dark:hover:text-zinc-100 {selectedOrder !=
 		'popular'
