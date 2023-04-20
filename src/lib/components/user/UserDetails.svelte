@@ -13,11 +13,11 @@
 	{#if user?.rating}
 		<div class="flex items-center  ">
 			<Icon src={Star} theme="solid" class=" h-[17px] w-[17px] fill-amber-600 " />
-			<span> {user.rating}</span>
+			<span> {user?.rating}</span>
 		</div>
 	{/if}
 
-	<span>@{user.username}</span>
+	<span>@{user?.username}</span>
 
 	{#if user?.country}
 		<div class="inline-flex  items-center">
