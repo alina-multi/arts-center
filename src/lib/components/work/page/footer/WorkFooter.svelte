@@ -61,7 +61,7 @@
 			class=" flex flex-col border  border-gray-200 dark:border-gray-800 gap-3 p-3 rounded-md shadow-sm "
 		>
 			{#each work.owners as user}
-				<UserPreviewRegular {...user} followButton={'block'} />
+				<UserPreviewRegular {user} followButton={'block'} />
 			{/each}
 		</div>
 	</div>
