@@ -18,7 +18,7 @@ class UserBioFactory extends Factory
     {
         return [
             'text' => $this->faker->realText(2000),
-            'language' => $this->faker->unique()->randomElement(config('app.languages'))
+            'language' => $this->faker->randomElement(config('app.languages'))
         ];
     }
 }
