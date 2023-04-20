@@ -71,10 +71,7 @@ class RecountUserRatings implements ShouldQueue, ShouldBeUnique
             $userRatingModel->save();
             // For now, we just assign english rating as total.
             // todo: remove all language specific code after migrating to new system
-            if ($language == 'en') {
-               $this->user->rating = $rating;
-               $this->user->save();
-            }
+            User::where('id', $this->user)->update(['rating' => $rating]);
         }
 
         foreach ($categoryLanguageRating as $categoryId => $languages) {
@@ -85,7 +82,8 @@ class RecountUserRatings implements ShouldQueue, ShouldBeUnique
                                                               'user_id' => $this->user,
                                                               'language' => $language
                                                           ]);
-                User::where('id', $this->user)->update(['rating' => $rating]);
+                $ratingModel->rating = $rating;
+                $ratingModel->save();
             }
         }
     }
