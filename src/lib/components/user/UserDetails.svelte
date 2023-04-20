@@ -9,10 +9,10 @@
 <div
 	class="flex  flex-wrap text-xs md:text-sm  text-gray-500/90 dark:text-gray-300 gap-1 md:gap-2  items-center "
 >
-	{#if user.totalRating > 0}
+	{#if user.rating > 0}
 		<div class="flex items-center  ">
 			<Icon src={Star} theme="solid" class=" h-[17px] w-[17px] fill-amber-600 " />
-			<span> {user.totalRating}</span>
+			<span> {user.rating}</span>
 		</div>
 	{/if}
 
