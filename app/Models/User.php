@@ -27,7 +27,8 @@ class User extends Authenticatable
         'created_at',
         'username',
         'old_id',
-        'country'
+        'country',
+        'rating'
     ];
 
     public $highlights;

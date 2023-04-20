@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\User;
 use App\Models\UserRatings;
 use App\Models\Work;
 use Illuminate\Bus\Queueable;
@@ -84,8 +85,7 @@ class RecountUserRatings implements ShouldQueue, ShouldBeUnique
                                                               'user_id' => $this->user,
                                                               'language' => $language
                                                           ]);
-                $ratingModel->rating = $rating;
-                $ratingModel->save();
+                User::where('id', $this->user)->update(['rating' => $rating]);
             }
         }
     }
