@@ -2,26 +2,23 @@
 	import Avatar from '$lib/components/atoms/Avatar.svelte';
 	import UserDetails from '$lib/components/user/UserDetails.svelte';
 	import { localePath } from '$lib/translations';
+	import type { User } from '$lib/interfaces/User.ts';
 
-	export let name: string,
-		avatar: string,
-		country: string,
-		username: string,
-		followButton: string,
-		totalRating = 45567;
-	$: href = localePath(`/${username}`);
+	const followButton = 'inline';
+	export let user: User;
+	$: href = localePath(`/${user.username}`);
 </script>
 
 <!-- <div class="flex flex-col gap-2 w-full"> -->
 <div class="flex items-center gap-3 w-full">
-	<div class="flex-none"><Avatar user={{ name, avatar, username }} size={' w-16 h-16'} /></div>
+	<div class="flex-none"><Avatar {user} size={' w-16 h-16'} /></div>
 
 	<div class="flex flex-col gap-1 flex-1 ">
 		<div class="flex items-center gap-3 max-md:justify-between">
 			<a
 				{href}
 				class="inline-flex hover:text-gray-800 cursor-pointer  text-base sm:text-lg lg:text-xl xl:text-lg"
-				>{name}</a
+				>{user.name}</a
 			>
 			{#if followButton === 'inline' || !followButton}
 				<butoon
@@ -31,7 +28,7 @@
 			{/if}
 		</div>
 
-		<UserDetails user={{ name, avatar, country, totalRating, username }} />
+		<UserDetails {user} />
 	</div>
 </div>
 {#if followButton === 'block'}

@@ -393,6 +393,7 @@ model users {
   trial_ends_at     DateTime?      @db.Timestamp(0)
   image_id          BigInt?
   country           String?        @db.Char(2)
+  rating            Int            @default(0)
   ownables          ownables[]
   avatar            images?        @relation(fields: [image_id], references: [id])
   comments          comments[]

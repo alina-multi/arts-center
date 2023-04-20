@@ -25,7 +25,8 @@ export function query(
 			name: true,
 			avatar: true,
 			country: true,
-			created_at: true
+			created_at: true,
+			rating: true
 		},
 		where,
 		orderBy
@@ -41,6 +42,7 @@ export function get(username: string) {
 			avatar: true,
 			country: true,
 			created_at: true,
+			rating: true,
 			ratings: {
 				select: {
 					rating: true,

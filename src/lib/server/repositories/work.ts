@@ -34,7 +34,8 @@ export function get(id: bigint) {
 							username: true,
 							name: true,
 							avatar: true,
-							country: true
+							country: true,
+							rating: true
 						}
 					}
 				},
@@ -50,7 +51,8 @@ export function get(id: bigint) {
 							username: true,
 							name: true,
 							avatar: true,
-							country: true
+							country: true,
+							rating: true
 						}
 					}
 				},

@@ -7,6 +7,7 @@ export interface UserPreview {
 	avatar: Image | null;
 	name: string;
 	country: string | null;
+	rating: number;
 	works?: WorkPreview[];
 }
 

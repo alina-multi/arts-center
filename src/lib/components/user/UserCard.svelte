@@ -17,7 +17,7 @@
 			<Icon src={Star} theme="solid" class=" h-[20px] w-[20px] fill-amber-600 " />
 			<span>overall rating:</span>
 
-			<span> 234523</span>
+			<span>{user.rating}</span>
 		</div>
 
 		<div class="flex gap-3 flex-wrap text-sm justify-center">

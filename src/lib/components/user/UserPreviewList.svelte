@@ -15,7 +15,7 @@
 	<div class="flex flex-col gap-3 xl:pl-3  xl:w-9/12">
 		{#each users as user (user.id)}
 			{#if user.subscribed}
-				<UserPreviewPremium {...user} />
+				<UserPreviewPremium {user} />
 			{:else}
 				<div
 					class="flex flex-col items-center sm:flex-row max-sm:gap-1 md:gap-3 shadow-sm border rounded-md w-full dark:border-gray-700 "
@@ -23,7 +23,7 @@
 					<div
 						class=" flex items-center  grow w-full sm:w-1/2 text-lg px-3 pt-3 sm:pb-3  gap-3 overflow-hidden"
 					>
-						<UserPreviewRegular {...user} />
+						<UserPreviewRegular {user} />
 					</div>
 					<div
 						class="px-3 pb-3 sm:p-3 lg:p-0 flex justify-end sm:w-1/2    dark:border-gray-700 gap-3   overflow-hidden "
