@@ -4,9 +4,10 @@
 	import type { User } from '$lib/interfaces/User';
 
 	export let user: User;
+	let country
 	if (user?.country?.length === 2) {
 		const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
-		const country = regionNames.of(user.country);
+		country = regionNames.of(user.country);
 	}
 </script>
 
