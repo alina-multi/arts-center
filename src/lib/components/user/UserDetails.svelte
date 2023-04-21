@@ -26,7 +26,7 @@
 				theme="solid"
 				class=" h-[17px] w-[17px] fill-green-900/80 dark:stroke-gray-300"
 			/>
-			<span>{regionNames.of(user?.country)}</span>
+			<span>{user?.country ? regionNames.of(user?.country): ''}</span>
 		</div>
 	{/if}
 </div>
