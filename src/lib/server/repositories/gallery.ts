@@ -2,6 +2,7 @@ import type { Prisma } from '@prisma/client';
 import { PrismaClient } from '@prisma/client';
 import { titleToId } from './tag';
 import { error } from '@sveltejs/kit';
+import { userSelect } from './user';
 
 const prisma = new PrismaClient({
 	log: [
@@ -46,12 +47,7 @@ export function query(
 			owners: {
 				select: {
 					user: {
-						select: {
-							id: true,
-							username: true,
-							name: true,
-							avatar: true
-						}
+						select: userSelect
 					}
 				},
 				where: {

@@ -2,9 +2,7 @@
 	import { localePath } from '$lib/translations';
 	import FiltersBase from '../nav/FiltersBase.svelte';
 
-	export let tags,
-		params,
-		countries = [{ title: 'USA' }, { title: 'UK' }, { title: 'Canada' }];
+	export let tags, params, countries;
 
 	const options = {
 		categories: tags,
@@ -14,9 +12,6 @@
 			},
 			{
 				title: 'new'
-			},
-			{
-				title: 'recommended'
 			}
 		],
 		countries: countries

@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { userSelect } from './user';
 
 const prisma = new PrismaClient({
 	log: [
@@ -29,14 +30,7 @@ export function get(id: bigint) {
 			owners: {
 				select: {
 					user: {
-						select: {
-							id: true,
-							username: true,
-							name: true,
-							avatar: true,
-							country: true,
-							rating: true
-						}
+						select: userSelect
 					}
 				},
 				where: {
@@ -46,14 +40,7 @@ export function get(id: bigint) {
 			votes: {
 				select: {
 					user: {
-						select: {
-							id: true,
-							username: true,
-							name: true,
-							avatar: true,
-							country: true,
-							rating: true
-						}
+						select: userSelect
 					}
 				},
 				where: {

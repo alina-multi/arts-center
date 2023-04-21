@@ -47,3 +47,12 @@ export async function userMap(user: userWithRelations): Promise<User> {
 		bios: undefined
 	};
 }
+
+export function userCountriesMap(countries): { title: string; count: number }[] {
+	return countries.map((country) => {
+		return {
+			title: country.country,
+			count: country._count.country
+		};
+	});
+}
