@@ -16,9 +16,10 @@ const prisma = new PrismaClient({
 export function query(
 	where: Prisma.worksWhereInput = {},
 	orderBy: Prisma.worksOrderByWithRelationInput = {},
-	page = 0,
+	page = 1,
 	perPage = 20
 ) {
+	page--;
 	return prisma.works.findMany({
 		take: perPage,
 		skip: page * perPage,
@@ -64,7 +65,7 @@ export function query(
 	});
 }
 
-export function indexQuery(page = 0) {
+export function indexQuery(page = 1) {
 	return query(
 		{
 			rating: {
@@ -78,7 +79,7 @@ export function indexQuery(page = 0) {
 	);
 }
 
-export async function userQuery(user_id: bigint, page = 0) {
+export async function userQuery(user_id: bigint, page = 1) {
 	return query(
 		{
 			owners: {
@@ -95,7 +96,7 @@ export async function userQuery(user_id: bigint, page = 0) {
 	);
 }
 
-export async function filteredQuery(tag: string, lang: string, order = 'popular', page = 0) {
+export async function filteredQuery(tag: string, lang: string, order = 'popular', page = 1) {
 	let where = {};
 	if (tag !== 'all') {
 		const tagTitle = await titleToId(tag, lang);

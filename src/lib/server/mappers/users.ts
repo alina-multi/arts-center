@@ -24,11 +24,10 @@ export async function usersMap(users: userWithRelations[]): Promise<UserList[]> 
 				{
 					rating: 'desc'
 				},
-				0,
+				1,
 				3
 			);
 			const works = worksPreviewMap(tmpWorks);
-
 			return {
 				...user,
 				works,

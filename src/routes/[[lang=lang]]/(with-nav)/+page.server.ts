@@ -12,7 +12,7 @@ export const load = (async () => {
 		return {
 			gallery: values[0],
 			categories: values[1],
-			params: { order: 'popular', tag: 'all' }
+			params: { order: 'popular', tag: 'all', page: 1 }
 		};
 	});
 }) satisfies PageServerLoad;

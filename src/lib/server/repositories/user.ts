@@ -20,13 +20,14 @@ const prisma = new PrismaClient({
 		}
 	]
 });
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 10;
 
 export function query(
 	where: Prisma.usersWhereInput = {},
 	orderBy: Prisma.usersOrderByWithRelationInput = {},
-	page = 0
+	page = 1
 ) {
+	page--;
 	return prisma.users.findMany({
 		take: PAGE_SIZE,
 		skip: page * PAGE_SIZE,
@@ -93,7 +94,7 @@ export async function filteredQuery(
 	country: string,
 	order = 'popular',
 	lang: string,
-	page = 0
+	page = 1
 ) {
 	let where = {};
 	let orderBy = {};
