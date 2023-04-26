@@ -21,7 +21,7 @@ export const load = (async (event) => {
 			await filteredQuery(params.category, params.country, params.order, locale.get(), params.page)
 		),
 		getCategories().then((categories) => tagsMap(categories)),
-		userCountries().then((countries) => userCountriesMap(countries))
+		userCountries().then((countries) => userCountriesMap(countries, locale.get()))
 	]).then((values) => {
 		return {
 			users: values[0],

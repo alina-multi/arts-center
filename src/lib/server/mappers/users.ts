@@ -47,10 +47,11 @@ export async function userMap(user: userWithRelations): Promise<User> {
 	};
 }
 
-export function userCountriesMap(countries): { title: string; count: number }[] {
+export function userCountriesMap(countries, locale): { title: string; count: number }[] {
+	const regionNames = new Intl.DisplayNames([locale], { type: 'region' });
 	return countries.map((country) => {
 		return {
-			title: country.country,
+			title: regionNames.of(country.country),
 			count: country._count.country
 		};
 	});

@@ -25,14 +25,17 @@
 
 	<DisclosurePanel class="mt-3 py-3  max-h-96 overflow-scroll border rounded-sm" let:close>
 		<ul class="flex flex-col text-sm">
-			{#each options as { title }}
+			{#each options as option}
 				<li
-					class=" flex  px-3 cursor-pointer py-1 hover:bg-gray-100 {title === selected
+					class=" flex  px-3 cursor-pointer py-1 hover:bg-gray-100 {option.title === selected
 						? 'bg-gray-100 hover:bg-gray-100  '
 						: 'text-gray-800 dark:text-gray-200'}"
 				>
-					<a href={urlGenerator(params, { [group]: title })} class="flex grow">
-						<span>{title}</span>
+					<a href={urlGenerator(params, { [group]: option.title })} class="flex grow">
+						<span>{option.title}</span>
+						{#if option.count}
+							<span class="ml-auto text-gray-500">{option.count}</span>
+						{/if}
 					</a>
 				</li>
 			{/each}
