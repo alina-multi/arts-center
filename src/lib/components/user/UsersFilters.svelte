@@ -1,11 +1,11 @@
 <script>
 	import { localePath } from '$lib/translations';
-	import FiltersBase from '../nav/FiltersBase.svelte';
+	import UserFiltersGroup from '$lib/components/user/UserFiltersGroup.svelte';
 
 	export let tags, params, countries;
 
+	const filterKeys = ['order', 'category', 'country'];
 	const options = {
-		categories: tags,
 		order: [
 			{
 				title: 'popular'
@@ -14,71 +14,44 @@
 				title: 'new'
 			}
 		],
-		countries: countries
+		country: countries,
+		category: tags
 	};
 
-	let urlGenerator = (type, title, params) => {
-		const selected = {
-			categories: 'all',
-			order: 'popular',
-			countries: 'all'
-		};
+	const defaultParams = {
+		order: 'popular',
+		category: 'all',
+		country: 'all'
+	};
 
-		if (params?.order) {
-			selected.order = params.order;
-		}
-
-		if (params?.category) {
-			selected.categories = params.category;
-		}
-
-		if (params?.country) {
-			selected.countries = params.country;
-		}
-
+	function urlGenerator(params, changes) {
+		const newState = { ...params, ...changes };
 		let url = '/users';
-
-		if (type === 'order') {
-			url += `/${title}/${selected.categories}/${selected.countries}`;
+		// Compare the new state with the default state
+		if (Object.keys(defaultParams).every((key) => newState[key] === defaultParams[key])) {
+			return url;
 		}
-		if (type === 'categories') {
-			url += `/${selected.order}/${title}/${selected.countries}`;
+		for (let key of filterKeys) {
+			url += `/${newState[key]}`;
 		}
-		if (type === 'countries') {
-			url += `/${selected.order}/${selected.categories}/${title}`;
-		}
-		// 	if (type === 'order' && title === 'popular' && selected.categories === 'all' && selected.countries === 'all') {
-		// 	url = '/users';
-		// }
-		if (type === 'reset_all') {
-			url = '/users';
-		}
-		if (type === 'reset_order') {
-			url = `/users/popular/${selected.categories}/${selected.countries}`;
-		}
-		if (type === 'reset_categories') {
-			url = `/users/${selected.order}/all/${selected.countries}`;
-		}
-		if (type === 'reset_countries') {
-			url = `/users/${selected.order}/${selected.categories}/all`;
-		}
-
 		return localePath(url);
-	};
+	}
 </script>
 
-<FiltersBase {options} {urlGenerator} {params} type="usersPage" />
+<section aria-labelledby="filter-heading">
+	<h2 id="filter-heading" class="sr-only">Filters</h2>
+	<div class="divide-y">
+		{#each filterKeys as group}
+			<UserFiltersGroup options={options[group]} {params} {group} {urlGenerator} />
+		{/each}
 
-<!-- {#each options.order as { title }}
-	<a href={urlGenerator('order', title, params)}
-	 class="flex justify-between px-3" >
-		{title}
-	</a>
-{/each}
-
-{#each options.categories as { title }}
-	<a href={urlGenerator('categories', title, params)}
-	 class="flex justify-between px-3" >
-		{title}
-	</a>
-{/each} -->
+		<div class="pt-3 flex flex-row-reverse">
+			<a
+				href={urlGenerator(params, defaultParams)}
+				class="text-sm text-gray-500 hover:text-red-700 cursor-pointer"
+			>
+				Clear all
+			</a>
+		</div>
+	</div>
+</section>
