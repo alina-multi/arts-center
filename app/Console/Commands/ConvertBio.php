@@ -2,11 +2,13 @@
 
 namespace App\Console\Commands;
 
+use App\Console\Traits\getNewUserId;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
 class ConvertBio extends Command
 {
+    use getNewUserId;
     /**
      * The name and signature of the console command.
      *
@@ -35,7 +37,7 @@ class ConvertBio extends Command
             ->chunk(100, function ($oldUsers) {
                 foreach ($oldUsers as $oldUser) {
                     DB::table('user_bios')->insert([
-                        'user_id' => $oldUser->id,
+                        'user_id' => $this->getNewUserId($oldUser->id),
                         'language' => 'uk',
                         'text' => strip_tags($oldUser->text),
                     ]);
