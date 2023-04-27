@@ -36,11 +36,14 @@ class ConvertBio extends Command
             ->where('checked', 1)
             ->chunk(100, function ($oldUsers) {
                 foreach ($oldUsers as $oldUser) {
-                    DB::table('user_bios')->insert([
-                        'user_id' => $this->getNewUserId($oldUser->id),
-                        'language' => 'uk',
-                        'text' => strip_tags($oldUser->text),
-                    ]);
+                    $newUserId = $this->getNewUserId($oldUser->id);
+                    if ($newUserId) {
+                        DB::table('user_bios')->insert([
+                            'user_id' => $newUserId,
+                            'language' => 'uk',
+                            'text' => strip_tags($oldUser->text),
+                        ]);
+                    }
                 }
             });
     }
