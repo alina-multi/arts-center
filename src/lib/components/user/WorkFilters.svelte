@@ -6,19 +6,20 @@
 	const options = {
 		tags: tags
 	};
-	const selected = {
-		tags: 'all'
-	};
-	if (params?.tag) {
-		selected.tags = params.tag;
-	}
 
-	let urlGenerator = (selected) => {
-		if (selected.tags === 'all') {
+	let urlGenerator = (type, title, params) => {
+		const selected = {
+			tags: 'all'
+		};
+		if (params?.tag !== 'all') {
+			selected.tags = params.tag;
+		}
+
+		if (selected.tags === title) {
 			return localePath(`/${params?.username}`);
 		}
-		return localePath(`/${params?.username}/tag/${selected.tags}`);
+		return localePath(`/${params?.username}/tag/${title}`);
 	};
 </script>
 
-<FiltersBase {options} {selected} {urlGenerator} type={'userPage'} />
+<FiltersBase {options} {params} {urlGenerator} type={'userPage'} />

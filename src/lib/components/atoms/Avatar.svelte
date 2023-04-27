@@ -12,7 +12,7 @@
 	}
 </script>
 
-<a {href} class="inline-flex">
+<a {href} class="inline-flex shrink-0">
 	<div class="inline-flex items-center gap-2">
 		<div class="bg-zinc-300 dark:bg-gray-800 rounded-full">
 			{#if user.avatar}

@@ -12,6 +12,6 @@ export const load = async ({ params }) => {
 	return {
 		user,
 		gallery,
-		params
+		params: { ...params, tag: params.tag || 'all' }
 	};
 };

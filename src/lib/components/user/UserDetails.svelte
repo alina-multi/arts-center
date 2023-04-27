@@ -12,7 +12,7 @@
 </script>
 
 <div
-	class="flex  flex-wrap text-xs md:text-sm  text-gray-500/90 dark:text-gray-300 gap-1 md:gap-2  items-center "
+	class="flex  flex-wrap text-xs md:text-sm  text-gray-500 dark:text-gray-300 gap-1 md:gap-2  items-center "
 >
 	{#if user?.rating}
 		<div class="flex items-center  ">
