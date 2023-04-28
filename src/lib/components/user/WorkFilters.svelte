@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { localePath } from '$lib/translations';
-	import FiltersBase from '$lib/components/nav/FiltersBase.svelte';
+	import FilterTag from '$lib/components/nav/FilterTag.svelte';
 	export let tags, params;
 
 	const options = {
@@ -22,4 +22,4 @@
 	};
 </script>
 
-<FiltersBase {options} {params} {urlGenerator} type={'userPage'} />
+<FilterTag tags={options.tags} selected={params.tag} {urlGenerator} type={'tags'} {params} />
