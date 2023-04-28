@@ -6,7 +6,6 @@
 
 	export let data: PageData;
 	let userTags = data.user.ratings.map((rating) => rating.tag);
-	
 </script>
 
 <div class="flex flex-col xl:flex-row gap-3  mt-3 ">

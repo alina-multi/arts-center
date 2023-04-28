@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { Icon } from '@steeze-ui/svelte-icon';
-    import { MapPin } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
+	import { MapPin } from '@steeze-ui/heroicons';
 	export let user;
 	let country;
 	if (user?.country?.length === 2) {
@@ -11,10 +11,7 @@
 
 {#if country}
 	<div class="inline-flex  items-center">
-
 		<Icon src={MapPin} theme="solid" class="  w-[16px] fill-green-900/80 dark:stroke-gray-300" />
 		<span>{country}</span>
 	</div>
 {/if}
-
-
