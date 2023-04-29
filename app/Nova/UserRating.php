@@ -3,7 +3,7 @@
 namespace App\Nova;
 
 use App\Models\UserRatings;
-use Illuminate\Http\Request;
+use Laravel\Nova\Http\Requests\NovaRequest as Request;
 use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphTo;

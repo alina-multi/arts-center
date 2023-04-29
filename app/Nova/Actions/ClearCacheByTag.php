@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Artisan;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class ClearCacheByTag extends Action
 {
@@ -39,7 +40,7 @@ class ClearCacheByTag extends Action
      *
      * @return array
      */
-    public function fields()
+    public function fields(NovaRequest $request)
     {
         return [];
     }

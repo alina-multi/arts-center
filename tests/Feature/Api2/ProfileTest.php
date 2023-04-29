@@ -48,4 +48,13 @@ class ProfileTest extends TestCase
             ]
         );
     }
+
+    public function test_password_validation()
+    {
+        $user = \App\Models\User::factory()->create();
+
+        $response = $this->actingAs($user)->postJson('/api2/profile', [
+            'password' => 'newOne']);
+        $response->dd();
+    }
 }

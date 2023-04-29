@@ -5,7 +5,7 @@ namespace App\Nova;
 use App\Nova\Actions\ClearCacheByTag;
 use App\Nova\Metrics\NewUsers;
 use App\Nova\Metrics\UsersPerDay;
-use Illuminate\Http\Request;
+use Laravel\Nova\Http\Requests\NovaRequest as Request;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\HasManyThrough;

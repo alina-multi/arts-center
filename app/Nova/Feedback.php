@@ -4,7 +4,7 @@ namespace App\Nova;
 
 use App\Nova\Actions\ApproveRecord;
 use Ek0519\Quilljs\Quilljs;
-use Illuminate\Http\Request;
+use Laravel\Nova\Http\Requests\NovaRequest as Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Code;

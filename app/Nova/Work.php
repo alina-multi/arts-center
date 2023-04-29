@@ -6,7 +6,7 @@ use App\Nova\Actions\ClearCacheByTag;
 use App\Nova\Filters\WorkPublished;
 use App\Nova\Metrics\WorksPerDay;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use Laravel\Nova\Http\Requests\NovaRequest as Request;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
