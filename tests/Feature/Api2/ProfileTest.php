@@ -5,6 +5,7 @@ namespace Tests\Feature\Api2;
 use App\Models\UserBio;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Models\User;
 
 class ProfileTest extends TestCase
 {
@@ -52,9 +53,9 @@ class ProfileTest extends TestCase
     public function test_password_validation()
     {
         $validPassword = 'newPassword123';
-        $unvalidPassword = 'newPassword';
+        $invalidPassword = 'newPassword';
         $currentPassword = 'password'; // From UserFactory
-        $user = \App\Models\User::factory()->create();
+        $user = User::factory()->create();
 
         $this->actingAs($user)->postJson('/api2/profile', [
             ...$user->toArray(),
@@ -66,14 +67,14 @@ class ProfileTest extends TestCase
             ...$user->toArray(),
             'password' => $validPassword,
             'password_confirmation' => $validPassword,
-           'current_password' => 'wrongPassword'
+            'current_password' => 'wrongPassword'
         ])->assertStatus(422, 'Can change password with wrong current password');
 
         $this->actingAs($user)->postJson('/api2/profile', [
             ...$user->toArray(),
-            'password' => $unvalidPassword,
-            'password_confirmation' => $unvalidPassword,
-           'current_password' => 'wrongPassword'
+            'password' => $invalidPassword,
+            'password_confirmation' => $invalidPassword,
+            'current_password' => 'wrongPassword'
         ])->assertStatus(422, 'Can change password with unsafe password');
 
         $this->actingAs($user)->postJson('/api2/profile', [
@@ -85,6 +86,5 @@ class ProfileTest extends TestCase
 
         $user->refresh();
         $this->assertTrue(\Hash::check($validPassword, $user->password), 'Password was not changed');
-
     }
 }
