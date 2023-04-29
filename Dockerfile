@@ -3,7 +3,11 @@ FROM phpswoole/swoole:php8.2
 # Setup working directory
 WORKDIR /var/www
 
-RUN docker-php-ext-install pcntl bcmath
+RUN apt-get update && apt-get install -y \
+    zlib1g-dev \
+    libzip-dev
+
+RUN docker-php-ext-install pcntl bcmath zip
 
 #So we have a nice cache of vendor
 COPY composer.lock /var/www
