@@ -51,10 +51,40 @@ class ProfileTest extends TestCase
 
     public function test_password_validation()
     {
+        $validPassword = 'newPassword123';
+        $unvalidPassword = 'newPassword';
+        $currentPassword = 'password'; // From UserFactory
         $user = \App\Models\User::factory()->create();
 
-        $response = $this->actingAs($user)->postJson('/api2/profile', [
-            'password' => 'newOne']);
-        $response->dd();
+        $this->actingAs($user)->postJson('/api2/profile', [
+            ...$user->toArray(),
+            'password' => $validPassword,
+            'password_confirmation' => $validPassword,
+        ])->assertStatus(422, 'Can change password without current password');
+
+        $this->actingAs($user)->postJson('/api2/profile', [
+            ...$user->toArray(),
+            'password' => $validPassword,
+            'password_confirmation' => $validPassword,
+           'current_password' => 'wrongPassword'
+        ])->assertStatus(422, 'Can change password with wrong current password');
+
+        $this->actingAs($user)->postJson('/api2/profile', [
+            ...$user->toArray(),
+            'password' => $unvalidPassword,
+            'password_confirmation' => $unvalidPassword,
+           'current_password' => 'wrongPassword'
+        ])->assertStatus(422, 'Can change password with unsafe password');
+
+        $this->actingAs($user)->postJson('/api2/profile', [
+            ...$user->toArray(),
+            'password' => $validPassword,
+            'password_confirmation' => $validPassword,
+            'current_password' => $currentPassword
+        ])->assertStatus(200, 'Can not change password when everything should be ok');
+
+        $user->refresh();
+        $this->assertTrue(\Hash::check($validPassword, $user->password), 'Password was not changed');
+
     }
 }

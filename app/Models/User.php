@@ -21,14 +21,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
-        'email_verified_at',
-        'password',
-        'created_at',
-        'username',
-        'old_id',
-        'country',
-        'rating'
+        'country'
     ];
 
     public $highlights;
