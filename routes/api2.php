@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use \App\Http\Middleware\LocaleHeader;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +14,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware(['auth:sanctum'])->group(function () {
+Route::middleware(['auth:sanctum', LocaleHeader::class])->group(function () {
     Route::put('profile', \App\Http\Controllers\Api2\ProfileController::class . '@update');
     Route::get('profile', \App\Http\Controllers\Api2\ProfileController::class . '@index');
     Route::get('me', function (Request $request) {
@@ -21,6 +22,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 });
 
-Route::get('health', function () {
-    return response('OK 2', 200);
+Route::middleware(LocaleHeader::class)->get('health', function () {
+    return response(__('health.ok'), 200);
 });

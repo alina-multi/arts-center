@@ -18,7 +18,7 @@ class ProfileTest extends TestCase
      */
     public function test_get()
     {
-        $user = \App\Models\User::factory()->create();
+        $user = User::factory()->create();
         $bio = [];
         foreach (['uk', 'en'] as $lang) {
             $bio[$lang] = UserBio::factory()->create([
@@ -90,7 +90,7 @@ class ProfileTest extends TestCase
 
     public function test_update_bio()
     {
-        $user = \App\Models\User::factory()->create();
+        $user = User::factory()->create();
         UserBio::factory()->create([
             'user_id' => $user->id,
             'language' => 'uk'
