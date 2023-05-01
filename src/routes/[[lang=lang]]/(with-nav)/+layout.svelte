@@ -5,6 +5,6 @@
 </script>
 
 <MainNav user={data.user} />
-<main class="container mx-auto px-3">
+<main class="container mx-auto px-3 min-h-screen">
 	<slot />
 </main>

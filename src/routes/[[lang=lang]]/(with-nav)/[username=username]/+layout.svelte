@@ -9,7 +9,9 @@
 </script>
 
 <div class="flex flex-col xl:flex-row gap-3  mt-3 ">
-	<div class=" xl:w-1/4 rounded-md shadow-sm border ">
+	<div
+		class=" xl:w-1/4 rounded-md shadow-md border dark:xl:bg-gray-900 dark:sm:border-gray-800 dark:border-transparent  h-min"
+	>
 		<UserCard user={data.user} />
 	</div>
 

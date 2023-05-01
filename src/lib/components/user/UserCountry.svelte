@@ -11,7 +11,7 @@
 
 {#if country}
 	<div class="inline-flex  items-center">
-		<Icon src={MapPin} theme="solid" class="  w-[16px] fill-green-900/80 dark:stroke-gray-300" />
+		<Icon src={MapPin} theme="solid" class="  w-[16px] fill-green-900/80 dark:fill-green-700" />
 		<span>{country}</span>
 	</div>
 {/if}

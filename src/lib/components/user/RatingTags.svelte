@@ -10,7 +10,7 @@
 	<div class="flex flex-wrap gap-2  ">
 		<span>Rating by category:</span>
 		<button
-			class="flex xl:hidden gap-1 font-semibold items-center   text-gray-800  hover:text-gray-600"
+			class="flex xl:hidden gap-1 font-semibold items-center   text-gray-800  hover:text-gray-600 dark:text-sky-600"
 			on:click={() => onToggle()}
 		>
 			{#if !showRatings}
@@ -32,12 +32,14 @@
 	>
 		{#each user.ratings as tag}
 			<div
-				class="flex  items-center gap-1  border  rounded-full  pl-2 xl:pl-3 cursor-pointer hover:shadow-sm hover:border-amber-500"
+				class="flex  items-center gap-1  border dark:border-transparent rounded-full  pl-2 xl:pl-3 cursor-pointer hover:shadow-sm hover:border-amber-500 dark:hover:border-gray-600 dark:hover:shadow-sm"
 			>
 				<a href={localePath(`/${user.username}/tag/${tag?.tag?.title}`)}>{tag?.tag?.title}</a>
-				<div class="flex  items-center px-1  rounded-full bg-amber-600 text-white">
+				<div
+					class="flex  items-center px-1  rounded-full bg-amber-600 text-white dark:bg-transparent  dark:border-amber-600 dark:border dark:text-gray-100 "
+				>
 					<Icon src={Heart} theme="solid" class=" h-3 w-3  " />
-					<span class="text-xs leading-5 font-semibold"> {tag?.rating}</span>
+					<span class="text-xs leading-5 font-semibold dark:font-light"> {tag?.rating}</span>
 				</div>
 			</div>
 		{/each}

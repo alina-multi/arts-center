@@ -36,17 +36,17 @@
 
 			{#if hiddenTags.length > 0}
 				<PopoverButton
-					class="flex items-center gap-2  border px-3 py-1 rounded-md hover:border-amber-500 "
+					class="flex items-center gap-2  border px-3 py-1 rounded-md hover:border-amber-500 dark:bg-gray-900 dark:border-gray-800 dark:hover:border-amber-500"
 				>
 					other
 					{#if selected !== 'all' && isHiddenTag.length > 0}
 						<span class="text-sm bg-amber-600 text-white px-1 rounded-md">{selected}</span>
 					{/if}
 					{#if !open}
-						<Icon src={ChevronDown} class="w-5" />
+						<Icon src={ChevronDown} class="w-5 transform rotate-180" />
 					{/if}
 					{#if open}
-						<Icon src={ChevronUp} class="w-5" />
+						<Icon src={ChevronUp} class="w-5 transform rotate-180" />
 					{/if}
 				</PopoverButton>
 			{/if}
@@ -61,7 +61,7 @@
 				leave="transition ease-in duration-75"
 			>
 				<PopoverPanel
-					class="absolute left-0 z-10 mt-2 origin-top-left rounded-md bg-white dark:bg-black/90 shadow-2xl ring-1 ring-black dark:ring-zinc-500 ring-opacity-5 focus:outline-none overflow-hidden"
+					class="absolute left-0 z-10 mt-2 origin-top-left rounded-md bg-white dark:bg-black/90 shadow-2xl ring-1 ring-black dark:ring-gray-700 ring-opacity-5 focus:outline-none overflow-hidden"
 					let:close
 				>
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -76,10 +76,10 @@
 
 <!-- MOBILE -->
 <div class="flex md:hidden  text-left z-30  flex-row-reverse">
-	<Popover class=" inline-block   text-gray-800 dark:text-gray-200 " let:open>
+	<Popover class=" inline-block   text-gray-800 dark:text-gray-200 dark:bg-gray-900 " let:open>
 		<div class="flex flex-wrap gap-3 ">
 			<PopoverButton
-				class="flex items-center gap-2  border px-4 py-2 rounded-md hover:border-amber-500 "
+				class="flex items-center gap-2  border px-4 py-2 rounded-md hover:border-amber-500 dark:border-gray-700 "
 			>
 				filters
 				{#if selected !== 'all'}
@@ -95,7 +95,7 @@
 		</div>
 
 		<PopoverPanel
-			class="absolute origin-top-right right-0 w-full  z-10 mt-2 rounded-md bg-white dark:bg-black/90 shadow-2xl ring-1 ring-black dark:ring-zinc-500 ring-opacity-5 focus:outline-none overflow-hidden"
+			class="absolute origin-top-right right-0 w-full  z-10 mt-3  bg-white dark:bg-black/90 shadow-2xl ring-1 ring-black dark:ring-gray-700 ring-opacity-5 focus:outline-none overflow-hidden"
 			let:close
 		>
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
