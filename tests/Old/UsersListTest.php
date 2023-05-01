@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Old;
 
 use App\Models\Tag;
 use App\Models\TagTitle;
@@ -8,8 +8,8 @@ use App\Models\User;
 use App\Models\UserRatings;
 use App\Models\Work;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Tests\TestCase;
 
 class UsersListTest extends TestCase
 {

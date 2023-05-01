@@ -1,13 +1,12 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Old;
 
 use App\Models\Tag;
-use App\Models\TagTitle;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Tests\TestCase;
 
 class TagTest extends TestCase
 {

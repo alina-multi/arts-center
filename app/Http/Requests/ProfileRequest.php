@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
-class ProfileRequest extends FormRequest
+class ProfileRequest extends UserRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,14 +14,14 @@ class ProfileRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|string|max:191',
-            'username' => 'required|string|min:5|max:191|unique:users,username,' . $this->user()->id,
-            'email' => 'sometimes|required|email|max:191|unique:users,email,' . $this->user()->id,
-            'password' => ['sometimes', 'required', 'confirmed', Password::defaults()],
-            'current_password' => 'required_with:password|current_password',
-            'country' => 'string|min:2|max:2|nullable',
+        $rules = [
+            ...parent::rules(),
+            'name' => ['required', 'string', 'max:191'],
+            'current_password' => ['required_with:password', 'current_password'],
             'biography.*' => 'string|nullable',
         ];
+        $rules['password'][] = 'sometimes';
+        $rules['email'][] = 'sometimes';
+        return $rules;
     }
 }

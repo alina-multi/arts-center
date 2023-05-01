@@ -54,30 +54,30 @@ class ProfileTest extends TestCase
     {
         $validPassword = 'newPassword123';
         $invalidPassword = 'newPassword';
-        $currentPassword = 'password'; // From UserFactory
+        $currentPassword = 'paSSword1'; // From UserFactory
         $user = User::factory()->create();
 
-        $this->actingAs($user)->postJson('/api2/profile', [
+        $this->actingAs($user)->putJson('/api2/profile', [
             ...$user->toArray(),
             'password' => $validPassword,
             'password_confirmation' => $validPassword,
         ])->assertStatus(422, 'Can change password without current password');
 
-        $this->actingAs($user)->postJson('/api2/profile', [
+        $this->actingAs($user)->putJson('/api2/profile', [
             ...$user->toArray(),
             'password' => $validPassword,
             'password_confirmation' => $validPassword,
             'current_password' => 'wrongPassword'
         ])->assertStatus(422, 'Can change password with wrong current password');
 
-        $this->actingAs($user)->postJson('/api2/profile', [
+        $this->actingAs($user)->putJson('/api2/profile', [
             ...$user->toArray(),
             'password' => $invalidPassword,
             'password_confirmation' => $invalidPassword,
             'current_password' => 'wrongPassword'
         ])->assertStatus(422, 'Can change password with unsafe password');
 
-        $this->actingAs($user)->postJson('/api2/profile', [
+        $this->actingAs($user)->putJson('/api2/profile', [
             ...$user->toArray(),
             'password' => $validPassword,
             'password_confirmation' => $validPassword,
@@ -86,5 +86,30 @@ class ProfileTest extends TestCase
 
         $user->refresh();
         $this->assertTrue(\Hash::check($validPassword, $user->password), 'Password was not changed');
+    }
+
+    public function test_update_bio()
+    {
+        $user = \App\Models\User::factory()->create();
+        UserBio::factory()->create([
+            'user_id' => $user->id,
+            'language' => 'uk'
+        ]);
+        $this->actingAs($user)->putJson('/api2/profile', [
+            ...$user->toArray(),
+            'bios' => [
+                'uk' => 'new',
+                'en' => 'new'
+            ]
+        ])->assertStatus(200);
+        $this->assertDatabaseCount('user_bios', 2)->assertDatabaseHas('user_bios', [
+            'user_id' => $user->id,
+            'language' => 'uk',
+            'text' => 'new'
+        ])->assertDatabaseHas('user_bios', [
+            'user_id' => $user->id,
+            'language' => 'en',
+            'text' => 'new'
+        ]);
     }
 }

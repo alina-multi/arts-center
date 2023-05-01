@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Old;
 
 use App\Models\Follow;
 use App\Models\User;
 use App\Models\Work;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Tests\TestCase;
 
 class FollowTest extends TestCase
 {

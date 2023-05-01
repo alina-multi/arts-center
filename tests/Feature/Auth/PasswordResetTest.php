@@ -7,7 +7,7 @@ use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
-
+use App\Notifications\MailResetPasswordNotification;
 class PasswordResetTest extends TestCase
 {
     use RefreshDatabase;
@@ -18,9 +18,9 @@ class PasswordResetTest extends TestCase
 
         $user = User::factory()->create();
 
-        $this->post('/forgot-password', ['email' => $user->email]);
+        $this->post('/auth/forgot-password', ['email' => $user->email]);
 
-        Notification::assertSentTo($user, ResetPassword::class);
+        Notification::assertSentTo($user, MailResetPasswordNotification::class);
     }
 
     public function test_password_can_be_reset_with_valid_token(): void
@@ -29,14 +29,14 @@ class PasswordResetTest extends TestCase
 
         $user = User::factory()->create();
 
-        $this->post('/forgot-password', ['email' => $user->email]);
+        $this->post('/auth/forgot-password', ['email' => $user->email]);
 
-        Notification::assertSentTo($user, ResetPassword::class, function (object $notification) use ($user) {
-            $response = $this->post('/reset-password', [
+        Notification::assertSentTo($user, MailResetPasswordNotification::class, function (object $notification) use ($user) {
+            $response = $this->post('/auth/reset-password', [
                 'token' => $notification->token,
                 'email' => $user->email,
-                'password' => 'password',
-                'password_confirmation' => 'password',
+                'password' => 'paSSword1',
+                'password_confirmation' => 'paSSword1',
             ]);
 
             $response->assertSessionHasNoErrors();

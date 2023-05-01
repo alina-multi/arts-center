@@ -22,6 +22,14 @@ class ProfileController extends Controller
         if ($request->has('password')) {
             $user->password = Hash::make($request->password);
         }
+        if (is_array($request->bios)) {
+            foreach ($request->bios as $lang => $text) {
+                $user->bios()->updateOrCreate(
+                    ['language' => $lang],
+                    ['text' => $text]
+                );
+            }
+        }
         $user->save();
         return new ProfileResource($user);
     }

@@ -1,24 +1,15 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Old;
 
 use App\Models\Comment;
-use App\Events\PublishedWorkUpdated;
-use App\Jobs\RecountUserRatings;
-use App\Models\Tag;
-use App\Models\TagTitle;
-use App\Models\Vote;
+use App\Models\User;
 use App\Models\Work;
 use App\Models\WorkTitle;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
-use App\Models\User;
-use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Support\Facades\Bus;
-use Illuminate\Support\Facades\Cache;
 
 class CacheTest extends TestCase
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Old;
 
+use App\Models\Comment;
+use App\Models\User;
 use App\Models\Vote;
 use App\Models\Work;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
-use App\Models\User;
-use App\Models\Comment;
 
 class CommentTest extends TestCase
 {

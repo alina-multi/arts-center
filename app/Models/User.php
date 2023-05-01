@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Cache;
+use App\Notifications\MailResetPasswordNotification;
 
 class User extends Authenticatable
 {
@@ -39,7 +40,7 @@ class User extends Authenticatable
 
     public function sendPasswordResetNotification($token)
     {
-        $this->notify(new Notifications\MailResetPasswordNotification($token));
+        $this->notify(new MailResetPasswordNotification($token));
     }
 
     public function photo()

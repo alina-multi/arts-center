@@ -46,6 +46,7 @@
     },
     "require-dev": {
         "fzaninotto/faker": "^1.4",
+        "laravel-lang/common": "^3.1",
         "laravel/breeze": "^1.19",
         "mockery/mockery": "^1.0",
         "phpunit/phpunit": "^10.0",

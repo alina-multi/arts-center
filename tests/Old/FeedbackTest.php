@@ -1,22 +1,16 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Old;
 
-use App\Models\Comment;
 use App\Models\Feedback;
-use App\Models\Follow;
-use App\Models\Tag;
-use App\Models\TagTitle;
 use App\Models\User;
 use App\Models\Vote;
-use App\Models\Work;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Arr;
-use Tests\TestCase;
 use Illuminate\Testing\Fluent\AssertableJson;
-use Illuminate\Support\Facades\DB;
+use Tests\TestCase;
 
 class FeedbackTest extends TestCase
 {

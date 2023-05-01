@@ -1,19 +1,19 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Old;
 
 use App\Jobs\RecountUserRatings;
 use App\Models\Tag;
 use App\Models\TagTitle;
+use App\Models\User;
 use App\Models\Vote;
 use App\Models\Work;
 use App\Models\WorkTitle;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
-use App\Models\User;
-use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Support\Facades\Bus;
 
 class VoteTest extends TestCase
 {

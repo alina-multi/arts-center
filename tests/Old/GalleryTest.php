@@ -1,19 +1,15 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Old;
 
-use App\Models\Image;
 use App\Models\Tag;
 use App\Models\TagTitle;
 use App\Models\User;
 use App\Models\Work;
 use App\Models\WorkTitle;
-use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Tests\TestCase;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Tests\TestCase;
 
 class GalleryTest extends TestCase
 {
