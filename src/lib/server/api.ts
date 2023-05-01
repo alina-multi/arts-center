@@ -1,5 +1,6 @@
 import type { RequestEvent } from '@sveltejs/kit';
 import setCookie from 'set-cookie-parser';
+import { locale } from '$lib/translations';
 
 interface ApiParams {
 	method: string;
@@ -18,7 +19,8 @@ export async function api(params: ApiParams) {
 			accept: 'application/json',
 			referer: url, // Laravel Sanctum needs this
 			'X-XSRF-TOKEN': params?.event?.cookies?.get('XSRF-TOKEN') as string,
-			cookie: params?.event?.request?.headers?.get('cookie') as string
+			cookie: params?.event?.request?.headers?.get('cookie') as string,
+			'Accept-Language': locale.get()
 		},
 		body: params.data && JSON.stringify(params.data)
 	});
@@ -39,7 +41,7 @@ export function proxyCookies(event: RequestEvent, response: Response) {
 	const cookies = setCookie.parse(splitCookieHeaders);
 	cookies?.forEach(
 		(cookie: { name: string; value: string; path: any; expires: any; httpOnly: any }) => {
-			event.cookies.set(cookie.name, cookie.value, {
+			event?.cookies?.set(cookie.name, cookie.value, {
 				path: cookie.path,
 				expires: cookie.expires,
 				httpOnly: cookie.httpOnly
