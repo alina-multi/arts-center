@@ -27,7 +27,7 @@ class ProfileTest extends TestCase
             ]);
         }
         $response = $this->actingAs($user)->get('/api2/profile');
-        $response->assertStatus(200)->assertJson(
+        $response->assertOk()->assertJson(
             [
                 'data' => [
                     'id' => $user->id,
@@ -59,12 +59,14 @@ class ProfileTest extends TestCase
 
         $this->actingAs($user)->putJson('/api2/profile', [
             ...$user->toArray(),
+            'email'=> $user->email,
             'password' => $validPassword,
             'password_confirmation' => $validPassword,
         ])->assertStatus(422, 'Can change password without current password');
 
         $this->actingAs($user)->putJson('/api2/profile', [
             ...$user->toArray(),
+            'email'=> $user->email,
             'password' => $validPassword,
             'password_confirmation' => $validPassword,
             'current_password' => 'wrongPassword'
@@ -72,6 +74,7 @@ class ProfileTest extends TestCase
 
         $this->actingAs($user)->putJson('/api2/profile', [
             ...$user->toArray(),
+            'email'=> $user->email,
             'password' => $invalidPassword,
             'password_confirmation' => $invalidPassword,
             'current_password' => 'wrongPassword'
@@ -79,10 +82,11 @@ class ProfileTest extends TestCase
 
         $this->actingAs($user)->putJson('/api2/profile', [
             ...$user->toArray(),
+            'email'=> $user->email,
             'password' => $validPassword,
             'password_confirmation' => $validPassword,
             'current_password' => $currentPassword
-        ])->assertStatus(200, 'Can not change password when everything should be ok');
+        ])->assertNoContent();
 
         $user->refresh();
         $this->assertTrue(\Hash::check($validPassword, $user->password), 'Password was not changed');
@@ -97,11 +101,12 @@ class ProfileTest extends TestCase
         ]);
         $this->actingAs($user)->putJson('/api2/profile', [
             ...$user->toArray(),
+            'email'=> $user->email,
             'bios' => [
                 'uk' => 'new',
                 'en' => 'new'
             ]
-        ])->assertStatus(200);
+        ])->assertNoContent();
         $this->assertDatabaseCount('user_bios', 2)->assertDatabaseHas('user_bios', [
             'user_id' => $user->id,
             'language' => 'uk',

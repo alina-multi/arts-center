@@ -2,9 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password;
-
 class ProfileRequest extends UserRequest
 {
     /**
@@ -18,10 +15,9 @@ class ProfileRequest extends UserRequest
             ...parent::rules(),
             'name' => ['required', 'string', 'max:191'],
             'current_password' => ['required_with:password', 'current_password'],
-            'biography.*' => 'string|nullable',
+            'bios.*' => 'string|nullable',
         ];
-        $rules['password'][] = 'sometimes';
-        $rules['email'][] = 'sometimes';
+        $rules['password'][]= 'sometimes';
         return $rules;
     }
 }

@@ -31,6 +31,6 @@ class ProfileController extends Controller
             }
         }
         $user->save();
-        return new ProfileResource($user);
+        return response()->noContent();
     }
 }
