@@ -21,7 +21,7 @@
 		hiddenTags = [];
 	}
 
-	$: isHiddenTag = hiddenTags.filter((tag) => tag.title === selected);
+	$: isHiddenTag = hiddenTags?.filter((tag) => tag?.title === selected);
 
 	$: isActive = (tag: string) => {
 		return tag === selected;
