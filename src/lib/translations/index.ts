@@ -53,7 +53,7 @@ export const defaultLocale = 'en';
 export const availableLocales = ['en', 'uk'];
 
 export function correctLocale(lang: string): boolean {
-	return ['uk', 'en'].includes(lang);
+	return availableLocales.includes(lang);
 }
 
 export function checkUrlLocale(event: RequestEvent): string {

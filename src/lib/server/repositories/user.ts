@@ -85,7 +85,8 @@ export function userCountries() {
 			_count: {
 				country: 'desc'
 			}
-		}, where: {
+		},
+		where: {
 			NOT: {
 				country: null
 			}

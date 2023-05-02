@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PageData } from './$types';
+	import type { PageData, ActionData } from './$types';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { UserCircle } from '@steeze-ui/heroicons';
 	import EmailInput from '$lib/components/input/EmailInput.svelte';
@@ -9,6 +9,7 @@
 	import { availableLocales } from '$lib/translations';
 
 	export let data: PageData;
+	export let form: ActionData;
 	const profile = data.profile.data;
 </script>
 
@@ -42,6 +43,8 @@
 				</div>
 			</div>
 
+			<TextInput name="name" label="Full name" value={profile.name} error={form?.errors?.email} />
+
 			<div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 				<div class="sm:col-span-4">
 					<label for="username" class="block text-sm font-medium leading-6 text-gray-900"
@@ -64,6 +67,11 @@
 							/>
 						</div>
 					</div>
+					{#if form?.errors?.username}
+						<p class="mt-2 text-sm text-red-600">
+							{form?.errors?.username}
+						</p>
+					{/if}
 				</div>
 
 				<div class="col-span-full">
@@ -72,7 +80,7 @@
 						{#each availableLocales as locale}
 							<div class="col">
 								<TextAreaInput
-									name="biography[{locale}]"
+									name="bios[{locale}]"
 									label={locale}
 									value={profile?.bios?.[locale] ?? ''}
 								/>
@@ -82,30 +90,34 @@
 					<p class="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p>
 				</div>
 				<div class="sm:col-span-3">
-					<TextInput name="country" label="Country" value={profile.country} />
+					<TextInput
+						name="country"
+						label="Country"
+						value={profile.country}
+						error={form?.errors?.country}
+					/>
 				</div>
 			</div>
 		</div>
-		<div class="mt-6 flex items-center justify-end gap-x-6">
-			<button
-				type="submit"
-				class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-			>
-				Save
-			</button>
-		</div>
 	</div>
-</form>
-
-<form method="post">
 	<div class="border-b border-gray-900/10 pb-12">
 		<h2 class="text-base font-semibold leading-7 text-gray-900">Login Information</h2>
 		{#if !profile?.email_verified_at}
 			<p class="mt-1 text-sm leading-6 text-gray-600">Email awaiting confirmation</p>
 		{/if}
-		<EmailInput name="email" label="email" value={profile.email} />
-		<PasswordInput label="password" name="password" autocomplete="off" />
+		<EmailInput name="email" label="email" value={profile.email} error={form?.errors?.email} />
+		<PasswordInput
+			label="password"
+			name="password"
+			autocomplete="off"
+			error={form?.errors?.password}
+		/>
 		<PasswordInput label="confirm password" name="password_confirmation" autocomplete="off" />
+		<PasswordInput
+			label="current password"
+			name="current_password"
+			error={form?.errors?.current_password}
+		/>
 	</div>
 	<div class="mt-6 flex items-center justify-end gap-x-6">
 		<button

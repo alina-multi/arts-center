@@ -8,7 +8,8 @@
 		placeholder: string,
 		value: string,
 		error: string,
-		name: string;
+		name: string,
+		autocomplete: string;
 	let type = 'password';
 
 	// Generate a unique ID for the fields
@@ -21,6 +22,13 @@
 
 	let show_password = false;
 	$: type = show_password ? 'text' : 'password';
+	$: inputAttrs = {
+		name,
+		id,
+		type,
+		autocomplete,
+		value
+	};
 </script>
 
 <div class="flex items-center justify-center bg-white">
@@ -32,11 +40,7 @@
 		{/if}
 		<div class="relative">
 			<input
-				{name}
-				{id}
-				{type}
-				{placeholder}
-				{value}
+				{...inputAttrs}
 				on:input={(e) => (value = e.target.value)}
 				class="block w-full rounded-md border sm:text-sm pr-10 {error
 					? 'text-red-600 border-red-300 focus:border-red-300 focus:ring-red-200'

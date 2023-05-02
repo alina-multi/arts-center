@@ -1,10 +1,10 @@
 import type { RequestEvent } from '@sveltejs/kit';
 import setCookie from 'set-cookie-parser';
-import { locale } from '$lib/translations';
+import { defaultLocale } from '$lib/translations';
 
 interface ApiParams {
 	method: string;
-	event?: RequestEvent;
+	event: RequestEvent;
 	path: string;
 	data?: Record<string, unknown> | null;
 }
@@ -20,7 +20,8 @@ export async function api(params: ApiParams) {
 			referer: url, // Laravel Sanctum needs this
 			'X-XSRF-TOKEN': params?.event?.cookies?.get('XSRF-TOKEN') as string,
 			cookie: params?.event?.request?.headers?.get('cookie') as string,
-			'Accept-Language': locale.get()
+			// It's possible that app still haven't selected the locale by this point
+			'Accept-Language': params?.event?.params?.lang || defaultLocale
 		},
 		body: params.data && JSON.stringify(params.data)
 	});
