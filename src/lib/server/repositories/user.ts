@@ -60,6 +60,11 @@ export function get(username: string) {
 							}
 						}
 					}
+				},
+				where: {
+					ratable_type: {
+						equals: 'tag'
+					}
 				}
 			},
 			bios: {
