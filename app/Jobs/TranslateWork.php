@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Work;
 use App\Models\WorkTitle;
 use Google\Cloud\Translate\V2\TranslateClient;
 use Illuminate\Bus\Queueable;
@@ -22,7 +23,7 @@ class TranslateWork implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($work)
+    public function __construct(Work $work)
     {
         $this->work = $work;
     }
