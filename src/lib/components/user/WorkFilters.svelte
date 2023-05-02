@@ -1,24 +1,25 @@
 <script lang="ts">
 	import { localePath } from '$lib/translations';
-	import FiltersBase from '$lib/components/nav/FiltersBase.svelte';
+	import FilterTag from '$lib/components/nav/FilterTag.svelte';
 	export let tags, params;
 
 	const options = {
 		tags: tags
 	};
-	const selected = {
-		tags: 'all'
-	};
-	if (params?.tag) {
-		selected.tags = params.tag;
-	}
 
-	let urlGenerator = (selected) => {
-		if (selected.tags === 'all') {
+	let urlGenerator = (type, title, params) => {
+		const selected = {
+			tags: 'all'
+		};
+		if (params?.tag !== 'all') {
+			selected.tags = params.tag;
+		}
+
+		if (selected.tags === title) {
 			return localePath(`/${params?.username}`);
 		}
-		return localePath(`/${params?.username}/tag/${selected.tags}`);
+		return localePath(`/${params?.username}/tag/${title}`);
 	};
 </script>
 
-<FiltersBase {options} {selected} {urlGenerator} type={'userPage'} />
+<FilterTag tags={options.tags} selected={params.tag} {urlGenerator} type={'tags'} {params} />
