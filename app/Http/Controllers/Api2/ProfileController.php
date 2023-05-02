@@ -26,7 +26,7 @@ class ProfileController extends Controller
             foreach ($request->bios as $lang => $text) {
                 $user->bios()->updateOrCreate(
                     ['language' => $lang],
-                    ['text' => $text]
+                    ['text' => $text ?? '']
                 );
             }
         }
