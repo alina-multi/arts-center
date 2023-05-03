@@ -3,7 +3,12 @@
 	import { Moon, Sun } from '@steeze-ui/heroicons';
 	import { darkTheme } from '$lib/stores/dark';
 
-	const toggleDark = () => ($darkTheme = !$darkTheme);
+	const toggleDark = () => {
+		$darkTheme = !$darkTheme;
+		$darkTheme
+			? document.documentElement.classList.add('dark')
+			: document.documentElement.classList.remove('dark');
+	};
 </script>
 
 <div
