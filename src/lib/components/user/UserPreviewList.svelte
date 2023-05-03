@@ -30,8 +30,8 @@
 	}
 </script>
 
-<div class="flex flex-col xl:flex-row max-xl:gap-3 mt-3">
-	<div class="xl:w-3/12 border  p-3 sm:px-6 sm:py-3 rounded-md ">
+<div class="flex flex-col xl:flex-row max-xl:gap-3 mt-3 dark:text-gray-200">
+	<div class="xl:w-3/12 border dark:border-gray-700 p-3 sm:px-6 sm:py-3 rounded-md ">
 		<UsersFilters tags={categories} {countries} {params} />
 	</div>
 	<div class="flex flex-col gap-3 xl:pl-3  xl:w-9/12">
@@ -40,7 +40,7 @@
 				<UserPreviewPremium {user} />
 			{:else}
 				<div
-					class="flex flex-col items-center sm:flex-row max-sm:gap-1 md:gap-3 shadow-sm border rounded-md w-full dark:border-gray-700 "
+					class="flex flex-col items-center sm:flex-row gap-3 shadow-sm border rounded-md w-full dark:border-gray-700 "
 				>
 					<div
 						class=" flex items-center  grow w-full sm:w-1/2 text-lg px-3 pt-3 sm:pb-3  gap-3 overflow-hidden"

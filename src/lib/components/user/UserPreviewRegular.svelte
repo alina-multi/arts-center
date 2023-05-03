@@ -11,7 +11,7 @@
 
 <!-- <div class="flex flex-col gap-2 w-full"> -->
 <div class="flex items-center gap-3 w-full">
-	<div class="flex-none"><Avatar {user} size={' w-16 h-16'} /></div>
+	<Avatar {user} size={' w-16 h-16'} />
 
 	<div class="flex flex-col gap-1 flex-1 ">
 		<div class="flex items-center gap-3 max-md:justify-between">

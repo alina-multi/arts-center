@@ -40,7 +40,7 @@
 
 <section aria-labelledby="filter-heading">
 	<h2 id="filter-heading" class="sr-only">Filters</h2>
-	<div class="divide-y">
+	<div class="divide-y dark:divide-gray-700">
 		{#each filterKeys as group}
 			<UserFiltersGroup options={options[group]} {params} {group} {urlGenerator} />
 		{/each}
