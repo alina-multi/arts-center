@@ -16,24 +16,7 @@
 <div
 	class=" relative mx-auto lg:border border-t-transparent lg:px-14 py-3 dark:border-gray-800 dark:border-t-transparent "
 >
-	<!-- <div class=" md:hidden flex justify-between items-center text-gray-600">
-		<div class="rounded-md hover:scale-110 "><Icons type="arrowBack" /></div>
-		<div><EllipsisButton /></div>
-	</div> -->
-
 	<div>
-		<div class="sticky top-0 hidden lg:block">
-			<div class="absolute top-[90px] -right-[120px] ">
-				<div class="flex flex-col gap-3 text-gray-400 dark:text-gray-500 ">
-					<ButtonsDesktop type="cart" />
-					<ButtonsDesktop type="like" />
-					<ButtonsDesktop type="bookmark" />
-					<ButtonsDesktop type="comment" />
-					<ButtonsDesktop type="share" />
-				</div>
-			</div>
-		</div>
-
 		<div class="flex flex-col mx-auto gap-3">
 			<WorkHeader {work} />
 			<WorkBody {work} />

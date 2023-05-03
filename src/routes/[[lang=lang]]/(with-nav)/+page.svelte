@@ -5,4 +5,7 @@
 	export let data: PageData;
 </script>
 
+<!-- let isMy = false;
+$: isMy = data.user.username === data.session?.username; -->
+
 <Gallery {...data} />

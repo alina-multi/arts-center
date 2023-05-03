@@ -2,13 +2,13 @@
 	import UserPreviewRegular from '$lib/components/user/UserPreviewRegular.svelte';
 	import UserPreviewPremium from '$lib/components/user/UserPreviewPremium.svelte';
 	import LastWorks from '$lib/components/atoms/LastWorks.svelte';
-	import type { UserPrview } from '$lib/interfaces/User.ts';
+	import type { UserPreview } from '$lib/interfaces/User.ts';
 	import UsersFilters from '$lib/components/user/UsersFilters.svelte';
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
 	import { localePath } from '$lib/translations';
 	import * as devalue from 'devalue';
 
-	export let users: UserPrview[], categories, countries, params;
+	export let users: UserPreview[], categories, countries, params;
 
 	let newBatch = [];
 	let page = params.page;
@@ -48,7 +48,7 @@
 						<UserPreviewRegular {user} />
 					</div>
 					<div
-						class="px-3 pb-3 sm:p-3 lg:p-0 flex justify-end sm:w-1/2    dark:border-gray-700 gap-3   overflow-hidden "
+						class="px-3 pb-3 sm:p-3 lg:p-0 flex justify-end sm:w-1/2  dark:border-gray-700 gap-3   overflow-hidden "
 					>
 						<LastWorks works={user.works} />
 					</div>

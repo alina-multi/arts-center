@@ -1,18 +1,24 @@
 <script lang="ts">
-	import UserPreviewInline from '$lib/components/user/UserPreviewInline.svelte';
+	import Avatar from '$lib/components/atoms/Avatar.svelte';
 	import EllipsisButton from '$lib/components/atoms/EllipsisButton.svelte';
+	import FollowButton from '$lib/components/atoms/FollowButton.svelte';
 
 	export let work;
 </script>
 
-<div class="space-y-1 py-2">
+<div class=" flex flex-col gap-3">
 	<div class="flex justify-between items-center">
 		<div class="flex flex-col">
 			{#each work.owners as user}
-				<UserPreviewInline {user} followButton={true} size={'w-8 h-8'} />
+				<div class="flex items-center gap-3 text-lg">
+					<Avatar {user} withName size={'w-9 h-9'} />
+
+					<FollowButton size={'xs'} {user} />
+				</div>
 			{/each}
 		</div>
-		<div class="hidden md:block"><EllipsisButton /></div>
+
+		<div class="hidden md:block"><EllipsisButton {work} /></div>
 	</div>
 
 	<div class="flex justify-between items-start">

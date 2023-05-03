@@ -13,6 +13,6 @@ export const load = (async ({ params }) => {
 	return {
 		user,
 		gallery,
-		params: { ...params, tag: params.tag || 'all' }
+		params: { tag: 'all', ...params }
 	};
 }) satisfies LayoutServerLoad;
