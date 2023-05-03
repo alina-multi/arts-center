@@ -20,6 +20,7 @@ Route::middleware(['auth:sanctum', LocaleHeader::class])->group(function () {
     Route::get('me', function (Request $request) {
         return $request->user()->load('avatar');
     });
+    Route::post('vote', \App\Http\Controllers\Api2\VoteController::class . '@store');
 });
 
 Route::middleware(LocaleHeader::class)->get('health', function () {

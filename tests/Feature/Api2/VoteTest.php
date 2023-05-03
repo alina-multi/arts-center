@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Old;
+namespace Tests\Feature\Api2;
 
 use App\Jobs\RecountUserRatings;
 use App\Models\Tag;
@@ -34,20 +34,6 @@ class VoteTest extends TestCase
         $response = $this->doVote('feedback');
     }
 
-    public function testGetVotes()
-    {
-        // Create 4 votes from 4 users
-        for ($x = 0; $x <= 3; $x++) {
-            $user = User::factory()->create();
-            Vote::factory()->create(['votable_type' => 'work', 'votable_id' => 1, 'user_id' => $user->id, 'vote' => 1]);
-        }
-
-        $response = $this->getJson('/api/vote/work_1');
-        $response->assertStatus(200)->assertJson(fn(AssertableJson $json) => $json->has('users', 4)
-            ->has('votes', 4)
-        );
-    }
-
     public function testDoubleVote()
     {
         $user = User::factory()->create();
@@ -57,8 +43,8 @@ class VoteTest extends TestCase
             'votable_type' => 'work',
             'votable_id' => $work->id
         ];
-        $this->actingAs($user)->postJson('/api/vote', $json);
-        $response2 = $this->actingAs($user)->postJson('/api/vote', $json);
+        $this->actingAs($user)->postJson('/api2/vote', $json);
+        $response2 = $this->actingAs($user)->postJson('/api2/vote', $json);
         $response2->assertStatus(422);
         $this->assertDatabaseCount('votes', 1);
     }
@@ -78,7 +64,7 @@ class VoteTest extends TestCase
             'votable_type' => 'work',
             'votable_id' => $work->id
         ];
-        $this->actingAs($user)->postJson('/api/vote', $json);
+        $this->actingAs($user)->postJson('/api2/vote', $json);
         Bus::assertDispatched(RecountUserRatings::class);
     }
 
@@ -93,7 +79,7 @@ class VoteTest extends TestCase
             'votable_type' => $type,
             'votable_id' => $entity->id
         ];
-        $response = $this->actingAs($user)->postJson('/api/vote', $json);
+        $response = $this->actingAs($user)->postJson('/api2/vote', $json);
         $response->assertJson(['rating' => 2]);
         $this->assertDatabaseHas(
             'votes',
@@ -105,7 +91,7 @@ class VoteTest extends TestCase
             ]
         );
         // Second vote from different user
-        $response = $this->actingAs($user2)->postJson('/api/vote', $json);
+        $response = $this->actingAs($user2)->postJson('/api2/vote', $json);
         $response->assertStatus(200)->assertJson(['rating' => 3]);
         $this->assertDatabaseHas(
             'votes',

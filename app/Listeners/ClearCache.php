@@ -23,7 +23,7 @@ class ClearCache
     public function handle($event)
     {
         // For now let's make it super simple
-        if (isset($event->model)) {
+        if (isset($event->model) && !App()->environment('testing')) {
             if ($event->model instanceof Comment) {
                 $key = '/api/comment/' . $event->model->commentable_type . '_' . $event->model->commentable_id;
                 Redis::connection('externalCache')->del($key);

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api2;
 
+use App\Http\Controllers\Controller;
 use App\Jobs\RecountUserRatings;
 use App\Models\Vote;
 use App\Models\Work;
@@ -10,7 +11,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use Symfony\Component\Finder\Exception\AccessDeniedException;
 
 class VoteController extends Controller
 {
@@ -58,52 +58,5 @@ class VoteController extends Controller
         }
 
         return ['rating' => $newRating, 'vote' => $vote];
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param Vote $votes
-     * @return Response
-     */
-    public function show($type_id)
-    {
-        list($type, $id) = explode('_', $type_id);
-        if (!in_array($type, array_keys(Relation::morphMap()))) {
-            return response()->json(['error' => 'Not found'], 404);
-        }
-        $users = [];
-        $votes = [];
-        $data =  Vote::where('votable_type', $type)->where('votable_id', $id)->with('user', 'user.photo')->get();
-        foreach ($data as $vote) {
-            if ($vote->user) {
-                $users[$vote->user->id] = $vote->user;
-                $votes[] = $vote->user->id;
-            }
-        }
-        return ['users' => $users, 'votes' => $votes];
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param Vote $votes
-     * @return Response
-     */
-    public function update(Request $request, Vote $votes)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param Vote $votes
-     * @return Response
-     */
-    public function destroy(Vote $votes)
-    {
-        //
     }
 }
