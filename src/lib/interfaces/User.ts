@@ -1,5 +1,6 @@
 import type { Image } from '$lib/interfaces/Image';
 import type { WorkPreview } from './Work';
+import type { Rating } from './Rating';
 
 export interface UserPreview {
 	id: bigint;
@@ -9,17 +10,11 @@ export interface UserPreview {
 	country: string | null;
 	rating: number;
 	works?: WorkPreview[];
+	ratings?: Rating[];
 }
 
 export interface UserList extends UserPreview {
 	created_at: Date | null;
-}
-
-interface UserRating {
-	rating: number;
-	ratable_type: string;
-	ratable_id: bigint;
-	language: string;
 }
 
 interface UserBio {

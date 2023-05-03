@@ -12,5 +12,9 @@
 </script>
 
 {#each tags as tag}
-	<TagButton title={tag?.title} href={urlGenerator('tags', tag?.title, params)} active={active(tag?.title)} />
+	<TagButton
+		title={tag?.title}
+		href={urlGenerator('tags', tag?.title, params)}
+		active={active(tag?.title)}
+	/>
 {/each}

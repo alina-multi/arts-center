@@ -8,7 +8,7 @@ export type imageablesWithRelations = imageables & {
 export function imagesMap(images: imageablesWithRelations[]): Image[] | undefined {
 	return images?.map((image) => imageMap(image.image));
 }
-export function imageMap(image: images): Image {
+export function imageMap(image?: images): Image {
 	if (!image) {
 		return {
 			src: '',
@@ -25,9 +25,10 @@ export function imageMap(image: images): Image {
 	}
 	const srcset = [];
 	for (const width of [300, 600, 1200, 2400]) {
+		// @ts-ignore
 		if (image[`w${width}`]) {
 			for (const extention of ['webp', 'jpg']) {
-				srcset.push(`${getUrl(image, width, extention)} ${width}w`);
+				srcset.push(`${getUrl(image, width, extention as 'webp' | 'jpg')} ${width}w`);
 			}
 		}
 	}

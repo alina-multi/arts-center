@@ -14,7 +14,7 @@ export function tagsMap(tags: tagsWithRelations[]): Tag[] {
 		return {
 			id: tag.id,
 			title: languageFind(tag.titles)?.title || '',
-			count: tag.count
+			...() => (tag.count ? { count: tag.count } : {})
 		};
 	});
 }
@@ -24,7 +24,7 @@ export function taggableMap(taggables: taggablesWithRelations[]): Tag[] {
 		return {
 			id: taggable.tag.id,
 			title: languageFind(taggable.tag.titles)?.title || '',
-			count: taggable.tag.count
+			...() => (taggable?.tag?.count ? { count: taggable.tag.count } : {})
 		};
 	});
 }

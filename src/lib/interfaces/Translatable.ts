@@ -1,3 +1,3 @@
-export type Translatable = {
+export interface Translatable {
 	language?: string;
-};
+}

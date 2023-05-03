@@ -4,12 +4,12 @@ import type { ownableWithRelations } from './owners';
 import { ownersMap } from './owners';
 import type { images, work_titles, works } from '@prisma/client';
 
-type Gallery = works & {
+export type WorksWithRelations = works & {
 	owners: ownableWithRelations[];
 	image: images;
 	titles: work_titles[];
 };
-export function worksPreviewMap(works: Gallery[]): WorkPreview[] {
+export function worksPreviewMap(works: WorksWithRelations[]): WorkPreview[] {
 	return works?.map((work) => {
 		return {
 			id: work.id,

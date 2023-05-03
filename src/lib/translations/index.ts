@@ -93,13 +93,17 @@ function removeTrailingSlash(str: string): string {
 
 export const { t, locale, locales, loading, loadTranslations, translations } = new i18n(config);
 
-export function languageFilter<Type extends Translatable>(rows: Type[]): Type[] {
-	return rows?.filter((row) => {
-		// By convention language zz means show on all languages
-		return row.language == locale.get() || row.language == 'zz';
-	});
+export function languageFilter<Type extends Translatable>(rows: Type[] | undefined): Type[] {
+	return (
+		rows?.filter((row) => {
+			// By convention language zz means show on all languages
+			return row.language == locale.get() || row.language == 'zz';
+		}) || []
+	);
 }
 
-export function languageFind<Type extends Translatable>(rows: Type[]): Type | undefined {
+export function languageFind<Type extends Translatable>(
+	rows: Type[] | undefined
+): Type | undefined {
 	return rows?.find((row) => row.language == locale.get());
 }
