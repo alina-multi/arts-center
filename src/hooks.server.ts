@@ -46,9 +46,12 @@ async function checkAuth(event) {
 
 // use handleError to report errors during server-side data loading
 export const handleError = (({ error, event }) => {
-	SentryNode.captureException(error, { contexts: { sveltekit: { event } } });
+	// We don't need not found errors in sentry
+	if (!error?.message.startsWith('Not found:')) {
+		SentryNode.captureException(error, { contexts: { sveltekit: { event } } });
+	}
 
 	return {
-		message: error.message
+		message: error?.message,
 	};
 }) satisfies HandleServerError;
