@@ -1,25 +1,11 @@
 <script lang="ts">
-	import newUniqueId from 'locally-unique-id-generator';
-
-	export let label: string,
-		description: string,
+	export let id: string,
 		placeholder: string,
 		value: string,
-		error: string,
+		error: boolean,
 		name: string;
-
-	// Generate a unique ID for the fields
-	const id = newUniqueId();
-	const descriptionId = id + '-description';
-	const errorId = id + '-error';
 </script>
 
-<div class="mx-auto w-full ">
-	{#if label}
-		<label for={id} class="block text-sm font-medium text-gray-700">
-			{label}
-		</label>
-	{/if}
 	<textarea
 		{id}
 		{placeholder}
@@ -30,14 +16,3 @@
 			? 'border-red-300 focus:border-red-300 focus:ring-red-200'
 			: 'border-zinc-300 focus:border-indigo-300 focus:ring-indigo-200'}"
 	/>
-	{#if error}
-		<p id={errorId} class="mt-2 text-sm text-red-600">
-			{error}
-		</p>
-	{/if}
-	{#if description}
-		<p id={descriptionId} class="mt-2 text-sm text-gray-500">
-			{description}
-		</p>
-	{/if}
-</div>

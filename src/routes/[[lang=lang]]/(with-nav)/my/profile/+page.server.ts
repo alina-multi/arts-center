@@ -1,6 +1,7 @@
 import type { PageServerLoad, Actions } from './$types';
 import { api } from '$lib/server/api';
 import { availableLocales } from '$lib/translations';
+import { send } from '$lib/server/s3';
 
 export const load = (async (event) => {
 	return {
@@ -15,8 +16,8 @@ export const load = (async (event) => {
 export const actions = {
 	default: async (event) => {
 		const form = await event.request.formData();
+		const errors = {}
 		// This is hideous, but I don't know how to do it better
-
 		const data = {
 			country: form.get('country'),
 			name: form.get('name'),
@@ -30,11 +31,24 @@ export const actions = {
 				availableLocales.map((locale: string) => [locale, form.get(`bios[${locale}]`)])
 			)
 		};
+
+		const avatar = form.get('avatar') as File;
+		if (event.locals?.user?.username && avatar) {
+			const timestamp = Date.now();
+			const extension = avatar.name.split('.').pop()
+			const filename = `${event.locals.user.username}_${timestamp}.${extension}`;
+			if (await send(avatar, `photos/${filename}`)){
+				data.avatar = filename;
+			} else {
+				errors.avatar = 'Failed to upload avatar';
+			}
+		}
+
 		const response = await api({ method: 'PUT', path: '/api2/profile', data, event });
 		if (response.status === 422) {
 			const json = await response.json();
 			return {
-				errors: json.errors
+				errors: {...errors, ...json.errors}
 			};
 		}
 	}

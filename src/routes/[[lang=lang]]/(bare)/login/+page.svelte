@@ -4,6 +4,7 @@
 	import type { PageData, ActionData } from './$types';
 	import EmailInput from '$lib/components/input/EmailInput.svelte';
 	import PasswordInput from '$lib/components/input/PasswordInput.svelte';
+	import InputGroup from "$lib/components/input/InputGroup.svelte";
 	export let data: PageData;
 	export let form: ActionData;
 </script>
@@ -23,8 +24,12 @@
 	<div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
 		<div class="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
 			<form class="space-y-6" method="POST">
-				<EmailInput name="email" label="Email" error={form?.errors?.email} />
-				<PasswordInput name="password" label="Password" />
+				<InputGroup label="Email" error={form?.errors?.email} let:elementId={id} let:hasError={error}>
+					<EmailInput name="email" {id} {error}/>
+				</InputGroup>
+				<InputGroup label="Password" error={form?.errors?.password} let:elementId={id} let:hasError={error}>
+					<PasswordInput name="password" {id} {error}/>
+				</InputGroup>
 
 				<div class="flex items-center justify-between">
 					<div class="flex items-center">
