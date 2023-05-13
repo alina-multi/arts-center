@@ -22,13 +22,13 @@
 	</div>
 
 	<div class="flex justify-between items-start">
-		<h1 class=" text-2xl  text-gray-00 dark:text-gray-100">
+		<h1 class=" text-2xl text-gray-00 dark:text-gray-100">
 			{work.titles[0].title}
 		</h1>
 
 		{#if work.price}
 			<div class="flex gap-1 justify-end">
-				<div class=" flex  bg-emerald-700 px-3 py-1 rounded-md text-white ml-2">
+				<div class=" flex bg-emerald-700 px-3 py-1 rounded-md text-white ml-2">
 					${work.price}
 				</div>
 			</div>

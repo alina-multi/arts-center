@@ -26,7 +26,7 @@
 		<Icon src={PencilSquare} class="w-6 h-6 text-gray-700 hover:text-gray-500" />
 	</a>
 {:else}
-	<div class="relative inline-block text-base ">
+	<div class="relative inline-block text-base">
 		<Popover let:open>
 			<PopoverButton
 				class="hover:bg-gray-100 cursor-pointer dark:hover:bg-gray-900 rounded-md py-1"
@@ -50,7 +50,7 @@
 							{#each options as option}
 								<a
 									href={option.href}
-									class="hover:text-gray-900 hover:bg-gray-100  dark:bg-gray-700  dark:hover:text-gray-200  dark:hover:bg-gray-600 px-3 py-1 rounded-md"
+									class="hover:text-gray-900 hover:bg-gray-100 dark:bg-gray-700 dark:hover:text-gray-200 dark:hover:bg-gray-600 px-3 py-1 rounded-md"
 									>{option.label}</a
 								>
 							{/each}

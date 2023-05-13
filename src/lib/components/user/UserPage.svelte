@@ -10,10 +10,10 @@
 </script>
 
 <div class="flex gap-3">
-	<div class=" w-1/4 brder  rounded-md shadow-sm border">
+	<div class=" w-1/4 brder rounded-md shadow-sm border">
 		<UserCard {user} />
 	</div>
-	<div class="flex flex-col gap-3 w-3/4 ">
+	<div class="flex flex-col gap-3 w-3/4">
 		<WorkFilters tags={userTags} {params} />
 
 		<ul class=" grid grid-cols-3 gap-3">

@@ -30,7 +30,7 @@
 			{#each option as { title }}
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<li
-					class=" flex  px-3 cursor-pointer py-1 hover:bg-gray-100 {title === selected
+					class=" flex px-3 cursor-pointer py-1 hover:bg-gray-100 {title === selected
 						? 'bg-gray-100 hover:bg-gray-100  '
 						: 'text-gray-800 dark:text-gray-200'}"
 					on:click={() => close()}

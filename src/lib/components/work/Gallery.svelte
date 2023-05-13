@@ -26,7 +26,7 @@
 	}
 </script>
 
-<div class=" mt-3 space-y-3 ">
+<div class=" mt-3 space-y-3">
 	<GalleryFilters {categories} {params} />
 	<ul class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
 		{#each gallery as work}

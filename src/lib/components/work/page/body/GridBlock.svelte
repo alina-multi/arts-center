@@ -30,7 +30,7 @@
 				<img
 					src={image.src}
 					alt=""
-					class="aspect-[4/3] object-cover object-center opacity-90 hover:opacity-100 cursor-pointer "
+					class="aspect-[4/3] object-cover object-center opacity-90 hover:opacity-100 cursor-pointer"
 				/>
 			</a>
 		{/each}

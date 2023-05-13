@@ -8,11 +8,11 @@
 	const onToggle = () => (showRatings = !showRatings);
 </script>
 
-<div class=" p-3   lg:p-6  sm:text-sm 2xl:text-base  text-xs text-gray-700 dark:text-gray-300">
-	<div class="flex xl:flex-col gap-3 items-start sm:items-center  ">
+<div class=" p-3 lg:p-6 sm:text-sm 2xl:text-base text-xs text-gray-700 dark:text-gray-300">
+	<div class="flex xl:flex-col gap-3 items-start sm:items-center">
 		<Avatar {user} size={' w-32 h-32  max-sm:w-28 max-sm:h-28 '} />
 		<div class="flex flex-col gap-1 xl:items-center w-full">
-			<div class="flex gap-3 items-start ">
+			<div class="flex gap-3 items-start">
 				<p class=" text-base sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
 					{user.name}
 				</p>

@@ -9,14 +9,14 @@
 </script>
 
 <li
-	class="flex flex-col  overflow-hidden lg:w-80 md:w-[23rem] xl:w-[19rem] 2xl:w-[18rem] {work.subscribed
+	class="flex flex-col overflow-hidden lg:w-80 md:w-[23rem] xl:w-[19rem] 2xl:w-[18rem] {work.subscribed
 		? ' '
 		: ''} "
 >
-	<div class="group/item relative  ">
+	<div class="group/item relative">
 		<ImageWork {work} withDesription />
 		<div
-			class="group/edit hidden group-hover/item:block absolute top-3 right-3 text-white bg-black/50 pt-1 px-1  transition-all rounded-md"
+			class="group/edit hidden group-hover/item:block absolute top-3 right-3 text-white bg-black/50 pt-1 px-1 transition-all rounded-md"
 		>
 			<RatingPreview rating={work.rating} comments={work.comments} />
 		</div>

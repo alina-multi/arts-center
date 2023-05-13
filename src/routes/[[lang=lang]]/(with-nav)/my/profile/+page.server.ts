@@ -16,7 +16,7 @@ export const load = (async (event) => {
 export const actions = {
 	default: async (event) => {
 		const form = await event.request.formData();
-		const errors = {}
+		const errors = {};
 		// This is hideous, but I don't know how to do it better
 		const data = {
 			country: form.get('country'),
@@ -35,9 +35,9 @@ export const actions = {
 		const avatar = form.get('avatar') as File;
 		if (event.locals?.user?.username && avatar) {
 			const timestamp = Date.now();
-			const extension = avatar.name.split('.').pop()
+			const extension = avatar.name.split('.').pop();
 			const filename = `${event.locals.user.username}_${timestamp}.${extension}`;
-			if (await send(avatar, `photos/${filename}`)){
+			if (await send(avatar, `photos/${filename}`)) {
 				data.avatar = filename;
 			} else {
 				errors.avatar = 'Failed to upload avatar';
@@ -48,7 +48,7 @@ export const actions = {
 		if (response.status === 422) {
 			const json = await response.json();
 			return {
-				errors: {...errors, ...json.errors}
+				errors: { ...errors, ...json.errors }
 			};
 		}
 	}

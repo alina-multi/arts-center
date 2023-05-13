@@ -19,10 +19,10 @@
 
 {#if type === 'cart'}
 	<button
-		class=" relative border p-2 rounded-full hover:shadow-md hover:text-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900 dark:hover:text-gray-100  dark:hover:border-gray-400"
+		class=" relative border p-2 rounded-full hover:shadow-md hover:text-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900 dark:hover:text-gray-100 dark:hover:border-gray-400"
 	>
 		<Icon src={ShoppingCart} theme="solid" class="w-6 h-6  " />
-		<div class="absolute -top-[6px] -right-[5px] ">
+		<div class="absolute -top-[6px] -right-[5px]">
 			{#if isAddedToCart}
 				<Icon
 					src={CheckCircle}
@@ -42,7 +42,7 @@
 
 {#if type === 'like'}
 	<button
-		class=" border p-2 rounded-full  hover:text-sky-700 hover:shadow-md  hover:bg-gray-50 dark:hover:bg-gray-900  dark:hover:border-gray-400 {isLiked
+		class=" border p-2 rounded-full  hover:text-sky-700 hover:shadow-md hover:bg-gray-50 dark:hover:bg-gray-900 dark:hover:border-gray-400 {isLiked
 			? 'text-sky-700'
 			: 'text-gray-500'}"
 	>
@@ -52,7 +52,7 @@
 
 {#if type === 'bookmark'}
 	<button
-		class="  border p-2 rounded-full hover:shadow-md  hover:text-rose-800 hover:bg-gray-50 dark:hover:bg-gray-900  dark:hover:border-gray-400 "
+		class="  border p-2 rounded-full hover:shadow-md hover:text-rose-800 hover:bg-gray-50 dark:hover:bg-gray-900 dark:hover:border-gray-400"
 	>
 		{#if isBookmarked}
 			<Icon src={Bookmark} theme="solid" class="w-6 h-6" />
@@ -64,7 +64,7 @@
 
 {#if type === 'comment'}
 	<button
-		class="  border p-2 rounded-full  hover:shadow-md  hover:text-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900 dark:hover:text-gray-100  dark:hover:border-gray-400"
+		class="  border p-2 rounded-full hover:shadow-md hover:text-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900 dark:hover:text-gray-100 dark:hover:border-gray-400"
 	>
 		<Icon src={ChatBubbleLeftRight} theme="solid" class="w-6 h-6" />
 	</button>
@@ -72,7 +72,7 @@
 
 {#if type === 'share'}
 	<button
-		class="  border p-2 rounded-full  hover:shadow-md  hover:text-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900 dark:hover:text-gray-100  dark:hover:border-gray-400"
+		class="  border p-2 rounded-full hover:shadow-md hover:text-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900 dark:hover:text-gray-100 dark:hover:border-gray-400"
 	>
 		<Icon src={Share} theme="solid" class="w-6 h-6" />
 	</button>

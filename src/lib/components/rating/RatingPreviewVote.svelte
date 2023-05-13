@@ -49,7 +49,7 @@
 </script>
 
 <div
-	class="inline-flex items-center gap-2 dark:text-zinc-100 cursor-pointer 
+	class="inline-flex items-center gap-2 dark:text-zinc-100 cursor-pointer
     {showVotedPreview
 		? ''
 		: 'dark:border dark:border-zinc-500 dark:bg-zinc-900 rounded-full dark:px-2  dark:py-1'}"
@@ -87,13 +87,13 @@
 			/>
 		</span>
 		{#if rating}
-			<span on:click={() => (isModalOpen = true)} class="hover:underline ">
+			<span on:click={() => (isModalOpen = true)} class="hover:underline">
 				{rating.toLocaleString('ru-RU')}
 			</span>
 		{/if}
 
 		{#if showVotedPreview && rating}
-			<div class="flex -space-x-2 ">
+			<div class="flex -space-x-2">
 				{#each usersList as user}
 					<a href={user.userPage}
 						><img

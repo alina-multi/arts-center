@@ -99,7 +99,7 @@
 				<span class="ml-2 mr-1 leading-relaxed truncate max-w-xs">{tag}</span>
 				<button
 					on:click={() => removeTag(i)}
-					class="w-6 h-8 inline-block align-middle text-zinc-500 hover:text-zinc-900 focus:outline-none "
+					class="w-6 h-8 inline-block align-middle text-zinc-500 hover:text-zinc-900 focus:outline-none"
 				>
 					<Icon src={XMark} class="w-4 h-4 fill-current mx-auto" />
 				</button>
@@ -116,7 +116,7 @@
 				on:input={onInput}
 				on:keydown={(e) => onEsc(e)}
 				on:keypress={(e) => onEnter(e)}
-				class="inline py-2 px-3 appearance-none border-none ring-transparent w-full text-zinc-700 leading-tight sm:text-sm focus:ring-transparent  focus:outline-none focus:shadow-outline"
+				class="inline py-2 px-3 appearance-none border-none ring-transparent w-full text-zinc-700 leading-tight sm:text-sm focus:ring-transparent focus:outline-none focus:shadow-outline"
 			/>
 		</div>
 	</div>

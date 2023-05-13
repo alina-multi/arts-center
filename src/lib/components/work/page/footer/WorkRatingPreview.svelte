@@ -11,9 +11,9 @@
 </script>
 
 <ModalWindow bind:open={showLikedByModal}>
-	<h2 slot="header" class="flex justify-between text-lg font-semibold  ">Liked by</h2>
+	<h2 slot="header" class="flex justify-between text-lg font-semibold">Liked by</h2>
 
-	<ul class="flex flex-col gap-3  text-sm pt-6 ">
+	<ul class="flex flex-col gap-3 text-sm pt-6">
 		{#each work.votes as user}
 			<li class="flex items-center gap-3 text-base text-gray-700 dark:text-gray-300">
 				<Avatar {user} withName />
@@ -22,8 +22,8 @@
 	</ul>
 </ModalWindow>
 
-<div class="flex items-end gap-1 dark:text-gray-300 max-[400px]:text-xs ">
-	<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointer ">
+<div class="flex items-end gap-1 dark:text-gray-300 max-[400px]:text-xs">
+	<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointer">
 		<span class="">Liked by</span>
 		{work.rating}
 	</button>
@@ -41,7 +41,7 @@
 	{#if work.votes.length > 3}
 		<div>
 			<span class="text-gray-500 dark:text-gray-400">and</span>
-			<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointer ">
+			<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointer">
 				others
 			</button>
 		</div>

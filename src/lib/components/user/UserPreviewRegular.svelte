@@ -14,11 +14,11 @@
 <div class="flex items-center gap-3 w-full">
 	<Avatar {user} size={' w-16 h-16'} />
 
-	<div class="flex flex-col gap-1 flex-1 ">
+	<div class="flex flex-col gap-1 flex-1">
 		<div class="flex items-center gap-3 max-md:justify-between">
 			<a
 				{href}
-				class="inline-flex hover:text-gray-800 cursor-pointer  text-base sm:text-lg lg:text-xl xl:text-lg"
+				class="inline-flex hover:text-gray-800 cursor-pointer text-base sm:text-lg lg:text-xl xl:text-lg"
 				>{user.name}</a
 			>
 			{#if !followBtn}

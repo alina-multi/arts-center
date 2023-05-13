@@ -10,7 +10,7 @@
 </script>
 
 {#if country}
-	<div class="inline-flex  items-center">
+	<div class="inline-flex items-center">
 		<Icon src={MapPin} theme="solid" class="  w-[16px] fill-green-900/80 dark:fill-green-700" />
 		<span>{country}</span>
 	</div>

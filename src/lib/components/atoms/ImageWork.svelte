@@ -7,11 +7,11 @@
 	$: href = localePath(`/work/${work.id}`);
 </script>
 
-<a {href} class="grid gap-1 ">
-	<div class="bg-zinc-300  aspect-[4/3] w-full rounded-md overflow-hidden">
+<a {href} class="grid gap-1">
+	<div class="bg-zinc-300 aspect-[4/3] w-full rounded-md overflow-hidden">
 		{#if work.image}
 			<img
-				class=" aspect-[4/3] w-full object-cover "
+				class=" aspect-[4/3] w-full object-cover"
 				src={work.image.src}
 				srcset={work.image.srcset}
 				alt="Work Name: {title}"

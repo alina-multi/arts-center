@@ -31,7 +31,7 @@
 <!-- DESkTOP -->
 <div class="hidden md:block">
 	<Popover class="relative inline-block text-left z-30 text-gray-800 dark:text-gray-200" let:open>
-		<div class="flex flex-wrap  gap-3 ">
+		<div class="flex flex-wrap gap-3">
 			<TagButtons tags={visibleTags} {urlGenerator} {params} active={isActive} />
 
 			{#if hiddenTags.length > 0}
@@ -65,7 +65,7 @@
 					let:close
 				>
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
-					<div class="flex  gap-3 flex-wrap flex-row-reverse p-3" on:click={() => close()}>
+					<div class="flex gap-3 flex-wrap flex-row-reverse p-3" on:click={() => close()}>
 						<TagButtons tags={hiddenTags} {urlGenerator} {params} active={isActive} />
 					</div>
 				</PopoverPanel>
@@ -75,9 +75,9 @@
 </div>
 
 <!-- MOBILE -->
-<div class="flex md:hidden  text-left z-30  flex-row-reverse">
+<div class="flex md:hidden text-left z-30 flex-row-reverse">
 	<Popover class=" inline-block   text-gray-800 dark:text-gray-200 dark:bg-gray-900 " let:open>
-		<div class="flex flex-wrap gap-3 ">
+		<div class="flex flex-wrap gap-3">
 			<PopoverButton
 				class="flex items-center gap-2  border px-4 py-2 rounded-md hover:border-amber-500 dark:border-gray-700 "
 			>
@@ -99,7 +99,7 @@
 			let:close
 		>
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<div class="flex  gap-2 flex-wrap text-sm  p-3 flex-row-reverse " on:click={() => close()}>
+			<div class="flex gap-2 flex-wrap text-sm p-3 flex-row-reverse" on:click={() => close()}>
 				<TagButtons {tags} {urlGenerator} {params} active={isActive} />
 			</div>
 		</PopoverPanel>

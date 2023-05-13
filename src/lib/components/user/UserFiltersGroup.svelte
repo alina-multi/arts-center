@@ -30,7 +30,7 @@
 		<ul class="flex flex-col text-sm">
 			{#each options as option}
 				<li
-					class=" flex  px-3 cursor-pointer py-1 hover:bg-gray-100 dark:hover:bg-gray-800 {option.title ===
+					class=" flex px-3 cursor-pointer py-1 hover:bg-gray-100 dark:hover:bg-gray-800 {option.title ===
 					selected
 						? 'bg-gray-200 hover:bg-gray-100 dark:bg-gray-900  '
 						: 'text-gray-800 dark:text-gray-200'}"

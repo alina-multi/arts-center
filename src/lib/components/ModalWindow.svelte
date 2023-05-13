@@ -7,11 +7,19 @@
 		Transition
 	} from '@rgossiaux/svelte-headlessui';
 
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
+
 	export let open: boolean;
+	function onClose() {
+		open = false;
+		dispatch('close');
+	}
 </script>
 
 <Transition show={open}>
-	<Dialog {open} on:close={() => (open = false)} class="relative z-50">
+	<Dialog {open} on:close={onClose} class="relative z-50">
 		<DialogOverlay
 			class="fixed inset-0 bg-zinc-400 bg-opacity-30 backdrop-blur-sm transition-opacity"
 		>

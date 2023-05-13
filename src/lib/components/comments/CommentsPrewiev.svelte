@@ -25,16 +25,16 @@
 
 <div class="flex flex-col text-gray-800 dark:text-gray-300">
 	{#if autorizated}
-		<div class="flex flex-col  border border-b-transparent p-6 rounded-t-md ">
+		<div class="flex flex-col border border-b-transparent p-6 rounded-t-md">
 			<CommentInput />
 		</div>
 	{/if}
-	<div class="border py-1  bg-gray-50  dark:bg-gray-900 dark:border-gray-800 ">
-		<span class="px-6 text-sm ">Comments: {count}</span>
+	<div class="border py-1 bg-gray-50 dark:bg-gray-900 dark:border-gray-800">
+		<span class="px-6 text-sm">Comments: {count}</span>
 	</div>
 
 	<div
-		class="flex flex-col border-b  md:border border-t-transparent md:px-6 pb-6 gap-6 md:rounded-b-md dark:border-gray-800"
+		class="flex flex-col border-b md:border border-t-transparent md:px-6 pb-6 gap-6 md:rounded-b-md dark:border-gray-800"
 	>
 		{#if comments.length > 0}
 			<CommentsBlock comments={visibleComments} />
@@ -48,7 +48,7 @@
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<butoon
 				on:click={onShowMore}
-				class="  dark:bg-gray-900 text-center mx-auto  dark:border  rounded-full px-16 py-1 border  shadow-sm  hover:bg-sky-600 dark:hover:bg-sky-700 dark:text-gray-100 hover:text-white cursor-pointer"
+				class="  dark:bg-gray-900 text-center mx-auto dark:border rounded-full px-16 py-1 border shadow-sm hover:bg-sky-600 dark:hover:bg-sky-700 dark:text-gray-100 hover:text-white cursor-pointer"
 				>Show more</butoon
 			>
 		{/if}
