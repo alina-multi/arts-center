@@ -5,9 +5,6 @@ import { usersMap } from '$lib/server/mappers/users';
 import * as devalue from 'devalue';
 
 export const GET = (async ({ params }) => {
-	console.log(
-		await filteredQuery(params.category, params.country, params.order, locale.get(), params.page)
-	);
 	return new Response(
 		devalue.stringify({
 			users: await usersMap(
