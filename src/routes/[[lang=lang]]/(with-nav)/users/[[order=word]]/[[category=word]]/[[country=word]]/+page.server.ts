@@ -16,18 +16,17 @@ export const load = (async (event) => {
 	};
 	// This is here just to let SvelteKit know to invalidate the page when the pathname changes
 	event.url.pathname;
-	return Promise.all([
+	const [users, categories, countries] = await Promise.all([
 		usersMap(
 			await filteredQuery(params.category, params.country, params.order, locale.get(), params.page)
 		),
 		getCategories().then((categories) => tagsMap(categories)),
 		userCountries().then((countries) => userCountriesMap(countries, locale.get()))
-	]).then((values) => {
-		return {
-			users: values[0],
-			categories: values[1],
-			countries: values[2],
-			params
-		};
-	});
+	]);
+	return {
+		users,
+		categories,
+		countries,
+		params
+	};
 }) satisfies PageServerLoad;

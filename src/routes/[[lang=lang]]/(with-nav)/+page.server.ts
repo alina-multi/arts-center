@@ -5,14 +5,14 @@ import { getCategories } from '$lib/server/repositories/tag';
 import { tagsMap } from '$lib/server/mappers/tag';
 
 export const load = (async () => {
-	return Promise.all([
+	const [gallery, categories] = await Promise.all([
 		indexQuery().then((works) => worksPreviewMap(works)),
 		getCategories().then((categories) => tagsMap(categories))
-	]).then((values) => {
-		return {
-			gallery: values[0],
-			categories: values[1],
-			params: { order: 'popular', tag: 'all', page: 1 }
-		};
-	});
+	]);
+
+	return {
+		gallery,
+		categories,
+		params: { order: 'popular', tag: 'all', page: 1 }
+	};
 }) satisfies PageServerLoad;

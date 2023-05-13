@@ -54,7 +54,7 @@ export async function usersMap(users: userWithRelations[]): Promise<UserList[]> 
 	);
 }
 
-export async function userMap(user: userWithRelations): Promise<User> {
+export function userMap(user: userWithRelations): User {
 	return {
 		id: user.id,
 		name: user.name,
