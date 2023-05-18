@@ -1,7 +1,7 @@
 import type { PageServerLoad, Actions } from './$types';
 import { api } from '$lib/server/api';
 import { availableLocales } from '$lib/translations';
-import { send } from '$lib/server/s3';
+import { uploadFile } from '$lib/server/s3';
 
 export const load = (async (event) => {
 	return {
@@ -32,15 +32,15 @@ export const actions = {
 			)
 		};
 
-		const avatar = form.get('avatar') as File;
-		if (event.locals?.user?.username && avatar) {
+		const photo = form.get('photo') as File;
+		if (event.locals?.user?.username && photo) {
 			const timestamp = Date.now();
-			const extension = avatar.name.split('.').pop();
+			const extension = photo.name.split('.').pop();
 			const filename = `${event.locals.user.username}_${timestamp}.${extension}`;
-			if (await send(avatar, `photos/${filename}`)) {
-				data.avatar = filename;
+			if (await uploadFile(photo, `photos/${filename}`)) {
+				data.photo = filename;
 			} else {
-				errors.avatar = 'Failed to upload avatar';
+				errors.photo = 'Failed to upload photo';
 			}
 		}
 

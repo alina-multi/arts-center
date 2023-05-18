@@ -4,9 +4,10 @@
 	import { UserCircle } from '@steeze-ui/heroicons';
 	import ImageCrop from '$lib/components/atoms/ImageCrop.svelte';
 	export let currentAvatar, id;
-	let image;
+	let image, input;
 
 	function onFileSelected({ detail }) {
+		input = detail;
 		let reader = new FileReader();
 		reader.onload = (e) => {
 			image = e.target.result;
@@ -15,7 +16,9 @@
 	}
 
 	function onCropped({ detail }) {
-		document.getElementById(id).files = detail;
+		let container = new DataTransfer();
+		container.items.add(detail);
+		input.files = container.files;
 	}
 </script>
 
@@ -27,7 +30,7 @@
 	{/if}
 	<FileInput
 		{id}
-		name="avatar"
+		name="photo"
 		accept="image/png, image/jpeg, image/webp"
 		on:change={onFileSelected}
 	/>

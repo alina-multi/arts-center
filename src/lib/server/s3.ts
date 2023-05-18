@@ -9,7 +9,7 @@ export const s3 = new S3Client({
 	endpoint: process.env.S3_URL
 });
 
-export async function send(file: File, Key: string) {
+export async function uploadFile(file: File, Key: string) {
 	try {
 		s3.send(
 			new PutObjectCommand({

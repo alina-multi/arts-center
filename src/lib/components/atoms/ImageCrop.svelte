@@ -6,7 +6,9 @@
 	const dispatch = createEventDispatcher();
 	export let image, aspect, newWidth;
 	export let cropShape = 'rect';
-	let open: boolean, canvas: HTMLCanvasElement;
+	let open: boolean,
+		canvas: HTMLCanvasElement,
+		pixels: { width: number; height: number; x: number; y: number };
 
 	// I hat that we take file, convert to data url, create a lot of temp elements like this one
 	// todo: Maybe there is a better way to do it?
@@ -18,22 +20,28 @@
 
 	let preview;
 
-	function previewCrop(e) {
-		let { x, y, width, height } = e.detail.pixels;
+	function cropComplete(e) {
+		pixels = e.detail.pixels;
+	}
+	function doCrop() {
+		let { x, y, width, height } = pixels;
 		// Todo create element dynamically
-		if (!canvas) canvas = document.getElementById('myCanvas') as HTMLCanvasElement;
+		if (!canvas) canvas = document.createElement('CANVAS') as HTMLCanvasElement;
 		const newHeight = newWidth && aspect ? Math.round(newWidth / aspect) : height;
 		newWidth = newWidth || width;
 		canvas.width = newWidth;
 		canvas.height = newHeight;
-		console.log(newWidth, aspect, newHeight);
-		canvas.getContext('2d').drawImage(tmpImage, x, y, width, height, 0, 0, newWidth, newHeight);
+		let ctx = canvas.getContext('2d');
+		ctx.imageSmoothingEnabled = true;
+		ctx.imageSmoothingQuality = 'high';
+		ctx.drawImage(tmpImage, x, y, width, height, 0, 0, newWidth, newHeight);
 	}
 
 	function saveCrop() {
+		doCrop();
 		canvas.toBlob(
 			(blob) => {
-				dispatch('cropped', new File([blob], 'avatar.jpg'));
+				dispatch('cropped', new File([blob], 'cropped.jpg'));
 			},
 			'image/jpeg',
 			0.95
@@ -45,7 +53,7 @@
 
 <ModalWindow {open} on:close={saveCrop}>
 	<div class="relative h-96">
-		<Cropper {image} {cropShape} {aspect} on:cropcomplete={previewCrop} />
+		<Cropper {image} {cropShape} {aspect} on:cropcomplete={cropComplete} />
 	</div>
 	<div class="grid grid-rows-1 justify-center">
 		<canvas id="myCanvas" class="object-center rounded-full w-12 h-12"
