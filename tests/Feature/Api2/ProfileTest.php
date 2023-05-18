@@ -4,6 +4,8 @@ namespace Tests\Feature\Api2;
 
 use App\Models\UserBio;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 use App\Models\User;
 
@@ -59,14 +61,14 @@ class ProfileTest extends TestCase
 
         $this->actingAs($user)->putJson('/api2/profile', [
             ...$user->toArray(),
-            'email'=> $user->email,
+            'email' => $user->email,
             'password' => $validPassword,
             'password_confirmation' => $validPassword,
         ])->assertStatus(422, 'Can change password without current password');
 
         $this->actingAs($user)->putJson('/api2/profile', [
             ...$user->toArray(),
-            'email'=> $user->email,
+            'email' => $user->email,
             'password' => $validPassword,
             'password_confirmation' => $validPassword,
             'current_password' => 'wrongPassword'
@@ -74,7 +76,7 @@ class ProfileTest extends TestCase
 
         $this->actingAs($user)->putJson('/api2/profile', [
             ...$user->toArray(),
-            'email'=> $user->email,
+            'email' => $user->email,
             'password' => $invalidPassword,
             'password_confirmation' => $invalidPassword,
             'current_password' => 'wrongPassword'
@@ -82,7 +84,7 @@ class ProfileTest extends TestCase
 
         $this->actingAs($user)->putJson('/api2/profile', [
             ...$user->toArray(),
-            'email'=> $user->email,
+            'email' => $user->email,
             'password' => $validPassword,
             'password_confirmation' => $validPassword,
             'current_password' => $currentPassword
@@ -101,7 +103,7 @@ class ProfileTest extends TestCase
         ]);
         $this->actingAs($user)->putJson('/api2/profile', [
             ...$user->toArray(),
-            'email'=> $user->email,
+            'email' => $user->email,
             'bios' => [
                 'uk' => 'new',
                 'en' => 'new'
@@ -115,6 +117,24 @@ class ProfileTest extends TestCase
             'user_id' => $user->id,
             'language' => 'en',
             'text' => 'new'
+        ]);
+    }
+
+    public function test_photo_upload()
+    {
+        Storage::fake('s3');
+        Storage::disk('s3')->put('photos/cropped.jpg', UploadedFile::fake()->image('photos/cropped.jpg'));
+        $user = User::factory()->create();
+        $this->actingAs($user)->putJson('/api2/profile', [
+            ...$user->toArray(),
+            'email' => $user->email,
+            'photo' => 'cropped.jpg'
+        ])->assertNoContent();
+
+        $this->assertDatabaseHas('images', [
+            'user_id' => $user->id,
+            'name' => 'cropped',
+            'extension' => 'jpg',
         ]);
     }
 }
