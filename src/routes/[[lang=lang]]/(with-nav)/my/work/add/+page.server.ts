@@ -1,0 +1,36 @@
+import type { PageServerLoad, Actions } from './$types';
+import { api } from '$lib/server/api';
+import { availableLocales } from '$lib/translations';
+import { uploadFile } from '$lib/server/s3';
+
+export const load = (async (event) => {
+	return {}
+}) satisfies PageServerLoad;
+
+export const actions = {
+	default: async (event) => {
+		const form = await event.request.formData();
+		const errors = {};
+		// This is hideous, but I don't know how to do it better
+
+		const photo = form.get('photo') as File;
+		if (event.locals?.user?.username && photo) {
+			const timestamp = Date.now();
+			const extension = photo.name.split('.').pop();
+			const filename = `${event.locals.user.username}_${timestamp}.${extension}`;
+			if (await uploadFile(photo, `photos/${filename}`)) {
+				data.photo = filename;
+			} else {
+				errors.photo = 'Failed to upload photo';
+			}
+		}
+
+		const response = await api({ method: 'PUT', path: '/api2/profile', data, event });
+		if (response.status === 422) {
+			const json = await response.json();
+			return {
+				errors: { ...errors, ...json.errors }
+			};
+		}
+	}
+} satisfies Actions;
