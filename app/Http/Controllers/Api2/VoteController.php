@@ -22,9 +22,10 @@ class VoteController extends Controller
      */
     public function store(Request $request)
     {
+        $allowedVotes = $request->votable_type === 'comment' ? [1, -1] : [1];
         $request->validate(
             [
-                'vote' => [Rule::in([1, -1])],
+                'vote' => [Rule::in($allowedVotes)],
                 'votable_type' => ['required', Rule::in(array_keys(Relation::morphMap()))],
                 'votable_id' => ['required', 'integer'],
             ]
@@ -32,7 +33,7 @@ class VoteController extends Controller
 
         $class = Relation::getMorphedModel($request->votable_type);
         $model = $class::findOrFail($request->votable_id);
-        Vote::firstOrCreate([
+        Vote::updateOrCreate([
             'user_id' => Auth::id(),
             'votable_id' => $request->votable_id,
             'votable_type' => $request->votable_type,
@@ -42,9 +43,9 @@ class VoteController extends Controller
         ]);
         // Rating starts with 1
         $model->rating = 1 + Vote::where('votable_id', $request->votable_id)
-            ->where('votable_type', $request->votable_type)->sum(
-                'vote'
-            );
+                ->where('votable_type', $request->votable_type)->sum(
+                    'vote'
+                );
         $model->save();
         // todo: logic to send to feed if newRating is equal to certain threshold
         if ($model instanceof Work) {

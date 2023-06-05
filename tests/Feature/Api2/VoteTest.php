@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api2;
 
 use App\Jobs\RecountUserRatings;
+use App\Models\Comment;
 use App\Models\Tag;
 use App\Models\TagTitle;
 use App\Models\User;
@@ -49,6 +50,21 @@ class VoteTest extends TestCase
             ->assertDatabaseHas('works', ['rating' => 2]);
     }
 
+    public function testChangeVote()
+    {
+        $user = User::factory()->create();
+        $comment = Comment::factory()->create();
+        $json = [
+            'vote' => 1,
+            'votable_type' => 'comment',
+            'votable_id' => $comment->id
+        ];
+        $this->actingAs($user)->postJson('/api2/vote', $json);
+        $this->actingAs($user)->postJson('/api2/vote', [...$json, 'vote' => -1]);
+        $this->assertDatabaseCount('votes', 1)
+            ->assertDatabaseHas('comments', ['rating' => 0]);
+    }
+
     public function testDestroyVote()
     {
         $user = User::factory()->create();
@@ -60,6 +76,20 @@ class VoteTest extends TestCase
         ];
         $this->actingAs($user)->postJson('/api2/vote', $json);
         $this->actingAs($user)->deleteJson('/api2/vote', $json);
+        $this->assertDatabaseCount('votes', 0)
+            ->assertDatabaseHas('works', ['rating' => 1]);
+    }
+
+    public function testNegativeNotAllowedForWork()
+    {
+        $user = User::factory()->create();
+        $work = Work::factory()->create(['rating' => 1]);
+        $json = [
+            'vote' => -1,
+            'votable_type' => 'work',
+            'votable_id' => $work->id
+        ];
+        $this->actingAs($user)->postJson('/api2/vote', $json)->assertStatus(422);
         $this->assertDatabaseCount('votes', 0)
             ->assertDatabaseHas('works', ['rating' => 1]);
     }
