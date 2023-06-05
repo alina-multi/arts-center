@@ -44,9 +44,24 @@ class VoteTest extends TestCase
             'votable_id' => $work->id
         ];
         $this->actingAs($user)->postJson('/api2/vote', $json);
-        $response2 = $this->actingAs($user)->postJson('/api2/vote', $json);
-        $response2->assertStatus(422);
-        $this->assertDatabaseCount('votes', 1);
+        $this->actingAs($user)->postJson('/api2/vote', $json);
+        $this->assertDatabaseCount('votes', 1)
+            ->assertDatabaseHas('works', ['rating' => 2]);
+    }
+
+    public function testDestroyVote()
+    {
+        $user = User::factory()->create();
+        $work = Work::factory()->create();
+        $json = [
+            'vote' => 1,
+            'votable_type' => 'work',
+            'votable_id' => $work->id
+        ];
+        $this->actingAs($user)->postJson('/api2/vote', $json);
+        $this->actingAs($user)->deleteJson('/api2/vote', $json);
+        $this->assertDatabaseCount('votes', 0)
+            ->assertDatabaseHas('works', ['rating' => 1]);
     }
 
     public function testVoteWorkTagRating()

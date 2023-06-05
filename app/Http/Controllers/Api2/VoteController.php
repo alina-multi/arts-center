@@ -26,27 +26,25 @@ class VoteController extends Controller
             [
                 'vote' => [Rule::in([1, -1])],
                 'votable_type' => ['required', Rule::in(array_keys(Relation::morphMap()))],
-                'votable_id' => ['required', 'integer',
-                Rule::unique('votes')->where(function ($query) use ($request) {
-                    return $query->where('votable_type', $request->votable_type)
-                        ->where('votable_id', $request->votable_id)
-                        ->where('user_id', Auth::id());
-                })
-            ],
+                'votable_id' => ['required', 'integer'],
             ]
         );
 
-        $data = $request->all();
-        $data['ip'] = $request->ip();
-        $data['user_id'] = Auth::id();
-        $class = Relation::getMorphedModel($data['votable_type']);
-        $model = $class::findOrFail($data['votable_id']);
-        $vote = Vote::create($data);
-        $newRating = 1 + (int) Vote::where('votable_id', $data['votable_id'])
-                ->where('votable_type', $data['votable_type'])->sum(
-                    'vote'
-                );
-        $model->rating = $newRating;
+        $class = Relation::getMorphedModel($request->votable_type);
+        $model = $class::findOrFail($request->votable_id);
+        Vote::firstOrCreate([
+            'user_id' => Auth::id(),
+            'votable_id' => $request->votable_id,
+            'votable_type' => $request->votable_type,
+        ], [
+            'vote' => $request->vote,
+            'ip' => $request->ip(),
+        ]);
+        // Rating starts with 1
+        $model->rating = 1 + Vote::where('votable_id', $request->votable_id)
+            ->where('votable_type', $request->votable_type)->sum(
+                'vote'
+            );
         $model->save();
         // todo: logic to send to feed if newRating is equal to certain threshold
         if ($model instanceof Work) {
@@ -57,6 +55,30 @@ class VoteController extends Controller
             RecountUserRatings::dispatch($model->user_id);
         }
 
-        return ['rating' => $newRating, 'vote' => $vote];
+        return ['rating' => $model->rating];
+    }
+
+    public function destroy(Request $request)
+    {
+        $request->validate(
+            [
+                'votable_type' => ['required', Rule::in(array_keys(Relation::morphMap()))],
+                'votable_id' => ['required', 'integer'],
+            ]
+        );
+        $class = Relation::getMorphedModel($request->votable_type);
+        $model = $class::findOrFail($request->votable_id);
+        Vote::where([
+            'user_id' => Auth::id(),
+            'votable_id' => $request->votable_id,
+            'votable_type' => $request->votable_type])
+            ->delete();
+        $model->rating = 1 + Vote::where('votable_id', $request->votable_id)
+                ->where('votable_type', $request->votable_type)->sum(
+                    'vote'
+                );
+        $model->save();
+
+        return ['rating' => $model->rating];
     }
 }

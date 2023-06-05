@@ -21,6 +21,7 @@ Route::middleware(['auth:sanctum', LocaleHeader::class])->group(function () {
         return $request->user()->load('avatar');
     });
     Route::post('vote', \App\Http\Controllers\Api2\VoteController::class . '@store');
+    Route::delete('vote', \App\Http\Controllers\Api2\VoteController::class . '@destroy');
 });
 
 Route::middleware(LocaleHeader::class)->get('health', function () {
