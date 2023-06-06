@@ -11,7 +11,7 @@ export const s3 = new S3Client({
 
 export async function uploadFile(file: File, Key: string) {
 	try {
-		s3.send(
+		await s3.send(
 			new PutObjectCommand({
 				ACL: 'public-read',
 				Key,
@@ -20,7 +20,7 @@ export async function uploadFile(file: File, Key: string) {
 				ContentLength: file.size
 			})
 		);
-		return true;
+		return Key;
 	} catch (error) {
 		return false;
 	}

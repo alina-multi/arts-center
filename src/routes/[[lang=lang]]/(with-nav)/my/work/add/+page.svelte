@@ -7,7 +7,7 @@
   const accept = "image/png, image/jpeg, image/webp";
 </script>
 <WorkAddProgressSteps/>
-<form enctype="multipart/form-data" class="mt-4">
+<form enctype="multipart/form-data" method="post" class="mt-4">
   <FormGroup h1="What have you been working on?" h2="Minimum 1600px width recommended. Max 10MB each. Only upload media you own the rights to.">
     <InputGroup label="Main image">
       <FileInput required name="main" {accept} />

@@ -2,35 +2,44 @@ import type { PageServerLoad, Actions } from './$types';
 import { api } from '$lib/server/api';
 import { availableLocales } from '$lib/translations';
 import { uploadFile } from '$lib/server/s3';
+import { error } from '@sveltejs/kit';
 
 export const load = (async (event) => {
-	return {}
+	return {};
 }) satisfies PageServerLoad;
 
 export const actions = {
 	default: async (event) => {
 		const form = await event.request.formData();
-		const errors = {};
-		// This is hideous, but I don't know how to do it better
-
-		const photo = form.get('photo') as File;
-		if (event.locals?.user?.username && photo) {
-			const timestamp = Date.now();
-			const extension = photo.name.split('.').pop();
-			const filename = `${event.locals.user.username}_${timestamp}.${extension}`;
-			if (await uploadFile(photo, `photos/${filename}`)) {
-				data.photo = filename;
-			} else {
-				errors.photo = 'Failed to upload photo';
-			}
-		}
-
-		const response = await api({ method: 'PUT', path: '/api2/profile', data, event });
-		if (response.status === 422) {
-			const json = await response.json();
-			return {
-				errors: { ...errors, ...json.errors }
-			};
-		}
+		const errors = {
+			upload: []
+		};
+		const folder= Date.now();
+		const imagePaths = await Promise.all(
+			[form.get('main'), ...form.getAll('more')]
+				.filter(image => validate(image, errors))
+				.map(image => upload(image, folder))
+		);
+		console.log(imagePaths);
+		console.log(errors);
 	}
 } satisfies Actions;
+
+async function upload(image: File, folder: string) {
+	const key = `temp/works/${folder}/${Math.random()}.${image?.type.split('/').pop()}`;
+	await uploadFile(image, key);
+	return key;
+}
+
+function validate(image: File, errors) {
+	if (image.type.split('/')[0] !== 'image') {
+		errors.upload.push(`File ${image.name} is not an image`);
+		return false;
+	}
+	// 10Mb
+	if (image.size > 1e+7) {
+		errors.upload.push(`File ${image.name} too large`);
+		return false;
+	}
+	return true;
+}
