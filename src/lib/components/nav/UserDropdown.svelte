@@ -9,9 +9,9 @@
 <Menu class="relative my-auto text-left block z-40  ">
 	<MenuButton class="flex items-center p-1">
 		<img
-			src={user.avatar.src}
-			srcset={user.avatar.srcset}
-			alt={user.name}
+			src={user?.avatar?.src}
+			srcset={user?.avatar?.srcset}
+			alt={user?.name}
 			class="flex-none h-6 w-6 rounded-full object-cover"
 		/>
 	</MenuButton>

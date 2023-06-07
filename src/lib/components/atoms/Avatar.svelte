@@ -15,9 +15,9 @@
 <a {href} class="inline-flex shrink-0">
 	<div class="inline-flex items-center gap-2">
 		<div class="bg-zinc-300 dark:bg-gray-800 rounded-full shadow-md">
-			{#if user.avatar}
+			{#if user?.avatar}
 				<img
-					src={user.avatar.src}
+					src={user?.avatar?.src}
 					alt={user.name}
 					class="flex-none {size} rounded-full object-cover"
 					on:error={(event) => handleAvatarError(event)}
