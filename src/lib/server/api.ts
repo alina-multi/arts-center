@@ -23,7 +23,7 @@ export async function api(params: ApiParams) {
 			// It's possible that app still haven't selected the locale by this point
 			'Accept-Language': params?.event?.params?.lang || defaultLocale
 		},
-		body: params.data && JSON.stringify(params.data)
+		body: JSON.stringify(params.data)
 	});
 	proxyCookies(params.event, response);
 	return response;
@@ -49,4 +49,19 @@ export function proxyCookies(event: RequestEvent, response: Response) {
 			});
 		}
 	);
+}
+
+export async function proxyApi(event: RequestEvent) {
+	const data = await event.request.json();
+	const reqUrl = new URL(event.request.url);
+	const path = reqUrl.pathname.replace('/api', '/api2');
+
+	const response = await api({
+		method: event.request.method,
+		path,
+		data,
+		event
+	});
+
+	return new Response(response.body, response);
 }

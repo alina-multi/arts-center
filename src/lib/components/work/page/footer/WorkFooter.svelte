@@ -46,8 +46,9 @@
 
 		{#if work?.tags.length > 0}
 			<div
-				class="lg:hidden flex flex-wrap items-start justify-start border border-gray-200 dark:border-gray-800 p-3 gap-3 sm:p-6 rounded-md shadow-sm sm:w-1/2"
+				class=" flex flex-0 flex-wrap items-start justify-start border border-gray-200 dark:border-gray-800 p-3 gap-3 sm:p-6 rounded-md shadow-sm"
 			>
+				<span>Tags:</span>
 				{#each work.tags as { title }}
 					<a
 						href={`/tag/${title}/popular`}

@@ -1,113 +1,107 @@
 <script lang="ts">
+	import type { Work } from '$lib/interfaces/Work';
+	import type { User } from '$lib/interfaces/User';
+	import type { Comment } from '$lib/interfaces/Comment';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { HandThumbDown, HandThumbUp, Heart } from '@steeze-ui/heroicons';
+	import { HandThumbDown, HandThumbUp } from '@steeze-ui/heroicons';
+	import VotedList from '$lib/components/rating/VotedList.svelte';
 
-	export let allowDownVote: boolean,
-		rating: number,
+	export let entity: Work | Comment,
+		allowDownVote = false,
+		votable_type: string,
 		showVotedPreview: boolean,
-		typeOfVote: boolean | null,
-		usersList: any;
+		currentUser: User;
 
-	let isModalOpen = false;
-	let type = typeOfVote;
+	let votes = entity?.votes;
+	let rating = entity?.rating;
+	let isLiked = entity?.votes?.some((vote) => vote?.id.toString() === currentUser?.id.toString());
+	let isDownVoted = false;
 
-	const onVote = (value) => {
-		if (value === 'like' && type === 'like') {
+	async function vote(method, vote = 1) {
+		return await fetch(`/api/vote`, {
+			method,
+			headers: {
+				'content-type': 'application/json'
+			},
+			body: JSON.stringify({ vote, votable_type, votable_id: entity.id.toString() })
+		});
+	}
+	async function like() {
+		if (!currentUser) {
+			onClickNotLoggedIn();
 			return;
 		}
-		if (value === 'dislike' && type === 'dislike') {
-			return;
-		}
-		if ((value === 'like' && !type) || (value === 'like' && type === 'dislike')) {
-			rating++;
-			type = 'like';
-			return;
-		}
+		isLiked = true;
+		rating += 1;
+		votes?.unshift(currentUser);
+		const response = await vote('POST').then((res) => res.json());
+	}
 
-		if ((value === 'dislike' && !type) || (value === 'dislike' && type === 'like')) {
-			rating--;
-			type = 'dislike';
+	async function cancelVote() {
+		if (!currentUser) {
+			onClickNotLoggedIn();
 			return;
 		}
-	};
+		isLiked = false;
+		rating -= 1;
+		votes?.some((vote, index) => {
+			if (vote.id.toString() === currentUser.id.toString()) {
+				votes?.splice(index, 1);
+			}
+		});
+		const response = await vote('DELETE').then((res) => res.json());
+	}
 
-	const onSwitch = () => {
-		if (!type) {
-			onVote('like');
+	async function dislike() {
+		if (!currentUser) {
+			onClickNotLoggedIn();
 			return;
 		}
-		if (type === 'like') {
-			onVote('dislike');
-			return;
-		}
+		isDownVoted = true;
+		const response = await vote('POST', -1).then((res) => res.json());
+	}
 
-		if (type === 'dislike') {
-			onVote('like');
-			return;
-		}
-	};
+	function onClickNotLoggedIn() {
+		console.log('ModalWindow for Login or Signup');
+	}
 </script>
 
-<div
-	class="inline-flex items-center gap-2 dark:text-zinc-100 cursor-pointer
-    {showVotedPreview
-		? ''
-		: 'dark:border dark:border-zinc-500 dark:bg-zinc-900 rounded-full dark:px-2  dark:py-1'}"
->
+{#if showVotedPreview}
+	<VotedList {votes} {isLiked} {currentUser} />
+{/if}
+
+<div class="inline-flex items-center gap-2 dark:text-zinc-100 cursor-pointer">
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
+	<div
+		class="flex items-center gap-2 {votable_type === 'work'
+			? 'border px-4 py-1 rounded-full shadow-md '
+			: 'hover:text-zinc-100'} dark:hover:text-sky-700"
+	>
+		<span class="border-r pr-3">Like {rating}</span>
+		{#if isLiked}
+			<button on:click={cancelVote}
+				><Icon src={HandThumbUp} theme="solid" class=" w-6 h-6  fill-gray-700  " /></button
+			>
+		{:else}
+			<button on:click={like}
+				><Icon
+					src={HandThumbUp}
+					theme="outline"
+					class=" w-6 h-6  stroke-gray-700 hover:scale-110 "
+				/></button
+			>
+		{/if}
+	</div>
+
 	{#if allowDownVote}
 		<div class="flex items-center gap-2">
-			<span on:click={() => onVote('like')}>
-				<Icon
-					src={HandThumbUp}
-					theme={type === 'like' ? 'solid' : 'outline'}
-					class=" w-5 h-5 active:text-sky-700 hover:scale-125 hover:text-sky-700 {type === 'like'
-						? 'fill-sky-600'
-						: ''}"
-				/></span
-			>
-			{#if rating}
-				<span>{rating.toLocaleString('ru-RU')}</span>
-			{/if}
-		</div>
-		<div class="flex items-center gap-2">
-			<span on:click={() => onVote('dislike')}>
-				<Icon
+			<button on:click={dislike}
+				><Icon
 					src={HandThumbDown}
-					class="w-5 h-5  hover:scale-105 {type === 'dislike' ? 'text-red-600' : ''}  "
-				/></span
+					theme="solid"
+					class=" w-6 h-6  hover:scale-125 {isDownVoted ? 'fill-red-800' : 'fill-gray-700 '}"
+				/></button
 			>
 		</div>
-	{:else}
-		<span on:click={() => onSwitch()}>
-			<Icon
-				src={Heart}
-				class="w-7 h-7 hover:text-red-600 {type === 'like'
-					? 'fill-red-600 stroke-red-600'
-					: 'active:animate-ping '}"
-			/>
-		</span>
-		{#if rating}
-			<span on:click={() => (isModalOpen = true)} class="hover:underline">
-				{rating.toLocaleString('ru-RU')}
-			</span>
-		{/if}
-
-		{#if showVotedPreview && rating}
-			<div class="flex -space-x-2">
-				{#each usersList as user}
-					<a href={user.userPage}
-						><img
-							class="inline-block rounded-full border border-zinc-100 h-8 w-8"
-							src={user.avatar}
-							alt="Avatar {user.name}"
-						/>
-					</a>
-				{/each}
-			</div>
-		{/if}
 	{/if}
 </div>
-
-{#if isModalOpen}
-	<h1 class="dark:text-white">Modal</h1>
-{/if}
