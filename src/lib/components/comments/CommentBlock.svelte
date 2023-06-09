@@ -16,7 +16,7 @@
 	const handleReply = (content) => data.reply(content, comment);
 
 	let value = '';
-	let currentUser = $page.data.user;
+	let currentUser = $page.data.currentUser;
 	$: html = new QuillDeltaToHtmlConverter(comment?.body?.ops, {}).convert();
 </script>
 

@@ -18,8 +18,8 @@
 	<div class="flex gap-3 w-full">
 		<img
 			class="hidden sm:inline-block h-12 w-12 rounded-full"
-			src={$page.data.user.avatar.src}
-			alt={'Avatar of ' + $page.data.user.name}
+			src={$page.data.currentUser.avatar.src}
+			alt={'Avatar of ' + $page.data.currentUser.name}
 		/>
 		<form action="#" class="mx-auto w-full">
 			<textarea

@@ -11,7 +11,7 @@
 <div
 	class="flex max-lg:flex-col justify-beetwen items-stretch lg:items-start mt-3 lg:mt-6 gap-6 dark:text-gray-300"
 >
-	{#if !$page.data.user}
+	{#if !$page.data.currentUser}
 		<div
 			class="flex lg:hidden flex-col border border-gray-200 dark:border-gray-700 gap-6 p-6 rounded-md shadow-sm"
 		>
@@ -29,7 +29,7 @@
 	<div class="lg:w-4/6"><CommentsPrewiev {comments} count={work.comments} /></div>
 
 	<div class="flex flex-col sm:flex-row lg:flex-col gap-3 sm:gap-6 lg:w-2/6">
-		{#if !$page.data.user}
+		{#if !$page.data.currentUser}
 			<div
 				class="hidden lg:flex flex-col border border-gray-200 dark:border-gray-800 gap-3 p-3 rounded-md shadow-sm"
 			>

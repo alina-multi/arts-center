@@ -6,7 +6,7 @@
 	import { page } from '$app/stores';
 
 	export let comments, count;
-	let currentUser = $page.data.user;
+	let currentUser = $page.data.currentUser;
 
 	let visibleComments = comments.slice(0, 3);
 	let hiddenComments = comments.slice(3);

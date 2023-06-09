@@ -9,7 +9,7 @@
 	export let comments: Comment[];
 	import { page } from '$app/stores';
 
-	const currentUser = $page.data.user;
+	const currentUser = $page.data.currentUser;
 </script>
 
 <div

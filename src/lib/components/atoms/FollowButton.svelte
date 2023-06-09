@@ -8,7 +8,7 @@
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 
 	export let user, size;
-	let currentUser = $page.data.user;
+	let currentUser = $page.data.currentUser;
 
 	let isFollowing = false;
 	let isMy = handleIsMy(currentUser, user.id);

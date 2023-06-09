@@ -4,7 +4,7 @@
 	export let data: LayoutData;
 </script>
 
-<MainNav user={data.user} />
+<MainNav user={data.currentUser} />
 <main class="container mx-auto px-3 min-h-screen">
 	<slot />
 </main>

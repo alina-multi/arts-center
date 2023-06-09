@@ -16,7 +16,8 @@
 	</div>
 
 	<div class="flex flex-col gap-3 xl:w-3/4">
-		<WorkFilters tags={userTags} params={data.params} />
+		{#if userTags.length > 0}<WorkFilters tags={userTags} params={data.params} />
+		{/if}
 		<Biography user={data.user} />
 
 		<slot />
