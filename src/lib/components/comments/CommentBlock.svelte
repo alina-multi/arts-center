@@ -1,40 +1,55 @@
 <script lang="ts">
 	import type { Comment } from '$lib/interfaces/Comment';
-	import { QuillDeltaToHtmlConverter } from 'quill-delta-to-html';
+
 	import Avatar from '$lib/components/atoms/Avatar.svelte';
 	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
 	import CommentInput from '$lib/components/comments/CommentInput.svelte';
 	import { page } from '$app/stores';
 	import Time from 'svelte-time';
 	import { data } from '$lib/stores/comment';
+	import { handleIsMy } from '$lib/helpers/handleIsMy';
 
-	export let comment: Comment;
+	export let comment: Comment, commentable_id;
+
+	let isMy = $page.data.work.owners.some((owner) => handleIsMy($page.data.currentUser, owner.id));
 
 	const onReplay = () => {
 		data.showReplyForm(comment);
 	};
-	const handleReply = (content) => data.reply(content, comment);
 
-	let value = '';
 	let currentUser = $page.data.currentUser;
-	$: html = new QuillDeltaToHtmlConverter(comment?.body?.ops, {}).convert();
+
+	function onEdit() {
+		data.showEditForm(comment);
+	}
 </script>
 
 <div class="text-sm text-gray-800 dark:text-gray-400">
 	<div class="pt-6 space-y-1">
-		<div class="flex items-center gap-1">
-			<div class="font-semibold">
+		<div class="flex items-center gap-2">
+			<div class="flex font-semibold">
 				<Avatar user={comment.owner} withName={true} size={'w-8 h-8 '} />
 			</div>
 
 			<span class="h-1 w-1 bg-gray-500 rounded-full" />
 			<Time relative timestamp={comment.created_at} class="text-gray-500" />
+
+			{#if Number(currentUser.id) === Number(comment.owner.id)}
+				<div class="flex divide-x font-semibold text-gray-500 mr-3">
+					<button on:click={onEdit} class="px-3"> Edit </button>
+					<button class="px-3"> Delete</button>
+				</div>
+			{/if}
+
+			{#if isMy}
+				<button class="px-3"> Delete</button>
+			{/if}
 		</div>
 
 		<div
 			class="relative prose prose-sm max-w-none border p-3 pb-6 rounded-md bg-gray-50 dark:bg-gray-900 dark:border-gray-600 space-y-2"
 		>
-			<div>{@html html}</div>
+			<div class="whitespace-pre-wrap">{@html comment.text}</div>
 
 			{#if currentUser}
 				<div
@@ -61,7 +76,13 @@
 
 		{#if $data.replyCommentId === comment.id}
 			<div class=" ">
-				<CommentInput onSubmit={handleReply} isReply />
+				<CommentInput
+					isReply
+					{commentable_id}
+					commentable_type={'work'}
+					comment_id={$data.replyCommentId}
+				/>
+				<span>{comment.id}</span>
 			</div>
 		{/if}
 
@@ -69,7 +90,7 @@
 			<div class="lg:ml-12">
 				<div class=" border-l pl-6 lg:pl-9 dark:border-gray-800">
 					{#each comment.answers as reply}
-						<svelte:self comment={reply} />
+						<svelte:self comment={reply} {commentable_id} i />
 					{/each}
 				</div>
 			</div>

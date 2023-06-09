@@ -25,7 +25,7 @@ export function commentsMap(comments: comments[]): Comment[] {
 export function commentMap(comment: comments): Comment {
 	return {
 		id: comment.id,
-		body: JSON.parse(comment.body),
+		text: comment.text,
 		deleted_at: comment.deleted_at,
 		created_at: comment.created_at,
 		updated_at: comment.updated_at,

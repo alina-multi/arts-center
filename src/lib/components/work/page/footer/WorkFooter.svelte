@@ -6,6 +6,9 @@
 	export let work,
 		autorizated = false,
 		comments;
+		
+	
+		
 </script>
 
 <div
@@ -26,7 +29,7 @@
 		</div>
 	{/if}
 
-	<div class="lg:w-4/6"><CommentsPrewiev {comments} count={work.comments} /></div>
+	<div class="lg:w-4/6"><CommentsPrewiev commentable_id={work.id} {comments} count={work.comments} /></div>
 
 	<div class="flex flex-col sm:flex-row lg:flex-col gap-3 sm:gap-6 lg:w-2/6">
 		{#if !$page.data.currentUser}

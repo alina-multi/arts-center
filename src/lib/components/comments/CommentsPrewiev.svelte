@@ -5,7 +5,9 @@
 	import CommentInput from '$lib/components/comments/CommentInput.svelte';
 	import { page } from '$app/stores';
 
-	export let comments, count;
+	export let comments, count, commentable_id;
+	
+
 	let currentUser = $page.data.currentUser;
 
 	let visibleComments = comments.slice(0, 3);
@@ -27,21 +29,19 @@
 
 <div class="flex flex-col text-gray-800 dark:text-gray-300">
 	{#if currentUser}
-		<div
-			class="flex flex-col lg:border lg:border-b-transparent dark:lg:border-gray-800 lg:p-6 rounded-t-md"
-		>
-			<CommentInput />
-		</div>
+		
+		<div class="-mt-6 mb-6"><CommentInput  {commentable_id} commentable_type={'work'} /></div>	
+		
 	{/if}
-	<div class="border py-1 bg-gray-50 dark:bg-gray-900 dark:border-gray-800">
-		<span class="px-6 text-sm">Comments: {count}</span>
+	<div class="border py-1 bg-gray-50 dark:bg-gray-900 dark:border-gray-800 ">
+		<span class="px-6 text-sm ">Comments: {count}</span>
 	</div>
 
 	<div
 		class="flex flex-col border-b md:border border-t-transparent md:px-6 pb-6 gap-6 md:rounded-b-md dark:border-gray-800"
 	>
 		{#if comments.length > 0}
-			<CommentsBlock comments={visibleComments} />
+			<CommentsBlock comments={visibleComments}  {commentable_id}/>
 		{:else}
 			<div class="text-center text-gray-500">
 				This post has no comments yet. Be the first to comment!
