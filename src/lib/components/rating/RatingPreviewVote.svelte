@@ -9,8 +9,11 @@
 	export let entity: Work | Comment,
 		allowDownVote = false,
 		votable_type: string,
-		showVotedPreview: boolean,
-		currentUser: User;
+		showVotedPreview = false,
+		currentUser: User,
+		size: 'sm' | 'md' | 'lg' = 'md';
+
+	size = size === 'sm' ? 'w-5 h-5' : size === 'md' ? 'w-6 h-6' : 'w-8 h-8';
 
 	let votes = entity?.votes;
 	let rating = entity?.rating;
@@ -53,6 +56,7 @@
 	}
 
 	async function dislike() {
+		isLiked = false;
 		if (!currentUser) {
 			onClickNotLoggedIn();
 			return;
@@ -77,17 +81,23 @@
 			? 'border px-4 py-1 rounded-full shadow-md '
 			: 'hover:text-zinc-100'} dark:hover:text-sky-700"
 	>
-		<span class="border-r pr-3">Like {rating}</span>
+		{#if votable_type === 'work'}
+			<span class="border-r pr-3">Like {rating}</span>
+		{/if}
 		{#if isLiked}
 			<button on:click={cancelVote}
-				><Icon src={HandThumbUp} theme="solid" class=" w-6 h-6  fill-gray-700  " /></button
+				><Icon
+					src={HandThumbUp}
+					theme="solid"
+					class=" {size}   {votable_type === 'comment' ? 'fill-sky-700' : 'fill-gray-700'}"
+				/></button
 			>
 		{:else}
 			<button on:click={like}
 				><Icon
 					src={HandThumbUp}
 					theme="outline"
-					class=" w-6 h-6  stroke-gray-700 hover:scale-110 "
+					class=" {size} stroke-gray-700 hover:scale-110  "
 				/></button
 			>
 		{/if}
@@ -98,8 +108,8 @@
 			<button on:click={dislike}
 				><Icon
 					src={HandThumbDown}
-					theme="solid"
-					class=" w-6 h-6  hover:scale-125 {isDownVoted ? 'fill-red-800' : 'fill-gray-700 '}"
+					theme={isDownVoted ? 'solid' : 'outline'}
+					class=" {size} text-gray-400 {isDownVoted ? 'fill-red-800' : ''}"
 				/></button
 			>
 		</div>

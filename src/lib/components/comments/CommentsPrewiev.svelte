@@ -1,10 +1,12 @@
 <script lang="ts">
 	import CommentsBlock from '$lib/components/comments/CommentsBlock.svelte';
+	import { Icon } from '@steeze-ui/svelte-icon';
+	import { ArrowDown } from '@steeze-ui/heroicons';
 	import CommentInput from '$lib/components/comments/CommentInput.svelte';
+	import { page } from '$app/stores';
 
-	export let comments,
-		count,
-		autorizated = false;
+	export let comments, count;
+	let currentUser = $page.data.user;
 
 	let visibleComments = comments.slice(0, 3);
 	let hiddenComments = comments.slice(3);
@@ -24,8 +26,10 @@
 </script>
 
 <div class="flex flex-col text-gray-800 dark:text-gray-300">
-	{#if autorizated}
-		<div class="flex flex-col border border-b-transparent p-6 rounded-t-md">
+	{#if currentUser}
+		<div
+			class="flex flex-col lg:border lg:border-b-transparent dark:lg:border-gray-800 lg:p-6 rounded-t-md"
+		>
 			<CommentInput />
 		</div>
 	{/if}
@@ -48,9 +52,10 @@
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<butoon
 				on:click={onShowMore}
-				class="  dark:bg-gray-900 text-center mx-auto dark:border rounded-full px-16 py-1 border shadow-sm hover:bg-sky-600 dark:hover:bg-sky-700 dark:text-gray-100 hover:text-white cursor-pointer"
-				>Show more</butoon
-			>
+				class=" flex items-center gap-1 text-center mx-auto hover:underline text-sky-700 rounded-full dark:text-gray-100 cursor-pointer"
+				>show {hiddenComments.length} more comments
+				<Icon class="w-3 h-3 stroke-sky-600" src={ArrowDown} theme="solid" />
+			</butoon>
 		{/if}
 	</div>
 </div>

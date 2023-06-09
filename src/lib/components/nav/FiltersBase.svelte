@@ -1,7 +1,6 @@
 <script lang="ts">
 	import FilterOrder from './FilterOrder.svelte';
 	import FilterTag from './FilterTag.svelte';
-	import FiltersGroup from './FiltersGroup.svelte';
 
 	export let options, urlGenerator, params, type;
 </script>

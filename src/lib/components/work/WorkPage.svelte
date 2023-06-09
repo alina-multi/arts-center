@@ -29,7 +29,13 @@
 			<div
 				class="flex items-center justify-between gap-2 lg:py-3 pb-3 text-gray-800 dark:text-gray-500"
 			>
-				<RatingPreviewVote entity={work} {currentUser} showVotedPreview votable_type={'work'} />
+				<RatingPreviewVote
+					entity={work}
+					{currentUser}
+					showVotedPreview
+					votable_type={'work'}
+					size={'md'}
+				/>
 			</div>
 		</div>
 	</div>

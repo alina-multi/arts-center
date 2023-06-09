@@ -6,12 +6,12 @@
 	export let work;
 </script>
 
-<div class=" flex flex-col gap-3">
+<div class=" flex flex-col gap-3 dark:text-gray-400">
 	<div class="flex justify-between items-center">
 		<div class="flex flex-col">
 			{#each work.owners as user}
-				<div class="flex items-center gap-3 text-lg">
-					<Avatar {user} withName size={'w-9 h-9'} />
+				<div class="flex items-center gap-3">
+					<Avatar {user} withName size={'w-8 h-8'} />
 
 					<FollowButton size={'xs'} {user} />
 				</div>

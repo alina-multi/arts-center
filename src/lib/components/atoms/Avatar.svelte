@@ -32,7 +32,7 @@
 		</div>
 
 		{#if withName}
-			<p>{user.name}</p>
+			<p class="hover:underline">{user.name}</p>
 		{/if}
 	</div>
 </a>
