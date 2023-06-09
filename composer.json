@@ -38,7 +38,7 @@
         "laravel/tinker": "^2.0",
         "league/flysystem-aws-s3-v3": "^3.0",
         "monarobase/country-list": "^3.2",
-        "nadar/quill-delta-parser": "^2.7",
+        "nadar/quill-delta-parser": "*",
         "nunomaduro/collision": "^7.0",
         "pusher/pusher-php-server": "^7.0",
         "sentry/sentry-laravel": "*",
