@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Middleware\LocaleHeader;
 use Illuminate\Http\Request;
-use \App\Http\Middleware\LocaleHeader;
+use App\Http\Controllers\Api2\VoteController;
+use App\Http\Controllers\Api2\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +17,14 @@ use \App\Http\Middleware\LocaleHeader;
 */
 
 Route::middleware(['auth:sanctum', LocaleHeader::class])->group(function () {
-    Route::put('profile', \App\Http\Controllers\Api2\ProfileController::class . '@update');
-    Route::get('profile', \App\Http\Controllers\Api2\ProfileController::class . '@index');
+    Route::put('profile', ProfileController::class . '@update');
+    Route::get('profile', ProfileController::class . '@index');
     Route::get('me', function (Request $request) {
         return $request->user()->load('avatar');
     });
-    Route::post('vote', \App\Http\Controllers\Api2\VoteController::class . '@store');
-    Route::delete('vote', \App\Http\Controllers\Api2\VoteController::class . '@destroy');
+    Route::post('vote', VoteController::class . '@store');
+    Route::delete('vote', VoteController::class . '@destroy');
+    Route::post('draft', \App\Http\Controllers\Api2\DraftController::class . '@store');
 });
 
 Route::middleware(LocaleHeader::class)->get('health', function () {

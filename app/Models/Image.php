@@ -17,7 +17,7 @@ class Image extends Model
         'old_user_id',
         'work_id',
         'folder',
-        'extension'
+        'extension',
     ];
 
     protected $appends = ['src', 'srcset'];

@@ -21,13 +21,13 @@ class ImageHelper
             "folder" => $folder,
             "extension" => $extension
         ]);
-        $name .= '-'.$image->id; //Insert Id as part of name
+        $name .= '-' . $image->id; //Insert Id as part of name
         //Remove dash if string starts with it
         $name = ltrim($name, '-');
-        // And this is silly but we need to save it again :(
+        // And this is silly, but we need to save it again :(
         $image->name = $name;
         $image->save();
-        $imageFile = Storage::disk('s3')->put($folder . '/' . $name. '.' . $extension, $file, 'public');
+        $imageFile = Storage::disk('s3')->put($folder . '/' . $name . '.' . $extension, $file, 'public');
 
         // If upload failed, delete the image from DB
         if (!$imageFile) {
@@ -35,5 +35,27 @@ class ImageHelper
         } else {
             return $image;
         }
+    }
+
+    static function createFromUploaded($tmpPath, $folder, $name, $userId, $workId = null)
+    {
+        if (!Storage::exists($tmpPath)) {
+            return;
+        }
+        list (, $extension) = explode('/', Storage::mimeType($tmpPath));
+        $image = Image::create([
+            "name" => $name,
+            "user_id" => $userId,
+            "folder" => $folder,
+            "extension" => $extension,
+            "work_id" => $workId
+        ]);
+        $name .= '-' . $image->id; //Insert Id as part of name
+        $name = ltrim($name, '-');
+        // And this is silly, but we need to save it again :(
+        $image->name = $name;
+        $image->save();
+        Storage::move($tmpPath, "$image->path.$image->extension");
+        return $image;
     }
 }
