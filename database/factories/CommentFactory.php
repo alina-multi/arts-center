@@ -26,11 +26,7 @@ class CommentFactory extends Factory
             'commentable_id' => 1,
             'commentable_type' => 'work',
             'user_id' => User::inRandomOrder()->first()->id,
-            'body' => [
-                'ops' => [
-                    ["insert" => $this->faker->realText($maxNbChars = 300, $indexSize = 2)]
-                ]
-            ]
+            'text'=> $this->faker->realText($maxNbChars = 300, $indexSize = 2)
         ];
     }
 }

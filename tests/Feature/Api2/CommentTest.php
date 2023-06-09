@@ -6,7 +6,6 @@ use App\Models\Comment;
 use App\Models\User;
 use App\Models\Work;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class CommentTest extends TestCase
@@ -21,8 +20,7 @@ class CommentTest extends TestCase
             [
                 'user_id' => $user->id,
                 'commentable_id' => $work->id,
-                'commentable_type' => 'work',
-                'body' => ['test' => 'json']
+                'commentable_type' => 'work'
             ]
         );
         $this->actingAs($user)->deleteJson('/api2/comment/' . $comment->id)
@@ -40,7 +38,6 @@ class CommentTest extends TestCase
                 'user_id' => $user->id,
                 'commentable_id' => $work->id,
                 'commentable_type' => 'work',
-                'body' => ['test' => 'json']
             ]
         );
         $work->owners()->attach($owner->id);
@@ -59,8 +56,7 @@ class CommentTest extends TestCase
             [
                 'user_id' => $user->id,
                 'commentable_id' => $work->id,
-                'commentable_type' => 'work',
-                'body' => ['test' => 'json']
+                'commentable_type' => 'work'
             ]
         );
         $work->owners()->attach($owner->id);
@@ -82,5 +78,21 @@ class CommentTest extends TestCase
                                        ]
         );
        $this->assertDatabaseHas('comments', ['commentable_id' => $work->id, 'commentable_type' => 'work', 'text'=> 'test']);
+    }
+
+    public function testEditComment()
+    {
+        $work = Work::factory()->create();
+        $user = User::factory()->create();
+        $comment = Comment::factory()->create(
+            [
+                'user_id' => $user->id,
+                'commentable_id' => $work->id,
+                'commentable_type' => 'work'
+            ]
+        );
+        $this->actingAs($user)->putJson('/api2/comment/' . $comment->id, ['text' => 'test'])
+            ->assertStatus(200);
+        $this->assertDatabaseHas('comments', ['id' => $comment->id, 'text' => 'test']);
     }
 }

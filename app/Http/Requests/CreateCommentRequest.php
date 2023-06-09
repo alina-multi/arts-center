@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class CommentRequest extends FormRequest
+class CreateCommentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -38,7 +38,7 @@ class CommentRequest extends FormRequest
             ],
             'comment_id' => 'integer|exists:comments,id',
             'depth' => 'integer',
-            'text' => 'required|string'
+            'text' => ['required', 'string', 'min:3']
         ];
     }
 }

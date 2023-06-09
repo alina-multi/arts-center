@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Api2;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CommentRequest;
+use App\Http\Requests\CreateCommentRequest;
+use App\Http\Requests\UpdateCommentRequest;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    public function store(CommentRequest $request)
+    public function store(CreateCommentRequest $request)
     {
         $data = $request->all();
         $data['user_id'] = Auth::id();
@@ -26,7 +27,7 @@ class CommentController extends Controller
         return Comment::create($data);
     }
 
-    public function update(CommentRequest $request, Comment $comment)
+    public function update(UpdateCommentRequest $request, Comment $comment)
     {
         if ($comment->user_id !== Auth::id()) {
             return response()->json(['error' => "You can't edit this"], 401);
