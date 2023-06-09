@@ -25,6 +25,7 @@ Route::middleware(['auth:sanctum', LocaleHeader::class])->group(function () {
     Route::post('vote', VoteController::class . '@store');
     Route::delete('vote', VoteController::class . '@destroy');
     Route::post('draft', \App\Http\Controllers\Api2\DraftController::class . '@store');
+    Route::apiResource('comment', \App\Http\Controllers\Api2\CommentController::class, ['only' => ['store', 'update', 'destroy']]);
 });
 
 Route::middleware(LocaleHeader::class)->get('health', function () {

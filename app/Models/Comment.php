@@ -11,7 +11,7 @@ class Comment extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['commentable_id', 'commentable_type', 'body', 'comment_id', 'user_id', 'depth'];
+    protected $fillable = ['commentable_id', 'commentable_type', 'body', 'comment_id', 'user_id', 'depth', 'text'];
 
     protected $casts = [
         'body' => 'array',
