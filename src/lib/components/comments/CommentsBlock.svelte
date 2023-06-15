@@ -4,39 +4,39 @@
 	import { page } from '$app/stores';
 	import CommentInput from './CommentInput.svelte';
 	import { handleSubmitComment } from './handleSubmitComment';
-	
 
 	export let comments: Comment[], commentable_id: bigint;
 
 	const currentUser = $page.data.currentUser;
-	let parentComments = [...comments];
+	$: parentComments = [...comments];
 	let textarea = '';
-	let answer;
+	let new_comment;
+	let new_comments = [];
 
-	console.log(parentComments);
-	console.log(answer);
-
-	 if (answer) {
-		parentComments = [...answer, ...parentComments];
-		answer = null;
+	if (new_comment) {
+		parentComments.unshift(new_comment);
+		console.log(new_comments);
+		new_comment = null;
+		
 	}
 
-	async function handleSubmit() {
+	async function handleSubmit(method) {
 		const response = await handleSubmitComment({
-			method: 'POST',
+			method,
 			commentable_id: commentable_id.toString(),
 			commentable_type: 'work',
 			text: textarea.value
 		});
 
 		if (response.ok) {
-			const new_comment = await response.json();
-			answer = {...new_comment, owner: currentUser};
-			textarea.value = '';
-			console.log(answer);
+			const data = await response.json();
+			new_comment = { ...data, owner: currentUser };
+			new_comments = [new_comment, ...new_comments];
+			parentComments = [new_comment, ...parentComments];
 			
+			textarea.value = '';
 		} else {
-			console.log(response);
+			console.error(response);
 		}
 	}
 </script>
@@ -45,13 +45,13 @@
 	<h3 class="sr-only">Comments</h3>
 	{#if currentUser}
 		<div><CommentInput {handleSubmit} bind:textarea /></div>
-
 	{/if}
-	{#if answer}
-	<h1>answer</h1>
-	<CommentBlock comment={answer} {commentable_id} bind:parentComments />
-	
-{/if}
+	{#if new_comment}
+	<h1>new comment</h1>
+		{#each new_comments as comment}
+			<CommentBlock {comment} {commentable_id} bind:parentComments />
+		{/each}
+	{/if}
 
 	{#each comments as comment}
 		<CommentBlock {comment} {commentable_id} bind:parentComments />
