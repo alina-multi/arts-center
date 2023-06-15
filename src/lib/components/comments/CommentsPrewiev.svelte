@@ -5,7 +5,7 @@
 	import CommentInput from '$lib/components/comments/CommentInput.svelte';
 	import { page } from '$app/stores';
 
-	export let comments, count: number, commentable_id: bigint;
+	export let comments , count: number, commentable_id: bigint;
 	
 
 	let currentUser = $page.data.currentUser;

@@ -3,11 +3,7 @@
 	import { onMount } from 'svelte';
 	
 
-	export let  isReply: boolean, commentable_type: string, commentable_id: bigint, comment_id: number | null ; 
-
-	let textarea = "";
-	comment_id = comment_id?.toString();
-	commentable_id = commentable_id?.toString();
+	export let  isReply: boolean,  handleSubmit, textarea;
 
 
 	let currentUser = $page.data.currentUser;
@@ -18,35 +14,6 @@
 		}
 	});
 
-	async function handleSubmit() {
-	console.log('submitting',textarea.value );
-
-
-        const response = await fetch(`/api/comment`, {
-            method: 'POST',
-			headers: {
-				'content-type': 'application/json',
-			},
-            body: JSON.stringify({
-				commentable_id,
-				commentable_type,
-				comment_id,
-				text: textarea.value}
-			),
-			
-
-        });
-
-		if (response.ok) {
-			const json = await response.json();
-			console.log(json);
-		} else {
-			console.log('error');
-		}
-	
-		textarea.value = '';
-		
-	}
 
 			
 

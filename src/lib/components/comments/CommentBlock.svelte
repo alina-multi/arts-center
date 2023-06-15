@@ -12,13 +12,55 @@
 	export let comment: Comment, commentable_id;
 
 	let isMy = $page.data.work.owners.some((owner) => handleIsMy($page.data.currentUser, owner.id));
-    
+	let currentUser = $page.data.currentUser;
+	$: textarea = "";
+	let answers = comment?.answers ? [...comment?.answers ] : [];
+	let answer = null;
+
+	$: if (answer) {
+		answers = [answer, ...answers];
+		answer = null;
+	}
+
+
+
+	let comment_id = comment?.id.toString();
+	commentable_id = commentable_id?.toString();
 
 	const onReplay = () => {
 		data.showReplyForm(comment);
 	};
 
-	let currentUser = $page.data.currentUser;
+	async function handleSubmit() {
+	
+        const response = await fetch(`/api/comment`, {
+            method: 'POST',
+			headers: {
+				'content-type': 'application/json',
+			},
+            body: JSON.stringify({
+				commentable_id,
+				commentable_type: 'work',
+				comment_id,
+				text: textarea.value}
+			),
+			
+
+        });
+
+		if (response.ok) {
+			const new_comment = await response.json();
+			answer = {...new_comment, owner: currentUser};
+			
+		} else {
+			console.log('error');
+		}
+	
+		textarea.value = '';
+		
+	}
+
+	
 
 async function onDelete() {
 	const response = await fetch(`/api/comment/${comment.id}`, {
@@ -30,7 +72,6 @@ async function onDelete() {
 	});
 
 	if (response.ok) {
-		console.log(response.ok);
 	} else {
 		console.log('error');
 	}
@@ -91,19 +132,24 @@ async function onDelete() {
 			<div class=" ">
 				<CommentInput
 					isReply
-					{commentable_id}
-					commentable_type={'work'}
-					comment_id={$data.replyCommentId}
+					handleSubmit={handleSubmit}
+					bind:textarea={textarea}
+					
 				/>
-				<span>{comment.id}</span>
 			</div>
 		{/if}
 
-		{#if comment?.answers}
+		
+
+		{#if answers.length > 0}
 			<div class="lg:ml-12">
 				<div class=" border-l pl-6 lg:pl-9 dark:border-gray-800">
-					{#each comment?.answers as reply}
-						<svelte:self comment={reply} {commentable_id} i />
+					{#each answers as reply}
+					{#if answer}
+							<svelte:self comment={answer} {commentable_id}  />
+						{/if}
+						<svelte:self comment={reply} {commentable_id}  />
+						
 					{/each}
 				</div>
 			</div>
