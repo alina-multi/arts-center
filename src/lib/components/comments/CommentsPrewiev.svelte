@@ -28,11 +28,7 @@
 </script>
 
 <div class="flex flex-col text-gray-800 dark:text-gray-300">
-	{#if currentUser}
-		
-		<div class="-mt-6 mb-6"><CommentInput  {commentable_id} commentable_type={'work'} /></div>	
-		
-	{/if}
+
 	<div class="border py-1 bg-gray-50 dark:bg-gray-900 dark:border-gray-800 ">
 		<span class="px-6 text-sm ">Comments: {count}</span>
 	</div>

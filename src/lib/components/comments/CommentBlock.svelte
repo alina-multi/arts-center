@@ -13,10 +13,10 @@
 
 	let isMy = $page.data.work.owners.some((owner) => handleIsMy($page.data.currentUser, owner.id));
 	let currentUser = $page.data.currentUser;
-	$: textarea = '';
+	let textarea = '';
 
 	let answers = comment?.answers ? [...comment?.answers] : [];
-	$: answer = null;
+	let answer = null;
 
 	$: if (answer) {
 		answers = [{ ...answer, owner: currentUser }, ...answers];
@@ -26,9 +26,7 @@
 	let comment_id = comment?.id.toString();
 	commentable_id = commentable_id?.toString();
 
-	const onReplay = () => {
-		data.showReplyForm(comment);
-	};
+	
 
 	async function postComment() {
 		const response = await handleSubmitComment({
@@ -70,6 +68,10 @@
 			return;
 		}
 	}
+
+	const onReplay = () => {
+		data.showReplyForm(comment);
+	};
 </script>
 
 <div class="text-sm text-gray-800 dark:text-gray-400">
