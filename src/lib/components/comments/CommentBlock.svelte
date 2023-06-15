@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { Comment } from '$lib/interfaces/Comment';
-
 	import Avatar from '$lib/components/atoms/Avatar.svelte';
 	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
 	import CommentInput from '$lib/components/comments/CommentInput.svelte';
@@ -10,20 +9,17 @@
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import { handleSubmitComment } from './handleSubmitComment';
 
-	export let comment: Comment, commentable_id;
+	export let comment: Comment, commentable_id, parentComments;
 
 	let isMy = $page.data.work.owners.some((owner) => handleIsMy($page.data.currentUser, owner.id));
 	let currentUser = $page.data.currentUser;
 	$: textarea = '';
-	let parentComment = comment
+
 	let answers = comment?.answers ? [...comment?.answers] : [];
 	$: answer = null;
 
-	
-
-
 	$: if (answer) {
-		answers = [{...answer, owner: currentUser}, ...answers];
+		answers = [{ ...answer, owner: currentUser }, ...answers];
 		answer = null;
 	}
 
@@ -34,27 +30,25 @@
 		data.showReplyForm(comment);
 	};
 
-	async function postComment () {
-			const response = await handleSubmitComment({
+	async function postComment() {
+		const response = await handleSubmitComment({
 			method: 'POST',
 			commentable_id,
 			commentable_type: 'work',
 			comment_id,
 			text: textarea.value
-		})
+		});
 
 		if (response.ok) {
 			const new_comment = await response.json();
 			textarea.value = '';
 			return new_comment;
 		} else {
-			return 'error'
+			return 'error';
 		}
-
 	}
 
 	async function handleSubmit(method) {
-
 		if (method === 'POST') {
 			const response = await postComment();
 			if (response !== 'error') {
@@ -62,7 +56,7 @@
 			} else {
 				console.log(response);
 			}
-        return;
+			return;
 		}
 
 		if (method === 'DELETE') {
@@ -71,19 +65,11 @@
 				deleteId: comment.id
 			});
 			if (response.ok) {
-				console.log('parentComment', parentComment);
-			 console.log('PrentID', comment_id );
-				console.log('SELF', comment);
-				console.log('answers',answers);
-				console.log('deleteId', comment.id);
-				
+				parentComments = parentComments.filter((item) => item.id !== comment.id);
 			}
 			return;
 		}
-		
 	}
-
-
 </script>
 
 <div class="text-sm text-gray-800 dark:text-gray-400">
@@ -99,7 +85,7 @@
 			{#if Number(currentUser.id) === Number(comment.owner.id)}
 				<div class="flex divide-x font-semibold text-gray-500 mr-3">
 					<button class="px-3"> Edit </button>
-					<button class="px-3" on:click={()=> handleSubmit('DELETE')}> Delete</button>
+					<button class="px-3" on:click={() => handleSubmit('DELETE')}> Delete</button>
 				</div>
 			{/if}
 
@@ -147,9 +133,9 @@
 				<div class=" border-l pl-6 lg:pl-9 dark:border-gray-800">
 					{#each answers as reply}
 						{#if answer}
-							<svelte:self comment={answer} {commentable_id}  />
+							<svelte:self comment={answer} {commentable_id} />
 						{/if}
-						<svelte:self comment={reply} {commentable_id} />
+						<svelte:self comment={reply} {commentable_id} bind:parentComments={answers} />
 					{/each}
 				</div>
 			</div>
