@@ -26,7 +26,7 @@
 			src={currentUser.avatar.src}
 			alt={'Avatar of ' + currentUser.name}
 		/>
-		<form method="POST" class="mx-auto w-full" on:submit|preventDefault={handleSubmit}>
+		<form method="POST" class="mx-auto w-full" on:submit|preventDefault={()=> handleSubmit('POST')}>
 			<textarea
 				bind:this={textarea}
 				placeholder="Add a comment..."
