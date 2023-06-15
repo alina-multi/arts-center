@@ -12,6 +12,7 @@
 	export let comment: Comment, commentable_id;
 
 	let isMy = $page.data.work.owners.some((owner) => handleIsMy($page.data.currentUser, owner.id));
+    
 
 	const onReplay = () => {
 		data.showReplyForm(comment);
@@ -19,9 +20,21 @@
 
 	let currentUser = $page.data.currentUser;
 
-	function onEdit() {
-		data.showEditForm(comment);
+async function onDelete() {
+	const response = await fetch(`/api/comment/${comment.id}`, {
+		method: 'DELETE',
+		headers: {
+			'content-type': 'application/json',
+		},
+		body: JSON.stringify({})
+	});
+
+	if (response.ok) {
+		console.log(response.ok);
+	} else {
+		console.log('error');
 	}
+}
 </script>
 
 <div class="text-sm text-gray-800 dark:text-gray-400">
@@ -36,8 +49,8 @@
 
 			{#if Number(currentUser.id) === Number(comment.owner.id)}
 				<div class="flex divide-x font-semibold text-gray-500 mr-3">
-					<button on:click={onEdit} class="px-3"> Edit </button>
-					<button class="px-3"> Delete</button>
+					<button class="px-3"> Edit </button>
+					<button class="px-3" on:click={onDelete}> Delete</button>
 				</div>
 			{/if}
 
@@ -89,7 +102,7 @@
 		{#if comment?.answers}
 			<div class="lg:ml-12">
 				<div class=" border-l pl-6 lg:pl-9 dark:border-gray-800">
-					{#each comment.answers as reply}
+					{#each comment?.answers as reply}
 						<svelte:self comment={reply} {commentable_id} i />
 					{/each}
 				</div>

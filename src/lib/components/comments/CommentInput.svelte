@@ -3,17 +3,13 @@
 	import { onMount } from 'svelte';
 	
 
-	export let user, isReply, onSubmit, commentable_type, commentable_id, comment_id: number | null ; 
+	export let  isReply: boolean, commentable_type: string, commentable_id: bigint, comment_id: number | null ; 
 
 	let textarea = "";
 	comment_id = comment_id?.toString();
-	commentable_id = commentable_id?.toString()
-	;
-
-	console.log('input', commentable_id);
+	commentable_id = commentable_id?.toString();
 
 
-	
 	let currentUser = $page.data.currentUser;
 
 	onMount(() => {
