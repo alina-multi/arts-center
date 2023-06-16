@@ -5,12 +5,9 @@
 	import CommentInput from '$lib/components/comments/CommentInput.svelte';
 	import { page } from '$app/stores';
 
-	export let comments , count: number, commentable_id: bigint;
-	
+	export let comments, count, commentable_id;
 
-	let currentUser = $page.data.currentUser;
-
-	let visibleComments = comments.slice(0, 3);
+	let visibleComments = comments;
 	let hiddenComments = comments.slice(3);
 	let showMore = false;
 	let showMoreStep = 3;
@@ -28,30 +25,32 @@
 </script>
 
 <div class="flex flex-col text-gray-800 dark:text-gray-300">
-
-	<div class="border py-1 bg-gray-50 dark:bg-gray-900 dark:border-gray-800 ">
-		<span class="px-6 text-sm ">Comments: {count}</span>
+	<div class="border py-1 bg-gray-50 dark:bg-gray-900 dark:border-gray-800">
+		<span class="px-6 text-sm">Comments: {count}</span>
 	</div>
 
 	<div
 		class="flex flex-col border-b md:border border-t-transparent md:px-6 pb-6 gap-6 md:rounded-b-md dark:border-gray-800"
 	>
+		<CommentsBlock comments={visibleComments} {commentable_id} />
+
+		<!-- 
 		{#if comments.length > 0}
-			<CommentsBlock comments={visibleComments}  {commentable_id}/>
+			<CommentsBlock comments={visibleComments} {commentable_id} />
 		{:else}
 			<div class="text-center text-gray-500">
 				This post has no comments yet. Be the first to comment!
 			</div>
 		{/if}
 
-		{#if comments.length > 3 && hiddenComments.length > 0}
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<butoon
+		{#if comments.length > 3 && hiddenComments.length > 0} -->
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- <butoon
 				on:click={onShowMore}
 				class=" flex items-center gap-1 text-center mx-auto hover:underline text-sky-700 rounded-full dark:text-gray-100 cursor-pointer"
 				>show {hiddenComments.length} more comments
 				<Icon class="w-3 h-3 stroke-sky-600" src={ArrowDown} theme="solid" />
 			</butoon>
-		{/if}
+		{/if} -->
 	</div>
 </div>

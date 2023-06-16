@@ -1,50 +1,56 @@
 <script lang="ts">
 	import CommentBlock from './CommentBlock.svelte';
-	import type { Comment } from '$lib/interfaces/Comment';
 	import { page } from '$app/stores';
 	import CommentInput from './CommentInput.svelte';
-	import { handleSubmitComment } from './handleSubmitComment';
 
-	export let comments: Comment[], commentable_id: bigint;
-
+	export let comments, commentable_id: bigint;
+	commentable_id = commentable_id?.toString();
 	const currentUser = $page.data.currentUser;
-	let parentComments = comments;
-	let textarea = '';
-	let new_comment;
 
-	$: if (new_comment) {
-		parentComments = [new_comment, ...parentComments];
-		new_comment = null;	
+	let parentComments = [...comments];
+	let textarea = '';
+
+	let new_comment = null;
+
+	if (new_comment) {
+		new_comment = null;
 	}
 
-	
-	async function handleSubmit(method) {
-		const response = await handleSubmitComment({
-			method,
-			commentable_id: commentable_id.toString(),
-			commentable_type: 'work',
-			text: textarea.value
+	async function fetchData(textarea, comment_id) {
+		return await fetch('/api/comment', {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json'
+			},
+			body: JSON.stringify({
+				commentable_id,
+				commentable_type: 'work',
+				comment_id,
+				text: textarea.value
+			})
 		});
+	}
 
+	async function addNewComment() {
+		const response = await fetchData(textarea);
 		if (response.ok) {
-			const data = await response.json();
-			new_comment = { ...data, owner: currentUser };
+			new_comment = await response.json();
+			parentComments = [...parentComments, { ...new_comment, owner: currentUser }];
 			textarea.value = '';
 		} else {
 			console.error(response);
 		}
 	}
 
-
+	console.log('parentComments First', parentComments);
 </script>
 
 <div>
 	<h3 class="sr-only">Comments</h3>
-	{#if currentUser}
-		<div><CommentInput {handleSubmit} bind:textarea /></div>
-	{/if}
+
+	<div><CommentInput onSubmit={addNewComment} bind:textarea /></div>
 
 	{#each parentComments as comment}
-		<CommentBlock {comment} {commentable_id} bind:parentComments />
+		<CommentBlock {comment} {commentable_id} bind:parentComments {fetchData} />
 	{/each}
 </div>

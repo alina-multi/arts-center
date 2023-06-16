@@ -7,66 +7,50 @@
 	import Time from 'svelte-time';
 	import { data } from '$lib/stores/comment';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
-	import { handleSubmitComment } from './handleSubmitComment';
 
-	export let comment: Comment, commentable_id, parentComments;
-
-	let isMy = $page.data.work.owners.some((owner) => handleIsMy($page.data.currentUser, owner.id));
-	let currentUser = $page.data.currentUser;
+	export let comment: Comment, commentable_id, parentComments, fetchData;
+	const isMy = $page.data.work.owners.some((owner) => handleIsMy($page.data.currentUser, owner.id));
+	const currentUser = $page.data.currentUser;
+	const comment_id = comment?.id?.toString();
 	let textarea = '';
-
+	let answer;
 	let answers = comment?.answers ? [...comment?.answers] : [];
-	let answer = null;
+	
 
 	$: if (answer) {
 		answers = [{ ...answer, owner: currentUser }, ...answers];
 		answer = null;
 	}
 
-	let comment_id = comment?.id.toString();
-	commentable_id = commentable_id?.toString();
-
-	
-
-	async function postComment() {
-		const response = await handleSubmitComment({
-			method: 'POST',
-			commentable_id,
-			commentable_type: 'work',
-			comment_id,
-			text: textarea.value
-		});
-
+	async function reply() {
+		const response = await fetchData(textarea, comment_id);
 		if (response.ok) {
-			const new_comment = await response.json();
+			answer = await response.json();
 			textarea.value = '';
-			return new_comment;
 		} else {
-			return 'error';
+			console.error(response);
 		}
 	}
 
-	async function handleSubmit(method) {
-		if (method === 'POST') {
-			const response = await postComment();
-			if (response !== 'error') {
-				answer = response;
-			} else {
-				console.log(response);
-			}
-			return;
-		}
-
-		if (method === 'DELETE') {
-			const response = await handleSubmitComment({
-				method: 'DELETE',
-				deleteId: comment.id
+	async function deleteComment(comment_id) {
+		const response = await fetch(`/api/comment/${comment_id}`, {
+			method: 'DELETE',
+			headers: {
+				'content-type': 'application/json'
+			},
+			body: JSON.stringify({})
+		});
+		if (response.ok) {
+			const a = parentComments.forEach((item, index) => {
+				console.log('item', item.id);
+				console.log('comment_id', comment.id);
+				console.log(item.id === comment_id);
 			});
-			if (response.ok) {
-				parentComments = parentComments.filter((item) => item.id !== comment.id);
-			}
-			return;
+			parentComments = parentComments.filter((item) => item.id !== comment_id);
+		} else {
+			console.error(response);
 		}
+		return;
 	}
 
 	const onReplay = () => {
@@ -87,7 +71,7 @@
 			{#if Number(currentUser.id) === Number(comment.owner.id)}
 				<div class="flex divide-x font-semibold text-gray-500 mr-3">
 					<button class="px-3"> Edit </button>
-					<button class="px-3" on:click={() => handleSubmit('DELETE')}> Delete</button>
+					<button class="px-3" on:click={() => deleteComment(comment.id)}> Delete</button>
 				</div>
 			{/if}
 
@@ -126,18 +110,20 @@
 
 		{#if $data.replyCommentId === comment.id}
 			<div class=" ">
-				<CommentInput isReply {handleSubmit} bind:textarea />
+				<CommentInput isReply onSubmit={reply} commentID={$data.replyCommentId} bind:textarea />
 			</div>
 		{/if}
 
-		{#if answers.length > 0}
+		{#if  answers.length > 0}
 			<div class="lg:ml-12">
 				<div class=" border-l pl-6 lg:pl-9 dark:border-gray-800">
 					{#each answers as reply}
-						{#if answer}
-							<svelte:self comment={answer} {commentable_id} />
-						{/if}
-						<svelte:self comment={reply} {commentable_id} bind:parentComments={answers} />
+						<svelte:self
+							comment={reply}
+							{commentable_id}
+							bind:parentComments={answers}
+							{fetchData}
+						/>
 					{/each}
 				</div>
 			</div>

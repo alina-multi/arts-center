@@ -3,17 +3,17 @@
 	import { onMount } from 'svelte';
 	
 
-	export let  isReply: boolean,  handleSubmit, textarea;
+	export let  isReply: boolean,  onSubmit, textarea, commentID;
 
 
 	let currentUser = $page.data.currentUser;
+	commentID = commentID?.toString();
 
 	onMount(() => {
 		if (isReply) {
 			textarea.focus();
 		}
 	});
-
 
 			
 
@@ -26,7 +26,7 @@
 			src={currentUser.avatar.src}
 			alt={'Avatar of ' + currentUser.name}
 		/>
-		<form method="POST" class="mx-auto w-full" on:submit|preventDefault={()=> handleSubmit('POST')}>
+		<form method="POST" class="mx-auto w-full" on:submit|preventDefault={()=> onSubmit(commentID)}>
 			<textarea
 				bind:this={textarea}
 				placeholder="Add a comment..."
