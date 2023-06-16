@@ -14,7 +14,7 @@
 		new_comment = null;
 	}
 
-	async function fetchData(value:string , comment_id:string | undefined = undefined) {
+	async function fetchData(value: string, comment_id: string | undefined = undefined) {
 		return await fetch('/api/comment', {
 			method: 'POST',
 			headers: {
@@ -45,6 +45,6 @@
 	<h3 class="sr-only">Comments</h3>
 	<CommentInput onSubmit={addNewComment} bind:value />
 	{#each parentComments as comment}
-		<CommentBlock {comment} {commentable_id} bind:parentComments  {fetchData} />
+		<CommentBlock {comment} {commentable_id} bind:parentComments {fetchData} />
 	{/each}
 </div>

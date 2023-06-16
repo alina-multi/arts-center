@@ -10,8 +10,8 @@
 
 	export let comment: Comment,
 		commentable_id: string,
-		parentComments: [Comment],
-		fetchData: Promise<Response>;
+		parentComments: [Comment] | [],
+		fetchData: (value: string, comment_id?: string) => Promise<Response>;
 
 	const isMy = $page.data.work.owners.some((owner: { id: string }) =>
 		handleIsMy($page.data.currentUser, owner.id)
@@ -50,7 +50,7 @@
 		isEdit = true;
 	}
 
-	async function edit(comment_id) {
+	async function edit(comment_id: string) {
 		const response = await fetch(`/api/comment/${comment_id}`, {
 			method: 'PUT',
 			headers: {
@@ -69,7 +69,7 @@
 		}
 	}
 
-	async function deleteComment(comment_id) {
+	async function deleteComment(comment_id: string) {
 		const response = await fetch(`/api/comment/${comment_id}`, {
 			method: 'DELETE',
 			headers: {
@@ -107,34 +107,34 @@
 			{/if}
 		</div>
 
-	
-			<div
-				class=" {isEdit ? 'hidden': ""} relative prose prose-sm max-w-none border p-3 pb-6 rounded-md bg-gray-50 dark:bg-gray-900 dark:border-gray-600 space-y-2"
-			>
-				<div class="whitespace-pre-wrap">{@html comment.text}</div>
-				{#if currentUser}
-					<div
-						class="absolute -bottom-4 right-0 flex justify-end items-center border rounded-full bg-white py-1 divide-x dark:bg-black dark:border-gray-600 dark:divide-gray-600 mr-3"
+		<div
+			class=" {isEdit
+				? 'hidden'
+				: ''} relative prose prose-sm max-w-none border p-3 pb-6 rounded-md bg-gray-50 dark:bg-gray-900 dark:border-gray-600 space-y-2"
+		>
+			<div class="whitespace-pre-wrap">{@html comment.text}</div>
+			{#if currentUser}
+				<div
+					class="absolute -bottom-4 right-0 flex justify-end items-center border rounded-full bg-white py-1 divide-x dark:bg-black dark:border-gray-600 dark:divide-gray-600 mr-3"
+				>
+					<button
+						on:click={onReply}
+						class="flex gap-2 text-xs items-center hover:text-gray-900 text-gray-600 dark:text-gray-400 font-semibold px-3"
 					>
-						<button
-							on:click={onReply}
-							class="flex gap-2 text-xs items-center hover:text-gray-900 text-gray-600 dark:text-gray-400 font-semibold px-3"
-						>
-							<span>Reply</span>
-						</button>
-						<div class="px-3 flex">
-							<RatingPreviewVote
-								entity={comment}
-								{currentUser}
-								allowDownVote
-								size={'sm'}
-								votable_type={'comment'}
-							/>
-						</div>
+						<span>Reply</span>
+					</button>
+					<div class="px-3 flex">
+						<RatingPreviewVote
+							entity={comment}
+							{currentUser}
+							allowDownVote
+							size={'sm'}
+							votable_type={'comment'}
+						/>
 					</div>
-				{/if}
-			</div>
-		
+				</div>
+			{/if}
+		</div>
 
 		{#if $data.replyCommentId === comment.id}
 			<div>
@@ -143,9 +143,7 @@
 		{/if}
 
 		{#if isEdit}
-			<CommentInput bind:isEdit onSubmit={edit} commentID={comment.id} bind:value>
-				
-			</CommentInput>
+			<CommentInput bind:isEdit onSubmit={edit} commentID={comment.id} bind:value />
 		{/if}
 
 		{#if answers.length > 0}

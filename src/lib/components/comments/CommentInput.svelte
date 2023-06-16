@@ -5,12 +5,12 @@
 
 	export let isEdit: boolean | undefined = false,
 		isReply: boolean | undefined,
-		onSubmit: (commentID: string | undefined) => void,
+		onSubmit: (comment_id: string) => Promise<void>,
 		commentID: string | undefined,
 		value: string;
-		const currentUser = $page.data.currentUser;
-		commentID = commentID?.toString();
-		let textarea: HTMLTextAreaElement;
+	const currentUser = $page.data.currentUser;
+	commentID = commentID?.toString();
+	let textarea: HTMLTextAreaElement;
 
 	onMount(() => {
 		if (isReply || isEdit) {
@@ -22,12 +22,12 @@
 <div class="flex flex-col gap-3 dark:border-gray-800 mt-6">
 	<div class="flex gap-3 w-full">
 		{#if !isEdit}
-		<img
-			class="hidden sm:inline-block h-12 w-12 rounded-full"
-			src={currentUser.avatar.src}
-			alt={'Avatar of ' + currentUser.name}
-		/>
-{/if}
+			<img
+				class="hidden sm:inline-block h-12 w-12 rounded-full"
+				src={currentUser.avatar.src}
+				alt={'Avatar of ' + currentUser.name}
+			/>
+		{/if}
 		<div class="mx-auto w-full">
 			<textarea
 				bind:this={textarea}
@@ -41,24 +41,21 @@
 				<button
 					on:click|preventDefault={() => onSubmit(commentID)}
 					class=" disabled:border-gray-100 disabled:text-gray-200 px-6 py-1 shadow-sm border dark:border-gray-600 text-gray-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
-					>
-					{isReply ? 'Reply' : 'Comment' && !isEdit ? 'Comment' : 'Save'  }
-				    
-					</button
 				>
-				{#if isEdit}
-				<button
-					on:click={() => {
-						data.hideEditForm();
-					}}
-					class=" px-6 py-1 shadow-sm border dark:border-gray-600 text-gray-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
-				>
-					Cancel
+					{isReply ? 'Reply' : 'Comment' && !isEdit ? 'Comment' : 'Save'}
 				</button>
+				{#if isEdit}
+					<button
+						on:click={() => {
+							data.hideEditForm();
+						}}
+						class=" px-6 py-1 shadow-sm border dark:border-gray-600 text-gray-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
+					>
+						Cancel
+					</button>
 				{/if}
-			<slot/>
+				<slot />
 			</div>
-
 		</div>
 	</div>
 </div>
