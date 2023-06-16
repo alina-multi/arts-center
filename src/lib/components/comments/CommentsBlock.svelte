@@ -17,8 +17,7 @@
 	}
 
 	async function fetchData(
-		textarea: 
-		comment_id: string | undefined = undefined
+		textarea, comment_id: string | undefined = undefined
 	) {
 		return await fetch('/api/comment', {
 			method: 'POST',

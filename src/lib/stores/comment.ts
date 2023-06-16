@@ -17,6 +17,7 @@ function createData() {
 
 			showEditForm: (comment) =>
 			update(() => ({
+				replyCommentId: null,
 				editCommentId: comment.id,
 				
 

@@ -19,6 +19,7 @@
 	const currentUser = $page.data.currentUser;
 	const comment_id = comment?.id?.toString();
 	let textarea = '';
+	let editedValue = '';
 	let answer: Comment | null;
 	let answers = comment?.answers ? [...comment?.answers] : [];
 
@@ -27,12 +28,30 @@
 		answer = null;
 	}
 
-	function edit () {
-		console.log('edit');
-	}
+	async function edit(comment_id) {
+		const response = await fetch(`/api/comment/${comment_id}`, {
+			method: 'PUT',
+			headers: {
+				'content-type': 'application/json'
+			},
+			body: JSON.stringify({
+				text: editedValue
+			})
+		});
 
-	function onEdit () {
-		console.log('onEdit');
+		if (response.ok) {
+			// parentComments = parentComments.map((item) => {
+			// 	if (item.id === comment_id) {
+			// 		item.text = editedValue;
+			// 	}
+			// 	return item;
+			// });
+			console.log('response', response);
+
+			// editedValue = '';
+		} else {
+			console.error(response);
+		}
 	}
 
 	async function reply() {
@@ -64,6 +83,13 @@
 	const onReply = () => {
 		data.showReplyForm(comment);
 	};
+
+	function onEdit() {
+		console.log('onEdit');
+		editedValue = comment.text;
+		console.log('editedValue', editedValue);
+		data.showEditForm(comment);
+	}
 </script>
 
 <div class="text-sm text-gray-800 dark:text-gray-400">
@@ -78,7 +104,7 @@
 
 			{#if Number(currentUser.id) === Number(comment.owner.id)}
 				<div class="flex divide-x font-semibold text-gray-500 mr-3">
-					<button class="px-3"> Edit </button>
+					<button class="px-3" on:click={onEdit(comment.id)}> Edit </button>
 					<button class="px-3" on:click={() => deleteComment(comment.id)}> Delete</button>
 				</div>
 			{/if}
@@ -117,8 +143,20 @@
 		</div>
 
 		{#if $data.replyCommentId === comment.id}
-			<div class=" ">
+			<div>
 				<CommentInput isReply onSubmit={reply} commentID={$data.replyCommentId} bind:textarea />
+			</div>
+		{/if}
+
+		{#if $data.editCommentId === comment.id}
+			<div>
+				EDIT
+				<CommentInput
+					isEdit
+					onSubmit={edit}
+					commentID={$data.editCommentId}
+					bind:commentText={editedValue}
+				/>
 			</div>
 		{/if}
 
