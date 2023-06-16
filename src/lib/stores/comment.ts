@@ -3,7 +3,7 @@ import { writable } from 'svelte/store';
 function createData() {
 	const { subscribe, set, update } = writable({
 		replyCommentId: null,
-		editCommentId: null,
+		editCommentId: null
 	});
 
 	return {
@@ -11,17 +11,14 @@ function createData() {
 		showReplyForm: (comment) =>
 			update(() => ({
 				replyCommentId: comment.id,
-				editCommentId: null,
+				editCommentId: null
 			})),
 
-
-			showEditForm: (comment) =>
+		showEditForm: (comment) =>
 			update(() => ({
 				replyCommentId: null,
-				editCommentId: comment.id,
-				
-
-			})),
+				editCommentId: comment.id
+			}))
 	};
 }
 
