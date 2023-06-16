@@ -8,17 +8,13 @@
 	const currentUser = $page.data.currentUser;
 
 	let parentComments = [...comments];
-	let textarea = '';
-
+	let value = '';
 	let new_comment = null;
-
 	if (new_comment) {
 		new_comment = null;
 	}
 
-	async function fetchData(
-		textarea, comment_id: string | undefined = undefined
-	) {
+	async function fetchData(value:string , comment_id:string | undefined = undefined) {
 		return await fetch('/api/comment', {
 			method: 'POST',
 			headers: {
@@ -28,31 +24,27 @@
 				commentable_id,
 				commentable_type: 'work',
 				comment_id,
-				text: textarea.value
+				text: value
 			})
 		});
 	}
 
 	async function addNewComment() {
-		const response = await fetchData(textarea);
+		const response = await fetchData(value);
 		if (response.ok) {
 			new_comment = await response.json();
 			parentComments = [...parentComments, { ...new_comment, owner: currentUser }];
-			textarea.value = '';
+			value = '';
 		} else {
 			console.error(response);
 		}
 	}
-
-	console.log('parentComments First', parentComments);
 </script>
 
 <div>
 	<h3 class="sr-only">Comments</h3>
-
-	<div><CommentInput onSubmit={addNewComment} bind:textarea /></div>
-
+	<CommentInput onSubmit={addNewComment} bind:value />
 	{#each parentComments as comment}
-		<CommentBlock {comment} {commentable_id} bind:parentComments {fetchData} />
+		<CommentBlock {comment} {commentable_id} bind:parentComments  {fetchData} />
 	{/each}
 </div>

@@ -18,9 +18,9 @@
 	);
 	const currentUser = $page.data.currentUser;
 	const comment_id = comment?.id?.toString();
-	let textarea = '';
+	let value = '';
 	let editedValue = '';
-	let isEdit = false;
+	$: isEdit = $data.editCommentId === comment?.id ;
 	let answer: Comment | null;
 	let answers = comment?.answers ? [...comment?.answers] : [];
 
@@ -29,30 +29,31 @@
 		answer = null;
 	}
 
+	$:if (isEdit) {
+		editedValue = comment.text;
+	}
+
 	const onReply = () => {
 		data.showReplyForm(comment);
+		data.showEditForm(null);
+		isEdit = false;
 	};
 
 	async function reply() {
-		const response = await fetchData(textarea, comment_id);
+		const response = await fetchData(value, comment_id);
 		if (response.ok) {
 			answer = await response.json();
-			textarea.value = '';
+			value = '';
 		} else {
 			console.error(response);
 		}
 	}
 
 	function onEdit() {
-		console.log('onEdit');
 		editedValue = comment.text;
-	
 		data.showEditForm(comment);
+		
 		isEdit = true;
-
-		const a = parentComments.find((item) => item.id === comment.id);
-		// parentComments = parentComments.filter((item) => item.id !== comment.id);
-		console.log('a', a);
 	}
 
 	async function edit(comment_id) {
@@ -67,16 +68,16 @@
 		});
 
 		if (response.ok) {
-			isEdit = false;
+			
 			comment.text = editedValue;
+			data.showEditForm(null);
+			
+		
 		} else {
 			console.error(response);
 		}
+		
 	}
-
-	
-
-
 
 	async function deleteComment(comment_id) {
 		const response = await fetch(`/api/comment/${comment_id}`, {
@@ -93,8 +94,6 @@
 		}
 		return;
 	}
-
-
 </script>
 
 <div class="text-sm text-gray-800 dark:text-gray-400">
@@ -103,13 +102,12 @@
 			<div class="flex font-semibold">
 				<Avatar user={comment.owner} withName={true} size={'w-8 h-8 '} />
 			</div>
-
 			<span class="h-1 w-1 bg-gray-500 rounded-full" />
 			<Time relative timestamp={comment.created_at} class="text-gray-500" />
 
 			{#if Number(currentUser.id) === Number(comment.owner.id)}
 				<div class="flex divide-x font-semibold text-gray-500 mr-3">
-					<button class="px-3" on:click={onEdit(comment.id)}> Edit </button>
+					<button class="px-3" on:click={() => onEdit()}> Edit </button>
 					<button class="px-3" on:click={() => deleteComment(comment.id)}> Delete</button>
 				</div>
 			{/if}
@@ -119,13 +117,11 @@
 			{/if}
 		</div>
 
+		{#if !isEdit}
 		<div
-			class="{isEdit
-				? 'hidden'
-				: ''} relative prose prose-sm max-w-none border p-3 pb-6 rounded-md bg-gray-50 dark:bg-gray-900 dark:border-gray-600 space-y-2"
+			class=" relative prose prose-sm max-w-none border p-3 pb-6 rounded-md bg-gray-50 dark:bg-gray-900 dark:border-gray-600 space-y-2"
 		>
 			<div class="whitespace-pre-wrap">{@html comment.text}</div>
-
 			{#if currentUser}
 				<div
 					class="absolute -bottom-4 right-0 flex justify-end items-center border rounded-full bg-white py-1 divide-x dark:bg-black dark:border-gray-600 dark:divide-gray-600 mr-3"
@@ -149,40 +145,24 @@
 			{/if}
 		</div>
 
+		{/if}
+		<div> {isEdit}</div>
+      
 		{#if $data.replyCommentId === comment.id}
 			<div>
-				<CommentInput isReply onSubmit={reply} commentID={$data.replyCommentId} bind:textarea />
+				<CommentInput isReply onSubmit={reply} commentID={comment.id} bind:value />
 			</div>
 		{/if}
 
-		{#if $data.editCommentId === comment.id}
-			{#if isEdit}
-				<div class="mx-auto w-full">
-					<form on:submit|preventDefault={() => edit($data.editCommentId)}>
-						<textarea
-						autofocus
-							class="block w-full text-gray-900 placeholder:text-sm rounded-md dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:placeholder:text-gray-300 dark:focus:border-amber-600 dark:focus:ring-amber-600 shadow-sm focus:border-amber-600 focus:ring-amber-600 border-gray-300"
-							bind:value={editedValue}
-						/>
-						<div class="flex flex-row-reverse mt-3 gap-3">
-							<button
-								class=" px-6 py-1 shadow-sm border dark:border-gray-600 text-gray-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
-								>Edit comment</button
-							>
-						</div>
-					</form>
-					<div class="flex flex-row-reverse mt-3 gap-3">
-						<button
-							on:click={() => {
-								isEdit = false;
-								console.log('cancel');
-							}}
-							class=" px-6 py-1 shadow-sm border dark:border-gray-600 text-gray-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
-							>Cancel</button
-						>
-					</div>
-				</div>
-			{/if}
+		{#if isEdit}
+			<CommentInput bind:isEdit onSubmit={edit} commentID={comment.id} bind:value={editedValue}>
+				<button
+					on:click={() => {isEdit = false;}}
+					class=" px-6 py-1 shadow-sm border dark:border-gray-600 text-gray-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
+				>
+					Cancel
+				</button>
+			</CommentInput>
 		{/if}
 
 		{#if answers.length > 0}
