@@ -34,10 +34,17 @@
 			onClickNotLoggedIn();
 			return;
 		}
+		if (!isDownVoted) {
+			isLiked = true;
+			rating += 1;
+			votes?.unshift(currentUser);
+			const response = await vote('POST').then((res) => res.json());
+			return;
+		}
+		isDownVoted = false;
 		isLiked = true;
-		rating += 1;
-		votes?.unshift(currentUser);
-		const response = await vote('POST').then((res) => res.json());
+		rating += 2;
+		const response = await vote('DELETE', -1).then((res) => res.json());
 	}
 
 	async function cancelVote() {
@@ -56,11 +63,23 @@
 	}
 
 	async function dislike() {
-		isLiked = false;
 		if (!currentUser) {
 			onClickNotLoggedIn();
 			return;
 		}
+
+		if (isDownVoted) {
+			isDownVoted = false;
+			rating += 1;
+			const response = await vote('DELETE', -1).then((res) => res.json());
+			return;
+		}
+		if (isLiked) {
+			rating -= 2;
+		} else {
+			rating -= 1;
+		}
+		isLiked = false;
 		isDownVoted = true;
 		const response = await vote('POST', -1).then((res) => res.json());
 	}
@@ -102,6 +121,10 @@
 			>
 		{/if}
 	</div>
+
+	{#if votable_type === 'comment' && rating > 0}
+		<span class={rating > 0 ? 'border-r pr-3' : ''}>{rating}</span>
+	{/if}
 
 	{#if allowDownVote}
 		<div class="flex items-center gap-2">
