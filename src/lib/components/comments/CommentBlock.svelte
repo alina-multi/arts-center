@@ -20,12 +20,39 @@
 	const comment_id = comment?.id?.toString();
 	let textarea = '';
 	let editedValue = '';
+	let isEdit = false;
 	let answer: Comment | null;
 	let answers = comment?.answers ? [...comment?.answers] : [];
 
 	$: if (answer) {
 		answers = [{ ...answer, owner: currentUser }, ...answers];
 		answer = null;
+	}
+
+	const onReply = () => {
+		data.showReplyForm(comment);
+	};
+
+	async function reply() {
+		const response = await fetchData(textarea, comment_id);
+		if (response.ok) {
+			answer = await response.json();
+			textarea.value = '';
+		} else {
+			console.error(response);
+		}
+	}
+
+	function onEdit() {
+		console.log('onEdit');
+		editedValue = comment.text;
+	
+		data.showEditForm(comment);
+		isEdit = true;
+
+		const a = parentComments.find((item) => item.id === comment.id);
+		// parentComments = parentComments.filter((item) => item.id !== comment.id);
+		console.log('a', a);
 	}
 
 	async function edit(comment_id) {
@@ -40,29 +67,16 @@
 		});
 
 		if (response.ok) {
-			// parentComments = parentComments.map((item) => {
-			// 	if (item.id === comment_id) {
-			// 		item.text = editedValue;
-			// 	}
-			// 	return item;
-			// });
-			console.log('response', response);
-
-			// editedValue = '';
+			isEdit = false;
+			comment.text = editedValue;
 		} else {
 			console.error(response);
 		}
 	}
 
-	async function reply() {
-		const response = await fetchData(textarea, comment_id);
-		if (response.ok) {
-			answer = await response.json();
-			textarea.value = '';
-		} else {
-			console.error(response);
-		}
-	}
+	
+
+
 
 	async function deleteComment(comment_id) {
 		const response = await fetch(`/api/comment/${comment_id}`, {
@@ -80,16 +94,7 @@
 		return;
 	}
 
-	const onReply = () => {
-		data.showReplyForm(comment);
-	};
 
-	function onEdit() {
-		console.log('onEdit');
-		editedValue = comment.text;
-		console.log('editedValue', editedValue);
-		data.showEditForm(comment);
-	}
 </script>
 
 <div class="text-sm text-gray-800 dark:text-gray-400">
@@ -115,7 +120,9 @@
 		</div>
 
 		<div
-			class="relative prose prose-sm max-w-none border p-3 pb-6 rounded-md bg-gray-50 dark:bg-gray-900 dark:border-gray-600 space-y-2"
+			class="{isEdit
+				? 'hidden'
+				: ''} relative prose prose-sm max-w-none border p-3 pb-6 rounded-md bg-gray-50 dark:bg-gray-900 dark:border-gray-600 space-y-2"
 		>
 			<div class="whitespace-pre-wrap">{@html comment.text}</div>
 
@@ -149,15 +156,33 @@
 		{/if}
 
 		{#if $data.editCommentId === comment.id}
-			<div>
-				EDIT
-				<CommentInput
-					isEdit
-					onSubmit={edit}
-					commentID={$data.editCommentId}
-					bind:commentText={editedValue}
-				/>
-			</div>
+			{#if isEdit}
+				<div class="mx-auto w-full">
+					<form on:submit|preventDefault={() => edit($data.editCommentId)}>
+						<textarea
+						autofocus
+							class="block w-full text-gray-900 placeholder:text-sm rounded-md dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:placeholder:text-gray-300 dark:focus:border-amber-600 dark:focus:ring-amber-600 shadow-sm focus:border-amber-600 focus:ring-amber-600 border-gray-300"
+							bind:value={editedValue}
+						/>
+						<div class="flex flex-row-reverse mt-3 gap-3">
+							<button
+								class=" px-6 py-1 shadow-sm border dark:border-gray-600 text-gray-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
+								>Edit comment</button
+							>
+						</div>
+					</form>
+					<div class="flex flex-row-reverse mt-3 gap-3">
+						<button
+							on:click={() => {
+								isEdit = false;
+								console.log('cancel');
+							}}
+							class=" px-6 py-1 shadow-sm border dark:border-gray-600 text-gray-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
+							>Cancel</button
+						>
+					</div>
+				</div>
+			{/if}
 		{/if}
 
 		{#if answers.length > 0}
