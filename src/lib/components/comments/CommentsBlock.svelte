@@ -3,7 +3,7 @@
 	import { page } from '$app/stores';
 	import CommentInput from './CommentInput.svelte';
 
-	export let comments, commentable_id: bigint;
+	export let comments, commentable_id: string;
 	commentable_id = commentable_id?.toString();
 	const currentUser = $page.data.currentUser;
 
@@ -16,7 +16,10 @@
 		new_comment = null;
 	}
 
-	async function fetchData(textarea, comment_id) {
+	async function fetchData(
+		textarea: 
+		comment_id: string | undefined = undefined
+	) {
 		return await fetch('/api/comment', {
 			method: 'POST',
 			headers: {

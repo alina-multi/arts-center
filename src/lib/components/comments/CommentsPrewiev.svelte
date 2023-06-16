@@ -5,7 +5,7 @@
 	import CommentInput from '$lib/components/comments/CommentInput.svelte';
 	import { page } from '$app/stores';
 
-	export let comments, count, commentable_id;
+	export let comments, count: number, commentable_id;
 
 	let visibleComments = comments;
 	let hiddenComments = comments.slice(3);

@@ -8,18 +8,31 @@
 	import { data } from '$lib/stores/comment';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 
-	export let comment: Comment, commentable_id, parentComments, fetchData;
-	const isMy = $page.data.work.owners.some((owner) => handleIsMy($page.data.currentUser, owner.id));
+	export let comment: Comment,
+		commentable_id: string,
+		parentComments: [Comment],
+		fetchData: Promise<Response>;
+
+	const isMy = $page.data.work.owners.some((owner: { id: string }) =>
+		handleIsMy($page.data.currentUser, owner.id)
+	);
 	const currentUser = $page.data.currentUser;
 	const comment_id = comment?.id?.toString();
 	let textarea = '';
-	let answer;
+	let answer: Comment | null;
 	let answers = comment?.answers ? [...comment?.answers] : [];
-	
 
 	$: if (answer) {
 		answers = [{ ...answer, owner: currentUser }, ...answers];
 		answer = null;
+	}
+
+	function edit () {
+		console.log('edit');
+	}
+
+	function onEdit () {
+		console.log('onEdit');
 	}
 
 	async function reply() {
@@ -41,11 +54,6 @@
 			body: JSON.stringify({})
 		});
 		if (response.ok) {
-			const a = parentComments.forEach((item, index) => {
-				console.log('item', item.id);
-				console.log('comment_id', comment.id);
-				console.log(item.id === comment_id);
-			});
 			parentComments = parentComments.filter((item) => item.id !== comment_id);
 		} else {
 			console.error(response);
@@ -53,7 +61,7 @@
 		return;
 	}
 
-	const onReplay = () => {
+	const onReply = () => {
 		data.showReplyForm(comment);
 	};
 </script>
@@ -90,7 +98,7 @@
 					class="absolute -bottom-4 right-0 flex justify-end items-center border rounded-full bg-white py-1 divide-x dark:bg-black dark:border-gray-600 dark:divide-gray-600 mr-3"
 				>
 					<button
-						on:click={onReplay}
+						on:click={onReply}
 						class="flex gap-2 text-xs items-center hover:text-gray-900 text-gray-600 dark:text-gray-400 font-semibold px-3"
 					>
 						<span>Reply</span>
@@ -114,7 +122,7 @@
 			</div>
 		{/if}
 
-		{#if  answers.length > 0}
+		{#if answers.length > 0}
 			<div class="lg:ml-12">
 				<div class=" border-l pl-6 lg:pl-9 dark:border-gray-800">
 					{#each answers as reply}

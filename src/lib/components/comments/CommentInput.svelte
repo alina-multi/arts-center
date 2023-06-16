@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	
 
-	export let  isReply: boolean,  onSubmit, textarea, commentID;
+	export let  isReply: boolean | undefined,  onSubmit: (commentID: string | undefined) => void, commentID: string | undefined, textarea: HTMLTextAreaElement | string;
 
 
 	let currentUser = $page.data.currentUser;
