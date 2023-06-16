@@ -18,6 +18,12 @@ function createData() {
 			update(() => ({
 				replyCommentId: null,
 				editCommentId: comment.id
+			})),
+
+		hideEditForm: () =>
+			update((data) => ({
+				...data,
+				editCommentId: null
 			}))
 	};
 }

@@ -8,7 +8,7 @@
 	const currentUser = $page.data.currentUser;
 
 	let parentComments = [...comments];
-	let value = '';
+	$: value = '';
 	let new_comment = null;
 	if (new_comment) {
 		new_comment = null;

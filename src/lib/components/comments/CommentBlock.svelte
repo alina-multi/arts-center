@@ -18,9 +18,8 @@
 	);
 	const currentUser = $page.data.currentUser;
 	const comment_id = comment?.id?.toString();
-	let value = '';
-	let editedValue = '';
-	$: isEdit = $data.editCommentId === comment?.id ;
+	$: value = '';
+	$: isEdit = $data.editCommentId === comment?.id;
 	let answer: Comment | null;
 	let answers = comment?.answers ? [...comment?.answers] : [];
 
@@ -29,14 +28,10 @@
 		answer = null;
 	}
 
-	$:if (isEdit) {
-		editedValue = comment.text;
-	}
-
 	const onReply = () => {
 		data.showReplyForm(comment);
-		data.showEditForm(null);
-		isEdit = false;
+		data.hideEditForm();
+		value = '';
 	};
 
 	async function reply() {
@@ -50,9 +45,8 @@
 	}
 
 	function onEdit() {
-		editedValue = comment.text;
+		value = comment.text;
 		data.showEditForm(comment);
-		
 		isEdit = true;
 	}
 
@@ -63,20 +57,16 @@
 				'content-type': 'application/json'
 			},
 			body: JSON.stringify({
-				text: editedValue
+				text: value
 			})
 		});
 
 		if (response.ok) {
-			
-			comment.text = editedValue;
-			data.showEditForm(null);
-			
-		
+			comment.text = value;
+			data.hideEditForm();
 		} else {
 			console.error(response);
 		}
-		
 	}
 
 	async function deleteComment(comment_id) {
@@ -117,37 +107,35 @@
 			{/if}
 		</div>
 
-		{#if !isEdit}
-		<div
-			class=" relative prose prose-sm max-w-none border p-3 pb-6 rounded-md bg-gray-50 dark:bg-gray-900 dark:border-gray-600 space-y-2"
-		>
-			<div class="whitespace-pre-wrap">{@html comment.text}</div>
-			{#if currentUser}
-				<div
-					class="absolute -bottom-4 right-0 flex justify-end items-center border rounded-full bg-white py-1 divide-x dark:bg-black dark:border-gray-600 dark:divide-gray-600 mr-3"
-				>
-					<button
-						on:click={onReply}
-						class="flex gap-2 text-xs items-center hover:text-gray-900 text-gray-600 dark:text-gray-400 font-semibold px-3"
+	
+			<div
+				class=" {isEdit ? 'hidden': ""} relative prose prose-sm max-w-none border p-3 pb-6 rounded-md bg-gray-50 dark:bg-gray-900 dark:border-gray-600 space-y-2"
+			>
+				<div class="whitespace-pre-wrap">{@html comment.text}</div>
+				{#if currentUser}
+					<div
+						class="absolute -bottom-4 right-0 flex justify-end items-center border rounded-full bg-white py-1 divide-x dark:bg-black dark:border-gray-600 dark:divide-gray-600 mr-3"
 					>
-						<span>Reply</span>
-					</button>
-					<div class="px-3 flex">
-						<RatingPreviewVote
-							entity={comment}
-							{currentUser}
-							allowDownVote
-							size={'sm'}
-							votable_type={'comment'}
-						/>
+						<button
+							on:click={onReply}
+							class="flex gap-2 text-xs items-center hover:text-gray-900 text-gray-600 dark:text-gray-400 font-semibold px-3"
+						>
+							<span>Reply</span>
+						</button>
+						<div class="px-3 flex">
+							<RatingPreviewVote
+								entity={comment}
+								{currentUser}
+								allowDownVote
+								size={'sm'}
+								votable_type={'comment'}
+							/>
+						</div>
 					</div>
-				</div>
-			{/if}
-		</div>
+				{/if}
+			</div>
+		
 
-		{/if}
-		<div> {isEdit}</div>
-      
 		{#if $data.replyCommentId === comment.id}
 			<div>
 				<CommentInput isReply onSubmit={reply} commentID={comment.id} bind:value />
@@ -155,13 +143,8 @@
 		{/if}
 
 		{#if isEdit}
-			<CommentInput bind:isEdit onSubmit={edit} commentID={comment.id} bind:value={editedValue}>
-				<button
-					on:click={() => {isEdit = false;}}
-					class=" px-6 py-1 shadow-sm border dark:border-gray-600 text-gray-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
-				>
-					Cancel
-				</button>
+			<CommentInput bind:isEdit onSubmit={edit} commentID={comment.id} bind:value>
+				
 			</CommentInput>
 		{/if}
 

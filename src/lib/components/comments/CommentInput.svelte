@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
+	import { data } from '$lib/stores/comment';
 
 	export let isEdit: boolean | undefined = false,
 		isReply: boolean | undefined,
@@ -38,13 +39,23 @@
 
 			<div class="flex flex-row-reverse mt-3 gap-3">
 				<button
-					on:click={() => onSubmit(commentID)}
+					on:click|preventDefault={() => onSubmit(commentID)}
 					class=" disabled:border-gray-100 disabled:text-gray-200 px-6 py-1 shadow-sm border dark:border-gray-600 text-gray-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
 					>
 					{isReply ? 'Reply' : 'Comment' && !isEdit ? 'Comment' : 'Save'  }
 				    
 					</button
 				>
+				{#if isEdit}
+				<button
+					on:click={() => {
+						data.hideEditForm();
+					}}
+					class=" px-6 py-1 shadow-sm border dark:border-gray-600 text-gray-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
+				>
+					Cancel
+				</button>
+				{/if}
 			<slot/>
 			</div>
 
