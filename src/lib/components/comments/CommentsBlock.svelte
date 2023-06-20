@@ -43,7 +43,7 @@
 
 <div>
 	<h3 class="sr-only">Comments</h3>
-	<CommentInput onSubmit={addNewComment} bind:value />
+{#if currentUser} 	<CommentInput onSubmit={addNewComment} bind:value />	{/if}
 	{#each parentComments as comment}
 		<CommentBlock {comment} {commentable_id} bind:parentComments {fetchData} />
 	{/each}

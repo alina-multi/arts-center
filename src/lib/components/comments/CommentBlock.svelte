@@ -95,7 +95,7 @@
 			<span class="h-1 w-1 bg-gray-500 rounded-full" />
 			<Time relative timestamp={comment.created_at} class="text-gray-500" />
 
-			{#if Number(currentUser.id) === Number(comment.owner.id)}
+			{#if currentUser && Number(currentUser.id) === Number(comment.owner.id)}
 				<div class="flex divide-x font-semibold text-gray-500 mr-3">
 					<button class="px-3" on:click={() => onEdit()}> Edit </button>
 					<button class="px-3" on:click={() => deleteComment(comment.id)}> Delete</button>
