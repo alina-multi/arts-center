@@ -52,6 +52,6 @@ export const handleError = (({ error, event }) => {
 	}
 
 	return {
-		message: error?.message
+		message: error?.stack ?? error?.message,
 	};
 }) satisfies HandleServerError;
