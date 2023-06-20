@@ -1,11 +1,9 @@
 <script lang="ts">
 	import UserPreviewRegular from '$lib/components/user/UserPreviewRegular.svelte';
-	import CommentsPrewiev from '$lib/components/comments/CommentsPrewiev.svelte';
+	import CommentBlocks from '$lib/components/comments/CommentBlocks.svelte';
 	import { page } from '$app/stores';
 
-	export let work,
-		autorizated = false,
-		comments;
+	export let work, comments;
 </script>
 
 <div
@@ -27,7 +25,17 @@
 	{/if}
 
 	<div class="lg:w-4/6">
-		<CommentsPrewiev commentable_id={work.id} {comments} count={work.comments} />
+		<div class="flex flex-col text-gray-800 dark:text-gray-300">
+			<div class="border py-1 bg-gray-50 dark:bg-gray-900 dark:border-gray-800">
+				<span class="px-6 text-sm">Comments: {work.comments}</span>
+			</div>
+
+			<div
+				class="flex flex-col border-b md:border border-t-transparent md:px-6 pb-6 gap-6 md:rounded-b-md dark:border-gray-800"
+			>
+				<CommentBlocks {comments} commentable_id={work.id} />
+			</div>
+		</div>
 	</div>
 
 	<div class="flex flex-col sm:flex-row lg:flex-col gap-3 sm:gap-6 lg:w-2/6">
