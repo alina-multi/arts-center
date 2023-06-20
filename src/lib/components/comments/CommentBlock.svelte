@@ -5,7 +5,7 @@
 	import CommentInput from '$lib/components/comments/CommentInput.svelte';
 	import { page } from '$app/stores';
 	import Time from 'svelte-time';
-	import { data } from '$lib/stores/comment';
+	import { commentsState } from '$lib/stores/comment';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 
 	export let comment: Comment,
@@ -19,7 +19,7 @@
 	const currentUser = $page.data.currentUser;
 	const comment_id = comment?.id?.toString();
 	$: value = '';
-	$: isEditing = $data.editCommentId === comment?.id;
+	$: isEditing = $commentsState.editCommentId === comment?.id;
 	let answer: Comment | null;
 	let answers = comment?.answers ? [...comment?.answers] : [];
 
@@ -29,8 +29,8 @@
 	}
 
 	const onReply = () => {
-		data.showReplyForm(comment);
-		data.hideEditForm();
+		commentsState.showReplyForm(comment);
+		commentsState.hideEditForm();
 		value = '';
 	};
 
@@ -46,7 +46,7 @@
 
 	function onEdit() {
 		value = comment.text;
-		data.showEditForm(comment);
+		commentsState.showEditForm(comment);
 		isEditing = true;
 	}
 
@@ -63,7 +63,7 @@
 
 		if (response.ok) {
 			comment.text = value;
-			data.hideEditForm();
+			commentsState.hideEditForm();
 		} else {
 			console.error(response);
 		}
@@ -136,7 +136,7 @@
 			{/if}
 		</div>
 
-		{#if $data.replyCommentId === comment.id}
+		{#if $commentsState.replyCommentId === comment.id}
 			<div>
 				<CommentInput isReplying onSubmit={reply} commentID={comment.id} bind:value />
 			</div>

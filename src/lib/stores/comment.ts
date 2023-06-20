@@ -28,4 +28,4 @@ function createData() {
 	};
 }
 
-export const data = createData();
+export const commentsState = createData();

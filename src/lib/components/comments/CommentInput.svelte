@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-	import { data } from '$lib/stores/comment';
+	import { commentsState } from '$lib/stores/comment';
 
 	export let isEditing: boolean | undefined = false,
 		isReplying: boolean | undefined,
@@ -50,7 +50,7 @@
 				{#if isEditing}
 					<button
 						on:click={() => {
-							data.hideEditForm();
+							commentsState.hideEditForm();
 						}}
 						class=" px-6 py-1 shadow-sm border dark:border-gray-600 text-gray-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
 					>
