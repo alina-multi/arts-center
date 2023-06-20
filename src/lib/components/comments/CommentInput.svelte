@@ -4,7 +4,7 @@
 	import { data } from '$lib/stores/comment';
 
 	export let isEditing: boolean | undefined = false,
-		isReply: boolean | undefined,
+		isReplying: boolean | undefined,
 		onSubmit: (comment_id: string) => Promise<void>,
 		commentID: string | undefined,
 		value: string;
@@ -13,7 +13,7 @@
 	let textarea: HTMLTextAreaElement;
 
 	onMount(() => {
-		if (isReply || isEditing) {
+		if (isReplying || isEditing) {
 			textarea.focus();
 		}
 	});
@@ -45,7 +45,7 @@
 				<button
 					class=" disabled:border-gray-100 disabled:text-gray-200 px-6 py-1 shadow-sm border dark:border-gray-600 text-gray-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
 				>
-					{isReply ? 'Reply' : 'Comment' && !isEditing ? 'Comment' : 'Save'}
+					{isReplying ? 'Reply' : 'Comment' && !isEditing ? 'Comment' : 'Save'}
 				</button>
 				{#if isEditing}
 					<button

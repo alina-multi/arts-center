@@ -138,7 +138,7 @@
 
 		{#if $data.replyCommentId === comment.id}
 			<div>
-				<CommentInput isReply onSubmit={reply} commentID={comment.id} bind:value />
+				<CommentInput isReplying onSubmit={reply} commentID={comment.id} bind:value />
 			</div>
 		{/if}
 
