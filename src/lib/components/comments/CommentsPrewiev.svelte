@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CommentsBlock from '$lib/components/comments/CommentsBlock.svelte';
+	import CommentBlocks from '$lib/components/comments/CommentBlocks.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ArrowDown } from '@steeze-ui/heroicons';
 	import CommentInput from '$lib/components/comments/CommentInput.svelte';
@@ -32,7 +32,7 @@
 	<div
 		class="flex flex-col border-b md:border border-t-transparent md:px-6 pb-6 gap-6 md:rounded-b-md dark:border-gray-800"
 	>
-		<CommentsBlock comments={visibleComments} {commentable_id} />
+		<CommentBlocks comments={visibleComments} {commentable_id} />
 
 		<!-- 
 		{#if comments.length > 0}
