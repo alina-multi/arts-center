@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	import { data } from '$lib/stores/comment';
 
-	export let isEdit: boolean | undefined = false,
+	export let isEditing: boolean | undefined = false,
 		isReply: boolean | undefined,
 		onSubmit: (comment_id: string) => Promise<void>,
 		commentID: string | undefined,
@@ -13,7 +13,7 @@
 	let textarea: HTMLTextAreaElement;
 
 	onMount(() => {
-		if (isReply || isEdit) {
+		if (isReply || isEditing) {
 			textarea.focus();
 		}
 	});
@@ -21,7 +21,7 @@
 
 <div class="flex flex-col gap-3 dark:border-gray-800 mt-6">
 	<div class="flex gap-3 w-full">
-		{#if !isEdit}
+		{#if !isEditing}
 			<img
 				class="hidden sm:inline-block h-12 w-12 rounded-full"
 				src={currentUser.avatar?.src}
@@ -45,9 +45,9 @@
 				<button
 					class=" disabled:border-gray-100 disabled:text-gray-200 px-6 py-1 shadow-sm border dark:border-gray-600 text-gray-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
 				>
-					{isReply ? 'Reply' : 'Comment' && !isEdit ? 'Comment' : 'Save'}
+					{isReply ? 'Reply' : 'Comment' && !isEditing ? 'Comment' : 'Save'}
 				</button>
-				{#if isEdit}
+				{#if isEditing}
 					<button
 						on:click={() => {
 							data.hideEditForm();

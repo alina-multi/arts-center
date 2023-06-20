@@ -19,7 +19,7 @@
 	const currentUser = $page.data.currentUser;
 	const comment_id = comment?.id?.toString();
 	$: value = '';
-	$: isEdit = $data.editCommentId === comment?.id;
+	$: isEditing = $data.editCommentId === comment?.id;
 	let answer: Comment | null;
 	let answers = comment?.answers ? [...comment?.answers] : [];
 
@@ -47,7 +47,7 @@
 	function onEdit() {
 		value = comment.text;
 		data.showEditForm(comment);
-		isEdit = true;
+		isEditing = true;
 	}
 
 	async function edit(comment_id: string) {
@@ -108,7 +108,7 @@
 		</div>
 
 		<div
-			class=" {isEdit
+			class=" {isEditing
 				? 'hidden'
 				: ''} relative prose prose-sm max-w-none border p-3 pb-6 rounded-md bg-gray-50 dark:bg-gray-900 dark:border-gray-600 space-y-2"
 		>
@@ -142,8 +142,8 @@
 			</div>
 		{/if}
 
-		{#if isEdit}
-			<CommentInput bind:isEdit onSubmit={edit} commentID={comment.id} bind:value />
+		{#if isEditing}
+			<CommentInput bind:isEditing onSubmit={edit} commentID={comment.id} bind:value />
 		{/if}
 
 		{#if answers.length > 0}
