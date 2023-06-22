@@ -7,6 +7,9 @@
 	import Time from 'svelte-time';
 	import { commentsState } from '$lib/stores/comment';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
+	import { convertFetch } from '$lib/helpers/convertFetch';
+	import { сommentValidations } from '$lib/helpers/comments';
+	import toast, { Toaster } from 'svelte-french-toast';
 
 	export let comment: Comment,
 		commentable_id: string,
@@ -35,13 +38,23 @@
 	};
 
 	async function reply() {
-		const response = await fetchData(value, comment_id);
-		if (response.ok) {
-			answer = await response.json();
-			value = '';
-		} else {
-			console.error(response);
+		if (!сommentValidations(value)) {
+			return;
 		}
+
+		const fetch = fetchData(value);
+		toast.promise(convertFetch(fetch), {
+			loading: 'Adding comment...',
+			success: 'comment added',
+			error: 'Error adding comment'
+		});
+
+		const response = await fetchData(value, comment_id);
+		if (!response.ok) {
+			return;
+		}
+		answer = await response.json();
+		value = '';
 	}
 
 	function onEdit() {
@@ -51,6 +64,10 @@
 	}
 
 	async function edit(comment_id: string) {
+		if (!сommentValidations(value)) {
+			return;
+		}
+
 		const response = await fetch(`/api/comment/${comment_id}`, {
 			method: 'PUT',
 			headers: {
@@ -61,12 +78,17 @@
 			})
 		});
 
-		if (response.ok) {
-			comment.text = value;
-			commentsState.hideEditForm();
-		} else {
-			console.error(response);
+		toast.promise(convertFetch(response), {
+			loading: 'Editing comment...',
+			success: 'comment edited',
+			error: 'Error editing comment'
+		});
+
+		if (!response.ok) {
+			return;
 		}
+		comment.text = value;
+		commentsState.hideEditForm();
 	}
 
 	async function deleteComment(comment_id: string) {
@@ -77,12 +99,17 @@
 			},
 			body: JSON.stringify({})
 		});
-		if (response.ok) {
-			parentComments = parentComments.filter((item) => item.id !== comment_id);
-		} else {
-			console.error(response);
+		 toast.dismiss();
+		toast.promise(convertFetch(response), {
+			loading: 'Deleting comment...',
+			success: 'comment deleted',
+			error: 'Error deleting comment'
+		});
+
+		if (!response.ok) {
+			return;
 		}
-		return;
+		 parentComments = parentComments.filter((item) => item.id !== comment_id);
 	}
 </script>
 

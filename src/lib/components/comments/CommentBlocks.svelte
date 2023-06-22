@@ -2,6 +2,9 @@
 	import CommentBlock from './CommentBlock.svelte';
 	import { page } from '$app/stores';
 	import CommentInput from './CommentInput.svelte';
+	import toast, { Toaster } from 'svelte-french-toast';
+	import { convertFetch } from '$lib/helpers/convertFetch';
+	import { сommentValidations } from '$lib/helpers/comments';
 
 	export let comments, commentable_id: string;
 	commentable_id = commentable_id?.toString();
@@ -29,21 +32,38 @@
 		});
 	}
 
+	
+
 	async function addNewComment() {
-		const response = await fetchData(value);
-		if (response.ok) {
-			new_comment = await response.json();
-			parentComments = [...parentComments, { ...new_comment, owner: currentUser }];
-			value = '';
-		} else {
-			console.error(response);
+
+		if (!сommentValidations(value)) {
+			return;
 		}
+		
+
+		const fetch = fetchData(value);
+		toast.promise(convertFetch(fetch), {
+			loading: 'Adding comment...',
+			success: 'comment added',
+			error: 'Error adding comment'
+		});
+
+		const response = await fetch;
+		new_comment = await response.json();
+
+		if (!response.ok) {
+			return;
+		}
+
+		parentComments = [...parentComments, { ...new_comment, owner: currentUser }];
+		value = '';
 	}
 </script>
 
+<Toaster />
 <div>
 	<h3 class="sr-only">Comments</h3>
-{#if currentUser} 	<CommentInput onSubmit={addNewComment} bind:value />	{/if}
+	{#if currentUser} <CommentInput onSubmit={addNewComment} bind:value /> {/if}
 	{#each parentComments as comment}
 		<CommentBlock {comment} {commentable_id} bind:parentComments {fetchData} />
 	{/each}
