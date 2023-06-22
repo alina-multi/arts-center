@@ -4,7 +4,7 @@
 	import CommentInput from './CommentInput.svelte';
 	import toast, { Toaster } from 'svelte-french-toast';
 	import { convertFetch } from '$lib/helpers/convertFetch';
-	import { сommentValidations } from '$lib/helpers/comments';
+	import { сommentValidations, commentMassage } from '$lib/helpers/comments';
 
 	export let comments, commentable_id: string;
 	commentable_id = commentable_id?.toString();
@@ -38,11 +38,7 @@
 		}
 
 		const fetch = fetchData(value);
-		toast.promise(convertFetch(fetch), {
-			loading: 'Adding comment...',
-			success: 'comment added',
-			error: 'Error adding comment'
-		});
+		toast.promise(convertFetch(fetch), commentMassage.add);
 
 		const response = await fetch;
 		new_comment = await response.json();

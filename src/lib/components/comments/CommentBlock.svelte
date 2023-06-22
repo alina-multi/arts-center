@@ -8,8 +8,8 @@
 	import { commentsState } from '$lib/stores/comment';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import { convertFetch } from '$lib/helpers/convertFetch';
-	import { сommentValidations } from '$lib/helpers/comments';
-	import toast, { Toaster } from 'svelte-french-toast';
+	import { сommentValidations, commentMassage } from '$lib/helpers/comments';
+	import toast from 'svelte-french-toast';
 
 	export let comment: Comment,
 		commentable_id: string,
@@ -43,11 +43,7 @@
 		}
 
 		const fetch = fetchData(value);
-		toast.promise(convertFetch(fetch), {
-			loading: 'Adding comment...',
-			success: 'comment added',
-			error: 'Error adding comment'
-		});
+		toast.promise(convertFetch(fetch), commentMassage.reply);
 
 		const response = await fetchData(value, comment_id);
 		if (!response.ok) {
@@ -78,11 +74,7 @@
 			})
 		});
 
-		toast.promise(convertFetch(response), {
-			loading: 'Editing comment...',
-			success: 'comment edited',
-			error: 'Error editing comment'
-		});
+		toast.promise(convertFetch(response), commentMassage.edit);
 
 		if (!response.ok) {
 			return;
@@ -100,11 +92,7 @@
 			body: JSON.stringify({})
 		});
 		toast.dismiss();
-		toast.promise(convertFetch(response), {
-			loading: 'Deleting comment...',
-			success: 'comment deleted',
-			error: 'Error deleting comment'
-		});
+		toast.promise(convertFetch(response), commentMassage.delete);
 
 		if (!response.ok) {
 			return;
