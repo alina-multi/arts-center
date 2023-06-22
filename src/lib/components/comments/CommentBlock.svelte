@@ -8,7 +8,7 @@
 	import { commentsState } from '$lib/stores/comment';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import { convertFetch } from '$lib/helpers/convertFetch';
-	import { сommentValidations, commentMassage } from '$lib/helpers/comments';
+	import { сommentValidations, commentMassage, scrollToBottom } from '$lib/helpers/comments';
 	import toast from 'svelte-french-toast';
 
 	export let comment: Comment,
@@ -27,7 +27,7 @@
 	let answers = comment?.answers ? [...comment?.answers] : [];
 
 	$: if (answer) {
-		answers = [{ ...answer, owner: currentUser }, ...answers];
+		answers = [...answers, { ...answer, owner: currentUser }];
 		answer = null;
 	}
 
@@ -49,8 +49,10 @@
 		if (!response.ok) {
 			return;
 		}
+
 		answer = await response.json();
 		value = '';
+		scrollToBottom(`${comment_id}`);
 	}
 
 	function onEdit() {
@@ -101,7 +103,7 @@
 	}
 </script>
 
-<div class="text-sm text-gray-800 dark:text-gray-400">
+<div class="text-sm text-gray-800 dark:text-gray-400" id={comment_id}>
 	<div class="pt-6 space-y-1">
 		<div class="flex items-center gap-2">
 			<div class="flex font-semibold">

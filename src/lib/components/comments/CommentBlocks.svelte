@@ -4,15 +4,15 @@
 	import CommentInput from './CommentInput.svelte';
 	import toast, { Toaster } from 'svelte-french-toast';
 	import { convertFetch } from '$lib/helpers/convertFetch';
-	import { сommentValidations, commentMassage } from '$lib/helpers/comments';
+	import { сommentValidations, commentMassage, scrollToBottom } from '$lib/helpers/comments';
 
 	export let comments, commentable_id: string;
 	commentable_id = commentable_id?.toString();
 	const currentUser = $page.data.currentUser;
-
 	let parentComments = [...comments];
 	$: value = '';
 	let new_comment = null;
+
 	if (new_comment) {
 		new_comment = null;
 	}
@@ -47,6 +47,7 @@
 			return;
 		}
 
+		scrollToBottom('parentBlock');
 		parentComments = [...parentComments, { ...new_comment, owner: currentUser }];
 		value = '';
 	}
@@ -56,7 +57,9 @@
 <div>
 	<h3 class="sr-only">Comments</h3>
 	{#if currentUser} <CommentInput onSubmit={addNewComment} bind:value /> {/if}
-	{#each parentComments as comment}
-		<CommentBlock {comment} {commentable_id} bind:parentComments {fetchData} />
-	{/each}
+	<div id="parentBlock">
+		{#each parentComments as comment}
+			<CommentBlock {comment} {commentable_id} bind:parentComments {fetchData} />
+		{/each}
+	</div>
 </div>
