@@ -41,11 +41,15 @@ export function сommentValidations(value: string) {
 	return true;
 }
 
-export  async function scrollToBottom(id: string,) {
+
+export async function scrollToBottom(id: string) {
 	await tick();
 	const element = document.getElementById(id);
-	element?.scrollIntoView({ behavior: 'smooth', block: 'end' });
- 
+	const rect = element?.getBoundingClientRect();
+
+	if (rect && rect.bottom > window.innerHeight) {
+		element?.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'center' });
+	}
 }
 
 

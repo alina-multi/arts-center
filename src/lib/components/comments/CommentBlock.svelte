@@ -49,9 +49,10 @@
 		if (!response.ok) {
 			return;
 		}
-
+      
 		answer = await response.json();
 		value = '';
+		commentsState.hideReplyForm();
 		scrollToBottom(`${comment_id}`);
 	}
 

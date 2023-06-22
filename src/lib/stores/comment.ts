@@ -14,6 +14,12 @@ function createData() {
 				editCommentId: null
 			})),
 
+		hideReplyForm: () =>
+			update((data) => ({
+				...data,
+				replyCommentId: null
+			})),
+
 		showEditForm: (comment) =>
 			update(() => ({
 				replyCommentId: null,
