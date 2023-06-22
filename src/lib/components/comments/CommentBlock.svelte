@@ -99,7 +99,7 @@
 			},
 			body: JSON.stringify({})
 		});
-		 toast.dismiss();
+		toast.dismiss();
 		toast.promise(convertFetch(response), {
 			loading: 'Deleting comment...',
 			success: 'comment deleted',
@@ -109,7 +109,7 @@
 		if (!response.ok) {
 			return;
 		}
-		 parentComments = parentComments.filter((item) => item.id !== comment_id);
+		parentComments = parentComments.filter((item) => item.id !== comment_id);
 	}
 </script>
 

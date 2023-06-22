@@ -32,14 +32,10 @@
 		});
 	}
 
-	
-
 	async function addNewComment() {
-
 		if (!сommentValidations(value)) {
 			return;
 		}
-		
 
 		const fetch = fetchData(value);
 		toast.promise(convertFetch(fetch), {

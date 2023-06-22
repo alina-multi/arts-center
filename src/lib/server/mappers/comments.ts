@@ -12,7 +12,7 @@ export function commentsMap(comments: comments[]): Comment[] {
 			tree.push(generatedComment);
 			idRef[comment.id] = generatedComment;
 		} else {
-			if (!idRef[comment.comment_id]){
+			if (!idRef[comment.comment_id]) {
 				continue;
 			}
 			if (!idRef[comment.comment_id].answers) {
