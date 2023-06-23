@@ -1,6 +1,5 @@
 import toast from 'svelte-french-toast';
-import {  tick } from 'svelte';
-
+import { tick } from 'svelte';
 
 export const commentMassage = {
 	add: {
@@ -12,7 +11,7 @@ export const commentMassage = {
 		loading: 'Adding reply...',
 		success: 'Reply added',
 		error: 'Error adding reply'
-},
+	},
 	delete: {
 		loading: 'Deleting comment...',
 		success: 'Comment deleted',
@@ -23,9 +22,7 @@ export const commentMassage = {
 		success: 'Comment edited',
 		error: 'Error editing comment'
 	}
-
-}
-
+};
 
 export function сommentValidations(value: string) {
 	value = value.trim();
@@ -41,7 +38,6 @@ export function сommentValidations(value: string) {
 	return true;
 }
 
-
 export async function scrollToBottom(id: string) {
 	await tick();
 	const element = document.getElementById(id);
@@ -51,5 +47,3 @@ export async function scrollToBottom(id: string) {
 		element?.scrollIntoView({ behavior: 'instant', block: 'end', inline: 'nearest' });
 	}
 }
-
-

@@ -47,7 +47,7 @@
 				>
 					{isReplying ? 'Reply' : 'Comment' && !isEditing ? 'Comment' : 'Save'}
 				</button>
-				
+
 				<slot />
 			</div>
 		</form>

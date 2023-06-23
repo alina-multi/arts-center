@@ -183,23 +183,18 @@
 		{/if}
 
 		{#if isEditing}
-			<CommentInput bind:isEditing onSubmit={edit} commentID={comment.id} bind:value >
-			
+			<CommentInput bind:isEditing onSubmit={edit} commentID={comment.id} bind:value>
 				<button
 					on:click={() => {
 						commentsState.hideEditForm();
 						editing_comment = null;
-						
 					}}
 					class=" px-6 py-1 shadow-sm border dark:border-gray-600 text-gray-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
 				>
 					Cancel
 				</button>
-		
-				</CommentInput>
-			
+			</CommentInput>
 		{/if}
-	
 
 		{#if answers.length > 0}
 			<div class="lg:ml-12">
