@@ -82,6 +82,7 @@
 		"@sentry/svelte": "^7.44.1",
 		"@sentry/tracing": "^7.44.1",
 		"@sentry/vite-plugin": "^0.7.2",
+		"svelte-french-toast": "^1.0.4-beta.0",
 		"svelte-time": "^0.7.1"
 	},
 	"type": "module",

@@ -8282,6 +8282,13 @@ svelte-easy-crop@^2.0.1:
   resolved "https://registry.yarnpkg.com/svelte-easy-crop/-/svelte-easy-crop-2.0.1.tgz#267aa61d3b9dea9c5999ed87579c70d03f93846b"
   integrity sha512-5cB5wif3DuP92u0etdxk3u0fbGwyNq5G4Dd454g3LeMdVn15oim2rlWPNcbgH5Jr1AJZI5k4Bsp70zbQ0lpNtg==
 
+svelte-french-toast@^1.0.4-beta.0:
+  version "1.0.4-beta.0"
+  resolved "https://registry.yarnpkg.com/svelte-french-toast/-/svelte-french-toast-1.0.4-beta.0.tgz#ad4c38aedb3730d903a67402f7da153dc63f68e1"
+  integrity sha512-PkYNukEQAPZyV5ei+JzeYEsbaXFSbJS8/SDTdC8giYa5Atxp2SRepFnPDWx6mu7rV53g886FNLktPMLwRljkpw==
+  dependencies:
+    svelte-writable-derived "^3.0.1"
+
 svelte-hmr@^0.14.2:
   version "0.14.12"
   resolved "https://registry.yarnpkg.com/svelte-hmr/-/svelte-hmr-0.14.12.tgz#a127aec02f1896500b10148b2d4d21ddde39973f"
@@ -8319,6 +8326,11 @@ svelte-time@^0.7.1:
   integrity sha512-E7IL/85j7oj5fhxvmlau616TUbFfa6Vyy1PFTL3Y8SJGY6NXJaUj7DOYJrXVdoS3Rm9RVST0M6qWd6vqrYgM+w==
   dependencies:
     dayjs "^1.11.3"
+
+svelte-writable-derived@^3.0.1:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/svelte-writable-derived/-/svelte-writable-derived-3.1.0.tgz#ea114125805a9d18398577f2431d1e8cdd4d8d69"
+  integrity sha512-cTvaVFNIJ036vSDIyPxJYivKC7ZLtcFOPm1Iq6qWBDo1fOHzfk6ZSbwaKrxhjgy52Rbl5IHzRcWgos6Zqn9/rg==
 
 svelte@^3.0.0, svelte@^3.55.0:
   version "3.59.0"
