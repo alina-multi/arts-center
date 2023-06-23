@@ -10,6 +10,7 @@
 	import { convertFetch } from '$lib/helpers/convertFetch';
 	import { сommentValidations, commentMassage, scrollToBottom } from '$lib/helpers/comments';
 	import toast from 'svelte-french-toast';
+	import { tick } from 'svelte';
 
 	export let comment: Comment,
 		commentable_id: string,
@@ -23,11 +24,13 @@
 	const comment_id = comment?.id?.toString();
 	$: value = '';
 	$: isEditing = $commentsState.editCommentId === comment?.id;
-	let answer: Comment | null;
+	let answer: Comment | null = null;
 	let answers = comment?.answers ? [...comment?.answers] : [];
+	let new_comment_loaded = false;
+	let editing_comment = null;
+	let isEdited = false;
 
-	$: if (answer) {
-		answers = [...answers, { ...answer, owner: currentUser }];
+	if (answer) {
 		answer = null;
 	}
 
@@ -41,22 +44,28 @@
 		if (!сommentValidations(value)) {
 			return;
 		}
+		new_comment_loaded = false;
 
 		const fetch = fetchData(value);
 		toast.promise(convertFetch(fetch), commentMassage.reply);
 
 		const response = await fetchData(value, comment_id);
+		answer = await response.json();
 		if (!response.ok) {
 			return;
 		}
-      
-		answer = await response.json();
+
+		scrollToBottom(`${comment_id}`);
 		value = '';
 		commentsState.hideReplyForm();
-		scrollToBottom(`${comment_id}`);
+
+		answers = [...answers, { ...answer, owner: currentUser }];
+		await tick();
+		new_comment_loaded = true;
 	}
 
 	function onEdit() {
+		editing_comment = comment;
 		value = comment.text;
 		commentsState.showEditForm(comment);
 		isEditing = true;
@@ -84,6 +93,9 @@
 		}
 		comment.text = value;
 		commentsState.hideEditForm();
+
+		await tick();
+		isEdited = true;
 	}
 
 	async function deleteComment(comment_id: string) {
@@ -126,11 +138,21 @@
 		</div>
 
 		<div
-			class=" {isEditing
-				? 'hidden'
-				: ''} relative prose prose-sm max-w-none border p-3 pb-6 rounded-md bg-gray-50 dark:bg-gray-900 dark:border-gray-600 space-y-2"
+			class=" {isEditing ? 'hidden ' : ''} 
+				relative prose prose-sm max-w-none border p-3 pb-6 rounded-md bg-gray-50 dark:bg-gray-900 dark:border-gray-600 space-y-2"
 		>
-			<div class="whitespace-pre-wrap">{@html comment.text}</div>
+			{#if comment.id === editing_comment?.id}
+				<div
+					class="whitespace-pre-wrap transition-all delay-500 {isEdited
+						? 'opacity-100 '
+						: 'opacity-50'}"
+				>
+					{@html comment.text}
+				</div>
+			{:else}
+				<div class="whitespace-pre-wrap">{@html comment.text}</div>
+			{/if}
+
 			{#if currentUser}
 				<div
 					class="absolute -bottom-4 right-0 flex justify-end items-center border rounded-full bg-white py-1 divide-x dark:bg-black dark:border-gray-600 dark:divide-gray-600 mr-3"
@@ -161,19 +183,49 @@
 		{/if}
 
 		{#if isEditing}
-			<CommentInput bind:isEditing onSubmit={edit} commentID={comment.id} bind:value />
+			<CommentInput bind:isEditing onSubmit={edit} commentID={comment.id} bind:value >
+			
+				<button
+					on:click={() => {
+						commentsState.hideEditForm();
+						editing_comment = null;
+						
+					}}
+					class=" px-6 py-1 shadow-sm border dark:border-gray-600 text-gray-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
+				>
+					Cancel
+				</button>
+		
+				</CommentInput>
+			
 		{/if}
+	
 
 		{#if answers.length > 0}
 			<div class="lg:ml-12">
 				<div class=" border-l pl-6 lg:pl-9 dark:border-gray-800">
 					{#each answers as reply}
-						<svelte:self
-							comment={reply}
-							{commentable_id}
-							bind:parentComments={answers}
-							{fetchData}
-						/>
+						{#if reply.id.toString() === answer?.id.toString()}
+							<div
+								class=" transition-opacity delay-500 {new_comment_loaded
+									? 'opacity-100'
+									: 'opacity-50'}"
+							>
+								<svelte:self
+									comment={reply}
+									{commentable_id}
+									bind:parentComments={answers}
+									{fetchData}
+								/>
+							</div>
+						{:else}
+							<svelte:self
+								comment={reply}
+								{commentable_id}
+								bind:parentComments={answers}
+								{fetchData}
+							/>
+						{/if}
 					{/each}
 				</div>
 			</div>

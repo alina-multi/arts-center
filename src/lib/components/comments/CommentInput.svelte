@@ -47,16 +47,7 @@
 				>
 					{isReplying ? 'Reply' : 'Comment' && !isEditing ? 'Comment' : 'Save'}
 				</button>
-				{#if isEditing}
-					<button
-						on:click={() => {
-							commentsState.hideEditForm();
-						}}
-						class=" px-6 py-1 shadow-sm border dark:border-gray-600 text-gray-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
-					>
-						Cancel
-					</button>
-				{/if}
+				
 				<slot />
 			</div>
 		</form>

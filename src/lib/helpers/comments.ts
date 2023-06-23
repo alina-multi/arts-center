@@ -48,7 +48,7 @@ export async function scrollToBottom(id: string) {
 	const rect = element?.getBoundingClientRect();
 
 	if (rect && rect.bottom > window.innerHeight) {
-		element?.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'center' });
+		element?.scrollIntoView({ behavior: 'instant', block: 'end', inline: 'nearest' });
 	}
 }
 
