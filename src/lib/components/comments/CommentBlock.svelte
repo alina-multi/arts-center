@@ -30,9 +30,18 @@
 	let editing_comment = null;
 	let isEdited = false;
 
+
 	if (answer) {
 		answer = null;
 	}
+
+	function isEditable() {
+    const now = new Date();
+    const createdAt = new Date(comment.created_at);
+    const elapsedMinutes = (now - createdAt) / (1000 * 60); 
+
+    return elapsedMinutes < 5;
+  }
 
 	const onReply = () => {
 		commentsState.showReplyForm(comment);
@@ -127,7 +136,7 @@
 
 			{#if currentUser && Number(currentUser.id) === Number(comment.owner.id)}
 				<div class="flex divide-x font-semibold text-gray-500 mr-3">
-					<button class="px-3" on:click={() => onEdit()}> Edit </button>
+					{#if isEditable()}<button class="px-3" on:click={() => onEdit()}> Edit </button>{/if}
 					<button class="px-3" on:click={() => deleteComment(comment.id)}> Delete</button>
 				</div>
 			{/if}
