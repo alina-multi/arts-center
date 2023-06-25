@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-	import { commentsState } from '$lib/stores/comment';
+	
 
 	export let isEditing: boolean | undefined = false,
 		isReplying: boolean | undefined,
