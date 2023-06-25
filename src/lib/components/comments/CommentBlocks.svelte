@@ -64,7 +64,7 @@
 	<h3 class="sr-only">Comments</h3>
 	{#if currentUser} <CommentInput onSubmit={addNewComment} bind:value /> {/if}
 	<div id="parentBlock">
-		{#each parentComments as comment}
+		{#each parentComments as comment (comment.id)}
 			{#if comment.id === new_comment?.id}
 				<div
 					class=" transition-opacity delay-500 {new_comment_loaded ? 'opacity-100' : 'opacity-50'}"

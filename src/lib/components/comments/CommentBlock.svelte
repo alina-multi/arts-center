@@ -23,27 +23,27 @@
 	const currentUser = $page.data.currentUser;
 	const comment_id = comment?.id?.toString();
 	$: value = '';
-	$: isEditing = $commentsState.editCommentId === comment?.id;
 	let answer: Comment | null = null;
 	let answers = comment?.answers ? [...comment?.answers] : [];
 	let new_comment_loaded = false;
-	let editing_comment = null;
-	let isEdited = false;
 
+	$: isEditing = $commentsState.editCommentId === comment?.id;
+	let isEdited = false;
+	let editing_comment = null;
+	let isDelited = false;
 
 	if (answer) {
 		answer = null;
 	}
 
-	function isEditable() {
+	function isEditable (): boolean {
     const now = new Date();
     const createdAt = new Date(comment.created_at);
     const elapsedMinutes = (now - createdAt) / (1000 * 60); 
-
     return elapsedMinutes < 5;
   }
 
-	const onReply = () => {
+	function onReply  () {
 		commentsState.showReplyForm(comment);
 		commentsState.hideEditForm();
 		value = '';
@@ -55,10 +55,10 @@
 		}
 		new_comment_loaded = false;
 
-		const fetch = fetchData(value);
+		const fetch = fetchData(value, comment_id);
 		toast.promise(convertFetch(fetch), commentMassage.reply);
 
-		const response = await fetchData(value, comment_id);
+		const response = await fetch;
 		answer = await response.json();
 		if (!response.ok) {
 			return;
@@ -121,11 +121,17 @@
 		if (!response.ok) {
 			return;
 		}
+        isDelited = true;
+		setTimeout(() => {
+		answers = [];
 		parentComments = parentComments.filter((item) => item.id !== comment_id);
+	
+		}, 1000);
+		
 	}
 </script>
 
-<div class="text-sm text-gray-800 dark:text-gray-400" id={comment_id}>
+<div class="text-sm text-gray-800 dark:text-gray-400 transition-opacity delay-500 {isDelited ? 'opacity-50': 'opacity-100'}" id={comment_id} >
 	<div class="pt-6 space-y-1">
 		<div class="flex items-center gap-2">
 			<div class="flex font-semibold">
@@ -208,7 +214,7 @@
 		{#if answers.length > 0}
 			<div class="lg:ml-12">
 				<div class=" border-l pl-6 lg:pl-9 dark:border-gray-800">
-					{#each answers as reply}
+					{#each answers as reply (reply.id)}
 						{#if reply.id.toString() === answer?.id.toString()}
 							<div
 								class=" transition-opacity delay-500 {new_comment_loaded
