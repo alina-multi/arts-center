@@ -21,7 +21,7 @@ class ConvertImagesToVariants extends Command
      */
     public function handle()
     {
-        Image::chunkById(100, function ($images) {
+        Image::whereDoesntHave('variants')->chunkById(1000, function ($images) {
             foreach ($images as $image) {
                 print "Image: $image->id \n";
                 dispatch(new \App\Jobs\ConvertImageToVariants($image));
