@@ -40,6 +40,7 @@ class ConvertImageToVariants implements ShouldQueue
         }
         // create
         $url = Storage::url($oldPath);
+        $url = str_replace('fra1.digitaloceanspaces.com', 'i.arts.center', $url);
         if (str_starts_with($url, '/storage')) {
             $url = storage_path(str_replace('/storage/', '/framework/testing/disks/s3', $url));
         }
