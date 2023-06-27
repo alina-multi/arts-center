@@ -25,6 +25,10 @@ class ConvertImageToVariants implements ShouldQueue
      */
     public function handle(): void
     {
+        // If we already have variants, skip
+        if ($this->image->variants()->count()) {
+            return;
+        }
         $this->copy("{$this->image->path}.{$this->image->extension}", true);
         foreach ([300, 600, 1200, 2400] as $width) {
             foreach (['webp', 'jpg', 'jpeg'] as $extension) {
