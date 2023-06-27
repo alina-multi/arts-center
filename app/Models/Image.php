@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ImageFolders;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
@@ -19,14 +20,21 @@ class Image extends Model
         'folder',
         'extension',
     ];
+    protected $casts = [
+        'folder' => ImageFolders::class
+    ];
 
     protected $appends = ['src', 'srcset'];
 
     protected $visible = ['src', 'srcset'];
 
+    public function variants()
+    {
+        return $this->hasMany(ImageVariant::class);
+    }
     public function getPathAttribute()
     {
-        return '/' . $this->folder . '/' . $this->name;
+        return '/' . $this->folder->value . '/' . $this->name;
     }
 
     public function getSrcAttribute()

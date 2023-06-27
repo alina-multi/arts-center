@@ -105,7 +105,7 @@ namespace App\Models{
  * @property int $id
  * @property int $commentable_id
  * @property string $commentable_type
- * @property array $body
+ * @property array|null $body
  * @property string|null $text
  * @property int|null $comment_id
  * @property int $user_id
@@ -252,7 +252,7 @@ namespace App\Models{
  * @property int|null $old_user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string $folder
+ * @property \App\Enums\ImageFolders $folder
  * @property int $w300
  * @property int $w600
  * @property int $w1200
@@ -262,6 +262,8 @@ namespace App\Models{
  * @property-read mixed $path
  * @property-read mixed $src
  * @property-read mixed $srcset
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ImageVariant> $variants
+ * @property-read int|null $variants_count
  * @method static \Database\Factories\ImageFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Image newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Image newQuery()
@@ -289,22 +291,23 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $image_id
- * @property string $folder
  * @property string $extension
  * @property int $width
  * @property int $height
  * @property int $size
+ * @property int $original
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\ImageVariantFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|ImageVariant newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ImageVariant newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ImageVariant query()
  * @method static \Illuminate\Database\Eloquent\Builder|ImageVariant whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ImageVariant whereExtension($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ImageVariant whereFolder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ImageVariant whereHeight($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ImageVariant whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ImageVariant whereImageId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ImageVariant whereOriginal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ImageVariant whereSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ImageVariant whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ImageVariant whereWidth($value)

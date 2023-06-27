@@ -50,7 +50,7 @@ class Work extends Model
 
     public function blocks()
     {
-        return $this->hasMany(WorkBlock::class);
+        return $this->hasMany(WorkBlock::class)->orderBy('order');
     }
 
     public function details()

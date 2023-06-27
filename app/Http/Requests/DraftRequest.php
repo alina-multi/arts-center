@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Rules\UploadedImage;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class DraftRequest extends FormRequest
 {
@@ -20,6 +21,10 @@ class DraftRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'language' => [
+                'required',
+                Rule::in(config('app.languages'))
+            ],
             'main' => ['required', 'string', new UploadedImage()],
             'more.*' => ['string', new UploadedImage()],
         ];

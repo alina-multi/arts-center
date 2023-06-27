@@ -27,6 +27,7 @@
         "doctrine/dbal": "^3.0",
         "everyday/html-to-quill": "dev-quote",
         "google/cloud-translate": "^1.7",
+        "intervention/image": "^2.7",
         "itsgoingd/clockwork": "^5.0",
         "laravel/cashier": "^13.5",
         "laravel/framework": "^10.0",
@@ -43,7 +44,8 @@
         "pusher/pusher-php-server": "^7.0",
         "sentry/sentry-laravel": "*",
         "stepanorda/nova-quill": "*",
-        "tigroid3/php-imaginary": "^1.03"
+        "tigroid3/php-imaginary": "^1.03",
+        "marc1706/fast-image-size": "1.*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",

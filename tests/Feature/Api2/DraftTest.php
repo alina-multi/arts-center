@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
+use Illuminate\Testing\Fluent\AssertableJson;
 
 class DraftTest extends TestCase
 {
@@ -14,7 +15,7 @@ class DraftTest extends TestCase
 
     function testCreateDraft()
     {
-        Storage::persistentFake('s3');
+        Storage::fake('s3');
         $images = [
             'temp/works/1_1.jpeg',
             'temp/works/1_2.jpeg',
@@ -29,11 +30,16 @@ class DraftTest extends TestCase
         $this->actingAs($user)->postJson('/api2/draft', [
             'main' => array_shift($images),
             'more' => $images,
-        ])->assertStatus(200);
-
-        $this->assertDatabaseHas('images', [
-            'user_id' => $user->id,
-        ])->assertDatabaseCount('images', 4); // One image created by user factory
+            'language' => 'en',
+        ])->assertStatus(201)->assertJson(fn(AssertableJson $json) => $json->where('id', 1)
+            ->where('title', '')
+            ->has('owners', 1)
+            ->has('blocks', 2)
+            ->where('blocks.0.type', 'image')
+            ->has('blocks.0.images', 1)
+            ->where('blocks.1.type', 'grid')
+            ->has('blocks.1.images', 2)
+            ->etc()
+        );
     }
-
 }

@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Image;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Enums\ImageFolders;
 
 class ImageFactory extends Factory
 {
@@ -22,9 +23,14 @@ class ImageFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name.'.jpg',
+            'name' => $this->faker->name,
             'user_id' => 1,
-            'folder' => $this->faker->word
+            'folder' => $this->faker->randomElement(ImageFolders::cases()),
+            'w300' => true,
+            'w600' => true,
+            'w1200' => true,
+            'w2400' => true,
+            'extension' => $this->faker->randomElement(['jpg', 'png', 'jpeg'])
         ];
     }
 }
