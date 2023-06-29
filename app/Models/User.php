@@ -50,8 +50,8 @@ class User extends Authenticatable
             'country' => $this->country,
             'rating' => (int)$this->rating,
             'created_at' => $this->created_at,
-            'photo' => $this->photo->toArray(),
-            'bios' => $this->bios->toArray(),
+            'photo' => $this->photo?->toArray(),
+            'bios' => $this->bios?->toArray(),
         ];
     }
 
