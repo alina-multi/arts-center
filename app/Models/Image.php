@@ -84,8 +84,8 @@ class Image extends Model
     {
         return match (App::environment()) {
             'local' => "https://picsum.photos/id/{$this->id}/600/600",
-            'staging' => "https://i.arts2.art$path",
-            'production' => "https://i.arts.center$path",
+            'staging' => "https://i.arts2.art/$path",
+            'production' => "https://i.arts.center/$path",
             default => $path
         };
     }
