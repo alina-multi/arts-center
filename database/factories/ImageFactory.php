@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Image;
+use App\Models\ImageVariant;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Enums\ImageFolders;
 

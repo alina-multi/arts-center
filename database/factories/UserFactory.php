@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Enums\ImageExtentions;
 use App\Models\Image;
+use App\Models\ImageVariant;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -12,6 +14,7 @@ use Illuminate\Support\Str;
 class UserFactory extends Factory
 {
     use WithFaker;
+
     /**
      * The name of the factory's corresponding model.
      *
@@ -26,7 +29,13 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        $image = Image::factory()->create();
+        $image = Image::factory()->has(ImageVariant::factory()->sequence(
+            ['width' => 2048, 'height' => 2048, 'extension' => 'jpeg', 'original' => true],
+            ['width' => 300, 'height' => 300, 'extension' => 'jpeg'],
+            ['width' => 600, 'height' => 600, 'extension' => 'jpeg'],
+            ['width' => 300, 'height' => 300, 'extension' => 'webp'],
+            ['width' => 600, 'height' => 600, 'extension' => 'webp'],
+        )->count(5), 'variants')->create(['folder'=>'photos']);
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,

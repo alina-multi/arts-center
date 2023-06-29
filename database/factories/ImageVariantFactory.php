@@ -16,8 +16,16 @@ class ImageVariantFactory extends Factory
      */
     public function definition(): array
     {
+        $width = $this->faker->randomElement([300, 600, 1200, 2400]);
+        $ar = $this->faker->randomElement([1, 16/9, 4/3, 3/2, 2/3]);
+        $height = round($width / $ar);
         return [
-            //
+            'image_id' => 1,
+            'extension' => $this->faker->randomElement(['png', 'jpeg', 'webp']),
+            'width' => $width,
+            'height' => $height,
+            'size' => $this->faker->numberBetween(1000, 100000),
+            'original' => false,
         ];
     }
 }

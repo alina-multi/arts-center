@@ -16,7 +16,7 @@ class CovertImageToVariantsTest extends TestCase
 
     public function testConverting(): void
     {
-        Storage::persistentFake('s3');
+        Storage::fake('s3');
         $image = Image::factory()->create(['extension' => 'jpeg']);
         $images = [
             "$image->path.$image->extension"

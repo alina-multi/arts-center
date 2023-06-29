@@ -35,17 +35,18 @@
         "laravel/nova": "4.22.2",
         "laravel/octane": "^1.5.4",
         "laravel/sanctum": "^3.2",
+        "laravel/scout": "^10.2",
         "laravel/telescope": "*",
         "laravel/tinker": "^2.0",
         "league/flysystem-aws-s3-v3": "^3.0",
+        "meilisearch/meilisearch-php": "^1.2",
         "monarobase/country-list": "^3.2",
         "nadar/quill-delta-parser": "*",
         "nunomaduro/collision": "^7.0",
         "pusher/pusher-php-server": "^7.0",
         "sentry/sentry-laravel": "*",
         "stepanorda/nova-quill": "*",
-        "tigroid3/php-imaginary": "^1.03",
-        "marc1706/fast-image-size": "1.*"
+        "tigroid3/php-imaginary": "^1.03"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",

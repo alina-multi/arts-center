@@ -10,10 +10,11 @@ use Laravel\Cashier\Billable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Cache;
 use App\Notifications\MailResetPasswordNotification;
+use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable, HasFactory, Billable;
+    use HasApiTokens, Notifiable, HasFactory, Billable, Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -37,6 +38,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => (int) $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            'username' => $this->username,
+            'country' => $this->country,
+            'rating' => (int) $this->rating,
+            'created_at' => $this->created_at,
+            'photo' => $this->photo->toArray(),
+            'bios' => $this->bios->toArray(),
+        ];
+    }
 
     public function sendPasswordResetNotification($token)
     {

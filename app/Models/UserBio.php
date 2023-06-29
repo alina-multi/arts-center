@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserBio extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'language',
         'text'
     ];
-    use HasFactory;
+
+    protected $visible = ['language', 'text'];
 }
