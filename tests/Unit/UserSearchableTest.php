@@ -27,7 +27,7 @@ class UserSearchableTest extends TestCase
             $this->assertTrue($data[$key] == $user->$key, "Key $key is not equal");
         }
         // We assume this from the factory data database/factories/UserFactory.php:32
-        $this->assertTrue($data['photo']['src'] === 'photos/2.jpeg' );
+        $this->assertTrue($data['photo']['src'] === 'photos/2.jpeg');
         $this->assertTrue($data['photo']['srcset'] === 'photos/2.jpeg 300w, photos/3.jpeg 600w' );
         $this->assertTrue(sizeof($data['photo']['sources']) === 5 );
         $this->assertArrayHasKey('bios', $data);

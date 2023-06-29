@@ -29,7 +29,7 @@ class Image extends Model
 
     protected $visible = ['src', 'srcset', 'sources'];
 
-    public function variants()
+    public function variants(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(ImageVariant::class);
     }
@@ -95,6 +95,6 @@ class Image extends Model
         if (!$variant) {
             return '';
         }
-        return "{$this->addDomain($this->path)}{$this->folder->value}/$variant->file";
+        return $this->addDomain("{$this->folder->value}/$variant->file");
     }
 }

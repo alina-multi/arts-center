@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
@@ -42,16 +43,21 @@ class User extends Authenticatable
     public function toSearchableArray(): array
     {
         return [
-            'id' => (int) $this->id,
+            'id' => (int)$this->id,
             'name' => $this->name,
             'email' => $this->email,
             'username' => $this->username,
             'country' => $this->country,
-            'rating' => (int) $this->rating,
+            'rating' => (int)$this->rating,
             'created_at' => $this->created_at,
             'photo' => $this->photo->toArray(),
             'bios' => $this->bios->toArray(),
         ];
+    }
+
+    protected function makeAllSearchableUsing(Builder $query): Builder
+    {
+        return $query->with(['photo', 'photo.variants', 'bios']);
     }
 
     public function sendPasswordResetNotification($token)
@@ -86,7 +92,7 @@ class User extends Authenticatable
 
     public function works()
     {
-        return $this->morphedByMany(Work::class, 'ownable','ownables');
+        return $this->morphedByMany(Work::class, 'ownable', 'ownables');
     }
 
     public function bios()
@@ -96,13 +102,13 @@ class User extends Authenticatable
 
     public function getHighlightsAttribute()
     {
-        return Cache::remember("user.$this->id.highlights", 60*60*5, function () {
+        return Cache::remember("user.$this->id.highlights", 60 * 60 * 5, function () {
             return Work::whereHas('owners', function ($query) {
                 $query->where('ownables.user_id', $this->id);
             })->with([
-                         'image:id,name,folder,extension',
-                         'titles'
-                     ])->orderBy('rating', 'desc')->limit(3)->get()->keyBy('id');
+                'image:id,name,folder,extension',
+                'titles'
+            ])->orderBy('rating', 'desc')->limit(3)->get()->keyBy('id');
         });
     }
 
