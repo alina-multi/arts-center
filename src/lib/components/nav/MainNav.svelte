@@ -7,6 +7,7 @@
 	import logo from '$lib/images/logo.svg';
 	import UserDropdown from './UserDropdown.svelte';
 	import { page } from '$app/stores';
+	import SearchInput from '$lib/components/input/SearchInput.svelte';
 	export let user;
 </script>
 
@@ -20,7 +21,9 @@
 		<TopNavLink exact href={localePath('/')}>{$t('global.menu.gallery')}</TopNavLink>
 		<TopNavLink href={localePath('/users')}>{$t('global.menu.users')}</TopNavLink>
 	</div>
-	<div class="flex flex-1 justify-end gap-2">
+	<SearchInput />
+	<div class="flex gap-2 h-full ">
+		
 		{#if user}
 			<UserDropdown {user} />
 		{:else}
