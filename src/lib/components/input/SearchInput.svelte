@@ -29,14 +29,13 @@
 
 	const onChange = (event) => {
 		value = event.target.value;
-
 		debounce(value);
 	};
 
 	function handleClickOutside(event) {
 		if (event.target.id !== 'search' && event.target.id !== 'searchList') {
 			open = '';
-			console.log(event.target);
+	
 		}
 	}
 
