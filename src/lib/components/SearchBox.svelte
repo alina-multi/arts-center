@@ -37,7 +37,7 @@
 								</MenuItem>
 							{/each}
 							<MenuItem>
-								<a
+								<a data-sveltekit-reload
 									href={localePath(`/search/${value}`)}
 									class="block w-full text-left text-sm border-t mt-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 py-2 px-6 cursor-default select-none font-semibold"
 								>
