@@ -3,7 +3,7 @@
 	import { Menu, MenuItems, MenuItem } from '@rgossiaux/svelte-headlessui';
 	export let open = false,
 		results = [],
-		totalHits,
+		totalHits: number,
 		value = '';
 </script>
 
@@ -12,10 +12,10 @@
 		<div class="relative w-full">
 			<slot />
 			{#if open}
-				<div class="fixed inset-0 bg-gray-900 bg-opacity-50 transition-opacity z-40 " />
+				<div class="fixed inset-0 bg-gray-900 bg-opacity-50 transition-opacity z-40" />
 
 				<div
-					class="absolute top-12 left-0 w-full bg-white shadow-lg z-40 rounded-md "
+					class="absolute top-12 left-0 w-full bg-white shadow-lg z-40 rounded-md"
 					id="searchList"
 				>
 					{#if results.length > 0}
@@ -37,7 +37,8 @@
 								</MenuItem>
 							{/each}
 							<MenuItem>
-								<a data-sveltekit-reload
+								<a
+									data-sveltekit-reload
 									href={localePath(`/search/${value}`)}
 									class="block w-full text-left text-sm border-t mt-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 py-2 px-6 cursor-default select-none font-semibold"
 								>

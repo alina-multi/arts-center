@@ -4,13 +4,13 @@
 	import SearchBox from '../SearchBox.svelte';
 	import { Spinner } from 'flowbite-svelte';
 
-	let value = '';
-	$: open = value.length > 0;
-	let listener = null;
-	let timer;
+	let value = '',
+		totalHits,
+		timer,
+		listener,
+		loading = false;
 	let results = [];
-	let totalHits;
-	let loading = false;
+	$: open = value.length > 0;
 
 	const fetchData = async (url) => {
 		let res = await fetch(url).then((res) => res.json());
@@ -19,7 +19,7 @@
 	};
 
 	const debounce = (value) => {
-		 loading = true;
+		loading = true;
 		clearTimeout(timer);
 		timer = setTimeout(() => {
 			fetchData(`/api/search/${value}/1`);
@@ -27,15 +27,10 @@
 		}, 750);
 	};
 
-	const onChange = (event) => {
-		value = event.target.value;
-		debounce(value);
-	};
 
 	function handleClickOutside(event) {
 		if (event.target.id !== 'search' && event.target.id !== 'searchList') {
 			open = '';
-	
 		}
 	}
 
@@ -45,13 +40,14 @@
 	}
 	$: if (!open && listener) {
 		window.removeEventListener('click', handleClickOutside);
-	}
+		}
+	
 </script>
 
 <SearchBox {open} {results} {value} {totalHits}>
 	<span class="sr-only">Search</span>
 	<input
-		on:input={onChange}
+		on:input={(e) => debounce(e.target.value)}
 		bind:value
 		type="text"
 		name="search"
@@ -64,21 +60,18 @@
 		<Icon src={MagnifyingGlass} class="text-gray-400 h-5 w-5" />
 	</div>
 	{#if loading && value.length > 0}
-	<div class="absolute inset-y-0 right-0 flex items-center z-50 pr-8 ">
-
-	<Spinner color="yellow" size="5"/>
-	</div>
+		<div class="absolute inset-y-0 right-0 flex items-center z-50 pr-8">
+			<Spinner color="yellow" size="5" />
+		</div>
 	{/if}
-	{#if open || value.length > 0}
+	{#if open }
 		<button
 			type="button"
-			class="absolute inset-y-0 right-0 flex items-center z-50 px-2 "
+			class="absolute inset-y-0 right-0 flex items-center z-50 px-2"
 			aria-label="Clear"
 			on:click={() => (value = '')}
 		>
 			<Icon src={XMark} class="text-gray-400 h-5 w-5" />
 		</button>
-		
 	{/if}
-	
 </SearchBox>
