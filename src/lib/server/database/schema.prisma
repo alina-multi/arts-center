@@ -29,6 +29,7 @@ model action_events {
   @@index([actionable_type, actionable_id], map: "action_events_actionable_type_actionable_id_index")
   @@index([batch_id, model_type, model_id], map: "action_events_batch_id_model_type_model_id_index")
   @@index([user_id], map: "action_events_user_id_index")
+  @@index([target_type, target_id], map: "action_events_target_type_target_id_index")
 }
 
 model blacklists {
@@ -68,7 +69,8 @@ model comments {
   id               BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
   commentable_id   BigInt
   commentable_type String
-  body             String    @db.LongText
+  body             String?   @db.LongText
+  text             String?   @db.Text
   comment_id       BigInt?   @default(0)
   user_id          BigInt
   deleted_at       DateTime? @db.Timestamp(0)
@@ -129,7 +131,7 @@ model follows {
 }
 
 model imageables {
-  id             BigInt       @id @default(autoincrement()) @db.UnsignedBigInt
+  id             BigInt @id @default(autoincrement()) @db.UnsignedBigInt
   image_id       BigInt
   imageable_id   BigInt
   imageable_type String
@@ -138,19 +140,19 @@ model imageables {
 }
 
 model images {
-  id          BigInt       @id @default(autoincrement()) @db.UnsignedBigInt
+  id          BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
   name        String
   user_id     BigInt
   work_id     BigInt?
   old_user_id BigInt?
-  created_at  DateTime?    @db.Timestamp(0)
-  updated_at  DateTime?    @db.Timestamp(0)
+  created_at  DateTime? @db.Timestamp(0)
+  updated_at  DateTime? @db.Timestamp(0)
   folder      String
-  w300        Boolean      @default(false)
-  w600        Boolean      @default(false)
-  w1200       Boolean      @default(false)
-  w2400       Boolean      @default(false)
-  extension   String       @default("jpg") @db.Char(4)
+  w300        Boolean   @default(false)
+  w600        Boolean   @default(false)
+  w1200       Boolean   @default(false)
+  w2400       Boolean   @default(false)
+  extension   String    @default("jpg") @db.Char(4)
   works       works[]
   users       users[]
   imageables  imageables[]
@@ -272,10 +274,10 @@ model tag_groups {
 }
 
 model tag_titles {
-  id          BigInt     @id @default(autoincrement()) @db.UnsignedBigInt
-  tag_id      BigInt
-  language    String     @db.Char(2)
-  title       String     @db.VarChar(40)
+  id       BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  tag_id   BigInt
+  language String @db.Char(2)
+  title    String @db.VarChar(40)
   tags        tags?      @relation(fields: [tag_id], references: [id])
   taggables   taggables? @relation(fields: [taggablesId], references: [id])
   taggablesId BigInt?    @db.UnsignedBigInt
@@ -293,10 +295,10 @@ model tag_types {
 }
 
 model taggables {
-  id            BigInt       @id @default(autoincrement()) @db.UnsignedBigInt
+  id            BigInt @id @default(autoincrement()) @db.UnsignedBigInt
   tag_id        BigInt
   taggable_id   BigInt
-  taggable_type String       @db.Char(20)
+  taggable_type String @db.Char(20)
   tag           tags?        @relation(fields: [tag_id], references: [id])
   works         works?       @relation(fields: [taggable_id], references: [id])
   tag_titles    tag_titles[]
@@ -305,12 +307,12 @@ model taggables {
 }
 
 model tags {
-  id           BigInt         @id @default(autoincrement()) @db.UnsignedBigInt
-  count        Int?           @db.UnsignedInt
-  group_id     BigInt?        @db.UnsignedBigInt
-  groups_main  Boolean        @default(false)
-  type_id      BigInt         @db.UnsignedBigInt
-  old_id       BigInt         @db.UnsignedBigInt
+  id          BigInt  @id @default(autoincrement()) @db.UnsignedBigInt
+  count       Int?    @db.UnsignedInt
+  group_id    BigInt? @db.UnsignedBigInt
+  groups_main Boolean @default(false)
+  type_id     BigInt  @db.UnsignedBigInt
+  old_id      BigInt  @db.UnsignedBigInt
   titles       tag_titles[]
   taggables    taggables[]
   user_ratings user_ratings[]
@@ -377,23 +379,23 @@ model user_ratings {
 }
 
 model users {
-  id                BigInt         @id @default(autoincrement()) @db.UnsignedBigInt
+  id                BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
   name              String
-  email             String?        @unique(map: "users_email_unique")
-  email_verified_at DateTime?      @db.Timestamp(0)
+  email             String?   @unique(map: "users_email_unique")
+  email_verified_at DateTime? @db.Timestamp(0)
   password          String
-  username          String         @unique(map: "users_username_unique")
+  username          String    @unique(map: "users_username_unique")
   old_id            BigInt?
-  remember_token    String?        @db.VarChar(100)
-  created_at        DateTime?      @db.Timestamp(0)
-  updated_at        DateTime?      @db.Timestamp(0)
+  remember_token    String?   @db.VarChar(100)
+  created_at        DateTime? @db.Timestamp(0)
+  updated_at        DateTime? @db.Timestamp(0)
   stripe_id         String?
   pm_type           String?
-  pm_last_four      String?        @db.VarChar(4)
-  trial_ends_at     DateTime?      @db.Timestamp(0)
+  pm_last_four      String?   @db.VarChar(4)
+  trial_ends_at     DateTime? @db.Timestamp(0)
   image_id          BigInt?
-  country           String?        @db.Char(2)
-  rating            Int            @default(0)
+  country           String?   @db.Char(2)
+  rating            Int       @default(0)
   ownables          ownables[]
   avatar            images?        @relation(fields: [image_id], references: [id])
   comments          comments[]
@@ -403,6 +405,7 @@ model users {
 
   @@index([country], map: "users_country_index")
   @@index([stripe_id], map: "users_stripe_id_index")
+  @@index([rating], map: "users_rating_index")
 }
 
 model votes {
@@ -419,14 +422,14 @@ model votes {
 }
 
 model work_blocks {
-  id         BigInt       @id @default(autoincrement()) @db.UnsignedBigInt
+  id         BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
   work_id    BigInt
-  language   String       @db.Char(2)
+  language   String    @db.Char(2)
   type       String
   order      Int
-  data       String       @db.LongText
-  created_at DateTime?    @db.Timestamp(0)
-  updated_at DateTime?    @db.Timestamp(0)
+  data       String    @db.LongText
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
   work       works?       @relation(fields: [work_id], references: [id])
   images     imageables[]
 
@@ -458,20 +461,20 @@ model work_titles {
 }
 
 model works {
-  id           BigInt        @id @default(autoincrement()) @db.UnsignedBigInt
-  image_id     BigInt        @default(0)
-  rating       Int           @default(0) @db.SmallInt
-  comments     Int           @default(0) @db.SmallInt
-  hosts        Int           @default(0)
-  price        Int           @default(0) @db.UnsignedInt
+  id           BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  image_id     BigInt    @default(0)
+  rating       Int       @default(0) @db.SmallInt
+  comments     Int       @default(0) @db.SmallInt
+  hosts        Int       @default(0)
+  price        Int       @default(0) @db.UnsignedInt
   old_id       BigInt?
-  created_at   DateTime?     @db.Timestamp(0)
-  updated_at   DateTime?     @db.Timestamp(0)
-  published_at DateTime?     @db.Timestamp(0)
-  show_en      Boolean       @default(false)
-  show_ru      Boolean       @default(false)
-  show_uk      Boolean       @default(false)
-  deleted_at   DateTime?     @db.Timestamp(0)
+  created_at   DateTime? @db.Timestamp(0)
+  updated_at   DateTime? @db.Timestamp(0)
+  published_at DateTime? @db.Timestamp(0)
+  show_en      Boolean   @default(false)
+  show_ru      Boolean   @default(false)
+  show_uk      Boolean   @default(false)
+  deleted_at   DateTime? @db.Timestamp(0)
   titles       work_titles[]
   owners       ownables[]
   image        images?       @relation(fields: [image_id], references: [id])
@@ -483,4 +486,58 @@ model works {
   @@index([show_en], map: "works_show_en_index")
   @@index([show_ru], map: "works_show_ru_index")
   @@index([show_uk], map: "works_show_uk_index")
+}
+
+model image_variants {
+  id         BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  image_id   BigInt    @db.UnsignedBigInt
+  extension  String    @db.Char(4)
+  width      Int       @db.UnsignedSmallInt
+  height     Int       @db.UnsignedSmallInt
+  size       Int       @db.UnsignedInt
+  original   Boolean   @default(false)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+
+  @@index([image_id], map: "image_variants_image_id_index")
+  @@index([extension], map: "width")
+}
+
+model nova_field_attachments {
+  id              Int       @id @default(autoincrement()) @db.UnsignedInt
+  attachable_type String
+  attachable_id   BigInt    @db.UnsignedBigInt
+  attachment      String
+  disk            String
+  url             String
+  created_at      DateTime? @db.Timestamp(0)
+  updated_at      DateTime? @db.Timestamp(0)
+
+  @@index([attachable_type, attachable_id], map: "nova_field_attachments_attachable_type_attachable_id_index")
+  @@index([url], map: "nova_field_attachments_url_index")
+}
+
+model nova_notifications {
+  id              String    @id @db.Char(36)
+  type            String
+  notifiable_type String
+  notifiable_id   BigInt    @db.UnsignedBigInt
+  data            String    @db.Text
+  read_at         DateTime? @db.Timestamp(0)
+  created_at      DateTime? @db.Timestamp(0)
+  updated_at      DateTime? @db.Timestamp(0)
+  deleted_at      DateTime? @db.Timestamp(0)
+
+  @@index([notifiable_type, notifiable_id], map: "nova_notifications_notifiable_type_notifiable_id_index")
+}
+
+model nova_pending_field_attachments {
+  id         Int       @id @default(autoincrement()) @db.UnsignedInt
+  draft_id   String
+  attachment String
+  disk       String
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+
+  @@index([draft_id], map: "nova_pending_field_attachments_draft_id_index")
 }

@@ -17,7 +17,8 @@ export async function uploadFile(file: File, Key: string) {
 				Key,
 				Body: await file.arrayBuffer(),
 				Bucket: process.env.S3_BUCKET,
-				ContentLength: file.size
+				ContentLength: file.size,
+				ContentType: file.type
 			})
 		);
 		return Key;

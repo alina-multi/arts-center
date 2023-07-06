@@ -7,6 +7,7 @@
 	import logo from '$lib/images/logo.svg';
 	import UserDropdown from './UserDropdown.svelte';
 	import { page } from '$app/stores';
+	import UploadWorkButton from "$lib/components/nav/UploadWorkButton.svelte";
 	export let user;
 </script>
 
@@ -21,6 +22,7 @@
 		<TopNavLink href={localePath('/users')}>{$t('global.menu.users')}</TopNavLink>
 	</div>
 	<div class="flex flex-1 justify-end gap-2">
+		<UploadWorkButton />
 		{#if user}
 			<UserDropdown {user} />
 		{:else}
