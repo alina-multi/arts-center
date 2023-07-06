@@ -35,18 +35,18 @@
 		answer = null;
 	}
 
-	function isEditable (): boolean {
-    const now = new Date();
-    const createdAt = new Date(comment.created_at);
-    const elapsedMinutes = (now - createdAt) / (1000 * 60); 
-    return elapsedMinutes < 5;
-  }
+	function isEditable(): boolean {
+		const now = new Date();
+		const createdAt = new Date(comment.created_at);
+		const elapsedMinutes = (now - createdAt) / (1000 * 60);
+		return elapsedMinutes < 5;
+	}
 
-	function onReply  () {
+	function onReply() {
 		commentsState.showReplyForm(comment);
 		commentsState.hideEditForm();
 		value = '';
-	};
+	}
 
 	async function reply() {
 		if (!сommentValidations(value)) {
@@ -120,17 +120,20 @@
 		if (!response.ok) {
 			return;
 		}
-        isDelited = true;
+		isDelited = true;
 		setTimeout(() => {
-		answers = [];
-		parentComments = parentComments.filter((item) => item.id !== comment_id);
-	
+			answers = [];
+			parentComments = parentComments.filter((item) => item.id !== comment_id);
 		}, 500);
-		
 	}
 </script>
 
-<div class="text-sm text-gray-800 dark:text-gray-400 transition-opacity delay-0 {isDelited ? 'opacity-50': 'opacity-100'}" id={comment_id} >
+<div
+	class="text-sm text-gray-800 dark:text-gray-400 transition-opacity delay-0 {isDelited
+		? 'opacity-50'
+		: 'opacity-100'}"
+	id={comment_id}
+>
 	<div class="pt-6 space-y-1">
 		<div class="flex items-center gap-2">
 			<div class="flex font-semibold">
@@ -139,21 +142,17 @@
 			<span class="h-1 w-1 bg-gray-500 rounded-full" />
 			<Time relative timestamp={comment.created_at} class="text-gray-500" />
 
-
 			<div class="flex divide-x font-semibold text-gray-500 mr-3">
-			{#if currentUser && Number(currentUser.id) === Number(comment.owner.id)}
-			
+				{#if currentUser && Number(currentUser.id) === Number(comment.owner.id)}
 					{#if isEditable()}<button class="px-3" on:click={() => onEdit()}> Edit </button>{/if}
-					{#if !isMy} <button class="px-3" on:click={() => deleteComment(comment.id)}> Delete</button>{/if}
-				
-			{/if}
+					{#if !isMy}
+						<button class="px-3" on:click={() => deleteComment(comment.id)}> Delete</button>{/if}
+				{/if}
 
-			{#if isMy}
-			<button class="px-3" on:click={() => deleteComment(comment.id)}> Delete</button>
-			{/if}
-		</div>
-
-			
+				{#if isMy}
+					<button class="px-3" on:click={() => deleteComment(comment.id)}> Delete</button>
+				{/if}
+			</div>
 		</div>
 
 		<div

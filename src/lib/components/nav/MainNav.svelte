@@ -22,8 +22,7 @@
 		<TopNavLink href={localePath('/users')}>{$t('global.menu.users')}</TopNavLink>
 	</div>
 	<SearchInput />
-	<div class="flex gap-2 h-full ">
-		
+	<div class="flex gap-2 h-full">
 		{#if user}
 			<UserDropdown {user} />
 		{:else}

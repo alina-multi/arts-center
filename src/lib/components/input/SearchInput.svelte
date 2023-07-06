@@ -27,7 +27,6 @@
 		}, 750);
 	};
 
-
 	function handleClickOutside(event) {
 		if (event.target.id !== 'search' && event.target.id !== 'searchList') {
 			open = '';
@@ -40,8 +39,7 @@
 	}
 	$: if (!open && listener) {
 		window.removeEventListener('click', handleClickOutside);
-		}
-	
+	}
 </script>
 
 <SearchBox {open} {results} {value} {totalHits}>
@@ -64,7 +62,7 @@
 			<Spinner color="yellow" size="5" />
 		</div>
 	{/if}
-	{#if open }
+	{#if open}
 		<button
 			type="button"
 			class="absolute inset-y-0 right-0 flex items-center z-50 px-2"

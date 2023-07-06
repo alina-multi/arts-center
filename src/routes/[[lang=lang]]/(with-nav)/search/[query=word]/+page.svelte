@@ -7,7 +7,6 @@
 	let page = 1;
 	let newBatch = [];
 	$: results = [...search.hits, ...newBatch];
-
 </script>
 
 <ul role="search" class="divide-y divide-gray-100">
@@ -53,7 +52,6 @@
 		</li>
 	{/each}
 </ul>
-
 
 <!-- Infinite scroll -->
 
