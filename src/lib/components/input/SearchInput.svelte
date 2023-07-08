@@ -42,7 +42,11 @@
 	}
 </script>
 
-<SearchBox {open} {results} {value} {totalHits}>
+
+
+
+<div class=" sm:relative w-full  mx-3 ">
+	<div class="relative z-50">
 	<span class="sr-only">Search</span>
 	<input
 		on:input={(e) => debounce(e.target.value)}
@@ -52,7 +56,7 @@
 		id="search"
 		autocomplete="off"
 		placeholder="Search..."
-		class=" relative z-50 block w-full rounded-full border-0 pl-9 py-1 text-gray-900 shadow-sm ring-1 ring-gray-200 placeholder:text-gray-400 focus:ring-gray-400 sm:text-sm sm:leading-6"
+		class="  block w-full rounded-full border-0 pl-9 py-1 text-gray-900 shadow-sm ring-1 ring-gray-300  placeholder:text-gray-400 focus:ring-gray-400 sm:text-sm sm:leading-6"
 	/>
 	<div class="absolute inset-y-0 flex z-50 px-2 pt-1.5">
 		<Icon src={MagnifyingGlass} class="text-gray-400 h-5 w-5" />
@@ -72,4 +76,14 @@
 			<Icon src={XMark} class="text-gray-400 h-5 w-5" />
 		</button>
 	{/if}
-</SearchBox>
+	</div>
+
+<SearchBox {open} {results} {value} {totalHits}/>
+</div>
+
+
+
+
+
+
+
