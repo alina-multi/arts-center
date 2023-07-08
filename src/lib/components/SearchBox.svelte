@@ -1,29 +1,32 @@
 <script lang="ts">
 	import { localePath } from '$lib/translations';
 	import { Menu, MenuItems, MenuItem } from '@rgossiaux/svelte-headlessui';
+	import { page } from '$app/stores';
+
+	const currentUser = $page.data.currentUser;
+	console.log(currentUser);
+
 	export let open = false,
 		results = [],
 		totalHits: number,
 		value = '';
 </script>
 
-<Menu class="mt-2  flex-1 ">
-	<div class=" px-12">
-		<div class="relative w-full">
-			<slot />
+<Menu class=" flex-1 block mx-3 xl:mx-9 ">
+
 			{#if open}
 				<div class="fixed inset-0 bg-gray-900 bg-opacity-50 transition-opacity z-40" />
 
 				<div
-					class="absolute top-12 left-0 w-full bg-white shadow-lg z-40 rounded-md"
+					class="absolute top-20 sm:top-16 lg:top-12 left-0 w-full bg-white shadow-lg z-40 sm:rounded-md  max-h-[500px] overflow-scroll "
 					id="searchList"
 				>
 					{#if results.length > 0}
-						<p class="block w-fulltext-sm text-gray-700 mt-3 py-2 px-6 font-semibold">
+						<p class="block w-fulltext-sm text-gray-700 sm:mt-3 py-2 px-6 font-semibold">
 							Found {totalHits}
 							{results.length === 1 ? 'person' : 'people'}
 						</p>
-						<MenuItems class="py-3  border-t" static={open}>
+						<MenuItems class="py-3  border-t " static={open}>
 							{#each results as user}
 								<MenuItem let:active>
 									<a
@@ -55,6 +58,10 @@
 					{/if}
 				</div>
 			{/if}
-		</div>
-	</div>
-</Menu>
+		
+		
+ </Menu>
+
+
+
+
