@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { localePath, t } from '$lib/translations';
 	import TopNav from './TopNav.svelte';
 	import TopNavLink from './TopNavLink.svelte';
@@ -35,4 +35,37 @@
 		<TopNavLangLink lang="uk" />
 		<DarkSwitch />
 	</div>
-</TopNav>
+</TopNav> -->
+
+
+<script lang="ts">
+	import { localePath, t } from '$lib/translations';
+	import TopNav from './TopNav.svelte';
+	import MobileMainNav from './MobileMainNav.svelte';
+	import TopNavLink from './TopNavLink.svelte';
+	import TopNavLangLink from './TopNavLangLink.svelte';
+	import DarkSwitch from './DarkSwitch.svelte';
+	import Logo from '../atoms/Logo.svelte';
+	import UserDropdown from './UserDropdown.svelte';
+	import { page } from '$app/stores';
+	import SearchInput from '$lib/components/input/SearchInput.svelte';
+	import TabletMainNav from './TabletMainNav.svelte';
+
+	export let user;
+	import DesktopNav from './DesktopNav.svelte';
+
+</script>
+
+
+
+<div class=" sm:hidden">
+	<MobileMainNav {user} />
+</div>
+
+<div class="hidden sm:max-lg:block w-full ">
+	<TabletMainNav {user} />
+</div>
+
+<div class="hidden lg:block w-full ">
+	<DesktopNav {user} />
+</div>
