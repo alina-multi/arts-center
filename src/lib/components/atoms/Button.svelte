@@ -16,7 +16,7 @@ function handleClick() {
 <button 
 {type}
 on:click={handleClick}
-class="{customClass} inline-flex items-center justify-center text-gray-700 dark:text-gray-100"
+class="{customClass} inline-flex items-center justify-center "
 >
 <slot />
 </button>
