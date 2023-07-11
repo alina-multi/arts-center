@@ -26,13 +26,15 @@
 						Found {totalHits}
 						{results.length === 1 ? 'person' : 'people'}
 					</p>
-					<a
-						data-sveltekit-reload
-						href={localePath(`/search/${value}`)}
-						class="text-sky-700 hover:underline"
-					>
-						show full results &rarr;
-					</a>
+				{#if totalHits > 20}
+				<a
+				data-sveltekit-reload
+				href={localePath(`/search/${value}`)}
+				class="text-sky-700 hover:underline"
+			>
+				show full results &rarr;
+			</a>
+			{/if}
 				</div>
 				<MenuItems class="py-3  border-t dark:border-zinc-800 " static={open}>
 					{#each results as user}

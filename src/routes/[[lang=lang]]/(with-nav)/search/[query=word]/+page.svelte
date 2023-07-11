@@ -4,12 +4,29 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ChevronRight } from '@steeze-ui/heroicons';
 	import UserDetails from '$lib/components/user/UserDetails.svelte';
+	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
 
 	export let data;
 	const { search, query } = data;
 	let page = 1;
 	let newBatch = [];
-	$: results = [...search.hits, ...newBatch];
+	let loading = false;
+	let hasMore = true;
+	$: results = [...search.hits];
+
+	async function fetchData() {
+		loading = true;
+		let url = localePath(`/api/search/${query}/${page}`);
+		const response = await fetch(url);
+		const search = await response.json();
+		newBatch = search.hits;
+		results = [...results, ...newBatch];
+
+		if (newBatch.length !== 20) {
+			hasMore = false;
+		}
+		loading = false;
+	}
 </script>
 
 <ul role="search" class="divide-y divide-gray-100">
@@ -20,9 +37,9 @@
 					<Picture photo={user.photo} size={'w-12 h-12'} />
 				</div>
 
-				<div class="min-w-0 flex-auto text-sm ">
+				<div class="min-w-0 flex-auto text-sm">
 					<p class="font-semibold mb-1">{user.name}</p>
-					<UserDetails user={user} />
+					<UserDetails {user} />
 				</div>
 			</a>
 
@@ -35,13 +52,16 @@
 			</a>
 		</li>
 	{/each}
+
+	<div />
+	{#if hasMore}
+		<InfiniteScroll
+			{hasMore}
+			{loading}
+			on:loadMore={() => {
+				page++;
+				fetchData();
+			}}
+		/>
+	{/if}
 </ul>
-
-<!-- Infinite scroll -->
-
-<!-- const loadMore = async () => {
-    page++;
-    const res = await fetch(`/api/search/${query}/${page}`);
-    const search = await res.json();
-    newBatch = search.hits;
-}; -->
