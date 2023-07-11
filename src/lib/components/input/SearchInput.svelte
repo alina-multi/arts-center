@@ -4,17 +4,13 @@
 	import SearchBox from '../SearchBox.svelte';
 	import { Spinner } from 'flowbite-svelte';
 	import debounce from 'lodash/debounce';
-
 	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
-
-	const path = $page.url.pathname;
-	console.log(path);
+	
 
 	let value = '',
 		totalHits,
-		loading = false;
-	let results = [];
+		loading = false,
+		results = [];
 	$: open = value.length > 0;
 
 	function onEnter(e) {

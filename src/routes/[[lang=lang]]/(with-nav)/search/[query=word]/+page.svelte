@@ -5,9 +5,6 @@
 	import { ChevronRight } from '@steeze-ui/heroicons';
 	import UserDetails from '$lib/components/user/UserDetails.svelte';
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
-	import {onMount} from 'svelte';
-	
-	
 
 	export let data;
 	const { search, query } = data;
@@ -16,12 +13,6 @@
 	let loading = false;
 	let hasMore = true;
 	$: results = [...search.hits];
-
-	console.log(query);
-
-	onMount(() => {
-		console.log('mounted');
-	});
 
 	async function fetchData() {
 		loading = true;
