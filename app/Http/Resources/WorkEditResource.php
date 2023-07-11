@@ -12,9 +12,9 @@ class WorkEditResource extends JsonResource
     {
         return [
             ...parent::toArray($request),
-            'blocks' => WorkBlockResource::collection($this->whenLoaded('blocks')),
             'images' => $this->whenLoaded('images'),
             'owners' => $this->whenLoaded('owners'),
+            'titles' => $this->whenLoaded('titles'),
         ];
     }
 }

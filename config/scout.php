@@ -42,7 +42,7 @@ return [
     */
 
     'queue' => [
-        'connection' => 'redis',
+        'connection' => env('SCOUT_QUEUE', 'redis'),
         'queue' => 'low'
     ],
 

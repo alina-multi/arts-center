@@ -18,23 +18,21 @@ class DraftController extends Controller
         foreach ([$request->main, ...$request->more] as $image) {
             $moreImages[] = ImageHelper::createFromUploaded($image, 'works', $request->user()->id, $request->user()->id, $work->id);
         }
-        $work->blocks()->create([
-            'language' => 'zz',
-            'type' => 'image',
-            'order' => 0,
-            'data' => []
-        ])->images()->attach(array_shift($moreImages));
+        $main = array_shift($moreImages);
+        $work->update([
+            'main_image_id' => $main->id
+        ]);
         if (sizeof($moreImages)) {
-            $gridImages = $work->blocks()->create([
-                'language' => 'zz',
-                'type' => 'grid',
-                'order' => 1,
-                'data' => ''
-            ])->images();
             foreach ($moreImages as $image) {
-                $gridImages->attach($image);
+                $work->images()->attach($image);
             }
         }
-        return WorkEditResource::make($work->load('blocks', 'blocks.images', 'owners'));
+        $work->titles()->create(['language' => $request->language]);
+        return WorkEditResource::make($work->load( 'owners', 'images', 'titles'));
+    }
+
+    public function show(Work $draft)
+    {
+        return WorkEditResource::make($draft->load( 'owners', 'images', 'titles'));
     }
 }

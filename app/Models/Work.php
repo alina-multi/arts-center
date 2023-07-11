@@ -22,10 +22,6 @@ class Work extends Model
         'updated_at', 'old_id', 'hosts', 'show_en', 'show_ru', 'show_uk', 'old_user_id', 'titles'
     ];
 
-    protected $appends = [
-        'title'
-    ];
-
     protected $casts = [
         'published_at' => 'datetime',
     ];
@@ -68,6 +64,11 @@ class Work extends Model
         return $this->hasOne(Image::class,'id','image_id');
     }
 
+    public function full()
+    {
+        return $this->hasOne(Image::class,'id','full_image_id');
+    }
+
     public function tags()
     {
         return $this->morphToMany(Tag::class, 'taggable')->where('type_id', Tag::TYPE_TAG);
@@ -96,10 +97,5 @@ class Work extends Model
     public function comments()
     {
         return $this->morphMany(Comment::class,'commentable');
-    }
-
-    public function getTitleAttribute()
-    {
-        return sizeof($this->titles) ? $this->titles[0]->title : '';
     }
 }

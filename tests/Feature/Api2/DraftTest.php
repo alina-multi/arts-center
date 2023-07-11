@@ -31,15 +31,12 @@ class DraftTest extends TestCase
             'main' => array_shift($images),
             'more' => $images,
             'language' => 'en',
-        ])->assertStatus(201)->assertJson(fn(AssertableJson $json) => $json->where('id', 1)
-            ->where('title', '')
-            ->has('owners', 1)
-            ->has('blocks', 2)
-            ->where('blocks.0.type', 'image')
-            ->has('blocks.0.images', 1)
-            ->where('blocks.1.type', 'grid')
-            ->has('blocks.1.images', 2)
-            ->etc()
-        );
+        ])->assertStatus(201)
+            ->assertJson(fn(AssertableJson $json) => $json->where('id', 1)
+                ->has('owners', 1)
+                ->has('images', 2)
+                ->has('titles', 1)
+                ->etc()
+            );
     }
 }
