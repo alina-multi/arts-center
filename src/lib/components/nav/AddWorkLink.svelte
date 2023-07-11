@@ -5,7 +5,7 @@
 	import { page } from '$app/stores';
 	let href;
 	if ($page.data.currentUser) {
-		href = localePath(`/addwork`);
+		href = localePath(`/my/work/add`);
 	} else {
 		href = localePath(`/login?redirect=${$page.url.pathname}`);
 	}
