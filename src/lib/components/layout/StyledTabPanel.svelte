@@ -1,7 +1,7 @@
 <script>
-  import { TabPanel } from "@rgossiaux/svelte-headlessui";
+	import { TabPanel } from '@rgossiaux/svelte-headlessui';
 </script>
 
 <TabPanel>
-  <slot />
+	<slot />
 </TabPanel>
