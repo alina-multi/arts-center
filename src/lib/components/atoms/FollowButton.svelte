@@ -45,16 +45,16 @@
 	</a>
 {:else if isFollowing}
 	<button
-		class="{`text-${size}`} group/unfollow rounded-full px-3 py-1 border border-gray-500 gap-1 text-gray-800 shadow-sm cursor-pointer"
+		class="{`text-${size}`} group/unfollow rounded-full px-3 py-1 border dark:text-white dark:bg-zinc-800 dark:border-zinc-700 border-zinc-500 gap-1 text-gray-800 shadow-sm cursor-pointer"
 		on:click={() => handleFollow(currentUser)}
 	>
 		<div class="group-hover/unfollow:hidden flex items-center justify-center gap-1">
 			<span>Following</span>
-			<Icon src={CheckCircle} class="w-4 h-4  text-emerald-700" />
+			<Icon src={CheckCircle} class="w-4 h-4  text-zinc-500" />
 		</div>
 		<div class="group-hover/unfollow:flex hidden justify-center items-center gap-1">
 			<span>Unfollow</span>
-			<Icon src={MinusCircle} class="w-4 h-4  text-emerald-700" />
+			<Icon src={MinusCircle} class="w-4 h-4  text-zinc-500" />
 		</div>
 	</button>
 {:else}
