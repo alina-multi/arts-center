@@ -16,13 +16,13 @@
 	<Logo />
 	<TopNavLink exact href={localePath('/')}>{$t('global.menu.gallery')}</TopNavLink>
 	<TopNavLink href={localePath('/users')}>{$t('global.menu.users')}</TopNavLink>
-
 	<SearchInput />
-
 	{#if user}
-		<UserDropdown {user} />
+	<AddWorkLink />
+	<UserDropdown {user} />
+		
+		
 	{:else}
-		<AddWorkLink />
 		<LoginLink />
 	{/if}
 	<div class="flex gap-3 h-full">

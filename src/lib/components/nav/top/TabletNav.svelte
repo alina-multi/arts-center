@@ -6,8 +6,10 @@
 	import SideBarNavigation from '../SideBarNavigation.svelte';
 	import Search from '../SearchDialog.svelte';
 	import SearchInput from '../../input/SearchInput.svelte';
+	import UserDropdown from '../UserDropdown.svelte';
+	import { User } from '@steeze-ui/heroicons';
 	export let breakpoint = 'sm:max-lg';
-	let currentUser = $page.data.currentUser;
+	let user = $page.data.currentUser;
 </script>
 
 <div class="hidden {breakpoint}:flex items-center justify-between w-full">
@@ -16,12 +18,18 @@
 		<Logo />
 	</div>
 
-	<div class="flex gap-3 md:gap-6">
+	<div class="flex items-center gap-3 md:gap-6">
 		<div class="hidden lg:block w-96"><SearchInput /></div>
 		<div class="lg:hidden"><Search /></div>
 		<div class="flex items-center gap-3 md:gap-6 h-full">
-			<AddWorkLink />
+		{#if user}
+		<AddWorkLink />
+		<UserDropdown {user}/>
+		
+{:else}
+			
 			<LoginLink/>
+{/if}
 		</div>
 	</div>
 </div>
