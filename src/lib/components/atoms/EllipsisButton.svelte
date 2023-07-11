@@ -17,7 +17,7 @@
 			}
 		];
 
-	let myWork = work.owners.some((owner) => handleIsMy($page.data.user, owner.id));
+	let myWork = work.owners.some((owner) => handleIsMy($page.data.currentUser, owner.id));
 </script>
 
 {#if myWork}

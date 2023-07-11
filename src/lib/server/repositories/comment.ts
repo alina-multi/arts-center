@@ -13,7 +13,7 @@ export function get(commentable_id: bigint, commentable_type: string) {
 	return prisma.comments.findMany({
 		select: {
 			id: true,
-			body: true,
+			text: true,
 			rating: true,
 			deleted_at: true,
 			created_at: true,

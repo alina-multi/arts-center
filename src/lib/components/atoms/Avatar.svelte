@@ -3,6 +3,7 @@
 	import { User } from '@steeze-ui/heroicons';
 	import { handleAvatarError } from '$lib/helpers/handleImgError';
 	import { localePath } from '$lib/translations';
+	import Picture from '$lib/components/atoms/Picture.svelte';
 
 	export let user, size, withName;
 	$: href = localePath(`/${user.username}`);
@@ -15,9 +16,9 @@
 <a {href} class="inline-flex shrink-0">
 	<div class="inline-flex items-center gap-2">
 		<div class="bg-zinc-300 dark:bg-gray-800 rounded-full shadow-md">
-			{#if user.avatar}
+			{#if user?.avatar}
 				<img
-					src={user.avatar.src}
+					src={user?.avatar?.src}
 					alt={user.name}
 					class="flex-none {size} rounded-full object-cover"
 					on:error={(event) => handleAvatarError(event)}
@@ -32,7 +33,7 @@
 		</div>
 
 		{#if withName}
-			<p>{user.name}</p>
+			<p class="hover:underline">{user.name}</p>
 		{/if}
 	</div>
 </a>

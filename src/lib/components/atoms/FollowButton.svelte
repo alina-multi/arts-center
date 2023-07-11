@@ -8,15 +8,15 @@
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 
 	export let user, size;
-	let userAuth = $page.data.user;
+	let currentUser = $page.data.currentUser;
 
 	let isFollowing = false;
-	let isMy = handleIsMy(userAuth, user.id);
+	let isMy = handleIsMy(currentUser, user.id);
 
 	let open = false;
 
-	const handleFollow = (userAuth) => {
-		if (userAuth) {
+	const handleFollow = (currentUser) => {
+		if (currentUser) {
 			isFollowing = !isFollowing;
 		} else {
 			open = true;
@@ -38,7 +38,7 @@
 
 {#if isMy}
 	<a
-		href="{`/user/${userAuth?.id}/edit`} "
+		href="{`/user/${currentUser?.id}/edit`} "
 		class="flex text-xs items-center justify-center rounded-full px-3 py-1 border border-gray-500 gap-1 text-gray-800 shadow-sm cursor-pointer"
 	>
 		Edit Profile
@@ -46,7 +46,7 @@
 {:else if isFollowing}
 	<button
 		class="{`text-${size}`} group/unfollow rounded-full px-3 py-1 border border-gray-500 gap-1 text-gray-800 shadow-sm cursor-pointer"
-		on:click={() => handleFollow(userAuth)}
+		on:click={() => handleFollow(currentUser)}
 	>
 		<div class="group-hover/unfollow:hidden flex items-center justify-center gap-1">
 			<span>Following</span>
@@ -60,7 +60,7 @@
 {:else}
 	<button
 		class="{`text-${size}`} bg-sky-700 text-white hover:bg-sky-600 flex items-center justify-center gap-1 rounded-full px-3 py-1 shadow-sm cursor-pointer"
-		on:click={() => handleFollow(userAuth)}
+		on:click={() => handleFollow(currentUser)}
 	>
 		<span>Follow</span>
 		<Icon src={PlusCircle} class="w-4 h-4   " />

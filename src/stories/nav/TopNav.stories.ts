@@ -1,4 +1,4 @@
-import TopNav from '$lib/components/nav/TopNav.svelte';
+import TopNav from '$lib/components/nav/top/TopNav.svelte';
 import type { Meta } from '@storybook/svelte';
 
 export default {

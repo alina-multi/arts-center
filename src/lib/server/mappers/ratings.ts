@@ -13,7 +13,7 @@ export function ratingsMap(ratings?: RatingWithRelations[]): Rating[] {
 	ratings = languageFilter(ratings);
 	return (
 		ratings?.map((rating) => {
-			let optional: { tag?: Tag } = {};
+			const optional: { tag?: Tag } = {};
 			if (rating.tag) {
 				const title = languageFind(rating?.tag?.titles)?.title;
 				// Let's ignore the tag if it has no title in the current language
