@@ -1,6 +1,6 @@
 <script lang="ts">
   import { MultiSelect } from "svelte-multiselect";
-  export let options, maxSelect;
+  export let options, maxSelect, required;
   options = options.map(tag => ({label: tag.title}));
   const classes = {
     outerDivClass: "rounded-md border sm:text-sm h-10",
@@ -9,6 +9,4 @@
   }
 </script>
 
-<MultiSelect {options} {maxSelect} {...classes}>
-
-</MultiSelect>
+<MultiSelect {required} {options} {maxSelect} {...classes}/>

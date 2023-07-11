@@ -23,5 +23,10 @@ export const load = (async (event) => {
 export const actions = {
   default: async (event) => {
     const form = await event.request.formData();
+    const response = await api({
+      method: "PUT",
+      path: `/api2/draft/${event.params.id}`,
+      event
+    })
   }
 } satisfies Actions;
