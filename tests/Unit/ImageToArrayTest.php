@@ -21,11 +21,11 @@ class ImageToArrayTest extends TestCase
             "src" => "preview/1.jpeg",
             "sources" => [
                 [
-                    "type" => "jpeg",
+                    "type" => "image/jpeg",
                     "srcset" => "preview/1.jpeg 300w, preview/2.jpeg 600w"
                 ],
                 [
-                    "type" => "webp",
+                    "type" => "image/webp",
                     "srcset" => "preview/3.webp 300w, preview/4.webp 600w"
                 ],
             ],

@@ -76,7 +76,7 @@ class Image extends Model
             ->values() // Here it's important to reset the keys, or it will be an object instead of an array
             ->groupBy(fn ($a, $b) => $a->extension->value)
             ->map(fn(Collection $variants) => [
-                'type' => $variants->first()->extension->value,
+                'type' => "image/{$variants->first()->extension->value}",
                 'srcset' => $variants->map(fn($variant) => "{$this->variantToSrc($variant)} {$variant->width}w")->join(', '),
             ])->values();
     }
