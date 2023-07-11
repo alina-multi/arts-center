@@ -1,11 +1,8 @@
 <script lang="ts">
 	import { localePath } from '$lib/translations';
 	import { Menu, MenuItems, MenuItem } from '@rgossiaux/svelte-headlessui';
-	import { page } from '$app/stores';
-
+	import { clickOutside } from 'svelte-use-click-outside';
 	import Picture from './atoms/Picture.svelte';
-	const currentUser = $page.data.currentUser;
-
 
 	export let open = false,
 		results = [],
@@ -15,42 +12,44 @@
 
 <Menu class=" flex-1 block mx-3 xl:mx-9 ">
 	{#if open}
-		<div class="lg:fixed inset-0 bg-zinc-900  bg-opacity-50 transition-opacity z-40" />
+		<div class="lg:fixed inset-0 bg-zinc-900 bg-opacity-50 transition-opacity z-40" />
 
 		<div
+			use:clickOutside={() => (open = false)}
 			class=" absolute z-50 top-20 sm:top-16 lg:top-12 left-0 w-full text-gray-900 dark:text-zinc-300 bg-white dark:bg-zinc-900 shadow-lg sm:rounded-md max-h-[500px] overflow-scroll overscroll-none dark:border dark:border-zinc-800"
-			id="searchList"
 		>
 			{#if results.length > 0}
-			<div class="flex items-center justify-between  py-3 sm:py-4 px-6 bg-gray-100 dark:bg-zinc-900 ">
-				<p class="  font-semibold">
-					Found {totalHits}
-					{results.length === 1 ? 'person' : 'people'}
-				</p>
-				<a
-				data-sveltekit-reload
-				href={localePath(`/search/${value}`)}
-				class="text-sky-700 hover:underline  "
-			>		
-				show full results &rarr;
-			</a>
-			</div>
+				<div
+					class="flex items-center justify-between py-3 sm:py-4 px-6 bg-gray-100 dark:bg-zinc-900"
+				>
+					<p class="  font-semibold">
+						Found {totalHits}
+						{results.length === 1 ? 'person' : 'people'}
+					</p>
+					<a
+						data-sveltekit-reload
+						href={localePath(`/search/${value}`)}
+						class="text-sky-700 hover:underline"
+					>
+						show full results &rarr;
+					</a>
+				</div>
 				<MenuItems class="py-3  border-t dark:border-zinc-800 " static={open}>
 					{#each results as user}
 						<MenuItem let:active>
-							
 							<a
 								href={localePath(`/${user.username}`)}
 								class="flex gap-3 items-center w-full text-left text-sm px-6 py-1 hover:bg-gray-100 hover:text-gray-900 cursor-pointer select-none rounded-md {active
 									? 'bg-gray-100 text-gray-900 dark:bg-zinc-800 dark:text-zinc-100'
 									: ''}"
 							>
-							<div class="rounded-full overflow-hidden"><Picture photo={user.photo} size={"h-10 w-10"}/> </div>	
+								<div class="rounded-full overflow-hidden">
+									<Picture photo={user.photo} size={'h-10 w-10'} />
+								</div>
 								{user.name}
 							</a>
 						</MenuItem>
 					{/each}
-					
 				</MenuItems>
 			{/if}
 			{#if totalHits === 0}

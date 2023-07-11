@@ -8348,6 +8348,11 @@ svelte-time@^0.7.1:
   dependencies:
     dayjs "^1.11.3"
 
+svelte-use-click-outside@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/svelte-use-click-outside/-/svelte-use-click-outside-1.0.0.tgz#9db6208c314b5cb9cc80a38284a89da176c8075d"
+  integrity sha512-tOWeMPxeIoW9RshS0WbogRhdYdbxcJV0ebkzSh1lwR7Ihl0hSZMmB4YyCHHoXJK4xcbxCCFh0AnQ1vkzGZfLVQ==
+
 svelte-writable-derived@^3.0.1:
   version "3.1.0"
   resolved "https://registry.npmjs.org/svelte-writable-derived/-/svelte-writable-derived-3.1.0.tgz"
