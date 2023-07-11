@@ -30,23 +30,24 @@
 
 <!-- DESkTOP -->
 <div class="hidden md:block">
-	<Popover class="relative inline-block text-left z-30 text-gray-800 dark:text-gray-200" let:open>
+	<Popover class="relative inline-block text-left z-30 text-gray-800 dark:text-gray-100" let:open>
 		<div class="flex flex-wrap gap-3">
 			<TagButtons tags={visibleTags} {urlGenerator} {params} active={isActive} />
 
 			{#if hiddenTags.length > 0}
 				<PopoverButton
-					class="flex items-center gap-2  border px-3 py-1 rounded-md hover:border-amber-500 dark:bg-gray-900 dark:border-gray-800 dark:hover:border-amber-500"
+					class="flex items-center gap-2  border px-3 py-1 rounded-md hover:border-amber-500 dark:bg-zinc-900 dark:border-zinc-800 dark:hover:border-amber-500"
 				>
 					other
 					{#if selected !== 'all' && isHiddenTag.length > 0}
 						<span class="text-sm bg-amber-600 text-white px-1 rounded-md">{selected}</span>
 					{/if}
 					{#if !open}
-						<Icon src={ChevronDown} class="w-5 transform rotate-180" />
+					<Icon src={ChevronUp} class="w-5 transform rotate-180" />
+						
 					{/if}
 					{#if open}
-						<Icon src={ChevronUp} class="w-5 transform rotate-180" />
+					<Icon src={ChevronDown} class="w-5 transform rotate-180" />
 					{/if}
 				</PopoverButton>
 			{/if}

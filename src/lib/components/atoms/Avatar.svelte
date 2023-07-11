@@ -3,6 +3,7 @@
 	import { User } from '@steeze-ui/heroicons';
 	import { handleAvatarError } from '$lib/helpers/handleImgError';
 	import { localePath } from '$lib/translations';
+	import Picture from '$lib/components/atoms/Picture.svelte';
 
 	export let user, size, withName;
 	$: href = localePath(`/${user.username}`);
@@ -10,6 +11,8 @@
 	if (!size) {
 		size = 'h-6 w-6';
 	}
+
+	console.log(user);
 </script>
 
 <a {href} class="inline-flex shrink-0">
