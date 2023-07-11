@@ -29,14 +29,13 @@
 			<MenuItem let:active>
 				<a
 					href={localePath('/my/profile')}
-					class="{active ? 'bg-gray-100 dark:bg-zinc-800' : ''} block px-4 py-2  "
-					>Edit profile</a
+					class="{active ? 'bg-gray-100 dark:bg-zinc-800' : ''} block px-4 py-2">Edit profile</a
 				>
 			</MenuItem>
 			<MenuItem let:active>
 				<a
 					href={localePath('/logout?redirect=' + $page.url.pathname)}
-					class="{active ? 'bg-gray-100 dark:bg-zinc-800' : ''} block px-4 py-2  "
+					class="{active ? 'bg-gray-100 dark:bg-zinc-800' : ''} block px-4 py-2"
 					data-sveltekit-preload-data="tap"
 					data-sveltekit-reload>Logout</a
 				>

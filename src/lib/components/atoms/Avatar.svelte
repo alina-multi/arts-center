@@ -11,7 +11,6 @@
 	if (!size) {
 		size = 'h-6 w-6';
 	}
-
 </script>
 
 <a {href} class="inline-flex shrink-0">

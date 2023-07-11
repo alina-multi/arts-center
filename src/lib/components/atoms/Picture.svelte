@@ -7,7 +7,7 @@
 
 {#if photo}
 	<picture>
-		{#each photo.sources as { srcset, type}}
+		{#each photo.sources as { srcset, type }}
 			<source {srcset} {type} />
 		{/each}
 		<img src={photo.src} alt=" username" class="{size} object-cover" />

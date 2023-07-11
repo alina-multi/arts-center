@@ -13,7 +13,6 @@
 	let open = false;
 </script>
 
-
 <Dialog class="flex items-center justify-center " {open} on:close={() => (open = false)}>
 	<DialogOverlay class="fixed z-30 inset-0 bg-zinc-900 opacity-50 dark:opacity-80" />
 

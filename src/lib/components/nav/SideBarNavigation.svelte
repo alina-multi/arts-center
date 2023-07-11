@@ -33,10 +33,10 @@
 		leaveFrom="translate-x-0"
 		leaveTo="translate-x-full"
 	>
-		<DialogOverlay class="fixed inset-0 bg-zinc-900/50 z-50"  />
+		<DialogOverlay class="fixed inset-0 bg-zinc-900/50 z-50" />
 
 		<div
-			class="absolute inset-y-0  z-50 left-0 w-full sm:w-2/3 md:w-1/2 overflow-y-auto bg-white dark:bg-zinc-900 text-black dark:text-white"
+			class="absolute inset-y-0 z-50 left-0 w-full sm:w-2/3 md:w-1/2 overflow-y-auto bg-white dark:bg-zinc-900 text-black dark:text-white"
 		>
 			<DialogDescription>
 				<TopNav>

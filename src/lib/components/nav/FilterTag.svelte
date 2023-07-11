@@ -43,11 +43,10 @@
 						<span class="text-sm bg-amber-600 text-white px-1 rounded-md">{selected}</span>
 					{/if}
 					{#if !open}
-					<Icon src={ChevronUp} class="w-5 transform rotate-180" />
-						
+						<Icon src={ChevronUp} class="w-5 transform rotate-180" />
 					{/if}
 					{#if open}
-					<Icon src={ChevronDown} class="w-5 transform rotate-180" />
+						<Icon src={ChevronDown} class="w-5 transform rotate-180" />
 					{/if}
 				</PopoverButton>
 			{/if}

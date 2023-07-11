@@ -5,7 +5,6 @@
 	import { Spinner } from 'flowbite-svelte';
 	import debounce from 'lodash/debounce';
 	import { goto } from '$app/navigation';
-	
 
 	let value = '',
 		totalHits,
