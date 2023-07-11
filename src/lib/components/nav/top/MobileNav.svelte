@@ -3,10 +3,9 @@
 	import SideBarNavigation from '../SideBarNavigation.svelte';
 	import SearchDialog from '../SearchDialog.svelte';
 	import AddWorkLink from '../AddWorkLink.svelte';
-	export let breakpoint = 'sm';
 </script>
 
-<div class=" flex {breakpoint}:hidden items-center justify-between w-full">
+<div class=" flex sm:hidden items-center justify-between w-full">
 	<div class="flex gap-3">
 		<SideBarNavigation />
 		<Logo />

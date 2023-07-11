@@ -17,11 +17,9 @@
 	<TopNavLink exact href={localePath('/')}>{$t('global.menu.gallery')}</TopNavLink>
 	<TopNavLink href={localePath('/users')}>{$t('global.menu.users')}</TopNavLink>
 	<SearchInput />
-	{#if user}
 	<AddWorkLink />
-	<UserDropdown {user} />
-		
-		
+	{#if user}
+		<UserDropdown {user} />
 	{:else}
 		<LoginLink />
 	{/if}

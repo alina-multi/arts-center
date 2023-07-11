@@ -11,7 +11,7 @@
 <TopNav>
 	<DesktopNav breakpoint={'xl'}/>
 	<TabletMainNav breakpoint={'sm:max-xl'}/>
-	<MobileMainNav breakpoint={'sm'}/>
+	<MobileMainNav/>
 	<DarkSwitch/>
 </TopNav>
 

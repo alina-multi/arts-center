@@ -12,7 +12,6 @@
 		size = 'h-6 w-6';
 	}
 
-	console.log(user);
 </script>
 
 <a {href} class="inline-flex shrink-0">
