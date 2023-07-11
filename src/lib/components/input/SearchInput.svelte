@@ -5,11 +5,28 @@
 	import { Spinner } from 'flowbite-svelte';
 	import debounce from 'lodash/debounce';
 
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+
+	const path = $page.url.pathname;
+	console.log(path);
+
 	let value = '',
 		totalHits,
 		loading = false;
 	let results = [];
 	$: open = value.length > 0;
+
+	function onEnter(e) {
+		if (e.key === 'Enter' && totalHits > 20) {
+			open = false;
+			goto(`/search/${value}`, {
+				replaceState: true
+			}).then(() => {
+				location.reload();
+			});
+		}
+	}
 
 	const doSearch = debounce((e) => {
 		loading = true;
@@ -31,6 +48,7 @@
 		<span class="sr-only">Search</span>
 		<input
 			on:input={doSearch}
+			on:keydown={onEnter}
 			bind:value
 			type="text"
 			name="search"
