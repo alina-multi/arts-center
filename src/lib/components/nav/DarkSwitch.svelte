@@ -11,8 +11,9 @@
 	};
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-	class="cursor-pointer text-sm inline-flex items-center bg-gray-100 dark:bg-gray-700 p-3 hover:bg-gray-200 dark:hover:bg-gray-600"
+	class=" md:max-xl:ml-6 ml-3 h-full cursor-pointer text-sm inline-flex items-center bg-gray-100 dark:bg-gray-700 p-3 hover:bg-gray-200 dark:hover:bg-gray-600"
 	on:click={toggleDark}
 >
 	{#if $darkTheme}

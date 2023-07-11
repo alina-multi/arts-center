@@ -1,10 +1,8 @@
 <script lang="ts">
-	import type { LayoutData } from './$types';
-	import MainNav from '$lib/components/nav/MainNav.svelte';
-	export let data: LayoutData;
+	import MainNav from '$lib/components/nav/top/MainNav.svelte';
 </script>
 
-<MainNav user={data.currentUser} />
+<MainNav />
 <main class="container mx-auto px-3 min-h-screen">
 	<slot />
 </main>
