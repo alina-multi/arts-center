@@ -38,10 +38,9 @@ class ProfileTest extends TestCase
                     'email' => $user->email,
                     'email_verified_at' => $user->email_verified_at->toJson(),
                     'country' => $user->country,
-                    'avatar' => [
+                    'photo' => [
                         // Just to make sure it sends it in this format
-                        'src' => $user->avatar->src,
-                        'srcset' => $user->avatar->srcset,
+                        'src' => $user->photo->src,
                     ],
                     'bios' => [
                         'uk' => $bio['uk']->text,
