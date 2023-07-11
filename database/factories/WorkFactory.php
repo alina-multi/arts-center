@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\ImageFolders;
 use App\Models\Comment;
 use App\Models\Image;
 use App\Models\Work;
@@ -31,18 +32,8 @@ class WorkFactory extends Factory
             'price' => $this->faker->numberBetween(100, 10000),
             'rating' => $this->faker->numberBetween(0, 30),
             'comments' => $this->faker->numberBetween(0, 500),
-            'image_id'=> Image::factory()->create(),
+            'image_id'=> Image::factory()->create(['folder' => ImageFolders::Preview]),
+            'full_image_id'=> Image::factory()->create(['folder' => ImageFolders::Works]),
         ];
-    }
-
-    public function addComments($from = 1, $to = 5): self
-    {
-        $count = rand($from, $to);
-        return $this->afterCreating(
-            fn(Work $work) => Comment::factory()->count($count)->state([
-                'commentable_id' => $work->id,
-                'commentable_type' => 'work'
-            ])->create()
-        );
     }
 }

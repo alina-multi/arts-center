@@ -21,7 +21,7 @@ class ProfileResource extends JsonResource
             'username' => $this->username,
             'email' => $this->email,
             'email_verified_at' => $this->email_verified_at,
-            'avatar' => $this->avatar,
+            'photo' => $this->photo,
             'country' => $this->country,
             'bios' => $this->bios->mapWithKeys(function ($bio) {
                 return [$bio->language => $bio->text];

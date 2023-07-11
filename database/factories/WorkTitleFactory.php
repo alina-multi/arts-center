@@ -23,6 +23,8 @@ class WorkTitleFactory extends Factory
     {
         return [
             'title' => $this->faker->realText(30),
+            'description' => $this->faker->realText(300),
+            'alt' => $this->faker->realText(30),
             'language' => 'en'
         ];
     }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\ImageExtentions;
 use App\Enums\ImageFolders;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
@@ -25,9 +26,9 @@ class Image extends Model
         'folder' => ImageFolders::class
     ];
 
-    protected $appends = ['src', 'srcset', 'sources'];
+    protected $appends = ['src', 'sources', 'original'];
 
-    protected $visible = ['src', 'srcset', 'sources'];
+    protected $visible = ['src',  'sources', 'original'];
 
     public function variants(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
@@ -53,16 +54,15 @@ class Image extends Model
         $original = $this->variants
             ->where('original', true)
             ->first();
-        return $original ? $this->variantToSrc($original) : '';
-    }
+        if (!$original) {
+            return '';
+        }
 
-    public function getSrcsetAttribute()
-    {
-        return $this->variants
-            ->where('original', false)
-            ->where('extension', '!=', ImageExtentions::webp)
-            ->sortBy('width')
-            ->map(fn($variant) => "{$this->variantToSrc($variant)} {$variant->width}w")->join(', ');
+        return [
+            "src"=> $this->variantToSrc($original),
+            "width" => $original->width,
+            "height" => $original->height,
+        ];
     }
 
     public function getSourcesAttribute()
@@ -72,12 +72,13 @@ class Image extends Model
                 ['width','asc'],
                 fn ($a, $b) => $a->extension->value <=> $b->extension->value,
             ])
+            ->where('original','!=',true)
             ->values() // Here it's important to reset the keys, or it will be an object instead of an array
-            ->map(fn($variant) => [
-                'src' => $this->variantToSrc($variant),
-                'width' => $variant->width,
-                'height' => $variant->height,
-            ]);
+            ->groupBy(fn ($a, $b) => $a->extension->value)
+            ->map(fn(Collection $variants) => [
+                'type' => $variants->first()->extension->value,
+                'srcset' => $variants->map(fn($variant) => "{$this->variantToSrc($variant)} {$variant->width}w")->join(', '),
+            ])->values();
     }
 
     private function addDomain($path)

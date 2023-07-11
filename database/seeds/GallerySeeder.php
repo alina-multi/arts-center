@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\ImageFolders;
 use App\Models\Image;
 use App\Models\User;
 use App\Models\Work;
@@ -22,9 +23,13 @@ class GallerySeeder extends Seeder
         Event::fake();
         $works = Work::factory()
             ->has(WorkTitle::factory()->sequence(
-                    ['language' => 'uk'],
-                    ['language' => 'en'],
-            )->count(2), 'titles')
+                ['language' => 'uk'],
+                ['language' => 'en'],
+            )
+                ->count(2), 'titles')
+            ->has(Image::factory()
+                ->count(6)
+                ->state(['folder' => ImageFolders::Grids]), 'images')
             ->count(100)
             ->create();
         foreach ($works as $work) {

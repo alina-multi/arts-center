@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(\Database\Seeders\UsersSeeder::class);
         $this->call(\Database\Seeders\GallerySeeder::class);
-        $this->call(\Database\Seeders\WorkSeeder::class);
         $this->call(\Database\Seeders\CommentsSeeder::class);
         $this->call(\Database\Seeders\TagsSeeder::class);
         $this->call(\Database\Seeders\VotesSeeder::class);
