@@ -3,6 +3,7 @@
 	import { MagnifyingGlass, XMark } from '@steeze-ui/heroicons';
 	import SearchBox from '../SearchBox.svelte';
 	import { Spinner } from 'flowbite-svelte';
+	import debounce from 'lodash/debounce'
 
 	let value = '',
 		totalHits,
