@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { userSelect } from './user';
+import { imageSelect } from '$lib/server/repositories/image';
 
 const prisma = new PrismaClient({
 	log: [
@@ -21,9 +22,20 @@ export function get(id: bigint) {
 			comments: true,
 			hosts: true,
 			price: true,
+			full: imageSelect,
+			images: {
+				select: {
+					image: imageSelect
+				},
+				where: {
+					imageable_type: 'work'
+				}
+			},
 			titles: {
 				select: {
 					title: true,
+					description: true,
+					alt: true,
 					language: true
 				}
 			},
@@ -70,37 +82,6 @@ export function get(id: bigint) {
 					width: true,
 					height: true,
 					length: true
-				}
-			},
-			blocks: {
-				select: {
-					id: true,
-					language: true,
-					type: true,
-					order: true,
-					data: true,
-					images: {
-						select: {
-							image: {
-								select: {
-									id: true,
-									name: true,
-									folder: true,
-									w1200: true,
-									w2400: true
-								}
-							}
-						},
-						where: {
-							imageable_type: {
-								// todo: once this is fixed, remove the workaround
-								in: ['work_block', 'App\\WorkBlock']
-							}
-						}
-					}
-				},
-				orderBy: {
-					order: 'asc'
 				}
 			}
 		},

@@ -1,4 +1,4 @@
-import type { Handle, HandleServerError } from '@sveltejs/kit';
+import type { Handle, HandleServerError, RequestEvent } from '@sveltejs/kit';
 import { checkUrlLocale } from '$lib/translations';
 import * as SentryNode from '@sentry/node';
 import '@sentry/tracing';
@@ -22,7 +22,7 @@ SentryNode.init({
 
 SentryNode.setTag('svelteKit', 'server');
 
-async function checkAuth(event) {
+async function checkAuth(event: RequestEvent<Partial<Record<string, string>>, string | null>) {
 	try {
 		// Make sure it will still work if auth server is down
 		const session = event?.cookies?.get('laravel_session');

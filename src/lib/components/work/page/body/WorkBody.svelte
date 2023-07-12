@@ -5,15 +5,3 @@
 
 	export let work;
 </script>
-
-{#each work.blocks as block}
-	{#if block.type === 'image'}
-		<ImageBlock {block} />
-	{/if}
-	{#if block.type === 'text'}
-		<TextBlock {block} />
-	{/if}
-	{#if block.type === 'grid'}
-		<GridBlock {block} />
-	{/if}
-{/each}

@@ -1,14 +1,23 @@
 import type { Work, WorkBlock } from '$lib/interfaces/Work';
-import type { votes, work_blocks, work_details, work_titles, works } from '@prisma/client';
-import type { imageablesWithRelations } from './image';
-import { imagesMap } from './image';
+import type {
+	imageables,
+	votes,
+	work_blocks,
+	work_details,
+	work_titles,
+	works,
+	images
+} from '@prisma/client';
 import type { taggablesWithRelations } from './tag';
 import { taggableMap } from './tag';
 import type { ownableWithRelations, usersWithRelations } from './owners';
 import { ownersMap } from './owners';
+import { imagablePicturesMap, picturesMap } from '$lib/server/mappers/pictures';
 
 interface workBlocksWithRelations extends work_blocks {
-	images: imageablesWithRelations[];
+	images: imageables & {
+		image: images;
+	};
 }
 interface worksWithRelations extends works {
 	blocks: workBlocksWithRelations[];
@@ -16,6 +25,7 @@ interface worksWithRelations extends works {
 	details: work_details;
 	owners: ownableWithRelations[];
 	tags: taggablesWithRelations[];
+	images: imageables;
 	votes: (votes & {
 		user: usersWithRelations;
 	})[];
@@ -23,7 +33,7 @@ interface worksWithRelations extends works {
 export function workMap(data: worksWithRelations): Work {
 	return {
 		...data,
-		blocks: blocksMap(data.blocks),
+		images: imagablePicturesMap(data.images),
 		owners: ownersMap(data.owners),
 		tags: taggableMap(data.tags),
 		votes: ownersMap(data.votes),
@@ -41,7 +51,7 @@ function blocksMap(blocks: workBlocksWithRelations[]): WorkBlock[] | undefined {
 			language: row.language,
 			type: row.type,
 			data: JSON.parse(row.data),
-			images: imagesMap(row.images)
+			images: picturesMap(row.images)
 		};
 	});
 }

@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import { titleToId } from './tag';
 import { error } from '@sveltejs/kit';
 import { userSelect } from './user';
+import { imageSelect } from '$lib/server/repositories/image';
 
 const prisma = new PrismaClient({
 	log: [
@@ -30,19 +31,11 @@ export function query(
 			comments: true,
 			hosts: true,
 			price: true,
+			preview: imageSelect,
 			titles: {
 				select: {
 					title: true,
 					language: true
-				}
-			},
-			image: {
-				select: {
-					id: true,
-					name: true,
-					folder: true,
-					w300: true,
-					w600: true
 				}
 			},
 			owners: {

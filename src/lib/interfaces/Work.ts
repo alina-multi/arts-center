@@ -1,4 +1,4 @@
-import type { Image } from './Image';
+import type { Picture } from './Picture';
 import type { UserPreview } from './User';
 import type { Tag } from './Tag';
 
@@ -10,12 +10,11 @@ export interface WorkPreview {
 	hosts: number;
 	price: number | null;
 	titles: WorkTitle[];
-	image?: Image;
+	image?: Picture;
 	owners: UserPreview[];
 }
 
 export interface Work extends WorkPreview {
-	blocks?: WorkBlock[];
 	year: number | null;
 	width: number | null;
 	height: number | null;
@@ -34,5 +33,5 @@ export interface WorkBlock {
 	language: string;
 	type: string;
 	data: object;
-	images?: Image[];
+	images?: Picture[];
 }
