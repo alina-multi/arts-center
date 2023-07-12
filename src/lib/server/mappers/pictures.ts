@@ -17,6 +17,17 @@ export function imagablePicturesMap(images: imageables[]): Picture[] {
 
 export function pictureMap(image: imageWithRelation): Picture {
 	const sourcesMap: Map<string, { type: string; srcset: string[] }> = new Map();
+	if (!image.variants) {
+		return {
+			original: {
+				src: '',
+				width: 0,
+				height: 0
+			},
+			sources: [],
+			src: ''
+		};
+	}
 	const sortedVariants = image.variants.sort((a, b) => a.width - b.width);
 	let original, src;
 	for (let variant of sortedVariants) {
