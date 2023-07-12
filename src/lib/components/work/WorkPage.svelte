@@ -11,6 +11,7 @@
 
 	const currentUser = $page.data.currentUser;
 </script>
+
 <div
 	class=" relative mx-auto lg:border border-t-transparent lg:px-14 py-3 dark:border-gray-800 dark:border-t-transparent"
 >

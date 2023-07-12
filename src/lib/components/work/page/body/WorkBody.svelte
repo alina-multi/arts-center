@@ -5,4 +5,3 @@
 
 	export let work;
 </script>
-

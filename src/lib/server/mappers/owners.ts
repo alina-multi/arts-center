@@ -1,6 +1,6 @@
 import type { images, users } from '@prisma/client';
 import type { User } from '$lib/interfaces/User';
-import { pictureMap } from "$lib/server/mappers/pictures";
+import { pictureMap } from '$lib/server/mappers/pictures';
 
 export interface ownableWithRelations {
 	user: usersWithRelations;

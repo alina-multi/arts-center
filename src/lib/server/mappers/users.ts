@@ -7,7 +7,7 @@ import { worksPreviewMap } from './gallery';
 import { query } from '$lib/server/repositories/gallery';
 import type { images } from '@prisma/client';
 import { languageFind } from '$lib/translations';
-import { pictureMap } from "$lib/server/mappers/pictures";
+import { pictureMap } from '$lib/server/mappers/pictures';
 
 type userWithRelations = {
 	id: bigint;

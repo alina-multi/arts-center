@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { userSelect } from './user';
-import { imageSelect } from "$lib/server/repositories/image";
+import { imageSelect } from '$lib/server/repositories/image';
 
 const prisma = new PrismaClient({
 	log: [
@@ -35,7 +35,7 @@ export function get(id: bigint) {
 				select: {
 					title: true,
 					description: true,
-					alt:true,
+					alt: true,
 					language: true
 				}
 			},

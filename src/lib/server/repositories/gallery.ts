@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import { titleToId } from './tag';
 import { error } from '@sveltejs/kit';
 import { userSelect } from './user';
-import { imageSelect } from "$lib/server/repositories/image";
+import { imageSelect } from '$lib/server/repositories/image';
 
 const prisma = new PrismaClient({
 	log: [
