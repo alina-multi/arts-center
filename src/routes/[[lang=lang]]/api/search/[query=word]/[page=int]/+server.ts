@@ -1,6 +1,5 @@
 import type { RequestHandler } from './$types';
 import { MeiliSearch } from 'meilisearch';
-import { convertToPicture } from '$lib/server/mappers/newImage';
 
 export const GET = (async ({ params }) => {
 	const client = new MeiliSearch({
@@ -14,7 +13,7 @@ export const GET = (async ({ params }) => {
 	});
 
 	let { hits } = search;
-	hits = [search.hits.map((hit) => convertToPicture(hit)), ...hits];
+	hits = [search.hits, ...hits];
 
 	return new Response(JSON.stringify(search));
 }) satisfies RequestHandler;

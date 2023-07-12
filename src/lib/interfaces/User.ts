@@ -1,11 +1,11 @@
-import type { Image } from '$lib/interfaces/Image';
+import type { Picture } from '$lib/interfaces/Picture';
 import type { WorkPreview } from './Work';
 import type { Rating } from './Rating';
 
 export interface UserPreview {
 	id: bigint;
 	username: string;
-	avatar: Image | null;
+	photo: Picture | null;
 	name: string;
 	country: string | null;
 	rating: number;

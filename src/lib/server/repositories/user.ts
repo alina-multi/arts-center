@@ -2,12 +2,13 @@ import type { Prisma } from '@prisma/client';
 import { PrismaClient } from '@prisma/client';
 import { titleToId } from './tag';
 import { error } from '@sveltejs/kit';
+import { imageSelect } from "$lib/server/repositories/image";
 
 export const userSelect = {
 	id: true,
 	username: true,
 	name: true,
-	avatar: true,
+	photo: imageSelect,
 	country: true,
 	rating: true
 };

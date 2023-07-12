@@ -4,10 +4,10 @@ import type { RatingWithRelations } from './ratings';
 import { ratingsMap } from './ratings';
 import type { WorksWithRelations } from './gallery';
 import { worksPreviewMap } from './gallery';
-import { imageMap } from './image';
 import { query } from '$lib/server/repositories/gallery';
 import type { images } from '@prisma/client';
-import { languageFind } from '../../translations';
+import { languageFind } from '$lib/translations';
+import { pictureMap } from "$lib/server/mappers/pictures";
 
 type userWithRelations = {
 	id: bigint;
@@ -16,7 +16,7 @@ type userWithRelations = {
 	created_at: Date | null;
 	country: string | null;
 	rating: number;
-	avatar: images | null;
+	photo: images | null;
 	ratings?: RatingWithRelations[];
 	bios?: user_bios[];
 };
@@ -48,7 +48,7 @@ export async function usersMap(users: userWithRelations[]): Promise<UserList[]> 
 			return {
 				...userMap(user),
 				works,
-				avatar: imageMap(user.avatar)
+				photo: pictureMap(user.photo)
 			};
 		})
 	);
@@ -63,7 +63,7 @@ export function userMap(user: userWithRelations): User {
 		created_at: user.created_at,
 		rating: user.rating,
 		ratings: ratingsMap(user.ratings),
-		avatar: imageMap(user.avatar),
+		photo: pictureMap(user.photo),
 		bio: languageFind(user.bios)?.text
 	};
 }

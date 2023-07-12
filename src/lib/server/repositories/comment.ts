@@ -24,7 +24,7 @@ export function get(commentable_id: bigint, commentable_type: string) {
 					id: true,
 					username: true,
 					name: true,
-					avatar: true
+					photo: true
 				}
 			}
 		},
