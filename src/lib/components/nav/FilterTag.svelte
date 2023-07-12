@@ -103,7 +103,6 @@
 				<Icon src={ChevronUp} class="w-5" />
 			{/if}
 		</PopoverButton>
-		
 
 		<PopoverPanel
 			class="absolute  right-0  z-10 mt-3  bg-white/90 backdrop-blur-md dark:bg-black/90 shadow-2xl ring-1 ring-black dark:ring-zinc-800 ring-opacity-5 focus:outline-none overflow-hidden"
@@ -112,16 +111,18 @@
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div class="flex gap-2 flex-wrap text-sm p-4 flex-row-reverse" on:click={() => close()}>
 				<TagButtons {tags} {urlGenerator} {params} active={isActive} />
-				
 			</div>
 			{#if selected !== 'all'}
-						<button on:click={() => (selected = 'all')} class="w-full text-right pt-3 pb-6 px-3 border-t border-gray-300 dark:border-zinc-900 ">
-							<span
-								class="font-semibold text-zinc-600 dark:text-zinc-400 hover:ring-1 hover:ring-zinc-400 hover:text-zinc-500 px-3 py-0.5 rounded-full text-xs underline"
-								>Clear filters</span
-							>
-						</button>
-					{/if}
+				<button
+					on:click={() => (selected = 'all')}
+					class="w-full text-right pt-3 pb-6 px-3 border-t border-gray-300 dark:border-zinc-900"
+				>
+					<span
+						class="font-semibold text-zinc-600 dark:text-zinc-400 hover:ring-1 hover:ring-zinc-400 hover:text-zinc-500 px-3 py-0.5 rounded-full text-xs underline"
+						>Clear filters</span
+					>
+				</button>
+			{/if}
 		</PopoverPanel>
 	</Popover>
 </div>

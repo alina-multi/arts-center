@@ -27,7 +27,7 @@
 
 	<RatingTags {user} {showRatings} tags />
 
-	<div class="hidden xl:flex  w-full pt-6">
+	<div class="hidden xl:flex w-full pt-6">
 		<FollowButton {user} size={'sm'} />
 	</div>
 </div>

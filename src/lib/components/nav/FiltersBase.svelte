@@ -17,7 +17,15 @@
 				{params}
 			/>
 
-			<div class="  w-full flex flex-row-reverse"> <FilterTag tags={options.tags} selected={params.tag} {urlGenerator} type={'tags'} {params} /> </div>
+			<div class="  w-full flex flex-row-reverse">
+				<FilterTag
+					tags={options.tags}
+					selected={params.tag}
+					{urlGenerator}
+					type={'tags'}
+					{params}
+				/>
+			</div>
 		</div>
 	{/if}
 </section>

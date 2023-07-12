@@ -6,11 +6,9 @@
 	export let user, button, tags, showRatings, onToggle;
 </script>
 
-
-
 {#if button && user.ratings.length > 0}
 	<div class="flex flex-wrap gap-2">
-		<span >Rating by category:</span>
+		<span>Rating by category:</span>
 		<button
 			class="flex xl:hidden gap-1 font-semibold items-center text-gray-800 hover:text-gray-600 dark:text-zinc-600"
 			on:click={() => onToggle()}
