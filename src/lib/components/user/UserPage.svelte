@@ -10,7 +10,7 @@
 </script>
 
 <div class="flex gap-3">
-	<div class=" w-1/4 brder rounded-md shadow-sm border">
+	<div class=" w-1/4 rounded-md shadow-sm border">
 		<UserCard {user} />
 	</div>
 	<div class="flex flex-col gap-3 w-3/4">

@@ -8,7 +8,7 @@
 <section aria-labelledby="filter-heading">
 	<h2 id="filter-heading" class="sr-only">Filters</h2>
 	{#if type === 'galleryPage'}
-		<div class=" relative flex gap-1 md:gap-6 justify-between md:text-sm xl:text-base">
+		<div class="relative flex gap-1 md:gap-6 justify-between md:text-sm xl:text-base">
 			<FilterOrder
 				option={options.order}
 				selectedOrder={params.order}
@@ -17,7 +17,15 @@
 				{params}
 			/>
 
-			<FilterTag tags={options.tags} selected={params.tag} {urlGenerator} type={'tags'} {params} />
+			<div class="  w-full flex flex-row-reverse">
+				<FilterTag
+					tags={options.tags}
+					selected={params.tag}
+					{urlGenerator}
+					type={'tags'}
+					{params}
+				/>
+			</div>
 		</div>
 	{/if}
 </section>
