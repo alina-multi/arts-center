@@ -14,9 +14,9 @@
 
 <Listbox value={selectedOrder} class="relative inline-block text-left z-30" let:open>
 	<ListboxButton
-		class=" inline-flex space-x-2 justify-center items-center  border px-4 py-2 rounded-md text-gray-900 hover:bg-sky-700 hover:text-white hover:shadow-sm dark:text-zinc-300 dark:hover:text-zinc-100 {selectedOrder !=
+		class=" inline-flex space-x-2 justify-center items-center  border dark:border-zinc-800 dark:bg-zinc-900 px-4 py-2 rounded-md text-gray-900 hover:border-amber-600   hover:shadow-lg dark:text-zinc-300 dark:hover:border-amber-600 {selectedOrder !=
 		'popular'
-			? 'bg-sky-700 text-white shadow-sm'
+			? ' shadow-sm'
 			: ''}"
 	>
 		<span>{selectedOrder}</span>
@@ -42,15 +42,15 @@
 		>
 			{#each option as { title }}
 				<ListboxOption
-					class={({ active }) => (active ? 'bg-gray-100 dark:bg-zinc-900  ' : '')}
+					class={({ active }) => (active ? 'bg-gray-50 dark:bg-zinc-600 ' : '')}
 					value={title}
 					let:selected
 				>
 					<a
 						href={urlGenerator(type, title, params)}
 						class={selected
-							? ' bg-gray-200 dark:text-white block px-4 py-2'
-							: 'text-gray-600 dark:text-zinc-300 block px-4 py-2'}>{title}</a
+							? ' bg-gray-200 dark:text-white  dark:bg-zinc-800 block px-4 py-2'
+							: 'text-gray-600 dark:text-zinc-300 block px-4 py-2 hover:text-gray-900'}>{title}</a
 					>
 				</ListboxOption>
 			{/each}

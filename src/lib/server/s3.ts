@@ -11,16 +11,17 @@ export const s3 = new S3Client({
 
 export async function uploadFile(file: File, Key: string) {
 	try {
-		s3.send(
+		await s3.send(
 			new PutObjectCommand({
 				ACL: 'public-read',
 				Key,
 				Body: await file.arrayBuffer(),
 				Bucket: process.env.S3_BUCKET,
-				ContentLength: file.size
+				ContentLength: file.size,
+				ContentType: file.type
 			})
 		);
-		return true;
+		return Key;
 	} catch (error) {
 		return false;
 	}
