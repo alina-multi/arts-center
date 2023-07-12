@@ -18,11 +18,11 @@
 		<div class="flex items-center gap-3 max-md:justify-between">
 			<a
 				{href}
-				class="inline-flex hover:text-gray-800 cursor-pointer text-base sm:text-lg lg:text-xl xl:text-lg"
+				class="inline-flex hover:text-zinc-800 dark:hover:text-zinc-300 cursor-pointer text-base sm:text-lg lg:text-xl xl:text-lg"
 				>{user.name}</a
 			>
 			{#if !followBtn}
-				<FollowButton {user} size={'xs'} />
+				<span><FollowButton {user} size={'xs'} /></span>
 			{/if}
 		</div>
 

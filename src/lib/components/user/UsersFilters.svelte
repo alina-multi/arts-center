@@ -45,10 +45,10 @@
 			<UserFiltersGroup options={options[group]} {params} {group} {urlGenerator} />
 		{/each}
 
-		<div class="px-6 py-3 lg:p-6 flex flex-row-reverse">
+		<div class="p-3 flex flex-row-reverse">
 			<a
 				href={urlGenerator(params, defaultParams)}
-				class="text-sm text-gray-500 dark:text-zinc-300 rounded-full hover:ring-1 hover:ring-gray-300 cursor-pointer dark:hover:rounded-full dark:hover:bg-zinc-800 px-3 py-1"
+				class="text-sm text-gray-500 dark:text-zinc-300 rounded-full hover:ring-1 hover:ring-gray-300 cursor-pointer dark:hover:rounded-full dark:hover:ring-zinc-800 px-3 py-1"
 			>
 				Clear all
 			</a>
