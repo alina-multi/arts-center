@@ -453,7 +453,7 @@ model work_titles {
 model works {
   id            BigInt        @id @default(autoincrement()) @db.UnsignedBigInt
   image_id      BigInt        @default(0)
-  full_image_id BigInt        @default(0)
+  full_image_id BigInt?        @default(0)
   rating        Int           @default(0) @db.SmallInt
   comments      Int           @default(0) @db.SmallInt
   hosts         Int           @default(0)
