@@ -18,7 +18,6 @@
 	});
 </script>
 
-
 <svelte:head>
 	<script>
 		let dark = false;
@@ -56,6 +55,3 @@
 		</div>
 	</div>
 {/if}
-
-
-
