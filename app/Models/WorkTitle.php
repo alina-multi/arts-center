@@ -13,11 +13,11 @@ class WorkTitle extends Model
 
     protected static function booted()
     {
-        static::updated(function ($workTitle) {
-            if ($workTitle->work->published_at) {
-                PublishedWorkUpdated::dispatch($workTitle->work);
-            }
-        });
+//        static::updated(function ($workTitle) {
+//            if ($workTitle->work->published_at) {
+//                PublishedWorkUpdated::dispatch($workTitle->work);
+//            }
+//        });
     }
 
     protected $fillable = [
