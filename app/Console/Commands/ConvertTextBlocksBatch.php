@@ -2,18 +2,12 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\ConvertImageBlocks;
 use App\Jobs\ConvertTextBlocks;
 use App\Models\WorkBlock;
-use Illuminate\Bus\Queueable;
 use Illuminate\Console\Command;
-use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
 
 class ConvertTextBlocksBatch extends Command
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     /**
      * The name and signature of the console command.
      *
@@ -29,11 +23,11 @@ class ConvertTextBlocksBatch extends Command
     public function handle()
     {
         WorkBlock::where('type', 'text')
-            ->orderBy('order')
             ->orderBy('id')
+            ->orderBy('order')
             ->chunk($this->batch, function ($blocks) {
-                print "Dispatching next $this->batch \n\n Last id: {$blocks[0]->id}";
-                ConvertTextBlocksBatch::dispatch($blocks);
+                print "Dispatching next $this->batch Last id: {$blocks[0]->id}  \n\n";
+                ConvertTextBlocks::dispatch($blocks);
             });
     }
 }

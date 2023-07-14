@@ -17,7 +17,7 @@ class ConvertTextBlocks implements ShouldQueue
 
     protected $workTitles = [];
 
-    public function __construct(protected Collection $blocks)
+    public function __construct(protected $blocks)
     {
     }
 
