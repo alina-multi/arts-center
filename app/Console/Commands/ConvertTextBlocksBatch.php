@@ -32,6 +32,7 @@ class ConvertTextBlocksBatch extends Command
             ->orderBy('order')
             ->orderBy('id')
             ->chunk($this->batch, function ($blocks) {
+                print "Dispatching next $this->batch \n\n Last id: {$blocks[0]->id}";
                 ConvertTextBlocksBatch::dispatch($blocks);
             });
     }
