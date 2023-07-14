@@ -442,9 +442,9 @@ model work_titles {
   title       String    @db.Char(30)
   created_at  DateTime? @db.Timestamp(0)
   updated_at  DateTime? @db.Timestamp(0)
-  description String    @db.Text
-  alt         String    @db.VarChar(191)
-  colors      String    @db.VarChar(191)
+  description String?    @db.Text
+  alt         String?    @db.VarChar(191)
+  colors      String?    @db.VarChar(191)
   works       works?    @relation(fields: [work_id], references: [id])
 
   @@unique([work_id, language], map: "work_titles_work_id_language_unique")
