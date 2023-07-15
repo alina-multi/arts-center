@@ -5,11 +5,9 @@ namespace App\Jobs;
 use App\Models\WorkTitle;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Collection;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Password;
 
 class ConvertTextBlocks implements ShouldQueue
 {
@@ -57,6 +55,9 @@ class ConvertTextBlocks implements ShouldQueue
 
     protected function simpleDeltaParse($data) {
         $strings = [];
+        if (!empty($data['text'])) {
+            return $data['text'];
+        }
         if (empty($data['ops']) or !is_array($data['ops'])) {
             return '';
         }
