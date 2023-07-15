@@ -28,6 +28,9 @@ class ConvertImageBlocks implements ShouldQueue
     {
         foreach ($this->blocks->sortBy('order') as $block) {
             $work = $this->getWork($block->work_id);
+            if (!$work) {
+                continue;
+            }
             if ($block->type === 'image') {
                 $image = $block?->images?->first();
                 if (!$image) {
@@ -47,7 +50,7 @@ class ConvertImageBlocks implements ShouldQueue
         }
 
         foreach ($this->works as $work) {
-            $work->save();
+            $work?->save();
         }
     }
 
