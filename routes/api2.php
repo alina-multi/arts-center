@@ -20,7 +20,7 @@ Route::middleware(['auth:sanctum', LocaleHeader::class])->group(function () {
     Route::put('profile', ProfileController::class . '@update');
     Route::get('profile', ProfileController::class . '@index');
     Route::get('me', function (Request $request) {
-        return $request->user()->load('avatar');
+        return $request->user()->load('photo');
     });
     Route::post('vote', VoteController::class . '@store');
     Route::delete('vote', VoteController::class . '@destroy');
