@@ -15,7 +15,7 @@ class ConvertTextBlocksBatch extends Command
      */
     protected $signature = 'app:convert-text-blocks';
 
-    protected $batch = 100;
+    protected $batch = 1000;
 
     /**
      * Execute the console command.
@@ -23,9 +23,7 @@ class ConvertTextBlocksBatch extends Command
     public function handle()
     {
         WorkBlock::where('type', 'text')
-            ->orderBy('id')
-            ->orderBy('order')
-            ->chunk($this->batch, function ($blocks) {
+            ->chunkById($this->batch, function ($blocks) {
                 print "Dispatching next $this->batch Last id: {$blocks[0]->id}  \n\n";
                 ConvertTextBlocks::dispatch($blocks);
             });
