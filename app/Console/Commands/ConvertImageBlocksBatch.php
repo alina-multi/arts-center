@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Console\Commands;
+
+use App\Jobs\ConvertImageBlocks;
+use App\Models\WorkBlock;
+use Illuminate\Console\Command;
+
+class ConvertImageBlocksBatch extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'app:convert-image-blocks';
+
+    protected $batch = 1000;
+
+    /**
+     * Execute the console command.
+     */
+    public function handle()
+    {
+        WorkBlock::whereIn('type', ['image', 'grid'])
+            ->with('blocks')
+            ->orderBy('order')
+            ->orderBy('id')
+            ->chunk($this->batch, function ($blocks) {
+                print "Dispatching next $this->batch Last id: {$blocks[0]->id}  \n\n";
+                ConvertImageBlocks::dispatch($blocks);
+            });
+    }
+}
