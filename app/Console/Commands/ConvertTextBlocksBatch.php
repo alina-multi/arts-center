@@ -15,7 +15,7 @@ class ConvertTextBlocksBatch extends Command
      */
     protected $signature = 'app:convert-text-blocks';
 
-    protected $batch = 1000;
+    protected $batch = 100;
 
     /**
      * Execute the console command.
