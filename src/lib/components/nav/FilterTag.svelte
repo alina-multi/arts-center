@@ -30,7 +30,7 @@
 
 <!-- DESkTOP -->
 <div class="hidden md:flex">
-	<Popover class="relative inline-block text-left  z-30 text-gray-800 dark:text-gray-200 " let:open>
+	<Popover class="relative inline-block text-left  z-20 text-gray-800 dark:text-gray-200 " let:open>
 		<div class="flex flex-wrap gap-3 lg:justify-end w-full">
 			<TagButtons tags={visibleTags} {urlGenerator} {params} active={isActive} />
 

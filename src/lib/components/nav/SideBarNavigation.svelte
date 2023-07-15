@@ -8,7 +8,7 @@
 	import { localePath } from '$lib/translations';
 	import Button from '../atoms/Button.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { Bars4, XMark } from '@steeze-ui/heroicons';
+	import { Bars4, XMark, PencilSquare } from '@steeze-ui/heroicons';
 	import TopNav from './top/TopNav.svelte';
 	import TopNavLangLink from './TopNavLangLink.svelte';
 	import Logo from '../atoms/Logo.svelte';
@@ -20,6 +20,7 @@
 
 	let currentUser = $page.data.currentUser;
 	export let open = false;
+
 </script>
 
 <Dialog {open} on:close={() => (open = !open)} class="relative xl:hidden ">
@@ -59,17 +60,21 @@
 					</div>
 
 					{#if currentUser}
-						<div class="flex flex-col gap-3 py-3 divide-y">
+						<div class="flex flex-col gap-3 py-3 divide-y dark:divide-zinc-800">
 							<div class="flex justify-between pl-6 pr-3 min-[500px]:pr-6 items-center w-full">
 								<Avatar user={currentUser} size={'w-10 h-10'} withName />
 								<AddWorkLink />
 							</div>
 							<div class=" flex flex-col pl-16 px-3 gap-6 py-3">
-								<a href={localePath('/my/profile')}>Edit profile</a>
+								<a href={localePath('/my/profile')} class="flex items-center gap-2">
+									<span >Edit profile</span>
+									<Icon src={PencilSquare} class="w-5 mb-0.5" />
+								</a>
 								<a
 									href={localePath('/logout?redirect=' + $page.url.pathname)}
 									data-sveltekit-preload-data="tap"
-									data-sveltekit-reload>Log Out</a
+									data-sveltekit-reload>Log Out &rarr;
+									</a
 								>
 							</div>
 						</div>
