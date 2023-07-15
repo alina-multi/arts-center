@@ -1,6 +1,7 @@
 <script lang="ts">
 	import RatingPreview from '$lib/components/rating/RatingPreview.svelte';
 	import UserPreviewInline from '$lib/components/user/UserPreviewInline.svelte';
+	import Avatar from '$lib/components/atoms/Avatar.svelte';
 	import type { Work } from '$lib/interfaces/Work';
 
 	import ImageWork from '$lib/components/atoms/ImageWork.svelte';
@@ -9,7 +10,7 @@
 </script>
 
 <li
-	class="flex flex-col overflow-hidden lg:w-80 md:w-[23rem] xl:w-[19rem] 2xl:w-[18rem] {work.subscribed
+	class="flex flex-col gap-1 lg:gap-0 overflow-hidden lg:w-80 md:w-[23rem] xl:w-[19rem] 2xl:w-[18rem] {work.subscribed
 		? ' '
 		: ''} "
 >
@@ -22,9 +23,9 @@
 		</div>
 	</div>
 
-	<div class="flex justify-between items-center text-xs text-gray-500 mt-auto">
+	<div class="flex justify-between items-center lg:text-xs text-sm  mt-auto">
 		{#each work.owners as user}
-			<UserPreviewInline {user} />
+		<Avatar {user} withName={true} />
 		{/each}
 
 		{#if work.subscribed}

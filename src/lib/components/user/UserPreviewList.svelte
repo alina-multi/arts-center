@@ -55,7 +55,7 @@
 				</div>
 			{/if}
 		{/each}
-		<InfiniteScroll
+		<InfiniteScroll 
 			{hasMore}
 			{loading}
 			on:loadMore={() => {

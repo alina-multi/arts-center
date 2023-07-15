@@ -11,9 +11,7 @@
 		votable_type: string,
 		showVotedPreview = false,
 		currentUser: User,
-		size: 'sm' | 'md' | 'lg' = 'md';
-
-	size = size === 'sm' ? 'w-5 h-5' : size === 'md' ? 'w-6 h-6' : 'w-8 h-8';
+		size: string = 'w-6 h-6';
 
 	let votes = entity?.votes;
 	let rating = entity?.rating;
@@ -93,22 +91,22 @@
 	<VotedList {votes} {isLiked} {currentUser} />
 {/if}
 
-<div class="inline-flex items-center gap-2 dark:text-zinc-100 cursor-pointer">
+<div class="inline-flex items-center gap-2 dark:text-zinc-100 cursor-pointer ">
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div
 		class="flex items-center gap-2 {votable_type === 'work'
 			? 'border px-4 py-1 rounded-full shadow-md '
-			: 'hover:text-zinc-100'} dark:hover:text-sky-700"
+			: 'hover:text-zinc-100'}  dark:bg-zinc-800 dark:border-zinc-700 dark:text-white"
 	>
 		{#if votable_type === 'work'}
-			<span class="border-r pr-3">Like {rating}</span>
+			<span class="border-r  dark:border-zinc-700 pr-3">Like {rating}</span>
 		{/if}
 		{#if isLiked}
 			<button on:click={cancelVote}
 				><Icon
 					src={HandThumbUp}
 					theme="solid"
-					class=" {size}   {votable_type === 'comment' ? 'fill-sky-700' : 'fill-gray-700'}"
+					class=" {size}   {votable_type === 'comment' ? 'fill-sky-700 ' : 'fill-gray-700 dark:fill-sky-600 '}"
 				/></button
 			>
 		{:else}
@@ -116,14 +114,14 @@
 				><Icon
 					src={HandThumbUp}
 					theme="outline"
-					class=" {size} stroke-gray-700 hover:scale-110  "
+					class=" {size} stroke-zinc-700 hover:scale-110 dark:stroke-zinc-100 hover:stroke-sky-700  "
 				/></button
 			>
 		{/if}
 	</div>
 
 	{#if votable_type === 'comment' && rating > 0}
-		<span class={rating > 0 ? 'border-r pr-3' : ''}>{rating}</span>
+		<span class={rating > 0 ? 'border-r dark:border-zinc-700 pr-3' : ''}>{rating}</span>
 	{/if}
 
 	{#if allowDownVote}

@@ -63,5 +63,8 @@ function buildSrc(folder: ImageFolder, id: bigint, extension: string): string {
 	if (host) {
 		return `${host}/${folder}/${id.toString()}.${extension}`;
 	}
-	return `https://picsum.photos/id/${id.toString()}/600/400`;
+   id = id.toString().length > 3 ? id.toString().slice(0, 3) : id;
+	return `https://picsum.photos/id/${id}/600/400`;
 }
+
+
