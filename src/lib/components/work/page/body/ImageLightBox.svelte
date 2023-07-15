@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Picture from '$lib/components/atoms/Picture.svelte';
 	export let image, alt;
-    let style = 'aspect-[4/3] flex';
+    let style = 'aspect-[4/3] flex object-cover';
     console.log(image);
 </script>
 

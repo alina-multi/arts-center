@@ -18,7 +18,7 @@
 	<div class="rounded-sm bg-gray-100 dark:bg-zinc-900 overflow-hidden aspect-[4/3]">
 		{#if work.preview}
 	<div class="">
-		<Picture photo={work.preview} alt={title} style={"aspect-[4/3] flex"} />
+		<Picture photo={work.preview} alt={title} style={"aspect-[4/3] flex object-cover"} />
 	</div>
 		{/if}
 		
