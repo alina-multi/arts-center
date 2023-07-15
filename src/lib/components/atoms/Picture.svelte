@@ -1,21 +1,17 @@
 <script lang="ts">
-	import { Icon } from '@steeze-ui/svelte-icon';
-	import { User } from '@steeze-ui/heroicons';
+	
+	export let alt: string;
 	export let photo;
-	export let size = 'h-6 w-6';
+	export let style: string;
+	
+
 </script>
 
-{#if photo}
-	<picture>
+
+	<picture class={style}>
 		{#each photo.sources as { srcset, type }}
 			<source {srcset} {type} />
 		{/each}
-		<img src={photo.src} alt=" username" class="{size} object-cover" />
+		<img src={photo.src} {alt} class={style} />
 	</picture>
-{:else}
-	<Icon
-		theme="solid"
-		src={User}
-		class="{size} rounded-full fill-gray-300  p-[5px] border border-gray-300 dark:border-gray-700"
-	/>
-{/if}
+

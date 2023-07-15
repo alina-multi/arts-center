@@ -22,7 +22,7 @@
 	</div>
 
 	<div class="flex justify-between items-start">
-		<h1 class=" text-2xl text-gray-00 dark:text-gray-100">
+		<h1 class="text-xl sm:text-2xl  text-gray-00 dark:text-gray-100">
 			{work.titles[0].title}
 		</h1>
 

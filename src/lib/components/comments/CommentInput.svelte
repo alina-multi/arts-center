@@ -10,6 +10,7 @@
 	const currentUser = $page.data.currentUser;
 	commentID = commentID?.toString();
 	let textarea: HTMLTextAreaElement;
+	$: enabled = value.length > 3;
 
 	onMount(() => {
 		if (isReplying || isEditing) {
@@ -18,7 +19,7 @@
 	});
 </script>
 
-<div class="flex flex-col gap-3 dark:border-gray-800 mt-6">
+<div class="flex flex-col gap-3 dark:border-zinc-800 mt-6">
 	<div class="flex gap-3 w-full">
 		{#if !isEditing}
 			<img
@@ -37,12 +38,12 @@
 				bind:value
 				placeholder="Add a comment..."
 				rows="2"
-				class="block w-full text-gray-900 placeholder:text-sm rounded-md dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:placeholder:text-gray-300 dark:focus:border-amber-600 dark:focus:ring-amber-600 shadow-sm focus:border-amber-600 focus:ring-amber-600 border-gray-300"
+				class="block w-full text-gray-900 placeholder:text-sm rounded-md dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:placeholder:text-zinc-300  focus:ring-0 focus:border-zinc-400 dark:focus:border-zinc-500  shadow-sm border-gray-300"
 			/>
 
 			<div class="flex flex-row-reverse mt-3 gap-3">
 				<button
-					class=" disabled:border-gray-100 disabled:text-gray-200 px-6 py-1 shadow-sm border dark:border-gray-600 text-gray-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
+					class="border {enabled ? 'text-zinc-600   dark:bg-zinc-900  dark:text-zinc-200 border dark:ring-1 dark:ring-zinc-800 hover:bg-sky-600 hover:text-white hover:border-sky-600 dark:hover:bg-sky-700':'text-zinc-400 dark:bg-zinc-800 dark:text-zinc-600  '}  px-6 py-1 shadow-sm  dark:border-0  text-sm font-semibold rounded-full "
 				>
 					{isReplying ? 'Reply' : 'Comment' && !isEditing ? 'Comment' : 'Save'}
 				</button>

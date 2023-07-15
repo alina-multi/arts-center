@@ -2,7 +2,8 @@
 	import Avatar from '$lib/components/atoms/Avatar.svelte';
 	import UserDetails from '$lib/components/user/UserDetails.svelte';
 	import { localePath } from '$lib/translations';
-	import type { User } from '$lib/interfaces/User.ts';
+	import Picture from '$lib/components/atoms/Picture.svelte';
+
 
 	import FollowButton from '$lib/components//atoms/FollowButton.svelte';
 
@@ -12,7 +13,7 @@
 </script>
 
 <div class="flex items-center gap-3 w-full">
-	<Avatar {user} size={' w-16 h-16'} />
+		<Avatar {user}  size={"h-16 w-16"} />	
 
 	<div class="flex flex-col gap-1 flex-1">
 		<div class="flex items-center gap-3 max-md:justify-between">

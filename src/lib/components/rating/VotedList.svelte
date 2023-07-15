@@ -12,25 +12,25 @@
 	let showLikedByModal = false;
 </script>
 
-<div class="flex items-center gap-1 dark:text-gray-300 max-[400px]:text-xs">
+<div class="flex items-center gap-1 dark:text-zinc-300 max-[400px]:text-xs ">
 	{#if votes.length > 0}
 		<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointer">
-			<span>Liked by</span>
+			<span class=''>Liked by</span>
 		</button>
 
 		<div class="flex -space-x-3 cursor-pointer">
 			{#if isLiked}
-				<Avatar user={currentUser} />
+				<Avatar user={currentUser} size={'w-6 h-6 md:w-7 md:h-7'} />
 			{/if}
 			{#each votesPreview as user}
-				<Avatar {user} />
+				<Avatar {user} size={'w-6 h-6 md:w-7 md:h-7'} />
 			{/each}
 		</div>
 	{/if}
 
 	{#if votes.length > 3}
 		<div>
-			<span class="text-gray-500 dark:text-gray-400">and</span>
+			<span class="text-zinc-500 dark:text-zinc-400">and</span>
 			<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointer">
 				others
 			</button>

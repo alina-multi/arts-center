@@ -139,10 +139,10 @@
 			<div class="flex font-semibold">
 				<Avatar user={comment.owner} withName={true} size={'w-8 h-8 '} />
 			</div>
-			<span class="h-1 w-1 bg-gray-500 rounded-full" />
-			<Time relative timestamp={comment.created_at} class="text-gray-500" />
+			<span class="h-1 w-1 bg-zinc-500 rounded-full" />
+			<Time relative timestamp={comment.created_at} class="text-zinc-500" />
 
-			<div class="flex divide-x font-semibold text-gray-500 mr-3">
+			<div class="flex divide-x font-semibold text-zinc-500 mr-3">
 				{#if currentUser && Number(currentUser.id) === Number(comment.owner.id)}
 					{#if isEditable()}<button class="px-3" on:click={() => onEdit()}> Edit </button>{/if}
 					{#if !isMy}
@@ -157,7 +157,7 @@
 
 		<div
 			class=" {isEditing ? 'hidden ' : ''} 
-				relative prose prose-sm max-w-none border p-3 pb-6 rounded-md bg-gray-50 dark:bg-gray-900 dark:border-gray-600 space-y-2"
+				relative prose prose-sm max-w-none border p-3 pb-6 rounded-md bg-gray-50 dark:bg-zinc-900 dark:text-white dark:border-zinc-800 space-y-2"
 		>
 			{#if comment.id === editing_comment?.id}
 				<div
@@ -173,11 +173,11 @@
 
 			{#if currentUser}
 				<div
-					class="absolute -bottom-4 right-0 flex justify-end items-center border rounded-full bg-white py-1 divide-x dark:bg-black dark:border-gray-600 dark:divide-gray-600 mr-3"
+					class="absolute -bottom-4 right-0 flex justify-end items-center border rounded-full bg-white py-1 divide-x  dark:border-zinc-600 dark:divide-zinc-600 mr-3 dark:bg-zinc-800"
 				>
 					<button
 						on:click={onReply}
-						class="flex gap-2 text-xs items-center hover:text-gray-900 text-gray-600 dark:text-gray-400 font-semibold px-3"
+						class="flex gap-2 text-xs items-center hover:text-gray-900 dark:hover:text-white text-zinc-600 dark:text-zinc-300 font-semibold px-3  "
 					>
 						<span>Reply</span>
 					</button>
@@ -186,7 +186,7 @@
 							entity={comment}
 							{currentUser}
 							allowDownVote
-							size={'sm'}
+							size={'w-4 h-4'}
 							votable_type={'comment'}
 						/>
 					</div>
@@ -207,7 +207,7 @@
 						commentsState.hideEditForm();
 						editing_comment = null;
 					}}
-					class=" px-6 py-1 shadow-sm border dark:border-gray-600 text-gray-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
+					class=" px-6 py-1 shadow-sm border dark:border-zinc-600 text-zinc-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
 				>
 					Cancel
 				</button>
@@ -216,7 +216,7 @@
 
 		{#if answers.length > 0}
 			<div class="lg:ml-12">
-				<div class=" border-l pl-6 lg:pl-9 dark:border-gray-800">
+				<div class=" border-l pl-6 lg:pl-9 dark:border-zinc-800">
 					{#each answers as reply (reply.id)}
 						{#if reply.id.toString() === answer?.id.toString()}
 							<div
