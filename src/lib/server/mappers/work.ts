@@ -41,7 +41,8 @@ export function workMap(data: worksWithRelations): Work {
 		width: data?.details?.width,
 		height: data?.details?.height,
 		length: data?.details?.length,
-		year: data?.details?.year
+		year: data?.details?.year,
+		full: pictureMap(data.full)
 	};
 }
 

@@ -18,6 +18,34 @@
 	});
 </script>
 
+<svelte:head>
+	<script>
+		let dark = false;
+
+		function onLoad() {
+			if (document.body) {
+				document.body.classList.add('dark');
+			}
+		}
+
+		if (typeof window !== 'undefined') {
+			const themeStore = localStorage.getItem('dark');
+
+			if (themeStore === null) {
+				dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				localStorage.setItem('dark', JSON.stringify(dark));
+			} else {
+				dark = JSON.parse(themeStore);
+			}
+
+			if (dark) {
+				document.documentElement.classList.add('dark');
+				window.onload = onLoad;
+			}
+		}
+	</script>
+</svelte:head>
+
 <slot />
 
 {#if $navigationIsDelayed}
