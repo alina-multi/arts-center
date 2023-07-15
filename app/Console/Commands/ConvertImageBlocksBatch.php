@@ -23,7 +23,7 @@ class ConvertImageBlocksBatch extends Command
     public function handle()
     {
         WorkBlock::whereIn('type', ['image', 'grid'])
-            ->with('blocks')
+            ->with('images')
             ->orderBy('order')
             ->orderBy('id')
             ->chunk($this->batch, function ($blocks) {
