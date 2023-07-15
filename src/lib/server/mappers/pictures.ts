@@ -51,6 +51,10 @@ export function pictureMap(image: imageWithRelation): Picture {
 			srcset: source?.srcset.join(', ')
 		});
 	}
+	//Fallback if we don't have over src
+	if (!src) {
+		src = original?.src
+	}
 	return {
 		original,
 		sources,
