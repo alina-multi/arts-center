@@ -180,6 +180,7 @@ return [
             'supervisor-1' => [
                 'balanceMaxShift' => 1,
                 'balanceCooldown' => 3,
+                'timeout' => 120,
             ],
         ],
 
