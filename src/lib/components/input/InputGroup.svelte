@@ -12,7 +12,7 @@
 
 <div>
 	{#if label}
-		<label for={elementId} class="block text-sm font-medium leading-6 text-zinc-900">
+		<label for={elementId} class="block text-sm font-medium leading-6 text-zinc-900 dark:text-white">
 			{label}
 		</label>
 	{/if}
