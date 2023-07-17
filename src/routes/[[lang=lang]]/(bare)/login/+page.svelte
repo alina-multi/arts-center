@@ -10,19 +10,19 @@
 	export let form: ActionData;
 </script>
 
-<div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+<div class="flex min-h-full flex-col pt-12  sm:px-6 lg:px-8 bg:white sm:bg-gray-50 dark:bg-black">
 	<div class="sm:mx-auto sm:w-full sm:max-w-md">
 		<div class="flex items-center justify-center">
 			<Logo />
 		</div>
 
-		<h2 class="mt-6 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+		<h2 class=" mt-3 sm:mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
 			Sign in to your account
 		</h2>
 	</div>
 
-	<div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-		<div class="bg-white dark:bg-zinc-900 px-4 py-8 shadow rounded-lg sm:px-10">
+	<div class="mt-3 sm:mx-auto sm:w-full sm:max-w-md">
+		<div class="bg-white dark:bg-zinc-900 px-4 py-8 sm:shadow rounded-lg sm:px-10">
 			<form class="space-y-6" method="POST">
 				<InputGroup
 					label="Email"
@@ -68,7 +68,7 @@
 				<div>
 					<button
 						type="submit"
-						class="flex w-full justify-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+						class="flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
 						>Sign in</button
 					>
 				</div>

@@ -70,8 +70,8 @@
 	
 						{#if currentUser}
 							<div class="flex flex-col gap-3 py-3 divide-y dark:divide-zinc-800">
-								<div class="flex justify-between pl-6 pr-3 min-[500px]:pr-6 items-center w-full">
-									<Avatar user={currentUser} size={'w-10 h-10'} withName />
+								<div class="flex justify-between gap-3 pl-6 pr-3 min-[500px]:pr-6 items-center w-full">
+									<Avatar user={currentUser} size={'w-10 h-10 '} withName />
 									<AddWorkLink />
 								</div>
 								<div class=" flex flex-col pl-16 px-3 gap-6 py-3">

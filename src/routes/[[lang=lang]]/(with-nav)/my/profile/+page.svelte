@@ -13,15 +13,22 @@
 	export let data: PageData;
 	export let form: ActionData;
 	const profile = data.profile.data;
+	console.log(profile);
 </script>
 
-<form method="post" enctype="multipart/form-data" class="space-y-5">
-	<FormGroup
-		h1="Profile"
-		h2="This information will be displayed publicly so be careful what you share."
+
+<div class=" dark:bg-inherit dark:md:bg-zinc-900 md:border md:px-3  bg-gray-100 pb-12 dark:border-t-transparent dark:border-zinc-800 ">
+	<div class="lg:w-3/4 mx-auto">
+<div class='pt-3 md:pt-6 pb-3'> 
+	<h1 class=" text-lg md:text-2xl font-bold">Profile</h1>
+	<p class="text-gray-500 dark:text-zinc-400">This information will be displayed publicly so be careful what you share.</p>
+</div>
+<form method="post" enctype="multipart/form-data" class="space-y-9 ">
+	<FormGroup 
+	 h1="Personal Information"
 	>
-		<InputGroup label="Avatar" error={form?.errors?.avatar} let:elementId={id}>
-			<AvatarInput {id} currentAvatar={profile?.avatar} />
+		<InputGroup  error={form?.errors?.avatar} let:elementId={id}>
+			<AvatarInput {id} currentAvatar={profile?.photo} />
 		</InputGroup>
 
 		<InputGroup
@@ -40,23 +47,24 @@
 			let:hasError={error}
 		>
 			<div
-				class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600"
+				class=" flex rounded-full  shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-sky-500 dark:bg-zinc-900  dark:ring-0   dark:focus-within:ring-1 "
 			>
-				<span class="flex select-none items-center pl-3 text-gray-500 sm:text-sm">arts.center/</span
+				<span class="flex select-none items-center pl-6 text-gray-500 sm:text-sm ">arts.center/</span
 				>
 				<input
 					type="text"
 					name="username"
 					{id}
 					value={profile.username}
-					class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+					class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6  dark:text-white "
 					placeholder="janesmith"
 				/>
 			</div>
 		</InputGroup>
 
 		<div class="col-span-full">
-			<h3>Biography</h3>
+			<h3 class="font-semibold ">Biography</h3>
+			<p class=" text-sm  text-gray-600 py-1 dark:text-zinc-400">Write a few sentences about yourself.</p>
 			<div class="grid grid-cols-2 gap-3">
 				{#each availableLocales as locale}
 					<div class="col">
@@ -76,7 +84,7 @@
 					</div>
 				{/each}
 			</div>
-			<p class="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p>
+			
 		</div>
 
 		<InputGroup
@@ -121,3 +129,5 @@
 	</FormGroup>
 	<SaveButton />
 </form>
+</div>
+</div>
