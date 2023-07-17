@@ -60,7 +60,7 @@
 	</button>
 {:else}
 	<button
-		class="w-full {`text-${size}`} bg-sky-700 dark:bg-sky-900 dark:hover:bg-sky-700 text-white dark:text-zinc-100 hover:bg-sky-600 flex items-center justify-center gap-1 rounded-full pl-2 pr-1.5 py-1 shadow-sm cursor-pointer"
+		class="w-full {`text-${size}`} bg-blue-700 dark:bg-blue-900 dark:hover:bg-blue-700 text-white dark:text-zinc-100 hover:bg-blue-600 flex items-center justify-center gap-1 rounded-full pl-2 pr-1.5 py-1 shadow-sm cursor-pointer"
 		on:click={() => handleFollow(currentUser)}
 	>
 		<span>Follow</span>

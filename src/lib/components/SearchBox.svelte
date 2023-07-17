@@ -30,7 +30,7 @@
 						<a
 							data-sveltekit-reload
 							href={localePath(`/search/${value}`)}
-							class="text-sky-700 hover:underline"
+							class="text-blue-700 hover:underline"
 						>
 							show full results &rarr;
 						</a>

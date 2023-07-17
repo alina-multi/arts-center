@@ -10,5 +10,5 @@
 	{placeholder}
 	class="block px-6 w-full rounded-full border sm:text-sm dark:bg-zinc-900 dark:border-0 {error
 		? 'border-red-300 focus:border-red-300 focus:ring-red-200'
-		: 'border-zinc-300 focus:border-sky-500 focus:ring-sky-500'}"
+		: 'border-zinc-300 focus:border-blue-500 focus:ring-blue-500'}"
 />

@@ -16,13 +16,13 @@
 			<Logo />
 		</div>
 
-		<h2 class=" mt-3 sm:mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+		<h2 class=" mt-3 sm:mt-6 text-center text-2xl md:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
 			Sign in to your account
 		</h2>
 	</div>
 
 	<div class="mt-3 sm:mx-auto sm:w-full sm:max-w-md">
-		<div class="bg-white dark:bg-zinc-900 px-4 py-8 sm:shadow rounded-lg sm:px-10">
+		<div class="bg-white dark:bg-zinc-900 px-3 py-6 sm:p-9 sm:shadow rounded-lg ">
 			<form class="space-y-6" method="POST">
 				<InputGroup
 					label="Email"
@@ -47,7 +47,7 @@
 							id="remember-me"
 							name="remember-me"
 							type="checkbox"
-							class="h-4 w-4 rounded border-gray-300 dark:border-zinc-500 text-sky-600 focus:ring-sky-600 cursor-pointer dark:bg-zinc-600"
+							class="h-4 w-4 rounded border-gray-300 dark:border-zinc-500 text-blue-600 focus:ring-blue-600 cursor-pointer dark:bg-zinc-600"
 						/>
 						<label
 							for="remember-me"
@@ -68,7 +68,7 @@
 				<div>
 					<button
 						type="submit"
-						class="flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+						class="flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
 						>Sign in</button
 					>
 				</div>

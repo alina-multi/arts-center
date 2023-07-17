@@ -18,7 +18,7 @@
 				Sign in with your email address to follow this work and get updates on your Feed.
 			</p>
 			<button
-				class=" dark:bg-gray-900 text-center mx-auto w-full sm:max-lg:w-1/2 dark:border-sky-700 dark:border rounded-full px-3 py-1 text-white bg-amber-700 font-semibold shadow-sm hover:bg-sky-600 dark:hover:bg-sky-700 dark:text-gray-100 hover:text-white cursor-pointer"
+				class=" dark:bg-gray-900 text-center mx-auto w-full sm:max-lg:w-1/2 dark:border-blue-700 dark:border rounded-full px-3 py-1 text-white bg-amber-700 font-semibold shadow-sm hover:bg-blue-600 dark:hover:bg-blue-700 dark:text-gray-100 hover:text-white cursor-pointer"
 				>Sign in</button
 			>
 		</div>
@@ -34,7 +34,7 @@
 					Sign in with your email address to follow this work and get updates on your Feed.
 				</p>
 				<button
-					class=" dark:bg-gray-900 text-center dark:border-sky-700 dark:border rounded-full px-3 py-1 text-white bg-amber-700 font-semibold shadow-sm hover:bg-sky-600 dark:hover:bg-sky-700 dark:text-gray-100 hover:text-white cursor-pointer"
+					class=" dark:bg-gray-900 text-center dark:border-blue-700 dark:border rounded-full px-3 py-1 text-white bg-amber-700 font-semibold shadow-sm hover:bg-blue-600 dark:hover:bg-blue-700 dark:text-gray-100 hover:text-white cursor-pointer"
 					>Sign in</button
 				>
 			</div>

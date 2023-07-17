@@ -16,7 +16,7 @@
 		<div class="{showBio ? ' ' : ' absolute bottom-0'} ">
 			<button
 				on:click={() => (showBio = !showBio)}
-				class=" pl-2 rounded-full text-sky-800 bg-white dark:bg-black dark:text-sky-700 dark:font-semibold dark:hover:text-sky-600 underline hover:text-sky-700"
+				class=" pl-2 rounded-full text-blue-800 bg-white dark:bg-black dark:text-blue-700 dark:font-semibold dark:hover:text-blue-600 underline hover:text-blue-700"
 				>{showBio ? 'show less' : '... read more ...'}</button
 			>
 		</div>

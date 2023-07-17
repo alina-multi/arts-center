@@ -106,7 +106,7 @@
 				><Icon
 					src={HandThumbUp}
 					theme="solid"
-					class=" {size}   {votable_type === 'comment' ? 'fill-sky-700 ' : 'fill-gray-700 dark:fill-sky-600 '}"
+					class=" {size}   {votable_type === 'comment' ? 'fill-blue-700 ' : 'fill-gray-700 dark:fill-blue-600 '}"
 				/></button
 			>
 		{:else}
@@ -114,7 +114,7 @@
 				><Icon
 					src={HandThumbUp}
 					theme="outline"
-					class=" {size} stroke-zinc-700 hover:scale-110 dark:stroke-zinc-100 hover:stroke-sky-700  "
+					class=" {size} stroke-zinc-700 hover:scale-110 dark:stroke-zinc-100 hover:stroke-blue-700  "
 				/></button
 			>
 		{/if}

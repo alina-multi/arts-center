@@ -47,7 +47,7 @@
 			let:hasError={error}
 		>
 			<div
-				class=" flex rounded-full  shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-sky-500 dark:bg-zinc-900  dark:ring-0   dark:focus-within:ring-1 "
+				class=" flex rounded-full  shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-500 dark:bg-zinc-900  dark:ring-0   dark:focus-within:ring-1 "
 			>
 				<span class="flex select-none items-center pl-6 text-gray-500 sm:text-sm ">arts.center/</span
 				>

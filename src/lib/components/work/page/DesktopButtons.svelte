@@ -42,8 +42,8 @@
 
 {#if type === 'like'}
 	<button
-		class=" border p-2 rounded-full  hover:text-sky-700 hover:shadow-md hover:bg-gray-50 dark:hover:bg-gray-900 dark:hover:border-gray-400 {isLiked
-			? 'text-sky-700'
+		class=" border p-2 rounded-full  hover:text-blue-700 hover:shadow-md hover:bg-gray-50 dark:hover:bg-gray-900 dark:hover:border-gray-400 {isLiked
+			? 'text-blue-700'
 			: 'text-gray-500'}"
 	>
 		<Icon src={HandThumbUp} theme="solid" class="w-6 h-6 " />

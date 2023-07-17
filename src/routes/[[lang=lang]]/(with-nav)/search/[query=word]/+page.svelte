@@ -45,7 +45,7 @@
 
 			<a
 				href={localePath(`/${user.username}`)}
-				class="cursor-pointer inline-flex gap-3 items-center text-sm text-gray-500 hover:text-sky-500 focus:outline-none focus:underline transition ease-in-out duration-150"
+				class="cursor-pointer inline-flex gap-3 items-center text-sm text-gray-500 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150"
 			>
 				<span class="hidden sm:block">View profile</span>
 				<Icon src={ChevronRight} class="w-6 h-6 text-gray-400" />

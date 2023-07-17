@@ -207,7 +207,7 @@
 						commentsState.hideEditForm();
 						editing_comment = null;
 					}}
-					class=" px-6 py-1 shadow-sm border dark:border-zinc-600 text-zinc-500 text-sm font-semibold rounded-full hover:text-white hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
+					class=" px-6 py-1 shadow-sm border dark:border-zinc-600 text-zinc-500 text-sm font-semibold rounded-full hover:text-white hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
 				>
 					Cancel
 				</button>
