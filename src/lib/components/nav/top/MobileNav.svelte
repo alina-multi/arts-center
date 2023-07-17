@@ -6,7 +6,7 @@
 </script>
 
 <div class=" flex sm:hidden items-center justify-between w-full">
-	<div class="flex gap-3">
+	<div class="flex gap-1.5">
 		<SideBarNavigation />
 		<Logo />
 	</div>
