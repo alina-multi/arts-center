@@ -22,6 +22,7 @@
 	let currentUser = $page.data.currentUser;
 	export let open = false;
 
+
 </script>
 
 <Button on:open={() => (open = !open)} type={'button'}>
@@ -63,8 +64,8 @@
 	
 					<div class="divide-y dark:divide-zinc-800">
 						<div class="flex flex-col p-6 gap-6 w-full">
-							<TopNavLink exact href={localePath('/')}>{$t('global.menu.gallery')}</TopNavLink>
-							<a href="/users" class="text-lg hover:text-amber-500">ARTISTS</a>
+							<TopNavLink media={'mobile'} exact href={localePath('/')}>{$t('global.menu.gallery')}</TopNavLink>
+							<TopNavLink media={'mobile'}  href={localePath('/users')}>{$t('global.menu.users')}</TopNavLink>
 						</div>
 	
 						{#if currentUser}
