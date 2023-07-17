@@ -5,15 +5,17 @@
     console.log(image);
 </script>
 
-<div class=" rounded-sm bg-gray-100 dark:bg-zinc-900 overflow-hidden aspect-[4/3]">
-	<a
-		href={image.original.src}
-		data-pswp-width={image.original.width}
-		data-pswp-height={image.original.height}
-		target="_blank"
-		rel="noreferrer"
-		class="cursor-zoom-in"
-	>
-		<Picture photo={image} {alt} {style} />
-	</a>
-</div>
+{#if image?.original}
+	<div class=" rounded-sm bg-gray-100 dark:bg-zinc-900 overflow-hidden aspect-[4/3]">
+		<a
+			href={image?.original.src}
+			data-pswp-width={image?.original.width}
+			data-pswp-height={image?.original.height}
+			target="_blank"
+			rel="noreferrer"
+			class="cursor-zoom-in"
+		>
+			<Picture photo={image} {alt} {style} />
+		</a>
+	</div>
+{/if}
