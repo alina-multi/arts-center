@@ -61,7 +61,7 @@
 				leave="transition ease-in duration-75"
 			>
 				<PopoverPanel
-					class="absolute left-0 z-10 mt-2 origin-top-left rounded-md bg-white dark:bg-black/90 shadow-2xl ring-1 ring-black dark:ring-gray-700 ring-opacity-5 focus:outline-none overflow-hidden"
+					class="absolute left-0 z-10 mt-2 origin-top-left rounded-md bg-white dark:bg-black/90 shadow-2xl ring-1 ring-black dark:ring-zinc-900 ring-opacity-5 focus:outline-none overflow-hidden"
 					let:close
 				>
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
