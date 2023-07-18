@@ -13,22 +13,21 @@ class ConvertImageBlocksBatch extends Command
      *
      * @var string
      */
-    protected $signature = 'app:convert-image-blocks';
-
-    protected $batch = 500;
+    protected $signature = 'app:convert-image-blocks {batch=1000}';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
+        $batch = $this->getArgument('batch');
         WorkBlock::whereHas('work', function ($query) {
             $query->whereNull('full_image_id');
         })->whereIn('type', ['image', 'grid'])
             ->with('images')
             ->orderBy('order')
             ->orderBy('id')
-            ->chunk($this->batch, function ($blocks) {
+            ->chunk($batch, function ($blocks) {
                 print "Dispatching next $this->batch Last id: {$blocks[0]->id}  \n\n";
                 ConvertImageBlocks::dispatch($blocks);
             });
