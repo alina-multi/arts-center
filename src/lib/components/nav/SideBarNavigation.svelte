@@ -21,8 +21,6 @@
 
 	let currentUser = $page.data.currentUser;
 	export let open = false;
-
-
 </script>
 
 <Button on:open={() => (open = !open)} type={'button'}>
@@ -30,8 +28,7 @@
 	<Icon src={Bars4} theme="solid" class="h-8 w-8 fill-black dark:fill-white" aria-hidden="true" />
 </Button>
 
-
-<div >
+<div>
 	<Dialog {open} on:close={() => (open = !open)} class="relative xl:hidden " initialFocus>
 		<Transition
 			show={open}
@@ -44,7 +41,7 @@
 			leaveTo="translate-x-full"
 		>
 			<DialogOverlay class="fixed inset-0 bg-zinc-900/50 z-50" />
-	
+
 			<div
 				class="absolute inset-y-0 z-50 left-0 w-full sm:w-2/3 md:w-1/2 overflow-y-auto bg-white dark:bg-zinc-900 text-black dark:text-white"
 			>
@@ -54,37 +51,43 @@
 						<div class="flex items-center gap-3 ml-6 h-full">
 							<TopNavLangLink lang="en" />
 							<TopNavLangLink lang="uk" />
-	
+
 							<Button on:close={() => (open = !open)} type={'button'} customClass="ml-6">
 								<span class="sr-only">Close main menu</span>
 								<Icon src={XMark} theme="solid" class="h-7 w-7" aria-hidden="true" />
 							</Button>
 						</div>
 					</TopNav>
-	
+
 					<div class="divide-y dark:divide-zinc-800">
 						<div class="flex flex-col p-6 gap-6 w-full">
-							<TopNavLink media={'mobile'} exact href={localePath('/')}>{$t('global.menu.gallery')}</TopNavLink>
-							<TopNavLink media={'mobile'}  href={localePath('/users')}>{$t('global.menu.users')}</TopNavLink>
+							<TopNavLink media={'mobile'} exact href={localePath('/')}
+								>{$t('global.menu.gallery')}</TopNavLink
+							>
+							<TopNavLink media={'mobile'} href={localePath('/users')}
+								>{$t('global.menu.users')}</TopNavLink
+							>
 						</div>
-	
+
 						{#if currentUser}
 							<div class="flex flex-col gap-3 py-3 divide-y dark:divide-zinc-800">
-								<div class="flex justify-between gap-3 pl-6 pr-3 min-[500px]:pr-6 items-center w-full">
+								<div
+									class="flex justify-between gap-3 pl-6 pr-3 min-[500px]:pr-6 items-center w-full"
+								>
 									<Avatar user={currentUser} size={'w-10 h-10 '} withName />
 									<AddWorkLink />
 								</div>
 								<div class=" flex flex-col pl-16 px-3 gap-6 py-3">
 									<a href={localePath('/my/profile')} class="flex items-center gap-2">
-										<span >Edit profile</span>
+										<span>Edit profile</span>
 										<Icon src={PencilSquare} class="w-5 mb-0.5" />
 									</a>
 									<a
 										href={localePath('/logout?redirect=' + $page.url.pathname)}
 										data-sveltekit-preload-data="tap"
-										data-sveltekit-reload>Log Out &rarr;
-										</a
-									>
+										data-sveltekit-reload
+										>Log Out &rarr;
+									</a>
 								</div>
 							</div>
 						{:else}
@@ -93,7 +96,7 @@
 								<LoginLink />
 							</div>
 						{/if}
-	
+
 						<div />
 					</div>
 				</DialogDescription>
@@ -101,8 +104,3 @@
 		</Transition>
 	</Dialog>
 </div>
-
-
-
-
-

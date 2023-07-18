@@ -145,7 +145,9 @@
 			<span class="h-1 w-1 bg-zinc-500 rounded-full" />
 			<Time relative timestamp={comment.created_at} class="text-zinc-500" />
 
-			<div class="flex divide-x font-semibold text-zinc-500 dark:text-zinc-400 dark:divide-zinc-800 mr-3">
+			<div
+				class="flex divide-x font-semibold text-zinc-500 dark:text-zinc-400 dark:divide-zinc-800 mr-3"
+			>
 				{#if currentUser && Number(currentUser.id) === Number(comment.owner.id)}
 					{#if isEditable()}<button class="px-3" on:click={() => onEdit()}> Edit </button>{/if}
 					{#if !isMy}
@@ -174,26 +176,24 @@
 				<div class="whitespace-pre-wrap">{@html comment.text}</div>
 			{/if}
 
-			
-				<div
-					class="absolute -bottom-4 right-0 flex justify-end items-center border rounded-full bg-white py-1 divide-x  dark:border-zinc-600 dark:divide-zinc-600 mr-3 dark:bg-zinc-800"
+			<div
+				class="absolute -bottom-4 right-0 flex justify-end items-center border rounded-full bg-white py-1 divide-x dark:border-zinc-600 dark:divide-zinc-600 mr-3 dark:bg-zinc-800"
+			>
+				<button
+					on:click={onReply}
+					class="flex gap-2 text-xs items-center hover:text-gray-900 dark:hover:text-white text-zinc-600 dark:text-zinc-300 font-semibold px-3"
 				>
-					<button
-						on:click={onReply}
-						class="flex gap-2 text-xs items-center hover:text-gray-900 dark:hover:text-white text-zinc-600 dark:text-zinc-300 font-semibold px-3  "
-					>
-						<span>Reply</span>
-					</button>
-					<div class="px-3 flex">
-						<RatingPreviewVote
-							entity={comment}
-							allowDownVote
-							size={'w-4 h-4'}
-							votable_type={'comment'}
-						/>
-					</div>
+					<span>Reply</span>
+				</button>
+				<div class="px-3 flex">
+					<RatingPreviewVote
+						entity={comment}
+						allowDownVote
+						size={'w-4 h-4'}
+						votable_type={'comment'}
+					/>
 				</div>
-			
+			</div>
 		</div>
 
 		{#if $commentsState.replyCommentId === comment.id}

@@ -23,9 +23,9 @@
 		</div>
 	</div>
 
-	<div class="flex justify-between items-center lg:text-xs text-sm  mt-auto">
+	<div class="flex justify-between items-center lg:text-xs text-sm mt-auto">
 		{#each work.owners as user}
-		<Avatar {user} withName={true} />
+			<Avatar {user} withName={true} />
 		{/each}
 
 		{#if work.subscribed}

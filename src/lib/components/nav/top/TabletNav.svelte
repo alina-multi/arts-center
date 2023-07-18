@@ -7,7 +7,7 @@
 	import Search from '../SearchDialog.svelte';
 	import SearchInput from '../../input/SearchInput.svelte';
 	import UserDropdown from '../UserDropdown.svelte';
-	
+
 	let user = $page.data.currentUser;
 </script>
 
@@ -16,9 +16,8 @@
 		<SideBarNavigation />
 		<Logo />
 	</div>
-	<div class="hidden lg:flex w-96 "><SearchInput /></div>
+	<div class="hidden lg:flex w-96"><SearchInput /></div>
 	<div class="flex items-center gap-3 md:gap-6">
-		
 		<div class="lg:hidden flex justify-center"><Search /></div>
 		<div class="flex items-center gap-3 md:gap-6 h-full">
 			<AddWorkLink />

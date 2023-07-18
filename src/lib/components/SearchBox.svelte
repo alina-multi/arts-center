@@ -40,12 +40,11 @@
 					{#each results as user}
 						<MenuItem let:active>
 							<a
-							on:click={() => (open = false)}
+								on:click={() => (open = false)}
 								href={localePath(`/${user.username}`)}
-								class="flex gap-3 items-center w-full text-left text-sm px-6 py-1 hover:bg-gray-100 hover:text-gray-900 cursor-pointer dark:hover:bg-zinc-800 "
+								class="flex gap-3 items-center w-full text-left text-sm px-6 py-1 hover:bg-gray-100 hover:text-gray-900 cursor-pointer dark:hover:bg-zinc-800"
 							>
-							<Avatar user={user} size={'h-10 w-10'} withName nameStyles={'text-sm'}/>
-								
+								<Avatar {user} size={'h-10 w-10'} withName nameStyles={'text-sm'} />
 							</a>
 						</MenuItem>
 					{/each}

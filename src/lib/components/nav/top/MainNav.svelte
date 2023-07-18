@@ -8,7 +8,7 @@
 
 <TopNav>
 	<DesktopNav />
-	<TabletMainNav  />
+	<TabletMainNav />
 	<MobileMainNav />
 	<DarkSwitch />
 </TopNav>

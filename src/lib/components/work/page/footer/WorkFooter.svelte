@@ -10,11 +10,10 @@
 <div
 	class="flex max-lg:flex-col justify-beetwen items-stretch lg:items-start lg:mt-6 gap-6 dark:text-gray-300"
 >
-	<div class="flex flex-col  sm:w-full lg:flex-col gap-6 lg:w-2/6">
-		
+	<div class="flex flex-col sm:w-full lg:flex-col gap-6 lg:w-2/6">
 		{#if work?.tags.length > 0}
 			<div
-				class="hidden lg:flex  flex-wrap items-start justify-start border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 sm:p-3 gap-3 md:py-3 p-3 rounded-lgshadow-sm bg-gray-100"
+				class="hidden lg:flex flex-wrap items-start justify-start border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 sm:p-3 gap-3 md:py-3 p-3 rounded-lgshadow-sm bg-gray-100"
 			>
 				<span>Tags:</span>
 				{#each work.tags as { title }}
@@ -30,17 +29,16 @@
 		{/if}
 
 		{#if !$page.data.currentUser}
-		<div> <AuthStub /></div>	
+			<div><AuthStub /></div>
 		{/if}
 
 		<div
-			class=" hidden  lg:flex flex-col  border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 gap-3 p-3 sm:p-6 sm:gap-6 rounded-md shadow-sm md:max-lg:w-1/2"
+			class=" hidden lg:flex flex-col border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 gap-3 p-3 sm:p-6 sm:gap-6 rounded-md shadow-sm md:max-lg:w-1/2"
 		>
 			{#each work.owners as user}
 				<UserPreviewRegular {user} followBtn={'block'} />
 			{/each}
 		</div>
-
 	</div>
 
 	<div class="lg:w-4/6">
@@ -60,7 +58,7 @@
 	<div class="flex flex-col gap-6 sm:flex-row lg:hidden">
 		{#if work?.tags.length > 0}
 			<div
-				class="sm:w-1/2 px-6 py-3 sm:py-6 gap-3 flex  flex-wrap items-start h-modal  border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900  sm:rounded-lg shadow-sm bg-gray-100"
+				class="sm:w-1/2 px-6 py-3 sm:py-6 gap-3 flex flex-wrap items-start h-modal border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 sm:rounded-lg shadow-sm bg-gray-100"
 			>
 				<span>Tags:</span>
 				{#each work.tags as { title }}
@@ -75,12 +73,12 @@
 			</div>
 		{/if}
 
-	<div
-	class=" sm:w-1/2 flex  lg:hidden flex-col border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 p-6 gap-6 rounded-md shadow-sm s"
->
-	{#each work.owners as user}
-		<UserPreviewRegular {user} followBtn={'block'} />
-	{/each}
-</div>
+		<div
+			class=" sm:w-1/2 flex lg:hidden flex-col border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 p-6 gap-6 rounded-md shadow-sm s"
+		>
+			{#each work.owners as user}
+				<UserPreviewRegular {user} followBtn={'block'} />
+			{/each}
+		</div>
 	</div>
 </div>

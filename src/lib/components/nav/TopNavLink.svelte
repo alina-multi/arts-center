@@ -34,7 +34,7 @@
 
 <a
 	{href}
-	class="inline-flex h-full items-center text-lg  border-amber-500 {style}
+	class="inline-flex h-full items-center text-lg border-amber-500 {style}
         {computedActive ? activeLink : inactiveLink} "
 	data-sveltekit-reload={reload ? '' : 'off'}
 	data-sveltekit-preload-data={preload}

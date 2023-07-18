@@ -18,7 +18,7 @@ export function imagablePicturesMap(images: imageables[]): Picture[] {
 export function pictureMap(image: imageWithRelation): Picture {
 	const sourcesMap: Map<string, { type: string; srcset: string[] }> = new Map();
 	if (!image || !image.variants) {
-		return
+		return;
 	}
 	const sortedVariants = image.variants.sort((a, b) => a.width - b.width);
 	let original, src;
@@ -53,7 +53,7 @@ export function pictureMap(image: imageWithRelation): Picture {
 	}
 	//Fallback if we don't have over src
 	if (!src) {
-		src = original?.src
+		src = original?.src;
 	}
 	return {
 		original,
@@ -67,8 +67,6 @@ function buildSrc(folder: ImageFolder, id: bigint, extension: string): string {
 	if (host) {
 		return `${host}/${folder}/${id.toString()}.${extension}`;
 	}
-   id = id.toString().length > 3 ? id.toString().slice(0, 3) : id;
+	id = id.toString().length > 3 ? id.toString().slice(0, 3) : id;
 	return `https://picsum.photos/id/${id}/400/600`;
 }
-
-

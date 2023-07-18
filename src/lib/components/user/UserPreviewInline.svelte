@@ -5,6 +5,4 @@
 	export let user: User;
 </script>
 
-
-	<Avatar {user} withName={true} />
-
+<Avatar {user} withName={true} />

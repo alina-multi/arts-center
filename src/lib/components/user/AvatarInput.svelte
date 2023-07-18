@@ -20,9 +20,7 @@
 		container.items.add(detail);
 		input.files = container.files;
 	}
-	
 </script>
-
 
 <div class="flex items-center gap-x-3">
 	{#if currentAvatar?.src}

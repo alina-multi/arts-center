@@ -6,15 +6,14 @@
 	import { HandThumbDown, HandThumbUp } from '@steeze-ui/heroicons';
 	import VotedList from '$lib/components/rating/VotedList.svelte';
 	import { page } from '$app/stores';
-	
 
 	export let entity: Work | Comment,
 		allowDownVote = false,
 		votable_type: string,
 		showVotedPreview = false,
 		size: string = 'w-6 h-6';
-		
-    let currentUser = $page.data.currentUser;
+
+	let currentUser = $page.data.currentUser;
 	let votes = entity?.votes;
 	let rating = entity?.rating;
 	let isLiked = entity?.votes?.some((vote) => vote?.id.toString() === currentUser?.id.toString());
@@ -93,7 +92,7 @@
 	<VotedList {votes} {isLiked} {currentUser} />
 {/if}
 
-<div class="inline-flex items-center gap-2 dark:text-zinc-100 cursor-pointer ">
+<div class="inline-flex items-center gap-2 dark:text-zinc-100 cursor-pointer">
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div
 		class="flex items-center gap-2 {votable_type === 'work'
@@ -101,14 +100,16 @@
 			: 'hover:text-zinc-100'}  dark:bg-zinc-800 dark:border-zinc-700 dark:text-white"
 	>
 		{#if votable_type === 'work'}
-			<span class="border-r  dark:border-zinc-700 pr-3">Like {rating}</span>
+			<span class="border-r dark:border-zinc-700 pr-3">Like {rating}</span>
 		{/if}
 		{#if isLiked}
 			<button on:click={cancelVote}
 				><Icon
 					src={HandThumbUp}
 					theme="solid"
-					class=" {size}   {votable_type === 'comment' ? 'fill-blue-700 ' : 'fill-gray-700 dark:fill-blue-600 '}"
+					class=" {size}   {votable_type === 'comment'
+						? 'fill-blue-700 '
+						: 'fill-gray-700 dark:fill-blue-600 '}"
 				/></button
 			>
 		{:else}

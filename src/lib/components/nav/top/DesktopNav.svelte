@@ -9,12 +9,11 @@
 	import SearchInput from '$lib/components/input/SearchInput.svelte';
 	import Logo from '$lib/components/atoms/Logo.svelte';
 	let user = $page.data.currentUser;
-
 </script>
 
 <div class="hidden xl:flex items-center w-full h-full gap-6">
 	<Logo />
-	<TopNavLink  exact href={localePath('/')}>{$t('global.menu.gallery')}</TopNavLink>
+	<TopNavLink exact href={localePath('/')}>{$t('global.menu.gallery')}</TopNavLink>
 	<TopNavLink href={localePath('/users')}>{$t('global.menu.users')}</TopNavLink>
 	<SearchInput />
 	<AddWorkLink />

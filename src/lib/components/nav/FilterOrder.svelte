@@ -35,13 +35,12 @@
 			role="menu"
 		>
 			{#each option as { title }}
-				<ListboxOption let:selected  
-				value={title} >
+				<ListboxOption let:selected value={title}>
 					<a
 						href={urlGenerator(type, title, params)}
-						class=' block px-4 py-2  border-l-2 {selected
+						class=" block px-4 py-2 border-l-2 {selected
 							? ' bg-gray-100 dark:text-white  dark:bg-zinc-800  border-amber-500'
-							: 'text-gray-900 dark:text-zinc-300 hover:bg-gray-50/50  hover:text-gray-600 border-transparent hover:border-gray-300 dark:hover:border-zinc-700 dark:hover:text-white  dark:hover:bg-zinc-800/30'}'
+							: 'text-gray-900 dark:text-zinc-300 hover:bg-gray-50/50  hover:text-gray-600 border-transparent hover:border-gray-300 dark:hover:border-zinc-700 dark:hover:text-white  dark:hover:bg-zinc-800/30'}"
 						>{title}</a
 					>
 				</ListboxOption>
