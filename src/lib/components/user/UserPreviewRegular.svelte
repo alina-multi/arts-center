@@ -2,7 +2,6 @@
 	import Avatar from '$lib/components/atoms/Avatar.svelte';
 	import UserDetails from '$lib/components/user/UserDetails.svelte';
 	import { localePath } from '$lib/translations';
-	import Picture from '$lib/components/atoms/Picture.svelte';
 
 
 	import FollowButton from '$lib/components//atoms/FollowButton.svelte';
@@ -19,7 +18,7 @@
 		<div class="flex items-center gap-3 max-md:justify-between">
 			<a
 				{href}
-				class="inline-flex hover:text-zinc-800 dark:hover:text-zinc-300 cursor-pointer text-base sm:text-lg lg:text-xl xl:text-lg"
+				class="inline-flex hover:text-zinc-800 dark:hover:text-zinc-300 cursor-pointer  text-base"
 				>{user.name}</a
 			>
 			{#if !followBtn}
@@ -31,5 +30,5 @@
 	</div>
 </div>
 {#if followBtn === 'block'}
-	<FollowButton {user} size={'base w-full'} />
+	<FollowButton {user} size={'sm'} />
 {/if}

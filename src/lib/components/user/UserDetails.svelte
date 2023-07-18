@@ -22,11 +22,11 @@
 			<span> {new Date(user.created_at).getFullYear()}</span>
 		</div>
 	</div>
-	<div class="hidden xl:block border-b h-1 dark:border-zinc-700 w-full my-2" />
+	<div class="hidden xl:block border-b h-1 dark:border-gray-700 w-full my-2" />
 	<TotalRating {user} full />
 {:else}
 	<div
-		class="flex flex-wrap text-xs md:text-sm text-gray-500 dark:text-gray-300 gap-1 md:gap-2 items-center"
+		class="flex flex-wrap text-sm text-gray-500 dark:text-gray-300 gap-1 md:gap-2 items-center"
 	>
 		<TotalRating {user} />
 		<span>@{user?.username}</span>

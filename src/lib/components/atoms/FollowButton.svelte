@@ -38,7 +38,7 @@
 
 {#if isMy}
 	<a
-		href="{`/user/${currentUser?.id}/edit`} "
+		href='/my/profile'
 		class=" w-full flex {`text-${size}`}  items-center justify-center rounded-full px-2 py-0.5 border border-gray-500 gap-1 text-zinc-800 shadow-sm cursor-pointer dark:text-zinc-100 dark:bg-zinc-800"
 	>
 		<span>Edit </span>

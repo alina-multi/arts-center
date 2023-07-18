@@ -142,7 +142,7 @@
 			<span class="h-1 w-1 bg-zinc-500 rounded-full" />
 			<Time relative timestamp={comment.created_at} class="text-zinc-500" />
 
-			<div class="flex divide-x font-semibold text-zinc-500 mr-3">
+			<div class="flex divide-x font-semibold text-zinc-500 dark:text-zinc-400 dark:divide-zinc-800 mr-3">
 				{#if currentUser && Number(currentUser.id) === Number(comment.owner.id)}
 					{#if isEditable()}<button class="px-3" on:click={() => onEdit()}> Edit </button>{/if}
 					{#if !isMy}

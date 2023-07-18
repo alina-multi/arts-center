@@ -38,7 +38,7 @@
 </script>
 
 <div
-	class="sm:relative w-full mx-3 md:max-lg:w-3/4  2xl:mx-16 2xl:w-1/2 lg:w-4/12 md:mx-auto text-gray-900 dark:text-white"
+	class="sm:relative w-full mx-3 md:max-lg:w-3/4  2xl:px-16 2xl:w-1/2 xl:w-4/12 md:mx-auto text-gray-900 dark:text-white"
 >
 	<div class="relative {open ? 'z-50' : 'z-30'} ">
 		<span class="sr-only">Search</span>

@@ -1,6 +1,4 @@
 <script lang="ts">
-	import logo from '$lib/images/logo.svg';
-	import { localePath } from '$lib/translations';
 	import Logo from '$lib/components/atoms/Logo.svelte';
 	import type { PageData, ActionData } from './$types';
 	import EmailInput from '$lib/components/input/EmailInput.svelte';

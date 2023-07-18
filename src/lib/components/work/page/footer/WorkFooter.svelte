@@ -7,7 +7,7 @@
 </script>
 
 <div
-	class="flex max-lg:flex-col justify-beetwen items-stretch lg:items-start  lg:mt-6 gap-3 dark:text-gray-300"
+	class="flex max-lg:flex-col justify-beetwen items-stretch lg:items-start  lg:mt-6 gap-6 dark:text-gray-300"
 >
 	<!-- {#if !$page.data.currentUser}
 		<div
@@ -24,7 +24,7 @@
 		</div>
 	{/if} -->
 
-	<div class="flex flex-col sm:flex-row sm:w-full lg:flex-col gap-3 sm:gap-6 lg:w-2/6">
+	<div class="flex flex-col sm:flex-row sm:w-full lg:flex-col gap-6 lg:w-2/6">
 		 <!-- {#if !$page.data.currentUser}
 			<div
 				class="hidden lg:flex flex-col border border-gray-200 dark:border-gray-800 gap-3 p-3 rounded-md shadow-sm"
@@ -42,21 +42,24 @@
 
 		{#if work?.tags.length > 0}
 			<div
-				class=" flex sm:max-lg:w-1/2 flex-wrap items-start justify-start border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 p-3 gap-3 sm:p-6 rounded-md shadow-sm"
+				class="flex sm:max-lg:w-1/2 flex-wrap items-start justify-start md:border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 sm:p-3 gap-3 md:py-3 dark:p-3 rounded-md md:shadow-sm"
 			>
 				<span>Tags:</span>
 				{#each work.tags as { title }}
 					<a
 						href={`/tag/${title}/popular`}
-						class="border dark:bg-zinc-800 dark:text-zinc-100 dark:border-zinc-700 shadow-sm px-3 rounded-full hover:border-amber-600 hover:shadow-sm"
-						>#{title}</a
+						class="border  shadow-sm dark:bg-zinc-800 bg-white dark:text-zinc-100 dark:border-zinc-700  pr-3 pl-2 rounded-full hover:border-amber-600 hover:shadow-sm flex items-center gap-1"
+						>
+						<span class="h-1.5 w-1.5 bg-amber-500 rounded-full"></span>
+						<span >{title}</span>
+						</a 
 					>
 				{/each}
 			</div>
 		{/if} 
 
 		<div
-			class=" flex flex-col border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900  gap-3 p-3 rounded-md shadow-sm sm:max-lg:w-1/2"
+			class=" flex flex-col border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900  gap-3  p-3  rounded-md shadow-sm sm:max-lg:w-1/2 "
 		>
 			{#each work.owners as user}
 				<UserPreviewRegular {user} followBtn={'block'} />
@@ -66,7 +69,7 @@
 
 	<div class="lg:w-4/6 ">
 		<div class="flex flex-col text-gray-800 dark:text-gray-300">
-			<div class="border py-3 bg-gray-50 dark:bg-zinc-800 dark:border-zinc-800">
+			<div class="border py-3 bg-gray-100 dark:bg-zinc-800 dark:border-zinc-800">
 				<span class="px-6 font-semibold">Comments: {work.comments}</span>
 			</div>
 

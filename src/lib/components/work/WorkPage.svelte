@@ -13,7 +13,7 @@
 </script>
 
 <div
-	class=" relative mx-auto lg:border border-t-transparent  dark:lg:bg-zinc-900 lg:px-28 py-3    dark:lg:border-zinc-800 dark:lg:border-t-transparent "
+	class=" relative mx-auto lg:border border-t-transparent  dark:lg:bg-zinc-900 lg:px-28 py-6 py-3    dark:lg:border-zinc-800 dark:lg:border-t-transparent "
 >
 	<div class="sticky top-0 hidden lg:block">
 		<div class="absolute top-[90px] -right-[120px]">

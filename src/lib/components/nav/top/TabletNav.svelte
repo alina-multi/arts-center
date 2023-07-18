@@ -16,7 +16,7 @@
 		<SideBarNavigation />
 		<Logo />
 	</div>
-	<div class="hidden lg:block w-96"><SearchInput /></div>
+	<div class="hidden lg:flex w-96 "><SearchInput /></div>
 	<div class="flex items-center gap-3 md:gap-6">
 		
 		<div class="lg:hidden flex justify-center"><Search /></div>

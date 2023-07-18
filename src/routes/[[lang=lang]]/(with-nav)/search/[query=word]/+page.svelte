@@ -5,6 +5,7 @@
 	import { ChevronRight } from '@steeze-ui/heroicons';
 	import UserDetails from '$lib/components/user/UserDetails.svelte';
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
+	import Avatar from '$lib/components/atoms/Avatar.svelte';
 
 	export let data;
 	const { search, query } = data;
@@ -27,41 +28,46 @@
 		}
 		loading = false;
 	}
+	$: console.log(results);
 </script>
+<div class="lg:border-x py-3 dark:border-0">
+<div class="lg:w-3/4 mx-auto dark:lg:bg-zinc-900  dark:rounded-md dark:py-3">
+	<ul role="search" class="lg:divide-y divide-gray-100 dark:lg:divide-zinc-800 ">
+		{#each results as user}
+			<li class="flex justify-between gap-x-6 py-3 dark:lg:px-9 ">
+			
+				<div class=" flex gap-3 w-full sm:max-w-max">
+					<Avatar {user} size={'h-12 w-12'}  />
 
-<ul role="search" class="divide-y divide-gray-100">
-	{#each results as user}
-		<li class="flex justify-between gap-x-6 py-3">
-			<a href={localePath(`/${user.username}`)} class="flex gap-x-4">
-				<div class="flex-shrink-0 flex-none rounded-full bg-gray-50 overflow-hidden cursor-pointer">
-					<Picture photo={user.photo} size={'w-12 h-12'} />
-				</div>
-
-				<div class="min-w-0 flex-auto text-sm">
-					<p class="font-semibold mb-1">{user.name}</p>
+				<a href={localePath(`/${user.username}`)} class=" min-w-0 flex-auto text-sm ">
+					<div  class="font-semibold mb-1 cursor-pointer hover:underline">{user.name}</div>
 					<UserDetails {user} />
+				</a>
 				</div>
-			</a>
 
-			<a
-				href={localePath(`/${user.username}`)}
-				class="cursor-pointer inline-flex gap-3 items-center text-sm text-gray-500 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150"
-			>
-				<span class="hidden sm:block">View profile</span>
-				<Icon src={ChevronRight} class="w-6 h-6 text-gray-400" />
-			</a>
-		</li>
-	{/each}
+				<a
+					href={localePath(`/${user.username}`)}
+					class="cursor-pointer hidden sm:inline-flex gap-3 items-center text-sm text-zinc-500 hover:scale-105  hover:text-gray-600  transition ease-in-out duration-150"
+				>
+					
+					<span>View profile</span>
+						<Icon src={ChevronRight} class="w-6 h-6 " />
+					
+				</a>
+			</li>
+		{/each}
 
-	<div />
-	{#if hasMore}
-		<InfiniteScroll
-			{hasMore}
-			{loading}
-			on:loadMore={() => {
-				page++;
-				fetchData();
-			}}
-		/>
-	{/if}
-</ul>
+		<div />
+		{#if hasMore}
+			<InfiniteScroll
+				{hasMore}
+				{loading}
+				on:loadMore={() => {
+					page++;
+					fetchData();
+				}}
+			/>
+		{/if}
+	</ul>
+</div>
+</div>
