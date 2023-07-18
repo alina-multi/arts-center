@@ -6,7 +6,7 @@
 
 	export let user, size, withName, nameStyles;
 	$: href = localePath(`/${user.username}`);
-
+	
 
 	if (!size) {
 		size = 'h-6 w-6';

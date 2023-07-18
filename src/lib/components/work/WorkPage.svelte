@@ -7,13 +7,11 @@
 	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
 	export let work: Work;
 	export let comments: Comment[];
-	import { page } from '$app/stores';
 
-	const currentUser = $page.data.currentUser;
 </script>
 
 <div
-	class=" relative mx-auto lg:border border-t-transparent  dark:lg:bg-zinc-900 lg:px-28 py-6 py-3    dark:lg:border-zinc-800 dark:lg:border-t-transparent "
+	class=" relative mx-auto lg:border border-t-transparent  dark:lg:bg-zinc-900 lg:px-28 py-3    dark:lg:border-zinc-800 dark:lg:border-t-transparent "
 >
 	<div class="sticky top-0 hidden lg:block">
 		<div class="absolute top-[90px] -right-[120px]">
@@ -27,11 +25,10 @@
 			<WorkHeader {work} />
 			<WorkBody {work} />
 			<div
-				class="flex items-center justify-between gap-2 lg:py-3 pb-3 text-gray-800 dark:text-zinc-500 border-y py-3 lg:border-0 dark:bg-zinc-900 dark:border-zinc-800 dark:px-3 "
+				class="flex items-center justify-between gap-2 py-3  text-gray-800 dark:text-zinc-500  lg:border-0  dark:border-zinc-800  "
 			>
 				<RatingPreviewVote
 					entity={work}
-					{currentUser}
 					showVotedPreview
 					votable_type={'work'}
 					

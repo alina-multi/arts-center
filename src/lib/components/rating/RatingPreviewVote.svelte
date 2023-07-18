@@ -5,14 +5,16 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { HandThumbDown, HandThumbUp } from '@steeze-ui/heroicons';
 	import VotedList from '$lib/components/rating/VotedList.svelte';
+	import { page } from '$app/stores';
+	
 
 	export let entity: Work | Comment,
 		allowDownVote = false,
 		votable_type: string,
 		showVotedPreview = false,
-		currentUser: User,
 		size: string = 'w-6 h-6';
-
+		
+    let currentUser = $page.data.currentUser;
 	let votes = entity?.votes;
 	let rating = entity?.rating;
 	let isLiked = entity?.votes?.some((vote) => vote?.id.toString() === currentUser?.id.toString());

@@ -2,72 +2,48 @@
 	import UserPreviewRegular from '$lib/components/user/UserPreviewRegular.svelte';
 	import CommentBlocks from '$lib/components/comments/CommentBlocks.svelte';
 	import { page } from '$app/stores';
+	import AuthStub from '../../AuthStub.svelte';
 
 	export let work, comments;
 </script>
 
 <div
-	class="flex max-lg:flex-col justify-beetwen items-stretch lg:items-start  lg:mt-6 gap-6 dark:text-gray-300"
+	class="flex max-lg:flex-col justify-beetwen items-stretch lg:items-start lg:mt-6 gap-6 dark:text-gray-300"
 >
-	<!-- {#if !$page.data.currentUser}
-		<div
-			class="flex lg:hidden flex-col border border-gray-200 dark:border-gray-700 gap-6 p-6 rounded-md shadow-sm"
-		>
-			<h3 class="text-lg font-semibold">Sign in to comment this work</h3>
-			<p class="text-gray-500">
-				Sign in with your email address to follow this work and get updates on your Feed.
-			</p>
-			<button
-				class=" dark:bg-gray-900 text-center mx-auto w-full sm:max-lg:w-1/2 dark:border-blue-700 dark:border rounded-full px-3 py-1 text-white bg-amber-700 font-semibold shadow-sm hover:bg-blue-600 dark:hover:bg-blue-700 dark:text-gray-100 hover:text-white cursor-pointer"
-				>Sign in</button
-			>
-		</div>
-	{/if} -->
-
-	<div class="flex flex-col sm:flex-row sm:w-full lg:flex-col gap-6 lg:w-2/6">
-		 <!-- {#if !$page.data.currentUser}
-			<div
-				class="hidden lg:flex flex-col border border-gray-200 dark:border-gray-800 gap-3 p-3 rounded-md shadow-sm"
-			>
-				<h3 class="text-lg font-semibold">Sign in to comment this work</h3>
-				<p class="text-gray-500">
-					Sign in with your email address to follow this work and get updates on your Feed.
-				</p>
-				<button
-					class=" dark:bg-gray-900 text-center dark:border-blue-700 dark:border rounded-full px-3 py-1 text-white bg-amber-700 font-semibold shadow-sm hover:bg-blue-600 dark:hover:bg-blue-700 dark:text-gray-100 hover:text-white cursor-pointer"
-					>Sign in</button
-				>
-			</div>
-		{/if}  -->
-
+	<div class="flex flex-col  sm:w-full lg:flex-col gap-6 lg:w-2/6">
+		
 		{#if work?.tags.length > 0}
 			<div
-				class="flex sm:max-lg:w-1/2 flex-wrap items-start justify-start md:border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 sm:p-3 gap-3 md:py-3 dark:p-3 rounded-md md:shadow-sm"
+				class="hidden lg:flex  flex-wrap items-start justify-start border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 sm:p-3 gap-3 md:py-3 p-3 rounded-lgshadow-sm bg-gray-100"
 			>
 				<span>Tags:</span>
 				{#each work.tags as { title }}
 					<a
 						href={`/tag/${title}/popular`}
-						class="border  shadow-sm dark:bg-zinc-800 bg-white dark:text-zinc-100 dark:border-zinc-700  pr-3 pl-2 rounded-full hover:border-amber-600 hover:shadow-sm flex items-center gap-1"
-						>
-						<span class="h-1.5 w-1.5 bg-amber-500 rounded-full"></span>
-						<span >{title}</span>
-						</a 
+						class="border shadow-sm dark:bg-zinc-800 bg-white dark:text-zinc-100 dark:border-zinc-700 pr-3 pl-2 rounded-full hover:border-amber-600 hover:shadow-sm flex items-center gap-1"
 					>
+						<span class="h-1.5 w-1.5 bg-amber-500 rounded-full" />
+						<span>{title}</span>
+					</a>
 				{/each}
 			</div>
-		{/if} 
+		{/if}
+
+		{#if !$page.data.currentUser}
+		<div> <AuthStub /></div>	
+		{/if}
 
 		<div
-			class=" flex flex-col border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900  gap-3  p-3  rounded-md shadow-sm sm:max-lg:w-1/2 "
+			class=" hidden  lg:flex flex-col  border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 gap-3 p-3 sm:p-6 sm:gap-6 rounded-md shadow-sm md:max-lg:w-1/2"
 		>
 			{#each work.owners as user}
 				<UserPreviewRegular {user} followBtn={'block'} />
 			{/each}
 		</div>
+
 	</div>
 
-	<div class="lg:w-4/6 ">
+	<div class="lg:w-4/6">
 		<div class="flex flex-col text-gray-800 dark:text-gray-300">
 			<div class="border py-3 bg-gray-100 dark:bg-zinc-800 dark:border-zinc-800">
 				<span class="px-6 font-semibold">Comments: {work.comments}</span>
@@ -81,5 +57,30 @@
 		</div>
 	</div>
 
-	
+	<div class="flex flex-col gap-6 sm:flex-row lg:hidden">
+		{#if work?.tags.length > 0}
+			<div
+				class="sm:w-1/2 px-6 py-3 sm:py-6 gap-3 flex  flex-wrap items-start h-modal  border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900  sm:rounded-lg shadow-sm bg-gray-100"
+			>
+				<span>Tags:</span>
+				{#each work.tags as { title }}
+					<a
+						href={`/tag/${title}/popular`}
+						class="border shadow-sm dark:bg-zinc-800 bg-white dark:text-zinc-100 dark:border-zinc-700 pr-3 pl-2 rounded-full hover:border-amber-600 hover:shadow-sm flex items-center gap-1"
+					>
+						<span class="h-1.5 w-1.5 bg-amber-500 rounded-full" />
+						<span>{title}</span>
+					</a>
+				{/each}
+			</div>
+		{/if}
+
+	<div
+	class=" sm:w-1/2 flex  lg:hidden flex-col border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 p-6 gap-6 rounded-md shadow-sm s"
+>
+	{#each work.owners as user}
+		<UserPreviewRegular {user} followBtn={'block'} />
+	{/each}
+</div>
+	</div>
 </div>

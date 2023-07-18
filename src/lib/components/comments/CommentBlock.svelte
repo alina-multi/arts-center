@@ -43,6 +43,9 @@
 	}
 
 	function onReply() {
+		if (!currentUser) {
+			return;
+		}
 		commentsState.showReplyForm(comment);
 		commentsState.hideEditForm();
 		value = '';
@@ -171,7 +174,7 @@
 				<div class="whitespace-pre-wrap">{@html comment.text}</div>
 			{/if}
 
-			{#if currentUser}
+			
 				<div
 					class="absolute -bottom-4 right-0 flex justify-end items-center border rounded-full bg-white py-1 divide-x  dark:border-zinc-600 dark:divide-zinc-600 mr-3 dark:bg-zinc-800"
 				>
@@ -184,14 +187,13 @@
 					<div class="px-3 flex">
 						<RatingPreviewVote
 							entity={comment}
-							{currentUser}
 							allowDownVote
 							size={'w-4 h-4'}
 							votable_type={'comment'}
 						/>
 					</div>
 				</div>
-			{/if}
+			
 		</div>
 
 		{#if $commentsState.replyCommentId === comment.id}
