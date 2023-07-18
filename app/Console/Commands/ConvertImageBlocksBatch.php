@@ -27,8 +27,8 @@ class ConvertImageBlocksBatch extends Command
             ->with('images')
             ->orderBy('order')
             ->orderBy('id')
-            ->chunk($batch, function ($blocks) {
-                print "Dispatching next $this->batch Last id: {$blocks[0]->id}  \n\n";
+            ->chunk($batch, function ($blocks) use ($batch) {
+                print "Dispatching next $batch Last id: {$blocks[0]->id}  \n\n";
                 ConvertImageBlocks::dispatch($blocks);
             });
     }
