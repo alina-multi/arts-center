@@ -15,14 +15,16 @@ class ConvertImageBlocksBatch extends Command
      */
     protected $signature = 'app:convert-image-blocks';
 
-    protected $batch = 1000;
+    protected $batch = 500;
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        WorkBlock::whereIn('type', ['image', 'grid'])
+        WorkBlock::whereHas('work', function (Builder $query) {
+            $query->whereNull('full_image_id');
+        })->whereIn('type', ['image', 'grid'])
             ->with('images')
             ->orderBy('order')
             ->orderBy('id')
