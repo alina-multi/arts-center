@@ -22,7 +22,7 @@ class ConvertImageBlocksBatch extends Command
      */
     public function handle()
     {
-        WorkBlock::whereHas('work', function (Builder $query) {
+        WorkBlock::whereHas('work', function ($query) {
             $query->whereNull('full_image_id');
         })->whereIn('type', ['image', 'grid'])
             ->with('images')
