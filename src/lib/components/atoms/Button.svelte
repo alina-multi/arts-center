@@ -4,7 +4,6 @@
 	export let type: 'button' | 'submit' | 'reset' = 'button',
 		customClass = '';
 	const dispatch = createEventDispatcher();
-	let open = false;
 
 	function handleClick() {
 		dispatch('open'), dispatch('close');

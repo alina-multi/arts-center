@@ -3,9 +3,9 @@
 	import { onMount } from 'svelte';
 
 	export let isEditing: boolean | undefined = false,
-		isReplying: boolean | undefined,
+		isReplying: boolean | undefined = false,
 		onSubmit: (comment_id: string) => Promise<void>,
-		commentID: string | undefined,
+		commentID: string | undefined = undefined,
 		value: string;
 	const currentUser = $page.data.currentUser;
 	commentID = commentID?.toString();
@@ -28,11 +28,7 @@
 				alt={'Avatar of ' + currentUser.name}
 			/>
 		{/if}
-		<form
-			class="mx-auto w-full"
-			method="POST"
-			on:submit|preventDefault={(e) => onSubmit(commentID)}
-		>
+		<form class="mx-auto w-full" method="POST" on:submit|preventDefault={() => onSubmit(commentID)}>
 			<textarea
 				bind:this={textarea}
 				bind:value

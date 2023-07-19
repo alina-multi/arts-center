@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { PlusCircle } from '@steeze-ui/heroicons';
-	import { localePath, t } from '$lib/translations';
+	import { localePath } from '$lib/translations';
 	import { page } from '$app/stores';
 	let href;
 	if ($page.data.currentUser) {

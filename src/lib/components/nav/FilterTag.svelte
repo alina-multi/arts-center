@@ -2,7 +2,7 @@
 	import type { Tag } from '$lib/interfaces/Tag';
 	import { Popover, PopoverButton, PopoverPanel, Transition } from '@rgossiaux/svelte-headlessui';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { ChevronDown, ChevronUp, XMark } from '@steeze-ui/heroicons';
+	import { ChevronDown, ChevronUp } from '@steeze-ui/heroicons';
 	import TagButtons from '$lib/components/atoms/TagButtons.svelte';
 
 	export let tags: Tag[],

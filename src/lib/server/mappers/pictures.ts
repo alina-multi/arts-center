@@ -22,7 +22,7 @@ export function pictureMap(image: imageWithRelation): Picture {
 	}
 	const sortedVariants = image.variants.sort((a, b) => a.width - b.width);
 	let original, src;
-	for (let variant of sortedVariants) {
+	for (const variant of sortedVariants) {
 		if (variant.original) {
 			original = {
 				src: buildSrc(image.folder, variant.id, variant.extension),
@@ -44,7 +44,7 @@ export function pictureMap(image: imageWithRelation): Picture {
 		sourcesMap.set(type, source);
 	}
 	const sources = [];
-	for (let type of Array.from(sourcesMap.keys()).sort().reverse()) {
+	for (const type of Array.from(sourcesMap.keys()).sort().reverse()) {
 		const source = sourcesMap.get(type);
 		sources.push({
 			type,

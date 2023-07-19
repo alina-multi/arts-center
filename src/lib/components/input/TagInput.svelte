@@ -19,7 +19,7 @@
 	$: visibleOptions = [];
 
 	const searchOptions = (search: string): Promise<string[]> => {
-		return new Promise((resolve, reject) => {
+		return new Promise((resolve) => {
 			setTimeout(() => {
 				resolve(options.filter((option) => option.toLowerCase().includes(search.toLowerCase())));
 			}, 1000);

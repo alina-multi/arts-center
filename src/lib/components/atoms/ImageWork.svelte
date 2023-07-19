@@ -3,7 +3,7 @@
 	import Picture from '$lib/components/atoms/Picture.svelte';
 	export let work,
 		href,
-		withDesription: boolean = false;
+		withDesription = false;
 	let title: string;
 
 	$: title = languageFind(work.titles)?.title;

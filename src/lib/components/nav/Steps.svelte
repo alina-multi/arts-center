@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let steps: { label: string; href?: string }[];
-	export let currentStep: number = 1;
+	export let currentStep = 1;
 </script>
 
 <nav aria-label="Progress">

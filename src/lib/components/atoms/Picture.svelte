@@ -5,8 +5,10 @@
 </script>
 
 <picture class={style}>
-	{#each photo.sources as { srcset, type }}
-		<source {srcset} {type} />
-	{/each}
-	<img src={photo.src} {alt} class={style} />
+	{#if photo?.sources}
+		{#each photo.sources as { srcset, type }}
+			<source {srcset} {type} />
+		{/each}
+	{/if}
+	<img src={photo?.src} {alt} class={style} />
 </picture>
