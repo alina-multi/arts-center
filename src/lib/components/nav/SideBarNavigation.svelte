@@ -3,7 +3,8 @@
 		Dialog,
 		DialogOverlay,
 		DialogDescription,
-		Transition
+		Transition,
+		TransitionChild
 	} from '@rgossiaux/svelte-headlessui';
 	import { localePath, t } from '$lib/translations';
 	import Button from '../atoms/Button.svelte';
@@ -29,22 +30,27 @@
 </Button>
 
 <div>
-	<Dialog {open} on:close={() => (open = !open)} class="relative xl:hidden " initialFocus>
-		<DialogOverlay class="fixed inset-0 bg-zinc-900/50 z-30" />
-		<Transition
-			show={open}
-			class="fixed inset-0 overflow-hidden z-30"
-			enter="transition ease-in-out duration-200 transform"
-			enterFrom="-translate-x-full"
-			enterTo="translate-x-0"
-			leave="transition ease-in-out duration-1000 transform"
-			leaveFrom="translate-x-0"
-			leaveTo="translate-x-full"
-		>
-
-
-			<div
-				class="absolute inset-y-0 z-50 left-0 w-full sm:w-2/3 md:w-1/2 overflow-y-auto bg-white dark:bg-zinc-900 text-black dark:text-white"
+	<Transition show={open}>
+		<Dialog {open} on:close={() => (open = !open)} class="relative xl:hidden " initialFocus>
+			<TransitionChild
+				class="fixed inset-0 z-40 "
+				enter="transition-opacity ease-linear duration-300"
+				enterFrom="opacity-0"
+				enterTo="opacity-100"
+				leave="transition-opacity ease-linear duration-300"
+				leaveFrom="opacity-100"
+				leaveTo="opacity-0"
+			>
+				<DialogOverlay class="fixed inset-0 z-40 bg-zinc-900/50 " />
+			</TransitionChild>
+			<TransitionChild
+				class="fixed top-0 left-0 h-full  z-50 w-full sm:w-2/3 md:w-1/2 overflow-y-auto bg-white dark:bg-zinc-900 text-black dark:text-white"
+				enter="transition ease-in-out duration-300 transform"
+				enterFrom="-translate-x-full"
+				enterTo="translate-x-0"
+				leave="transition ease-in-out duration-300 transform"
+				leaveFrom="translate-x-0"
+				leaveTo="-translate-x-full"
 			>
 				<DialogDescription>
 					<TopNav>
@@ -101,7 +107,7 @@
 						<div />
 					</div>
 				</DialogDescription>
-			</div>
-		</Transition>
-	</Dialog>
+			</TransitionChild>
+		</Dialog>
+	</Transition>
 </div>
