@@ -11,7 +11,7 @@
 		allowDownVote = false,
 		votable_type: string,
 		showVotedPreview = false,
-		size: string = 'w-6 h-6';
+		size = 'w-6 h-6';
 
 	let currentUser = $page.data.currentUser;
 	let votes = entity?.votes;
