@@ -18,8 +18,6 @@
 		tmpImage.src = image;
 	}
 
-	let preview;
-
 	function cropComplete(e) {
 		pixels = e.detail.pixels;
 	}

@@ -5,7 +5,6 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { HandThumbDown, HandThumbUp } from '@steeze-ui/heroicons';
 	import VotedList from '$lib/components/rating/VotedList.svelte';
-	import { page } from '$app/stores';
 
 	export let entity: Work | Comment,
 		allowDownVote = false,
@@ -13,7 +12,6 @@
 		showVotedPreview = false,
 		size = 'w-6 h-6';
 
-	let currentUser = $page.data.currentUser;
 	let votes = entity?.votes;
 	let rating = entity?.rating;
 	let isLiked = entity?.votes?.some((vote) => vote?.id.toString() === currentUser?.id.toString());
@@ -37,13 +35,13 @@
 			isLiked = true;
 			rating += 1;
 			votes?.unshift(currentUser);
-			const response = await vote('POST').then((res) => res.json());
+			await vote('POST').then((res) => res.json());
 			return;
 		}
 		isDownVoted = false;
 		isLiked = true;
 		rating += 2;
-		const response = await vote('DELETE', -1).then((res) => res.json());
+		await vote('DELETE', -1).then((res) => res.json());
 	}
 
 	async function cancelVote() {
@@ -58,7 +56,7 @@
 				votes?.splice(index, 1);
 			}
 		});
-		const response = await vote('DELETE').then((res) => res.json());
+		await vote('DELETE').then((res) => res.json());
 	}
 
 	async function dislike() {
@@ -70,7 +68,7 @@
 		if (isDownVoted) {
 			isDownVoted = false;
 			rating += 1;
-			const response = await vote('DELETE', -1).then((res) => res.json());
+			await vote('DELETE', -1).then((res) => res.json());
 			return;
 		}
 		if (isLiked) {
@@ -80,7 +78,7 @@
 		}
 		isLiked = false;
 		isDownVoted = true;
-		const response = await vote('POST', -1).then((res) => res.json());
+		await vote('POST', -1).then((res) => res.json());
 	}
 
 	function onClickNotLoggedIn() {

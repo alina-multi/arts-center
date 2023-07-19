@@ -55,6 +55,7 @@
 		<span class="sr-only">Search</span>
 		<input
 			on:input={inputSearch}
+			on:input={inputSearch}
 			on:keydown={onEnter}
 			bind:value
 			type="text"

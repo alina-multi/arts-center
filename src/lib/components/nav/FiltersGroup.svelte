@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Disclosure, DisclosureButton, DisclosurePanel } from '@rgossiaux/svelte-headlessui';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { ChevronUp, XCircle, XMark } from '@steeze-ui/heroicons';
+	import { ChevronUp, XCircle } from '@steeze-ui/heroicons';
 
 	export let option, params, selected, urlGenerator, label, type;
 </script>

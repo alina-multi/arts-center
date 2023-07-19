@@ -2,8 +2,6 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { EllipsisVertical, PencilSquare } from '@steeze-ui/heroicons';
 	import { Popover, PopoverButton, PopoverPanel, Transition } from '@rgossiaux/svelte-headlessui';
-	import { page } from '$app/stores';
-	import { handleIsMy } from '$lib/helpers/handleIsMy';
 
 	export let work,
 		options = [
@@ -17,10 +15,10 @@
 			}
 		];
 
-	let myWork = work.owners.some((owner) => handleIsMy($page.data.currentUser, owner.id));
+	export let isMy = false;
 </script>
 
-{#if myWork}
+{#if isMy}
 	<a href={`/work/${work.id}/edit`} class=" hidden md:flex gap-3">
 		<span class="sr-only">Edit work</span>
 		<Icon src={PencilSquare} class="w-6 h-6 text-gray-700 hover:text-gray-500" />

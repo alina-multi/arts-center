@@ -4,6 +4,7 @@
 	import FollowButton from '$lib/components/atoms/FollowButton.svelte';
 
 	export let work;
+	export let isMy = false;
 </script>
 
 <div class=" flex flex-col gap-3 dark:text-gray-400">
@@ -18,7 +19,7 @@
 			{/each}
 		</div>
 
-		<div class="hidden md:block"><EllipsisButton {work} /></div>
+		<div class="hidden md:block"><EllipsisButton {work} {isMy} /></div>
 	</div>
 
 	<div class="flex justify-between items-start">

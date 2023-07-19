@@ -27,7 +27,6 @@
 				{/each}
 			</div>
 		{/if}
-
 		{#if !$page.data.currentUser}
 			<div><AuthStub /></div>
 		{/if}

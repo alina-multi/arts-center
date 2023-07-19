@@ -1,12 +1,17 @@
 <script lang="ts">
 	import type { Work } from '$lib/interfaces/Work';
 	import type { Comment } from '$lib/interfaces/Comment';
+	import type { User } from '$lib/interfaces/User';
 	import WorkHeader from '$lib/components/work/page/header/WorkHeader.svelte';
 	import WorkBody from '$lib/components/work/page/body/WorkBody.svelte';
 	import WorkFooter from '$lib/components/work/page/footer/WorkFooter.svelte';
 	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
+	import { handleIsMy } from '$lib/helpers/handleIsMy';
+
 	export let work: Work;
 	export let comments: Comment[];
+	export let currentUser: User;
+	let isMy = work.owners.some((owner) => handleIsMy(currentUser, owner.id));
 </script>
 
 <div
@@ -21,12 +26,12 @@
 	</div>
 	<div>
 		<div class="flex flex-col mx-auto gap-3">
-			<WorkHeader {work} />
+			<WorkHeader {work} {isMy} />
 			<WorkBody {work} />
 			<div
 				class="flex items-center justify-between gap-2 py-3 text-gray-800 dark:text-zinc-500 lg:border-0 dark:border-zinc-800"
 			>
-				<RatingPreviewVote entity={work} showVotedPreview votable_type={'work'} />
+				<RatingPreviewVote entity={work} {currentUser} showVotedPreview votable_type={'work'} />
 			</div>
 		</div>
 	</div>
