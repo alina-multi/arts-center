@@ -24,7 +24,7 @@
 			<WorkHeader {work} />
 			<WorkBody {work} />
 			<div
-				class="flex items-center justify-between gap-2 py-3 text-gray-800 dark:text-zinc-500 lg:border-0 dark:border-zinc-800"
+				class=" flex items-center justify-between gap-2 py-3 max-lg:bg-gray-100 max-lg:px-3 dark:bg-zinc-900 dark:border-zinc-800 text-gray-800 dark:text-zinc-500 border rounded-sm lg:border-0 dark:border-zinc-800"
 			>
 				<RatingPreviewVote entity={work} showVotedPreview votable_type={'work'} />
 			</div>

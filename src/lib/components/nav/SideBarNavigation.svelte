@@ -30,6 +30,7 @@
 
 <div>
 	<Dialog {open} on:close={() => (open = !open)} class="relative xl:hidden " initialFocus>
+		<DialogOverlay class="fixed inset-0 bg-zinc-900/50 z-30" />
 		<Transition
 			show={open}
 			class="fixed inset-0 overflow-hidden z-30"
@@ -40,7 +41,7 @@
 			leaveFrom="translate-x-0"
 			leaveTo="translate-x-full"
 		>
-			<DialogOverlay class="fixed inset-0 bg-zinc-900/50 z-50" />
+
 
 			<div
 				class="absolute inset-y-0 z-50 left-0 w-full sm:w-2/3 md:w-1/2 overflow-y-auto bg-white dark:bg-zinc-900 text-black dark:text-white"
@@ -60,7 +61,7 @@
 					</TopNav>
 
 					<div class="divide-y dark:divide-zinc-800">
-						<div class="flex flex-col p-6 gap-6 w-full">
+						<div class="flex flex-col p-6 gap-3 w-full">
 							<TopNavLink media={'mobile'} exact href={localePath('/')}
 								>{$t('global.menu.gallery')}</TopNavLink
 							>
