@@ -28,7 +28,6 @@
 		}
 		loading = false;
 	}
-	$: console.log(results);
 </script>
 
 <div class="lg:w-3/4 mx-auto dark:lg:bg-zinc-900 py-3 lg:border dark:border-0 border-t-transparent">
