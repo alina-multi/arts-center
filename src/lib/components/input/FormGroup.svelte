@@ -2,14 +2,20 @@
 	export let h1, h2;
 </script>
 
-<div class="pb-3">
+<div
+	class=" rounded-md overflow-hidden border bg-white shadow-sm dark:bg-zinc-800 dark:border-zinc-700"
+>
 	{#if h1}
-		<h2 class="text-base font-semibold leading-7 text-gray-900">{h1}</h2>
+		<h2
+			class="text-base font-semibold leading-7 text-gray-900 dark:text-white border-b py-3 px-3 lg:px-16 shadow-sm dark:border-b-zinc-700"
+		>
+			{h1}
+		</h2>
 	{/if}
 	{#if h2}
 		<p class="mt-1 text-sm leading-6 text-gray-600">{h2}</p>
 	{/if}
-	<div class="flex flex-col mt-10 space-y-3">
+	<div class="flex flex-col gap-6 px-3 lg:px-16 py-6">
 		<slot />
 	</div>
 </div>

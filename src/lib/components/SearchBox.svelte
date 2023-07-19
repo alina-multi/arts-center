@@ -2,7 +2,7 @@
 	import { localePath } from '$lib/translations';
 	import { Menu, MenuItems, MenuItem } from '@rgossiaux/svelte-headlessui';
 	import { clickOutside } from 'svelte-use-click-outside';
-	import Picture from './atoms/Picture.svelte';
+	import Avatar from './atoms/Avatar.svelte';
 
 	export let open = false,
 		results = [],
@@ -30,7 +30,7 @@
 						<a
 							data-sveltekit-reload
 							href={localePath(`/search/${value}`)}
-							class="text-sky-700 hover:underline"
+							class="text-blue-700 hover:underline"
 						>
 							show full results &rarr;
 						</a>
@@ -40,15 +40,11 @@
 					{#each results as user}
 						<MenuItem let:active>
 							<a
+								on:click={() => (open = false)}
 								href={localePath(`/${user.username}`)}
-								class="flex gap-3 items-center w-full text-left text-sm px-6 py-1 hover:bg-gray-100 hover:text-gray-900 cursor-pointer select-none rounded-md {active
-									? 'bg-gray-100 text-gray-900 dark:bg-zinc-800 dark:text-zinc-100'
-									: ''}"
+								class="flex gap-3 items-center w-full text-left text-sm px-6 py-1 hover:bg-gray-100 hover:text-gray-900 cursor-pointer dark:hover:bg-zinc-800"
 							>
-								<div class="rounded-full overflow-hidden">
-									<Picture photo={user.photo} size={'h-10 w-10'} />
-								</div>
-								{user.name}
+								<Avatar {user} size={'h-10 w-10'} withName nameStyles={'text-sm'} />
 							</a>
 						</MenuItem>
 					{/each}

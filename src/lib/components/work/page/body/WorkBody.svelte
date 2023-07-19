@@ -16,14 +16,14 @@
 		lightbox.init();
 	});
 
-	let grid = work.images
+	let grid = work.images;
 	let isOdd = grid.length % 2 !== 0;
 	grid = isOdd ? grid.slice(0, grid.length - 1) : grid;
 	let lastChild = isOdd ? grid[grid.length - 1] : null;
 </script>
 
 <div class="pswp-gallery space-y-2 sm:space-y-3" id={galleryID}>
-	<ImageLightBox image={work.full} alt={work.titles[0].alt} />
+	<ImageLightBox image={work.full} alt={work.titles[0].alt} style={'w-full h-full'} original />
 	<div class="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3">
 		{#each grid as image}
 			<ImageLightBox {image} alt={'??? doesnt exist'} />

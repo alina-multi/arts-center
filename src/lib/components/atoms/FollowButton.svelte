@@ -38,7 +38,7 @@
 
 {#if isMy}
 	<a
-		href="{`/user/${currentUser?.id}/edit`} "
+		href="/my/profile"
 		class=" w-full flex {`text-${size}`}  items-center justify-center rounded-full px-2 py-0.5 border border-gray-500 gap-1 text-zinc-800 shadow-sm cursor-pointer dark:text-zinc-100 dark:bg-zinc-800"
 	>
 		<span>Edit </span>
@@ -60,7 +60,7 @@
 	</button>
 {:else}
 	<button
-		class="w-full {`text-${size}`} bg-sky-700 dark:bg-sky-900 dark:hover:bg-sky-700 text-white dark:text-zinc-100 hover:bg-sky-600 flex items-center justify-center gap-1 rounded-full pl-2 pr-1.5 py-1 shadow-sm cursor-pointer"
+		class="w-full {`text-${size}`} bg-blue-700 dark:bg-blue-900 dark:hover:bg-blue-700 text-white dark:text-zinc-100 hover:bg-blue-600 flex items-center justify-center gap-1 rounded-full pl-2 pr-1.5 py-1 shadow-sm cursor-pointer"
 		on:click={() => handleFollow(currentUser)}
 	>
 		<span>Follow</span>

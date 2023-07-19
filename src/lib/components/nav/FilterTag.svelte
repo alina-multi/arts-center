@@ -30,7 +30,7 @@
 
 <!-- DESkTOP -->
 <div class="hidden md:flex">
-	<Popover class="relative inline-block text-left  z-30 text-gray-800 dark:text-gray-200 " let:open>
+	<Popover class="relative inline-block text-left  z-20 text-gray-800 dark:text-gray-200 " let:open>
 		<div class="flex flex-wrap gap-3 lg:justify-end w-full">
 			<TagButtons tags={visibleTags} {urlGenerator} {params} active={isActive} />
 
@@ -61,7 +61,7 @@
 				leave="transition ease-in duration-75"
 			>
 				<PopoverPanel
-					class="absolute left-0 z-10 mt-2 origin-top-left rounded-md bg-white dark:bg-black/90 shadow-2xl ring-1 ring-black dark:ring-gray-700 ring-opacity-5 focus:outline-none overflow-hidden"
+					class="absolute left-0 z-10 mt-2 origin-top-left rounded-md bg-white dark:bg-black/90 shadow-2xl ring-1 ring-black dark:ring-zinc-900 ring-opacity-5 focus:outline-none overflow-hidden"
 					let:close
 				>
 					<!-- svelte-ignore a11y-click-events-have-key-events -->

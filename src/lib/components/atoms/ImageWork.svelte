@@ -1,27 +1,25 @@
 <script lang="ts">
-	import { handleImgError } from '$lib/helpers/handleImgError.ts';
 	import { languageFind, localePath } from '$lib/translations';
 	import Picture from '$lib/components/atoms/Picture.svelte';
-	export let work, href, withDesription: boolean = false;
+	export let work,
+		href,
+		withDesription: boolean = false;
 	let title: string;
 
 	$: title = languageFind(work.titles)?.title;
 
-	
 	$: href = localePath(`/work/${work.id}`);
-
 </script>
 
-
 <a {href} class="grid gap-1">
-	
-	<div class="rounded-sm bg-gray-100 dark:bg-zinc-900 overflow-hidden aspect-[4/3]">
+	<div class="rounded-sm bg-gray-200 dark:bg-zinc-900 overflow-hidden aspect-[4/3]">
 		{#if work.preview}
-	<div class="">
-		<Picture photo={work.preview} alt={title} style={"aspect-[4/3] flex object-cover"} />
-	</div>
+			<Picture
+				photo={work.preview}
+				alt={title}
+				style={'aspect-[4/3] flex object-cover w-full h-full'}
+			/>
 		{/if}
-		
 	</div>
 	{#if withDesription}
 		<div
@@ -35,4 +33,3 @@
 		</div>
 	{/if}
 </a>
-

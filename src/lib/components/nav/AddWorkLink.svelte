@@ -13,7 +13,7 @@
 
 <a
 	{href}
-	class=" inline-flex items-center shrink-0 text-sm hover:bg-amber-600 hover:border-amber-600 dark:hover:bg-amber-700 dark:hover:border-amber-700 border border-amber-700 rounded-full pl-2 pr-3 py-1 bg-amber-700 dark:bg-amber-900 dark:border-amber-900 text-white shadow-md hover:shadow-xl"
+	class=" inline-flex items-center shrink-0 text-sm hover:bg-amber-500 hover:border-amber-500 dark:hover:bg-amber-600 dark:hover:border-amber-600 border border-amber-600 rounded-full pl-2 pr-3 py-1 bg-amber-600 dark:bg-amber-700 dark:border-amber-700 text-white shadow-md hover:shadow-xl"
 >
 	<span class="sr-only">Add Work</span>
 	<Icon src={PlusCircle} theme="solid" class="h-5 w-5" aria-hidden="true" />

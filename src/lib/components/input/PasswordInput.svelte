@@ -20,18 +20,15 @@
 	<input
 		{...inputAttrs}
 		on:input={(e) => (value = e.target.value)}
-		class="block w-full rounded-md border sm:text-sm pr-10 {error
-			? 'text-red-600 border-red-300 focus:border-red-300 focus:ring-red-200'
-			: 'border-zinc-300 focus:border-indigo-300 focus:ring-indigo-200'}"
+		class=" block w-full rounded-full pl-6 border sm:text-sm pr-10 dark:bg-zinc-900 {error
+			? 'text-red-600 border-red-300 focus:border-red-300 focus:ring-red-200  dark:border-red-500 dark:focus:ring-red-500 '
+			: 'border-zinc-300 focus:border-blue-200 focus:ring-blue-200 dark:focus:border-blue-700 dark:border-zinc-700 dark:focus:ring-blue-700 '}"
 	/>
-	<a
+
+	<button
 		class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 cursor-pointer"
-		on:click={() => (show_password = !show_password)}
+		on:click|preventDefault={() => (show_password = !show_password)}
 	>
-		{#if show_password}
-			<Icon src={Eye} class="h-6 text-gray-700" />
-		{:else}
-			<Icon src={EyeSlash} class="h-6 text-gray-700" />
-		{/if}
-	</a>
+		<Icon src={show_password ? Eye : EyeSlash} class="h-6 w-6 text-gray-700 dark:text-zinc-500 " />
+	</button>
 </div>

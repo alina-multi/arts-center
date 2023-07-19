@@ -7,18 +7,17 @@
 	import Search from '../SearchDialog.svelte';
 	import SearchInput from '../../input/SearchInput.svelte';
 	import UserDropdown from '../UserDropdown.svelte';
-	export let breakpoint = 'sm:max-lg';
+
 	let user = $page.data.currentUser;
 </script>
 
-<div class="hidden {breakpoint}:flex items-center justify-between w-full">
+<div class="hidden sm:max-xl:flex items-center justify-between w-full">
 	<div class="flex items-center gap-3 text-black">
 		<SideBarNavigation />
 		<Logo />
 	</div>
-
+	<div class="hidden lg:flex w-96"><SearchInput /></div>
 	<div class="flex items-center gap-3 md:gap-6">
-		<div class="hidden lg:block w-96"><SearchInput /></div>
 		<div class="lg:hidden flex justify-center"><Search /></div>
 		<div class="flex items-center gap-3 md:gap-6 h-full">
 			<AddWorkLink />
