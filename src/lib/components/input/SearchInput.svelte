@@ -23,9 +23,15 @@
 		}
 	}
 
-	const doSearch = debounce((e) => {
-		loading = true;
+	function inputSearch (e) {
 		value = e.target.value;
+		if (value.length < 2 ) return;
+		loading = true;
+		doSearch(value);
+	}
+
+	const doSearch = debounce((value) => {
+		
 		fetch(`/api/search/${value}/1`)
 			.then((res) => res.json())
 			.then((res) => {
@@ -43,7 +49,7 @@
 	<div class="relative {open ? 'z-50' : 'z-30'} ">
 		<span class="sr-only">Search</span>
 		<input
-			on:input={doSearch}
+		    on:input={inputSearch}
 			on:keydown={onEnter}
 			bind:value
 			type="text"
