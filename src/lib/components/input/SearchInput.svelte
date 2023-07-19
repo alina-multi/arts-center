@@ -41,7 +41,6 @@
 		fetch(`/api/search/${val}/1`)
 			.then((res) => res.json())
 			.then((res) => {
-				console.log(res);
 				results = [...res.hits];
 				totalHits = res.totalHits;
 				loading = false;

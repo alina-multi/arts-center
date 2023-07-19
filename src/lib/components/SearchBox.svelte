@@ -53,7 +53,9 @@
 			{#if totalHits === 0}
 				<div class="pb-3 text-center">
 					<!-- Sad Cat Icon -->
-					<p class="mt-4 text-sm text-gray-900 dark:text-white">No people found using that search term.</p>
+					<p class="mt-4 text-sm text-gray-900 dark:text-white">
+						No people found using that search term.
+					</p>
 				</div>
 			{/if}
 		</div>
