@@ -29,7 +29,9 @@
 	}
 </script>
 
-<div class="lg:w-3/4 mx-auto dark:lg:bg-zinc-900 pt-3 lg:border dark:border-0 border-t-transparent mb-3 ">
+<div
+	class="lg:w-3/4 mx-auto dark:lg:bg-zinc-900 pt-3 lg:border dark:border-0 border-t-transparent mb-3"
+>
 	<ul role="search" class="lg:divide-y divide-gray-100 dark:lg:divide-zinc-800">
 		{#each results as user}
 			<li class="flex justify-between gap-x-6 py-3 lg:px-9">
@@ -52,7 +54,6 @@
 			</li>
 		{/each}
 
-		
 		{#if hasMore}
 			<InfiniteScroll
 				{hasMore}

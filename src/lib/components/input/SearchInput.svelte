@@ -69,8 +69,8 @@
 		</div>
 		{#if loading && value.length > 0}
 			<div class="absolute inset-y-0 right-0 flex items-center z-50 pr-8 py-1">
-			<span class="sr-only">Loading...</span>
-			<Loader />
+				<span class="sr-only">Loading...</span>
+				<Loader />
 			</div>
 		{/if}
 		{#if open}
