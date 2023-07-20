@@ -1,9 +1,5 @@
 <script>
-	import {
-		Dialog,
-		DialogOverlay,
-		DialogDescription,
-	} from '@rgossiaux/svelte-headlessui';
+	import { Dialog, DialogOverlay, DialogDescription } from '@rgossiaux/svelte-headlessui';
 	import Button from '../atoms/Button.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { MagnifyingGlass, XCircle } from '@steeze-ui/heroicons';
