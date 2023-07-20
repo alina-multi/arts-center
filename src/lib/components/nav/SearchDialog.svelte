@@ -3,7 +3,6 @@
 		Dialog,
 		DialogOverlay,
 		DialogDescription,
-		Transition
 	} from '@rgossiaux/svelte-headlessui';
 	import Button from '../atoms/Button.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';

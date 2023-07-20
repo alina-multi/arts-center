@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { localePath } from '$lib/translations';
-	import Picture from '$lib/components/atoms/Picture.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ChevronRight } from '@steeze-ui/heroicons';
 	import UserDetails from '$lib/components/user/UserDetails.svelte';
