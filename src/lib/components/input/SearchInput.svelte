@@ -2,9 +2,9 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { MagnifyingGlass, XMark } from '@steeze-ui/heroicons';
 	import SearchBox from '../SearchBox.svelte';
-	import { Spinner } from 'flowbite-svelte';
 	import debounce from 'lodash/debounce';
 	import { goto } from '$app/navigation';
+	import Loader from '$lib/components/atoms/Loader.svelte';
 
 	let value = '',
 		totalHits,
@@ -68,8 +68,9 @@
 			<Icon src={MagnifyingGlass} class="text-zinc-400  h-5 w-5" />
 		</div>
 		{#if loading && value.length > 0}
-			<div class="absolute inset-y-0 right-0 flex items-center z-50 pr-8">
-				<Spinner color="yellow" size="5" />
+			<div class="absolute inset-y-0 right-0 flex items-center z-50 pr-8 py-1">
+			<span class="sr-only">Loading...</span>
+			<Loader />
 			</div>
 		{/if}
 		{#if open}
