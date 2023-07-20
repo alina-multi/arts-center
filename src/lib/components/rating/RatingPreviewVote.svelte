@@ -96,10 +96,10 @@
 	<div
 		class="flex items-center gap-2 {votable_type === 'work'
 			? 'border px-4 py-1 rounded-full shadow-md '
-			: 'hover:text-zinc-100'}  dark:bg-zinc-800 dark:border-zinc-700 dark:text-white"
+			: 'hover:text-zinc-100'}  dark:bg-zinc-800 bg-white dark:border-zinc-700 dark:text-white"
 	>
 		{#if votable_type === 'work'}
-			<span class="border-r dark:border-zinc-700 pr-3">Like {rating}</span>
+			<span class="border-r dark:border-zinc-700 pr-3 text-sm">Like {rating}</span>
 		{/if}
 		{#if isLiked}
 			<button on:click={cancelVote}

@@ -12,7 +12,7 @@
 	let showLikedByModal = false;
 </script>
 
-<div class="flex items-center gap-1 dark:text-zinc-300 max-[400px]:text-xs">
+<div class="flex items-center gap-1 dark:text-zinc-300 max-[400px]:text-xs text-sm lg:text-base">
 	{#if votes.length > 0}
 		<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointer">
 			<span class="mr-1">Liked by</span>
