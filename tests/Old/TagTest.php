@@ -2,6 +2,7 @@
 
 namespace Tests\Old;
 
+use App\Enums\TagTypes;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -27,8 +28,8 @@ class TagTest extends TestCase
     public function testGetCategory()
     {
         // Creating both types to test they don't interfere
-        $this->createTags(Tag::TYPE_CATEGORY, $this->testTitles);
-        $this->createTags(Tag::TYPE_TAG, $this->testTitles);
+        $this->createTags(TagTypes::CATEGORY, $this->testTitles);
+        $this->createTags(TagTypes::TAG, $this->testTitles);
         $response = $this->getJson('api/tag/category/en');
         $response->assertJson(
             fn(AssertableJson $json) => $json->has('tags', 3)->has('order', 3)
@@ -38,8 +39,8 @@ class TagTest extends TestCase
     public function testSearchTags()
     {
         // Creating both types to test they don't interfere
-        $this->createTags(Tag::TYPE_CATEGORY, $this->testTitles);
-        $this->createTags(Tag::TYPE_TAG, $this->testTitles);
+        $this->createTags(TagTypes::CATEGORY, $this->testTitles);
+        $this->createTags(TagTypes::TAG, $this->testTitles);
         //Testing wrong format
         $response = $this->getJson('/api/tag/a_@');
         $response->assertStatus(422);

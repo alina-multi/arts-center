@@ -5,13 +5,12 @@ namespace App\Policies;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class MultipeOwnersPolicy
+class MultipleOwnersPolicy
 {
     use HandlesAuthorization;
 
     public function update(User $user, $model)
     {
-        $owners = $model->owners()->toSql();
         foreach ($model->owners as $owner) {
             if ($owner->id == $user->id) {
                 return true;

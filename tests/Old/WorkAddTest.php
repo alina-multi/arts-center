@@ -2,6 +2,7 @@
 
 namespace Tests\Old;
 
+use App\Enums\TagTypes;
 use App\Jobs\ConvertImage;
 use App\Jobs\TranslateWork;
 use App\Models\Image;
@@ -192,8 +193,8 @@ class WorkAddTest extends TestCase
         $image = Image::factory(['folder' => 'image'])->create();
 
         $now = Carbon::now()->format('Y-m-d H:i:s');
-        $tags = $this->createTags(Tag::TYPE_TAG, ['strawberry', 'banana', 'apple']);
-        $category = $this->createTags(Tag::TYPE_CATEGORY, ['red', 'blue', 'purple', 'green']);
+        $tags = $this->createTags(TagTypes::TAG, ['strawberry', 'banana', 'apple']);
+        $category = $this->createTags(TagTypes::CATEGORY, ['red', 'blue', 'purple', 'green']);
 
         $form = [
             'image_id' => $image->id,

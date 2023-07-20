@@ -6,13 +6,8 @@ use App\Rules\UploadedImage;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class DraftRequest extends FormRequest
+class WorkDraftRequest extends FormRequest
 {
-    public function authorize(): bool
-    {
-        return !empty($this->user());
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *

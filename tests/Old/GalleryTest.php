@@ -2,6 +2,7 @@
 
 namespace Tests\Old;
 
+use App\Enums\TagTypes;
 use App\Models\Tag;
 use App\Models\TagTitle;
 use App\Models\User;
@@ -42,11 +43,11 @@ class GalleryTest extends TestCase
 
         $user = User::factory()->create();
         // So we have at least 2 tags because there were false positive before
-        Tag::factory(['type_id' => Tag::TYPE_CATEGORY])->has(
+        Tag::factory(['type_id' => TagTypes::CATEGORY])->has(
             TagTitle::factory(['title' => 'graphic', 'language' => 'en']),
             'titles'
         )->create();
-        $category = Tag::factory(['type_id' => Tag::TYPE_CATEGORY])->has(
+        $category = Tag::factory(['type_id' => TagTypes::CATEGORY])->has(
             TagTitle::factory(['title' => 'painting', 'language' => 'en']),
             'titles'
         )->create();

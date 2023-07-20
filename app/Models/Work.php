@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\TagTypes;
 use App\Events\PublishedWorkUpdated;
 use App\Events\WorkDeleted;
 use App\Events\WorkPublished;
@@ -71,12 +72,12 @@ class Work extends Model
 
     public function tags()
     {
-        return $this->morphToMany(Tag::class, 'taggable')->where('type_id', Tag::TYPE_TAG);
+        return $this->morphToMany(Tag::class, 'taggable')->where('type_id', TagTypes::TAG);
     }
 
     public function category()
     {
-        return $this->morphToMany(Tag::class, 'taggable')->where('type_id', Tag::TYPE_CATEGORY);
+        return $this->morphToMany(Tag::class, 'taggable')->where('type_id', TagTypes::CATEGORY);
     }
 
     public function images()

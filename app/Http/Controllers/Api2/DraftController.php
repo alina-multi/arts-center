@@ -4,13 +4,18 @@ namespace App\Http\Controllers\Api2;
 
 use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\DraftRequest;
+use App\Http\Requests\WorkDraftRequest;
+use App\Http\Requests\WorkEditRequest;
 use App\Http\Resources\WorkEditResource;
 use App\Models\Work;
 
 class DraftController extends Controller
 {
-    public function store(DraftRequest $request)
+    public function __construct()
+    {
+        $this->authorizeResource(Work::class, 'draft');
+    }
+    public function store(WorkDraftRequest $request)
     {
         $work = Work::create();
         $work->owners()->attach($request->user());
@@ -28,11 +33,22 @@ class DraftController extends Controller
             }
         }
         $work->titles()->create(['language' => $request->language]);
-        return WorkEditResource::make($work->load( 'owners', 'images', 'titles'));
+        return WorkEditResource::make($work->load('owners', 'images', 'titles'));
     }
 
-    public function show(Work $draft)
+    public function update(WorkEditRequest $request, Work $draft)
     {
-        return WorkEditResource::make($draft->load( 'owners', 'images', 'titles'));
+        $title = $draft->titles()->first();
+        $title->update([
+            'title'=>$request->title,
+            'description' => $request->description
+        ]);
+        $draft->category()->attach($request->category);
+        return WorkEditResource::make($draft->load('owners', 'images', 'titles'));
+    }
+
+    public function show(WorkEditRequest $draft)
+    {
+        return WorkEditResource::make($draft->load('owners', 'images', 'titles'));
     }
 }

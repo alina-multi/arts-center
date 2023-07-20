@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Api2;
 
+use App\Enums\TagTypes;
 use App\Jobs\RecountUserRatings;
 use App\Models\Comment;
 use App\Models\Tag;
@@ -165,8 +166,8 @@ class VoteTest extends TestCase
         $work2 = Work::factory(['rating' => 3])->create();
         WorkTitle::factory(['work_id' => $work2->id])->create();
         WorkTitle::factory(['work_id' => $work2->id, 'language' => 'ru'])->create();
-        $tag = Tag::factory(['type_id' => Tag::TYPE_CATEGORY])->create();
-        $tag2 = Tag::factory(['type_id' => Tag::TYPE_CATEGORY])->create();
+        $tag = Tag::factory(['type_id' => TagTypes::CATEGORY])->create();
+        $tag2 = Tag::factory(['type_id' => TagTypes::CATEGORY])->create();
         $work->category()->attach($tag->id);
         $work->owners()->attach($owner->id);
         $work2->category()->attach($tag->id);

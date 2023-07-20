@@ -21,7 +21,7 @@ class WorkTitle extends Model
     }
 
     protected $fillable = [
-        'created_at', 'work_id', 'language', 'title'
+        'created_at', 'work_id', 'language', 'title', 'description', 'alt'
     ];
 
     protected $hidden = [
