@@ -55,7 +55,6 @@
 		<span class="sr-only">Search</span>
 		<input
 			on:input={inputSearch}
-			on:input={inputSearch}
 			on:keydown={onEnter}
 			bind:value
 			type="text"
@@ -78,7 +77,7 @@
 				type="button"
 				class="absolute inset-y-0 right-0 flex items-center z-50 px-2"
 				aria-label="Clear"
-				on:click={() => (value = '')}
+				on:click={(e) => (value = ' ')}
 			>
 				<Icon src={XMark} class="text-gray-400 h-5 w-5" />
 			</button>
