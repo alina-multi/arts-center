@@ -30,7 +30,9 @@
 <a
 	{href}
 	class="inline-flex h-full items-center text-lg border-amber-500 {style}
-        {computedActive ? '' : 'border-transparent hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-300'} "
+        {computedActive
+		? ''
+		: 'border-transparent hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-300'} "
 	data-sveltekit-reload={reload ? '' : 'off'}
 	data-sveltekit-preload-data={preload}
 >

@@ -22,7 +22,7 @@
 	let lastChild = isOdd ? grid[grid.length - 1] : null;
 </script>
 
-<div class="pswp-gallery  {grid.length > 1 ? 'space-y-2 sm:space-y-3': ''}" id={galleryID}>
+<div class="pswp-gallery {grid.length > 1 ? 'space-y-2 sm:space-y-3' : ''}" id={galleryID}>
 	<ImageLightBox image={work.full} alt={work.titles[0].alt} style={'w-full h-full'} original />
 	<div class="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3">
 		{#each grid as image}

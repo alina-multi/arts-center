@@ -11,7 +11,7 @@
 		allowDownVote = false,
 		votable_type: string,
 		showVotedPreview = false,
-		size: string = 'w-6 h-6';
+		size = 'w-6 h-6';
 
 	let currentUser = $page.data.currentUser;
 	let votes = entity?.votes;
@@ -100,7 +100,7 @@
 			: 'hover:text-zinc-100'}  dark:bg-zinc-800 bg-white dark:border-zinc-700 dark:text-white"
 	>
 		{#if votable_type === 'work'}
-			<span class="border-r dark:border-zinc-700 pr-3 text-sm ">Like {rating}</span>
+			<span class="border-r dark:border-zinc-700 pr-3 text-sm">Like {rating}</span>
 		{/if}
 		{#if isLiked}
 			<button on:click={cancelVote}
