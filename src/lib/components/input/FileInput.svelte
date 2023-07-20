@@ -21,5 +21,5 @@
 	{multiple}
 	{required}
 	on:change={(e) => dispatch('change', e.target)}
-	class="block w-full text-sm text-gray-900 border border-gray-300 rounded-full cursor-pointer bg-gray-50 dark:bg-zinc-900 dark:text-zinc-400 focus:outline-none dark:border-zinc-600 dark:placeholder-zinc-300"
+	class="block w-full text-sm overflow-hidden text-gray-900 border border-gray-300 rounded-full cursor-pointer bg-gray-50 dark:bg-zinc-900 dark:text-zinc-400 focus:outline-none dark:border-zinc-600 dark:placeholder-zinc-300"
 />

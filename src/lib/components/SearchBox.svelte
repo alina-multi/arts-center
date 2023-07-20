@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { localePath } from '$lib/translations';
 	import { Menu, MenuItems, MenuItem } from '@rgossiaux/svelte-headlessui';
-	import { clickOutside } from 'svelte-use-click-outside';
 	import Avatar from './atoms/Avatar.svelte';
 
 	export let open = false,
@@ -12,10 +11,13 @@
 
 <Menu class=" flex-1 block mx-3 xl:mx-9 ">
 	{#if open}
-		<div class="lg:fixed inset-0 bg-black bg-opacity-80 blur-3xl transition-opacity z-40" />
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<div
+			on:click|self={() => (open = false)}
+			class="lg:fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm transition-opacity z-40"
+		/>
 
 		<div
-			use:clickOutside={() => (open = false)}
 			class=" absolute z-50 top-20 sm:top-16 lg:top-12 left-0 w-full text-gray-900 dark:text-zinc-300 bg-white dark:bg-zinc-900 shadow-lg sm:rounded-md max-h-[500px] overflow-scroll overscroll-none dark:border dark:border-zinc-800"
 		>
 			{#if results.length > 0}
