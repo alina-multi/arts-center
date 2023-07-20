@@ -16,7 +16,7 @@
 </script>
 
 <div
-	class=" dark:bg-inherit dark:md:bg-zinc-900 md:border md:px-3 bg-gray-100 pb-12 dark:border-t-transparent dark:border-zinc-800"
+	class=" dark:bg-inherit dark:md:bg-zinc-900 md:border md:px-3 md:bg-gray-100 pb-12 dark:border-t-transparent dark:border-zinc-800"
 >
 	<div class="lg:w-3/4 mx-auto">
 		<div class="pt-3 md:pt-6 pb-3">
