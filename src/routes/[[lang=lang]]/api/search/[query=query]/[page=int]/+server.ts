@@ -6,9 +6,9 @@ export const GET = (async ({ params }) => {
 		host: 'https://ms-592552fd0ab4-4380.fra.meilisearch.io/',
 		apiKey: process.env.MEILISEARCH_KEY
 	});
-
+	const query = params.query.split('-').join(' ');
 	const index = client.index('users');
-	const search = await index.search(params.query, {
+	const search = await index.search(query, {
 		page: parseInt(params.page)
 	});
 

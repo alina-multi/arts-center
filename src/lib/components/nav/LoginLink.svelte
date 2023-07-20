@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { localePath, t } from '$lib/translations';
+	import { localePath } from '$lib/translations';
 	import { page } from '$app/stores';
 </script>
 

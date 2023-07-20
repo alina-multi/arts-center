@@ -12,7 +12,7 @@
 
 <Menu class=" flex-1 block mx-3 xl:mx-9 ">
 	{#if open}
-		<div class="lg:fixed inset-0 bg-zinc-900 bg-opacity-50 transition-opacity z-40" />
+		<div class="lg:fixed inset-0 bg-black bg-opacity-80 blur-3xl transition-opacity z-40" />
 
 		<div
 			use:clickOutside={() => (open = false)}
@@ -53,7 +53,9 @@
 			{#if totalHits === 0}
 				<div class="pb-3 text-center">
 					<!-- Sad Cat Icon -->
-					<p class="mt-4 text-sm text-gray-900">No people found using that search term.</p>
+					<p class="mt-4 text-sm text-gray-900 dark:text-white">
+						No people found using that search term.
+					</p>
 				</div>
 			{/if}
 		</div>

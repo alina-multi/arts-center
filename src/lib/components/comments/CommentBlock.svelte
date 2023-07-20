@@ -24,7 +24,7 @@
 	const comment_id = comment?.id?.toString();
 	$: value = '';
 	let answer: Comment | null = null;
-	let answers = comment?.answers ? [...comment?.answers] : [];
+	let answers = comment?.answers ? [...(comment?.answers ?? [])] : [];
 	$: isEditing = $commentsState.editCommentId === comment?.id;
 	let isEdited = false;
 	let editing_comment = null;

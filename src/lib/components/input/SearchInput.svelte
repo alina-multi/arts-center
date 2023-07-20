@@ -11,6 +11,7 @@
 		loading = false,
 		results = [];
 	$: open = value.length > 0;
+	let searchValue = '';
 
 	function onEnter(e) {
 		if (e.key === 'Enter' && totalHits > 20) {
@@ -23,13 +24,23 @@
 		}
 	}
 
-	const doSearch = debounce((e) => {
+	function inputSearch(e) {
+		value = e.target.value.trim();
+		searchValue = value;
+		if (searchValue.length < 2) return;
+
+		searchValue = searchValue
+			.replace(/ /g, '-')
+			.replaceAll(/[^a-zA-Z0-9А-ЩЬЮЯҐЄІЇа-щьюяґєії-]/g, '');
+
 		loading = true;
-		value = e.target.value;
-		fetch(`/api/search/${value}/1`)
+		doSearch(searchValue);
+	}
+
+	const doSearch = debounce((val) => {
+		fetch(`/api/search/${val}/1`)
 			.then((res) => res.json())
 			.then((res) => {
-				console.log(res);
 				results = [...res.hits];
 				totalHits = res.totalHits;
 				loading = false;
@@ -43,7 +54,8 @@
 	<div class="relative {open ? 'z-50' : 'z-30'} ">
 		<span class="sr-only">Search</span>
 		<input
-			on:input={doSearch}
+			on:input={inputSearch}
+			on:input={inputSearch}
 			on:keydown={onEnter}
 			bind:value
 			type="text"
@@ -73,5 +85,5 @@
 		{/if}
 	</div>
 
-	<SearchBox bind:open {results} {value} {totalHits} />
+	<SearchBox bind:open {results} value={searchValue} {totalHits} />
 </div>

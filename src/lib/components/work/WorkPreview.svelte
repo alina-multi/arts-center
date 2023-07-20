@@ -1,6 +1,5 @@
 <script lang="ts">
 	import RatingPreview from '$lib/components/rating/RatingPreview.svelte';
-	import UserPreviewInline from '$lib/components/user/UserPreviewInline.svelte';
 	import Avatar from '$lib/components/atoms/Avatar.svelte';
 	import type { Work } from '$lib/interfaces/Work';
 
