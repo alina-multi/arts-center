@@ -66,7 +66,7 @@ class DraftTest extends TestCase
         $work->owners()->attach($user);
 
         $this->actingAs($otherUser)->putJson("/api2/draft/$work->id")
-            ->assertStatus(403, 'Should not be able to edit work that you do not own');
+            ->assertStatus(403);
 
         $this->actingAs($user)->putJson("/api2/draft/$work->id", [
             'title' => 'test',
@@ -91,5 +91,14 @@ class DraftTest extends TestCase
         ]);
 
         $this->assertEquals($work->category()->count(), sizeof($categoryIds));
+    }
+
+    function testGetDraft()
+    {
+        $user = User::factory()->create();
+        $work = Work::factory()->hasTitles()->create();
+        $work->owners()->attach($user);
+        $this->actingAs($user)->getJson("/api2/draft/$work->id")
+            ->assertStatus(200);
     }
 }

@@ -15,6 +15,7 @@ class DraftController extends Controller
     {
         $this->authorizeResource(Work::class, 'draft');
     }
+
     public function store(WorkDraftRequest $request)
     {
         $work = Work::create();
@@ -47,7 +48,7 @@ class DraftController extends Controller
         return WorkEditResource::make($draft->load('owners', 'images', 'titles'));
     }
 
-    public function show(WorkEditRequest $draft)
+    public function show(Work $draft)
     {
         return WorkEditResource::make($draft->load('owners', 'images', 'titles'));
     }
