@@ -71,19 +71,19 @@ class DraftTest extends TestCase
         // Category is required
         $this->actingAs($user)->putJson("/api2/draft/$work->id", [
             'title' => 'test title',
-        ])->assertStatus(422);
+        ])->assertInvalid('category');
 
         // tags shouldn't be allowed
         $this->actingAs($user)->putJson("/api2/draft/$work->id", [
             'title' => 'test',
             'category' => [...$categoryIds,...$tagIds]
-        ])->assertStatus(422);
+        ])->assertInvalid('category.2');
 
         // title is too short
         $this->actingAs($user)->putJson("/api2/draft/$work->id", [
             'title' => 't',
             'category' => $categoryIds
-        ])->assertStatus(422);
+        ])->assertInvalid('title');
 
         $validStringButWithHtml = '<b>Valid but with html</b>';
         $this->actingAs($user)->putJson("/api2/draft/$work->id", [
