@@ -32,7 +32,8 @@ class WorkEditRequest extends FormRequest
             'more.*' => ['string', new UploadedImage()],
             'title'=> ['string', 'required', 'min:4', 'max:40'],
             'description'=> ['string'],
-            'category.*' => ['required', 'numeric', 'exists:tags,id', new TagType(TagTypes::CATEGORY)]
+            'category'=> ['required', 'array'],
+            'category.*' => ['numeric', 'exists:tags,id', new TagType(TagTypes::CATEGORY)]
         ];
     }
 }

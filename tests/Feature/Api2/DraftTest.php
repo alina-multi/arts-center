@@ -68,11 +68,18 @@ class DraftTest extends TestCase
         $this->actingAs($otherUser)->putJson("/api2/draft/$work->id")
             ->assertStatus(403);
 
+        // Category is required
+        $this->actingAs($user)->putJson("/api2/draft/$work->id", [
+            'title' => 'test title',
+        ])->assertStatus(422);
+
+        // tags shouldn't be allowed
         $this->actingAs($user)->putJson("/api2/draft/$work->id", [
             'title' => 'test',
             'category' => [...$categoryIds,...$tagIds]
         ])->assertStatus(422);
 
+        // title is too short
         $this->actingAs($user)->putJson("/api2/draft/$work->id", [
             'title' => 't',
             'category' => $categoryIds
