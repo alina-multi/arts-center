@@ -13,7 +13,6 @@
 	export let data: PageData;
 	export let form: ActionData;
 	const profile = data.profile.data;
-	console.log(profile);
 </script>
 
 <div

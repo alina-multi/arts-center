@@ -33,7 +33,7 @@ export const actions = {
 		};
 
 		const photo = form.get('photo') as File;
-		if (event.locals?.user?.username && photo) {
+		if (event.locals?.user?.username && photo?.size) {
 			const timestamp = Date.now();
 			const extension = photo.name.split('.').pop();
 			const key = `temp/photos/${Date.now()}/${Math.random()}.${extension}`;
@@ -45,7 +45,7 @@ export const actions = {
 		}
 
 		const response = await api({ method: 'PUT', path: '/api2/profile', data, event });
-		if (response.status === 422) {
+		if (!response.ok) {
 			const json = await response.json();
 			return {
 				errors: { ...errors, ...json.errors }

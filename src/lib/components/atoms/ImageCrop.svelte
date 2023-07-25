@@ -57,6 +57,5 @@
 		<canvas id="myCanvas" class="object-center rounded-full w-12 h-12"
 			>Your browser does not support the HTML5 canvas tag.
 		</canvas>
-		<button class="w-full"> Save</button>
 	</div>
 </ModalWindow>
