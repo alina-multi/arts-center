@@ -6,6 +6,9 @@
 	import { HandThumbDown, HandThumbUp } from '@steeze-ui/heroicons';
 	import VotedList from '$lib/components/rating/VotedList.svelte';
 	import { page } from '$app/stores';
+	import { localePath, t } from '$lib/translations';
+	import ModalWindow from '$lib/components/ModalWindow.svelte';
+	import TopNavLink from '$lib/components/nav/TopNavLink.svelte';
 
 	export let entity: Work | Comment,
 		allowDownVote = false,
@@ -17,6 +20,7 @@
 	let rating = entity?.rating;
 	let isLiked = entity?.votes?.some((vote) => vote?.id.toString() === currentUser?.id.toString());
 	let isDownVoted = false;
+	let open = false;
 
 	async function vote(method, vote = 1) {
 		return await fetch(`/api/vote`, {
@@ -83,9 +87,23 @@
 	}
 
 	function onClickNotLoggedIn() {
-		console.log('ModalWindow for Login or Signup');
+		open = true;
 	}
 </script>
+
+<ModalWindow bind:open>
+	<p class="text-gray-700 dark:text-gray-300 text-center text-lg border-b pb-3 font-semibold">
+		You need to login to vote
+	</p>
+	<div class="flex gap-3 justify-center items-center py-3">
+		<TopNavLink href={localePath('/login?redirect=' + $page.url.pathname)}
+			>{$t('global.menu.login')}</TopNavLink
+		>
+
+		<span>or</span>
+		<TopNavLink href={localePath('/register')}>{$t('global.menu.register')}</TopNavLink>
+	</div>
+</ModalWindow>
 
 {#if showVotedPreview}
 	<VotedList {votes} {isLiked} {currentUser} />
