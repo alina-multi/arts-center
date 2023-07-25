@@ -22,11 +22,11 @@ class DraftController extends Controller
         $work->owners()->attach($request->user());
         $moreImages = [];
         foreach ([$request->main, ...$request->more] as $image) {
-            $moreImages[] = ImageHelper::createFromUploaded($image, 'works', $request->user()->id, $request->user()->id, $work->id);
+            $moreImages[] = ImageHelper::createFromUploaded($image, 'works', $request->user()->id, $work->id);
         }
         $main = array_shift($moreImages);
         $work->update([
-            'main_image_id' => $main->id
+            'full_image_id' => $main->id
         ]);
         if (sizeof($moreImages)) {
             foreach ($moreImages as $image) {
@@ -34,7 +34,7 @@ class DraftController extends Controller
             }
         }
         $work->titles()->create(['language' => $request->language]);
-        return WorkEditResource::make($work->load('owners', 'images', 'titles'));
+        return WorkEditResource::make($work->load('owners', 'images', 'titles', 'full'));
     }
 
     public function update(WorkEditRequest $request, Work $draft)
@@ -50,6 +50,6 @@ class DraftController extends Controller
 
     public function show(Work $draft)
     {
-        return WorkEditResource::make($draft->load('owners', 'images', 'titles', 'category'));
+        return WorkEditResource::make($draft->load('owners', 'images', 'titles', 'category', 'full'));
     }
 }

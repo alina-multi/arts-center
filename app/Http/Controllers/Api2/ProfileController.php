@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api2;
 
+use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileRequest;
 use App\Models\Image;
@@ -33,18 +34,8 @@ class ProfileController extends Controller
             }
         }
         if ($request->photo) {
-            if (Storage::disk('s3')->missing("photos/$request->photo")) {
-                \Sentry\captureMessage("File that should have bean uploaded by SvelteKit $request->photo is not found in S3");
-            } else {
-                list ($name, $extension) = explode('.', $request->photo);
-                $image = Image::create([
-                    'user_id' => $user->id,
-                    'name' => $name,
-                    'folder' => 'photos',
-                    'extension'=> $extension,
-                ]);
-                $user->image_id = $image->id;
-            }
+            $image = ImageHelper::createFromUploaded($request->photo, 'photos', $request->user()->id);
+            $user->image_id = $image->id;
         }
         $user->save();
         return response()->noContent();

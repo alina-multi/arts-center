@@ -16,7 +16,7 @@ class Work extends Model
     use HasFactory, SoftDeletes, Publishable;
 
     protected $fillable = [
-        'old_id', 'user_id', 'image_id', 'published_at', 'rating', 'price', 'hosts'
+        'old_id', 'user_id', 'image_id', 'published_at', 'rating', 'price', 'hosts', 'full_image_id'
     ];
 
     protected $hidden = [

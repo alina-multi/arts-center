@@ -39,6 +39,7 @@ class DraftTest extends TestCase
                 ->has('owners', 1)
                 ->has('images', 2)
                 ->has('titles', 1)
+                ->has('full', 3)
                 ->etc()
             );
     }

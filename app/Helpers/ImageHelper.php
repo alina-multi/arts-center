@@ -37,25 +37,27 @@ class ImageHelper
         }
     }
 
-    static function createFromUploaded($tmpPath, $folder, $name, $userId, $workId = null)
+    static function createFromUploaded($tmpPath, $folder, $userId, $workId = null)
     {
         if (!Storage::exists($tmpPath)) {
+            \Sentry\captureMessage("File that should have bean uploaded by SvelteKit $tmpPath, is not found in S3");
             return;
         }
         list (, $extension) = explode('/', Storage::mimeType($tmpPath));
         $image = Image::create([
-            "name" => $name,
             "user_id" => $userId,
             "folder" => $folder,
-            "extension" => $extension,
-            "work_id" => $workId
+            "work_id" => $workId,
+            "name" => ''
         ]);
-        $name .= '-' . $image->id; //Insert Id as part of name
-        $name = ltrim($name, '-');
-        // And this is silly, but we need to save it again :(
-        $image->name = $name;
-        $image->save();
-        Storage::move($tmpPath, "$image->path.$image->extension");
+        list($width, $height) = getimagesize(Storage::path($tmpPath));
+        $variant = $image->variants()->create([
+            'extension' => $extension,
+            'width' => $width,
+            'height' => $height,
+            'size' => Storage::size($tmpPath)
+        ]);
+        Storage::move($tmpPath, "$folder/$variant->file");
         return $image;
     }
 }

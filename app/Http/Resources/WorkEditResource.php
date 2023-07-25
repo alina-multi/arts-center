@@ -13,6 +13,7 @@ class WorkEditResource extends JsonResource
         return [
             ...parent::toArray($request),
             'images' => $this->whenLoaded('images'),
+            'full' => $this->whenLoaded('full'),
             'owners' => $this->whenLoaded('owners'),
             'titles' => $this->whenLoaded('titles'),
             'category' => $this->category->pluck('pivot.tag_id'),
