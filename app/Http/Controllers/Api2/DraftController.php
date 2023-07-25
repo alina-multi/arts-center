@@ -50,6 +50,6 @@ class DraftController extends Controller
 
     public function show(Work $draft)
     {
-        return WorkEditResource::make($draft->load('owners', 'images', 'titles'));
+        return WorkEditResource::make($draft->load('owners', 'images', 'titles', 'category'));
     }
 }

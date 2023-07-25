@@ -16,8 +16,8 @@ class WorkEditRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'title' => strip_tags($this->title),
-            'description' => strip_tags($this->description),
+            'title' => strip_tags($this->title ?? ''),
+            'description' => strip_tags($this->description ?? ''),
         ]);
     }
     /**

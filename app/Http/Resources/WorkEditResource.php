@@ -15,6 +15,7 @@ class WorkEditResource extends JsonResource
             'images' => $this->whenLoaded('images'),
             'owners' => $this->whenLoaded('owners'),
             'titles' => $this->whenLoaded('titles'),
+            'category' => $this->category->pluck('pivot.tag_id'),
         ];
     }
 }
