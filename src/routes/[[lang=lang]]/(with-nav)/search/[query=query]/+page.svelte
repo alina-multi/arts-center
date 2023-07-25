@@ -5,6 +5,7 @@
 	import UserDetails from '$lib/components/user/UserDetails.svelte';
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
 	import Avatar from '$lib/components/atoms/Avatar.svelte';
+	import cat from '$lib/images/cat-icons.svg';
 
 	export let data;
 	const { search, query } = data;
@@ -29,6 +30,8 @@
 	}
 </script>
 
+
+{#if results.length > 0}
 <div
 	class="lg:w-3/4 mx-auto dark:lg:bg-zinc-900 pt-3 lg:border dark:border-0 border-t-transparent mb-3"
 >
@@ -66,3 +69,14 @@
 		{/if}
 	</ul>
 </div>
+{:else}
+<div class="space-y-9 my-16">
+	<div class="w-72 h-72 mx-auto">
+		<svg class="h-72 fill-zinc-700 dark:fill-zinc-400">
+			<use href="{cat}#icon-cat" />
+		</svg>
+	</div>
+	
+	<p class= "text-3xl text-center text-zinc-700 dark:text-zinc-400 pl-9">No results found</p>
+</div>
+{/if}
