@@ -36,9 +36,9 @@ export const actions = {
 		if (event.locals?.user?.username && photo) {
 			const timestamp = Date.now();
 			const extension = photo.name.split('.').pop();
-			const filename = `${event.locals.user.username}_${timestamp}.${extension}`;
-			if (await uploadFile(photo, `photos/${filename}`)) {
-				data.photo = filename;
+			const key = `temp/photos/${Date.now()}/${Math.random()}.${extension}`;
+			if (await uploadFile(photo, key)) {
+				data.photo = key;
 			} else {
 				errors.photo = 'Failed to upload photo';
 			}
