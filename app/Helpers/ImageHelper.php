@@ -4,9 +4,8 @@ namespace App\Helpers;
 
 use App\Models\Image;
 use GPBMetadata\Google\Api\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\File;
+use Intervention\Image\Facades\Image as ImageManipulator;
 
 class ImageHelper
 {
@@ -43,18 +42,18 @@ class ImageHelper
             \Sentry\captureMessage("File that should have bean uploaded by SvelteKit $tmpPath, is not found in S3");
             return;
         }
-        list (, $extension) = explode('/', Storage::mimeType($tmpPath));
         $image = Image::create([
             "user_id" => $userId,
             "folder" => $folder,
             "work_id" => $workId,
             "name" => ''
         ]);
-        list($width, $height) = getimagesize(Storage::path($tmpPath));
+        $imageObj = ImageManipulator::make(Storage::get($tmpPath));
+        list (, $extension) = explode('/', $imageObj->mime());
         $variant = $image->variants()->create([
             'extension' => $extension,
-            'width' => $width,
-            'height' => $height,
+            'width' => $imageObj->width(),
+            'height' => $imageObj->height(),
             'size' => Storage::size($tmpPath)
         ]);
         Storage::move($tmpPath, "$folder/$variant->file");
