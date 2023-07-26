@@ -83,8 +83,10 @@ class Image extends Model
 
     private function addDomain($path)
     {
+        srand($this->id);
+        $randIdInRange = rand(0, 100);
         return match (App::environment()) {
-            'local' => "https://picsum.photos/id/{$this->id}/600/600",
+            'local' => "https://picsum.photos/id/$randIdInRange/600/600",
             'staging' => "https://i.arts2.art/$path",
             'production' => "https://i.arts.center/$path",
             default => $path

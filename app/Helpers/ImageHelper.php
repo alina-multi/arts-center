@@ -54,7 +54,8 @@ class ImageHelper
             'extension' => $extension,
             'width' => $imageObj->width(),
             'height' => $imageObj->height(),
-            'size' => Storage::size($tmpPath)
+            'size' => Storage::size($tmpPath),
+            'original' => true
         ]);
         Storage::move($tmpPath, "$folder/$variant->file");
         return $image;
