@@ -1,112 +1,103 @@
 <?php
 
-namespace Tests\Feature\Api2;
-
 use App\Enums\TagTypes;
 use App\Models\Tag;
 use App\Models\User;
 use App\Models\Work;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use Tests\TestCase;
 use Illuminate\Testing\Fluent\AssertableJson;
 
-class DraftTest extends TestCase
-{
-    use RefreshDatabase;
 
-    function testCreateDraft()
-    {
-        Storage::fake('s3');
-        $images = [
-            'temp/works/1_1.jpeg',
-            'temp/works/1_2.jpeg',
-            'temp/works/1_3.jpeg',
-        ];
-        $testFile = UploadedFile::fake()->image("test.jpeg", 1600, 1600);
-        foreach ($images as $image) {
-            Storage::disk('s3')->putFileAs('', $testFile, $image);
-        }
-        $user = User::factory()->create();
+uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
-        $this->actingAs($user)->postJson('/api2/draft', [
-            'main' => array_shift($images),
-            'more' => $images,
-            'language' => 'en',
-        ])->assertStatus(201)
-            ->assertJson(fn(AssertableJson $json) => $json->where('id', 1)
-                ->has('owners', 1)
-                ->has('images', 2)
-                ->has('titles', 1)
-                ->has('full', 3)
-                ->etc()
-            );
+test('create draft', function () {
+    Storage::fake('s3');
+    $images = [
+        'temp/works/1_1.jpeg',
+        'temp/works/1_2.jpeg',
+        'temp/works/1_3.jpeg',
+    ];
+    $testFile = UploadedFile::fake()->image("test.jpeg", 1600, 1600);
+    foreach ($images as $image) {
+        Storage::disk('s3')->putFileAs('', $testFile, $image);
     }
+    $user = User::factory()->create();
 
-    public function testEditDraft()
-    {
-        $user = User::factory()->create();
-        $otherUser = User::factory()->create();
-        $categories = Tag::factory(
-            [
-                'type_id' => TagTypes::CATEGORY
-            ]
-        )->count(2)->create();
-        $tag = Tag::factory(['type_id' => TagTypes::TAG])->create();
-        $categoryIds = $categories->pluck('id');
-        $tagIds = [$tag->id];
-        $work = Work::factory([
-            'published_at' => null,
-            'show_uk' => false,
-            'show_en' => false,
-            'price' => 0,
-            'rating' => 0,
-            'comments' => 0
-        ])->hasTitles()->create();
-        $work->owners()->attach($user);
+    $this->actingAs($user)->postJson('/api2/draft', [
+        'main' => array_shift($images),
+        'more' => $images,
+        'language' => 'en',
+    ])->assertStatus(201)
+        ->assertJson(fn(AssertableJson $json) => $json->where('id', 1)
+            ->has('owners', 1)
+            ->has('images', 2)
+            ->has('titles', 1)
+            ->has('full', 3)
+            ->etc()
+        );
+});
 
-        $this->actingAs($otherUser)->putJson("/api2/draft/$work->id")
-            ->assertStatus(403);
+test('edit draft', function () {
+    $user = User::factory()->create();
+    $otherUser = User::factory()->create();
+    $categories = Tag::factory(
+        [
+            'type_id' => TagTypes::CATEGORY
+        ]
+    )->count(2)->create();
+    $tag = Tag::factory(['type_id' => TagTypes::TAG])->create();
+    $categoryIds = $categories->pluck('id');
+    $tagIds = [$tag->id];
+    $work = Work::factory([
+        'published_at' => null,
+        'show_uk' => false,
+        'show_en' => false,
+        'price' => 0,
+        'rating' => 0,
+        'comments' => 0
+    ])->hasTitles()->create();
+    $work->owners()->attach($user);
 
-        // Category is required
-        $this->actingAs($user)->putJson("/api2/draft/$work->id", [
-            'title' => 'test title',
-        ])->assertInvalid('category');
+    $this->actingAs($otherUser)->putJson("/api2/draft/$work->id")
+        ->assertStatus(403);
 
-        // tags shouldn't be allowed
-        $this->actingAs($user)->putJson("/api2/draft/$work->id", [
-            'title' => 'test',
-            'category' => [...$categoryIds,...$tagIds]
-        ])->assertInvalid('category.2');
+    // Category is required
+    $this->actingAs($user)->putJson("/api2/draft/$work->id", [
+        'title' => 'test title',
+    ])->assertInvalid('category');
 
-        // title is too short
-        $this->actingAs($user)->putJson("/api2/draft/$work->id", [
-            'title' => 't',
-            'category' => $categoryIds
-        ])->assertInvalid('title');
+    // tags shouldn't be allowed
+    $this->actingAs($user)->putJson("/api2/draft/$work->id", [
+        'title' => 'test',
+        'category' => [...$categoryIds, ...$tagIds]
+    ])->assertInvalid('category.2');
 
-        $validStringButWithHtml = '<b>Valid but with html</b>';
-        $this->actingAs($user)->putJson("/api2/draft/$work->id", [
-            'title' => $validStringButWithHtml,
-            'description' => $validStringButWithHtml,
-            'category' => $categoryIds
-        ])->assertStatus(200);
+    // title is too short
+    $this->actingAs($user)->putJson("/api2/draft/$work->id", [
+        'title' => 't',
+        'category' => $categoryIds
+    ])->assertInvalid('title');
 
-        $this->assertDatabaseHas('work_titles', [
-            'title' => strip_tags($validStringButWithHtml),
-            'description' => strip_tags($validStringButWithHtml),
-        ]);
+    $validStringButWithHtml = '<b>Valid but with html</b>';
+    $this->actingAs($user)->putJson("/api2/draft/$work->id", [
+        'title' => $validStringButWithHtml,
+        'description' => $validStringButWithHtml,
+        'category' => $categoryIds
+    ])->assertStatus(200);
 
-        $this->assertEquals($work->category()->count(), sizeof($categoryIds));
-    }
+    $this->assertDatabaseHas('work_titles', [
+        'title' => strip_tags($validStringButWithHtml),
+        'description' => strip_tags($validStringButWithHtml),
+    ]);
 
-    function testGetDraft()
-    {
-        $user = User::factory()->create();
-        $work = Work::factory()->hasTitles()->create();
-        $work->owners()->attach($user);
-        $this->actingAs($user)->getJson("/api2/draft/$work->id")
-            ->assertStatus(200);
-    }
-}
+    expect(sizeof($categoryIds))->toEqual($work->category()->count());
+});
+
+test('get draft', function () {
+    $user = User::factory()->create();
+    $work = Work::factory()->hasTitles()->create();
+    $work->owners()->attach($user);
+    $this->actingAs($user)->getJson("/api2/draft/$work->id")
+        ->assertStatus(200);
+});

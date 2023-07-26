@@ -1,39 +1,29 @@
 <?php
 
-namespace Tests\Unit;
-
 use App\Enums\ImageFolders;
 use App\Models\Image;
-use App\Models\User;
-use App\Models\UserBio;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
-class ImageToArrayTest extends TestCase
-{
-    use RefreshDatabase;
+uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
-    public function testToSearchableArray(): void
-    {
-        $image = Image::factory()->create(['folder' => ImageFolders::Preview]);
-        $result = $image->toArray();
-        $this->assertEquals([
-            "src" => "preview/1.jpeg",
-            "sources" => [
-                [
-                    "type" => "image/jpeg",
-                    "srcset" => "preview/1.jpeg 300w, preview/2.jpeg 600w"
-                ],
-                [
-                    "type" => "image/webp",
-                    "srcset" => "preview/3.webp 300w, preview/4.webp 600w"
-                ],
+test('to searchable array', function () {
+    $image = Image::factory()->create(['folder' => ImageFolders::Preview]);
+    $result = $image->toArray();
+    expect($result)->toEqual([
+        "src" => "preview/1.jpeg",
+        "sources" => [
+            [
+                "type" => "image/jpeg",
+                "srcset" => "preview/1.jpeg 300w, preview/2.jpeg 600w"
             ],
-            "original" => [
-                "src" => "preview/5.jpeg",
-                "width" => 1024,
-                "height" => 768
-            ]
-        ], $result);
-    }
-}
+            [
+                "type" => "image/webp",
+                "srcset" => "preview/3.webp 300w, preview/4.webp 600w"
+            ],
+        ],
+        "original" => [
+            "src" => "preview/5.jpeg",
+            "width" => 1024,
+            "height" => 768
+        ]
+    ]);
+});
