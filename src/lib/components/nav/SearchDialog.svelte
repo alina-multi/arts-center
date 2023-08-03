@@ -28,7 +28,7 @@
 	</DialogDescription>
 </Dialog>
 
-<Button on:open={() => (open = !open)} type={'button'}>
+<Button on:click={() => (open = !open)} type={'button'}>
 	<span class="sr-only">Search</span>
 	<Icon src={MagnifyingGlass} theme="solid" class="h-7 w-7" />
 </Button>
