@@ -23,6 +23,7 @@ export function get(id: bigint) {
 			hosts: true,
 			price: true,
 			full: imageSelect,
+			preview: imageSelect,
 			images: {
 				select: {
 					image: imageSelect

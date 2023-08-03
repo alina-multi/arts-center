@@ -4,7 +4,8 @@
 	import { page } from '$app/stores';
 	import AuthStub from '../../AuthStub.svelte';
 
-	export let work, comments;
+	export let work,
+		comments = [];
 </script>
 
 <div

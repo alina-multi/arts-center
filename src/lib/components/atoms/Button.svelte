@@ -1,15 +1,9 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-
-	export let type: 'button' | 'submit' | 'reset' = 'button',
-		customClass = '';
-	const dispatch = createEventDispatcher();
-
-	function handleClick() {
-		dispatch('open'), dispatch('close');
-	}
+	export let type: 'button' | 'submit' | 'reset' = 'button';
+	let clazz = '';
+	export { clazz as class };
 </script>
 
-<button {type} on:click={handleClick} class="{customClass} inline-flex items-center justify-center">
+<button {type} on:click class="{clazz} inline-flex items-center justify-center">
 	<slot />
 </button>

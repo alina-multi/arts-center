@@ -24,7 +24,7 @@
 	export let open = false;
 </script>
 
-<Button on:open={() => (open = !open)} type={'button'}>
+<Button on:click={() => (open = !open)} type={'button'}>
 	<span class="sr-only">Open main menu</span>
 	<Icon src={Bars4} theme="solid" class="h-8 w-8 fill-black dark:fill-white" aria-hidden="true" />
 </Button>
@@ -59,7 +59,7 @@
 							<TopNavLangLink lang="en" />
 							<TopNavLangLink lang="uk" />
 
-							<Button on:close={() => (open = !open)} type={'button'} customClass="ml-6">
+							<Button on:click={() => (open = !open)} type={'button'} class="ml-6">
 								<span class="sr-only">Close main menu</span>
 								<Icon src={XMark} theme="solid" class="h-7 w-7" aria-hidden="true" />
 							</Button>

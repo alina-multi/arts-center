@@ -13,6 +13,7 @@ import { taggableMap } from './tag';
 import type { ownableWithRelations, usersWithRelations } from './owners';
 import { ownersMap } from './owners';
 import { imagablePicturesMap, picturesMap, pictureMap } from '$lib/server/mappers/pictures';
+import type { Picture } from '$lib/interfaces/Picture';
 
 interface workBlocksWithRelations extends work_blocks {
 	images: imageables & {
@@ -43,6 +44,13 @@ export function workMap(data: worksWithRelations): Work {
 		length: data?.details?.length,
 		year: data?.details?.year,
 		full: pictureMap(data.full)
+	};
+}
+
+export function workPreviewMap(data: worksWithRelations): Work & { preview: Picture } {
+	return {
+		...workMap(data),
+		preview: pictureMap(data.preview)
 	};
 }
 
