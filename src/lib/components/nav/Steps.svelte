@@ -12,7 +12,7 @@
 			<li class="relative md:flex md:flex-1">
 				{#if i + 1 < currentStep}
 					<!-- Completed Step -->
-					<a {href} class="group flex w-full items-center">
+					<a {href} data-sveltekit-preload-data="off" class="group flex w-full items-center">
 						<span class="flex items-center px-6 py-4 text-sm font-medium">
 							<span
 								class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-indigo-600 group-hover:bg-indigo-800"

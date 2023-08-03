@@ -1,9 +1,11 @@
 <script lang="ts">
 	export let h1, h2;
+	let clazz = '';
+	export { clazz as class };
 </script>
 
 <div
-	class=" rounded-md overflow-hidden border bg-white shadow-sm dark:bg-zinc-800 dark:border-zinc-700"
+	class="{clazz} rounded-md overflow-hidden border bg-white shadow-sm dark:bg-zinc-800 dark:border-zinc-700"
 >
 	{#if h1}
 		<h2
