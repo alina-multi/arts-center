@@ -134,3 +134,15 @@ test('get draft', function () {
     actingAs($user)->getJson("/api2/draft/$work->id")
         ->assertStatus(200);
 });
+
+test('publish draft', function () {
+    $user = User::factory()->create();
+    $work = Work::factory()->hasTitles()->create();
+    $work->owners()->attach($user);
+    actingAs($user)->putJson("/api2/draft/$work->id/publish", [
+        'published_at' => '2033-12-12'
+    ])->assertNoContent();
+    $this->assertDatabaseHas('works',[
+        'published_at' => '2033-12-12 00:00:00'
+    ]);
+});

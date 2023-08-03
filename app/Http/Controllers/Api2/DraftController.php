@@ -9,6 +9,7 @@ use App\Http\Requests\WorkEditRequest;
 use App\Http\Resources\WorkEditResource;
 use App\Jobs\CropWorkImage;
 use App\Models\Work;
+use Illuminate\Http\Request;
 
 class DraftController extends Controller
 {
@@ -52,8 +53,18 @@ class DraftController extends Controller
         return WorkEditResource::make($draft->load('owners', 'images', 'titles'));
     }
 
+    public function publish(Request $request, Work $work)
+    {
+        $validated = $request->validate([
+            'published_at' => 'required|date',
+        ]);
+        $work->published_at = $validated['published_at'];
+        $work->save();
+        return response()->noContent();
+    }
+
     public function show(Work $draft)
     {
-        return WorkEditResource::make($draft->load('owners', 'images', 'titles', 'category', 'full'));
+        return WorkEditResource::make($draft->load('owners', 'images', 'titles', 'category', 'full', 'image'));
     }
 }
