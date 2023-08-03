@@ -1,9 +1,9 @@
 import type { PageServerLoad, Actions, PageLoad } from './$types';
 import { api } from '$lib/server/api';
 import { error, redirect } from '@sveltejs/kit';
-import { get } from "$lib/server/repositories/work";
-import { workMap, workPreviewMap } from "$lib/server/mappers/work";
-import { localePath } from "$lib/translations";
+import { get } from '$lib/server/repositories/work';
+import { workMap, workPreviewMap } from '$lib/server/mappers/work';
+import { localePath } from '$lib/translations';
 export const load = (async ({ params }) => {
 	return {
 		work: await get(BigInt(params.id)).then((work) => workPreviewMap(work))
@@ -18,7 +18,7 @@ export const actions = {
 			path: `/api2/draft/${event.params.id}/publish`,
 			event,
 			data: {
-				published_at: form.get('published_at'),
+				published_at: form.get('published_at')
 			}
 		});
 		if (response.ok) {

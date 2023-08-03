@@ -3,7 +3,7 @@ import { api } from '$lib/server/api';
 import { error, redirect } from '@sveltejs/kit';
 import { getCategories } from '$lib/server/repositories/tag';
 import { tagsMap } from '$lib/server/mappers/tag';
-import { localePath } from "$lib/translations";
+import { localePath } from '$lib/translations';
 
 export const load = (async (event) => {
 	const [data, categories] = await Promise.all([
@@ -24,7 +24,7 @@ export const actions = {
 	default: async (event) => {
 		const form = await event.request.formData();
 		let crop = form.get('crop');
-		crop = crop? JSON.parse(crop as string) : undefined;
+		crop = crop ? JSON.parse(crop as string) : undefined;
 		const response = await api({
 			method: 'PUT',
 			path: `/api2/draft/${event.params.id}`,

@@ -7,6 +7,7 @@
 	export let data: PageData;
 	export let form: ActionData;
 </script>
+
 <div class="flex min-h-full flex-col pt-12 sm:px-6 lg:px-8 bg:white sm:bg-gray-50 dark:bg-black">
 	<div class="sm:mx-auto sm:w-full sm:max-w-md">
 		<div class="flex items-center justify-center">

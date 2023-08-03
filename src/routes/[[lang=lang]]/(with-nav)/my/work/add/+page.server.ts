@@ -1,6 +1,6 @@
 import type { PageServerLoad, Actions } from './$types';
 import { api } from '$lib/server/api';
-import { locale, localePath } from "$lib/translations";
+import { locale, localePath } from '$lib/translations';
 import { uploadFile } from '$lib/server/s3';
 import { error, redirect } from '@sveltejs/kit';
 import { getCategories } from '$lib/server/repositories/tag';
