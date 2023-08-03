@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Storage;
 
 class Image extends Model
 {
@@ -63,6 +64,19 @@ class Image extends Model
             "width" => $original->width,
             "height" => $original->height,
         ];
+    }
+
+    public function getOriginalFile(): ?string
+    {
+        return Storage::get($this->getOriginalPath());
+    }
+
+    public function getOriginalPath(): string
+    {
+        $originalVariant = $this->variants
+            ->where('original', true)
+            ->first();
+        return "{$this->folder->value}/$originalVariant->file";
     }
 
     public function getSourcesAttribute()

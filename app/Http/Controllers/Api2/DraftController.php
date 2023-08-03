@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\WorkDraftRequest;
 use App\Http\Requests\WorkEditRequest;
 use App\Http\Resources\WorkEditResource;
+use App\Jobs\CropWorkImage;
 use App\Models\Work;
 
 class DraftController extends Controller
@@ -45,6 +46,9 @@ class DraftController extends Controller
             'description' => $request->description
         ]);
         $draft->category()->attach($request->category);
+        if ($request->crop) {
+            CropWorkImage::dispatch($draft, $request->crop);
+        }
         return WorkEditResource::make($draft->load('owners', 'images', 'titles'));
     }
 

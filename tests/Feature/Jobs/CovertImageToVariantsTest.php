@@ -10,7 +10,6 @@ use App\Models\Image;
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 test('converting', function () {
-    $this->markTestSkipped('Most likly this logic will be deleted after we sure it converted fine');
     Storage::fake('s3');
     $image = Image::factory()->create(['extension' => 'jpeg']);
     $images = [
@@ -32,4 +31,4 @@ test('converting', function () {
         'original' => 1,
     ]);
     $image->variants()->each(fn(ImageVariant $imageVariant) => Storage::disk('s3')->assertExists("{$image->folder->value}/{$imageVariant->file}"));
-});
+})->skip('Most likely this logic will be deleted after we sure it converted fine');

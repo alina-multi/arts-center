@@ -6,7 +6,9 @@ use App\Models\User;
 use App\Models\Work;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Testing\Fluent\AssertableJson;
+use function Pest\Laravel\{actingAs, assertDatabaseHas};
 
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
@@ -24,7 +26,7 @@ test('create draft', function () {
     }
     $user = User::factory()->create();
 
-    $this->actingAs($user)->postJson('/api2/draft', [
+    actingAs($user)->postJson('/api2/draft', [
         'main' => array_shift($images),
         'more' => $images,
         'language' => 'en',
@@ -39,6 +41,7 @@ test('create draft', function () {
 });
 
 test('edit draft', function () {
+    Bus::fake();
     $user = User::factory()->create();
     $otherUser = User::factory()->create();
     $categories = Tag::factory(
@@ -59,34 +62,64 @@ test('edit draft', function () {
     ])->hasTitles()->create();
     $work->owners()->attach($user);
 
-    $this->actingAs($otherUser)->putJson("/api2/draft/$work->id")
+    actingAs($otherUser)->putJson("/api2/draft/$work->id")
         ->assertStatus(403);
 
     // Category is required
-    $this->actingAs($user)->putJson("/api2/draft/$work->id", [
+    actingAs($user)->putJson("/api2/draft/$work->id", [
         'title' => 'test title',
     ])->assertInvalid('category');
 
     // tags shouldn't be allowed
-    $this->actingAs($user)->putJson("/api2/draft/$work->id", [
+    actingAs($user)->putJson("/api2/draft/$work->id", [
         'title' => 'test',
         'category' => [...$categoryIds, ...$tagIds]
     ])->assertInvalid('category.2');
 
     // title is too short
-    $this->actingAs($user)->putJson("/api2/draft/$work->id", [
+    actingAs($user)->putJson("/api2/draft/$work->id", [
         'title' => 't',
         'category' => $categoryIds
     ])->assertInvalid('title');
 
+    //If crop is set, all fields should be there
+    actingAs($user)->putJson("/api2/draft/$work->id", [
+        'title' => 'test',
+        'category' => $categoryIds,
+        'crop' => [
+            'height' => 450,
+            'y' => 75
+        ]
+    ])->assertInvalid(['crop.x', 'crop.width']);
+
+    //AspectRatio validator, should be 4/3
+    actingAs($user)->putJson("/api2/draft/$work->id", [
+        'title' => 'test',
+        'category' => $categoryIds,
+        'crop' => [
+            'width' => 600,
+            'height' => 400,
+            'x' => 0,
+            'y' => 75
+        ]
+    ])->assertInvalid('crop.height');
+
     $validStringButWithHtml = '<b>Valid but with html</b>';
-    $this->actingAs($user)->putJson("/api2/draft/$work->id", [
+    actingAs($user)->putJson("/api2/draft/$work->id", [
         'title' => $validStringButWithHtml,
         'description' => $validStringButWithHtml,
-        'category' => $categoryIds
-    ])->assertStatus(200);
+        'category' => $categoryIds,
+        'crop' => [
+            'width' => 600,
+            'height' => 450,
+            'x' => 0,
+            'y' => 75
+        ]
+    ])->assertValid();
 
-    $this->assertDatabaseHas('work_titles', [
+    Bus::assertDispatched(\App\Jobs\CropWorkImage::class);
+
+    assertDatabaseHas('work_titles', [
         'title' => strip_tags($validStringButWithHtml),
         'description' => strip_tags($validStringButWithHtml),
     ]);
@@ -98,6 +131,6 @@ test('get draft', function () {
     $user = User::factory()->create();
     $work = Work::factory()->hasTitles()->create();
     $work->owners()->attach($user);
-    $this->actingAs($user)->getJson("/api2/draft/$work->id")
+    actingAs($user)->getJson("/api2/draft/$work->id")
         ->assertStatus(200);
 });

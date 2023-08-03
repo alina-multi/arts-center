@@ -3,13 +3,10 @@
 namespace App\Http\Requests;
 
 use App\Enums\TagTypes;
-use App\Models\Work;
+use App\Rules\AspectRatio;
 use App\Rules\TagType;
 use App\Rules\UploadedImage;
-use DragonCode\Support\Helpers\Str;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Exists;
 
 class WorkEditRequest extends FormRequest
 {
@@ -20,6 +17,7 @@ class WorkEditRequest extends FormRequest
             'description' => strip_tags($this->description ?? ''),
         ]);
     }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -30,10 +28,14 @@ class WorkEditRequest extends FormRequest
         return [
             'main' => ['string', new UploadedImage()],
             'more.*' => ['string', new UploadedImage()],
-            'title'=> ['string', 'required', 'min:4', 'max:40'],
-            'description'=> ['string'],
-            'category'=> ['required', 'array'],
-            'category.*' => ['numeric', 'exists:tags,id', new TagType(TagTypes::CATEGORY)]
+            'title' => ['string', 'required', 'min:4', 'max:40'],
+            'description' => ['string'],
+            'category' => ['required', 'array'],
+            'category.*' => ['numeric', 'exists:tags,id', new TagType(TagTypes::CATEGORY)],
+            'crop.x' => ['numeric', 'required_with:crop', 'min:0'],
+            'crop.y' => ['numeric', 'required_with:crop', 'min:0'],
+            'crop.width' => ['numeric', 'required_with:crop', 'min:0'],
+            'crop.height' => ['numeric', 'required_with:crop', 'min:0', new AspectRatio('crop.width', 4 / 3)],
         ];
     }
 }

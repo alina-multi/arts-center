@@ -7,22 +7,21 @@ uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 test('users can authenticate using the login screen', function () {
     $user = User::factory()->create();
 
-    $response = $this->post('/auth/login', [
+    $this->postJson('/auth/login', [
         'email' => $user->email,
         'password' => 'paSSword1',
-    ]);
+    ])->assertNoContent();
 
     $this->assertAuthenticated();
-    $response->assertNoContent();
 });
 
 test('users can not authenticate with invalid password', function () {
     $user = User::factory()->create();
 
-    $this->post('/auth/login', [
+    $this->postJson('/auth/login', [
         'email' => $user->email,
         'password' => 'wrong-password',
-    ]);
+    ])->assertInvalid('email');
 
     $this->assertGuest();
 });
