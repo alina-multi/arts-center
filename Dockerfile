@@ -3,11 +3,10 @@ FROM phpswoole/swoole:php8.2
 # Setup working directory
 WORKDIR /var/www
 
-RUN apt-get update && apt-get install -y \
-    zlib1g-dev \
-    libzip-dev
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
-RUN docker-php-ext-install pcntl bcmath zip
+RUN chmod +x /usr/local/bin/install-php-extensions && \
+    install-php-extensions pcntl bcmath zip imagick
 
 #So we have a nice cache of vendor
 COPY composer.lock /var/www
