@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api2;
 
 use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PublishWork;
 use App\Http\Requests\WorkDraftRequest;
 use App\Http\Requests\WorkEditRequest;
 use App\Http\Resources\WorkEditResource;
@@ -53,12 +54,9 @@ class DraftController extends Controller
         return WorkEditResource::make($draft->load('owners', 'images', 'titles'));
     }
 
-    public function publish(Request $request, Work $work)
+    public function publish(PublishWork $request, Work $work)
     {
-        $validated = $request->validate([
-            'published_at' => ['required', 'date_format:Y-m-d'],
-        ]);
-        $work->published_at = $validated['published_at'].' 00:00:00';
+        $work->published_at = $request->published_at.' 00:00:00';
         $work->save();
         return response()->noContent();
     }
