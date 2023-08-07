@@ -5,7 +5,7 @@
 	import FileUploader from '$lib/components/input/FileUploader.svelte';
 	import { locale, localePath } from '$lib/translations';
 	import toast from 'svelte-french-toast';
-	import { redirect } from '@sveltejs/kit';
+	import { goto } from '$app/navigation';
 
 	export let data: PageData;
 	let uploadedUrls = [],
@@ -31,11 +31,12 @@
 			.then(async (response) => {
 				const json = await response.json();
 				if (response.ok) {
-					throw redirect(301, localePath(`/my/work/draft/${json.id}`));
+					goto(localePath(`/my/work/draft/${json.id}`));
 				} else {
 					toast.error(json?.message);
 				}
 			})
+			.catch((e) => toast.error('Something is wrong with API server'));
 	}
 
 	function urlToPath(url) {
