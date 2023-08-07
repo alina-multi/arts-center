@@ -48,7 +48,7 @@ class DraftController extends Controller
         ]);
         $draft->category()->attach($request->category);
         if ($request->crop) {
-            CropWorkImage::dispatch($draft, $request->crop);
+            CropWorkImage::dispatchSync($draft, $request->crop);
         }
         return WorkEditResource::make($draft->load('owners', 'images', 'titles'));
     }
