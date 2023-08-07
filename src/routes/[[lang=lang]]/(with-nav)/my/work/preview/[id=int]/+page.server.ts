@@ -26,6 +26,7 @@ export const actions = {
 			}
 		});
 		if (response.ok) {
+			console.log(await response.json())
 			throw redirect(302, localePath(`/work/${event.params.id}`));
 		}
 		return await response.json();
