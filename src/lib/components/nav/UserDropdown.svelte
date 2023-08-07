@@ -1,20 +1,19 @@
-<script>
+<script lang="ts">
+	import type { User } from '$lib/interfaces/User';
 	import { Menu, MenuButton, MenuItems, MenuItem, Transition } from '@rgossiaux/svelte-headlessui';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { PencilSquare } from '@steeze-ui/heroicons';
 	import { localePath } from '$lib/translations';
 	import { page } from '$app/stores';
-	export let user;
+	import Avatar from '../atoms/Avatar.svelte';
+	export let user: User;
+
 </script>
 
 <Menu class="relative my-auto text-left block z-30  ">
 	<MenuButton class="flex items-center p-1 ">
-		<img
-			src={user?.avatar?.src}
-			srcset={user?.avatar?.srcset}
-			alt={user?.name}
-			class="flex flex-1 shrink-0 h-7 w-7 rounded-full object-cover border border-gray-100 dark:border-zinc-800"
-		/>
+		<Avatar {user} size={'w-10 h-10 '}   />
+	
 	</MenuButton>
 	<Transition
 		enter="transition ease-out duration-100"

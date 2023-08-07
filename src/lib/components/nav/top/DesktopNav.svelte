@@ -8,7 +8,11 @@
 	import { page } from '$app/stores';
 	import SearchInput from '$lib/components/input/SearchInput.svelte';
 	import Logo from '$lib/components/atoms/Logo.svelte';
+	import { Icon } from '@steeze-ui/svelte-icon';
+	import { Bars4 } from '@steeze-ui/heroicons';
+	import FooterDropdown from '$lib/components/FooterDropdown.svelte';
 	let user = $page.data.currentUser;
+
 </script>
 
 <div class="hidden xl:flex items-center w-full h-full gap-6">
@@ -22,8 +26,11 @@
 	{:else}
 		<LoginLink />
 	{/if}
-	<div class="flex gap-3 h-full">
+
+	<FooterDropdown />
+	
+	<!-- <div class="flex gap-3 h-full">
 		<TopNavLangLink lang="en" />
 		<TopNavLangLink lang="uk" />
-	</div>
+	</div> -->
 </div>
