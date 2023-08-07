@@ -4,9 +4,13 @@ import { error, redirect } from '@sveltejs/kit';
 import { get } from '$lib/server/repositories/work';
 import { workMap, workPreviewMap } from '$lib/server/mappers/work';
 import { localePath } from '$lib/translations';
+import { pictureMap } from '$lib/server/mappers/pictures';
 export const load = (async ({ params }) => {
 	return {
-		work: await get(BigInt(params.id)).then((work) => workPreviewMap(work))
+		work: await get(BigInt(params.id)).then((work) => ({
+			...workPreviewMap(work),
+			preview: pictureMap(work?.preview)
+		}))
 	};
 }) satisfies PageLoad;
 
