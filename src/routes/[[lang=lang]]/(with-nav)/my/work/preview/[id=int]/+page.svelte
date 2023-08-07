@@ -19,7 +19,7 @@
 </script>
 
 <WorkAddProgressSteps currentStep="3" id={data.work.id} />
-<form method="post" use:enhance>
+<form method="post">
 	<FormGroup h1="Ready to publish?" class="my-5">
 		<div class="columns-3">
 			<CancelLinkButton
