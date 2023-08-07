@@ -45,6 +45,6 @@ class CropWorkImage implements ShouldQueue
         ]);
         $this->work->update(['image_id' => $newImage->id]);
         $filename = $newImage->getOriginalPath();
-        Storage::put($filename, (string)$cropped);
+        Storage::put($filename, (string)$cropped, 'public');
     }
 }
