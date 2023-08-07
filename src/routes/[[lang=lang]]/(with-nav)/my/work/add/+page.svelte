@@ -25,7 +25,7 @@
 			body: JSON.stringify({
 				main,
 				more,
-				locale: locale.get()
+				language: locale.get()
 			})
 		})
 			.then(async (response) => {
