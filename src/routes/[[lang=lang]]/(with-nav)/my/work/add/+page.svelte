@@ -31,7 +31,7 @@
 			.then(async (response) => {
 				const json = await response.json();
 				if (response.ok) {
-					redirect(301, localePath(`/my/work/draft/${json.id}`));
+					throw redirect(301, localePath(`/my/work/draft/${json.id}`));
 				} else {
 					toast.error(json?.message);
 				}
