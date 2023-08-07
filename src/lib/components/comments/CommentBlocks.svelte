@@ -3,7 +3,7 @@
 	import type { Comment } from '$lib/interfaces/Comment';
 	import { page } from '$app/stores';
 	import CommentInput from './CommentInput.svelte';
-	import toast, { Toaster } from 'svelte-french-toast';
+	import toast from 'svelte-french-toast';
 	import { convertFetch } from '$lib/helpers/convertFetch';
 	import { сommentValidations, commentMassage, scrollToBottom } from '$lib/helpers/comments';
 	import { tick } from 'svelte';
@@ -59,7 +59,6 @@
 	}
 </script>
 
-<Toaster />
 <div>
 	<h3 class="sr-only">Comments</h3>
 	{#if currentUser} <CommentInput onSubmit={addNewComment} bind:value /> {/if}
