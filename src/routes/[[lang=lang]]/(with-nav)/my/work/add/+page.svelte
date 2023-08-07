@@ -36,7 +36,6 @@
 					toast.error(json?.message);
 				}
 			})
-			.catch((e) => toast.error('Something is wrong with API server'));
 	}
 
 	function urlToPath(url) {
