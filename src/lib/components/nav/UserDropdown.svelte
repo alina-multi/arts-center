@@ -7,13 +7,11 @@
 	import { page } from '$app/stores';
 	import Avatar from '../atoms/Avatar.svelte';
 	export let user: User;
-
 </script>
 
 <Menu class="relative my-auto text-left block z-30  ">
 	<MenuButton class="flex items-center p-1 ">
-		<Avatar {user} size={'w-10 h-10 '}   />
-	
+		<Avatar {user} size={'w-10 h-10 '} />
 	</MenuButton>
 	<Transition
 		enter="transition ease-out duration-100"
