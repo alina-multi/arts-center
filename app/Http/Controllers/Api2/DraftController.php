@@ -56,9 +56,9 @@ class DraftController extends Controller
     public function publish(Request $request, Work $work)
     {
         $validated = $request->validate([
-            'published_at' => 'required|date',
+            'published_at' => ['required', 'date_format:Y-m-d'],
         ]);
-        $work->published_at = $validated['published_at'];
+        $work->published_at = $validated['published_at'].' 00:00:00';
         $work->save();
         return response()->noContent();
     }
