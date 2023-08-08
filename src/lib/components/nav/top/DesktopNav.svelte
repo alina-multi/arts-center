@@ -3,11 +3,12 @@
 	import LoginLink from '../LoginLink.svelte';
 	import { localePath, t } from '$lib/translations';
 	import TopNavLink from '../TopNavLink.svelte';
-	import TopNavLangLink from '../TopNavLangLink.svelte';
 	import UserDropdown from '../UserDropdown.svelte';
 	import { page } from '$app/stores';
 	import SearchInput from '$lib/components/input/SearchInput.svelte';
 	import Logo from '$lib/components/atoms/Logo.svelte';
+
+	import FooterDropdown from '$lib/components/footer/FooterDropdown.svelte';
 	let user = $page.data.currentUser;
 </script>
 
@@ -22,8 +23,6 @@
 	{:else}
 		<LoginLink />
 	{/if}
-	<div class="flex gap-3 h-full">
-		<TopNavLangLink lang="en" />
-		<TopNavLangLink lang="uk" />
-	</div>
+
+	<FooterDropdown />
 </div>

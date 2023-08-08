@@ -9,7 +9,7 @@
 	import { localePath, t } from '$lib/translations';
 	import Button from '../atoms/Button.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { Bars4, XMark, PencilSquare } from '@steeze-ui/heroicons';
+	import { Bars4, XMark, PencilSquare, Power } from '@steeze-ui/heroicons';
 	import TopNav from './top/TopNav.svelte';
 	import TopNavLangLink from './TopNavLangLink.svelte';
 	import Logo from '../atoms/Logo.svelte';
@@ -19,6 +19,7 @@
 
 	import Avatar from '../atoms/Avatar.svelte';
 	import { page } from '$app/stores';
+	import FooterContent from '../footer/FooterContent.svelte';
 
 	let currentUser = $page.data.currentUser;
 	export let open = false;
@@ -44,7 +45,7 @@
 				<DialogOverlay class="fixed inset-0 z-40 bg-zinc-900/50 " />
 			</TransitionChild>
 			<TransitionChild
-				class="fixed top-0 left-0 h-full  z-50 w-full sm:w-2/3 md:w-1/2 overflow-y-auto bg-white dark:bg-zinc-900 text-black dark:text-white"
+				class="fixed top-0 left-0 h-screen  z-50 w-full sm:w-2/3 md:w-1/2 overflow-y-auto bg-white dark:bg-zinc-900 text-black dark:text-white"
 				enter="transition ease-in-out duration-300 transform"
 				enterFrom="-translate-x-full"
 				enterTo="translate-x-0"
@@ -53,58 +54,66 @@
 				leaveTo="-translate-x-full"
 			>
 				<DialogDescription>
-					<TopNav>
-						<Logo />
-						<div class="flex items-center gap-3 ml-6 h-full">
-							<TopNavLangLink lang="en" />
-							<TopNavLangLink lang="uk" />
+					<div class=" h-screen flex flex-col">
+						<TopNav>
+							<Logo />
+							<div class="flex items-center gap-3 ml-6 h-full">
+								<TopNavLangLink lang="en" />
+								<TopNavLangLink lang="uk" />
 
-							<Button on:click={() => (open = !open)} type={'button'} class="ml-6">
-								<span class="sr-only">Close main menu</span>
-								<Icon src={XMark} theme="solid" class="h-7 w-7" aria-hidden="true" />
-							</Button>
-						</div>
-					</TopNav>
+								<Button on:click={() => (open = !open)} type={'button'} class="ml-6">
+									<span class="sr-only">Close main menu</span>
+									<Icon src={XMark} theme="solid" class="h-7 w-7" aria-hidden="true" />
+								</Button>
+							</div>
+						</TopNav>
 
-					<div class="divide-y dark:divide-zinc-800">
-						<div class="flex flex-col p-6 gap-3 w-full">
-							<TopNavLink media={'mobile'} exact href={localePath('/')}
-								>{$t('global.menu.gallery')}</TopNavLink
-							>
-							<TopNavLink media={'mobile'} href={localePath('/users')}
-								>{$t('global.menu.users')}</TopNavLink
-							>
-						</div>
-
-						{#if currentUser}
-							<div class="flex flex-col gap-3 py-3 divide-y dark:divide-zinc-800">
-								<div
-									class="flex justify-between gap-3 pl-6 pr-3 min-[500px]:pr-6 items-center w-full"
+						<div class="divide-y dark:divide-zinc-800">
+							<div class="flex flex-col p-6 gap-3 w-full">
+								<TopNavLink media={'mobile'} exact href={localePath('/')}
+									>{$t('global.menu.gallery')}</TopNavLink
 								>
-									<Avatar user={currentUser} size={'w-10 h-10 '} withName />
-									<AddWorkLink />
-								</div>
-								<div class=" flex flex-col pl-16 px-3 gap-6 py-3">
-									<a href={localePath('/my/profile')} class="flex items-center gap-2">
-										<span>Edit profile</span>
-										<Icon src={PencilSquare} class="w-5 mb-0.5" />
-									</a>
-									<a
-										href={localePath('/logout?redirect=' + $page.url.pathname)}
-										data-sveltekit-preload-data="tap"
-										data-sveltekit-reload
-										>Log Out &rarr;
-									</a>
-								</div>
+								<TopNavLink media={'mobile'} href={localePath('/users')}
+									>{$t('global.menu.users')}</TopNavLink
+								>
 							</div>
-						{:else}
-							<div class="flex items-center py-6 justify-center gap-6">
-								<AddWorkLink />
-								<LoginLink />
-							</div>
-						{/if}
 
-						<div />
+							{#if currentUser}
+								<div class="flex flex-col gap-3 py-3 divide-y dark:divide-zinc-800">
+									<div
+										class="flex justify-between gap-3 pl-6 pr-3 min-[500px]:pr-6 items-center w-full"
+									>
+										<span class="font-semibold flex items-center"
+											><Avatar user={currentUser} size={'w-10 h-10 '} withName /></span
+										>
+										<AddWorkLink />
+									</div>
+									<div class=" flex flex-col pl-16 px-3 gap-6 py-3">
+										<a href={localePath('/my/profile')} class="flex items-center gap-2">
+											<Icon src={PencilSquare} class="w-5 mb-0.5" />
+											<span>Edit profile</span>
+										</a>
+										<a
+											href={localePath('/logout?redirect=' + $page.url.pathname)}
+											class="flex items-center gap-2"
+											data-sveltekit-preload-data="tap"
+											data-sveltekit-reload
+										>
+											<Icon src={Power} class="w-5 mb-0.5" /><span>Log Out</span>
+										</a>
+									</div>
+								</div>
+							{:else}
+								<div class="flex items-center py-6 justify-center gap-6">
+									<AddWorkLink />
+									<LoginLink />
+								</div>
+							{/if}
+
+							<div />
+						</div>
+
+						<FooterContent media="mobile" />
 					</div>
 				</DialogDescription>
 			</TransitionChild>

@@ -4,5 +4,13 @@
 		"users": "ARTISTS",
 		"login": "LOGIN",
 		"register": "REGISTER"
+	},
+	"footer": {
+		"about": "About Us",
+		"contacts": "Contacts",
+		"blog": "Blog",
+		"subscriptions": "Subscriptions",
+		"privacy": "Privacy policy",
+		"terms": "Terms and conditions"
 	}
 }
