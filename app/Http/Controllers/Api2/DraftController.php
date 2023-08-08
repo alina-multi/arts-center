@@ -58,6 +58,7 @@ class DraftController extends Controller
     {
         $work->published_at = $request->published_at.' 00:00:00';
         $work->save();
+        \Log::debug($work->toArray());
         return response()->noContent();
     }
 
