@@ -142,7 +142,8 @@ test('publish draft', function () {
     actingAs($user)->putJson("/api2/draft/$work->id/publish", [
         'published_at' => '2033-12-12'
     ])->assertNoContent();
-    $this->assertDatabaseHas('works',[
+    $this->assertDatabaseHas('works', [
+        'id' => $work->id,
         'published_at' => '2033-12-12 00:00:00'
     ]);
 });

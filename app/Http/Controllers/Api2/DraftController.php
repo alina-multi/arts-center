@@ -54,11 +54,10 @@ class DraftController extends Controller
         return WorkEditResource::make($draft->load('owners', 'images', 'titles'));
     }
 
-    public function publish(PublishWork $request, Work $work)
+    public function publish(PublishWork $request, Work $draft)
     {
-        $work->published_at = $request->published_at.' 00:00:00';
-        $work->save();
-        \Log::debug($work->toArray());
+        $draft->published_at = $request->published_at;
+        $draft->save();
         return response()->noContent();
     }
 
