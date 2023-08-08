@@ -58,7 +58,6 @@ class DraftController extends Controller
     {
         $draft->published_at = $request->published_at;
         $draft->save();
-        \Log::debug($draft);
         return response()->noContent();
     }
 
