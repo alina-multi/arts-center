@@ -59,16 +59,18 @@ test('edit draft', function () {
         'price' => 0,
         'rating' => 0,
         'comments' => 0
-    ])->hasTitles()->create();
+    ])
+        ->has(\App\Models\WorkTitle::factory()->sequence(['language' => 'uk'], ['language' => 'en']), 'titles')
+        ->create();
     $work->owners()->attach($user);
 
     actingAs($otherUser)->putJson("/api2/draft/$work->id")
         ->assertStatus(403);
 
-    // Category is required
+    // Category and language is required
     actingAs($user)->putJson("/api2/draft/$work->id", [
         'title' => 'test title',
-    ])->assertInvalid('category');
+    ])->assertInvalid(['category', 'language']);
 
     // tags shouldn't be allowed
     actingAs($user)->putJson("/api2/draft/$work->id", [
@@ -106,6 +108,7 @@ test('edit draft', function () {
 
     $validStringButWithHtml = '<b>Valid but with html</b>';
     actingAs($user)->putJson("/api2/draft/$work->id", [
+        'language' => 'uk',
         'title' => $validStringButWithHtml,
         'description' => $validStringButWithHtml,
         'category' => $categoryIds,
@@ -122,6 +125,7 @@ test('edit draft', function () {
     assertDatabaseHas('work_titles', [
         'title' => strip_tags($validStringButWithHtml),
         'description' => strip_tags($validStringButWithHtml),
+        'language' => 'uk'
     ]);
 
     expect(sizeof($categoryIds))->toEqual($work->category()->count());

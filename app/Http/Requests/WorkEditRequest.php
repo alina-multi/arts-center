@@ -7,6 +7,7 @@ use App\Rules\AspectRatio;
 use App\Rules\TagType;
 use App\Rules\UploadedImage;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class WorkEditRequest extends FormRequest
 {
@@ -26,6 +27,10 @@ class WorkEditRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'language' => [
+                'required',
+                Rule::in(config('app.languages'))
+            ],
             'main' => ['string', new UploadedImage()],
             'more.*' => ['string', new UploadedImage()],
             'title' => ['string', 'required', 'min:4', 'max:40'],

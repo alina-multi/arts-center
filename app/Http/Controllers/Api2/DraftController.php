@@ -42,12 +42,12 @@ class DraftController extends Controller
 
     public function update(WorkEditRequest $request, Work $draft)
     {
-        $title = $draft->titles()->first();
+        $title = $draft->titles()->where('language', $request->language)->first();
         $title->update([
-            'title'=>$request->title,
+            'title' => $request->title,
             'description' => $request->description
         ]);
-        $draft->category()->attach($request->category);
+        $draft->category()->sync($request->category);
         if ($request->crop) {
             CropWorkImage::dispatchSync($draft, $request->crop);
         }
