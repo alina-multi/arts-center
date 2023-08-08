@@ -23,7 +23,7 @@
 			<div
 				class="flex flex-wrap sm:flex-nowrap gap-1 sm:gap-3 text-zinc-900 dark:text-zinc-100 items-start text-sm sm:text-base lg:text-lg"
 			>
-				<a href="" class="hover:text-zinc-700 dark:hover:text-zinc-300 font-semibold mr-2"
+				<a href="/" class="hover:text-zinc-700 dark:hover:text-zinc-300 font-semibold mr-2"
 					><h3>{user.name}</h3></a
 				>
 				<span class="text-xs sm:text-sm lg:text-lg border border-amber-500 rounded-full px-3"
@@ -86,7 +86,7 @@
 	<div class="flex justify-center lg:w-1/2 max-w-3xl flex-col shrink-0">
 		<div class="flex gap-3">
 			{#each user.works as work}
-				<a href="#">
+				<a href="/">
 					<img class="rounded-md" src={work.image.url} alt="{name} work: {work.title}" /></a
 				>
 			{/each}

@@ -29,7 +29,7 @@
 		<div class=" grid grid-cols-4 gap-3">
 			<div>
 				<a
-					href="#"
+					href="/"
 					class="inline-flex w-full justify-center rounded-md bg-white dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-700 focus:outline-offset-0"
 				>
 					<span class="sr-only">Sign in with Facebook</span>
@@ -45,7 +45,7 @@
 
 			<div>
 				<a
-					href="#"
+					href="/"
 					class="inline-flex w-full justify-center rounded-md bg-white dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-700 focus:outline-offset-0"
 				>
 					<span class="sr-only">Sign in with Twitter</span>
@@ -59,7 +59,7 @@
 
 			<div>
 				<a
-					href="#"
+					href="/"
 					class="inline-flex w-full justify-center rounded-md bg-white dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-700 focus:outline-offset-0"
 				>
 					<span class="sr-only">Sign in with Google</span>
@@ -73,7 +73,7 @@
 			</div>
 			<div>
 				<a
-					href="#"
+					href="/"
 					class="inline-flex w-full justify-center rounded-md bg-white dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-700 focus:outline-offset-0"
 				>
 					<span class="sr-only">Sign in with Apple</span>

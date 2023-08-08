@@ -58,7 +58,7 @@
 
 					<div class="text-sm">
 						<a
-							href="#"
+							href="/forgot-password"
 							class="font-medium text-gray-400 hover:underline hover:text-gray-500 dark:hover:text-zinc-300 dark:text-zinc-500"
 							>Forgot your password?</a
 						>
@@ -89,7 +89,7 @@
 				<div class="mt-6 grid grid-cols-4 gap-3">
 					<div>
 						<a
-							href="#"
+							href="/"
 							class="inline-flex w-full justify-center rounded-md bg-white dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-700 focus:outline-offset-0"
 						>
 							<span class="sr-only">Sign in with Facebook</span>
@@ -105,7 +105,7 @@
 
 					<div>
 						<a
-							href="#"
+							href="/"
 							class="inline-flex w-full justify-center rounded-md bg-white dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-700 focus:outline-offset-0"
 						>
 							<span class="sr-only">Sign in with Twitter</span>
@@ -119,7 +119,7 @@
 
 					<div>
 						<a
-							href="#"
+							href="/"
 							class="inline-flex w-full justify-center rounded-md bg-white dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-700 focus:outline-offset-0"
 						>
 							<span class="sr-only">Sign in with Google</span>
@@ -133,7 +133,7 @@
 					</div>
 					<div>
 						<a
-							href="#"
+							href="/"
 							class="inline-flex w-full justify-center rounded-md bg-white dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-700 focus:outline-offset-0"
 						>
 							<span class="sr-only">Sign in with Apple</span>
