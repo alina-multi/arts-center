@@ -59,11 +59,11 @@
 {#if uploadedUrls?.length > 0}
 	<FormGroup h1="Select the main image">
 		<ul
-			role="list"
 			class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8"
 		>
 			{#each uploadedUrls as url, index (url.url)}
 				<li class="relative">
+					<!-- svelte-ignore a11y-click-events-have-key-events -->
 					<div
 						on:click={send(url.url)}
 						class="cursor-pointer group aspect-h-7 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100"
@@ -71,8 +71,10 @@
 						<img
 							src={url.preview}
 							class="pointer-events-none object-cover group-hover:opacity-75"
+							alt=""
 						/>
 					</div>
+					<!-- svelte-ignore a11y-click-events-have-key-events -->
 					<div
 						class="text-red-500 underline cursor-pointer text-right"
 						on:click={deleteImage(url.url)}

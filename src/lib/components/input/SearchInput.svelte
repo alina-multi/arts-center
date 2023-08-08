@@ -13,7 +13,7 @@
 	$: open = value.length > 0;
 	let searchValue = '';
 
-	function onEnter(e) {
+	function onEnter(e: KeyboardEvent) {
 		if (e.key === 'Enter' && totalHits > 20) {
 			open = false;
 			goto(`/search/${value}`, {
