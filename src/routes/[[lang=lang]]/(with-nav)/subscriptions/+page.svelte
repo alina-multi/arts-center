@@ -1,10 +1,12 @@
 <script lang="ts">
+    import {page} from '$app/stores';
 	const includedFeatures = [
 		'A premium account that will set you apart from other users',
 		'Prioritization in the lists, which will provide more attention to your profile',
 		'Access to artificial intelligence tools',
 		' Opportunity to receive support and rewards from fans'
 	];
+
 </script>
 
 <div class=" my-9">
@@ -37,7 +39,6 @@
 					<div class="h-px flex-auto bg-gray-100 dark:bg-zinc-800" />
 				</div>
 				<ul
-					role="features"
 					class="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-zinc-600 dark:text-zinc-400 sm:grid-cols-2 sm:gap-6"
 				>
 					{#each includedFeatures as feature}
@@ -89,8 +90,9 @@
 								>USD</span
 							>
 						</p>
+
 						<a
-							href="#"
+							href="{$page.data.currentUser ? '/????' : '/login'}"
 							class="mt-10 block w-full rounded-md bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 							>Get access</a
 						>
