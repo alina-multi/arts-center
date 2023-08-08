@@ -1,17 +1,20 @@
-import type { PageServerLoad, Actions, PageLoad } from './$types';
+import type { Actions, PageLoad } from './$types';
 import { api } from '$lib/server/api';
 import { error, redirect } from '@sveltejs/kit';
 import { get } from '$lib/server/repositories/work';
-import { workMap, workPreviewMap } from '$lib/server/mappers/work';
+import { workPreviewMap } from '$lib/server/mappers/work';
 import { localePath } from '$lib/translations';
 import { pictureMap } from '$lib/server/mappers/pictures';
 export const load = (async ({ params }) => {
-	return {
+	const data = {
 		work: await get(BigInt(params.id)).then((work) => ({
-			...workPreviewMap(work),
-			preview: pictureMap(work?.preview)
+			...workPreviewMap(work)
 		}))
 	};
+	if (!data?.work?.id || data?.work?.published_at) {
+		throw error(404, 'Not found');
+	}
+	return data;
 }) satisfies PageLoad;
 
 export const actions = {

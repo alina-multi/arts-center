@@ -52,9 +52,7 @@ export const handleError = (({ error, event }) => {
 	}
 
 	if (process.env.PUBLIC_ENV !== 'development') {
-		return {
-			message: 'something went wrong'
-		}
+		return;
 	}
 	return {
 		message: error?.stack ?? error?.message

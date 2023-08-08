@@ -4,7 +4,9 @@
 	export let options, maxSelect, required, name, value;
 	let multiselectProps, hiddenValue;
 	// Default from value prop to format that component understands
-	let selected = options.map(tagToOption).filter((option) => value.includes(Number(option.value)));
+	let selected = options
+		.map(tagToOption)
+		.filter((option) => value?.includes(Number(option?.value)));
 	$: {
 		multiselectProps = {
 			outerDivClass: 'rounded-md border sm:text-sm h-10',

@@ -19,7 +19,7 @@
 </script>
 
 {#if isMy}
-	<a href={`/work/${work.id}/edit`} class=" hidden md:flex gap-3">
+	<a href={`/my/work/edit/${work.id}`} class=" hidden md:flex gap-3">
 		<span class="sr-only">Edit work</span>
 		<Icon src={PencilSquare} class="w-6 h-6 text-gray-700 hover:text-gray-500" />
 	</a>

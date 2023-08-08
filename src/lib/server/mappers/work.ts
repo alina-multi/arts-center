@@ -50,7 +50,8 @@ export function workMap(data: worksWithRelations): Work {
 export function workPreviewMap(data: worksWithRelations): Work & { preview: Picture } {
 	return {
 		...workMap(data),
-		preview: pictureMap(data.preview)
+		preview: pictureMap(data.preview),
+		published_at: data.published_at
 	};
 }
 
