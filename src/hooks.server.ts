@@ -51,7 +51,7 @@ export const handleError = (({ error, event }) => {
 		SentryNode.captureException(error, { contexts: { sveltekit: { event } } });
 	}
 
-	if (process.env.NODE_ENV === 'production') {
+	if (process.env.PUBLIC_ENV !== 'development') {
 		return {
 			message: 'something went wrong'
 		}
