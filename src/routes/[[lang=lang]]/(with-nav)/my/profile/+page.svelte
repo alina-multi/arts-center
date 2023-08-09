@@ -9,24 +9,15 @@
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
 	import AvatarInput from '$lib/components/user/AvatarInput.svelte';
 	import SaveButton from '$lib/components/input/SaveButton.svelte';
+	import H1 from "$lib/components/atoms/H1.svelte";
 
 	export let data: PageData;
 	export let form: ActionData;
 	const profile = data.profile.data;
 </script>
 
-<div
-	class=" dark:bg-inherit dark:md:bg-zinc-900 md:border md:px-3 md:bg-gray-100 pb-12 dark:border-t-transparent dark:border-zinc-800"
->
-	<div class="lg:w-3/4 mx-auto">
-		<div class="pt-3 md:pt-6 pb-3">
-			<h1 class=" text-lg md:text-2xl font-bold">Profile</h1>
-			<p class="text-gray-500 dark:text-zinc-400">
-				This information will be displayed publicly so be careful what you share.
-			</p>
-		</div>
 		<form method="post" enctype="multipart/form-data" class="space-y-9">
-			<FormGroup h1="Personal Information">
+			<FormGroup h1="Personal Information" h2="This information will be displayed publicly so be careful what you share.">
 				<InputGroup error={form?.errors?.avatar} let:elementId={id}>
 					<AvatarInput {id} currentAvatar={profile?.photo} />
 				</InputGroup>
@@ -136,5 +127,4 @@
 			</FormGroup>
 			<SaveButton />
 		</form>
-	</div>
-</div>
+
