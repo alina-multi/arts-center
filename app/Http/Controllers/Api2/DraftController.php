@@ -56,7 +56,20 @@ class DraftController extends Controller
 
     public function publish(PublishWork $request, Work $draft)
     {
+        if ($request->user()->cannot('update', $draft)) {
+            abort(403);
+        }
         $draft->published_at = $request->published_at;
+        $draft->save();
+        return response()->noContent();
+    }
+
+    public function draft(Request $request, Work $draft)
+    {
+        if ($request->user()->cannot('update', $draft)) {
+            abort(403);
+        }
+        $draft->published_at = null;
         $draft->save();
         return response()->noContent();
     }
@@ -64,5 +77,14 @@ class DraftController extends Controller
     public function show(Work $draft)
     {
         return WorkEditResource::make($draft->load('owners', 'images', 'titles', 'category', 'full', 'image'));
+    }
+
+    public function destroy(Work $draft)
+    {
+        if ($draft->published_at !== null) {
+            abort(403, 'Can not delete published work');
+        }
+        $draft->delete();
+        return response()->noContent();
     }
 }

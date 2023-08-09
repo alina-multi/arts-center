@@ -28,6 +28,7 @@ Route::middleware(['auth:sanctum', LocaleHeader::class])->group(function () {
     Route::delete('vote', VoteController::class . '@destroy');
     Route::apiResource('draft', DraftController::class);
     Route::put('draft/{draft}/publish', DraftController::class. '@publish');
+    Route::delete('draft/{draft}/draft', DraftController::class. '@draft');
     Route::apiResource('comment', CommentController::class);
 });
 

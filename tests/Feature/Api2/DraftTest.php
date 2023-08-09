@@ -140,14 +140,49 @@ test('get draft', function () {
 });
 
 test('publish draft', function () {
+    Bus::fake();
     $user = User::factory()->create();
-    $work = Work::factory()->hasTitles()->create();
+    $otherUser = User::factory()->create();
+    $work = Work::factory()->hasTitles()->create(['published_at' => null]);
     $work->owners()->attach($user);
+    actingAs($otherUser)->putJson("/api2/draft/$work->id/publish", [
+        'published_at' => '2033-12-12'
+    ])->assertForbidden();
     actingAs($user)->putJson("/api2/draft/$work->id/publish", [
         'published_at' => '2033-12-12'
     ])->assertNoContent();
     $this->assertDatabaseHas('works', [
         'id' => $work->id,
         'published_at' => '2033-12-12 00:00:00'
+    ]);
+});
+
+test('move to draft', function () {
+    $user = User::factory()->create();
+    $otherUser = User::factory()->create();
+    $work = Work::factory()->hasTitles()->create();
+    $work->owners()->attach($user);
+    actingAs($otherUser)->deleteJson("/api2/draft/$work->id/draft")->assertForbidden();
+    actingAs($user)->deleteJson("/api2/draft/$work->id/draft")->assertNoContent();
+    $this->assertDatabaseHas('works', [
+        'id' => $work->id,
+        'published_at' => null
+    ]);
+});
+
+test('delete draft', function () {
+    $user = User::factory()->create();
+    $otherUser = User::factory()->create();
+    $work = Work::factory()->hasTitles()->create();
+    $work->owners()->attach($user);
+    actingAs($otherUser)->deleteJson("/api2/draft/$work->id")->assertForbidden();
+    // Published work can not be deleted
+    actingAs($user)->deleteJson("/api2/draft/$work->id")->assertForbidden();
+    $work->published_at = null;
+    $work->save();
+    actingAs($user)->deleteJson("/api2/draft/$work->id")->assertNoContent();
+    $this->assertDatabaseHas('works', [
+        'id' => $work->id,
+        'deleted_at' => now()
     ]);
 });

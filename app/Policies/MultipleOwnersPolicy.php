@@ -24,6 +24,11 @@ class MultipleOwnersPolicy
         return $this->update($user, $model);
     }
 
+    public function forceDelete(User $user, $model)
+    {
+        return $this->update($user, $model);
+    }
+
     public function create()
     {
         return true;
