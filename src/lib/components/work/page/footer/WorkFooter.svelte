@@ -36,7 +36,7 @@
 			class=" hidden lg:flex flex-col border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 gap-3 p-3 sm:p-6 sm:gap-6 rounded-md shadow-sm md:max-lg:w-1/2"
 		>
 			{#each work.owners as user}
-				<UserPreviewRegular {user} followBtn={'block'} />
+				<UserPreviewRegular {user} />
 			{/each}
 		</div>
 	</div>
@@ -77,7 +77,7 @@
 			class=" sm:w-1/2 flex lg:hidden flex-col border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 p-3 gap-3 rounded-md shadow-sm s"
 		>
 			{#each work.owners as user}
-				<UserPreviewRegular {user} followBtn={'block'} />
+				<UserPreviewRegular {user} />
 			{/each}
 		</div>
 	</div>

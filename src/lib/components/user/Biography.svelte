@@ -5,12 +5,14 @@
 	let lines = 0;
 
 	onMount(() => {
-		countLines();
+		if (user?.bio) {
+			countLines();
+		}
 	});
 
 	function countLines() {
 		let el = document.getElementById('bio');
-		lines = el.offsetHeight / 24;
+		lines = el?.offsetHeight / 24;
 	}
 </script>
 
