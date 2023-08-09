@@ -1,5 +1,5 @@
 <script lang="ts">
-	import UserPreviewRegular from '$lib/components/user/UserPreviewRegular.svelte';
+	import UserPreviewRegular from '$lib/components/user/UserPreview.svelte';
 	import CommentBlocks from '$lib/components/comments/CommentBlocks.svelte';
 	import { page } from '$app/stores';
 	import AuthStub from '../../AuthStub.svelte';
