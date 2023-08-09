@@ -5,7 +5,6 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { CalendarDays, Star } from '@steeze-ui/heroicons';
 
-
 	export let user: User, full: boolean;
 </script>
 
@@ -26,15 +25,13 @@
 	<div class="hidden xl:block border-b h-1 dark:border-gray-700 w-full my-2" />
 	<TotalRating {user} full />
 {:else}
-
-{#if user.subscribed}
-<div class="flex items-center text-sm text-zinc-600 gap-1 dark:text-zinc-300">
-	<Icon src={Star} theme="solid" class="  w-4 fill-amber-600 stroke-amber-600 " />
-	<span>Total rating: {user.rating}</span>
-	</div>
-		{/if}
+	{#if user.subscribed}
+		<div class="flex items-center text-sm text-zinc-600 gap-1 dark:text-zinc-300">
+			<Icon src={Star} theme="solid" class="  w-4 fill-amber-600 stroke-amber-600 " />
+			<span>Total rating: {user.rating}</span>
+		</div>
+	{/if}
 	<div class="flex flex-wrap text-sm text-zinc-500 gap-1 md:gap-2 items-center">
-		
 		<span>@{user?.username}</span>
 		<Country {user} />
 	</div>

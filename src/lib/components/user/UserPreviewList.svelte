@@ -1,13 +1,13 @@
 <script lang="ts">
 	import UserPreview from '$lib/components/user/UserPreview.svelte';
 	import LastWorks from '$lib/components/atoms/LastWorks.svelte';
-	import type { UserPreview } from '$lib/interfaces/User.ts';
+	import type { UserPreview as Users } from '$lib/interfaces/User.ts';
 	import UsersFilters from '$lib/components/user/UsersFilters.svelte';
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
 	import { localePath } from '$lib/translations';
 	import * as devalue from 'devalue';
 
-	export let users: UserPreview[], categories, countries, params;
+	export let users: Users[], categories, countries, params;
 
 	let newBatch = [];
 	let page = params.page;
