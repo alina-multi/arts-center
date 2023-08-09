@@ -3,11 +3,12 @@
 	import type { PageData } from './$types';
 	import UserCard from '$lib/components/user/UserCard.svelte';
 	import Biography from '$lib/components/user/Biography.svelte';
-	import SideManu from "$lib/components/nav/side/SideManu.svelte";
+	import SideManu from '$lib/components/nav/side/SideManu.svelte';
 
 	export let data: PageData;
 	let userTags = data.user.ratings.map((rating) => rating.tag);
 </script>
+
 <SideManu>
 	<svelte:fragment slot="nav"><UserCard user={data.user} /></svelte:fragment>
 	{#if userTags.length > 0}

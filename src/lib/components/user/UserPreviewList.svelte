@@ -7,7 +7,7 @@
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
 	import { localePath } from '$lib/translations';
 	import * as devalue from 'devalue';
-	import SideManu from "$lib/components/nav/side/SideManu.svelte";
+	import SideManu from '$lib/components/nav/side/SideManu.svelte';
 
 	export let users: UserPreview[], categories, countries, params;
 
@@ -32,7 +32,9 @@
 </script>
 
 <SideManu>
-	<svelte:fragment slot="nav"><UsersFilters tags={categories} {countries} {params} /></svelte:fragment>
+	<svelte:fragment slot="nav"
+		><UsersFilters tags={categories} {countries} {params} /></svelte:fragment
+	>
 	{#each users as user (user.id)}
 		{#if user.subscribed}
 			<UserPreviewPremium {user} />
@@ -57,8 +59,8 @@
 		{hasMore}
 		{loading}
 		on:loadMore={() => {
-				page++;
-				fetchData();
-			}}
+			page++;
+			fetchData();
+		}}
 	/>
 </SideManu>
