@@ -35,30 +35,30 @@
 	<svelte:fragment slot="nav"
 		><UsersFilters tags={categories} {countries} {params} /></svelte:fragment
 	>
-		{#each users as user (user.id)}
+	{#each users as user (user.id)}
 		<div
-				class="flex flex-col items-center sm:flex-row gap-3 shadow-sm border rounded-md w-full dark:bg-zinc-900 dark:border-zinc-800 {user.subscribed
-					? 'bg-zinc-50 dark:bg-blue-900 shadow-2xl'
-					: 'bg-white'}"
+			class="flex flex-col items-center sm:flex-row gap-3 shadow-sm border rounded-md w-full dark:bg-zinc-900 dark:border-zinc-800 {user.subscribed
+				? 'bg-zinc-50 dark:bg-blue-900 shadow-2xl'
+				: 'bg-white'}"
+		>
+			<div
+				class=" flex items-center grow w-full sm:w-1/2 text-lg px-3 max-lg:pt-3 sm:max-lg:pb-3 gap-3 overflow-hidden"
 			>
-				<div
-					class=" flex items-center grow w-full sm:w-1/2 text-lg px-3 max-lg:pt-3 sm:max-lg:pb-3 gap-3 overflow-hidden"
-				>
-					<UserPreview {user} />
-				</div>
-				<div
-					class="px-3 pb-3 sm:p-3 lg:p-0 flex justify-end sm:w-1/2 dark:border-gray-700 gap-3 overflow-hidden"
-				>
-					<LastWorks works={user.works} />
-				</div>
+				<UserPreview {user} />
 			</div>
-		{/each}
-		<InfiniteScroll
-			{hasMore}
-			{loading}
-			on:loadMore={() => {
-				page++;
-				fetchData();
-			}}
-		/>
-	</SideManu>
+			<div
+				class="px-3 pb-3 sm:p-3 lg:p-0 flex justify-end sm:w-1/2 dark:border-gray-700 gap-3 overflow-hidden"
+			>
+				<LastWorks works={user.works} />
+			</div>
+		</div>
+	{/each}
+	<InfiniteScroll
+		{hasMore}
+		{loading}
+		on:loadMore={() => {
+			page++;
+			fetchData();
+		}}
+	/>
+</SideManu>
