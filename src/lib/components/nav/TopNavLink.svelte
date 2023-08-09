@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import BaseLink from '$lib/components/nav/BaseLink.svelte';
 
 	export let href: string;
 	export let exact = false;
@@ -18,23 +18,16 @@
 	if (media === 'mobile') {
 		style = styleMobile;
 	}
-
-	function isActive(exact, pathname, active): boolean {
-		if (active !== undefined) return active;
-		if (exact) return pathname === href;
-		return pathname.startsWith(href);
-	}
-	$: computedActive = isActive(exact, $page.url.pathname, active);
 </script>
 
-<a
+<BaseLink
 	{href}
-	class="inline-flex h-full items-center text-lg border-amber-500 {style}
-        {computedActive
-		? ''
-		: 'border-transparent hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-300'} "
-	data-sveltekit-reload={reload ? '' : 'off'}
-	data-sveltekit-preload-data={preload}
+	{reload}
+	{preload}
+	{exact}
+	{active}
+	class="inline-flex h-full items-center text-lg border-amber-500 {style}"
+	inactiveClass="border-transparent hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-300"
 >
 	<slot />
-</a>
+</BaseLink>

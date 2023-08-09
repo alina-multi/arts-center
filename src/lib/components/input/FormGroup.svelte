@@ -15,7 +15,7 @@
 		</h2>
 	{/if}
 	{#if h2}
-		<p class="mt-1 text-sm leading-6 text-gray-600">{h2}</p>
+		<p class="px-3 lg:px-16 mt-1 text-sm leading-6 text-gray-600">{h2}</p>
 	{/if}
 	<div class="flex flex-col gap-6 px-3 lg:px-16 py-6">
 		<slot />
