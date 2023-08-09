@@ -6,6 +6,7 @@
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
 	import { localePath } from '$lib/translations';
 	import * as devalue from 'devalue';
+	import SideManu from '$lib/components/nav/side/SideManu.svelte';
 
 	export let users: Users[], categories, countries, params;
 
@@ -30,13 +31,12 @@
 	}
 </script>
 
-<div class="flex flex-col xl:flex-row max-xl:gap-3 mt-3 dark:text-white">
-	<div class="xl:w-3/12 border dark:bg-zinc-900 dark:border-zinc-800 rounded-md">
-		<UsersFilters tags={categories} {countries} {params} />
-	</div>
-	<div class="flex flex-col gap-3 xl:pl-3 xl:w-9/12">
+<SideManu>
+	<svelte:fragment slot="nav"
+		><UsersFilters tags={categories} {countries} {params} /></svelte:fragment
+	>
 		{#each users as user (user.id)}
-			<div
+		<div
 				class="flex flex-col items-center sm:flex-row gap-3 shadow-sm border rounded-md w-full dark:bg-zinc-900 dark:border-zinc-800 {user.subscribed
 					? 'bg-zinc-50 dark:bg-blue-900 shadow-2xl'
 					: 'bg-white'}"
@@ -61,5 +61,4 @@
 				fetchData();
 			}}
 		/>
-	</div>
-</div>
+	</SideManu>
