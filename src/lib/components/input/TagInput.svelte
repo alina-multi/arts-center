@@ -92,10 +92,10 @@
 	{/if}
 	<div
 		on:keydown={(e) => onBackspace(e)}
-		class="flex flex-wrap gap-1 rounded-md border p-1 border-gray-300 shadow-sm focus-within:border-indigo-600 focus-within:ring-1 focus-within:ring-indigo-600 overflow-hidden"
+		class="flex flex-wrap gap-1 rounded-md border p-1 border-gray-300 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 overflow-hidden"
 	>
 		{#each tags as tag, i}
-			<div class="bg-indigo-100 inline-flex items-center text-sm rounded">
+			<div class="bg-blue-100 inline-flex items-center text-sm rounded">
 				<span class="ml-2 mr-1 leading-relaxed truncate max-w-xs">{tag}</span>
 				<button
 					on:click={() => removeTag(i)}
@@ -129,7 +129,7 @@
 			<div class="py-1 text-sm bg-white rounded shadow-lg border border-zinc-300">
 				<a
 					on:click={() => addTags(value)}
-					class="block py-1 px-5 cursor-pointer hover:bg-indigo-600 hover:text-white"
+					class="block py-1 px-5 cursor-pointer hover:bg-blue-600 hover:text-white"
 					><span class="font-semibold" />{label}: "{value}"</a
 				>
 				{#if visibleOptions.length === 0}
@@ -141,7 +141,7 @@
 					{#each visibleOptions as option}
 						<li
 							on:click={() => addTags(option)}
-							class="block py-1 px-5 cursor-pointer hover:bg-indigo-600 hover:text-white"
+							class="block py-1 px-5 cursor-pointer hover:bg-blue-600 hover:text-white"
 						>
 							{option}
 						</li>

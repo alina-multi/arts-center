@@ -6,7 +6,7 @@
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
 	import { localePath } from '$lib/translations';
 	import * as devalue from 'devalue';
-	import SideManu from '$lib/components/nav/side/SideManu.svelte';
+	import SideMenu from '$lib/components/nav/side/SideMenu.svelte';
 
 	export let users: Users[], categories, countries, params;
 
@@ -31,7 +31,7 @@
 	}
 </script>
 
-<SideManu>
+<SideMenu>
 	<svelte:fragment slot="nav"
 		><UsersFilters tags={categories} {countries} {params} /></svelte:fragment
 	>
@@ -61,4 +61,4 @@
 			fetchData();
 		}}
 	/>
-</SideManu>
+</SideMenu>
