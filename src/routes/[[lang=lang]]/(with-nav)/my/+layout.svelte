@@ -1,5 +1,5 @@
 <script>
-	import SideMenu from '$lib/components/nav/side/SideManu.svelte';
+	import SideMenu from '$lib/components/nav/side/SideMenu.svelte';
 	import SideNav from '$lib/components/nav/side/SideNav.svelte';
 	import SideNavLink from '$lib/components/nav/side/SideNavLink.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
