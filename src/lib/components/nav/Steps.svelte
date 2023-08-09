@@ -6,7 +6,7 @@
 <nav aria-label="Progress">
 	<ol
 		role="list"
-		class="divide-y   rounded-md border  md:flex md:divide-y-0 dark:bg-zinc-800 dark:border-zinc-700 "
+		class="divide-y rounded-md border md:flex md:divide-y-0 dark:bg-zinc-800 dark:border-zinc-700"
 	>
 		{#each steps as { label, href }, i}
 			<li class="relative md:flex md:flex-1">
@@ -15,7 +15,7 @@
 					<a {href} data-sveltekit-preload-data="off" class="group flex w-full items-center">
 						<span class="flex items-center px-6 py-3 text-sm font-medium">
 							<span
-								class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 group-hover:bg-blue-800 "
+								class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 group-hover:bg-blue-800"
 							>
 								<svg
 									class="h-6 w-6 text-white"
@@ -51,9 +51,12 @@
 							<span
 								class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 dark:border-zinc-600 group-hover:border-gray-400 dark:group-hover:border-zinc-500"
 							>
-								<span class="text-gray-500 group-hover:text-gray-900 dark:group-hover:text-zinc-400">{i + 1}</span>
+								<span class="text-gray-500 group-hover:text-gray-900 dark:group-hover:text-zinc-400"
+									>{i + 1}</span
+								>
 							</span>
-							<span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900 dark:group-hover:text-zinc-400"
+							<span
+								class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900 dark:group-hover:text-zinc-400"
 								>{label}</span
 							>
 						</span>

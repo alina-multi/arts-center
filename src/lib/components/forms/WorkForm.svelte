@@ -30,7 +30,7 @@
 			<StyledTabList>
 				{#each data.titles as title}
 					<StyledTab>
-						{title.language}   
+						{title.language}
 					</StyledTab>
 				{/each}
 			</StyledTabList>

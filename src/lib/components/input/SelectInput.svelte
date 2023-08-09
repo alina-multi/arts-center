@@ -34,8 +34,6 @@
 			isDark = document.documentElement.classList.contains('dark');
 		}
 	});
-
-	console.log(isDark);
 </script>
 
 <div class="border border-gray-300 rounded-md dark:bg-zinc-900 dark:border-zinc-700">
@@ -46,8 +44,6 @@
 		--sms-border={'transparent'}
 		--sms-bg={isDark ? ' ' : ''}
 		--sms-options-padding={'18px'}
-	
-
 	/>
 </div>
 

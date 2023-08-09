@@ -26,6 +26,5 @@
 			</div>
 		</FormGroup>
 		<WorkForm {data} errors={form?.errors} />
-	
 	</div>
 </form>
