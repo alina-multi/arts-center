@@ -12,20 +12,20 @@
 	const onToggle = () => (showRatings = !showRatings);
 </script>
 
-<div class=" p-3 lg:py-6 text-sm 2xl:text-base text-gray-700 dark:text-zinc-300">
+<div class="px-3 sm:px-6 xl:px-0 py-3 lg:py-6 text-sm 2xl:text-base text-gray-700 dark:text-zinc-300">
 	<div
-		class="flex xl:flex-col gap-3 items-start {showRatings ? 'items-start' : 'sm:items-center '} "
+		class="flex xl:flex-col gap-3 items-start {showRatings ? 'items-start' : 'sm:items-center '}  "
 	>
-		<Avatar {user} size={' w-32 h-32  max-sm:w-28 max-sm:h-28 '} />
+		<Avatar {user} size={' w-32 h-32  max-sm:w-28 max-sm:h-28  '} />
 
-		<div class="flex flex-col gap-1 xl:items-center w-full">
-			<div class="flex gap-3 items-start sm:items-center">
-				<p class=" text-xl font-semibold text-gray-900 dark:text-gray-100">
+		<div class="flex flex-col gap-1 xl:items-center w-full ">
+			<div class="flex gap-3 items-start sm:items-center xl:px-6">
+				<p class=" text-xl font-semibold text-gray-900 dark:text-gray-100 ">
 					{user.name}
 				</p>
 				<span class="block xl:hidden"><FollowButton {user} size={'xs'} /></span>
 			</div>
-			<div class="flex flex-col sm:max-xl:flex-row sm:max-xl:gap-3 gap-1 xl:items-center">
+			<div class="flex flex-col sm:max-xl:flex-row sm:max-xl:gap-3 gap-1 xl:items-center xl:px-6">
 				<div class="flex flex-wrap items-center xl:gap-2 gap-1 sm:max-xl:gap-3 xl:justify-center">
 					<span>@{user?.username}</span>
 
