@@ -12,7 +12,7 @@ class TranslateWork extends Command
      *
      * @var string
      */
-    protected $signature = 'translate:work {id}';
+    protected $signature = 'translate:work {id} {from?}';
 
     /**
      * Execute the console command.
@@ -22,7 +22,8 @@ class TranslateWork extends Command
     public function handle()
     {
         $id = $this->argument('id');
+        $from = $this->argument('from');
         $work = Work::findOrFail($id);
-        \App\Jobs\TranslateWork::dispatch($work);
+        \App\Jobs\TranslateWork::dispatchSync($work, $from);
     }
 }
