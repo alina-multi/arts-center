@@ -66,7 +66,7 @@
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
 					<div
 						on:click={send(url.url)}
-						class="cursor-pointer group aspect-h-7 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100"
+						class="cursor-pointer group aspect-h-7 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100"
 					>
 						<img
 							src={url.preview}

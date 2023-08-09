@@ -16,7 +16,7 @@
 	const profile = data.profile.data;
 </script>
 
-<form method="post" enctype="multipart/form-data" class="space-y-9">
+<form method="post" enctype="multipart/form-data" class="space-y-3">
 	<FormGroup
 		h1="Personal Information"
 		h2="This information will be displayed publicly so be careful what you share."

@@ -3,7 +3,7 @@
 </script>
 
 <TabList>
-	<div class="border-b border-gray-200">
+	<div class="border-b border-gray-200 dark:border-zinc-700">
 		<nav class="-mb-px flex space-x-8" aria-label="Tabs">
 			<slot />
 		</nav>
