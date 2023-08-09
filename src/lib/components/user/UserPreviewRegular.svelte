@@ -2,10 +2,8 @@
 	import Avatar from '$lib/components/atoms/Avatar.svelte';
 	import UserDetails from '$lib/components/user/UserDetails.svelte';
 	import { localePath } from '$lib/translations';
-
 	import FollowButton from '$lib/components//atoms/FollowButton.svelte';
-
-	export let user, followBtn;
+	export let user;
 
 	$: href = localePath(`/${user.username}`);
 </script>
@@ -20,14 +18,11 @@
 				class="inline-flex hover:text-zinc-800 dark:hover:text-zinc-300 cursor-pointer text-base"
 				>{user.name}</a
 			>
-			{#if !followBtn}
-				<span><FollowButton {user} size={'xs'} /></span>
-			{/if}
+			<span><FollowButton {user} size={'xs'} /></span>
 		</div>
-
-		<UserDetails {user} />
+		<UserDetails
+			{user}
+			wrap="flex flex-wrap text-sm text-gray-500 dark:text-gray-300 gap-1 md:gap-2 items-center"
+		/>
 	</div>
 </div>
-{#if followBtn === 'block'}
-	<FollowButton {user} size={'sm'} />
-{/if}

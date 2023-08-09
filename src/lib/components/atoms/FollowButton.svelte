@@ -15,7 +15,7 @@
 
 	let open = false;
 
-	const handleFollow = (currentUser) => {
+	const handleFollow = () => {
 		if (currentUser) {
 			isFollowing = !isFollowing;
 		} else {
@@ -38,34 +38,22 @@
 	</div>
 </ModalWindow>
 
-{#if isMy}
-	<a
-		href="/my/profile"
-		class=" w-full flex {`text-${size}`}  items-center justify-center rounded-full px-2 py-0.5 border border-gray-500 gap-1 text-zinc-800 shadow-sm cursor-pointer dark:text-zinc-100 dark:bg-zinc-800"
-	>
-		<span>Edit </span>
-		<Icon src={PencilSquare} class="w-4 h-4  text-zinc-500 mb-0.5 dark:text-zinc-100" />
-	</a>
-{:else if isFollowing}
-	<button
-		class="w-full {`text-${size}`} group/unfollow rounded-full pl-2 pr-1 py-0.5 border dark:text-zinc-400 dark:bg-zinc-800 dark:border-zinc-700 border-zinc-500 gap-1 text-gray-800 shadow-sm cursor-pointer"
-		on:click={() => handleFollow(currentUser)}
-	>
-		<div class="group-hover/unfollow:hidden flex items-center justify-center gap-1">
+{#if !isMy}
+	{#if isFollowing}
+		<button
+			class="w-full {`text-${size}`}  ring-1 ring-zinc-500 text-zinc-500 dark:text-zinc-100 flex items-center justify-center gap-1 rounded-full pl-2 pr-1.5 py-0.5 shadow-sm cursor-pointer hover:bg-zinc-50"
+			on:click={() => handleFollow()}
+		>
 			<span>Following</span>
 			<Icon src={CheckCircle} class="w-4 h-4  text-zinc-500" />
-		</div>
-		<div class="group-hover/unfollow:flex hidden justify-center items-center gap-1">
-			<span>Unfollow</span>
-			<Icon src={MinusCircle} class="w-4 h-4  text-zinc-500" />
-		</div>
-	</button>
-{:else}
-	<button
-		class="w-full {`text-${size}`} bg-blue-700 dark:bg-blue-900 dark:hover:bg-blue-700 text-white dark:text-zinc-100 hover:bg-blue-600 flex items-center justify-center gap-1 rounded-full pl-2 pr-1.5 py-1 shadow-sm cursor-pointer"
-		on:click={() => handleFollow(currentUser)}
-	>
-		<span>Follow</span>
-		<Icon src={PlusCircle} class="w-4 h-4   " />
-	</button>
+		</button>
+	{:else}
+		<button
+			class="w-full {`text-${size}`} bg-blue-700 dark:bg-blue-900 dark:hover:bg-blue-700 text-white dark:text-zinc-100 hover:bg-blue-600 flex items-center justify-center gap-1 rounded-full pl-2 pr-1.5 py-1 shadow-sm cursor-pointer"
+			on:click={() => handleFollow()}
+		>
+			<span>Follow</span>
+			<Icon src={PlusCircle} class="w-4 h-4   " />
+		</button>
+	{/if}
 {/if}
