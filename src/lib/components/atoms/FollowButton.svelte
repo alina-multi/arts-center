@@ -41,19 +41,21 @@
 {#if !isMy}
 	{#if isFollowing}
 		<button
-			class="w-full {`text-${size}`}  ring-1 ring-zinc-500 text-zinc-500 dark:text-zinc-100 flex items-center justify-center gap-1 rounded-full pl-2 pr-1.5 py-0.5 shadow-sm cursor-pointer hover:bg-zinc-50"
+			class="w-full {`text-${size}`} border border-1 text-zinc-600 dark:text-zinc-300 flex items-center justify-center gap-1 rounded-full pl-2 pr-1.5 py-0.5 shadow-sm cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-700 dark:border-zinc-700 dark:bg-zinc-800"
 			on:click={() => handleFollow()}
 		>
 			<span>Following</span>
-			<Icon src={CheckCircle} class="w-4 h-4  text-zinc-500" />
+			<Icon src={CheckCircle} class="w-4 h-4  dark:text-zinc-300" />
 		</button>
 	{:else}
 		<button
-			class="w-full {`text-${size}`} bg-blue-700 dark:bg-blue-900 dark:hover:bg-blue-700 text-white dark:text-zinc-100 hover:bg-blue-600 flex items-center justify-center gap-1 rounded-full pl-2 pr-1.5 py-1 shadow-sm cursor-pointer"
+			class="w-full {`text-${size}`} {user.subscribed
+				? ' boder-2 border  bg-blue-700 dark:bg-blue-900 text-white border-blue-700 dark:border-blue-900  dark:hover:bg-blue-700 dark:hover:border-blue-700 hover:bg-blue-600 hover:border-blue-600 '
+				: 'border ring-zinc-500 dark:bg-zinc-800 hover:bg-zinc-50 text-zinc-600 dark:border-zinc-700 dark:hover:bg-zinc-700'}  dark:text-zinc-300 flex items-center justify-center gap-1 rounded-full pl-2 pr-1.5 py-0.5 shadow-sm cursor-pointer"
 			on:click={() => handleFollow()}
 		>
 			<span>Follow</span>
-			<Icon src={PlusCircle} class="w-4 h-4   " />
+			<Icon src={PlusCircle} class="w-4 h-4  dark:text-zinc-300 " />
 		</button>
 	{/if}
 {/if}
