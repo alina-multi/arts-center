@@ -27,7 +27,7 @@
 				class="inline-flex hover:text-zinc-800 dark:hover:text-zinc-300 cursor-pointer text-base"
 				>{user.name}</a
 			>
-			<span><FollowButton {user} size={"sm xl:text-xs"} /></span>
+			<span><FollowButton {user} size={'sm xl:text-xs'} /></span>
 		</div>
 		<UserDetails
 			{user}

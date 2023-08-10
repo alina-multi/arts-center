@@ -5,7 +5,6 @@
 
 <div class="grid grid-cols-3 gap-1 overflow-hidden w-full">
 	{#each works as work}
-
-	<div><ImageWork {work} /></div>	
+		<div><ImageWork {work} /></div>
 	{/each}
 </div>

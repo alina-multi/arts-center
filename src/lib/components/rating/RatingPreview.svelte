@@ -5,7 +5,9 @@
 	export let rating: number, comments: number;
 </script>
 
-<div class="flex items-center gap-2 overflow-hidden sm:text-sm text-xs  font-medium p-1 dark:text-zinc-100">
+<div
+	class="flex items-center gap-2 overflow-hidden sm:text-sm text-xs font-medium p-1 dark:text-zinc-100"
+>
 	{#if rating > 0}<span class="inline-flex items-center gap-1">
 			<Icon src={Heart} class=" w-4 h-4 sm:w-6 sm:h-6 " />
 			<span>{rating.toLocaleString('ru-RU')}</span>

@@ -14,7 +14,7 @@
 	<svelte:fragment slot="nav">
 		<SideNav>
 			<li class="mx-6 text-left">
-				<Avatar {user} size="h-12 w-12" withName nameStyles={"font-semibold text-sm"} />
+				<Avatar {user} size="h-12 w-12" withName nameStyles={'font-semibold text-sm'} />
 			</li>
 			<SideNavLink href="/my/profile"
 				><Icon src={PencilSquare} theme="solid" class="h-5 w-5 shrink-0" aria-hidden="true" /> Edit Profile</SideNavLink
@@ -58,6 +58,5 @@
 				/>Following</SideNavLink
 			>
 		</SideNav>
-		
 	</svelte:fragment>
 </SideMenu>

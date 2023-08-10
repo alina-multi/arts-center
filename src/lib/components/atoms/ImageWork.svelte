@@ -2,7 +2,6 @@
 	import { languageFind, localePath } from '$lib/translations';
 	import Picture from '$lib/components/atoms/Picture.svelte';
 
-
 	export let work,
 		href,
 		withDesription = false;
@@ -33,7 +32,6 @@
 				<p class="ml-2 text-sm md:text-xs bg-teal-500 px-2 py-0.5 rounded-full text-white">
 					${work.price}
 				</p>{/if}
-
 		</div>
 	{/if}
 </a>
