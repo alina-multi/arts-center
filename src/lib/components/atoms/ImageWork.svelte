@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { languageFind, localePath } from '$lib/translations';
 	import Picture from '$lib/components/atoms/Picture.svelte';
-import RatingPreview from '$lib/components/rating/RatingPreview.svelte';
+
 
 	export let work,
-
 		href,
 		withDesription = false;
 	let title: string;
@@ -30,15 +29,11 @@ import RatingPreview from '$lib/components/rating/RatingPreview.svelte';
 		>
 			<h3 class="lg:text-sm">{title}</h3>
 
-					{#if work.price}
-				<p class="ml-2 text-sm md:text-xs  bg-teal-500 px-2  py-0.5 rounded-full text-white">
+			{#if work.price}
+				<p class="ml-2 text-sm md:text-xs bg-teal-500 px-2 py-0.5 rounded-full text-white">
 					${work.price}
 				</p>{/if}
-			
-
-			
 
 		</div>
-
 	{/if}
 </a>
