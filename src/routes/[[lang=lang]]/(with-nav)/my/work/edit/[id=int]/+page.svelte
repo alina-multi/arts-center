@@ -17,7 +17,7 @@
 	
 </script>
 
-<form method="post" use:enhance>
+<form method="POST" action="?/post" use:enhance>
 	<WorkForm {data} errors={form?.errors}>
 		<ButtonsGroup>
 			<FormButton
@@ -38,8 +38,9 @@
 {#if open}
 	<ModalWindow bind:open>
 		<div class="font-semibold">Are you sure you want to move this work to drafts?</div>
-
 		<div slot="footer">
+		<form method="POST" action="?/todrafts">
+	
 			<ButtonsGroup>
 				<FormButton
 					type="button"
@@ -57,6 +58,9 @@
 					<Icon src={Trash} theme="solid" class="h-4 w-4" />
 				</FormButton>
 			</ButtonsGroup>
-		</div></ModalWindow
+		
+		</form>
+	</div>
+		</ModalWindow
 	>
 {/if}

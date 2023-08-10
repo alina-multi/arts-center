@@ -48,7 +48,6 @@ export const actions = {
 		return await response.json();
 	},
 	delete: async (event) => {
-		console.log(event.params.id);
 		const response = await api({
 			method: 'DELETE',
 			path: `/api2/draft/${event.params.id}`,

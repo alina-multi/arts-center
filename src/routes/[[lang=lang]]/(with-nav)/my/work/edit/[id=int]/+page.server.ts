@@ -27,23 +27,37 @@ export const load = (async (event) => {
 	};
 }) satisfies PageServerLoad;
 
+
+
 export const actions = {
-	default: async (event) => {
-		const form = await event.request.formData();
+	post: async (event) => {
+				const form = await event.request.formData();
+				const response = await api({
+					method: 'PUT',
+					path: `/api2/draft/${event.params.id}`,
+					event,
+					data: {
+						language: locale.get(),
+						title: form.get('title'),
+						description: form.get('description'),
+						category: form.get('category')?.split(',')
+					}
+				});
+				if (response.ok) {
+					throw redirect(302, localePath(`/work/${event.params.id}`));
+				}
+				return await response.json();
+			},
+			todrafts: async (event) => {
 		const response = await api({
-			method: 'PUT',
-			path: `/api2/draft/${event.params.id}`,
-			event,
-			data: {
-				language: locale.get(),
-				title: form.get('title'),
-				description: form.get('description'),
-				category: form.get('category')?.split(',')
-			}
+			method: 'DELETE',
+			path: `/api2/draft/${event.params.id}/draft`,
+			event
 		});
 		if (response.ok) {
-			throw redirect(302, localePath(`/work/${event.params.id}`));
+			throw redirect(302, localePath(`/my/work/draft`));
 		}
 		return await response.json();
 	}
-} satisfies Actions;
+};
+
