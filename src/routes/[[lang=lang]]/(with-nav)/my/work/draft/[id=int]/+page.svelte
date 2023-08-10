@@ -18,14 +18,16 @@
 	function cropComplete(e) {
 		pixels = JSON.stringify(e.detail.pixels);
 	}
+
 </script>
 
 <WorkAddProgressSteps currentStep="2" />
-<form method="post" use:enhance>
+<form method="POST" action="?/post" use:enhance>
 	<div class="columns-2 mt-5">
 		<WorkForm {data} errors={form?.errors} >
 			<ButtonsGroup>
 				<FormButton
+
 					type="button"
 					class={'bg-gray-300 hover:bg-red-500 focus-visible:outline-red-600 flex items-center gap-1'}
 					on:click={() => {
@@ -54,6 +56,7 @@
 		<div class="text-sm text-gray-500">This action cannot be undone.</div>
 
 		<div slot="footer">
+			<form method="POST" action="?/delete">
 			<ButtonsGroup>
 				<FormButton
 					type="button"
@@ -64,10 +67,14 @@
 				>
 					<span>Cancel</span>
 				</FormButton>
-				<FormButton class={'bg-red-500 hover:bg-red-400 focus-visible:outline-red-600 flex items-center gap-1'}  >
+				<FormButton
+				type="submit"
+				 class={'bg-red-500 hover:bg-red-400 focus-visible:outline-red-600 flex items-center gap-1'}  >
 					<span>Delete</span>
 				</FormButton>
 			</ButtonsGroup>
+		</form>
 		</div>
+
 	</ModalWindow>
 {/if}
