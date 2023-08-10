@@ -9,6 +9,7 @@
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
 	import AvatarInput from '$lib/components/user/AvatarInput.svelte';
 	import SaveButton from '$lib/components/input/SaveButton.svelte';
+	import ButtonsGroup from '$lib/components/forms/ButtonsGroup.svelte';
 	import H1 from '$lib/components/atoms/H1.svelte';
 
 	export let data: PageData;
@@ -122,5 +123,6 @@
 			<PasswordInput {id} {error} name="current_password" />
 		</InputGroup>
 	</FormGroup>
-	<SaveButton />
+	<slot><ButtonsGroup/> </slot>
+	
 </form>

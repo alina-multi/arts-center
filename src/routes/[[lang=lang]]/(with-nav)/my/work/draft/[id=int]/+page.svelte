@@ -5,9 +5,10 @@
 	import Cropper from 'svelte-easy-crop';
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
 	import { enhance } from '$app/forms';
-	import FormButton from '$lib/components/forms/FormButton.svelte';
+	import ActionButton from '$lib/components/forms/ActionButton.svelte';
 	import ModalWindow from '$lib/components/ModalWindow.svelte';
 	import ButtonsGroup from '$lib/components/forms/ButtonsGroup.svelte';
+	import CancelButton from '$lib/components/forms/CancelButton.svelte';
 
 
 	export let data: PageData;
@@ -26,7 +27,7 @@
 	<div class="columns-2 mt-5">
 		<WorkForm {data} errors={form?.errors} >
 			<ButtonsGroup>
-				<FormButton
+				<ActionButton
 
 					type="button"
 					class={'bg-gray-300 hover:bg-red-500 focus-visible:outline-red-600 flex items-center gap-1'}
@@ -36,8 +37,8 @@
 				>
 					<span>Delete draft</span>
 				
-				</FormButton>
-				<FormButton class={'bg-blue-600 hover:bg-blue-500 focus-visible:outline-blue-600'} />
+				</ActionButton>
+				<ActionButton class={'bg-blue-600 hover:bg-blue-500 focus-visible:outline-blue-600'} />
 			</ButtonsGroup>
 		</WorkForm>
 		<FormGroup h1="Crop image preview">
@@ -58,20 +59,12 @@
 		<div slot="footer">
 			<form method="POST" action="?/delete">
 			<ButtonsGroup>
-				<FormButton
-					type="button"
-					class={'bg-gray-500 hover:bg-gray-600 focus-visible:outline-gray-600'}
-					on:click={() => {
-						open = false;
-					}}
-				>
-					<span>Cancel</span>
-				</FormButton>
-				<FormButton
+				<CancelButton bind:open />
+				<ActionButton
 				type="submit"
 				 class={'bg-red-500 hover:bg-red-400 focus-visible:outline-red-600 flex items-center gap-1'}  >
 					<span>Delete</span>
-				</FormButton>
+				</ActionButton>
 			</ButtonsGroup>
 		</form>
 		</div>
