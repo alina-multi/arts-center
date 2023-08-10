@@ -12,8 +12,6 @@
 
 	export let errors;
 	export let data;
-
-	
 </script>
 
 <FormGroup h1="Main info">
@@ -58,9 +56,5 @@
 		</TabPanels>
 	</TabGroup>
 
-	<slot><ButtonsGroup/> </slot>
-
-
+	<slot><ButtonsGroup /></slot>
 </FormGroup>
-
-

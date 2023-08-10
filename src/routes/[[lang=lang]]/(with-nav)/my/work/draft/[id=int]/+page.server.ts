@@ -58,4 +58,4 @@ export const actions = {
 		}
 		return await response.json();
 	}
-};
+} satisfies Actions;

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { PlusCircle, MinusCircle, CheckCircle, PencilSquare } from '@steeze-ui/heroicons';
+	import { PlusCircle, CheckCircle } from '@steeze-ui/heroicons';
 	import ModalWindow from '$lib/components/ModalWindow.svelte';
 	import TopNavLink from '$lib/components//nav/TopNavLink.svelte';
 	import { page } from '$app/stores';

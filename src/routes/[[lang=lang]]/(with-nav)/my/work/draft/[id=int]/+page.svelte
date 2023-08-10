@@ -10,7 +10,6 @@
 	import ButtonsGroup from '$lib/components/forms/ButtonsGroup.svelte';
 	import CancelButton from '$lib/components/forms/CancelButton.svelte';
 
-
 	export let data: PageData;
 	export let form: ActionData;
 	let open = false;
@@ -19,16 +18,14 @@
 	function cropComplete(e) {
 		pixels = JSON.stringify(e.detail.pixels);
 	}
-
 </script>
 
 <WorkAddProgressSteps currentStep="2" />
 <form method="POST" action="?/post" use:enhance>
 	<div class="columns-2 mt-5">
-		<WorkForm {data} errors={form?.errors} >
+		<WorkForm {data} errors={form?.errors}>
 			<ButtonsGroup>
 				<ActionButton
-
 					type="button"
 					class={'bg-gray-300 hover:bg-red-500 focus-visible:outline-red-600 flex items-center gap-1'}
 					on:click={() => {
@@ -36,7 +33,6 @@
 					}}
 				>
 					<span>Delete draft</span>
-				
 				</ActionButton>
 				<ActionButton class={'bg-blue-600 hover:bg-blue-500 focus-visible:outline-blue-600'} />
 			</ButtonsGroup>
@@ -50,7 +46,6 @@
 	</div>
 </form>
 
-
 {#if open}
 	<ModalWindow bind:open>
 		<div class="font-semibold">Are you sure you want to delete this work?</div>
@@ -58,16 +53,16 @@
 
 		<div slot="footer">
 			<form method="POST" action="?/delete">
-			<ButtonsGroup>
-				<CancelButton bind:open />
-				<ActionButton
-				type="submit"
-				 class={'bg-red-500 hover:bg-red-400 focus-visible:outline-red-600 flex items-center gap-1'}  >
-					<span>Delete</span>
-				</ActionButton>
-			</ButtonsGroup>
-		</form>
+				<ButtonsGroup>
+					<CancelButton bind:open />
+					<ActionButton
+						type="submit"
+						class={'bg-red-500 hover:bg-red-400 focus-visible:outline-red-600 flex items-center gap-1'}
+					>
+						<span>Delete</span>
+					</ActionButton>
+				</ButtonsGroup>
+			</form>
 		</div>
-
 	</ModalWindow>
 {/if}

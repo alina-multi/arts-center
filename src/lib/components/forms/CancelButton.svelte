@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ActionButton from './ActionButton.svelte';
 
-    export let open = false;
+	export let open = false;
 </script>
 
 <ActionButton
