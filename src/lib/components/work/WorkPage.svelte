@@ -7,6 +7,9 @@
 	import WorkFooter from '$lib/components/work/page/footer/WorkFooter.svelte';
 	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
+	import BoormarkButton from '$lib/components/atoms/BookmarkButton.svelte';
+	import BookmarkButton from '$lib/components/atoms/BookmarkButton.svelte';
+	
 
 	export let work: Work;
 	export let comments: Comment[];
@@ -28,11 +31,16 @@
 		<div class="flex flex-col mx-auto gap-3">
 			<WorkHeader {work} {isMy} />
 			<WorkBody {work} />
+			<div class="flex items-center justify-between gap-3">
 			<div
-				class=" flex items-center justify-between gap-2 py-3 max-lg:bg-gray-100 max-lg:px-3 dark:bg-zinc-900 dark:border-zinc-800 text-gray-800 dark:text-zinc-500 border rounded-sm lg:border-0 dark:border-zinc-800"
+				class=" w-full flex items-center justify-between gap-2 py-3 max-lg:bg-gray-100 max-lg:px-3 dark:bg-zinc-900 dark:border-zinc-800 text-gray-800 dark:text-zinc-500 border rounded-sm lg:border-0 "
 			>
 				<RatingPreviewVote entity={work} {currentUser} showVotedPreview votable_type={'work'} />
+				
 			</div>
+			<BookmarkButton  />
+			</div>
+			
 		</div>
 	</div>
 </div>

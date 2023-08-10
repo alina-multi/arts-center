@@ -13,7 +13,8 @@
 </script>
 
 <div class="hidden xl:flex items-center w-full h-full gap-6">
-	<Logo />
+	<div class="flex items-center gap-3"> <FooterDropdown />
+		<Logo /></div>
 	<TopNavLink exact href={localePath('/')}>{$t('global.menu.gallery')}</TopNavLink>
 	<TopNavLink href={localePath('/users')}>{$t('global.menu.users')}</TopNavLink>
 	<SearchInput />
@@ -24,5 +25,5 @@
 		<LoginLink />
 	{/if}
 
-	<FooterDropdown />
+	
 </div>
