@@ -22,10 +22,9 @@ class FollowController extends Controller
      */
     public function destroy(FollowRequest $request)
     {
-        $follow = Follow::where([
-           ...$request->all(),
-           'user_id' => $request->user()->id
-        ])->firstOrFail();
-        return $follow->delete();
+        return Follow::where([
+            ...$request->all(),
+            'user_id' => $request->user()->id
+        ])->firstOrFail()->delete();
     }
 }

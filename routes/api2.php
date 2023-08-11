@@ -8,7 +8,8 @@ use App\Http\Controllers\Api2\{
     DraftController,
     CommentController,
     MeController,
-    FollowController
+    FollowController,
+    BlacklistController
 };
 
 /*
@@ -34,6 +35,8 @@ Route::middleware(['auth:sanctum', LocaleHeader::class])->group(function () {
     Route::apiResource('comment', CommentController::class);
     Route::post('follow', FollowController::class. '@store');
     Route::delete('follow', FollowController::class. '@destroy');
+    Route::post('blacklist', BlacklistController::class. '@store');
+    Route::delete('blacklist', BlacklistController::class. '@destroy');
 });
 
 Route::middleware(LocaleHeader::class)->get('health', function () {
