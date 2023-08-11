@@ -16,6 +16,8 @@
 	import AddWorkLink from './AddWorkLink.svelte';
 	import LoginLink from './LoginLink.svelte';
 	import TopNavLink from './TopNavLink.svelte';
+	import MyProfileLinksGroup from '../user/MyProfileLinksGroup.svelte';
+	import LogoutButton from '../atoms/LogoutButton.svelte';
 
 	import Avatar from '../atoms/Avatar.svelte';
 	import { page } from '$app/stores';
@@ -86,22 +88,16 @@
 										<span class="font-semibold flex items-center"
 											><Avatar user={currentUser} size={'w-10 h-10 '} withName /></span
 										>
+
 										<AddWorkLink />
 									</div>
-									<div class=" flex flex-col pl-16 px-3 gap-6 py-3">
-										<a href={localePath('/my/profile')} class="flex items-center gap-2">
-											<Icon src={PencilSquare} class="w-5 mb-0.5" />
-											<span>Edit profile</span>
-										</a>
-										<a
-											href={localePath('/logout?redirect=' + $page.url.pathname)}
-											class="flex items-center gap-2"
-											data-sveltekit-preload-data="tap"
-											data-sveltekit-reload
-										>
-											<Icon src={Power} class="w-5 mb-0.5" /><span>Log Out</span>
-										</a>
-									</div>
+
+									<ul class=" flex flex-col">
+										<MyProfileLinksGroup />
+										<li>
+											<LogoutButton />
+										</li>
+									</ul>
 								</div>
 							{:else}
 								<div class="flex items-center py-6 justify-center gap-6">
