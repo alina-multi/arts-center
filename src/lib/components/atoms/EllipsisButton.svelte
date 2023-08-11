@@ -25,10 +25,12 @@
 		<Icon src={PencilSquare} class="w-7 h-7 text-gray-700 hover:text-gray-500 dark:text-zinc-400" />
 	</a>
 {:else}
+
+
 	<div class="relative inline-block text-base">
 		<Popover let:open>
 			<PopoverButton
-				class="hover:bg-gray-100 cursor-pointer dark:hover:bg-gray-900 rounded-md py-1"
+				class="hover:bg-gray-100 cursor-pointer dark:hover:bg-zinc-800 rounded-md py-1"
 			>
 				<Icon src={EllipsisVertical} class="w-8 h-8 stroke-gray-00 dark:stroke-gray-100 " />
 			</PopoverButton>
@@ -43,13 +45,13 @@
 					leaveTo="transform scale-95 opacity-0"
 				>
 					<PopoverPanel
-						class="absolute right-0 z-10 w-40 mt-2 origin-top-right rounded-md  bg-white text-gray-700 dark:text-gray-100  dark:bg-gray-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-4 "
+						class="absolute right-0 z-10 w-40 mt-2 py-3 origin-top-right rounded-md  bg-white text-gray-700 dark:text-zinc-100  dark:bg-zinc-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:ring-zinc-700 "
 					>
 						<div class="flex flex-col space-y-2">
 							{#each options as option}
 								<a
 									href={option.href}
-									class="hover:text-gray-900 hover:bg-gray-100 dark:bg-gray-700 dark:hover:text-gray-200 dark:hover:bg-gray-600 px-3 py-1 rounded-md"
+									class="hover:text-gray-900 hover:bg-gray-100  dark:hover:text-gray-200 dark:hover:bg-gray-600  py-1  px-6"
 									>{option.label}</a
 								>
 							{/each}

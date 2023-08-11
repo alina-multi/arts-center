@@ -14,12 +14,12 @@
 				<div class="flex items-center gap-3">
 					<Avatar {user} withName size={'w-8 h-8'} />
 
-					<FollowButton size={'xs'} {user} />
+					<FollowButton size={'sm'} {user} />
 				</div>
 			{/each}
 		</div>
 
-		<div class="hidden md:block"><EllipsisButton {work} {isMy} /></div>
+		<div><EllipsisButton {work} {isMy} /></div>
 	</div>
 
 	<div class="flex justify-between items-start">
