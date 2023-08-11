@@ -2,6 +2,7 @@
 	import RatingPreview from '$lib/components/rating/RatingPreview.svelte';
 	import Avatar from '$lib/components/atoms/Avatar.svelte';
 	import type { Work } from '$lib/interfaces/Work';
+	import CrownIcon from '../atoms/CrownIcon.svelte';
 
 	import ImageWork from '$lib/components/atoms/ImageWork.svelte';
 
@@ -15,23 +16,30 @@
 >
 	<div class="group/item relative">
 		<ImageWork {work} withDesription />
-		<div
-			class="group/edit hidden group-hover/item:block absolute top-3 right-3 text-white bg-black/50 pt-1 px-1 transition-all rounded-md"
-		>
-			<RatingPreview rating={work.rating} comments={work.comments} />
+		<div class="hidden sm:block">
+			<div
+				class="group/edit hidden group-hover/item:block absolute top-3 right-3 text-white bg-black/50 pt-1 px-1 transition-all rounded-md"
+			>
+				<RatingPreview rating={work.rating} comments={work.comments} />
+			</div>
 		</div>
 	</div>
 
 	<div class="flex justify-between items-center lg:text-xs text-sm mt-auto">
-		{#each work.owners as user}
-			<Avatar {user} withName={true} />
-		{/each}
+		<div class="flex items-center gap-1">
+			{#each work.owners as user}
+				<Avatar {user} withName={true} />
+			{/each}
 
-		{#if work.subscribed}
-			<span
-				class="mr-2 shadow-md text-xs lg:text-base font-medium border border-amber-500 rounded-md px-2 dark:text-gray-100"
-				>Pro</span
-			>
-		{/if}
+			{#if work.subscribed}
+				<div class="bg-gray-300 px-1 py-0.5 rounded-md shadow-sm">
+					<CrownIcon style="w-3 h-3 stroke-white" />
+				</div>
+			{/if}
+		</div>
+
+		<div class="flex sm:hidden text-gray-500">
+			<RatingPreview rating={work.rating} comments={work.comments} />
+		</div>
 	</div>
 </li>
