@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { MultiSelect } from 'svelte-multiselect';
 
 	export let options, maxSelect, required, name, value;
@@ -26,7 +27,24 @@
 			value: id?.toString()
 		};
 	}
+
+	let isDark = false;
+	onMount(() => {
+		if (typeof window !== 'undefined') {
+			isDark = document.documentElement.classList.contains('dark');
+		}
+	});
 </script>
 
-<MultiSelect bind:selected {...multiselectProps} />
+<div class="border border-gray-300 rounded-md dark:bg-zinc-900 dark:border-zinc-700">
+	<MultiSelect
+		bind:selected
+		{...multiselectProps}
+		--sms-options-bg={isDark ? 'gray' : 'white'}
+		--sms-border={'transparent'}
+		--sms-bg={isDark ? ' ' : ''}
+		--sms-options-padding={'18px'}
+	/>
+</div>
+
 <input type="hidden" {name} value={hiddenValue} />

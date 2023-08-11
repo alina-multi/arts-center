@@ -7,7 +7,7 @@
 <Switch
 	checked={enabled}
 	on:change={(e) => (enabled = e.detail)}
-	class="group relative inline-flex h-5 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+	class="group relative inline-flex h-5 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
 	role="switch"
 	aria-checked="false"
 >
@@ -16,7 +16,7 @@
 	<span
 		aria-hidden="true"
 		class=" {enabled
-			? 'bg-indigo-600'
+			? 'bg-blue-600'
 			: 'bg-gray-200'} pointer-events-none absolute mx-auto h-4 w-9 rounded-full transition-colors duration-200 ease-in-out"
 	/>
 	<span

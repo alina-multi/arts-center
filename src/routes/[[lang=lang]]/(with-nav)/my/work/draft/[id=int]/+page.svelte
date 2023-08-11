@@ -38,11 +38,12 @@
 			</ButtonsGroup>
 		</WorkForm>
 		<FormGroup h1="Crop image preview">
-			<div class="relative h-80">
+			<div class="relative h-80 w-3/4 mx-auto">
 				<Cropper image={data?.full?.src} aspect={4 / 3} on:cropcomplete={cropComplete} />
 				<input type="hidden" name="crop" bind:value={pixels} />
 			</div>
 		</FormGroup>
+		<WorkForm {data} errors={form?.errors} />
 	</div>
 </form>
 
