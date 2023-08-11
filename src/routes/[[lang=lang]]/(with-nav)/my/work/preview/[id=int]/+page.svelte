@@ -4,12 +4,12 @@
 	import WorkPreview from '$lib/components/work/WorkPreview.svelte';
 	import WorkBody from '$lib/components/work/page/body/WorkBody.svelte';
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
-	import SubmitButton from '$lib/components/input/SubmitButton.svelte';
 	import CancelLinkButton from '$lib/components/input/CancelLinkButton.svelte';
 	import Divider from '$lib/components/atoms/Divider.svelte';
 	import { enhance } from '$app/forms';
 	import { localePath } from '$lib/translations';
 	import DateInput from '$lib/components/input/DateInput.svelte';
+	import ActionButton from '$lib/components/forms/ActionButton.svelte';
 
 	export let data: PageData;
 	export let form: ActionData;
@@ -29,7 +29,8 @@
 				Back to edit
 			</CancelLinkButton>
 			<DateInput value={currentDate} min={currentDate} max={maxDate} name="published_at" />
-			<SubmitButton class="block w-full">Publish</SubmitButton>
+
+			<ActionButton class="block w-full">Publish</ActionButton>
 		</div>
 	</FormGroup>
 </form>
