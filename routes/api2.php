@@ -2,10 +2,14 @@
 
 use App\Http\Middleware\LocaleHeader;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Api2\VoteController;
-use App\Http\Controllers\Api2\ProfileController;
-use App\Http\Controllers\Api2\DraftController;
-use App\Http\Controllers\Api2\CommentController;
+use App\Http\Controllers\Api2\{
+    VoteController,
+    ProfileController,
+    DraftController,
+    CommentController,
+    MeController,
+    FollowController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -21,15 +25,15 @@ use App\Http\Controllers\Api2\CommentController;
 Route::middleware(['auth:sanctum', LocaleHeader::class])->group(function () {
     Route::put('profile', ProfileController::class . '@update');
     Route::get('profile', ProfileController::class . '@index');
-    Route::get('me', function (Request $request) {
-        return $request->user()->load('photo');
-    });
+    Route::get('me', MeController::class);
     Route::post('vote', VoteController::class . '@store');
     Route::delete('vote', VoteController::class . '@destroy');
     Route::apiResource('draft', DraftController::class);
-    Route::put('draft/{draft}/publish', DraftController::class. '@publish');
-    Route::delete('draft/{draft}/draft', DraftController::class. '@draft');
+    Route::put('draft/{draft}/publish', DraftController::class . '@publish');
+    Route::delete('draft/{draft}/draft', DraftController::class . '@draft');
     Route::apiResource('comment', CommentController::class);
+    Route::post('follow', FollowController::class. '@store');
+    Route::delete('follow', FollowController::class. '@destroy');
 });
 
 Route::middleware(LocaleHeader::class)->get('health', function () {

@@ -6,7 +6,7 @@ use App\Models\Work;
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
-test('delete own comment from work', function () {
+test('deleting own comment from work', function () {
     $work = Work::factory()->create();
     $user = User::factory()->create();
     $comment = Comment::factory()->create(
@@ -21,7 +21,7 @@ test('delete own comment from work', function () {
     $this->assertDatabaseHas('comments', ['id' => $comment->id, 'deleted_at' => now()]);
 });
 
-test('delete someone comment from your work', function () {
+test('deleting someone comment from your work', function () {
     $work = Work::factory()->create();
     $user = User::factory()->create();
     $owner = User::factory()->create();
@@ -38,7 +38,7 @@ test('delete someone comment from your work', function () {
     $this->assertDatabaseHas('comments', ['id' => $comment->id, 'deleted_at' => now()]);
 });
 
-test('delete not your comment from not your work', function () {
+test('deleting not your comment from not your work', function () {
     $work = Work::factory()->create();
     $user = User::factory()->create();
     $owner = User::factory()->create();
