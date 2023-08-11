@@ -1,3 +1,3 @@
-<ul role="list" class="flex flex-1 flex-col gap-y-2 m-3">
+<ul class="flex flex-1 flex-col gap-y-3 my-3">
 	<slot />
 </ul>

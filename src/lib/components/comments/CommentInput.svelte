@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
+	import Avatar from '$lib/components/atoms/Avatar.svelte';
 
 	export let isEditing: boolean | undefined = false,
 		isReplying: boolean | undefined = false,
@@ -20,13 +21,9 @@
 </script>
 
 <div class="flex flex-col gap-3 dark:border-zinc-800 mt-6">
-	<div class="flex gap-3 w-full">
+	<div class="flex gap-3 w-full items-start">
 		{#if !isEditing}
-			<img
-				class="hidden sm:inline-block h-12 w-12 rounded-full"
-				src={currentUser.avatar?.src}
-				alt={'Avatar of ' + currentUser.name}
-			/>
+			<Avatar user={currentUser} size={'h-12 w-12'} />
 		{/if}
 		<form class="mx-auto w-full" method="POST" on:submit|preventDefault={() => onSubmit(commentID)}>
 			<textarea
