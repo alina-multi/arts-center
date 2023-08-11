@@ -2,6 +2,7 @@
 	import Avatar from '$lib/components/atoms/Avatar.svelte';
 	import EllipsisButton from '$lib/components/atoms/EllipsisButton.svelte';
 	import FollowButton from '$lib/components/atoms/FollowButton.svelte';
+	import PriceLabel from '$lib/components/atoms/PriceLabel.svelte';
 
 	export let work;
 	export let isMy = false;
@@ -27,12 +28,15 @@
 			{work.titles[0].title}
 		</h1>
 
-		{#if work.price}
-			<div class="flex gap-1 justify-end">
-				<div class=" flex bg-emerald-700 px-3 py-1 rounded-md text-white ml-2">
+		<!-- {#if work.price}
+	
+				<div class=" px-3 py-1 ">
 					${work.price}
 				</div>
-			</div>
-		{/if}
+		
+		{/if} -->
+		
+		<PriceLabel price={work.price} style={"px-3 py-1 "} />
+	
 	</div>
 </div>
