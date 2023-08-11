@@ -43,7 +43,6 @@
 				<input type="hidden" name="crop" bind:value={pixels} />
 			</div>
 		</FormGroup>
-
 	</div>
 </form>
 
