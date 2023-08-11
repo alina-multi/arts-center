@@ -89,6 +89,24 @@ export async function userQuery(user_id: bigint, page = 1) {
 	);
 }
 
+export async function userDraftQuery(user_id: bigint, page = 1) {
+	return query(
+		{
+			owners: {
+				some: {
+					user_id,
+					ownable_type: 'work'
+				}
+			},
+			published_at: null
+		},
+		{
+			id: 'desc'
+		},
+		page
+	);
+}
+
 export async function filteredQuery(tag: string, lang: string, order = 'popular', page = 1) {
 	let where = {};
 	if (tag !== 'all') {

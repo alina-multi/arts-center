@@ -24,7 +24,7 @@
 
 <div class="flex items-center gap-x-3">
 	{#if currentAvatar?.src}
-		<img {...currentAvatar} class="h-12 w-12 rounded-full" />
+		<img {...currentAvatar} class="h-12 w-12 rounded-full" alt="Avatar" />
 	{:else}
 		<Icon src={UserCircle} class="h-12 w-12 text-gray-300" aria-hidden="true" />
 	{/if}

@@ -8,7 +8,7 @@
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
 	import TextInput from '$lib/components/input/TextInput.svelte';
 	import StyledTab from '$lib/components/layout/StyledTab.svelte';
-	import SaveButton from '$lib/components/input/SaveButton.svelte';
+	import ButtonsGroup from './ButtonsGroup.svelte';
 
 	export let errors;
 	export let data;
@@ -55,5 +55,6 @@
 			{/each}
 		</TabPanels>
 	</TabGroup>
-	<SaveButton />
+
+	<slot><ButtonsGroup /></slot>
 </FormGroup>

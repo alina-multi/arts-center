@@ -1,4 +1,4 @@
-import type { PageServerLoad, Actions, PageLoad } from './$types';
+import type { PageServerLoad, Actions } from './$types';
 import { api } from '$lib/server/api';
 import { getCategories } from '$lib/server/repositories/tag';
 import { tagsMap } from '$lib/server/mappers/tag';
@@ -28,7 +28,7 @@ export const load = (async (event) => {
 }) satisfies PageServerLoad;
 
 export const actions = {
-	default: async (event) => {
+	post: async (event) => {
 		const form = await event.request.formData();
 		const response = await api({
 			method: 'PUT',
@@ -43,6 +43,17 @@ export const actions = {
 		});
 		if (response.ok) {
 			throw redirect(302, localePath(`/work/${event.params.id}`));
+		}
+		return await response.json();
+	},
+	todrafts: async (event) => {
+		const response = await api({
+			method: 'DELETE',
+			path: `/api2/draft/${event.params.id}/draft`,
+			event
+		});
+		if (response.ok) {
+			throw redirect(302, localePath(`/my/work/draft`));
 		}
 		return await response.json();
 	}
