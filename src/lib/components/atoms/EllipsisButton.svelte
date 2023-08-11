@@ -19,9 +19,10 @@
 </script>
 
 {#if isMy}
-	<a href={`/my/work/edit/${work.id}`} class=" hidden md:flex gap-3">
+	<a href={`/my/work/edit/${work.id}`} class="flex ">
 		<span class="sr-only">Edit work</span>
-		<Icon src={PencilSquare} class="w-6 h-6 text-gray-700 hover:text-gray-500" />
+	
+		<Icon src={PencilSquare} class="w-7 h-7 text-gray-700 hover:text-gray-500 dark:text-zinc-400" />
 	</a>
 {:else}
 	<div class="relative inline-block text-base">

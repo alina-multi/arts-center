@@ -27,12 +27,12 @@
 			<ButtonsGroup>
 				<ActionButton
 					type="button"
-					class={'bg-gray-300 hover:bg-red-500 focus-visible:outline-red-600 flex items-center gap-1'}
+					class={'bg-gray-300 dark:bg-zinc-700 dark:text-zinc-500 hover:bg-red-500 focus-visible:outline-red-600 flex items-center gap-1'}
 					on:click={() => {
 						open = true;
 					}}
 				>
-					<span>Delete draft</span>
+					Delete draft
 				</ActionButton>
 				<ActionButton class={'bg-blue-600 hover:bg-blue-500 focus-visible:outline-blue-600'} />
 			</ButtonsGroup>
@@ -43,7 +43,7 @@
 				<input type="hidden" name="crop" bind:value={pixels} />
 			</div>
 		</FormGroup>
-		<WorkForm {data} errors={form?.errors} />
+
 	</div>
 </form>
 

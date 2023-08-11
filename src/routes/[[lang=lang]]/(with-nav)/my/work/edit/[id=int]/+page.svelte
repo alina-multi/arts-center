@@ -19,7 +19,7 @@
 		<ButtonsGroup>
 			<ActionButton
 				type="button"
-				class={'bg-gray-300 hover:bg-red-500 focus-visible:outline-red-600 flex items-center gap-1'}
+				class={'bg-gray-300 dark:bg-zinc-700 dark:text-zinc-500 hover:bg-red-500 focus-visible:outline-red-600 flex items-center gap-1'}
 				on:click={() => {
 					open = true;
 				}}
