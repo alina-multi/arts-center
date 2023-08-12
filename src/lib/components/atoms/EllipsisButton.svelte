@@ -2,18 +2,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { EllipsisVertical, PencilSquare } from '@steeze-ui/heroicons';
 	import { Popover, PopoverButton, PopoverPanel, Transition } from '@rgossiaux/svelte-headlessui';
-
-	export let work,
-		options = [
-			{
-				label: 'Something',
-				href: '#'
-			},
-			{
-				label: 'Something',
-				href: '#'
-			}
-		];
+	import Dropdown from './Dropdown.svelte';
 
 	export let isMy = false;
 </script>
@@ -25,40 +14,26 @@
 		<Icon src={PencilSquare} class="w-7 h-7 text-gray-700 hover:text-gray-500 dark:text-zinc-400" />
 	</a>
 {:else}
+	<Dropdown style="-right-1 z-10 w-40 text-sm mt-2  ">
+		<div
+			slot="button"
+			class="hover:bg-gray-100 cursor-pointer dark:hover:bg-zinc-800 rounded-md py-1"
+		>
+			<Icon src={EllipsisVertical} class="w-8 h-8 stroke-gray-00 dark:stroke-gray-100 " />
+		</div>
 
-
-	<div class="relative inline-block text-base">
-		<Popover let:open>
-			<PopoverButton
-				class="hover:bg-gray-100 cursor-pointer dark:hover:bg-zinc-800 rounded-md py-1"
-			>
-				<Icon src={EllipsisVertical} class="w-8 h-8 stroke-gray-00 dark:stroke-gray-100 " />
-			</PopoverButton>
-
-			{#if open}
-				<Transition
-					enter="transition duration-100 ease-out"
-					enterFrom="transform scale-95 opacity-0"
-					enterTo="transform scale-100 opacity-100"
-					leave="transition duration-75 ease-out"
-					leaveFrom="transform scale-100 opacity-100"
-					leaveTo="transform scale-95 opacity-0"
-				>
-					<PopoverPanel
-						class="absolute right-0 z-10 w-40 mt-2 py-3 origin-top-right rounded-md  bg-white text-gray-700 dark:text-zinc-100  dark:bg-zinc-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:ring-zinc-700 "
+		<slot:fragment slot="panel">
+			<ul>
+				<li class="px-3">
+					<a
+						href="/"
+						class="hover:text-gray-900 hover:bg-gray-100 dark:hover:text-gray-200 dark:hover:bg-gray-600 font-semibold"
+						>Something</a
 					>
-						<div class="flex flex-col space-y-2">
-							{#each options as option}
-								<a
-									href={option.href}
-									class="hover:text-gray-900 hover:bg-gray-100  dark:hover:text-gray-200 dark:hover:bg-gray-600  py-1  px-6"
-									>{option.label}</a
-								>
-							{/each}
-						</div>
-					</PopoverPanel>
-				</Transition>
-			{/if}
-		</Popover>
-	</div>
+				</li>
+			</ul></slot:fragment
+		>
+	</Dropdown>
 {/if}
+
+

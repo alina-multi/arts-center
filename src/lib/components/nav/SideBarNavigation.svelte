@@ -9,7 +9,7 @@
 	import { localePath, t } from '$lib/translations';
 	import Button from '../atoms/Button.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { Bars4, XMark, PencilSquare, Power } from '@steeze-ui/heroicons';
+	import { Bars4, XMark } from '@steeze-ui/heroicons';
 	import TopNav from './top/TopNav.svelte';
 	import TopNavLangLink from './TopNavLangLink.svelte';
 	import Logo from '../atoms/Logo.svelte';
