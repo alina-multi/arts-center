@@ -35,8 +35,7 @@
 				</div>
 		
 		{/if} -->
-		
-		<PriceLabel price={work.price} style={"px-3 py-1 "} />
-	
+
+		<PriceLabel price={work.price} style={'px-3 py-1 '} />
 	</div>
 </div>

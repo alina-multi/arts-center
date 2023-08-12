@@ -31,14 +31,11 @@
 				<Avatar {user} withName={true} />
 			{/each}
 
-			
 			{#if work.subscribed}
 				<div class="bg-gray-300 dark:bg-zinc-700 px-1 py-0.5 rounded-sm shadow-sm">
 					<CrownIcon style="w-3 h-3 stroke-white dark:stroke-zinc-300" />
 				</div>
 			{/if}
 		</div>
-
-		
 	</div>
 </li>

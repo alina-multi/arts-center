@@ -9,9 +9,7 @@
 	<div slot="button">
 		<Icon src={Bars4} class="w-7 h-7 stroke-gray-600 dark:stroke-gray-100" />
 	</div>
-	<div slot="panel" >
+	<div slot="panel">
 		<FooterContent media="desktop" />
 	</div>
-
 </Dropdown>
-

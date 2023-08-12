@@ -1,7 +1,14 @@
 <script>
 	import SideNavLink from '$lib/components/nav/side/SideNavLink.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { PlusCircle, UserGroup, PencilSquare, FolderOpen, UserPlus, Bookmark } from '@steeze-ui/heroicons';
+	import {
+		PlusCircle,
+		UserGroup,
+		PencilSquare,
+		FolderOpen,
+		UserPlus,
+		Bookmark
+	} from '@steeze-ui/heroicons';
 </script>
 
 <SideNavLink href="/my/profile"
@@ -20,12 +27,7 @@
 >
 
 <SideNavLink href="/my/work/saved"
-	><Icon
-		src={Bookmark}
-		theme="solid"
-		class="h-5 w-5 inline"
-		aria-hidden="true"
-	/>Saved</SideNavLink
+	><Icon src={Bookmark} theme="solid" class="h-5 w-5 inline" aria-hidden="true" />Saved</SideNavLink
 >
 
 <SideNavLink href="/my/work/followers"

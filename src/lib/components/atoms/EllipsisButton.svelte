@@ -2,8 +2,8 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { EllipsisVertical, PencilSquare } from '@steeze-ui/heroicons';
 	import Dropdown from './Dropdown.svelte';
-
-	export let isMy = false;
+	export let work,
+		isMy = false;
 </script>
 
 {#if isMy}
@@ -34,5 +34,3 @@
 		>
 	</Dropdown>
 {/if}
-
-

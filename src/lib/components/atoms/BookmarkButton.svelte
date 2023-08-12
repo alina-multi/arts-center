@@ -12,7 +12,7 @@
 <button
 	type="button"
 	on:click={onBookmark}
-	class="group text-sm  dark:text-zinc-400   text-gray-500 dark:border-zinc-700"
+	class="group text-sm dark:text-zinc-400 text-gray-500 dark:border-zinc-700"
 >
 	{#if isBookmarked}
 		<span class="sr-only"> Unbookmark </span>

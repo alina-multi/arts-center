@@ -21,8 +21,8 @@
 	<!-- <div class="sticky top-0 hidden lg:block">
 		<div class="absolute top-[90px] -right-[120px]">
 			<div class="flex flex-col gap-3 text-gray-400 dark:text-gray-500"> -->
-				<!-- <ButtonsDesktop type="like" /> -->
-			<!-- </div>
+	<!-- <ButtonsDesktop type="like" /> -->
+	<!-- </div>
 		</div> -->
 	<!-- </div> -->
 	<div>
@@ -33,12 +33,12 @@
 				<div
 					class=" w-full flex gap-3 items-center max-lg:bg-gray-100 max-lg:px-3 dark:bg-zinc-900 dark:border-zinc-800 text-gray-800 dark:text-zinc-500 border rounded-sm lg:border-0"
 				>
-				<div class="w-full flex items-center justify-between gap-2 py-3">
-					<RatingPreviewVote entity={work} {currentUser} showVotedPreview votable_type={'work'} />
+					<div class="w-full flex items-center justify-between gap-2 py-3">
+						<RatingPreviewVote entity={work} {currentUser} showVotedPreview votable_type={'work'} />
+					</div>
+
+					<BookmarkButton />
 				</div>
-				
-				<BookmarkButton />
-			</div>
 			</div>
 		</div>
 	</div>

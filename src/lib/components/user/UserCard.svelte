@@ -15,7 +15,9 @@
 <div
 	class="px-3 sm:px-6 xl:px-0 py-3 lg:py-6 text-sm 2xl:text-base text-gray-700 dark:text-zinc-300"
 >
-	<div class="flex xl:flex-col gap-3 items-start  {showRatings? " items-start ":"sm:items-center"}">
+	<div
+		class="flex xl:flex-col gap-3 items-start {showRatings ? ' items-start ' : 'sm:items-center'}"
+	>
 		<Avatar {user} size={' w-32 h-32  max-xl:w-28 max-xl:h-28'} />
 
 		<div class="flex flex-col gap-1 xl:items-center w-full">
