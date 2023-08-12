@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { languageFind, localePath } from '$lib/translations';
 	import Picture from '$lib/components/atoms/Picture.svelte';
+	import RatingPreview from '$lib/components/rating/RatingPreview.svelte';
+	import PriceLabel from './PriceLabel.svelte';
 
 	export let work,
 		href,
@@ -26,12 +28,14 @@
 		<div
 			class=" inline-flex items-center justify-between font-medium text-gray-900 dark:text-gray-100"
 		>
-			<h3 class="lg:text-sm">{title}</h3>
+			<div class="flex items-center sm:justify-between w-full">
+				<h3 class="lg:text-sm">{title}</h3>
+				<PriceLabel price={work.price} style={'py-0.5 text-sm md:text-xs  px-2'} />
+			</div>
 
-			{#if work.price}
-				<p class="ml-2 text-sm md:text-xs bg-teal-500 px-2 py-0.5 rounded-full text-white">
-					${work.price}
-				</p>{/if}
+			<div class="flex sm:hidden text-gray-500">
+				<RatingPreview rating={work.rating} comments={work.comments} />
+			</div>
 		</div>
 	{/if}
 </a>
