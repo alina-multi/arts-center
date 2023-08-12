@@ -5,7 +5,7 @@
 </script>
 
 <Popover let:open class="relative  z-30 ">
-	<PopoverButton>
+	<PopoverButton class="flex items-center">
 		<slot name="button" />
 	</PopoverButton>
 

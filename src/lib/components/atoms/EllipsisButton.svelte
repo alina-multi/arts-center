@@ -1,7 +1,6 @@
 <script>
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { EllipsisVertical, PencilSquare } from '@steeze-ui/heroicons';
-	import { Popover, PopoverButton, PopoverPanel, Transition } from '@rgossiaux/svelte-headlessui';
 	import Dropdown from './Dropdown.svelte';
 
 	export let isMy = false;
