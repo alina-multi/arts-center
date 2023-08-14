@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PageData, ActionData } from './$types';
+	import type { PageData } from './$types';
 	import WorkAddProgressSteps from '$lib/components/work/add/WorkAddProgressSteps.svelte';
 	import WorkPreview from '$lib/components/work/WorkPreview.svelte';
 	import WorkBody from '$lib/components/work/page/body/WorkBody.svelte';
@@ -12,7 +12,6 @@
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
 
 	export let data: PageData;
-	export let form: ActionData;
 	const currentDate = new Date().toISOString().split('T')[0];
 	// 60 days months in advance max
 	const maxDate = new Date(Date.now() + 60 * 60 * 24 * 60 * 1000).toISOString().split('T')[0];

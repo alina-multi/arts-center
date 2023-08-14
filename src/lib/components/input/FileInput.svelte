@@ -4,7 +4,6 @@
 	export let id: string,
 		placeholder: string,
 		value: string,
-		error: boolean,
 		name: string,
 		multiple: boolean,
 		required: boolean,

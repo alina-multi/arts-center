@@ -57,7 +57,7 @@
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-storybook": "^0.6.8",
-		"eslint-plugin-svelte3": "^4.0.0",
+		"eslint-plugin-svelte": "^2.32.4",
 		"jsdom": "^22.1.0",
 		"locally-unique-id-generator": "^0.1.5",
 		"node-cache": "^5.1.2",

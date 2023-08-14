@@ -13,6 +13,7 @@
 <Menu class=" flex-1 block mx-3 xl:mx-9 ">
 	{#if open}
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
 			on:click|self={() => (open = false)}
 			class="lg:fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm transition-opacity z-40"
@@ -41,7 +42,7 @@
 				</div>
 				<MenuItems class="py-3  border-t dark:border-zinc-800 " static={open}>
 					{#each results as user}
-						<MenuItem let:active>
+						<MenuItem>
 							<a
 								on:click={() => (open = false)}
 								href={localePath(`/${user.username}`)}
