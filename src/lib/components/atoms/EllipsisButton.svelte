@@ -1,36 +1,39 @@
-<script>
+<script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { EllipsisVertical, PencilSquare } from '@steeze-ui/heroicons';
+	import { EllipsisVertical, PencilSquare, EllipsisHorizontal } from '@steeze-ui/heroicons';
 	import Dropdown from './Dropdown.svelte';
 	export let work,
-		isMy = false;
+		isMy = false, type: 'vertical' | 'horizontal' = 'vertical';
 </script>
 
-{#if isMy}
+{#if isMy && type === 'vertical'}
 	<a href={`/my/work/edit/${work.id}`} class="flex">
 		<span class="sr-only">Edit work</span>
 
 		<Icon src={PencilSquare} class="w-7 h-7 text-gray-700 hover:text-gray-500 dark:text-zinc-400" />
 	</a>
+
+
 {:else}
-	<Dropdown style="-right-1 z-10 w-40 text-sm mt-2  ">
+	<Dropdown style="-right-1 z-10 w-40 text-sm mt-2  " z={20}>
 		<div
 			slot="button"
 			class="hover:bg-gray-100 cursor-pointer dark:hover:bg-zinc-800 rounded-md py-1"
 		>
-			<Icon src={EllipsisVertical} class="w-8 h-8 stroke-gray-00 dark:stroke-gray-100 " />
+		{#if type === 'horizontal'}
+			<Icon src={EllipsisHorizontal} class="w-7 h-7 text-gray-400 hover:text-gray-500 dark:text-zinc-400" />
+		{:else}
+			<Icon src={EllipsisVertical} class="w-7 h-7 text-gray-700 hover:text-gray-500 dark:text-zinc-400" />
+		{/if}
 		</div>
 
-		<slot:fragment slot="panel">
-			<ul>
-				<li class="px-3">
-					<a
-						href="/"
-						class="hover:text-gray-900 hover:bg-gray-100 dark:hover:text-gray-200 dark:hover:bg-gray-600 font-semibold"
-						>Something</a
-					>
-				</li>
-			</ul></slot:fragment
-		>
+<div slot="panel" class="py-1">
+		{#if $$slots.description}
+
+		<slot name="description" />
+			
+		{/if}
+		</div>
+
 	</Dropdown>
 {/if}
