@@ -44,11 +44,15 @@
 	function onFollow() {
 		isFollowing = true;
 		fetchData('POST');
+		$page.data.currentUser.follows.user.push(Number(user.id));
 	}
 
 	async function onUnfollow() {
 		isFollowing = false;
 		fetchData('DELETE');
+		$page.data.currentUser.follows.user = $page.data.currentUser.follows.user.filter(
+			(id) => id !== Number(user.id)
+		);
 	}
 </script>
 
