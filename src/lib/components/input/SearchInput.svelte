@@ -78,7 +78,7 @@
 				type="button"
 				class="absolute inset-y-0 right-0 flex items-center z-50 px-2"
 				aria-label="Clear"
-				on:click={(e) => (value = ' ')}
+				on:click={() => (value = ' ')}
 			>
 				<Icon src={XMark} class="text-gray-400 h-5 w-5" />
 			</button>

@@ -1,4 +1,4 @@
-import type { Work, WorkBlock } from '$lib/interfaces/Work';
+import type { Work } from '$lib/interfaces/Work';
 import type {
 	imageables,
 	votes,
@@ -12,7 +12,7 @@ import type { taggablesWithRelations } from './tag';
 import { taggableMap } from './tag';
 import type { ownableWithRelations, usersWithRelations } from './owners';
 import { ownersMap } from './owners';
-import { imagablePicturesMap, picturesMap, pictureMap } from '$lib/server/mappers/pictures';
+import { imagablePicturesMap, pictureMap } from '$lib/server/mappers/pictures';
 import type { Picture } from '$lib/interfaces/Picture';
 
 interface workBlocksWithRelations extends work_blocks {
@@ -53,16 +53,4 @@ export function workPreviewMap(data: worksWithRelations): Work & { preview: Pict
 		preview: pictureMap(data.preview),
 		published_at: data.published_at
 	};
-}
-
-function blocksMap(blocks: workBlocksWithRelations[]): WorkBlock[] | undefined {
-	return blocks?.map((row) => {
-		return {
-			id: row.id,
-			language: row.language,
-			type: row.type,
-			data: JSON.parse(row.data),
-			images: picturesMap(row.images)
-		};
-	});
 }

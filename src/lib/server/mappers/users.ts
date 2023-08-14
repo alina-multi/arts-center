@@ -1,5 +1,5 @@
 import type { User, UserList } from '$lib/interfaces/User';
-import type { user_bios, users } from '.prisma/client';
+import type { user_bios } from '.prisma/client';
 import type { RatingWithRelations } from './ratings';
 import { ratingsMap } from './ratings';
 import type { WorksWithRelations } from './gallery';

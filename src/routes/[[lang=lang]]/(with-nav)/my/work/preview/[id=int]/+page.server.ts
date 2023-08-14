@@ -4,7 +4,6 @@ import { error, redirect } from '@sveltejs/kit';
 import { get } from '$lib/server/repositories/work';
 import { workPreviewMap } from '$lib/server/mappers/work';
 import { localePath } from '$lib/translations';
-import { pictureMap } from '$lib/server/mappers/pictures';
 export const load = (async ({ params }) => {
 	const data = {
 		work: await get(BigInt(params.id)).then((work) => ({

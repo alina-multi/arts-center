@@ -34,7 +34,6 @@ export const actions = {
 
 		const photo = form.get('photo') as File;
 		if (event.locals?.user?.username && photo?.size) {
-			const timestamp = Date.now();
 			const extension = photo.name.split('.').pop();
 			const key = `temp/photos/${Date.now()}/${Math.random()}.${extension}`;
 			if (await uploadFile(photo, key)) {

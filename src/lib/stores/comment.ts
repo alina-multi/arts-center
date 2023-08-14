@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
 function createData() {
-	const { subscribe, set, update } = writable({
+	const { subscribe, update } = writable({
 		replyCommentId: null,
 		editCommentId: null
 	});

@@ -8,8 +8,7 @@
 	import { goto } from '$app/navigation';
 
 	export let data: PageData;
-	let uploadedUrls = [],
-		error = '';
+	let uploadedUrls = [];
 
 	async function send(main = null) {
 		if (!main) {
@@ -36,7 +35,7 @@
 					toast.error(json?.message);
 				}
 			})
-			.catch((e) => toast.error('Something is wrong with API server'));
+			.catch(() => toast.error('Something is wrong with API server'));
 	}
 
 	function urlToPath(url) {

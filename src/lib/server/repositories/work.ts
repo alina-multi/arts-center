@@ -11,8 +11,6 @@ const prisma = new PrismaClient({
 	]
 });
 
-const PAGE_SIZE = 20;
-
 export function get(id: bigint) {
 	return prisma.works.findUnique({
 		select: {

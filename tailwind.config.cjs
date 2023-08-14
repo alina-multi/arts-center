@@ -3,8 +3,7 @@ module.exports = {
 	darkMode: 'class',
 	content: [
 		'./public/**/*.html',
-		'./src/**/*.{html,js,svelte,ts}',
-		'./node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}'
+		'./src/**/*.{html,js,svelte,ts}'
 	],
 	mode: 'jit',
 	theme: {
@@ -15,8 +14,7 @@ module.exports = {
 	},
 	plugins: [
 		require('@tailwindcss/forms'),
-		require('@tailwindcss/aspect-ratio'),
-		require('flowbite/plugin')
+		require('@tailwindcss/aspect-ratio')
 	],
 	safelist: ['bg-black', 'bg-white']
 };

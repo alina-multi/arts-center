@@ -17,11 +17,6 @@ export interface UserList extends UserPreview {
 	created_at: Date | null;
 }
 
-interface UserBio {
-	language: string;
-	text: string;
-}
-
 export interface User extends UserList {
 	bio?: string;
 }
