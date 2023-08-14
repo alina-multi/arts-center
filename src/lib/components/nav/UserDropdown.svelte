@@ -20,7 +20,7 @@
 			<Icon
 				theme="solid"
 				src={User}
-				class="{size} bg-gray-50 dark:bg-zinc-800 rounded-full fill-zinc-300 dark:fill-zinc-400  p-[4px] border border-zinc-100 dark:border-zinc-700 shadow-sm"
+				class=" w-10 h-10 bg-gray-50 dark:bg-zinc-800 rounded-full fill-zinc-300 dark:fill-zinc-400  p-[4px] border border-zinc-100 dark:border-zinc-700 shadow-sm"
 			/>
 		{/if}
 	</slot:fragment>

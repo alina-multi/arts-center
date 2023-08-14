@@ -1,11 +1,8 @@
 <script lang="ts">
-    import {page} from '$app/stores';
+	import { page } from '$app/stores';
 
-    let folllows = $page.data.currentUser?.follows;
-    console.log($page);
+	let folllows = $page.data.currentUser?.follows;
+	console.log($page);
+</script>
 
-    </script>
-
-<div>
-Followers Page
-</div>
+<div>Followers Page</div>

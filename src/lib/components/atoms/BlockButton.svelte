@@ -50,12 +50,11 @@
 	<button
 		type="button"
 		on:click={block}
-		class="flex items-center gap-3 hover:text-red-500 px-6 py-2 hover:bg-gray-100  dark:hover:text-gray-200 dark:hover:bg-gray-600 font-semibold"
+		class="flex items-center gap-3 hover:text-red-500 px-6 py-2 hover:bg-gray-100 dark:hover:text-gray-200 dark:hover:bg-gray-600 font-semibold"
 		><Icon src={NoSymbol} theme="solid" class="h-5 w-5 " aria-hidden="true" />
-        <span class="sr-only">Block</span>
-        <span >Block</span>
-        </button
-	>
+		<span class="sr-only">Block</span>
+		<span>Block</span>
+	</button>
 {/if}
 
 {#if type === 'unblock'}

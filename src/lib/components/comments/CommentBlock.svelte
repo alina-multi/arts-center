@@ -15,7 +15,6 @@
 	import BlockButton from '../atoms/BlockButton.svelte';
 	import ReportButton from '../atoms/ReportButton.svelte';
 
-
 	export let comment: Comment,
 		commentable_id: string,
 		parentComments: [Comment] | [],
@@ -38,7 +37,6 @@
 	if (answer) {
 		answer = null;
 	}
-
 
 	function isEditable(): boolean {
 		const now = new Date();
@@ -142,15 +140,15 @@
 		: 'opacity-100'}"
 	id={comment_id}
 >
-	<div class="pt-6 space-y-1 ">
-		<div class="flex items-center justify-between  pr-3">
+	<div class="pt-6 space-y-1">
+		<div class="flex items-center justify-between pr-3">
 			<div class="flex items-center gap-2">
 				<div class="flex font-semibold">
 					<Avatar user={comment.owner} withName={true} size={'w-8 h-8 '} />
 				</div>
 				<span class="h-1 w-1 bg-zinc-500 rounded-full" />
 				<Time relative timestamp={comment.created_at} class="text-zinc-500" />
-	
+
 				<div
 					class="flex divide-x font-semibold text-zinc-500 dark:text-zinc-400 dark:divide-zinc-800 mr-3"
 				>
@@ -159,25 +157,25 @@
 						{#if !isMy}
 							<button class="px-3" on:click={() => deleteComment(comment.id)}> Delete</button>{/if}
 					{/if}
-	
+
 					{#if isMy}
 						<button class="px-3" on:click={() => deleteComment(comment.id)}> Delete</button>
 					{/if}
 				</div>
-	
-				
-		</div>
-		{#if currentUser}
-		<EllipsisButton type={'horizontal'} >
-
-		<div slot="description"  class="flex flex-col ">
-			<BlockButton type={'block'} user={comment.owner} bind:parentComments commentID={comment_id}/>
-	<ReportButton/>
-			
-		</div>
-		</EllipsisButton>
-		{/if}
-			
+			</div>
+			{#if currentUser}
+				<EllipsisButton type={'horizontal'}>
+					<div slot="description" class="flex flex-col">
+						<BlockButton
+							type={'block'}
+							user={comment.owner}
+							bind:parentComments
+							commentID={comment_id}
+						/>
+						<ReportButton />
+					</div>
+				</EllipsisButton>
+			{/if}
 		</div>
 
 		<div

@@ -21,12 +21,11 @@
 			{/each}
 		</div>
 
-		<div><EllipsisButton {work} {isMy} type='vertical'>
-			<div slot="description"  class="flex flex-col ">
-	
-		<ReportButton/>
-				
-			</div>
+		<div>
+			<EllipsisButton {work} {isMy} type="vertical">
+				<div slot="description" class="flex flex-col">
+					<ReportButton />
+				</div>
 			</EllipsisButton>
 		</div>
 	</div>
