@@ -7,9 +7,9 @@
 	let user = $page.data.currentUser;
 </script>
 
-<SideMenu>
+<SideMenu style='hidden xl:block '>
 	<slot />
-	<svelte:fragment slot="nav">
+	<div slot="nav" >
 		<SideNav>
 			<li class="mx-6 text-left">
 				<Avatar {user} size="h-12 w-12" withName nameStyles={'font-semibold text-sm'} />
@@ -17,5 +17,5 @@
 
 			<MyProfileLinksGroup />
 		</SideNav>
-	</svelte:fragment>
+	</div>
 </SideMenu>

@@ -22,7 +22,7 @@
 
 <WorkAddProgressSteps currentStep="2" />
 <form method="POST" action="?/post" use:enhance>
-	<div class="columns-2 mt-5">
+	<div class="columns-2 flex flex-col gap-3">
 		<WorkForm {data} errors={form?.errors}>
 			<ButtonsGroup>
 				<ActionButton
