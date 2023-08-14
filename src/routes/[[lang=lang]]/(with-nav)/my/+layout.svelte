@@ -7,9 +7,9 @@
 	let user = $page.data.currentUser;
 </script>
 
-<SideMenu style='hidden xl:block '>
+<SideMenu style="hidden xl:block ">
 	<slot />
-	<div slot="nav" >
+	<div slot="nav">
 		<SideNav>
 			<li class="mx-6 text-left">
 				<Avatar {user} size="h-12 w-12" withName nameStyles={'font-semibold text-sm'} />

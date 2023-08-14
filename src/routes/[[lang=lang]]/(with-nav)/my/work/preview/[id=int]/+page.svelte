@@ -21,7 +21,7 @@
 <WorkAddProgressSteps currentStep="3" id={data.work.id} />
 <form method="post" use:enhance>
 	<FormGroup h1="Ready to publish?" class="my-5">
-		<div class=" max-md:flex  max-md:flex-col  md:columns-3 ">
+		<div class=" max-md:flex max-md:flex-col md:columns-3">
 			<CancelLinkButton
 				href={localePath(`/my/work/draft/${data.work.id}`)}
 				class="block text-center"

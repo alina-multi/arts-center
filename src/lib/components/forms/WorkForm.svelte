@@ -48,7 +48,7 @@
 							<TextInput name="title" value={title.title} />
 						</InputGroup>
 						<InputGroup error={errors?.description} label="Description">
-							<TextAreaInput name="description" value={title.description} rows={8}/>
+							<TextAreaInput name="description" value={title.description} rows={8} />
 						</InputGroup>
 					</div>
 				</StyledTabPanel>
