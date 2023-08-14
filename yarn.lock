@@ -2352,10 +2352,10 @@
   resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-5.0.0.tgz#5249650eabe77c458c90f2be97d8210353c2e22e"
   integrity sha512-kyT/8fd0OpWmhAU5YnY7eP31brW1q1YrTGoblWrhQJDiN/1K+Z8S1kylcmtjqx5wsUGcP1HBWutayA/jtyt+sg==
 
-"@rgossiaux/svelte-headlessui@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/@rgossiaux/svelte-headlessui/-/svelte-headlessui-1.0.2.tgz"
-  integrity sha512-sauopYTSivhzXe1kAvgawkhyYJcQlK8Li3p0d2OtcCIVprOzdbard5lbqWB4xHDv83zAobt2mR08oizO2poHLQ==
+"@rgossiaux/svelte-headlessui@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@rgossiaux/svelte-headlessui/-/svelte-headlessui-2.0.0.tgz#397615a2ea39a44d601d4290a6efd9495b3b112d"
+  integrity sha512-ksh245HqMM8yqkzd/OyAK2FCHZYOSA3ldLIHab7C9S60FmifqT24JFVgi8tZpsDEMk3plbfQvfah93n5IEi8sg==
 
 "@rollup/plugin-commonjs@^24.0.0":
   version "24.1.0"
