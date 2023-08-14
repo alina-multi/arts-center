@@ -4,7 +4,7 @@
 	export let style = 'right-0 ';
 </script>
 
-<Popover let:open class="relative  z-30 ">
+<Popover let:open class="relative  z-40 ">
 	<PopoverButton class="flex items-center">
 		<slot name="button" />
 	</PopoverButton>
