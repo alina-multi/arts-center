@@ -8505,6 +8505,7 @@ __metadata:
     svelte: ^4.2.0
     svelte-check: ^3.5.0
     svelte-easy-crop: ^2.0.1
+    svelte-eslint-parser: ^0.32.2
     svelte-french-toast: ^1.2.0
     svelte-loader: ^3.1.9
     svelte-multiselect: ^10.1.0
