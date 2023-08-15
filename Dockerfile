@@ -2,11 +2,11 @@ FROM node:20
 
 WORKDIR /var/www
 COPY package.json ./
-COPY yarn.lock ./
-RUN yarn install
+COPY pnpm-lock.yaml ./
+RUN pnpm install
 COPY ./ ./
-RUN yarn prisma generate
-RUN yarn build
+RUN pnpm prisma generate
+RUN pnpm build
 
 EXPOSE 3000
 
