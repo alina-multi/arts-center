@@ -17,7 +17,7 @@
 	let isFollowing = follows?.some((id) => id === Number(user.id));
 
 	async function fetchData(method) {
-		const res = await fetch(`/api/follow`, {
+	 await fetch(`/api/follow`, {
 			method,
 			headers: {
 				'Content-Type': 'application/json'

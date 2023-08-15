@@ -2,7 +2,15 @@
 	import { page } from '$app/stores';
 
 	let folllows = $page.data.currentUser?.follows;
-	console.log($page);
+	
 </script>
 
-<div>Followers Page</div>
+<div>
+	{#if folllows > 0}
+		{#each folllows as folllow}
+			<div>{folllow}</div>
+		{/each}
+	{:else}
+		<div>no follows</div>
+	{/if}
+</div>
