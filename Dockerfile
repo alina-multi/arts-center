@@ -1,10 +1,18 @@
-FROM node:20
+FROM node:20-alpine
 
 WORKDIR /var/www
-COPY package.json ./
-COPY pnpm-lock.yaml ./
+ENV PUBLIC_ENV=production
+COPY package.json .
+COPY pnpm-lock.yaml .
+COPY postcss.config.cjs .
+COPY svelte.config.js .
+COPY tailwind.config.cjs .
+COPY tsconfig.json .
+COPY vite.config.ts .
+RUN corepack enable
 RUN pnpm install
-COPY ./ ./
+COPY ./src ./src
+RUN ls
 RUN pnpm prisma generate
 RUN pnpm build
 
