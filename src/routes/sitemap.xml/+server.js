@@ -1,68 +1,45 @@
-import { prisma } from "$lib/server/database/prisma";
+import { prisma } from '$lib/server/database/prisma';
 
-const site = "http://localhost:3000"
+const site = 'http://localhost:3000/sitemap.xml';
+const urlsPerSitemap = 10;
 
 export async function GET() {
-    let page = 0
-    const works = await prisma.works.findMany({
-        take: 50000,
-        skip: page * 30000,
-        select: {
-            id: true,
-            updated_at: true,
-        }
-    })
+	const countWorks = await prisma.works.count();
+	const pagesWorks = Math.ceil(countWorks / urlsPerSitemap);
 
-    const users = await prisma.users.findMany({
-        take: 50000,
-        skip: page * 30000,
-        select: {
-            username: true,
-            updated_at: true,
-        }
-    })
+	const countUsers = await prisma.users.count();
+	const pagesUsers = Math.ceil(countUsers / urlsPerSitemap);
 
+	const worksArray = Array.from(Array(pagesWorks).keys());
+	const usersArray = Array.from(Array(pagesUsers).keys());
 
-    const body = sitemap(works, users);
-    const response = new Response(body);
-    response.headers.set('Cache-Control', 'max-age=0, s-maxage=3600');
-    response.headers.set('Content-Type', 'application/xml');
-    return response;
+	const body = sitemapindex(worksArray, usersArray);
+	const response = new Response(body);
+	response.headers.set('Cache-Control', 'max-age=0, s-maxage=3600');
+	response.headers.set('Content-Type', 'application/xml');
+	return response;
+}
 
-  }
-
-
-
-function sitemap(works, users) {
-    return `<?xml version="1.0" encoding="UTF-8" ?>
-    <urlset 
-    xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:news="https://www.google.com/schemas/sitemap-news/0.9"
-    xmlns:xhtml="https://www.w3.org/1999/xhtml"
-    xmlns:mobile="https://www.google.com/schemas/sitemap-mobile/1.0"
-    xmlns:image="https://www.google.com/schemas/sitemap-image/1.1">
-
-    ${works.map((work) => {
-        return `
-        <url>
-
-            <loc>${site}/work/${work.id}</loc>
-            <lastmod>${work.updated_at}</lastmod>
-        </url>
-        `;
-    }).join("")}
-
-
-    ${users.map((user) => {
-        return `
-        <url>
-
-            <loc>${site}/${user.username}</loc>
-            <lastmod>${user.updated_at}</lastmod>
-        </url>
-        `;
-    }).join("")}
-
-    </urlset>
-    `;
+function sitemapindex(works, users) {
+	return (
+		`<?xml version="1.0" encoding="UTF-8"?>
+    <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` +
+		works
+			.map((page) => {
+				return `<sitemap>
+        <loc>${site}/sitemap-works/${page}.xml</loc>
+        <lastmod>${new Date().toISOString()}</lastmod>
+    </sitemap>`;
+			})
+			.join('') +
+		users
+			.map((page) => {
+				return `<sitemap>
+        <loc>${site}/sitemap-users/${page}.xml</loc>
+        <lastmod>${new Date().toISOString()}</lastmod>
+    </sitemap>`;
+			})
+			.join('') +
+		`</sitemapindex>`
+	);
 }
