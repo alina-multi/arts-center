@@ -3,7 +3,7 @@
 	import type { Tag } from '$lib/interfaces/Tag';
 
 	export let tags: Tag[],
-		active = (tag: string) => false,
+		active = () => false,
 		params: {
 			tag?: string;
 			order?: string;

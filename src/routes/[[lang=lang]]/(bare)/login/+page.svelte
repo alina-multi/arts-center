@@ -1,10 +1,9 @@
 <script lang="ts">
 	import Logo from '$lib/components/atoms/Logo.svelte';
-	import type { PageData, ActionData } from './$types';
+	import type { ActionData } from './$types';
 	import EmailInput from '$lib/components/input/EmailInput.svelte';
 	import PasswordInput from '$lib/components/input/PasswordInput.svelte';
 	import InputGroup from '$lib/components/input/InputGroup.svelte';
-	export let data: PageData;
 	export let form: ActionData;
 </script>
 

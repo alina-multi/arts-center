@@ -8,8 +8,7 @@
 	export let tags: Tag[],
 		selected: string,
 		params: { tag: string; order: string },
-		urlGenerator,
-		type: string;
+		urlGenerator;
 
 	let visibleTags, hiddenTags;
 
@@ -65,6 +64,7 @@
 					let:close
 				>
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
+					<!-- svelte-ignore a11y-no-static-element-interactions -->
 					<div class="flex gap-3 flex-wrap flex-row-reverse p-3" on:click={() => close()}>
 						<TagButtons tags={hiddenTags} {urlGenerator} {params} active={isActive} />
 					</div>
@@ -109,6 +109,7 @@
 			let:close
 		>
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<!-- svelte-ignore a11y-no-static-element-interactions -->
 			<div class="flex gap-2 flex-wrap text-sm p-4 flex-row-reverse" on:click={() => close()}>
 				<TagButtons {tags} {urlGenerator} {params} active={isActive} />
 			</div>

@@ -188,10 +188,10 @@
 						? 'opacity-100 '
 						: 'opacity-50'}"
 				>
-					{@html comment.text}
+					{comment.text}
 				</div>
 			{:else}
-				<div class="whitespace-pre-wrap">{@html comment.text}</div>
+				<div class="whitespace-pre-wrap">{comment.text}</div>
 			{/if}
 
 			<div

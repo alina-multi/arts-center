@@ -28,7 +28,7 @@
 		/>
 	</DisclosureButton>
 
-	<DisclosurePanel class=" max-h-96 overflow-scroll " let:close>
+	<DisclosurePanel class=" max-h-96 overflow-scroll ">
 		<ul class="flex flex-col m-6 border dark:border-0 dark:bg-zinc-800 rounded-sm text-sm">
 			{#each options as option}
 				<li

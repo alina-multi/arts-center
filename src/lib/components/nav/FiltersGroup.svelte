@@ -28,7 +28,7 @@
 	<DisclosurePanel class="mt-3 py-3  max-h-96 overflow-scroll border rounded-sm" let:close>
 		<ul class="flex flex-col text-sm">
 			{#each option as { title }}
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
 				<li
 					class=" flex px-3 cursor-pointer py-1 hover:bg-gray-100 {title === selected
 						? 'bg-gray-100 hover:bg-gray-100  '

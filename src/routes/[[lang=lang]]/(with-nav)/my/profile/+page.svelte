@@ -37,7 +37,6 @@
 			label="Username"
 			error={form?.errors?.username}
 			let:elementId={id}
-			let:hasError={error}
 		>
 			<div
 				class=" flex rounded-full shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-500 dark:bg-zinc-900 dark:ring-0 dark:focus-within:ring-1"

@@ -90,6 +90,7 @@
 	{#if label}
 		<label for="tag" class="block text-sm font-medium text-zinc-900 mb-1"> {label} </label>
 	{/if}
+	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div
 		on:keydown={(e) => onBackspace(e)}
 		class="flex flex-wrap gap-1 rounded-md border p-1 border-gray-300 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 overflow-hidden"
@@ -127,6 +128,9 @@
 	{#if openList}
 		<div class="absolute z-40 left-0 mt-2 w-full">
 			<div class="py-1 text-sm bg-white rounded shadow-lg border border-zinc-300">
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<!-- svelte-ignore a11y-no-static-element-interactions -->
+				<!-- svelte-ignore a11y-missing-attribute -->
 				<a
 					on:click={() => addTags(value)}
 					class="block py-1 px-5 cursor-pointer hover:bg-blue-600 hover:text-white"
@@ -139,6 +143,8 @@
 				{/if}
 				<ul>
 					{#each visibleOptions as option}
+						<!-- svelte-ignore a11y-click-events-have-key-events -->
+						<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 						<li
 							on:click={() => addTags(option)}
 							class="block py-1 px-5 cursor-pointer hover:bg-blue-600 hover:text-white"

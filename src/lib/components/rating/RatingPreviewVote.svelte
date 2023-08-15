@@ -110,7 +110,6 @@
 {/if}
 
 <div class="inline-flex items-center gap-2 dark:text-zinc-100 cursor-pointer">
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div
 		class="flex items-center gap-2 {votable_type === 'work'
 			? 'border px-4 py-1 rounded-full shadow-md '

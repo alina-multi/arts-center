@@ -12,8 +12,5 @@ export const GET = (async ({ params }) => {
 		page: parseInt(params.page)
 	});
 
-	let { hits } = search;
-	hits = [search.hits, ...hits];
-
 	return new Response(JSON.stringify(search));
 }) satisfies RequestHandler;
