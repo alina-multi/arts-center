@@ -12,6 +12,7 @@ COPY vite.config.ts .
 RUN corepack enable
 RUN pnpm install
 COPY ./src ./src
+COPY ./static ./static
 RUN ls
 RUN pnpm prisma generate
 RUN pnpm build
