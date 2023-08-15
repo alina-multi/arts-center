@@ -7,7 +7,8 @@
 		PencilSquare,
 		FolderOpen,
 		UserPlus,
-		Bookmark
+		Bookmark,
+		NoSymbol
 	} from '@steeze-ui/heroicons';
 </script>
 
@@ -18,32 +19,21 @@
 	><Icon src={PlusCircle} theme="solid" class="h-5 w-5 inline" aria-hidden="true" /> Add work</SideNavLink
 >
 <SideNavLink href="/my/work/draft"
-	><Icon
-		src={FolderOpen}
-		theme="solid"
-		class="h-5 w-5 inline"
-		aria-hidden="true"
-	/>Drafts</SideNavLink
+	><Icon src={FolderOpen} theme="solid" class="h-5 w-5 " aria-hidden="true" />Drafts</SideNavLink
 >
 
 <SideNavLink href="/my/work/saved"
 	><Icon src={Bookmark} theme="solid" class="h-5 w-5 inline" aria-hidden="true" />Saved</SideNavLink
 >
 
-<SideNavLink href="/my/work/followers"
-	><Icon
-		src={UserGroup}
-		theme="solid"
-		class="h-5 w-5 inline"
-		aria-hidden="true"
-	/>Followers</SideNavLink
+<SideNavLink href="/my/followers"
+	><Icon src={UserGroup} theme="solid" class="h-5 w-5" aria-hidden="true" />Followers</SideNavLink
 >
 
-<SideNavLink href="/my/work/Following"
-	><Icon
-		src={UserPlus}
-		theme="solid"
-		class="h-5 w-5 inline"
-		aria-hidden="true"
-	/>Following</SideNavLink
+<SideNavLink href="/my/following"
+	><Icon src={UserPlus} theme="solid" class="h-5 w-5" aria-hidden="true" />Following</SideNavLink
+>
+
+<SideNavLink href="/my/blacklist"
+	><Icon src={NoSymbol} theme="solid" class="h-5 w-5 " aria-hidden="true" />Blocked</SideNavLink
 >

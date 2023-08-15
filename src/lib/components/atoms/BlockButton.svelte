@@ -1,0 +1,68 @@
+<script lang="ts">
+	import toast from 'svelte-french-toast';
+	import { Icon } from '@steeze-ui/svelte-icon';
+	import { NoSymbol } from '@steeze-ui/heroicons';
+
+	export let type: 'block' | 'unblock' = 'block',
+		user,
+		parentComments,
+		commentID;
+	console.log(user);
+
+	async function fetchData(method) {
+		const res = await fetch(`/api/blacklist`, {
+			method,
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				user_id: Number(user.id)
+			})
+		});
+		return res;
+	}
+
+	async function block() {
+		const res = await fetchData('POST');
+
+		if (res.ok) {
+			parentComments = parentComments.filter((item) => item.id.toString() !== commentID);
+			toast.success('User blocked', {
+				style: ' padding: 16px; color: #713200;',
+				icon: '🚫'
+			});
+		} else {
+			toast.error('Something went wrong');
+		}
+	}
+
+	async function unblock() {
+		const res = await fetchData('DELETE');
+		if (res.ok) {
+			toast.success('User unblocked');
+		} else {
+			toast.error('Something went wrong');
+		}
+	}
+</script>
+
+{#if type === 'block'}
+	<button
+		type="button"
+		on:click={block}
+		class="flex items-center gap-3 hover:text-red-500 px-6 py-2 hover:bg-gray-100 dark:hover:text-gray-200 dark:hover:bg-gray-600 font-semibold"
+		><Icon src={NoSymbol} theme="solid" class="h-5 w-5 " aria-hidden="true" />
+		<span class="sr-only">Block</span>
+		<span>Block</span>
+	</button>
+{/if}
+
+{#if type === 'unblock'}
+	<button
+		type="button"
+		on:click={unblock}
+		class="hover:text-gray-900 px-3 hover:bg-gray-100 dark:hover:text-gray-200 dark:hover:bg-gray-600 font-semibold"
+	>
+		Unblock</button
+	>
+{/if}

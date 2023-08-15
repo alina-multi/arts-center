@@ -10,18 +10,50 @@
 	export let user, size;
 	let currentUser = $page.data.currentUser;
 
-	let isFollowing = false;
 	let isMy = handleIsMy(currentUser, user.id);
 
 	let open = false;
+	let follows = $page.data.currentUser?.follows.user;
+	let isFollowing = follows?.some((id) => id === Number(user.id));
+
+	async function fetchData(method) {
+	 await fetch(`/api/follow`, {
+			method,
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				followable_type: 'user',
+				followable_id: Number(user.id)
+			})
+		});
+	}
 
 	const handleFollow = () => {
 		if (currentUser) {
-			isFollowing = !isFollowing;
+			if (isFollowing) {
+				onUnfollow();
+			} else {
+				onFollow();
+			}
 		} else {
 			open = true;
 		}
 	};
+
+	function onFollow() {
+		isFollowing = true;
+		fetchData('POST');
+		$page.data.currentUser.follows.user.push(Number(user.id));
+	}
+
+	async function onUnfollow() {
+		isFollowing = false;
+		fetchData('DELETE');
+		$page.data.currentUser.follows.user = $page.data.currentUser.follows.user.filter(
+			(id) => id !== Number(user.id)
+		);
+	}
 </script>
 
 <ModalWindow bind:open>

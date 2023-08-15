@@ -3,6 +3,7 @@
 	import EllipsisButton from '$lib/components/atoms/EllipsisButton.svelte';
 	import FollowButton from '$lib/components/atoms/FollowButton.svelte';
 	import PriceLabel from '$lib/components/atoms/PriceLabel.svelte';
+	import ReportButton from '$lib/components/atoms/ReportButton.svelte';
 
 	export let work;
 	export let isMy = false;
@@ -20,7 +21,13 @@
 			{/each}
 		</div>
 
-		<div><EllipsisButton {work} {isMy} /></div>
+		<div>
+			<EllipsisButton {work} {isMy} type="vertical">
+				<div slot="description" class="flex flex-col">
+					<ReportButton />
+				</div>
+			</EllipsisButton>
+		</div>
 	</div>
 
 	<div class="flex justify-between items-start">

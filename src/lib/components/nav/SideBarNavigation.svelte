@@ -34,7 +34,7 @@
 
 <div>
 	<Transition show={open}>
-		<Dialog {open} on:close={() => (open = !open)} class="relative xl:hidden " initialFocus>
+		<Dialog {open} on:close={() => (open = !open)} class="relative xl:hidden ">
 			<TransitionChild
 				class="fixed inset-0 z-40 "
 				enter="transition-opacity ease-linear duration-300"

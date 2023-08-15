@@ -2,7 +2,7 @@
 	import type { User } from '$lib/interfaces/User';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Home } from '@steeze-ui/heroicons';
-	import Avatar from '../atoms/Avatar.svelte';
+	import Picture from '$lib/components/atoms/Picture.svelte';
 	import MyProfileLinksGroup from '../user/MyProfileLinksGroup.svelte';
 	import SideNavLink from '$lib/components/nav/side/SideNavLink.svelte';
 	import LogoutButton from '../atoms/LogoutButton.svelte';
@@ -12,7 +12,17 @@
 
 <Dropdown style="-right-[60px]  z-50 w-60  text-sm mt-2">
 	<slot:fragment slot="button">
-		<Avatar {user} size={'w-10 h-10 '} />
+		{#if user.photo}
+			<div class=" w-10 h-10 bg-zinc-300 dark:bg-gray-800 rounded-full overflow-hidden shadow-sm">
+				<Picture photo={user.photo} alt={user?.username} style={'w-10 h-10 object-cover '} />
+			</div>
+		{:else}
+			<Icon
+				theme="solid"
+				src={User}
+				class=" w-10 h-10 bg-gray-50 dark:bg-zinc-800 rounded-full fill-zinc-300 dark:fill-zinc-400  p-[4px] border border-zinc-100 dark:border-zinc-700 shadow-sm"
+			/>
+		{/if}
 	</slot:fragment>
 
 	<slot:fragment slot="panel">

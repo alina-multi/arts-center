@@ -4,7 +4,9 @@
 </script>
 
 <nav aria-label="Progress">
-	<ol class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
+	<ol
+		class="divide-y divide-gray-300 dark:divide-zinc-800 rounded-md border border-gray-30 dark:border-zinc-800 dark:bg-zinc-900 md:flex md:divide-y-0"
+	>
 		{#each steps as { label, href }, i}
 			<li class="relative md:flex md:flex-1">
 				{#if i + 1 < currentStep}
