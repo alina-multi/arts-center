@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api2;
 
+use App\Enums\WorkStatuses;
 use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PublishWork;
@@ -60,6 +61,7 @@ class DraftController extends Controller
             abort(403);
         }
         $draft->published_at = $request->published_at;
+        $draft->status = WorkStatuses::USER_PUBLISHED;
         $draft->save();
         return response()->noContent();
     }
@@ -70,6 +72,7 @@ class DraftController extends Controller
             abort(403);
         }
         $draft->published_at = null;
+        $draft->status = WorkStatuses::DRAFT;
         $draft->save();
         return response()->noContent();
     }
@@ -84,6 +87,7 @@ class DraftController extends Controller
         if ($draft->published_at !== null) {
             abort(403, 'Can not delete published work');
         }
+        $draft->update(['status' => WorkStatuses::DELETED]);
         $draft->delete();
         return response()->noContent();
     }

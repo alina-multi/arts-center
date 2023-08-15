@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\ImageFolders;
+use App\Enums\WorkStatuses;
 use App\Models\Comment;
 use App\Models\Image;
 use App\Models\Work;
@@ -34,6 +35,7 @@ class WorkFactory extends Factory
             'comments' => $this->faker->numberBetween(0, 500),
             'image_id'=> Image::factory()->create(['folder' => ImageFolders::Preview]),
             'full_image_id'=> Image::factory()->create(['folder' => ImageFolders::Works]),
+            'status' => WorkStatuses::PUBLISHED
         ];
     }
 }

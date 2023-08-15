@@ -153,8 +153,11 @@ test('publish draft', function () {
     ])->assertNoContent();
     $this->assertDatabaseHas('works', [
         'id' => $work->id,
-        'published_at' => '2033-12-12 00:00:00'
+        'published_at' => '2033-12-12 00:00:00',
+        'status' => \App\Enums\WorkStatuses::USER_PUBLISHED
     ]);
+    Bus::assertDispatched(\App\Jobs\TranslateWork::class);
+    Bus::assertDispatched(\App\Jobs\ConvertImage::class);
 });
 
 test('move to draft', function () {
@@ -166,7 +169,8 @@ test('move to draft', function () {
     actingAs($user)->deleteJson("/api2/draft/$work->id/draft")->assertNoContent();
     $this->assertDatabaseHas('works', [
         'id' => $work->id,
-        'published_at' => null
+        'published_at' => null,
+        'status' => \App\Enums\WorkStatuses::DRAFT
     ]);
 });
 
@@ -183,6 +187,7 @@ test('delete draft', function () {
     actingAs($user)->deleteJson("/api2/draft/$work->id")->assertNoContent();
     $this->assertDatabaseHas('works', [
         'id' => $work->id,
-        'deleted_at' => now()
+        'deleted_at' => now(),
+        'status' => \App\Enums\WorkStatuses::DELETED,
     ]);
 });

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\TagTypes;
+use App\Enums\WorkStatuses;
 use App\Events\PublishedWorkUpdated;
 use App\Events\WorkDeleted;
 use App\Events\WorkPublished;
@@ -16,7 +17,7 @@ class Work extends Model
     use HasFactory, SoftDeletes, Publishable;
 
     protected $fillable = [
-        'old_id', 'user_id', 'image_id', 'published_at', 'rating', 'price', 'hosts', 'full_image_id'
+        'old_id', 'user_id', 'image_id', 'published_at', 'rating', 'price', 'hosts', 'full_image_id', 'status'
     ];
 
     protected $hidden = [
@@ -25,6 +26,7 @@ class Work extends Model
 
     protected $casts = [
         'published_at' => 'datetime',
+        'status' => WorkStatuses::class
     ];
 
     protected $dispatchesEvents = [
@@ -62,12 +64,12 @@ class Work extends Model
 
     public function image()
     {
-        return $this->hasOne(Image::class,'id','image_id');
+        return $this->hasOne(Image::class, 'id', 'image_id');
     }
 
     public function full()
     {
-        return $this->hasOne(Image::class,'id','full_image_id');
+        return $this->hasOne(Image::class, 'id', 'full_image_id');
     }
 
     public function tags()
@@ -92,11 +94,11 @@ class Work extends Model
 
     public function votes()
     {
-        return $this->morphMany(Vote::class,'votable');
+        return $this->morphMany(Vote::class, 'votable');
     }
 
     public function comments()
     {
-        return $this->morphMany(Comment::class,'commentable');
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }
