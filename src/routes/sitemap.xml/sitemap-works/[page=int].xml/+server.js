@@ -5,10 +5,9 @@ const url = 'http://localhost:3000/';
 const urlsPerSitemap = 10;
 
 export async function GET({ params }) {
-	let page = params.page;
 	const works = await prisma.works.findMany({
 		take: urlsPerSitemap,
-		skip: page * urlsPerSitemap,
+		skip: params.page * urlsPerSitemap,
 		select: {
 			id: true,
 			updated_at: true
