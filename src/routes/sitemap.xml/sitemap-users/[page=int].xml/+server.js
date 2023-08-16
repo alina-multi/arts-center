@@ -1,6 +1,7 @@
 import { prisma } from '$lib/server/database/prisma';
+import { createXml } from '$lib/helpers/sitemap';
 
-const site = 'http://localhost:3000';
+const url = 'http://localhost:3000/';
 const urlsPerSitemap = 10;
 
 export async function GET({ params }) {
@@ -15,32 +16,7 @@ export async function GET({ params }) {
 		}
 	});
 
-	const body = sitemap(users);
-	const response = new Response(body);
-	response.headers.set('Cache-Control', 'max-age=0, s-maxage=3600');
-	response.headers.set('Content-Type', 'application/xml');
-	return response;
-}
+	const res = createXml(users, url, 'username');
 
-function sitemap(users) {
-	return `<?xml version="1.0" encoding="UTF-8" ?>
-    <urlset 
-    xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:news="https://www.google.com/schemas/sitemap-news/0.9"
-    xmlns:xhtml="https://www.w3.org/1999/xhtml"
-    xmlns:mobile="https://www.google.com/schemas/sitemap-mobile/1.0"
-    xmlns:image="https://www.google.com/schemas/sitemap-image/1.1">
-    ${users
-			.map((user) => {
-				return `
-        <url>
-
-            <loc>${site}/${user.username}</loc>
-            <lastmod>${user.updated_at}</lastmod>
-        </url>
-        `;
-			})
-			.join('')}
-    </urlset>
-    `;
+	return res;
 }

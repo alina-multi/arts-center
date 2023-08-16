@@ -28,7 +28,6 @@ function sitemapindex(works, users) {
 			.map((page) => {
 				return `<sitemap>
         <loc>${site}/sitemap-works/${page}.xml</loc>
-        <lastmod>${new Date().toISOString()}</lastmod>
     </sitemap>`;
 			})
 			.join('') +
@@ -36,7 +35,6 @@ function sitemapindex(works, users) {
 			.map((page) => {
 				return `<sitemap>
         <loc>${site}/sitemap-users/${page}.xml</loc>
-        <lastmod>${new Date().toISOString()}</lastmod>
     </sitemap>`;
 			})
 			.join('') +
