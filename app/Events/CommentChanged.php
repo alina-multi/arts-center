@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Comment;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -13,15 +14,12 @@ use Illuminate\Queue\SerializesModels;
 class CommentChanged
 {
     use SerializesModels, Dispatchable, InteractsWithSockets;
-
-    public $model;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($model)
+    public function __construct(public Comment $model)
     {
-        $this->model = $model;
     }
 }

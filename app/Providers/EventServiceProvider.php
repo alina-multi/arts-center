@@ -3,11 +3,13 @@
 namespace App\Providers;
 
 use App\Events\CommentChanged;
+use App\Events\ImageCreated;
 use App\Events\PublishedWorkUpdated;
 use App\Events\WorkDeleted;
 use App\Events\WorkPublished;
 use App\Listeners\AddToFeeds;
 use App\Listeners\ClearCache;
+use App\Listeners\ConvertImage;
 use App\Listeners\SendNotifications;
 use App\Listeners\TranslateWork;
 use Illuminate\Auth\Events\Registered;
@@ -42,6 +44,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         WorkDeleted::class => [
             ClearCache::class,
+        ],
+        ImageCreated::class => [
+            ConvertImage::class
         ]
     ];
 
