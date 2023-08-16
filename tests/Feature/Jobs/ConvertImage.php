@@ -8,9 +8,10 @@ uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 test('Converts image', function () {
     Storage::fake('s3');
-
-    $image = App\Models\Image::factory(['folder' => \App\Enums\ImageFolders::Works])
-        ->hasVariants(1, ['original' => true, 'width' => 2400, 'height' => 2400])->create();
+    $image =App\Models\Image::withoutEvents(function () {
+     return App\Models\Image::factory(['folder' => \App\Enums\ImageFolders::Works])
+            ->hasVariants(1, ['original' => true, 'width' => 2400, 'height' => 2400])->create();
+    });
     $testFile = Illuminate\Http\UploadedFile::fake()->image("test.jpeg", 2400, 2400);
     Storage::putFileAs('', $testFile, "{$image->folder->value}/{$image->variants()->first()->file}");
     \App\Jobs\ConvertImage::dispatchSync($image);
@@ -25,6 +26,9 @@ test('Converts image', function () {
         $this->assertTrue(!empty($variant));
         $filename = "{$image->folder->value}/$variant->file";
         Storage::assertExists($filename);
+        $croppedImage = ImageEdit::make(Storage::get($filename));
+        $this->assertEquals($croppedImage->width(), 1200);
+        $this->assertEquals($croppedImage->height(), 1200);
     }
 
     // It shouldn't create second one with the same

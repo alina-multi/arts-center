@@ -80,6 +80,6 @@ class ConvertImage implements ShouldQueue
             'extension' => $extension
         ]);
         $filename = "{$this->image->folder->value}/$variant->file";
-        Storage::put($filename, (string)$newImage, 'public');
+        Storage::put($filename, (string)$newImage->encode($extension), 'public');
     }
 }
