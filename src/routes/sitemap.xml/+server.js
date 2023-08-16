@@ -1,43 +1,41 @@
 import { prisma } from '$lib/server/database/prisma';
+import { createXml } from '$lib/helpers/sitemap';
 
 const site = 'http://localhost:3000/sitemap.xml';
 const urlsPerSitemap = 10;
 
+function createPagesArray(entity) {
+	let count = Math.ceil(entity / urlsPerSitemap);
+	let array = Array.from(Array(count).keys());
+	return array;
+}
+
 export async function GET() {
-	const countWorks = await prisma.works.count();
-	const pagesWorks = Math.ceil(countWorks / urlsPerSitemap);
+	const works = await prisma.works.count();
+	const users = await prisma.users.count();
 
-	const countUsers = await prisma.users.count();
-	const pagesUsers = Math.ceil(countUsers / urlsPerSitemap);
+	const body = sitemapindex([
+		{ pages: createPagesArray(works), slug: 'works' },
+		{ pages: createPagesArray(users), slug: 'users' }
+	]);
 
-	const worksArray = Array.from(Array(pagesWorks).keys());
-	const usersArray = Array.from(Array(pagesUsers).keys());
-
-	const body = sitemapindex(worksArray, usersArray);
-	const response = new Response(body);
-	response.headers.set('Cache-Control', 'max-age=0, s-maxage=3600');
-	response.headers.set('Content-Type', 'application/xml');
+	const response = createXml(body);
 	return response;
 }
 
-function sitemapindex(works, users) {
+function sitemapindex(entity) {
 	return (
 		`<?xml version="1.0" encoding="UTF-8"?>
     <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` +
-		works
-			.map((page) => {
-				return `<sitemap>
-        <loc>${site}/sitemap-works/${page}.xml</loc>
+		entity.map((items) => {
+			return items.pages
+				.map((page) => {
+					return `<sitemap>
+        <loc>${site}/sitemap-${items.slug}/${page}.xml</loc>
     </sitemap>`;
-			})
-			.join('') +
-		users
-			.map((page) => {
-				return `<sitemap>
-        <loc>${site}/sitemap-users/${page}.xml</loc>
-    </sitemap>`;
-			})
-			.join('') +
+				})
+				.join('');
+		}) +
 		`</sitemapindex>`
 	);
 }

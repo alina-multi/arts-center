@@ -1,5 +1,5 @@
 import { prisma } from '$lib/server/database/prisma';
-import { createXml } from '$lib/helpers/sitemap';
+import { sitemap, createXml } from '$lib/helpers/sitemap';
 
 const url = 'http://localhost:3000/';
 const urlsPerSitemap = 10;
@@ -15,7 +15,8 @@ export async function GET({ params }) {
 		}
 	});
 
-	const res = createXml(works, url, 'id', 'work');
-	console.log(res);
+	const body = sitemap(works, url, 'id', 'work');
+	const res = createXml(body);
+
 	return res;
 }

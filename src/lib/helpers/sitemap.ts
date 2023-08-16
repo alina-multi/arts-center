@@ -1,14 +1,13 @@
 import { locales } from '$lib/translations';
 
-export function createXml(entity, site, key, slug = null) {
-	const body = sitemap(entity, site, key, slug);
+export function createXml(body) {
 	const response = new Response(body);
 	response.headers.set('Cache-Control', 'max-age=0, s-maxage=3600');
 	response.headers.set('Content-Type', 'application/xml');
 	return response;
 }
 
-function sitemap(entity, site, key, slug) {
+export function sitemap(entity, site, key, slug = null) {
 	return `<?xml version="1.0" encoding="UTF-8" ?>
     <urlset 
     xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
@@ -35,5 +34,3 @@ ${entity
     </urlset>
     `;
 }
-
-
