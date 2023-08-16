@@ -9,6 +9,7 @@ use App\Models\Image;
 use App\Models\Work;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Bus;
 
 class WorkFactory extends Factory
 {
@@ -33,9 +34,35 @@ class WorkFactory extends Factory
             'price' => $this->faker->numberBetween(100, 10000),
             'rating' => $this->faker->numberBetween(0, 30),
             'comments' => $this->faker->numberBetween(0, 500),
-            'image_id'=> Image::factory()->create(['folder' => ImageFolders::Preview]),
-            'full_image_id'=> Image::factory()->create(['folder' => ImageFolders::Works]),
+            'image_id' => $this->faker->numberBetween(100, 10000),
+            'full_image_id' => $this->faker->numberBetween(100, 10000),
             'status' => WorkStatuses::PUBLISHED
         ];
+    }
+
+    public function convertedImages() : Factory
+    {
+        $full = Image::withoutEvents(function () {
+            return Image::factory()->create(['folder' => ImageFolders::Works]);
+        });
+        $preview = Image::withoutEvents(function () {
+            return Image::factory()->create(['folder' => ImageFolders::Preview]);
+        });
+        return $this->state(function () {
+            return [
+                'image_id' => $this->faker->numberBetween(100, 10000),
+                'full_image_id' => $this->faker->numberBetween(100, 10000),
+            ];
+        });
+    }
+
+    public function freshImages() : Factory
+    {
+        return $this->state(function () {
+            return [
+                'image_id' => $this->faker->numberBetween(100, 10000),
+                'full_image_id' => $this->faker->numberBetween(100, 10000),
+            ];
+        });
     }
 }

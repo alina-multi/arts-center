@@ -15,6 +15,7 @@ uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 test('create draft', function () {
     Storage::fake('s3');
+    Bus::fake();
     $images = [
         'temp/works/1_1.jpeg',
         'temp/works/1_2.jpeg',
@@ -38,6 +39,7 @@ test('create draft', function () {
             ->has('full', 3)
             ->etc()
         );
+    Bus::assertDispatched(\App\Jobs\ConvertImage::class);
 });
 
 test('edit draft', function () {
@@ -157,7 +159,6 @@ test('publish draft', function () {
         'status' => \App\Enums\WorkStatuses::USER_PUBLISHED
     ]);
     Bus::assertDispatched(\App\Jobs\TranslateWork::class);
-    Bus::assertDispatched(\App\Jobs\ConvertImage::class);
 });
 
 test('move to draft', function () {

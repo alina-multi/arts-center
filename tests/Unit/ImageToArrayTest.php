@@ -6,7 +6,9 @@ use App\Models\Image;
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 test('to searchable array', function () {
-    $image = Image::factory()->create(['folder' => ImageFolders::Preview]);
+    Bus::fake();
+    Storage::fake();
+    $image = Image::factory()->converted()->create(['folder' => ImageFolders::Preview]);
     $result = $image->toArray();
     expect($result)->toEqual([
         "src" => "preview/1.jpeg",
@@ -22,8 +24,8 @@ test('to searchable array', function () {
         ],
         "original" => [
             "src" => "preview/5.jpeg",
-            "width" => 1024,
-            "height" => 768
+            "width" => 1200,
+            "height" => 900
         ]
     ]);
 });

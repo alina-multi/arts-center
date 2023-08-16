@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Events\ImageCreated;
 use App\Models\Image;
 use GPBMetadata\Google\Api\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -57,7 +58,9 @@ class ImageHelper
             'size' => Storage::size($tmpPath),
             'original' => true
         ]);
+        $newLoc="$folder/$variant->file";
         Storage::move($tmpPath, "$folder/$variant->file");
+        ImageCreated::dispatch($image);
         return $image;
     }
 }

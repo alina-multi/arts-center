@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Enums\ImageExtentions;
 use App\Enums\ImageFolders;
+use App\Events\ImageCreated;
 use App\Models\Work;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -46,5 +47,6 @@ class CropWorkImage implements ShouldQueue
         $this->work->update(['image_id' => $newImage->id]);
         $filename = $newImage->getOriginalPath();
         Storage::put($filename, (string)$cropped, 'public');
+        ImageCreated::dispatch($newImage);
     }
 }

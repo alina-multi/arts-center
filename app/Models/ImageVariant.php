@@ -17,6 +17,11 @@ class ImageVariant extends Model
         'extension' => ImageExtentions::class
     ];
 
+    public function image()
+    {
+        return $this->belongsTo(Image::class);
+    }
+
     function getFileAttribute(): string
     {
         return "$this->id.{$this->extension->value}";

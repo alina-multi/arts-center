@@ -31,9 +31,6 @@ class Image extends Model
     protected $appends = ['src', 'sources', 'original'];
 
     protected $visible = ['src',  'sources', 'original'];
-    protected $dispatchesEvents = [
-        'created' => ImageCreated::class
-    ];
 
     public function variants(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
@@ -80,6 +77,7 @@ class Image extends Model
         $originalVariant = $this->variants
             ->where('original', true)
             ->first();
+        $link="{$this->folder->value}/$originalVariant->file";
         return "{$this->folder->value}/$originalVariant->file";
     }
 
