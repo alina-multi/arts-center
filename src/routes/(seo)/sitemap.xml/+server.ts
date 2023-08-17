@@ -10,10 +10,10 @@ function createPagesArray(count: number) {
 	return array;
 }
 
-export async function GET({url}) {
+export async function GET({ url }) {
 	site = url.origin;
-	const works = await prisma.works.count() * locales.get().length;
-	const users = await prisma.users.count() * locales.get().length;
+	const works = (await prisma.works.count()) * locales.get().length;
+	const users = (await prisma.users.count()) * locales.get().length;
 
 	const body = sitemapindex([
 		{ pages: createPagesArray(works), slug: 'works' },

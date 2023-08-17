@@ -8,7 +8,7 @@
 
 	let work = data.work;
 	let title = languageFind(work.titles)?.title;
-	let description = languageFind(work.titles)?.description.slice(0, 155);
+	let description = languageFind(work.titles)?.description
 	let author = work.owners.map((owner) => owner.name).join(', ');
 	let image = work.full.original.src;
 	

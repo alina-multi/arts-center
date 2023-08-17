@@ -10,7 +10,7 @@
 	export let user: User;
 </script>
 
-<Dropdown style="-right-[60px]  z-50 w-60  text-sm mt-2">
+<Dropdown style="-right-[60px]  z-40 w-60  text-sm mt-2" z={30}>
 	<slot:fragment slot="button">
 		{#if user.photo}
 			<div class=" w-10 h-10 bg-zinc-300 dark:bg-gray-800 rounded-full overflow-hidden shadow-sm">

@@ -13,7 +13,7 @@
 	let isMy = handleIsMy(currentUser, user.id);
 
 	let open = false;
-	let follows = $page.data.currentUser?.follows.user;
+	let follows = currentUser?.follows.user;
 	let isFollowing = follows?.some((id) => id === Number(user.id));
 
 	async function fetchData(method) {
@@ -44,15 +44,17 @@
 	function onFollow() {
 		isFollowing = true;
 		fetchData('POST');
-		$page.data.currentUser.follows.user.push(Number(user.id));
+		$page.data.currentUser?.follows.user.push(Number(user.id));
 	}
 
 	async function onUnfollow() {
 		isFollowing = false;
 		fetchData('DELETE');
-		$page.data.currentUser.follows.user = $page.data.currentUser.follows.user.filter(
+		let { follows } = $page.data.currentUser;
+		follows = $page.data.currentUser?.follows.user.filter(
 			(id) => id !== Number(user.id)
 		);
+		
 	}
 </script>
 

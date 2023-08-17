@@ -4,7 +4,7 @@ import { sitemap, createXml } from '$lib/helpers/sitemap';
 const urlsPerSitemap = 10000;
 
 export async function GET({ params, url }) {
-	const base  = url.origin;
+	const base = url.origin;
 	const users = await prisma.users.findMany({
 		take: urlsPerSitemap,
 		skip: params.page * urlsPerSitemap,

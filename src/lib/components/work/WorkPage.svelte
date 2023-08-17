@@ -34,7 +34,7 @@
 					class=" w-full flex gap-3 items-center max-lg:bg-gray-100 max-lg:px-3 dark:bg-zinc-900 dark:border-zinc-800 text-gray-800 dark:text-zinc-500 border rounded-sm lg:border-0"
 				>
 					<div class="w-full flex items-center justify-between gap-2 py-3">
-						<RatingPreviewVote entity={work} {currentUser} showVotedPreview votable_type={'work'} />
+						<RatingPreviewVote entity={work} showVotedPreview votable_type={'work'} />
 					</div>
 
 					<BookmarkButton />

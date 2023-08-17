@@ -7,7 +7,7 @@
 		user,
 		parentComments,
 		commentID;
-	console.log(user);
+
 
 	async function fetchData(method) {
 		const res = await fetch(`/api/blacklist`, {

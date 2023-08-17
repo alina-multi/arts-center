@@ -8,7 +8,7 @@
 	import * as devalue from 'devalue';
 	import SideMenu from '$lib/components/nav/side/SideMenu.svelte';
 
-	export let users: Users[], categories, countries, params;
+	export let users: Users[], categories, countries, params, currentUser;
 
 	let newBatch = [];
 	let page = params.page;

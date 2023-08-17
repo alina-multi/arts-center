@@ -3,8 +3,12 @@
 	import Picture from '$lib/components/atoms/Picture.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { User } from '@steeze-ui/heroicons';
+	import type { User as UserType } from '$lib/interfaces/User';
 
-	export let user, size, withName, nameStyles;
+	export let user: UserType,
+		size: string,
+		withName: boolean = false,
+		nameStyles: string = '';
 	$: href = localePath(`/${user.username}`);
 
 	if (!size) {
