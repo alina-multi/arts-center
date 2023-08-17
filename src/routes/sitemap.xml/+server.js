@@ -2,7 +2,7 @@ import { prisma } from '$lib/server/database/prisma';
 import { createXml } from '$lib/helpers/sitemap';
 
 const site = 'http://localhost:3000/sitemap.xml';
-const urlsPerSitemap = 10;
+const urlsPerSitemap = 10000;
 
 function createPagesArray(entity) {
 	let count = Math.ceil(entity / urlsPerSitemap);

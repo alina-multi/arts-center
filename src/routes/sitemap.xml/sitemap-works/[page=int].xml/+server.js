@@ -2,7 +2,7 @@ import { prisma } from '$lib/server/database/prisma';
 import { sitemap, createXml } from '$lib/helpers/sitemap';
 
 const url = 'http://localhost:3000/';
-const urlsPerSitemap = 10;
+const urlsPerSitemap = 10000;
 
 export async function GET({ params }) {
 	const works = await prisma.works.findMany({
