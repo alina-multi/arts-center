@@ -2,12 +2,13 @@
 	import toast from 'svelte-french-toast';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { NoSymbol } from '@steeze-ui/heroicons';
+	import type { User } from '$lib/interfaces/User';
 
 	export let type: 'block' | 'unblock' = 'block',
-		user,
-		parentComments,
-		commentID;
-	console.log(user);
+		user: User ,
+		parentComments : [Comment] | boolean = false,
+		commentID : string | boolean = false;
+
 
 	async function fetchData(method) {
 		const res = await fetch(`/api/blacklist`, {

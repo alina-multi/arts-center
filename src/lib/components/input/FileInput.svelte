@@ -2,11 +2,11 @@
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
 	export let id: string,
-		placeholder: string,
+		placeholder: string ='',
 		value: string,
 		name: string,
-		multiple: boolean,
-		required: boolean,
+		multiple: boolean = false,
+		required: boolean = false,
 		accept: string;
 </script>
 

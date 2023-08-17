@@ -28,7 +28,7 @@
 <div class="flex justify-center w-full" bind:this={el}>
 	{#if loading}
 		<div class="w-20 h-20 flex justify-center m-20">
-			<Loader class="mx-auto" />
+			<Loader />
 		</div>
 	{/if}
 </div>

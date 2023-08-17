@@ -5,7 +5,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { CalendarDays, Star } from '@steeze-ui/heroicons';
 
-	export let user: User, full: boolean;
+	export let user: User, full: boolean = false;
 </script>
 
 {#if full}

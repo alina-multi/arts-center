@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import {languageFind} from '$lib/translations';
 	import PhotoSwipeLightbox from 'photoswipe/lightbox';
 	import ImageLightBox from './ImageLightBox.svelte';
 	import 'photoswipe/style.css';
 	export let work;
+	let description = languageFind(work.titles)?.description;
 
 	let galleryID = 'work-gallery';
+	
 
 	onMount(() => {
 		let lightbox = new PhotoSwipeLightbox({
@@ -33,4 +36,4 @@
 		<ImageLightBox image={lastChild} alt={'??? doesnt exist'} />
 	{/if}
 </div>
-<p class="whitespace-pre-line">{work.titles[0].description}</p>
+<p class="whitespace-pre-line">{description??''}</p>

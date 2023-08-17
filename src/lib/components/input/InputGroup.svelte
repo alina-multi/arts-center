@@ -1,7 +1,7 @@
 <script lang="ts">
 	import newUniqueId from 'locally-unique-id-generator';
 
-	export let label: string, description: string, error: string;
+	export let label: string | boolean =false, description: string | boolean =false, error: string | boolean = false;
 
 	// Generate a unique ID for the fields
 	const elementId = newUniqueId();

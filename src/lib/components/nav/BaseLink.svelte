@@ -5,7 +5,7 @@
 	export let exact = false;
 	export let reload = false;
 	export let preload = 'hover';
-	export let active: boolean;
+	export let active: boolean | undefined = undefined;
 	export let activeClass = '';
 	export let inactiveClass = '';
 	let clazz;

@@ -31,7 +31,6 @@
 		</div>
 		<UserDetails
 			{user}
-			wrap="flex flex-wrap text-sm text-gray-500 dark:text-gray-300 gap-1 md:gap-2 items-center"
 		/>
 	</div>
 </div>

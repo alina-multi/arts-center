@@ -22,7 +22,6 @@
 					tags={options.tags}
 					selected={params.tag}
 					{urlGenerator}
-					type={'tags'}
 					{params}
 				/>
 			</div>

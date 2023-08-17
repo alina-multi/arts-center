@@ -1,6 +1,6 @@
 <script lang="ts">
-	export let placeholder: string, value: string, error: boolean, name: string, id: string;
-</script>
+	export let placeholder: string = '', value: string, error: boolean, name: string, id: string;
+</script> 
 
 <input
 	type="email"

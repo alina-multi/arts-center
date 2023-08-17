@@ -3,6 +3,12 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
+	let users = data.users;
+	let categories = data.categories;
+	let params = data.params;
+	let countries = data.countries;
+
+
 </script>
 
-<UserPreviewList {...data} />
+<UserPreviewList {users} {categories} {params} {countries}/>

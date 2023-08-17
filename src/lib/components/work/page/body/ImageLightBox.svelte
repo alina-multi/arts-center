@@ -2,7 +2,7 @@
 	import Picture from '$lib/components/atoms/Picture.svelte';
 	export let image,
 		alt: string,
-		original: true,
+		original: boolean = false,
 		style = 'aspect-[4/3] flex object-cover';
 </script>
 

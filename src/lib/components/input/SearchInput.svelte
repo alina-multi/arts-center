@@ -5,6 +5,7 @@
 	import debounce from 'lodash.debounce';
 	import { goto } from '$app/navigation';
 	import Loader from '$lib/components/atoms/Loader.svelte';
+	import newUniqueId from 'locally-unique-id-generator';
 
 	let value = '',
 		totalHits,
@@ -12,6 +13,7 @@
 		results = [];
 	$: open = value.length > 0;
 	let searchValue = '';
+	const id = newUniqueId();
 
 	function onEnter(e: KeyboardEvent) {
 		if (e.key === 'Enter' && totalHits > 20) {
@@ -58,8 +60,8 @@
 			on:keydown={onEnter}
 			bind:value
 			type="text"
-			name="search"
-			id="search"
+			name="search-{id}"
+			id="search-{id}"
 			autocomplete="off"
 			placeholder="Search..."
 			class=" block w-full rounded-full pl-8 py-0.5 dark:bg-zinc-700 dark:border-zinc-700 border-gray-300 border placeholder:text-zinc-400 focus:ring-0 focus:border-gray-500 sm:text-sm sm:leading-6"
