@@ -47,7 +47,7 @@
 			<div class=""><TotalRating {user} full /></div>
 
 			<div class="w-full xl:text-base xl:px-9 xl:mt-2">
-				<RatingTags {user} {onToggle} {showRatings} button />
+				<RatingTags {user} {onToggle} {showRatings}  />
 			</div>
 		</div>
 	</div>

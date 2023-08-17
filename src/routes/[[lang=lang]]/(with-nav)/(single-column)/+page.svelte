@@ -3,6 +3,9 @@
 	import Gallery from '$lib/components/work/Gallery.svelte';
 
 	export let data: PageData;
+	let gallery = data.gallery;
+	let categories = data.categories;
+	let params = data.params;
 </script>
 
-<Gallery {...data} />
+<Gallery {gallery} {categories}  {params}/>

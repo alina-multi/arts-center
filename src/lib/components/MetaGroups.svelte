@@ -1,5 +1,5 @@
 <script lang='ts'>
-	export let title, description, author, image;
+	export let title:string, description: string|null, author:string | null = null, image:string|null;
 </script>
 
 <svelte:head>

@@ -62,5 +62,5 @@
 </script>
 
 {#if uppy}
-	<Dashboard class="w-full" {props} {uppy} plugins={['Webcam']} />
+	<Dashboard  {props} {uppy} plugins={['Webcam']} />
 {/if}

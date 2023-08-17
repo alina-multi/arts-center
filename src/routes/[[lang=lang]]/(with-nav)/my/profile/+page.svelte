@@ -117,7 +117,7 @@
 			let:elementId={id}
 			let:hasError={error}
 		>
-			<PasswordInput {id} {error} name="current_password" />
+			<PasswordInput {id} {error} name="current_password" autocomplete="off"  />
 		</InputGroup>
 	</FormGroup>
 	<slot><ButtonsGroup /></slot>

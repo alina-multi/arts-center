@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let id: string, placeholder: string, value: string, error: boolean, name: string;
+	export let id: string, placeholder: string = '', value: string, error: boolean = false, name: string;
 </script>
 
 <input

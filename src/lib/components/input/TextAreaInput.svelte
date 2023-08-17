@@ -1,16 +1,17 @@
 <script lang="ts">
 	import newUniqueId from 'locally-unique-id-generator';
 
-	export let label: string,
-		description: string,
-		placeholder: string,
+	export let label: string | boolean = false,
+		description: string | boolean = false,
+		placeholder: string = '',
 		value: string,
-		error: string,
+		error: string | boolean = false,
 		name: string,
-		rows = 3;
+		rows = 3, 
+		id = newUniqueId();
 
 	// Generate a unique ID for the fields
-	const id = newUniqueId();
+	
 	const descriptionId = id + '-description';
 	const errorId = id + '-error';
 </script>

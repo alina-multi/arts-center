@@ -22,4 +22,4 @@
 	};
 </script>
 
-<FilterTag tags={options.tags} selected={params.tag} {urlGenerator} type={'tags'} {params} />
+<FilterTag tags={options.tags} selected={params.tag} {urlGenerator} {params} />

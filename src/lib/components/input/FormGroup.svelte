@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let h1, h2;
+	export let h1: string | boolean = false, h2: string | boolean = false;
 	let clazz = '';
 	export { clazz as class };
 </script>

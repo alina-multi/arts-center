@@ -50,8 +50,7 @@
 	async function onUnfollow() {
 		isFollowing = false;
 		fetchData('DELETE');
-		let { follows } = $page.data.currentUser;
-		follows = $page.data.currentUser?.follows.user.filter(
+		$page.data.currentUser.follows = $page.data.currentUser?.follows.user.filter(
 			(id) => id !== Number(user.id)
 		);
 		
