@@ -1,10 +1,10 @@
 import { prisma } from '$lib/server/database/prisma';
 import { sitemap, createXml } from '$lib/helpers/sitemap';
 
-const url = 'http://localhost:3000/';
 const urlsPerSitemap = 10000;
 
-export async function GET({ params }) {
+export async function GET({ params, url }) {
+	const base  = url.origin;
 	const users = await prisma.users.findMany({
 		take: urlsPerSitemap,
 		skip: params.page * urlsPerSitemap,
@@ -13,7 +13,7 @@ export async function GET({ params }) {
 			updated_at: true
 		}
 	});
-	const body = sitemap(users, url, 'username');
+	const body = sitemap(users, base, 'username');
 	const res = createXml(body);
 	return res;
 }

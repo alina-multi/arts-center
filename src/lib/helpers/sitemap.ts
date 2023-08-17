@@ -20,7 +20,7 @@ ${entity
 		return locales.get().map((locale) => {
 			return `
         <url>
-            <loc>${site}${locale !== 'en' ? `${locale}/` : ''}${slug ? `${slug}/` : ''}${
+            <loc>${site}/${locale !== 'en' ? `${locale}/` : ''}${slug ? `${slug}/` : ''}${
 							item[key]
 						}</loc>
             <lastmod>${item.updated_at}</lastmod>
