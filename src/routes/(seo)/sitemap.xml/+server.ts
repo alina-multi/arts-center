@@ -1,9 +1,9 @@
 import { prisma } from '$lib/server/database/prisma';
 import { createXml } from '$lib/helpers/sitemap';
-import { locales } from '$lib/translations/index.js';
-import { PrismaClient } from '@prisma/client';
 
-const urlsPerSitemap = 10;
+import {urlsPerSitemap} from '../config'
+
+
 let site = '';
 function createPagesArray(count: number) {
 	let elements = Math.ceil(count / urlsPerSitemap);

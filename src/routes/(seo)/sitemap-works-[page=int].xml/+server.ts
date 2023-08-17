@@ -1,7 +1,6 @@
 import { prisma } from '$lib/server/database/prisma';
 import { sitemap, createXml } from '$lib/helpers/sitemap';
-
-const urlsPerSitemap = 10000;
+import {urlsPerSitemap} from '../config'
 
 export async function GET({ params, url }) {
 	const base  = url.origin;
