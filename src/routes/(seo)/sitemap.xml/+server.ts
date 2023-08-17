@@ -1,13 +1,12 @@
 import { prisma } from '$lib/server/database/prisma';
 import { createXml } from '$lib/helpers/sitemap';
 
-import {urlsPerSitemap} from '../config'
-
+import { urlsPerSitemap } from '../config';
 
 let site = '';
 function createPagesArray(count: number) {
-	let elements = Math.ceil(count / urlsPerSitemap);
-	let array = Array.from(Array(elements).keys());
+	const elements = Math.ceil(count / urlsPerSitemap);
+	const array = Array.from(Array(elements).keys());
 
 	return array;
 }
@@ -21,9 +20,7 @@ export async function GET({ url }) {
 			}
 		}
 	});
-	const users = await prisma.users.count(
-	
-	);
+	const users = await prisma.users.count();
 
 	const body = sitemapindex([
 		{ pages: createPagesArray(works), slug: 'works' },
