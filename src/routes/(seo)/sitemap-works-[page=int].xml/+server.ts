@@ -8,10 +8,16 @@ export async function GET({ params, url }) {
 	const works = await prisma.works.findMany({
 		take: urlsPerSitemap,
 		skip: params.page * urlsPerSitemap,
+		where: {
+			NOT: {
+				published_at: null
+			}
+		},
 		select: {
 			id: true,
 			updated_at: true
-		}
+		},
+		orderBy: {id: 'asc'}
 	});
 
 	const body = sitemap(works, base, 'id', 'work');

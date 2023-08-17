@@ -1,19 +1,29 @@
 import { prisma } from '$lib/server/database/prisma';
 import { createXml } from '$lib/helpers/sitemap';
 import { locales } from '$lib/translations/index.js';
+import { PrismaClient } from '@prisma/client';
 
-const urlsPerSitemap = 10000;
+const urlsPerSitemap = 10;
 let site = '';
 function createPagesArray(count: number) {
 	let elements = Math.ceil(count / urlsPerSitemap);
 	let array = Array.from(Array(elements).keys());
+
 	return array;
 }
 
-export async function GET({url}) {
+export async function GET({ url }) {
 	site = url.origin;
-	const works = await prisma.works.count() * locales.get().length;
-	const users = await prisma.users.count() * locales.get().length;
+	const works = await prisma.works.count({
+		where: {
+			NOT: {
+				published_at: {}
+			}
+		}
+	});
+	const users = await prisma.users.count(
+	
+	);
 
 	const body = sitemapindex([
 		{ pages: createPagesArray(works), slug: 'works' },

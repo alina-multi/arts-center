@@ -8,10 +8,12 @@ export async function GET({ params, url }) {
 	const users = await prisma.users.findMany({
 		take: urlsPerSitemap,
 		skip: params.page * urlsPerSitemap,
+		
 		select: {
 			username: true,
 			updated_at: true
-		}
+		},
+		orderBy: {id: 'asc'}
 	});
 	const body = sitemap(users, base, 'username');
 	const res = createXml(body);
