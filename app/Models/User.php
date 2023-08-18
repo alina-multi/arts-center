@@ -29,7 +29,7 @@ class User extends Authenticatable
 
     public $highlights;
 
-    protected $visible = ['id', 'name', 'username', 'created_at', 'photo', 'photo'];
+    protected $visible = ['id', 'name', 'username', 'created_at', 'photo'];
 
     /**
      * The attributes that should be cast to native types.

@@ -140,6 +140,10 @@ return [
                  'filterableAttributes'=> ['id', 'name', 'email', 'username', 'country', 'rating'],
                  'sortableAttributes' => ['created_at', 'rating'],
              ],
+            'works' => [
+                 'filterableAttributes'=> ['titles', 'published_at', 'rating', 'price'],
+                 'sortableAttributes' => ['published_at', 'rating', 'price'],
+             ],
         ],
     ],
 

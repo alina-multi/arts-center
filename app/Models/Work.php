@@ -7,14 +7,16 @@ use App\Enums\WorkStatuses;
 use App\Events\PublishedWorkUpdated;
 use App\Events\WorkDeleted;
 use App\Events\WorkPublished;
+use App\Http\Resources\ProfileResource;
 use App\Traits\Publishable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 class Work extends Model
 {
-    use HasFactory, SoftDeletes, Publishable;
+    use HasFactory, SoftDeletes, Publishable, Searchable;
 
     protected $fillable = [
         'old_id', 'user_id', 'image_id', 'published_at', 'rating', 'price', 'hosts', 'full_image_id', 'status'
@@ -32,6 +34,29 @@ class Work extends Model
     protected $dispatchesEvents = [
         'deleted' => WorkDeleted::class,
     ];
+
+    /*
+
+     */
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => (int)$this->id,
+            'published_at' => $this->published_at->toString(),
+            'rating' => (int)$this->rating,
+            'comments' => (int)$this->comments,
+            'hosts' => (int)$this->hosts,
+            'price' => (int)$this->price,
+            'titles' => $this->titles?->toArray(),
+            'image' => $this->image?->toArray(),
+            'owners' => $this->owners->toArray()
+        ];
+    }
+
+    protected function makeAllSearchableUsing(Builder $query): Builder
+    {
+        return $query->with('titles', 'image', 'image.variants', 'owners', 'owners.photo', 'owners.photo.variants');
+    }
 
     protected static function booted()
     {

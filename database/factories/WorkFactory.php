@@ -40,29 +40,31 @@ class WorkFactory extends Factory
         ];
     }
 
-    public function convertedImages() : Factory
+    public function convertedImages(): Factory
     {
         $full = Image::withoutEvents(function () {
-            return Image::factory()->create(['folder' => ImageFolders::Works]);
+            return Image::factory()->converted()->create(['folder' => ImageFolders::Works]);
         });
         $preview = Image::withoutEvents(function () {
-            return Image::factory()->create(['folder' => ImageFolders::Preview]);
+            return Image::factory()->converted()->create(['folder' => ImageFolders::Preview]);
         });
-        return $this->state(function () {
-            return [
-                'image_id' => $this->faker->numberBetween(100, 10000),
-                'full_image_id' => $this->faker->numberBetween(100, 10000),
-            ];
-        });
+        return $this->state(fn() => [
+            'image_id' => $preview->id,
+            'full_image_id' => $full->id,
+        ]);
     }
 
-    public function freshImages() : Factory
+    public function freshImages(): Factory
     {
-        return $this->state(function () {
-            return [
-                'image_id' => $this->faker->numberBetween(100, 10000),
-                'full_image_id' => $this->faker->numberBetween(100, 10000),
-            ];
+        $full = Image::withoutEvents(function () {
+            return Image::factory()->onlyOriginal()->create(['folder' => ImageFolders::Works]);
         });
+        $preview = Image::withoutEvents(function () {
+            return Image::factory()->onlyOriginal()->create(['folder' => ImageFolders::Preview]);
+        });
+        return $this->state(fn() => [
+            'image_id' => $preview->id,
+            'full_image_id' => $full->id,
+        ]);
     }
 }

@@ -28,6 +28,10 @@ class WorkTitle extends Model
         'created_at', 'updated_at'
     ];
 
+    protected $visible = [
+        'title', 'language', 'description', 'alt', 'colors'
+    ];
+
     public function work ()
     {
         return $this->belongsTo(Work::class);
