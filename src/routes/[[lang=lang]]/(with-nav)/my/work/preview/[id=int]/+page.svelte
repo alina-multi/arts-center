@@ -33,7 +33,9 @@
 		</div>
 	</FormGroup>
 </form>
-<Divider>This is how your work will look like in the gallery</Divider>
+<Divider
+styles="rounded-md font-semibold leading-6 text-sm md:text-base px-3 py-1 "
+>This is how your work will look like in the gallery</Divider>
 <ul
 	class="mt-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 lg:gap-3"
 >
