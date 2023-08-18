@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { User } from '$/lib/interfaces/User';
 	import Avatar from '$lib/components/atoms/Avatar.svelte';
-	import ModalWindow from '$lib/components/ModalWindow.svelte';
+	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
 
 	export let votes: User[] = [],
 		isLiked = false,

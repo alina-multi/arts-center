@@ -3,9 +3,9 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Home } from '@steeze-ui/heroicons';
 	import Picture from '$lib/components/atoms/Picture.svelte';
-	import MyProfileLinksGroup from '../user/MyProfileLinksGroup.svelte';
+	import MyProfileLinksGroup from './MyProfileLinksGroup.svelte';
 	import SideNavLink from '$lib/components/nav/side/SideNavLink.svelte';
-	import LogoutButton from '../atoms/LogoutButton.svelte';
+	import LogoutButton from '../atoms/Buttons/LogoutButton.svelte';
 	import Dropdown from '../atoms/Dropdown.svelte';
 	export let user: User;
 </script>

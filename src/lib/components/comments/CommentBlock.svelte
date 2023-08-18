@@ -11,9 +11,9 @@
 	import { сommentValidations, commentMassage, scrollToBottom } from '$lib/helpers/comments';
 	import toast from 'svelte-french-toast';
 	import { tick } from 'svelte';
-	import EllipsisButton from '$lib/components/atoms/EllipsisButton.svelte';
-	import BlockButton from '../atoms/BlockButton.svelte';
-	import ReportButton from '../atoms/ReportButton.svelte';
+	import EllipsisButton from '$lib/components/atoms/Buttons/EllipsisButton.svelte';
+	import BlockButton from '../atoms/Buttons/BlockButton.svelte';
+	import ReportButton from '../atoms/Buttons/ReportButton.svelte';
 
 	export let comment: Comment,
 		commentable_id: string,

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { localePath } from '$lib/translations';
-	import FilterTag from '$lib/components/nav/FilterTag.svelte';
+	import FilterTag from '$lib/components/filters/FilterTag.svelte';
 	export let tags, params;
 
 	const options = {

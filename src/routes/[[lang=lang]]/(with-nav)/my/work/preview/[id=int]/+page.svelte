@@ -2,7 +2,7 @@
 	import type { PageData } from './$types';
 	import WorkAddProgressSteps from '$lib/components/work/add/WorkAddProgressSteps.svelte';
 	import WorkPreview from '$lib/components/work/WorkPreview.svelte';
-	import WorkBody from '$lib/components/work/page/body/WorkBody.svelte';
+	import WorkBody from '$lib/components/work/page/WorkBody.svelte';
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
 	import CancelLinkButton from '$lib/components/input/CancelLinkButton.svelte';
 	import Divider from '$lib/components/atoms/Divider.svelte';

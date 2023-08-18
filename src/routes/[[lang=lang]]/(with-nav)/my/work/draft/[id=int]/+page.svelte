@@ -6,7 +6,7 @@
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
 	import { enhance } from '$app/forms';
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
-	import ModalWindow from '$lib/components/ModalWindow.svelte';
+	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
 	import ButtonsGroup from '$lib/components/forms/ButtonsGroup.svelte';
 	import CancelButton from '$lib/components/forms/CancelButton.svelte';
 

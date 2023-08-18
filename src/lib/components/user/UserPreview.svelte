@@ -2,7 +2,7 @@
 	import Avatar from '$lib/components/atoms/Avatar.svelte';
 	import UserDetails from '$lib/components/user/UserDetails.svelte';
 	import { localePath } from '$lib/translations';
-	import FollowButton from '$lib/components//atoms/FollowButton.svelte';
+	import FollowButton from '$lib/components/atoms/Buttons/FollowButton.svelte';
 	import Crown from '$lib/components/atoms/CrownIcon.svelte';
 	export let user;
 

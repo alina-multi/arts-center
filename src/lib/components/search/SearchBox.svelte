@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { localePath } from '$lib/translations';
 	import { Menu, MenuItems, MenuItem } from '@rgossiaux/svelte-headlessui';
-	import Avatar from './atoms/Avatar.svelte';
+	import Avatar from '../atoms/Avatar.svelte';
 	import cat from '$lib/images/cat-icons.svg';
 
 	export let open = false,

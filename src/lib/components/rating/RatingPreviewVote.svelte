@@ -7,7 +7,7 @@
 	import VotedList from '$lib/components/rating/VotedList.svelte';
 	import { page } from '$app/stores';
 	import { localePath, t } from '$lib/translations';
-	import ModalWindow from '$lib/components/ModalWindow.svelte';
+	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
 	import TopNavLink from '$lib/components/nav/TopNavLink.svelte';
 
 	export let entity: Work | Comment,

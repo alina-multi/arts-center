@@ -2,7 +2,7 @@
 	import UserPreview from '$lib/components/user/UserPreview.svelte';
 	import LastWorks from '$lib/components/atoms/LastWorks.svelte';
 	import type { UserPreview as Users } from '$lib/interfaces/User.ts';
-	import UsersFilters from '$lib/components/user/UsersFilters.svelte';
+	import UsersFilters from '$lib/components/filters/UsersFilters.svelte';
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
 	import { localePath } from '$lib/translations';
 	import * as devalue from 'devalue';

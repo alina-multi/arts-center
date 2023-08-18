@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { MagnifyingGlass, XMark } from '@steeze-ui/heroicons';
-	import SearchBox from '../SearchBox.svelte';
+	import SearchBox from './SearchBox.svelte';
 	import debounce from 'lodash.debounce';
 	import { goto } from '$app/navigation';
 	import Loader from '$lib/components/atoms/Loader.svelte';

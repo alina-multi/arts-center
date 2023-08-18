@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { localePath } from '$lib/translations';
 	import type { Tag } from '$lib/interfaces/Tag';
-	import FiltersBase from '$lib/components/nav/FiltersBase.svelte';
+	import FiltersBase from '$lib/components/filters/FiltersBase.svelte';
 
 	export let categories: Tag[];
 	export let params: {

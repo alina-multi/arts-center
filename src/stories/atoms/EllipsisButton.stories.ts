@@ -1,4 +1,4 @@
-import EllipsisButton from '$lib/components/atoms/EllipsisButton.svelte';
+import EllipsisButton from '$lib/components/atoms/Buttons/EllipsisButton.svelte';
 import type { Meta, StoryFn } from '@storybook/svelte';
 
 export default {

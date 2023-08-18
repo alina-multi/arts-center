@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { PlusCircle, CheckCircle } from '@steeze-ui/heroicons';
-	import ModalWindow from '$lib/components/ModalWindow.svelte';
+	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
 	import TopNavLink from '$lib/components//nav/TopNavLink.svelte';
 	import { page } from '$app/stores';
 	import { localePath, t } from '$lib/translations';
@@ -65,7 +65,6 @@
 		<TopNavLink href={localePath('/login?redirect=' + $page.url.pathname)}
 			>{$t('global.menu.login')}</TopNavLink
 		>
-
 		<span>or</span>
 		<TopNavLink href={localePath('/register')}>{$t('global.menu.register')}</TopNavLink>
 	</div>

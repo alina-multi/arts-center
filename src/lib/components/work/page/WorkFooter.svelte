@@ -2,7 +2,7 @@
 	import UserPreviewRegular from '$lib/components/user/UserPreview.svelte';
 	import CommentBlocks from '$lib/components/comments/CommentBlocks.svelte';
 	import { page } from '$app/stores';
-	import AuthStub from '../../AuthStub.svelte';
+	import AuthStub from '../AuthStub.svelte';
 
 	export let work,
 		comments = [];

@@ -3,7 +3,7 @@
 	import SideNav from '$lib/components/nav/side/SideNav.svelte';
 	import { page } from '$app/stores';
 	import Avatar from '$lib/components/atoms/Avatar.svelte';
-	import MyProfileLinksGroup from '$lib/components/user/MyProfileLinksGroup.svelte';
+	import MyProfileLinksGroup from '$lib/components/nav/MyProfileLinksGroup.svelte';
 	let user = $page.data.currentUser;
 </script>
 

@@ -1,9 +1,9 @@
 <script>
 	import { Dialog, DialogOverlay, DialogDescription } from '@rgossiaux/svelte-headlessui';
-	import Button from '../atoms/Button.svelte';
+	import Button from '../atoms/Buttons/Button.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { MagnifyingGlass, XCircle } from '@steeze-ui/heroicons';
-	import SearchInput from '$lib/components/input/SearchInput.svelte';
+	import SearchInput from '$lib/components/search/SearchInput.svelte';
 
 	let open = false;
 </script>

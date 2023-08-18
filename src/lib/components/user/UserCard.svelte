@@ -1,7 +1,7 @@
 <script lang="ts">
 	import RatingTags from '$lib/components/user/RatingTags.svelte';
 	import Avatar from '$lib/components/atoms/Avatar.svelte';
-	import FollowButton from '../atoms/FollowButton.svelte';
+	import FollowButton from '../atoms/Buttons/FollowButton.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { CalendarDays } from '@steeze-ui/heroicons';
 	import Country from './UserCountry.svelte';
