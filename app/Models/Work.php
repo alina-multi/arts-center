@@ -7,12 +7,12 @@ use App\Enums\WorkStatuses;
 use App\Events\PublishedWorkUpdated;
 use App\Events\WorkDeleted;
 use App\Events\WorkPublished;
-use App\Http\Resources\ProfileResource;
 use App\Traits\Publishable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\Builder;
 
 class Work extends Model
 {
