@@ -1,8 +1,10 @@
 <script lang="ts">
 	import UserPreviewRegular from '$lib/components/user/UserPreview.svelte';
+	import UserPreview from '$lib/components/user/UserPreview.svelte';
 	import CommentBlocks from '$lib/components/comments/CommentBlocks.svelte';
 	import { page } from '$app/stores';
 	import AuthStub from '../AuthStub.svelte';
+	import { User } from '@steeze-ui/heroicons';
 
 	export let work,
 		comments = [];
@@ -11,7 +13,7 @@
 <div
 	class="flex max-lg:flex-col justify-beetwen items-stretch lg:items-start lg:mt-6 gap-3 dark:text-gray-300"
 >
-	<div class="flex flex-col sm:w-full lg:flex-col gap-6 lg:w-2/6">
+	<div class="flex flex-col sm:w-full lg:flex-col gap-3 lg:w-2/6">
 		{#if work?.tags.length > 0}
 			<div
 				class="hidden lg:flex flex-wrap items-start justify-start border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 sm:p-3 gap-3 md:py-3 p-3 rounded-lgshadow-sm bg-gray-100"
@@ -33,10 +35,11 @@
 		{/if}
 
 		<div
-			class=" hidden lg:flex flex-col border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 gap-3 p-3 sm:p-6 sm:gap-6 rounded-md shadow-sm md:max-lg:w-1/2"
+			class=" hidden lg:flex flex-col border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 gap-3 p-3 rounded-md shadow-sm md:max-lg:w-1/2"
 		>
 			{#each work.owners as user}
-				<UserPreviewRegular {user} />
+			<UserPreview {user} />
+				<!-- <UserPreviewRegular {user} /> -->
 			{/each}
 		</div>
 	</div>
@@ -74,7 +77,7 @@
 		{/if}
 
 		<div
-			class=" sm:w-1/2 flex lg:hidden flex-col border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 p-3 gap-3 rounded-md shadow-sm s"
+			class=" sm:w-1/2 flex lg:hidden flex-col border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 px-3 rounded-md shadow-sm "
 		>
 			{#each work.owners as user}
 				<UserPreviewRegular {user} />
