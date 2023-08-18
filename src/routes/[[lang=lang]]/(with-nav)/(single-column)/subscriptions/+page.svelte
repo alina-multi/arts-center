@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import CrownIcon from '$lib/components/atoms/CrownIcon.svelte';
 	const includedFeatures = [
 		'A premium account that will set you apart from other users',
 		'Prioritization in the lists, which will provide more attention to your profile',
@@ -8,9 +9,9 @@
 	];
 </script>
 
-<div class=" my-9">
-	<div class="mx-auto max-w-7xl">
-		<div class="mx-auto max-w-2xl sm:text-center">
+<div class=" my-9 container">
+
+		<div class="mx-auto max-w-4xl text-center">
 			<h2 class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-4xl">
 				Make a profit from your creativity!
 			</h2>
@@ -20,10 +21,10 @@
 			</p>
 		</div>
 		<div
-			class="mx-auto max-w-2xl rounded-md ring-1 ring-zinc-200 dark:ring-zinc-800 dark:bg-zinc-900 sm:mt-6 lg:mx-0 lg:flex lg:max-w-none overflow-hidden"
+			class="rounded-md ring-1 ring-zinc-200 dark:ring-zinc-800 dark:bg-zinc-900 mt-6 lg:mx-0 lg:flex lg:max-w-none overflow-hidden"
 		>
 			<div class="p-8 sm:p-10 lg:flex-auto">
-				<h3 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+				<h3 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 max-sm:text-center">
 					Why subscribe and what are the benefits?
 				</h3>
 				<p class="mt-6 text-base leading-7 text-zinc-600 dark:text-zinc-400">
@@ -62,23 +63,20 @@
 					{/each}
 				</ul>
 			</div>
-			<div class="  lg:mt-0 lg:w-1/3 lg:max-w-md lg:flex-shrink-0 flex justify-center items-center">
+			<div class="  lg:mt-0 xl:w-1/3 lg:max-w-md lg:flex-shrink-0 flex justify-center items-center">
 				<div
-					class="lg:w-full bg-gray-50 dark:bg-gray-700 py-10 border-l border-gray-900/5 lg:flex lg:flex-col lg:justify-center h-full"
+					class="w-full bg-gray-50 dark:bg-gray-800 py-10 border-l border-gray-900/5 lg:flex lg:flex-col lg:justify-center h-full"
 				>
 					<div class="mx-auto max-w-xs px-8">
 						<p
-							class="text-xl leading-6 font-semibold text-zinc-600 dark:text-zinc-300 flex items-end gap-1"
+							class="text-xl  leading-5 font-semibold text-zinc-600 dark:text-zinc-300 flex items-end gap-3"
 						>
 							<span>Annual membership</span>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								class="fill-amber-500 w-6 h-6"
-								viewBox="0 -960 960 960"
-								><path
-									d="m385-412 36-115-95-74h116l38-119 37 119h117l-95 74 35 115-94-71-95 71ZM244-40v-304q-45-47-64.5-103T160-560q0-136 92-228t228-92q136 0 228 92t92 228q0 57-19.5 113T716-344v304l-236-79-236 79Zm236-260q109 0 184.5-75.5T740-560q0-109-75.5-184.5T480-820q-109 0-184.5 75.5T220-560q0 109 75.5 184.5T480-300ZM304-124l176-55 176 55v-171q-40 29-86 42t-90 13q-44 0-90-13t-86-42v171Zm176-86Z"
-								/></svg
-							>
+						
+								<CrownIcon style="w-7 h-7 stroke-amber-600 " />
+						
+							
+	
 						</p>
 						<p class="mt-6 flex items-baseline justify-center gap-x-2">
 							<span class="text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-200"
@@ -100,4 +98,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+
