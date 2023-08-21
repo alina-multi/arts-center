@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Avatar from '$lib/components/atoms/Avatar.svelte';
+	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
 	import UserDetails from '$lib/components/user/UserDetails.svelte';
 	import { localePath } from '$lib/translations';
 	import FollowButton from '$lib/components/atoms/Buttons/FollowButton.svelte';
@@ -12,7 +12,7 @@
 
 <div class="flex items-center gap-3 w-full ">
 	<div class="relative">
-		<Avatar {user} size={avatar_size} />
+		<AvatarLink {user} size={avatar_size} />
 
 		{#if user.subscribed}
 			<div class="absolute -top-1 -left-1 p-1 bg-gray-400/50 rounded-full">

@@ -19,7 +19,7 @@
 	import MyProfileLinksGroup from './MyProfileLinksGroup.svelte';
 	import LogoutButton from '../atoms/Buttons/LogoutButton.svelte';
 
-	import Avatar from '../atoms/Avatar.svelte';
+	import AvatarLink from '../atoms/AvatarLink.svelte';
 	import { page } from '$app/stores';
 	import FooterContent from '../footer/FooterContent.svelte';
 
@@ -86,7 +86,7 @@
 										class="flex justify-between gap-3 pl-6 pr-3 min-[500px]:pr-6 items-center w-full"
 									>
 										<span class="font-semibold flex items-center"
-											><Avatar user={currentUser} size={'w-10 h-10 '} withName /></span
+											><AvatarLink user={currentUser} size={'w-10 h-10 '} withName /></span
 										>
 
 										<AddWorkButton />

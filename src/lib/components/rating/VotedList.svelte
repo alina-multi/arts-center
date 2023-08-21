@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { User } from '$/lib/interfaces/User';
-	import Avatar from '$lib/components/atoms/Avatar.svelte';
+	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
 	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
 
 	export let votes: User[] = [],
@@ -20,10 +20,10 @@
 
 		<div class="flex -space-x-3 cursor-pointer">
 			{#each votesPreview as user}
-				<Avatar {user} size={'w-6 h-6 md:w-7 md:h-7'} />
+				<AvatarLink {user} size={'w-6 h-6 md:w-7 md:h-7'} />
 			{/each}
 			{#if isLiked}
-				<Avatar user={currentUser} size={'w-6 h-6 md:w-7 md:h-7'} />
+				<AvatarLink user={currentUser} size={'w-6 h-6 md:w-7 md:h-7'} />
 			{/if}
 		</div>
 	{/if}
@@ -46,7 +46,7 @@
 	>
 		{#each votes as user}
 			<li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-				<Avatar {user} withName size={'w-8 h-8'} nameStyles={'text-sm font-semibold text-black dark:text-white'} />
+				<AvatarLink {user} withName size={'w-8 h-8'} nameStyles={'text-sm font-semibold text-black dark:text-white'} />
 			</li>
 		{/each}
 	</ul>

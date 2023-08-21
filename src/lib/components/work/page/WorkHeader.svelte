@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Avatar from '$lib/components/atoms/Avatar.svelte';
+	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
 	import EllipsisButton from '$lib/components/atoms/Buttons/EllipsisButton.svelte';
 	import FollowButton from '$lib/components/atoms/Buttons/FollowButton.svelte';
 	import PriceLabel from '$lib/components/atoms/PriceLabel.svelte';
@@ -16,7 +16,7 @@
 		<div class="flex flex-col">
 			{#each work.owners as user}
 				<div class="flex items-center gap-3">
-					<Avatar {user} withName size={'w-8 h-8'} />
+					<AvatarLink {user} withName size={'w-8 h-8'} />
 
 					<FollowButton size={'sm'} {user} />
 				</div>

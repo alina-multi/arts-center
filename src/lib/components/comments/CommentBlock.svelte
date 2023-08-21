@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Comment } from '$lib/interfaces/Comment';
-	import Avatar from '$lib/components/atoms/Avatar.svelte';
+	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
 	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
 	import CommentInput from '$lib/components/comments/CommentInput.svelte';
 	import { page } from '$app/stores';
@@ -144,7 +144,7 @@
 		<div class="flex items-center justify-between pr-3">
 			<div class="flex items-center gap-2">
 				<div class="flex font-semibold">
-					<Avatar user={comment.owner} withName={true} size={'w-8 h-8 '} />
+					<AvatarLink user={comment.owner} withName={true} size={'w-8 h-8 '} />
 				</div>
 				<span class="h-1 w-1 bg-zinc-500 rounded-full" />
 				<Time relative timestamp={comment.created_at} class="text-zinc-500" />

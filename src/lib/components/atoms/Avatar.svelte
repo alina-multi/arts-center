@@ -5,7 +5,7 @@
 	import type { User as UserType } from '$lib/interfaces/User';
 
 	export let user: UserType,
-		size: string,
+		size: string;
 
 	if (!size) {
 		size = 'h-6 w-6';
