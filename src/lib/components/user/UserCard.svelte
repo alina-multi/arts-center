@@ -1,6 +1,6 @@
 <script lang="ts">
 	import RatingTags from '$lib/components/user/RatingTags.svelte';
-	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
+	import Avatar from '$lib/components/atoms/Avatar.svelte';
 	import FollowButton from '../atoms/Buttons/FollowButton.svelte';
 	import Country from './UserCountry.svelte';
 	import TotalRating from './TotalRating.svelte';
@@ -19,7 +19,7 @@
 		class="flex xl:flex-col gap-3 items-start {showRatings ? ' items-start ' : 'sm:items-center'}"
 	>
 	<div class="relative">
-		<AvatarLink {user} size={' w-32 h-32  max-xl:w-28 max-xl:h-28'} />
+		<Avatar {user} size={' w-32 h-32  max-xl:w-28 max-xl:h-28'} />
 		{#if user.subscribed}
 			<div class="absolute -top-1.5 right-3 p-1.5 bg-amber-500/60 rounded-full">
 				<Crown style="{"w-4 h-4"} stroke-white" />
