@@ -2,9 +2,7 @@
 	import { localePath } from '$lib/translations';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ChevronRight } from '@steeze-ui/heroicons';
-	import UserDetails from '$lib/components/user/UserDetails.svelte';
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
-	import Avatar from '$lib/components/atoms/Avatar.svelte';
 import NoResultsStub from '$lib/components/search/NoResultsStub.svelte';
 import UserPreview from '$lib/components/user/UserPreview.svelte';
 

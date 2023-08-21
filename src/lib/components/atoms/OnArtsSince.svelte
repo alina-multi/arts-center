@@ -1,6 +1,6 @@
 <script>
     import { Icon } from '@steeze-ui/svelte-icon';
-	import { CalendarDays, Star } from '@steeze-ui/heroicons';
+	import { CalendarDays } from '@steeze-ui/heroicons';
     export let user, size = 'w-[17px] h-[17px]';
 </script>
 

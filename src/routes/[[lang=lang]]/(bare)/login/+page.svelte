@@ -4,7 +4,6 @@
 	import EmailInput from '$lib/components/input/EmailInput.svelte';
 	import PasswordInput from '$lib/components/input/PasswordInput.svelte';
 	import InputGroup from '$lib/components/input/InputGroup.svelte';
-	export let form: ActionData;
 	import FacebookButton from '$lib/components/atoms/Buttons/FacebookButton.svelte';
 	import TwitterButton from '$lib/components/atoms/Buttons/TwitterButton.svelte';
 	import GoogleButton from '$lib/components/atoms/Buttons/GoogleButton.svelte';
@@ -12,6 +11,8 @@
 	import CheckBox from '$lib/components/input/CheckBox.svelte';
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
 	import Divider from '$lib/components/atoms/Divider.svelte';
+
+	export let form: ActionData;
 </script>
 
 <div class="flex min-h-full flex-col pt-12 sm:px-6 lg:px-8 bg:white sm:bg-gray-50 dark:bg-black">

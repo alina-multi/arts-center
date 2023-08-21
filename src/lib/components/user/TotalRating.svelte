@@ -4,7 +4,6 @@
 	export let user,
 		full = false,
 		forSubscribed = false;
-		console.log(user)
 </script>
 
 {#if user?.rating}

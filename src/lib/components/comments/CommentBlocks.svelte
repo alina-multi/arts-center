@@ -7,6 +7,7 @@
 	import { convertFetch } from '$lib/helpers/convertFetch';
 	import { сommentValidations, commentMassage, scrollToBottom } from '$lib/helpers/comments';
 	import { tick } from 'svelte';
+	import NoResultsStub from '../search/NoResultsStub.svelte';
 
 	export let comments, commentable_id: string;
 	commentable_id = commentable_id?.toString();
@@ -62,6 +63,7 @@
 <div>
 	<h3 class="sr-only">Comments</h3>
 	{#if currentUser} <CommentInput onSubmit={addNewComment} bind:value /> {/if}
+	{#if comments.length > 0}
 	<div id="parentBlock">
 		{#each parentComments as comment (comment.id)}
 			{#if comment.id === new_comment?.id}
@@ -75,4 +77,8 @@
 			{/if}
 		{/each}
 	</div>
+	{:else}
+	<NoResultsStub />
+	{/if}
+
 </div>

@@ -116,7 +116,7 @@
 			: 'hover:text-zinc-100'}  dark:bg-zinc-800 bg-white dark:border-zinc-700 dark:text-white"
 	>
 		{#if votable_type === 'work'}
-			<span class="border-r dark:border-zinc-700 pr-3 text-sm">Like {rating}</span>
+			<span class="border-r dark:border-zinc-700 pr-3 ">Like {rating}</span>
 		{/if}
 		{#if isLiked}
 			<button on:click={cancelVote}
@@ -133,7 +133,7 @@
 				><Icon
 					src={HandThumbUp}
 					theme="outline"
-					class=" {size} stroke-zinc-700 hover:scale-110 dark:stroke-zinc-100 hover:stroke-blue-700  "
+					class=" {size} stroke-zinc-700 hover:scale-110 dark:stroke-zinc-100 hover:stroke-grzincay-700  "
 				/></button
 			>
 		{/if}
