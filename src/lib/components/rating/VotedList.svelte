@@ -14,8 +14,8 @@
 
 <div class="flex items-center gap-1 dark:text-zinc-300 max-[400px]:text-xs text-sm lg:text-base">
 	{#if votes.length > 0}
-		<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointer">
-			<span class="mr-1">Liked by</span>
+		<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointe mr-1">
+			Liked by
 		</button>
 
 		<div class="flex -space-x-3 cursor-pointer">
@@ -46,7 +46,7 @@
 	>
 		{#each votes as user}
 			<li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-				<Avatar {user} withName size={'w-8 h-8'} nameStyles={'text-sm font-semibold '} />
+				<Avatar {user} withName size={'w-8 h-8'} nameStyles={'text-sm font-semibold text-black dark:text-white'} />
 			</li>
 		{/each}
 	</ul>
