@@ -4,13 +4,10 @@
 	import EmailInput from '$lib/components/input/EmailInput.svelte';
 	import PasswordInput from '$lib/components/input/PasswordInput.svelte';
 	import InputGroup from '$lib/components/input/InputGroup.svelte';
-	import FacebookButton from '$lib/components/atoms/Buttons/FacebookButton.svelte';
-	import TwitterButton from '$lib/components/atoms/Buttons/TwitterButton.svelte';
-	import GoogleButton from '$lib/components/atoms/Buttons/GoogleButton.svelte';
-	import AppleButton from '$lib/components/atoms/Buttons/AppleButton.svelte';
 	import CheckBox from '$lib/components/input/CheckBox.svelte';
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
 	import Divider from '$lib/components/atoms/Divider.svelte';
+	import SocialMediaButtons from '$lib/components/atoms/Buttons/SocialMediaButtons.svelte';
 
 	export let form: ActionData;
 </script>
@@ -66,12 +63,9 @@
 			<div class="mt-6">
 				<Divider>Or continue with</Divider>
 
-				<div class="mt-6 grid grid-cols-4 gap-3">
-					<FacebookButton />
-					<TwitterButton />
-					<GoogleButton />
-					<AppleButton />
-				</div>
+				<SocialMediaButtons />
+
+				
 			</div>
 		</div>
 	</div>

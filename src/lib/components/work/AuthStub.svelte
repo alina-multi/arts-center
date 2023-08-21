@@ -1,9 +1,6 @@
 <script lang="ts">
 	import Divider from '$lib/components/atoms/Divider.svelte';
-	import FacebookButton from '$lib/components/atoms/Buttons/FacebookButton.svelte';
-	import TwitterButton from '$lib/components/atoms/Buttons/TwitterButton.svelte';
-	import GoogleButton from '$lib/components/atoms/Buttons/GoogleButton.svelte';
-	import AppleButton from '$lib/components/atoms/Buttons/AppleButton.svelte';
+	import SocialMediaButtons from '$lib/components//atoms/Buttons/SocialMediaButtons.svelte';
 </script>
 
 <div
@@ -30,11 +27,6 @@
 
 		<Divider>Or continue with</Divider>
 
-		<div class=" grid grid-cols-4 gap-3">
-			<FacebookButton />
-			<TwitterButton />
-			<GoogleButton />
-			<AppleButton />
-		</div>
+		<SocialMediaButtons />
 	</div>
 </div>

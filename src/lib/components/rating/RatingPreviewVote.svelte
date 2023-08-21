@@ -3,11 +3,9 @@
 	import type { Comment } from '$lib/interfaces/Comment';
 	import VotedList from '$lib/components/rating/VotedList.svelte';
 	import { page } from '$app/stores';
-	import { localePath, t } from '$lib/translations';
-	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
-	import TopNavLink from '$lib/components/nav/TopNavLink.svelte';
 	import LikeButton from './LikeButton.svelte';
 	import DislikeButton from './DislikeButton.svelte';
+	import AuthModal from '../atoms/AuthModal.svelte';
 
 	export let entity: Work | Comment,
 		allowDownVote = false,
@@ -80,16 +78,4 @@
 
 
 
-<ModalWindow bind:open>
-	<p class="text-gray-700 dark:text-gray-300 text-center text-lg border-b pb-3 font-semibold">
-		You need to login to vote
-	</p>
-	<div class="flex gap-3 justify-center items-center py-3">
-		<TopNavLink href={localePath('/login?redirect=' + $page.url.pathname)}
-			>{$t('global.menu.login')}</TopNavLink
-		>
-
-		<span>or</span>
-		<TopNavLink href={localePath('/register')}>{$t('global.menu.register')}</TopNavLink>
-	</div>
-</ModalWindow>
+<AuthModal bind:open />
