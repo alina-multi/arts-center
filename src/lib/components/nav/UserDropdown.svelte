@@ -4,7 +4,7 @@
 	import { Home } from '@steeze-ui/heroicons';
 	import MyProfileLinksGroup from './MyProfileLinksGroup.svelte';
 	import SideNavLink from '$lib/components/nav/side/SideNavLink.svelte';
-	import LogoutButton from '../atoms/Buttons/LogoutButton.svelte';
+	import LogoutButton from '../atoms/buttons/LogoutButton.svelte';
 	import Dropdown from '../atoms/Dropdown.svelte';
 	import Avatar from '../atoms/Avatar.svelte';
 	export let user: User;

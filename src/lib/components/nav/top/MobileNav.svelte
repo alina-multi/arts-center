@@ -2,7 +2,7 @@
 	import Logo from '../../atoms/Logo.svelte';
 	import SideBarNavigation from '../SideBarNavigation.svelte';
 	import SearchDialog from '../../search/SearchDialog.svelte';
-	import AddWorkButton from '../../atoms/Buttons/AddWorkButton.svelte';
+	import AddWorkButton from '../../atoms/buttons/AddWorkButton.svelte';
 </script>
 
 <div class=" flex sm:hidden items-center justify-between w-full">

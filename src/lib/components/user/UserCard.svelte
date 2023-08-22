@@ -1,7 +1,7 @@
 <script lang="ts">
 	import RatingTags from '$lib/components/user/RatingTags.svelte';
 	import Avatar from '$lib/components/atoms/Avatar.svelte';
-	import FollowButton from '../atoms/Buttons/FollowButton.svelte';
+	import FollowButton from '../atoms/buttons/FollowButton.svelte';
 	import Country from './UserCountry.svelte';
 	import TotalRating from './TotalRating.svelte';
 	import OnArtSince from '../atoms/OnArtsSince.svelte';

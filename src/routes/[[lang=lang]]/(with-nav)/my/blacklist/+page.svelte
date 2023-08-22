@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import BlockButton from '$lib/components/atoms/Buttons/BlockButton.svelte';
+	import BlockButton from '$lib/components/atoms/buttons/BlockButton.svelte';
 	let blacklists = $page.data.currentUser?.blacklists;
 </script>
 

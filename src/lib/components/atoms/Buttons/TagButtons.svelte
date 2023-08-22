@@ -1,5 +1,5 @@
 <script lang="ts">
-	import TagButton from '$lib/components/atoms/Buttons/TagButton.svelte';
+	import TagButton from '$lib/components/atoms/buttons/TagButton.svelte';
 	import type { Tag } from '$lib/interfaces/Tag';
 
 	export let tags: Tag[],

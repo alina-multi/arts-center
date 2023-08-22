@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Divider from '$lib/components/atoms/Divider.svelte';
-	import SocialMediaButtons from '$lib/components//atoms/Buttons/SocialMediaButtons.svelte';
+	import SocialMediaButtons from '$lib/components/atoms/buttons/SocialMediaButtons.svelte';
 </script>
 
 <div

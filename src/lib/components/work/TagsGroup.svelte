@@ -1,5 +1,5 @@
 <script lang="ts">
-import TagButton from '$lib/components/atoms/Buttons/TagButton.svelte';
+import TagButton from '$lib/components/atoms/buttons/TagButton.svelte';
     export let tags = [], media: string;
 </script>
 

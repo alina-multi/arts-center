@@ -2,7 +2,7 @@
 	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
 	import UserDetails from '$lib/components/user/UserDetails.svelte';
 	import { localePath } from '$lib/translations';
-	import FollowButton from '$lib/components/atoms/Buttons/FollowButton.svelte';
+	import FollowButton from '$lib/components/atoms/buttons/FollowButton.svelte';
 	import Crown from '$lib/components/atoms/CrownIcon.svelte';
 	import type { User } from '$lib/interfaces/User';
 	export let user: User, avatar_size = "h-16 w-16", crown_size = 'w-4 h-4';

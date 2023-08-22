@@ -3,7 +3,7 @@
 	import { Popover, PopoverButton, PopoverPanel, Transition } from '@rgossiaux/svelte-headlessui';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ChevronDown, ChevronUp } from '@steeze-ui/heroicons';
-	import TagButtons from '$lib/components/atoms/Buttons/TagButtons.svelte';
+	import TagButtons from '$lib/components/atoms/buttons/TagButtons.svelte';
 
 	export let tags: Tag[],
 		selected: string,

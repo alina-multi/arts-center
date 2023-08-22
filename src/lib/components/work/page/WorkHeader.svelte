@@ -1,9 +1,9 @@
 <script lang="ts">
 	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
-	import EllipsisButton from '$lib/components/atoms/Buttons/EllipsisButton.svelte';
-	import FollowButton from '$lib/components/atoms/Buttons/FollowButton.svelte';
+	import EllipsisButton from '$lib/components/atoms/buttons/EllipsisButton.svelte';
+	import FollowButton from '$lib/components/atoms/buttons/FollowButton.svelte';
 	import PriceLabel from '$lib/components/atoms/PriceLabel.svelte';
-	import ReportButton from '$lib/components/atoms/Buttons/ReportButton.svelte';
+	import ReportButton from '$lib/components/atoms/buttons/ReportButton.svelte';
 	import { languageFind } from '$lib/translations';
 
 	export let work;

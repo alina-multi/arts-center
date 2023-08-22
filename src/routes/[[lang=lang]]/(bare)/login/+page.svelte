@@ -7,7 +7,7 @@
 	import CheckBox from '$lib/components/input/CheckBox.svelte';
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
 	import Divider from '$lib/components/atoms/Divider.svelte';
-	import SocialMediaButtons from '$lib/components/atoms/Buttons/SocialMediaButtons.svelte';
+	import SocialMediaButtons from '$lib/components/atoms/buttons/SocialMediaButtons.svelte';
 
 	export let form: ActionData;
 </script>

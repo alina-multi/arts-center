@@ -1,5 +1,5 @@
 <script lang="ts">
-	import AddWorkButton from '../../atoms/Buttons/AddWorkButton.svelte';
+	import AddWorkButton from '../../atoms/buttons/AddWorkButton.svelte';
 	import LoginLink from '../LoginLink.svelte';
 	import { localePath, t } from '$lib/translations';
 	import TopNavLink from '../TopNavLink.svelte';

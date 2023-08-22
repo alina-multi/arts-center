@@ -7,7 +7,7 @@
 	import WorkFooter from '$lib/components/work/page/WorkFooter.svelte';
 	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
-	import BookmarkButton from '$lib/components/atoms/Buttons/BookmarkButton.svelte';
+	import BookmarkButton from '$lib/components/atoms/buttons/BookmarkButton.svelte';
 
 	export let work: Work;
 	export let comments: Comment[];
