@@ -2,7 +2,7 @@
 	import type { PageData } from './$types';
 	import WorkAddProgressSteps from '$lib/components/work/add/WorkAddProgressSteps.svelte';
 	import WorkPreview from '$lib/components/work/WorkPreview.svelte';
-	import WorkBody from '$lib/components/work/page/body/WorkBody.svelte';
+	import WorkBody from '$lib/components/work/page/WorkBody.svelte';
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
 	import CancelLinkButton from '$lib/components/input/CancelLinkButton.svelte';
 	import Divider from '$lib/components/atoms/Divider.svelte';
@@ -33,7 +33,9 @@
 		</div>
 	</FormGroup>
 </form>
-<Divider>This is how your work will look like in the gallery</Divider>
+<Divider
+styles="rounded-md font-semibold leading-6 text-sm md:text-base px-3 py-1 "
+>This is how your work will look like in the gallery</Divider>
 <ul
 	class="mt-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 lg:gap-3"
 >

@@ -12,7 +12,7 @@
 <button
 	type="button"
 	on:click={onBookmark}
-	class="group text-sm dark:text-zinc-400 text-gray-500 dark:border-zinc-700"
+	class=" text-sm dark:text-zinc-300 text-zinc-600 dark:border-zinc-700"
 >
 	{#if isBookmarked}
 		<span class="sr-only"> Unbookmark </span>
@@ -22,7 +22,7 @@
 		<span class="sr-only">Bookmark</span>
 		<Icon
 			src={Bookmark}
-			class="h-7 w-7  group-hover:fill-teal-500 group-hover:stroke-teal-500"
+			class="h-7 w-7   xl:hover:stroke-zinc-500 dark:fill-zinc-300 "
 			aria-hidden="true"
 		/>
 	{/if}

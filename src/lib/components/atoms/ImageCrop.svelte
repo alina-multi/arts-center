@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Cropper from 'svelte-easy-crop';
-	import ModalWindow from '$lib/components/ModalWindow.svelte';
+	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
 	import { createEventDispatcher } from 'svelte';
 
 	const dispatch = createEventDispatcher();

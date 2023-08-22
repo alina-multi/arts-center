@@ -70,7 +70,7 @@
 						<img
 							src={url.preview}
 							class="pointer-events-none object-cover group-hover:opacity-75"
-							alt=""
+							alt="main"
 						/>
 					</div>
 					<!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions -->

@@ -7,7 +7,7 @@
 <button
 	on:click
 	{type}
-	class="{clazz} rounded-full px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 f"
+	class="{clazz} rounded-full px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
 >
 	<slot>Submit</slot>
 </button>

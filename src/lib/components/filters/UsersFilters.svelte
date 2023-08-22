@@ -1,6 +1,6 @@
 <script>
 	import { localePath } from '$lib/translations';
-	import UserFiltersGroup from '$lib/components/user/UserFiltersGroup.svelte';
+	import UserFiltersGroup from '$lib/components/filters/UserFiltersGroup.svelte';
 
 	export let tags, params, countries;
 

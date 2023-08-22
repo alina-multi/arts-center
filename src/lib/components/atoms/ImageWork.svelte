@@ -5,13 +5,10 @@
 	import PriceLabel from './PriceLabel.svelte';
 
 	export let work,
-		href,
-		withDesription = false;
-	let title: string;
+		withDesription: boolean = false;
 
-	$: title = languageFind(work.titles)?.title;
-
-	$: href = localePath(`/work/${work.id}`);
+	let title = languageFind(work.titles)?.title;
+	let href = localePath(`/work/${work.id}`);
 </script>
 
 <a {href} class="grid gap-1">

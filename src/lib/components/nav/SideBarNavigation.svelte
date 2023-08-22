@@ -7,19 +7,19 @@
 		TransitionChild
 	} from '@rgossiaux/svelte-headlessui';
 	import { localePath, t } from '$lib/translations';
-	import Button from '../atoms/Button.svelte';
+	import Button from '../atoms/buttons/Button.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Bars4, XMark } from '@steeze-ui/heroicons';
 	import TopNav from './top/TopNav.svelte';
 	import TopNavLangLink from './TopNavLangLink.svelte';
 	import Logo from '../atoms/Logo.svelte';
-	import AddWorkLink from './AddWorkLink.svelte';
+	import AddWorkButton from '../atoms/buttons/AddWorkButton.svelte';
 	import LoginLink from './LoginLink.svelte';
 	import TopNavLink from './TopNavLink.svelte';
-	import MyProfileLinksGroup from '../user/MyProfileLinksGroup.svelte';
-	import LogoutButton from '../atoms/LogoutButton.svelte';
+	import MyProfileLinksGroup from './MyProfileLinksGroup.svelte';
+	import LogoutButton from '../atoms/buttons/LogoutButton.svelte';
 
-	import Avatar from '../atoms/Avatar.svelte';
+	import AvatarLink from '../atoms/AvatarLink.svelte';
 	import { page } from '$app/stores';
 	import FooterContent from '../footer/FooterContent.svelte';
 
@@ -86,10 +86,10 @@
 										class="flex justify-between gap-3 pl-6 pr-3 min-[500px]:pr-6 items-center w-full"
 									>
 										<span class="font-semibold flex items-center"
-											><Avatar user={currentUser} size={'w-10 h-10 '} withName /></span
+											><AvatarLink user={currentUser} size={'w-10 h-10 '} withName /></span
 										>
 
-										<AddWorkLink />
+										<AddWorkButton />
 									</div>
 
 									<ul class=" flex flex-col">
@@ -101,7 +101,7 @@
 								</div>
 							{:else}
 								<div class="flex items-center py-6 justify-center gap-6">
-									<AddWorkLink />
+									<AddWorkButton />
 									<LoginLink />
 								</div>
 							{/if}

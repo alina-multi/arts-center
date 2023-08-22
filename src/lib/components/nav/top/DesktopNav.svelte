@@ -1,11 +1,11 @@
 <script lang="ts">
-	import AddWorkLink from '../AddWorkLink.svelte';
+	import AddWorkButton from '../../atoms/buttons/AddWorkButton.svelte';
 	import LoginLink from '../LoginLink.svelte';
 	import { localePath, t } from '$lib/translations';
 	import TopNavLink from '../TopNavLink.svelte';
 	import UserDropdown from '../UserDropdown.svelte';
 	import { page } from '$app/stores';
-	import SearchInput from '$lib/components/input/SearchInput.svelte';
+	import SearchInput from '$lib/components/search/SearchInput.svelte';
 	import Logo from '$lib/components/atoms/Logo.svelte';
 
 	import FooterDropdown from '$lib/components/footer/FooterDropdown.svelte';
@@ -20,7 +20,7 @@
 	<TopNavLink exact href={localePath('/')}>{$t('global.menu.gallery')}</TopNavLink>
 	<TopNavLink href={localePath('/users')}>{$t('global.menu.users')}</TopNavLink>
 	<SearchInput />
-	<AddWorkLink />
+	<AddWorkButton />
 	{#if user}
 		<UserDropdown {user} />
 	{:else}

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { localePath } from '$lib/translations';
 	import { Menu, MenuItems, MenuItem } from '@rgossiaux/svelte-headlessui';
-	import Avatar from './atoms/Avatar.svelte';
+	import AvatarLink from '../atoms/AvatarLink.svelte';
 	import cat from '$lib/images/cat-icons.svg';
 
 	export let open = false,
@@ -48,7 +48,7 @@
 								href={localePath(`/${user.username}`)}
 								class="flex gap-3 items-center w-full text-left text-sm px-6 py-1 hover:bg-gray-100 hover:text-gray-900 cursor-pointer dark:hover:bg-zinc-800"
 							>
-								<Avatar {user} size={'h-10 w-10'} withName nameStyles={'text-sm'} />
+								<AvatarLink {user} size={'h-10 w-10'} withName nameStyles={'text-sm'} />
 							</a>
 						</MenuItem>
 					{/each}

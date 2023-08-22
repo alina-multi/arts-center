@@ -2,7 +2,7 @@
 	import UserPreview from '$lib/components/user/UserPreview.svelte';
 	import LastWorks from '$lib/components/atoms/LastWorks.svelte';
 	import type { UserPreview as Users } from '$lib/interfaces/User.ts';
-	import UsersFilters from '$lib/components/user/UsersFilters.svelte';
+	import UsersFilters from '$lib/components/filters/UsersFilters.svelte';
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
 	import { localePath } from '$lib/translations';
 	import * as devalue from 'devalue';
@@ -42,9 +42,10 @@
 				: 'bg-white'}"
 		>
 			<div
-				class=" flex items-center grow w-full sm:w-1/2 text-lg px-3 sm:max-lg:pt-3 sm:max-lg:pb-3 gap-3 overflow-hidden"
+				class=" flex items-center grow w-full sm:w-1/2 text-lg px-3 sm:max-lg:pt-3 py-3 gap-3 overflow-hidden"
 			>
 				<UserPreview {user} />
+				
 			</div>
 			<div
 				class=" sm:p-3 lg:p-0 flex justify-end sm:w-1/2 dark:border-gray-700 gap-3 overflow-hidden w-full"

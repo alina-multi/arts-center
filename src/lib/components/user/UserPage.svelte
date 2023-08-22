@@ -1,7 +1,7 @@
 <script>
 	import ImageWork from '$lib/components/atoms/ImageWork.svelte';
 
-	import WorkFilters from '$lib/components/user/WorkFilters.svelte';
+	import WorkFilters from '$lib/components/filters/WorkFilters.svelte';
 	import UserCard from '$lib/components/user/UserCard.svelte';
 
 	export let user, gallery, params;

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { EllipsisVertical, PencilSquare, EllipsisHorizontal } from '@steeze-ui/heroicons';
-	import Dropdown from './Dropdown.svelte';
+	import Dropdown from '../Dropdown.svelte';
 	export let work,
 		isMy = false,
 		type: 'vertical' | 'horizontal' = 'vertical';

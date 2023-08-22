@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { User } from '$/lib/interfaces/User';
-	import Avatar from '$lib/components/atoms/Avatar.svelte';
-	import ModalWindow from '$lib/components/ModalWindow.svelte';
+	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
+	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
 
 	export let votes: User[] = [],
 		isLiked = false,
@@ -14,16 +14,16 @@
 
 <div class="flex items-center gap-1 dark:text-zinc-300 max-[400px]:text-xs text-sm lg:text-base">
 	{#if votes.length > 0}
-		<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointer">
-			<span class="mr-1">Liked by</span>
+		<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointe mr-1">
+			Liked by
 		</button>
 
 		<div class="flex -space-x-3 cursor-pointer">
 			{#each votesPreview as user}
-				<Avatar {user} size={'w-6 h-6 md:w-7 md:h-7'} />
+				<AvatarLink {user} size={'w-6 h-6 md:w-7 md:h-7'} />
 			{/each}
 			{#if isLiked}
-				<Avatar user={currentUser} size={'w-6 h-6 md:w-7 md:h-7'} />
+				<AvatarLink user={currentUser} size={'w-6 h-6 md:w-7 md:h-7'} />
 			{/if}
 		</div>
 	{/if}
@@ -46,7 +46,7 @@
 	>
 		{#each votes as user}
 			<li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-				<Avatar {user} withName size={'w-8 h-8'} nameStyles={'text-sm font-semibold '} />
+				<AvatarLink {user} withName size={'w-8 h-8'} nameStyles={'text-sm font-semibold text-black dark:text-white'} />
 			</li>
 		{/each}
 	</ul>

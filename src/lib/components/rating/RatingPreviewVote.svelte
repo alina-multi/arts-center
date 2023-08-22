@@ -1,28 +1,25 @@
 <script lang="ts">
 	import type { Work } from '$lib/interfaces/Work';
-	import type { User } from '$lib/interfaces/User';
 	import type { Comment } from '$lib/interfaces/Comment';
-	import { Icon } from '@steeze-ui/svelte-icon';
-	import { HandThumbDown, HandThumbUp } from '@steeze-ui/heroicons';
 	import VotedList from '$lib/components/rating/VotedList.svelte';
 	import { page } from '$app/stores';
-	import { localePath, t } from '$lib/translations';
-	import ModalWindow from '$lib/components/ModalWindow.svelte';
-	import TopNavLink from '$lib/components/nav/TopNavLink.svelte';
+	import LikeButton from './LikeButton.svelte';
+	import DislikeButton from './DislikeButton.svelte';
+	import AuthModal from '../atoms/AuthModal.svelte';
 
 	export let entity: Work | Comment,
 		allowDownVote = false,
 		votable_type: string,
 		showVotedPreview = false,
 		size = 'w-6 h-6';
-	let currentUser: User = $page.data.currentUser;
+	let currentUser = $page.data.currentUser;
 	let votes = entity?.votes;
 	let rating = entity?.rating;
 	let isLiked = entity?.votes?.some((vote) => vote?.id.toString() === currentUser?.id.toString());
 	let isDownVoted = false;
 	let open = false;
 
-	async function vote(method, vote = 1) {
+	async function vote(method, vote: number = 1) {
 		return await fetch(`/api/vote`, {
 			method,
 			headers: {
@@ -31,79 +28,10 @@
 			body: JSON.stringify({ vote, votable_type, votable_id: entity.id.toString() })
 		});
 	}
-	async function like() {
-		if (!currentUser) {
-			onClickNotLoggedIn();
-			return;
-		}
-		if (!isDownVoted) {
-			isLiked = true;
-			rating += 1;
-			votes?.unshift(currentUser);
-			await vote('POST').then((res) => res.json());
-			return;
-		}
-		isDownVoted = false;
-		isLiked = true;
-		rating += 2;
-		await vote('DELETE', -1).then((res) => res.json());
-	}
 
-	async function cancelVote() {
-		if (!currentUser) {
-			onClickNotLoggedIn();
-			return;
-		}
-		isLiked = false;
-		rating -= 1;
-		votes?.some((vote, index) => {
-			if (vote.id.toString() === currentUser.id.toString()) {
-				votes?.splice(index, 1);
-			}
-		});
-		await vote('DELETE').then((res) => res.json());
-	}
-
-	async function dislike() {
-		if (!currentUser) {
-			onClickNotLoggedIn();
-			return;
-		}
-
-		if (isDownVoted) {
-			isDownVoted = false;
-			rating += 1;
-			await vote('DELETE', -1).then((res) => res.json());
-			return;
-		}
-		if (isLiked) {
-			rating -= 2;
-		} else {
-			rating -= 1;
-		}
-		isLiked = false;
-		isDownVoted = true;
-		await vote('POST', -1).then((res) => res.json());
-	}
-
-	function onClickNotLoggedIn() {
-		open = true;
-	}
 </script>
 
-<ModalWindow bind:open>
-	<p class="text-gray-700 dark:text-gray-300 text-center text-lg border-b pb-3 font-semibold">
-		You need to login to vote
-	</p>
-	<div class="flex gap-3 justify-center items-center py-3">
-		<TopNavLink href={localePath('/login?redirect=' + $page.url.pathname)}
-			>{$t('global.menu.login')}</TopNavLink
-		>
 
-		<span>or</span>
-		<TopNavLink href={localePath('/register')}>{$t('global.menu.register')}</TopNavLink>
-	</div>
-</ModalWindow>
 
 {#if showVotedPreview}
 	<VotedList {votes} {isLiked} {currentUser} />
@@ -116,27 +44,20 @@
 			: 'hover:text-zinc-100'}  dark:bg-zinc-800 bg-white dark:border-zinc-700 dark:text-white"
 	>
 		{#if votable_type === 'work'}
-			<span class="border-r dark:border-zinc-700 pr-3 text-sm">Like {rating}</span>
+			<span class="border-r dark:border-zinc-700 pr-3 ">Like {rating}</span>
 		{/if}
-		{#if isLiked}
-			<button on:click={cancelVote}
-				><Icon
-					src={HandThumbUp}
-					theme="solid"
-					class=" {size}   {votable_type === 'comment'
-						? 'fill-blue-700 '
-						: 'fill-gray-700 dark:fill-blue-600 '}"
-				/></button
-			>
-		{:else}
-			<button on:click={like}
-				><Icon
-					src={HandThumbUp}
-					theme="outline"
-					class=" {size} stroke-zinc-700 hover:scale-110 dark:stroke-zinc-100 hover:stroke-blue-700  "
-				/></button
-			>
-		{/if}
+		<LikeButton
+		    {size}
+			bind:isLiked
+			bind:isDownVoted
+			bind:rating
+			bind:open
+			{votes}
+			{votable_type}
+			{vote}
+			
+		/>
+			
 	</div>
 
 	{#if votable_type === 'comment' && rating > 0}
@@ -144,14 +65,17 @@
 	{/if}
 
 	{#if allowDownVote}
-		<div class="flex items-center gap-2">
-			<button on:click={dislike}
-				><Icon
-					src={HandThumbDown}
-					theme={isDownVoted ? 'solid' : 'outline'}
-					class=" {size} text-gray-400 {isDownVoted ? 'fill-red-800' : ''}"
-				/></button
-			>
-		</div>
+	<DislikeButton
+		{size}
+		bind:isLiked
+		bind:isDownVoted
+		bind:rating
+		bind:open
+		{vote}	
+	/>	
 	{/if}
 </div>
+
+
+
+<AuthModal bind:open />

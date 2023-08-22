@@ -1,5 +1,5 @@
 <script lang="ts">
-	import WorkFilters from '$lib/components/user/WorkFilters.svelte';
+	import WorkFilters from '$lib/components/filters/WorkFilters.svelte';
 	import type { PageData } from './$types';
 	import UserCard from '$lib/components/user/UserCard.svelte';
 	import Biography from '$lib/components/user/Biography.svelte';

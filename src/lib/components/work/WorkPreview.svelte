@@ -1,6 +1,6 @@
 <script lang="ts">
 	import RatingPreview from '$lib/components/rating/RatingPreview.svelte';
-	import Avatar from '$lib/components/atoms/Avatar.svelte';
+	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
 	import type { Work } from '$lib/interfaces/Work';
 	import CrownIcon from '../atoms/CrownIcon.svelte';
 
@@ -28,7 +28,7 @@
 	<div class="flex justify-between items-center lg:text-xs text-sm mt-auto">
 		<div class="flex items-center gap-1">
 			{#each work.owners as user}
-				<Avatar {user} withName={true} />
+				<AvatarLink {user} withName={true} />
 			{/each}
 
 			{#if work.subscribed}
