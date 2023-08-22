@@ -5,10 +5,9 @@
 	import type { User } from '$lib/interfaces/User';
 
 	export let type: 'block' | 'unblock' = 'block',
-		user: User ,
-		parentComments : [Comment] | boolean = false,
-		commentID : string | boolean = false;
-
+		user: User,
+		parentComments: [Comment] | boolean = false,
+		commentID: string | boolean = false;
 
 	async function fetchData(method) {
 		const res = await fetch(`/api/blacklist`, {
@@ -64,6 +63,7 @@
 		on:click={unblock}
 		class="hover:text-gray-900 px-3 hover:bg-gray-100 dark:hover:text-gray-200 dark:hover:bg-gray-600 font-semibold"
 	>
-		Unblock</button
-	>
+		<span class="sr-only">Block</span>
+		<span>Unblock</span>
+	</button>
 {/if}
