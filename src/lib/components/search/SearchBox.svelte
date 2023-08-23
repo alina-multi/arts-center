@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { localePath } from '$lib/translations';
 	import { Menu, MenuItems, MenuItem } from '@rgossiaux/svelte-headlessui';
 	import AvatarLink from '../atoms/AvatarLink.svelte';
 	import NoResultsStub from './NoResultsStub.svelte';
@@ -9,7 +8,7 @@
 	export let open = false,
 		users,
 		works,
-		loading,
+		loading: boolean,
 		totalUserHits: number,
 		totalWorksHits: number,
 		value = '';

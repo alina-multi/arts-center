@@ -1,8 +1,7 @@
 <script lang="ts">
-       import { localePath } from '$lib/translations';
-    export let query = '',
-    totalUsers,
-    totalWorks;
+    export let query:string = '',
+    totalUsers: number,
+    totalWorks: number;
  
 </script>
 

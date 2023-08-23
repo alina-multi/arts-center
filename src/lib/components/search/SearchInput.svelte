@@ -7,7 +7,7 @@
 	import Loader from '$lib/components/atoms/Loader.svelte';
 	import newUniqueId from 'locally-unique-id-generator';
 	import { fetchData } from '$lib/helpers/fetchData';
-	import { load } from '../../../routes/[[lang=lang]]/+layout';
+
 
 	let value = '';
 	let totalUserHits = 0,

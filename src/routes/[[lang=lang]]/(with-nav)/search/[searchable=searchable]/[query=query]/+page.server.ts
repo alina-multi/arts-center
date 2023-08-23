@@ -2,9 +2,5 @@ import type { PageServerLoad } from './$types';
 
 export const load = (async ({ fetch, params }) => {
 	const search = await fetch(`/api/search/all/${params.query}/1`).then((res) => res.json());
-	return { search,
-		params };
+	return { search, params };
 }) satisfies PageServerLoad;
-
-
-
