@@ -55,7 +55,7 @@
 
 					<MenuItems class="py-2  border-b dark:border-zinc-800 divide-y dark:divide-zinc-800 flex flex-col justify-center" static={open}>
 						{#each works as work (work.id)}
-							<MenuItem class="p-6  md:flex md:justify-center ">
+							<MenuItem class="p-6 ">
 								<WorkPreview {work} />
 							</MenuItem>
 						{/each}

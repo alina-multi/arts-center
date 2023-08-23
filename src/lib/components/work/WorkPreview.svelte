@@ -10,7 +10,7 @@
 </script>
 
 <li
-	class="flex flex-col gap-1 lg:gap-0 overflow-hidden lg:w-80 md:w-[23rem] xl:w-[19rem] 2xl:w-[18rem] {work.subscribed
+	class="flex flex-col gap-1 lg:gap-0 overflow-hidden {work.subscribed
 		? ' '
 		: ''} "
 >

@@ -79,7 +79,7 @@
 		{/if}
 
 		{#if data.params.searchable === 'works'}
-			<div class="grid grid-cols-3">
+			<div class="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-3  ">
 				{#each results as work}
 					<WorkPreview {work} />
 				{/each}
