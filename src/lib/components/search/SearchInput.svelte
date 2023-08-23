@@ -6,13 +6,14 @@
 	import { goto } from '$app/navigation';
 	import Loader from '$lib/components/atoms/Loader.svelte';
 	import newUniqueId from 'locally-unique-id-generator';
+	import { fetchData } from '$lib/helpers/fetchData';
 
 	let value = '';
-	let	totalUserHits = 0,
+	let totalUserHits = 0,
 		totalWorksHits = 0,
 		loading = false;
-	$:	users = [];
-	$:	works = [];
+	$: users = [];
+	$: works = [];
 	$: open = value.length > 0;
 	$: searchValue = '';
 	const id = newUniqueId();
@@ -39,23 +40,16 @@
 
 		loading = true;
 		doSearch(searchValue);
+		debounce(doSearch, 600)(searchValue);
 	}
 
-	const doSearch = debounce((val) => {
-
-		
-		fetch(`/api/search/all/${val}/1`)
-			.then((res) => res.json())
-			.then((res) => {
-				users = res.users.hits;
-				works = res.works.hits	
-				
-				
-				console.log(res);
-				totalUserHits = res.users.totalHits;
-				totalWorksHits = res.works.totalHits;
-				loading = false;
-			});
+	const doSearch = debounce(async (query) => {
+		const search = await fetchData(`/api/search/all/${query}/1`);
+		users = search.users.hits;
+		works = search.works.hits;
+		totalUserHits = search.users.totalHits;
+		totalWorksHits = search.works.totalHits;
+		loading = false;
 	}, 600);
 </script>
 
@@ -96,5 +90,5 @@
 		{/if}
 	</div>
 
-	<SearchBox bind:open {users} value={searchValue} {totalUserHits}  {totalWorksHits} {works}/>
+	<SearchBox bind:open {users} value={searchValue} {totalUserHits} {totalWorksHits} {works} />
 </div>
