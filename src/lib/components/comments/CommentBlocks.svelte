@@ -7,7 +7,7 @@
 	import { convertFetch } from '$lib/helpers/convertFetch';
 	import { сommentValidations, commentMassage, scrollToBottom } from '$lib/helpers/comments';
 	import { tick } from 'svelte';
-	import NoResultsStub from '../search/NoResultsStub.svelte';
+	import NoResultsStub from './NoResultsStub.svelte';
 
 	export let comments, commentable_id: string;
 	commentable_id = commentable_id?.toString();
