@@ -40,7 +40,9 @@ async function checkAuth(event: RequestEvent<Partial<Record<string, string>>, st
 			event.locals.user = user;
 		}
 	} catch (error) {
-		SentryNode.captureException(error, { contexts: { sveltekit: { event } } });
+		if (process.env.PUBLIC_ENV !== 'development') {
+			SentryNode.captureException(error, { contexts: { sveltekit: { event } } });
+		}
 	}
 }
 
