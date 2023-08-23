@@ -27,14 +27,7 @@
 		page = 1;
 	}
 
-	
-
-
-	
-
-
 	async function loadMore() {
-	
 		loading = true;
 		const search = await fetchData(`/api/search/${searchable}/${query}/${page}`);
 
@@ -53,8 +46,10 @@
 	<svelte:fragment slot="nav">
 		<SearchFilters
 			query={data.params.query}
-			totalUsers={data.search.users.totalHits}
-			totalWorks={data.search.works.totalHits}
+			options={[
+				{ title: 'ARTISTS', total: data.search.users.totalHits, path: 'users' },
+				{ title: 'WORKS', total: data.search.works.totalHits, path: 'works' }
+			]}
 		/>
 	</svelte:fragment>
 	{#if results.length > 0}
@@ -79,7 +74,7 @@
 		{/if}
 
 		{#if data.params.searchable === 'works'}
-			<div class="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-3  ">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-3">
 				{#each results as work}
 					<WorkPreview {work} />
 				{/each}

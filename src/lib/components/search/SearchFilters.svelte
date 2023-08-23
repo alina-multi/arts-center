@@ -1,7 +1,6 @@
 <script lang="ts">
     export let query:string = '',
-    totalUsers: number,
-    totalWorks: number;
+    options: { title: string; total: number, path:string }[] = [];
  
 </script>
 
@@ -9,45 +8,24 @@
     <h2 id="filter-heading" class="sr-only">Filters</h2>
     <div class=" flex flex-col divide-y dark:divide-zinc-800 ">
 
-<div  class="pt-3 px-6 pb-3   w-full  bg-gray-100  text-gray-800 dark:text-white  ">
+<div  class="pt-3 px-6 pb-3   w-full  bg-gray-100 dark:bg-zinc-900  text-gray-800 dark:text-zinc-400  ">
     Found for <span class="underline ">{query}</span>
 </div>
 
-    <!-- <a href="/" class=""> Authors</a>
-    <a href="/" class=""> Works</a> -->
 
+
+    {#each options as {title, total, path} (title)}
     <a
-    href='/search/users/{query}'
-
-     class="py-3 px-6 w-full   text-gray-800 dark:text-white flex items-center justify-between gap-3 hover:text-gray-900 ">
-
-    <div 
-   
-    class="flex gap-3 items-center">
-        <span class="text-sm text-black dark:text-white">ARTISTS</span>
-        <span>-</span>
-        <span class=" text-gray-500">   {totalUsers} results </span>
-       
-    </div>
-
-</a>
-
-<a 
-href='/search/works/{query}'
-class="py-3 px-6  w-full   text-gray-800 dark:text-white flex items-center justify-between gap-3 hover:text-gray-900 ">
-
+    href="/search/{path}/{query}"
+    class="group py-3 px-6 w-full text-gray-800 dark:text-white flex items-center justify-between gap-3 hover:text-gray-900 "
+>
     <div class="flex gap-3 items-center">
-        <span class="text-sm text-black dark:text-white">WORKS</span>
+        <span class="text-sm text-black dark:text-white">{title}</span>
         <span>-</span>
-        <span class="text-gray-500">
-            {totalWorks} results
-        </span>
-     
-   
-        
+        <span class=" group-hover:underline text-gray-500"> {total} results </span>
     </div>
-
 </a>
+    {/each}
 
 
         
