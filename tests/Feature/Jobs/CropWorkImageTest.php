@@ -23,13 +23,13 @@ test('Crops image', function () {
         'y' => 75
     ]);
     $work->refresh();
-    $this->assertTrue(!empty($work->image));
+    $this->assertTrue(!empty($work->preview));
     $this->assertDatabaseHas('image_variants', [
         'width' => 600,
         'height' => 450,
         'original' => true
     ]);
-    $path = $work->image->getOriginalPath();
+    $path = $work->preview->getOriginalPath();
 
     Storage::assertExists($path);
     $croppedImage = ImageEdit::make(Storage::get($path));

@@ -42,20 +42,20 @@ class Work extends Model
     {
         return [
             'id' => (int)$this->id,
-            'published_at' => $this->published_at->toString(),
+            'published_at' => $this->published_at->toDateTimeString(),
             'rating' => (int)$this->rating,
             'comments' => (int)$this->comments,
             'hosts' => (int)$this->hosts,
             'price' => (int)$this->price,
             'titles' => $this->titles?->toArray(),
-            'image' => $this->image?->toArray(),
+            'preview' => $this->preview?->toArray(),
             'owners' => $this->owners->toArray()
         ];
     }
 
     protected function makeAllSearchableUsing(Builder $query): Builder
     {
-        return $query->with('titles', 'image', 'image.variants', 'owners', 'owners.photo', 'owners.photo.variants');
+        return $query->with('titles', 'preview', 'preview.variants', 'owners', 'owners.photo', 'owners.photo.variants');
     }
 
     protected static function booted()
@@ -87,14 +87,14 @@ class Work extends Model
         return $this->hasMany(WorkTitle::class);
     }
 
-    public function image()
+    public function preview()
     {
-        return $this->hasOne(Image::class, 'id', 'image_id');
+        return $this->belongsTo(Image::class, 'image_id');
     }
 
     public function full()
     {
-        return $this->hasOne(Image::class, 'id', 'full_image_id');
+        return $this->belongsTo(Image::class, 'full_image_id');
     }
 
     public function tags()

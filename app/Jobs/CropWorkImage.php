@@ -32,7 +32,7 @@ class CropWorkImage implements ShouldQueue
             ->crop($this->crop['width'], $this->crop['height'], $this->crop['x'], $this->crop['y'])
             ->encode('jpg', 80);
 
-        $newImage = $this->work->image()->create([
+        $newImage = $this->work->preview()->create([
             'name' => $this->work->full->name,
             'user_id' => $this->work->full->user_id,
             'folder' => ImageFolders::Preview

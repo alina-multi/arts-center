@@ -55,7 +55,7 @@ class ImageFactory extends Factory
     public function onlyOriginal(): Factory
     {
         return $this->afterCreating(function (Image $image) {
-            ImageVariant::factory()->create(['image_id' => $image->id, 'width' => 1200, 'height' => round(1200 / $ar), 'extension' => 'jpeg', 'original' => true]);
+            ImageVariant::factory()->create(['image_id' => $image->id, 'width' => 1200, 'height' => 1200, 'extension' => 'jpeg', 'original' => true]);
         });
     }
 }

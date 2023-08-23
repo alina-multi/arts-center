@@ -14,6 +14,6 @@ class GetEditController extends Controller
         if (!$ownsWork->passes('work_id', $id)) {
             abort(401);
         }
-        return Work::where('id', $id)->with('blocks', 'blocks.images', 'titles', 'image')->firstOrFail()->makeVisible('titles');
+        return Work::where('id', $id)->with('blocks', 'blocks.images', 'titles', 'preview')->firstOrFail()->makeVisible('titles');
     }
 }

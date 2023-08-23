@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -27,9 +26,7 @@ class User extends Authenticatable
         'country'
     ];
 
-    public $highlights;
-
-    protected $visible = ['id', 'name', 'username', 'created_at', 'photo'];
+    protected $visible = ['id', 'name', 'username', 'created_at', 'photo', 'premium'];
 
     /**
      * The attributes that should be cast to native types.
@@ -101,7 +98,7 @@ class User extends Authenticatable
             return Work::whereHas('owners', function ($query) {
                 $query->where('ownables.user_id', $this->id);
             })->with([
-                'image:id,name,folder,extension',
+                'preview:id,name,folder,extension',
                 'titles'
             ])->orderBy('rating', 'desc')->limit(3)->get()->keyBy('id');
         });
