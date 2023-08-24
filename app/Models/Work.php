@@ -42,7 +42,7 @@ class Work extends Model
     {
         return [
             'id' => (int)$this->id,
-            'published_at' => $this->published_at->toDateTimeString(),
+            'published_at' => $this->published_at?->toDateTimeString(),
             'rating' => (int)$this->rating,
             'comments' => (int)$this->comments,
             'hosts' => (int)$this->hosts,
