@@ -33,13 +33,13 @@
 			{#each options as option}
 				<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<li on:click={() => close()}
+				<li 
 					class="flex cursor-pointer p-3  {option.title ===
 					selected
 						? 'bg-gray-100 hover:bg-gray-100 dark:border-l dark:border-amber-500  dark:bg-zinc-700 '
 						: 'text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-zinc-700 '}"
 				>
-					<a href={urlGenerator(params, { [group]: option.title })} class="flex grow">
+					<a href={urlGenerator(params, { [group]: option.title })} on:click={() => close()} class="flex grow">
 						<span>{option.title}</span>
 						{#if option.count}
 							<span class="ml-auto text-gray-500">{option.count}</span>

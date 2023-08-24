@@ -7,6 +7,8 @@
 	import { localePath } from '$lib/translations';
 	import * as devalue from 'devalue';
 	import SideMenu from '$lib/components/nav/side/SideMenu.svelte';
+	import cat from '$lib/images/cat-icons.svg';
+
 
 	export let users: Users[], categories, countries, params;
 
@@ -35,6 +37,15 @@
 	<svelte:fragment slot="nav"
 		><UsersFilters tags={categories} {countries} {params} /></svelte:fragment
 	>
+	{#if users.length === 0}
+		<div class="flex flex-col items-center  py-6 border rounded-md dark:bg-zinc-900 dark:border-zinc-800">
+		<p class="text-gray-500 dark:text-zinc-300 text-xl font-semibold">No results found</p>
+		<svg class="h-64 w-64 fill-zinc-800 dark:fill-zinc-300 ">
+			<use href="{cat}#icon-cat-not-found" />
+			
+		</svg>
+	</div>
+	{:else}
 	{#each users as user}
 		<div
 			class="flex flex-col items-center sm:flex-row sm;gap-3 shadow-sm border rounded-md w-full dark:bg-zinc-900 dark:border-zinc-800 {user.subscribed
@@ -62,4 +73,5 @@
 			fetchData();
 		}}
 	/>
+	{/if}
 </SideMenu>
