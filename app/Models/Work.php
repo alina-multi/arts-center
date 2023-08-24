@@ -55,7 +55,8 @@ class Work extends Model
 
     protected function makeAllSearchableUsing(Builder $query): Builder
     {
-        return $query->with('titles', 'preview', 'preview.variants', 'owners', 'owners.photo', 'owners.photo.variants');
+        return $query->with('titles', 'preview', 'preview.variants', 'owners', 'owners.photo', 'owners.photo.variants')
+            ->whereNotNull('published_at');
     }
 
     protected static function booted()
