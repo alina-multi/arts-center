@@ -39,9 +39,9 @@
 
 {#if media === 'mobile'}
 	<div
-		class="mt-auto border-t dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 text-xs sm:text-sm"
+		class="mt-auto mb-12 border-y dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 text-sm"
 	>
-		<ul class="flex items-start py-3 px-6 justify-between md:justify-around">
+		<ul class="flex items-start py-3 px-6 justify-between md:justify-around ">
 			<li>
 				<a href={localePath('/about')}>{$t('global.footer.about')}</a>
 			</li>

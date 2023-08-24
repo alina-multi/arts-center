@@ -7,17 +7,17 @@
 		TransitionChild
 	} from '@rgossiaux/svelte-headlessui';
 	import { localePath, t } from '$lib/translations';
-	import Button from '../atoms/buttons/Button.svelte';
+	import Button from '../atoms/Buttons/Button.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Bars4, XMark } from '@steeze-ui/heroicons';
 	import TopNav from './top/TopNav.svelte';
 	import TopNavLangLink from './TopNavLangLink.svelte';
 	import Logo from '../atoms/Logo.svelte';
-	import AddWorkButton from '../atoms/buttons/AddWorkButton.svelte';
+	import AddWorkButton from '../atoms/Buttons/AddWorkButton.svelte';
 	import LoginLink from './LoginLink.svelte';
 	import TopNavLink from './TopNavLink.svelte';
 	import MyProfileLinksGroup from './MyProfileLinksGroup.svelte';
-	import LogoutButton from '../atoms/buttons/LogoutButton.svelte';
+	import LogoutButton from '../atoms/Buttons/LogoutButton.svelte';
 
 	import AvatarLink from '../atoms/AvatarLink.svelte';
 	import { page } from '$app/stores';
