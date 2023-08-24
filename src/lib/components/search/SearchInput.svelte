@@ -46,8 +46,8 @@
 
 	const doSearch = debounce(async (query) => {
 		const search = await fetchData(`/api/search/all/${query}/1`);
-		users = search.users.hits;
-		works = search.works.hits;
+		users = search.users.hits.slice(0, 6);
+		works = search.works.hits.slice(0, 6);
 		totalUserHits = search.users.totalHits;
 		totalWorksHits = search.works.totalHits;
 		loading = false;

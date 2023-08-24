@@ -28,7 +28,7 @@
 		>
 			<div class="relative">
 				{#if users.length > 0}
-					<BoxHeader total={totalUserHits} href={`/search/users/${value}`}>
+					<BoxHeader total={totalUserHits} href={`/search/users/${value}`} title={'Artists'}>
 						Found {totalUserHits}
 						{users.length === 1 ? 'person' : 'people'}
 					</BoxHeader>
@@ -45,20 +45,21 @@
 				{/if}
 			</div>
 
-			<div class="relative">
+			<div class="relative ">
 				{#if works.length > 0}
-					<BoxHeader total={totalWorksHits} href={`/search/works/${value}`}>
+					<BoxHeader total={totalWorksHits} href={`/search/works/${value}`} title={"Works"}>
 						Found {totalWorksHits}
 						{works.length === 1 ? 'work' : 'works'}
 					</BoxHeader>
 
-					<MenuItems class="py-2  border-b dark:border-zinc-800 divide-y dark:divide-zinc-800 flex flex-col justify-center" static={open}>
+					<MenuItems class="py-3 gap-3 px-3 md:max-lg:grid-cols-3  sm:grid sm:grid-cols-2 2xl:grid-cols-3 border-b dark:border-zinc-800 max-xl:divide-y dark:divide-zinc-800 flex flex-col justify-center" static={open}>
 						{#each works as work (work.id)}
-							<MenuItem class="p-6 ">
+							<MenuItem class=" ">
 								<WorkPreview {work} />
 							</MenuItem>
 						{/each}
 					</MenuItems>
+	
 				{/if}
 			</div>
 
