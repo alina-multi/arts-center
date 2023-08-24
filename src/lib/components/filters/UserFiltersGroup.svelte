@@ -24,18 +24,20 @@
 		</div>
 		<Icon
 			src={ChevronDown}
-			class="w-5 group-hover:text-gray-500 transition-all {open ? 'rotate-180' : ''}"
+			class="w-5 group-hover:text-gray-500 dark:group-hover:text-zinc-300 transition-all {open ? 'rotate-180' : ''}"
 		/>
 	</DisclosureButton>
 
-	<DisclosurePanel class=" max-h-96 overflow-scroll ">
+	<DisclosurePanel class=" max-h-96 overflow-scroll " let:close>
 		<ul class="flex flex-col m-6 border dark:border-0 dark:bg-zinc-800 rounded-sm text-sm">
 			{#each options as option}
-				<li
-					class="flex cursor-pointer p-3 hover:bg-gray-100 dark:hover:bg-gray-800 {option.title ===
+				<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<li on:click={() => close()}
+					class="flex cursor-pointer p-3  {option.title ===
 					selected
-						? 'bg-gray-100 hover:bg-gray-100 dark:border-l dark:border-amber-500 dark:bg-zinc-800 '
-						: 'text-gray-800 dark:text-gray-200 '}"
+						? 'bg-gray-100 hover:bg-gray-100 dark:border-l dark:border-amber-500  dark:bg-zinc-700 '
+						: 'text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-zinc-700 '}"
 				>
 					<a href={urlGenerator(params, { [group]: option.title })} class="flex grow">
 						<span>{option.title}</span>
