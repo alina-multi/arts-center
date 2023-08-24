@@ -87,7 +87,7 @@
 <div class="flex md:hidden text-left z-30 flex-row-reverse">
 	<Popover class=" w-full flex-1  text-gray-800 dark:text-zinc-200  " let:open>
 		<PopoverButton
-			class="w-full flex items-center justify-between gap-2  border px-4 py-2 rounded-md hover:border-amber-500 dark:border-zinc-800 overflow-hidden dark:bg-zinc-900"
+			class="w-full flex items-center justify-between gap-2  border px-4 py-2 rounded-md  dark:border-zinc-800 overflow-hidden dark:bg-zinc-900"
 		>
 			<span class="space-x-1">
 				<span>filters</span>
