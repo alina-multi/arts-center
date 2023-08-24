@@ -1,8 +1,8 @@
 <script lang="ts">
 	import '$lib/css/app.css';
 	import { navigating } from '$app/stores';
-	import Loader from '$lib/components/atoms/Loader.svelte';
 	import { derived } from 'svelte/store';
+	import LoaderLayout from '$lib/components/atoms/LoaderLayout.svelte';
 
 	BigInt.prototype.toJSON = (val) => val.toString();
 
@@ -49,9 +49,5 @@
 <slot />
 
 {#if $navigationIsDelayed}
-	<div class="fixed inset-0 backdrop-blur-sm bg-white/30 flex justify-center items-center z-50">
-		<div class="h-full w-full opacity-50">
-			<Loader />
-		</div>
-	</div>
+	<LoaderLayout />
 {/if}
