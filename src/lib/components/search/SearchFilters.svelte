@@ -17,12 +17,12 @@
     {#each options as {title, total, path} (title)}
     <a
     href="/search/{path}/{query}"
-    class="group py-3 px-6 w-full text-gray-800 dark:text-white flex items-center justify-between gap-3 hover:text-gray-900 "
+    class=" py-3 px-6 w-full text-gray-800 dark:text-white flex items-center justify-between gap-3 hover:text-gray-900 "
 >
     <div class="flex gap-3 items-center">
         <span class="text-sm text-black dark:text-white">{title}</span>
         <span>-</span>
-        <span class=" group-hover:underline text-gray-500"> {total} results </span>
+        <span class=" underline hover:text-gray-700 text-gray-500 dark:text-zinc-400 dark:hover:text-zinc-200"> {total} results </span>
     </div>
 </a>
     {/each}
