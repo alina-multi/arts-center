@@ -1,4 +1,4 @@
-FROM phpswoole/swoole:php8.2
+FROM phpswoole/swoole:php8.2-alpine
 
 # Setup working directory
 WORKDIR /var/www
@@ -6,7 +6,7 @@ WORKDIR /var/www
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/install-php-extensions && \
-    install-php-extensions pcntl bcmath zip imagick
+    install-php-extensions pcntl bcmath zip gd
 
 #So we have a nice cache of vendor
 COPY composer.lock /var/www
