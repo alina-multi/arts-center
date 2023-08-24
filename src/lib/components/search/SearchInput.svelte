@@ -6,19 +6,23 @@
 	import { goto } from '$app/navigation';
 	import Loader from '$lib/components/atoms/Loader.svelte';
 	import newUniqueId from 'locally-unique-id-generator';
+	import { fetchData } from '$lib/helpers/fetchData';
 
-	let value = '',
-		totalHits,
-		loading = false,
-		results = [];
+
+	let value = '';
+	let totalUserHits = 0,
+		totalWorksHits = 0,
+		loading = false;
+	$: users = [];
+	$: works = [];
 	$: open = value.length > 0;
-	let searchValue = '';
+	$: searchValue = '';
 	const id = newUniqueId();
 
 	function onEnter(e: KeyboardEvent) {
-		if (e.key === 'Enter' && totalHits > 20) {
+		if (e.key === 'Enter' && totalWorksHits > 20) {
 			open = false;
-			goto(`/search/${value}`, {
+			goto(`/search/works/${value}`, {
 				replaceState: true
 			}).then(() => {
 				location.reload();
@@ -37,16 +41,16 @@
 
 		loading = true;
 		doSearch(searchValue);
+		debounce(doSearch, 600)(searchValue);
 	}
 
-	const doSearch = debounce((val) => {
-		fetch(`/api/search/${val}/1`)
-			.then((res) => res.json())
-			.then((res) => {
-				results = [...res.hits];
-				totalHits = res.totalHits;
-				loading = false;
-			});
+	const doSearch = debounce(async (query) => {
+		const search = await fetchData(`/api/search/all/${query}/1`);
+		users = search.users.hits;
+		works = search.works.hits;
+		totalUserHits = search.users.totalHits;
+		totalWorksHits = search.works.totalHits;
+		loading = false;
 	}, 600);
 </script>
 
@@ -87,5 +91,6 @@
 		{/if}
 	</div>
 
-	<SearchBox bind:open {results} value={searchValue} {totalHits} />
+
+	<SearchBox bind:open {users} value={searchValue} {totalUserHits} {totalWorksHits} {works} {loading}/>
 </div>

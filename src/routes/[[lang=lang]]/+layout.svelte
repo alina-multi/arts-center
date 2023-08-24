@@ -49,7 +49,7 @@
 <slot />
 
 {#if $navigationIsDelayed}
-	<div class="absolute inset-0 backdrop-blur-sm bg-white/30 flex justify-center items-center z-50">
+	<div class="fixed inset-0 backdrop-blur-sm bg-white/30 flex justify-center items-center z-50">
 		<div class="h-full w-full opacity-50">
 			<Loader />
 		</div>
