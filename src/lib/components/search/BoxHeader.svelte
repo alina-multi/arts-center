@@ -9,7 +9,7 @@
 	
 	<slot />
 	{#if total > 6}
-	<a data-sveltekit-reload href={localePath(href)} class=" text-sm text-right hover:bg-gray-50 cursor-pointer text-sky-700 hover:underline font-normal ">
+	<a data-sveltekit-reload href={localePath(href)} class=" text-sm text-right cursor-pointer text-sky-700 dark:text-sky-600 hover:underline font-normal ">
 		show all  results by {title} &rarr;
 	</a>
 	{/if}
