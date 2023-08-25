@@ -46,8 +46,8 @@
 
 	const doSearch = debounce(async (query) => {
 		const search = await fetchData(`/api/search/all/${query}/1`);
-		users = search.users.hits;
-		works = search.works.hits;
+		users = search.users.hits.slice(0, 6);
+		works = search.works.hits.slice(0, 6);
 		totalUserHits = search.users.totalHits;
 		totalWorksHits = search.works.totalHits;
 		loading = false;
@@ -74,9 +74,9 @@
 			<Icon src={MagnifyingGlass} class="text-zinc-400  h-5 w-5" />
 		</div>
 		{#if loading && value.length > 0}
-			<div class="absolute inset-y-0 right-0 flex items-center z-50 pr-8 py-1">
+			<div class="absolute inset-y-0 right-0  z-50 pr-8 py-1">
 				<span class="sr-only">Loading...</span>
-				<Loader />
+				<div class="w-6 h-6"><Loader /></div>
 			</div>
 		{/if}
 		{#if open}

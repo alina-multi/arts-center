@@ -12,9 +12,9 @@
 
 	let visibleTags, hiddenTags;
 
-	$: if (tags.length > 8) {
-		visibleTags = tags.slice(0, 8);
-		hiddenTags = tags.slice(8);
+	$: if (tags.length > 6) {
+		visibleTags = tags.slice(0, 6);
+		hiddenTags = tags.slice(6);
 	} else {
 		visibleTags = tags;
 		hiddenTags = [];
@@ -28,7 +28,7 @@
 </script>
 
 <!-- DESkTOP -->
-<div class="hidden md:flex">
+<div class="hidden lg:flex">
 	<Popover class="relative inline-block text-left  z-20 text-gray-800 dark:text-gray-200 " let:open>
 		<div class="flex flex-wrap gap-3 lg:justify-end w-full">
 			<TagButtons tags={visibleTags} {urlGenerator} {params} active={isActive} />
@@ -60,7 +60,7 @@
 				leave="transition ease-in duration-75"
 			>
 				<PopoverPanel
-					class="absolute left-0 z-10 mt-2 origin-top-left rounded-md bg-white dark:bg-black/90 shadow-2xl ring-1 ring-black dark:ring-zinc-900 ring-opacity-5 focus:outline-none overflow-hidden"
+					class="absolute left-0 z-10 mt-2 origin-top-left w-full rounded-md bg-white dark:bg-black/90 shadow-2xl ring-1 ring-black dark:ring-zinc-900 ring-opacity-5 focus:outline-none overflow-hidden"
 					let:close
 				>
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -84,10 +84,10 @@
 </div>
 
 <!-- MOBILE -->
-<div class="flex md:hidden text-left z-30 flex-row-reverse">
+<div class="flex lg:hidden text-left z-30 flex-row-reverse">
 	<Popover class=" w-full flex-1  text-gray-800 dark:text-zinc-200  " let:open>
 		<PopoverButton
-			class="w-full flex items-center justify-between gap-2  border px-4 py-2 rounded-md hover:border-amber-500 dark:border-zinc-800 overflow-hidden dark:bg-zinc-900"
+			class="w-full flex items-center justify-between gap-2  border px-4 py-2 rounded-md  dark:border-zinc-800 overflow-hidden dark:bg-zinc-900"
 		>
 			<span class="space-x-1">
 				<span>filters</span>

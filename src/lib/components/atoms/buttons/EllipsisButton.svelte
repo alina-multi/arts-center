@@ -17,7 +17,7 @@
 	<Dropdown style="-right-1 z-10 w-40 text-sm mt-2  " z={20}>
 		<div
 			slot="button"
-			class="hover:bg-gray-100 cursor-pointer dark:hover:bg-zinc-800 rounded-md py-1"
+			class="hover:bg-gray-100 cursor-pointer dark:hover:bg-zinc-800 rounded-md py-1 focus:outline-none"
 		>
 			{#if type === 'horizontal'}
 				<Icon

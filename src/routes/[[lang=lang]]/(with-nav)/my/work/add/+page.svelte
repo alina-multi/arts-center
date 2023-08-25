@@ -6,12 +6,10 @@
 	import { locale, localePath } from '$lib/translations';
 	import toast from 'svelte-french-toast';
 	import { goto } from '$app/navigation';
-import LoaderLayout from '$lib/components/atoms/LoaderLayout.svelte';
 	
 
 	export let data: PageData;
 	let uploadedUrls = [];
-	let loading = false;
 
 	async function send(main = null) {
 		if (!main) {
@@ -31,7 +29,6 @@ import LoaderLayout from '$lib/components/atoms/LoaderLayout.svelte';
 			})
 		})
 			.then(async (response) => {
-				loading = true;
 				const json = await response.json();
 				if (response.ok) {
 					goto(localePath(`/my/work/draft/${json.id}`));
@@ -39,7 +36,6 @@ import LoaderLayout from '$lib/components/atoms/LoaderLayout.svelte';
 				} else {
 					toast.error(json?.message);
 				}
-				loading = false;
 			})
 			.catch(() => toast.error('Something is wrong with API server'));
 	}
@@ -98,7 +94,3 @@ import LoaderLayout from '$lib/components/atoms/LoaderLayout.svelte';
 {/if}
 
 
-
-{#if loading}
-<LoaderLayout />
-{/if}

@@ -14,7 +14,7 @@
 
 <Listbox value={selectedOrder} class="relative inline-block text-left z-30" let:open>
 	<ListboxButton
-		class=" inline-flex space-x-2 justify-center items-center  border dark:border-zinc-800 dark:bg-zinc-900 px-4 py-2 rounded-md text-gray-900 hover:bg-gray-50 dark:hover:bg-zinc-700  hover:shadow-lg dark:text-white focus:outline-none focus-visible:ring-2 dark:focus-visible:ring-white/75 focus-visible:ring-blue-700
+		class=" inline-flex space-x-2 justify-center items-center  border dark:border-zinc-800 dark:bg-zinc-900 px-4 py-2 rounded-md text-gray-900 hover:bg-gray-50 dark:hover:bg-zinc-700  hover:shadow-lg dark:text-white focus:outline-none focus-visible:ring-2 dark:focus-visible:ring-white/75
 		{selectedOrder != 'popular' ? ' shadow-sm' : ''}"
 	>
 		<span>{selectedOrder}</span>
