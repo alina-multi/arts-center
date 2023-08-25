@@ -7,9 +7,12 @@ import * as devalue from 'devalue';
 export const GET = (async ({ params }) => {
 	return new Response(
 		devalue.stringify({
-			gallery: await filteredQuery(params.tag, locale.get(), params.order, params.page).then(
-				(works) => worksPreviewMap(works)
-			)
+			gallery: await filteredQuery(
+				params.tag.replace('-', ' '),
+				locale.get(),
+				params.order,
+				params.page
+			).then((works) => worksPreviewMap(works))
 		})
 	);
 }) satisfies RequestHandler;
