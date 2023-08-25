@@ -17,34 +17,22 @@ const config: Config = {
 			loader: async () => (await import('./en/global.json')).default
 		},
 		{
-			locale: 'en',
-			key: 'gallery',
-			routes: ['', '/'],
-			loader: async () => (await import('./en/gallery.json')).default
-		},
-		{
-			locale: 'en',
-			key: 'users',
-			routes: ['/users'],
-			loader: async () => (await import('./en/users.json')).default
-		},
-		{
 			locale: 'uk',
 			key: 'global',
 			loader: async () => (await import('./uk/global.json')).default
 		},
 		{
-			locale: 'uk',
-			key: 'gallery',
-			routes: ['/uk'],
-			loader: async () => (await import('./uk/gallery.json')).default
+			locale: 'en',
+			key: 'my',
+			routes: [/\/my\/.*/],
+			loader: async () => (await import('./en/my.json')).default
 		},
 		{
 			locale: 'uk',
-			key: 'users',
-			routes: ['/uk/users'],
-			loader: async () => (await import('./uk/users.json')).default
-		}
+			key: 'my',
+			routes: [/\/uk\/my\/.*/],
+			loader: async () => (await import('./uk/my.json')).default
+		},
 	]
 };
 

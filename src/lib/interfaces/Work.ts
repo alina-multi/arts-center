@@ -10,7 +10,7 @@ export interface WorkPreview {
 	hosts: number;
 	price: number | null;
 	titles: WorkTitle[];
-	image?: Picture;
+	preview?: Picture;
 	owners: UserPreview[];
 }
 
@@ -21,17 +21,10 @@ export interface Work extends WorkPreview {
 	length: number | null;
 	tags?: Tag[];
 	votes?: UserPreview[];
+	full: Picture;
 }
 
 export interface WorkTitle {
 	title: string;
 	language: string;
-}
-
-export interface WorkBlock {
-	id: bigint;
-	language: string;
-	type: string;
-	data: object;
-	images?: Picture[];
 }
