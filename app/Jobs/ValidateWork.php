@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Enums\WorkStatuses;
+use App\Events\WorkReady;
 use App\Models\Image;
 use App\Models\Work;
 use Illuminate\Bus\Queueable;
@@ -42,6 +43,7 @@ class ValidateWork implements ShouldQueue
         $this->validateImage($this->work->full, 'full');
 
         $this->work->update(['status' => WorkStatuses::READY]);
+        WorkReady::dispatch($this->work);
     }
 
     public function validateImage(Image|null $image, string $type)

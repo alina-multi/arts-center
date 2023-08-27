@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Enums\TagTypes;
 use App\Enums\WorkStatuses;
-use App\Events\PublishedWorkUpdated;
+use App\Events\WorkUserPublished;
 use App\Events\WorkDeleted;
 use App\Events\WorkPublished;
 use App\Traits\Publishable;
@@ -58,20 +58,6 @@ class Work extends Model
         return $query->with('titles', 'preview', 'preview.variants', 'owners', 'owners.photo', 'owners.photo.variants')
             ->whereNotNull('published_at');
     }
-
-    protected static function booted()
-    {
-        static::updated(function ($work) {
-            if ($work->published_at) {
-                if (!$work->getOriginal('published_at')) {
-                    WorkPublished::dispatch($work);
-                } else {
-                    PublishedWorkUpdated::dispatch($work);
-                }
-            }
-        });
-    }
-
 
     public function blocks()
     {

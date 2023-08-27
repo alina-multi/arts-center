@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\WorkTranslated;
 use App\Models\Work;
 use App\Models\WorkTitle;
 use Google\Cloud\Translate\V2\TranslateClient;
@@ -64,6 +65,7 @@ class TranslateWork implements ShouldQueue
                 }
             }
             $this->work->save();
+            WorkTranslated::dispatch($this->work);
         }
     }
 }

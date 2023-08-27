@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Events\PublishedWorkUpdated;
+use App\Events\WorkUserPublished;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api2;
 
 use App\Enums\WorkStatuses;
+use App\Events\WorkDeleted;
+use App\Events\WorkDrafted;
+use App\Events\WorkUserPublished;
 use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PublishWork;
@@ -63,6 +66,7 @@ class DraftController extends Controller
         $draft->published_at = $request->published_at;
         $draft->status = WorkStatuses::USER_PUBLISHED;
         $draft->save();
+        WorkUserPublished::dispatch($draft);
         return response()->noContent();
     }
 
@@ -74,6 +78,7 @@ class DraftController extends Controller
         $draft->published_at = null;
         $draft->status = WorkStatuses::DRAFT;
         $draft->save();
+        WorkDrafted::dispatch($draft);
         return response()->noContent();
     }
 
@@ -89,6 +94,7 @@ class DraftController extends Controller
         }
         $draft->update(['status' => WorkStatuses::DELETED]);
         $draft->delete();
+        WorkDeleted::dispatch($draft);
         return response()->noContent();
     }
 }

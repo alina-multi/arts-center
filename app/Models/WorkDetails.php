@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Events\PublishedWorkUpdated;
+use App\Events\WorkUserPublished;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +14,7 @@ class WorkDetails extends Model
     {
         static::updated(function ($workDetalis) {
             if ($workDetalis->work->published_at) {
-                PublishedWorkUpdated::dispatch($workDetalis->work);
+                WorkUserPublished::dispatch($workDetalis->work);
             }
         });
     }

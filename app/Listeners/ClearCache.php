@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Models\Comment;
 use App\Events\CommentChanged;
-use App\Events\PublishedWorkUpdated;
+use App\Events\WorkUserPublished;
 use App\Events\WorkPublished;
 use App\Models\Work;
 use Illuminate\Contracts\Queue\ShouldQueue;
