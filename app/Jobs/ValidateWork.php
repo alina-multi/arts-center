@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Enums\ImageFolders;
 use App\Enums\WorkStatuses;
 use App\Events\WorkReady;
 use App\Models\Image;
@@ -52,7 +53,21 @@ class ValidateWork implements ShouldQueue
             $this->invalid("Work doesn't have a $type image");
         }
 
-        if ($image->variants->count() < 2) {
+        $original = $image->variants->where('original', true)->first();
+
+        // For old works
+        $min = match ($image->folder) {
+            ImageFolders::Preview, ImageFolders::Photos, ImageFolders::Grids => 300,
+            ImageFolders::Works => 1200,
+        };
+
+        if ($original?->width <= $min) {
+            $expected = 1;
+        } else {
+            $expected = 2; // We don't really calculate how much there should be, just at least 2
+        }
+
+        if ($image->variants->count() < $expected) {
             $this->invalid("Image $type seems have not been converted yet");
         }
 

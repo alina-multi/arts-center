@@ -23,6 +23,11 @@ class ValidateWorks extends Command
     public function handle()
     {
         \App\Models\Work::whereNotNull('published_at')
-            ->chunkById(100, fn(Collection $works) => $works->map(fn($work) => ValidateWork::dispatch($work)));
+            ->chunkById(100, function (Collection $works) {
+                $works->map(function ($work) {
+                    ValidateWork::dispatch($work);
+                });
+                $this->line("Dispatched batch, last work id: {$works->last()->id}");
+            });
     }
 }
