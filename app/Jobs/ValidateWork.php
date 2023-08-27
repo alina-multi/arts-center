@@ -13,6 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Exceptions\WorkValidationFailed;
+use Illuminate\Support\Facades\Storage;
 
 class ValidateWork implements ShouldQueue
 {
@@ -71,7 +72,7 @@ class ValidateWork implements ShouldQueue
             $this->invalid("Image $type seems have not been converted yet");
         }
 
-        $image->variants->each(fn($variant) => \File::exists("{$image->folder->value}/$variant->file") or
+        $image->variants->each(fn($variant) => Storage::exists("{$image->folder->value}/$variant->file") or
             $this->invalid("Missing file: {$image->folder->value}/$variant->file"));
     }
 
