@@ -35,6 +35,11 @@ class Work extends Model
         'deleted' => WorkDeleted::class,
     ];
 
+    public function searchIndexShouldBeUpdated()
+    {
+        return false;
+    }
+
     /*
 
      */

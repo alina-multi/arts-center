@@ -79,6 +79,7 @@ class DraftController extends Controller
         $draft->status = WorkStatuses::DRAFT;
         $draft->save();
         WorkDrafted::dispatch($draft);
+        $draft->unsearchable();
         return response()->noContent();
     }
 

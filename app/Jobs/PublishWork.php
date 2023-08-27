@@ -35,5 +35,6 @@ class PublishWork implements ShouldQueue
                 WorkStatuses::PUBLISHED_PREMIUM :
                 WorkStatuses::PUBLISHED
         ]);
+        $this->work->searchable();
     }
 }
