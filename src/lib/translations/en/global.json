@@ -5,12 +5,118 @@
 		"login": "LOGIN",
 		"register": "REGISTER"
 	},
+
 	"footer": {
-		"about": "About Us",
+		"about": "About",
+		"about_us": "About Us",
+		"pricing": "Pricing",
 		"contacts": "Contacts",
 		"blog": "Blog",
 		"subscriptions": "Subscriptions",
 		"privacy": "Privacy policy",
 		"terms": "Terms and conditions"
+	},
+
+	"search": {
+		"search_input": "Search",
+		"search_results": "Search results",
+	     "stub_at_least": "Please enter at least 2 characters",
+		 "stub_nothing": "No results found using that search term.",
+		 "results": {
+			"show_results_link": "show all results by ",
+			"found": "Found",
+			"for": "for",
+			"works": "works",
+			"work": "work",
+			"people": "people",
+			"person": "person",
+			"results": "results"
+		 },
+		 "view_profile": "View profile"
+		},
+
+	"filters": {
+		"filters": "filters",
+		"order": "ORDER BY",
+		"category": "CATEGORY",
+		"country": "COUNTRY",
+		"all": "all",
+		"popular": "popular",
+		"new": "new",
+		"sale": "sale",
+		"other": "other",
+		"tags": "Tags",
+		"no_results": "No results found"
+	},
+		
+
+	"my_links":{
+		"my_profile": "My Page",
+		"edit_profile": "Edit Profile",
+		"add_work": "Add Work",
+		"drafts": "Drafts",
+		"saved": "Saved",
+		"followers": "Followers",
+		"following": "Following",
+		"blocked": "Blocked",
+		"logout": "Log Out"
+	},
+		
+	"buttons": {
+		"login": "LOGIN",
+		"register": "REGISTER",
+		"addwork": "ADD WORK",
+		"follow": "Follow",
+		"following": "Following",
+		"clear": "Clear all",
+		"cancel": "Cancel",
+		"save": "Save",
+		"close": "Close",
+		"delete": "Delete",
+		"edit": "Edit",
+		"report": "Report",
+		"post": "Post",
+		"block": "Block",
+		"unblock": "Unblock",
+		"show_more": "Show more",
+		"show_less": "Show less",
+		"hide": "Hide",
+		"view": "View"
+	},
+
+	"voting": {
+		"like": "Like",
+		"Liked by": "Liked by",
+		"and": "and",
+		"others": "others"	
+	},
+
+
+	"comments":{
+		"comments": "Comments",
+		"add_comment": "Add a comment",
+		"comment": "Comment",
+		"stub_no_comments": "No comments yet. Be the first to comment!",
+		"reply": "Reply",
+		"reply_added": "Reply added",
+		"comment_added": "Comment added",
+		"comment_deleted": "Comment deleted",
+		"comment_edited": "Comment edited"
+	},
+	
+	"user": {
+		"total_rating": "Total Rating",
+		"on_arts_since": "on arts since"
 	}
-}
+	
+
+		
+	}
+	
+
+
+
+	
+
+
+
