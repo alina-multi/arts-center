@@ -1,122 +1,101 @@
 {
-	"menu": {
-		"gallery": "GALLERY",
-		"users": "ARTISTS",
-		"login": "LOGIN",
-		"register": "REGISTER"
-	},
-
-	"footer": {
-		"about": "About",
-		"about_us": "About Us",
-		"pricing": "Pricing",
-		"contacts": "Contacts",
-		"blog": "Blog",
-		"subscriptions": "Subscriptions",
-		"privacy": "Privacy policy",
-		"terms": "Terms and conditions"
-	},
-
-	"search": {
-		"search_input": "Search",
-		"search_results": "Search results",
-	     "stub_at_least": "Please enter at least 2 characters",
-		 "stub_nothing": "No results found using that search term.",
-		 "results": {
-			"show_results_link": "show all results by ",
-			"found": "Found",
-			"for": "for",
-			"works": "works",
-			"work": "work",
-			"people": "people",
-			"person": "person",
-			"results": "results"
-		 },
-		 "view_profile": "View profile"
-		},
-
-	"filters": {
-		"filters": "filters",
-		"order": "ORDER BY",
-		"category": "CATEGORY",
-		"country": "COUNTRY",
-		"all": "all",
-		"popular": "popular",
-		"new": "new",
-		"sale": "sale",
-		"other": "other",
-		"tags": "Tags",
-		"no_results": "No results found"
-	},
-		
-
-	"my_links":{
-		"my_profile": "My Page",
-		"edit_profile": "Edit Profile",
-		"add_work": "Add Work",
-		"drafts": "Drafts",
-		"saved": "Saved",
-		"followers": "Followers",
-		"following": "Following",
-		"blocked": "Blocked",
-		"logout": "Log Out"
-	},
-		
 	"buttons": {
-		"login": "LOGIN",
-		"register": "REGISTER",
 		"addwork": "ADD WORK",
-		"follow": "Follow",
-		"following": "Following",
-		"clear": "Clear all",
+		"block": "Block",
 		"cancel": "Cancel",
-		"save": "Save",
+		"clear": "Clear all",
 		"close": "Close",
 		"delete": "Delete",
 		"edit": "Edit",
-		"report": "Report",
-		"post": "Post",
-		"block": "Block",
-		"unblock": "Unblock",
-		"show_more": "Show more",
-		"show_less": "Show less",
+		"follow": "Follow",
+		"following": "Following",
 		"hide": "Hide",
+		"login": "LOGIN",
+		"post": "Post",
+		"register": "REGISTER",
+		"report": "Report",
+		"save": "Save",
+		"show_less": "Show less",
+		"show_more": "Show more",
+		"unblock": "Unblock",
 		"view": "View"
 	},
-
-	"voting": {
-		"like": "Like",
-		"Liked by": "Liked by",
-		"and": "and",
-		"others": "others"	
-	},
-
-
-	"comments":{
-		"comments": "Comments",
+	"comments": {
 		"add_comment": "Add a comment",
 		"comment": "Comment",
-		"stub_no_comments": "No comments yet. Be the first to comment!",
-		"reply": "Reply",
-		"reply_added": "Reply added",
 		"comment_added": "Comment added",
 		"comment_deleted": "Comment deleted",
-		"comment_edited": "Comment edited"
+		"comment_edited": "Comment edited",
+		"comments": "Comments",
+		"reply": "Reply",
+		"reply_added": "Reply added",
+		"stub_no_comments": "No comments yet. Be the first to comment!"
 	},
-	
+	"filters": {
+		"all": "all",
+		"category": "CATEGORY",
+		"country": "COUNTRY",
+		"filters": "filters",
+		"new": "new",
+		"no_results": "No results found",
+		"order": "ORDER BY",
+		"other": "other",
+		"popular": "popular",
+		"sale": "sale",
+		"tags": "Tags"
+	},
+	"footer": {
+		"about": "About",
+		"about_us": "About Us",
+		"blog": "Blog",
+		"contacts": "Contacts",
+		"pricing": "Pricing",
+		"privacy": "Privacy policy",
+		"subscriptions": "Subscriptions",
+		"terms": "Terms and conditions"
+	},
+	"menu": {
+		"gallery": "GALLERY",
+		"login": "LOGIN",
+		"register": "REGISTER",
+		"users": "ARTISTS"
+	},
+	"my_links": {
+		"add_work": "Add Work",
+		"blocked": "Blocked",
+		"drafts": "Drafts",
+		"edit_profile": "Edit Profile",
+		"followers": "Followers",
+		"following": "Following",
+		"logout": "Log Out",
+		"my_profile": "My Page",
+		"saved": "Saved"
+	},
+	"search": {
+		"results": {
+			"for": "for",
+			"found": "Found",
+			"people": "people",
+			"person": "person",
+			"results": "results",
+			"show_results_link": "show all results by ",
+			"work": "work",
+			"works": "works"
+		},
+		"search_input": "Search",
+		"search_results": "Search results",
+		"stub_at_least": "Please enter at least 2 characters",
+		"stub_nothing": "No results found using that search term.",
+		"view_profile": "View profile"
+	},
 	"user": {
-		"total_rating": "Total Rating",
-		"on_arts_since": "on arts since"
+		"on_arts_since": "on arts since",
+		"total_rating": "Total Rating"
+	},
+	"voting": {
+		"and": "and",
+		"like": "Like",
+		"Liked by": "Liked by",
+		"others": "others"
 	}
-	
-
-		
-	}
-	
-
-
-
-	
-
-
-
+}
