@@ -1,15 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '$lib/server/database/prisma';
 import { userSelect } from './user';
 import { imageSelect } from '$lib/server/repositories/image';
-
-const prisma = new PrismaClient({
-	log: [
-		{
-			emit: 'event',
-			level: 'query'
-		}
-	]
-});
 
 export function get(id: bigint) {
 	return prisma.works.findUnique({
