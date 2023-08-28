@@ -16,7 +16,7 @@ class PublishReadyWorks extends Command
 
     public function handle()
     {
-        \App\Models\Work::where('published_at', '>', now())
+        \App\Models\Work::where('published_at', '<', now())
             ->where('status', WorkStatuses::READY->value)
             ->chunkById(100, function (Collection $works) {
                 $works->map(function ($work) {
