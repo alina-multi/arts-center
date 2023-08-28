@@ -2,6 +2,7 @@
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 test('ValidateWork job', function () {
+    Storage::fake();
     $work = \App\Models\Work::factory()
         ->has(\App\Models\WorkTitle::factory()
             ->count(2)
@@ -25,6 +26,7 @@ test('ValidateWork job', function () {
     // Still don't have any images
     expect(fn() => \App\Jobs\ValidateWork::dispatchSync($work))
         ->toThrow(\App\Exceptions\WorkValidationFailed::class, "Work doesn't have a preview image");
+    \Pest\Laravel\assertDatabaseHas('work_logs', ['type' => 'error']);
 
     // Should fail because still not converted
     $work->preview()->associate(\App\Models\Image::factory()->onlyOriginal()->create());

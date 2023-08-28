@@ -118,4 +118,9 @@ class Work extends Model
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
+
+    public function logs()
+    {
+        return $this->hasMany(WorkLog::class);
+    }
 }

@@ -44,7 +44,8 @@ class ValidateWork implements ShouldQueue
         $this->validateImage($this->work->preview, 'preview');
         $this->validateImage($this->work->full, 'full');
 
-        $this->work->update(['status' => WorkStatuses::READY]);
+        $this->work->status = WorkStatuses::READY;
+        $this->work->save();
         WorkReady::dispatch($this->work);
     }
 
@@ -58,7 +59,7 @@ class ValidateWork implements ShouldQueue
 
         // For old works
         $min = match ($image->folder) {
-            ImageFolders::Preview, ImageFolders::Photos, ImageFolders::Grids => 300,
+            ImageFolders::Preview, ImageFolders::Photos, ImageFolders::Grids, ImageFolders::Grid => 300,
             ImageFolders::Works => 1200,
         };
 
@@ -78,7 +79,12 @@ class ValidateWork implements ShouldQueue
 
     public function invalid($error)
     {
-        $this->work->update(['status' => WorkStatuses::ERROR]);
+        $this->work->status = WorkStatuses::ERROR;
+        $this->work->save();
+        $this->work->logs()->create([
+            'type' => 'error',
+            'body' => $error
+        ]);
         throw new WorkValidationFailed($error);
     }
 }

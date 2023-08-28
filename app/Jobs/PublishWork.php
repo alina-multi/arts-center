@@ -30,11 +30,10 @@ class PublishWork implements ShouldQueue
 
         $premium = $this->work->owners->where('premium', true)->count();
 
-        $this->work->update(['status' =>
-            $premium ?
+        $this->work->status = $premium ?
                 WorkStatuses::PUBLISHED_PREMIUM :
-                WorkStatuses::PUBLISHED
-        ]);
+                WorkStatuses::PUBLISHED;
+        $this->work->save();
         $this->work->searchable();
     }
 }
