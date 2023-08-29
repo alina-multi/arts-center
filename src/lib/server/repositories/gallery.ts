@@ -1,18 +1,9 @@
 import type { Prisma } from '@prisma/client';
-import { PrismaClient } from '@prisma/client';
 import { titleToId } from './tag';
 import { error } from '@sveltejs/kit';
 import { userSelect } from './user';
 import { imageSelect } from '$lib/server/repositories/image';
-
-const prisma = new PrismaClient({
-	log: [
-		{
-			emit: 'event',
-			level: 'query'
-		}
-	]
-});
+import { prisma } from '$lib/server/database/prisma';
 
 export function query(
 	where: Prisma.worksWhereInput = {},
@@ -50,8 +41,7 @@ export function query(
 			}
 		},
 		where: {
-			published_at: { lte: new Date() },
-			deleted_at: null,
+			status: { gte: 40 },
 			...where
 		},
 		orderBy

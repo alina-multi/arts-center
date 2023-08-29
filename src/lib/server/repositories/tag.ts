@@ -1,13 +1,4 @@
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient({
-	log: [
-		{
-			emit: 'event',
-			level: 'query'
-		}
-	]
-});
+import { prisma } from '$lib/server/database/prisma';
 
 export function getCategories() {
 	return prisma.tags.findMany({

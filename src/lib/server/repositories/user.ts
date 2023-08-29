@@ -1,5 +1,5 @@
 import type { Prisma } from '@prisma/client';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '$lib/server/database/prisma';
 import { titleToId } from './tag';
 import { error } from '@sveltejs/kit';
 import { imageSelect } from '$lib/server/repositories/image';
@@ -13,14 +13,6 @@ export const userSelect = {
 	rating: true
 };
 
-const prisma = new PrismaClient({
-	log: [
-		{
-			emit: 'event',
-			level: 'query'
-		}
-	]
-});
 const PAGE_SIZE = 10;
 
 export function query(
