@@ -21,7 +21,7 @@ class PublishWork implements ShouldQueue
 
     public function handle(): void
     {
-        if ($this->work->status->value >= WorkStatuses::READY->value) {
+        if ($this->work->status->value < WorkStatuses::READY->value) {
             throw new \Exception("Shouldn't try to publish work that is not in status READY");
         }
         if (!$this->work->published_at) {
