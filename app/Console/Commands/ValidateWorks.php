@@ -4,18 +4,19 @@ namespace App\Console\Commands;
 
 use App\Jobs\ValidateWork;
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 class ValidateWorks extends Command
 {
-    protected $signature = 'app:validate-works';
+    protected $signature = 'app:validate-works {--status=}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Validate all works';
+    protected $description = 'Validate works';
 
     /**
      * Execute the console command.
@@ -23,6 +24,9 @@ class ValidateWorks extends Command
     public function handle()
     {
         \App\Models\Work::whereNotNull('published_at')
+            ->when($this->option('status'), function (Builder $query, string $status) {
+                $query->where('status', $status);
+            })
             ->chunkById(100, function (Collection $works) {
                 $works->map(function ($work) {
                     ValidateWork::dispatch($work);
