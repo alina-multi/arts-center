@@ -19,6 +19,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Work extends Resource
 {
+    use Laravel\Scout\Searchable;
     /**
      * The model the resource corresponds to.
      *
@@ -26,7 +27,7 @@ class Work extends Resource
      */
     public static $model = \App\Models\Work::class;
 
-    public static $with = ['titles', 'image'];
+    public static $with = ['titles', 'preview', 'preview.variants'];
 
     public function title()
     {
@@ -66,10 +67,10 @@ class Work extends Resource
         };
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Image::make('image')->preview(function ($value, $disk) {
-                return $value ? $value->url : '';
+            Image::make('preview')->preview(function ($value, $disk) {
+                return $value ? $value->src : '';
             })->thumbnail(function ($value, $disk) {
-                return $value ? $value->url : '';
+                return $value ? $value->src : '';
             }),
             HasMany::make('WorkTitles', 'titles'),
             Text::make('Titles', function () use ($getTitle) {
