@@ -19,7 +19,6 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Work extends Resource
 {
-    use Laravel\Scout\Searchable;
     /**
      * The model the resource corresponds to.
      *

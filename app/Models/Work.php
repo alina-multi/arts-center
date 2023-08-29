@@ -4,9 +4,7 @@ namespace App\Models;
 
 use App\Enums\TagTypes;
 use App\Enums\WorkStatuses;
-use App\Events\WorkUserPublished;
 use App\Events\WorkDeleted;
-use App\Events\WorkPublished;
 use App\Traits\Publishable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
