@@ -3,7 +3,7 @@
 		"addwork": "ADD WORK",
 		"block": "Block",
 		"cancel": "Cancel",
-		"clear": "Clear all",
+		"clear": "Clear",
 		"close": "Close",
 		"delete": "Delete",
 		"edit": "Edit",
@@ -18,38 +18,49 @@
 		"show_less": "Show less",
 		"show_more": "Show more",
 		"unblock": "Unblock",
-		"view": "View"
+		"show": "Show"
 	},
-	"comments": {
-		"add_comment": "Add a comment",
-		"comment": "Comment",
-		"comment_added": "Comment added",
-		"comment_deleted": "Comment deleted",
-		"comment_edited": "Comment edited",
+	"comment": {
+		"placeholder": "Add a comment",
+		"post": "Post comment",
 		"comments": "Comments",
 		"reply": "Reply",
-		"reply_added": "Reply added",
-		"stub_no_comments": "No comments yet. Be the first to comment!"
+		"stub": {
+			"no_comments": "No comments yet",
+			"be_first": "Be the first to comment this work"
+		},
+		"add": {
+			"loading": "Adding comment...",
+			"success": "Comment added",
+			"error": "Error adding comment"
+		},
+		"delete": {
+			"loading": "Deleting comment...",
+			"success": "Comment deleted",
+			"error": "Error deleting comment"
+		},
+		"edit": {
+			"success": "Comment edited",
+			"error": "Error editing comment"
+		}
 	},
 	"filters": {
 		"all": "all",
-		"category": "CATEGORY",
-		"country": "COUNTRY",
+		"category": "category",
+		"country": "Country",
 		"filters": "filters",
 		"new": "new",
-		"no_results": "No results found",
-		"order": "ORDER BY",
-		"other": "other",
+		"no_results": "no results found",
+		"order": "Order by",
+		"more": "more",
 		"popular": "popular",
 		"sale": "sale",
 		"tags": "Tags"
 	},
 	"footer": {
 		"about": "About",
-		"about_us": "About Us",
 		"blog": "Blog",
 		"contacts": "Contacts",
-		"pricing": "Pricing",
 		"privacy": "Privacy policy",
 		"subscriptions": "Subscriptions",
 		"terms": "Terms and conditions"
@@ -75,14 +86,14 @@
 		"results": {
 			"for": "for",
 			"found": "Found",
-			"people": "people",
-			"person": "person",
+			"people": "artists",
+			"person": "artist",
 			"results": "results",
-			"show_results_link": "show all results by ",
+			"show_link": "show all results",
 			"work": "work",
 			"works": "works"
 		},
-		"search_input": "Search",
+		"placeholder": "Search",
 		"search_results": "Search results",
 		"stub_at_least": "Please enter at least 2 characters",
 		"stub_nothing": "No results found using that search term.",
@@ -95,7 +106,37 @@
 	"voting": {
 		"and": "and",
 		"like": "Like",
-		"Liked by": "Liked by",
+		"liked_by": "Liked by",
 		"others": "others"
+	},
+	"not_logged_in": {
+		"for_follow": "You need to login or register to follow"
+	},
+	"subscription": {
+		"title_1": " Make a profit from your creativity!",
+		"title_2": "Get exclusive benefits that will give you the opportunity to be noticed, gather fans around your work, and convert your art into profit.",
+		"why_subscribe_title": "Why subscribe and what are the benefits?",
+		"why_subscribe_description_1": "We understand that creativity is a process that takes time and focus. We also understand that it takes patience, time, and skill to achieve success and financial growth.",
+		"why_subscribe_description_2": "That's why our platform offers assistance and provides tools to help you draw attention to your talent, showcase your work to the world, and turn it into profit",
+		"annual_membership": "Annual membership",
+		"get_access": "Get access",
+		"whats_included": "What's included",
+		"benefit_1": "A premium account that will set you apart from other users",
+		"benefit_2": "First places in the gallery and searches, which will provide more attention to your profile",
+		"benefit_3": "Access to artificial intelligence tools",
+		"benefit_4": "Opportunity to receive support and rewards from admirers"
+	},
+	"login": {
+		"page_title": "Sign in to your account",
+		"email": "Email",
+		"password": "Password",
+		"remember_me": "Remember me",
+		"forgot_password": "Forgot your password?",
+		"sign_in": "Sign in"
+	
+	},
+	
+	"common": {
+		"continue_with": "or continue with"
 	}
 }

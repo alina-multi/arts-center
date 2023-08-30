@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { localePath } from '$lib/translations';
+	import { localePath, t } from '$lib/translations';
 	export let total, href, title;
 </script>
 
@@ -10,7 +10,7 @@
 	<slot />
 	{#if total > 6}
 	<a data-sveltekit-reload href={localePath(href)} class=" text-sm text-right cursor-pointer text-sky-700 dark:text-sky-600 hover:underline font-normal ">
-		show all  results by {title} &rarr;
+		{$t('global.search.results.show_link')} &rarr;
 	</a>
 	{/if}
 </div>

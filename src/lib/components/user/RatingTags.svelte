@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Heart, Eye, EyeSlash } from '@steeze-ui/heroicons';
-	import { localePath } from '$lib/translations';
+	import { localePath, t } from '$lib/translations';
 
 	export let user, showRatings, onToggle;
 </script>
@@ -13,10 +13,10 @@
 		on:click={() => onToggle()}
 	>
 		{#if !showRatings}
-			<span>View</span>
+			<span>{$t('global.buttons.show')}</span>
 			<Icon src={Eye} theme="solid" class=" h-4 w-4 " />
 		{:else}
-			<span>Hide</span>
+			<span>{$t('global.buttons.hide')}</span>
 			<Icon src={EyeSlash} theme="solid" class=" h-4 w-4 transform rotate-180" />
 		{/if}
 	</button>

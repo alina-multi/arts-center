@@ -4,6 +4,7 @@
 	import { page } from '$app/stores';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import AuthModal from '../AuthModal.svelte';
+	import { t } from '$lib/translations';
 
 
 	export let user, size: string;
@@ -64,7 +65,7 @@
 			class="w-full {`text-${size}`} border border-1 text-zinc-600 dark:text-zinc-300 flex items-center justify-center gap-1 rounded-full pl-2 pr-1.5 py-0.5 shadow-sm cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-700 dark:border-zinc-700 dark:bg-zinc-800"
 			on:click={() => handleFollow()}
 		>
-			<span>Following</span>
+			<span>{$t('global.buttons.following')}</span>
 			<Icon src={CheckCircle} class="w-4 h-4  dark:text-zinc-300" />
 		</button>
 	{:else}
@@ -74,7 +75,7 @@
 				: 'border ring-zinc-500 dark:bg-zinc-800 hover:bg-zinc-50 text-zinc-600 dark:border-zinc-700 dark:hover:bg-zinc-700'}  dark:text-zinc-300 flex items-center justify-center gap-1 rounded-full pl-2 pr-1.5 py-0.5 shadow-sm cursor-pointer"
 			on:click={() => handleFollow()}
 		>
-			<span>Follow</span>
+			<span>{$t('global.buttons.follow')}</span>
 			<Icon src={PlusCircle} class="w-4 h-4  dark:text-zinc-300 " />
 		</button>
 	{/if}

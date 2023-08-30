@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ActionButton from './ActionButton.svelte';
+	import { t } from '$lib/translations';
 
 	export let open = false;
 </script>
@@ -11,5 +12,5 @@
 		open = false;
 	}}
 >
-	<span>Cancel</span>
+	<span>{$t('global.buttons.cancel')}</span>
 </ActionButton>

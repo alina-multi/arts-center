@@ -9,6 +9,7 @@
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
 	import AvatarInput from '$lib/components/user/AvatarInput.svelte';
 	import ButtonsGroup from '$lib/components/forms/ButtonsGroup.svelte';
+	import {t} from '$lib/translations';
 
 	export let data: PageData;
 	export let form: ActionData;
@@ -17,15 +18,15 @@
 
 <form method="post" enctype="multipart/form-data" class="space-y-3">
 	<FormGroup
-		h1="Personal Information"
-		h2="This information will be displayed publicly so be careful what you share."
+		h1={$t('my.edit_page.personal_info')}
+		h2={$t('my.edit_page.warning_personal_info')}
 	>
 		<InputGroup error={form?.errors?.avatar} let:elementId={id}>
 			<AvatarInput {id} currentAvatar={profile?.photo} />
 		</InputGroup>
 
 		<InputGroup
-			label="Full name"
+			label={$t('my.edit_page.full_name')}
 			error={form?.errors?.email}
 			let:elementId={id}
 			let:hasError={error}
@@ -34,7 +35,7 @@
 		</InputGroup>
 
 		<InputGroup
-			label="Username"
+			label={$t('my.edit_page.username')}
 			error={form?.errors?.username}
 			let:elementId={id}
 		>
@@ -55,9 +56,9 @@
 		</InputGroup>
 
 		<div class="col-span-full">
-			<h3 class="font-semibold">Biography</h3>
+			<h3 class="font-semibold">{$t('my.edit_page.biography')}</h3>
 			<p class=" text-sm text-gray-600 py-1 dark:text-zinc-400">
-				Write a few sentences about yourself.
+				{$t('my.edit_page.bio_tip')}
 			</p>
 			<div class="grid grid-cols-2 gap-3">
 				{#each availableLocales as locale}
@@ -81,7 +82,7 @@
 		</div>
 
 		<InputGroup
-			label="Country"
+			label={$t('my.edit_page.country')}
 			error={form?.errors?.country}
 			let:elementId={id}
 			let:hasError={error}
@@ -90,16 +91,16 @@
 		</InputGroup>
 	</FormGroup>
 
-	<FormGroup h1="Login Information">
-		<InputGroup label="email" error={form?.errors?.email} let:elementId={id} let:hasError={error}>
+	<FormGroup h1={$t('my.edit_page.login_info')}>
+		<InputGroup label={$t('my.edit_page.email')} error={form?.errors?.email} let:elementId={id} let:hasError={error}>
 			{#if !profile?.email_verified_at}
-				<p class="mt-1 text-sm leading-6 text-gray-600">Email awaiting confirmation</p>
+				<p class="mt-1 text-sm leading-6 text-gray-600">{$t('my.edit_page.email_awaiting_confirmation')}</p>
 			{/if}
 			<EmailInput {id} {error} name="email" value={profile.email} />
 		</InputGroup>
 
 		<InputGroup
-			label="password"
+			label={$t('my.edit_page.password')}
 			error={form?.errors?.password}
 			let:elementId={id}
 			let:hasError={error}
@@ -107,12 +108,12 @@
 			<PasswordInput {id} {error} name="password" autocomplete="off" />
 		</InputGroup>
 
-		<InputGroup label="confirm password" let:elementId={id}>
+		<InputGroup label={$t('my.edit_page.confirm_password')} let:elementId={id}>
 			<PasswordInput {id} name="password_confirmation" autocomplete="off" />
 		</InputGroup>
 
 		<InputGroup
-			label="current password"
+			label={$t('my.edit_page.current_password')}
 			error={form?.errors?.current_password}
 			let:elementId={id}
 			let:hasError={error}

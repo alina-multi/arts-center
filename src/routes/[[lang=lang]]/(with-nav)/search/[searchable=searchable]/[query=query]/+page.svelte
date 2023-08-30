@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { localePath } from '$lib/translations';
+	import { localePath, t } from '$lib/translations';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ChevronRight } from '@steeze-ui/heroicons';
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
@@ -47,8 +47,8 @@
 		<SearchFilters
 			query={data.params.query}
 			options={[
-				{ title: 'ARTISTS', total: data.search.users.totalHits, path: 'users' },
-				{ title: 'WORKS', total: data.search.works.totalHits, path: 'works' }
+				{ title: 'people', total: data.search.users.totalHits, path: 'users' },
+				{ title: 'works', total: data.search.works.totalHits, path: 'works' }
 			]}
 		/>
 	</svelte:fragment>
@@ -64,7 +64,7 @@
 								href={localePath(`/${user.username}`)}
 								class="cursor-pointer hidden sm:inline-flex gap-3 flex-0 items-center text-sm text-zinc-500 hover:scale-105 hover:text-gray-600 transition ease-in-out duration-150"
 							>
-								<span>View profile</span>
+								<span> {$t('global.search.view_profile')}</span>
 								<Icon src={ChevronRight} class="w-6 h-6 " />
 							</a>
 						</li>

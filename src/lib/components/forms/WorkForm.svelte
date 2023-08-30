@@ -9,13 +9,14 @@
 	import TextInput from '$lib/components/input/TextInput.svelte';
 	import StyledTab from '$lib/components/layout/StyledTab.svelte';
 	import ButtonsGroup from './ButtonsGroup.svelte';
+	import {t} from '$lib/translations';
 
 	export let errors;
 	export let data;
 </script>
 
-<FormGroup h1="Main info">
-	<InputGroup label="Category" error={errors?.category}>
+<FormGroup h1={$t('my.add_work_page.main_info')}>
+	<InputGroup label={$t('my.add_work_page.category')} error={errors?.category}>
 		<SelectInput
 			required
 			options={data.categories}
@@ -44,10 +45,10 @@
 			{#each data.titles as title}
 				<StyledTabPanel>
 					<div class="space-y-3">
-						<InputGroup error={errors?.title} label="Title">
+						<InputGroup error={errors?.title} label={$t('my.add_work_page.title')}>
 							<TextInput name="title" value={title.title} />
 						</InputGroup>
-						<InputGroup error={errors?.description} label="Description">
+						<InputGroup error={errors?.description} label={$t('my.add_work_page.description')}>
 							<TextAreaInput name="description" value={title.description} rows={8} />
 						</InputGroup>
 					</div>

@@ -3,6 +3,7 @@
 	import { Power } from '@steeze-ui/heroicons';
 	import { localePath } from '$lib/translations';
 	import { page } from '$app/stores';
+	import { t } from '$lib/translations';
 </script>
 
 <a
@@ -11,5 +12,5 @@
 	data-sveltekit-preload-data="tap"
 	data-sveltekit-reload
 >
-	<Icon src={Power} theme="solid" class="h-5 w-5 inline" aria-hidden="true" />Log Out
+	<Icon src={Power} theme="solid" class="h-5 w-5 inline" aria-hidden="true" />{$t('global.my_links.logout')}
 </a>

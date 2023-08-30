@@ -10,7 +10,11 @@
 		"step_1": "Upload images",
 		"step_2": "Fill details",
 		"step_3": "Preview",
-		"title": "Title"
+		"title": "Title",
+		"preview_small_image": "This is how your work will look like in the gallery",
+		"preview_original_image": "This is how your work will look like in the work page",
+		"select_main_image": "Select the main image",
+		"ready_to_publish": "Ready to publish?"
 	},
 	"edit_page": {
 		"bio_tip": "Write a few sentences about yourself",
@@ -23,11 +27,23 @@
 		"login_info": "Login information",
 		"password": "Password",
 		"personal_info": "Personal information",
-		"username": "Username"
+		"warning_personal_info": "This information will be displayed publicly so be careful what you share.",
+		"username": "Username",
+		"email_awaiting_confirmation": "Email awaiting confirmation"
 	},
-	"my_buttons": {
+	"buttons": {
 		"delete_draft": "Delete draft",
-		"move_to_drafts": "Move to drafts"
+		"move_to_drafts": "Move to drafts",
+		"publish": "Publish",
+		"back_to_edit": "Back to edit"
 	},
-	"test": ""
+	"confirmation": {
+		"delete_work": "Are you sure you want to delete this work?",
+		"delete_warning": "This action cannot be undone.",
+		"move_to_drafts": "Are you sure you want to move this work to drafts?"
+	}
+
+
+
+
 }

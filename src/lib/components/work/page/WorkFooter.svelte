@@ -4,6 +4,7 @@
 	import { page } from '$app/stores';
 	import AuthStub from '../AuthStub.svelte';
 	import TagsGroup from '../TagsGroup.svelte';
+	import { t } from '$lib/translations';
 
 	export let work,
 		comments = [];
@@ -31,7 +32,7 @@
 	<div class="lg:w-4/6">
 		<div class="flex flex-col text-gray-800 dark:text-gray-300">
 			<div class="border py-3 bg-gray-100 dark:bg-zinc-900 dark:border-zinc-800 rounded-t-sm">
-				<span class="font-semibold  px-3 md:px-6">Comments: {work.comments}</span>
+				<span class="font-semibold  px-3 md:px-6">{$t('global.comment.comments')}: {work.comments}</span>
 			</div>
 
 			<div

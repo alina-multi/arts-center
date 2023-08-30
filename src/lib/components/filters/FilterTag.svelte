@@ -4,6 +4,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ChevronDown, ChevronUp } from '@steeze-ui/heroicons';
 	import TagButtons from '$lib/components/atoms/buttons/TagButtons.svelte';
+	import { t } from '$lib/translations';
 
 	export let tags: Tag[],
 		selected: string,
@@ -37,7 +38,8 @@
 				<PopoverButton
 					class="flex items-center gap-2  border px-3 py-1 rounded-md hover:border-amber-500 dark:bg-zinc-900 dark:border-zinc-800 dark:hover:border-amber-500"
 				>
-					other
+					{$t('global.filters.more')}
+				
 					{#if selected !== 'all' && isHiddenTag.length > 0}
 						<span class="text-sm bg-amber-600 text-white px-1 rounded-md">{selected}</span>
 					{/if}
@@ -72,8 +74,8 @@
 					{#if selected !== 'all'}
 						<button on:click={() => (selected = 'all')} class="w-full text-right pb-6 pr-3">
 							<span
-								class="font-semibold text-zinc-400 hover:ring-1 hover:ring-zinc-400 hover:text-zinc-500 px-3 py-0.5 rounded-full"
-								>Clear filters</span
+								class=" text-zinc-400  hover:text-red-600 px-3 py-0.5 text-sm underline"
+								>{$t('global.buttons.clear') + ' ' + $t('global.filters.filters')}</span
 							>
 						</button>
 					{/if}
@@ -90,7 +92,7 @@
 			class="w-full flex items-center justify-between gap-2  border px-4 py-2 rounded-md  dark:border-zinc-800 overflow-hidden dark:bg-zinc-900"
 		>
 			<span class="space-x-1">
-				<span>filters</span>
+				<span>{$t('global.filters.filters')}</span>
 				{#if selected !== 'all'}
 					<span class="text-sm bg-amber-600 text-white px-1 py-0.5 rounded-md">{selected}</span>
 				{/if}
@@ -118,10 +120,10 @@
 					on:click={() => (selected = 'all')}
 					class="w-full text-right pt-3 pb-6 px-3 border-t border-gray-300 dark:border-zinc-900"
 				>
-					<span
-						class="font-semibold text-zinc-600 dark:text-zinc-400 hover:ring-1 hover:ring-zinc-400 hover:text-zinc-500 px-3 py-0.5 rounded-full text-xs underline"
-						>Clear filters</span
-					>
+				<span
+				class=" text-zinc-400  hover:text-red-600 px-3 py-0.5 text-sm hover:underline"
+				>{$t('global.buttons.clear') + ' ' + $t('global.filters.filters')}</span
+			>
 				</button>
 			{/if}
 		</PopoverPanel>
