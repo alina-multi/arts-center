@@ -94,7 +94,6 @@
 		"@sentry/svelte": "^7.64.0",
 		"@sentry/tracing": "^7.64.0",
 		"@sentry/vite-plugin": "^2.6.2",
-		"dayjs": "^1.11.9",
 		"lodash.debounce": "^4.0.8",
 		"meilisearch": "^0.34.1",
 		"svelte-french-toast": "^1.2.0",
