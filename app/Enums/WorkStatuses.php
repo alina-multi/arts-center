@@ -14,4 +14,13 @@ enum WorkStatuses: int
     case PUBLISHED = 40;
     case PUBLISHED_PREMIUM = 50;
     case PUBLISHED_FUTURED = 60;
+
+    public static function fromValue(int $value)
+    {
+        foreach (self::cases() as $case) {
+            if ($case->value === $value) {
+                return $case;
+            }
+        }
+    }
 }

@@ -31,6 +31,8 @@ class User extends Resource
      */
     public static $title = 'name';
 
+    public static $with = ['photo', 'photo.variants'];
+
     /**
      * The columns that should be searched.
      *
@@ -52,9 +54,9 @@ class User extends Resource
             ID::make()->sortable(),
 
             Image::make('photo')->preview(function ($value, $disk) {
-                return $value ? $value->url : '';
+                return $value ? $value->src : '';
             })->thumbnail(function ($value, $disk) {
-                return $value ? $value->url : '';
+                return $value ? $value->src : '';
             }),
 
             Text::make('Name')

@@ -2,8 +2,10 @@
 
 namespace App\Nova;
 
+use App\Enums\WorkStatuses;
 use App\Nova\Actions\ClearCacheByTag;
 use App\Nova\Filters\WorkPublished;
+use App\Nova\Filters\WorkStatus;
 use App\Nova\Metrics\WorksPerDay;
 use App\Models\Product;
 use Laravel\Nova\Http\Requests\NovaRequest as Request;
@@ -83,17 +85,15 @@ class Work extends Resource
                 return '<div class="divide-y divide-light-blue-400">' . join("\n", $titles) . '</div>';
             })->asHtml(),
             MorphMany::make('Owners', 'owners', User::class),
-            HasMany::make('Blacklists', 'blacklist', User::class),
             Number::make('rating')->sortable(),
             Number::make('comments')->sortable(),
             Number::make('price')->sortable(),
+            Text::make('status', fn (\App\Models\Work $work) => $work->status->name),
             DateTime::make('Published', 'published_at')->readonly()->sortable(),
-            Boolean::make('show_en')->hideFromIndex(),
-            Boolean::make('show_ru')->hideFromIndex(),
-            Boolean::make('show_uk')->hideFromIndex(),
             Text::make('created_at')->hideFromIndex(),
             Text::make('updated_at')->hideFromIndex(),
             Text::make('published_at')->hideFromIndex(),
+            HasMany::make('WorkLogs', 'logs'),
         ];
     }
 
@@ -106,7 +106,7 @@ class Work extends Resource
      */
     public function cards(Request $request)
     {
-        return [new WorksPerDay()];
+        return [new WorksPerDay(), new \App\Nova\Metrics\WorkStatus()];
     }
 
     /**
@@ -117,7 +117,7 @@ class Work extends Resource
      */
     public function filters(Request $request)
     {
-        return [new WorkPublished()];
+        return [new WorkStatus()];
     }
 
     /**
