@@ -9,7 +9,6 @@
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
 	import AvatarInput from '$lib/components/user/AvatarInput.svelte';
 	import ButtonsGroup from '$lib/components/forms/ButtonsGroup.svelte';
-	import ActionButton from '$lib/components/forms/ActionButton.svelte';
 	import {t} from '$lib/translations';
 
 	export let data: PageData;

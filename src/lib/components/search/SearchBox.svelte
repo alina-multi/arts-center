@@ -30,7 +30,7 @@
 		>
 			<div class="relative">
 				{#if users.length > 0}
-					<BoxHeader total={totalUserHits} href={`/search/users/${value}`} title={'Artists'}>
+					<BoxHeader total={totalUserHits} href={`/search/users/${value}`}>
 						{$t('global.search.results.found')} {totalUserHits}
 						{users.length === 1 ? $t('global.search.results.person') : $t('global.search.results.people')}
 					</BoxHeader>
@@ -49,7 +49,7 @@
 
 			<div class="relative ">
 				{#if works.length > 0}
-					<BoxHeader total={totalWorksHits} href={`/search/works/${value}`} title={"Works"}>
+					<BoxHeader total={totalWorksHits} href={`/search/works/${value}`}>
 						{$t('global.search.results.found')}  {totalWorksHits}
 						{works.length === 1 ? $t('global.search.results.work') : $t('global.search.results.works')}
 					</BoxHeader>

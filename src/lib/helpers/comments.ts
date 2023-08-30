@@ -2,12 +2,11 @@ import toast from 'svelte-french-toast';
 import { tick } from 'svelte';
 import { t } from '$lib/translations';
 
-
 export const commentMassage = {
 	add: {
 		loading: t.get('global.comment.add.loading'),
 		success: t.get('global.comment.add.success'),
-		error: t.get('global.comment.add.error'),
+		error: t.get('global.comment.add.error')
 	},
 	delete: {
 		loading: t.get('global.comment.delete.loading'),

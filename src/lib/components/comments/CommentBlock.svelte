@@ -149,19 +149,24 @@
 				</div>
 				<span class="h-1 w-1 bg-zinc-500 rounded-full" />
 				<Time relative timestamp={comment.created_at} class="text-zinc-500" />
-				<button on:click={() => (document.title = dayjs().format(comment.created_at))}> Set title </button>
 
 				<div
 					class="flex divide-x font-semibold text-zinc-500 dark:text-zinc-400 dark:divide-zinc-800 mr-3"
 				>
 					{#if currentUser && Number(currentUser.id) === Number(comment.owner.id)}
-						{#if isEditable()}<button class="px-3" on:click={() => onEdit()}> {$t('global.buttons.edit')} </button>{/if}
+						{#if isEditable()}<button class="px-3" on:click={() => onEdit()}>
+								{$t('global.buttons.edit')}
+							</button>{/if}
 						{#if !isMy}
-							<button class="px-3" on:click={() => deleteComment(comment.id)}> {$t('global.buttons.delete')} </button>{/if}
+							<button class="px-3" on:click={() => deleteComment(comment.id)}>
+								{$t('global.buttons.delete')}
+							</button>{/if}
 					{/if}
 
 					{#if isMy}
-						<button class="px-3" on:click={() => deleteComment(comment.id)}>  {$t('global.buttons.delete')}</button>
+						<button class="px-3" on:click={() => deleteComment(comment.id)}>
+							{$t('global.buttons.delete')}</button
+						>
 					{/if}
 				</div>
 			</div>
@@ -231,7 +236,7 @@
 					}}
 					class=" px-6 py-1 shadow-sm border dark:border-zinc-600 text-zinc-500 text-sm font-semibold rounded-full hover:text-white hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
 				>
-				{$t('global.buttons.cancel')}
+					{$t('global.buttons.cancel')}
 				</button>
 			</CommentInput>
 		{/if}

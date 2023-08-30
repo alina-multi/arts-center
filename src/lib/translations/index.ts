@@ -32,7 +32,7 @@ const config: Config = {
 			key: 'my',
 			routes: [/\/uk\/my\/.*/],
 			loader: async () => (await import('./uk/my.json')).default
-		},
+		}
 	]
 };
 

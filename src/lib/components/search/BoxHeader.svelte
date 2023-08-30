@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { localePath, t } from '$lib/translations';
-	export let total, href, title;
+	export let total, href;
 </script>
 
 <div
