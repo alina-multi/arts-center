@@ -1,0 +1,47 @@
+{
+	"add_work_page": {
+		"category": "Category",
+		"confirm_to_delete": "Are you sure you want to delete this work?",
+		"confirm_to_drafts": "Are you sure you want to move this work to drafts?",
+		"crop_label": "Crop image preview",
+		"description": "Description",
+		"label_step_1": "What have you been working on?",
+		"main_info": "Main information",
+		"step_1": "Upload images",
+		"step_2": "Fill details",
+		"step_3": "Preview",
+		"title": "Title",
+		"preview_small_image": "This is how your work will look like in the gallery",
+		"preview_original_image": "This is how your work will look like in the work page",
+		"select_main_image": "Select the main image",
+		"ready_to_publish": "Ready to publish?"
+	},
+	"edit_page": {
+		"bio_tip": "Write a few sentences about yourself",
+		"biography": "Biography",
+		"confirm_password": "Confirm password",
+		"country": "Country",
+		"current_password": "Current password",
+		"email": "Email",
+		"full_name": "Full name",
+		"login_info": "Login information",
+		"password": "Password",
+		"personal_info": "Personal information",
+		"warning_personal_info": "This information will be displayed publicly so be careful what you share.",
+		"username": "Username",
+		"email_awaiting_confirmation": "Email awaiting confirmation"
+	},
+	"buttons": {
+		"save": "Save",
+		"reset": "Cancel",
+		"delete_draft": "Delete draft",
+		"move_to_drafts": "Move to drafts",
+		"publish": "Publish",
+		"back_to_edit": "Back to edit"
+	},
+	"confirmation": {
+		"delete_work": "Are you sure you want to delete this work?",
+		"delete_warning": "This action cannot be undone.",
+		"move_to_drafts": "Are you sure you want to move this work to drafts?"
+	}
+}

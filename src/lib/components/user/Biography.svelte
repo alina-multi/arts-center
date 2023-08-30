@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { t } from '$lib/translations';
 	export let user;
 	let showBio = false;
 	let lines = 0;
@@ -34,9 +35,9 @@
 					class=" pl-2 rounded-full text-gray-800 leading-6 bg-white dark:bg-black dark:text-zinc-300 dark:hover:text-blue-600 hover:text-blue-700"
 				>
 					{#if showBio}
-						show less
+					{$t('global.buttons.show_less')}
 					{:else}
-						show more &darr;
+					{$t('global.buttons.show_more')} &darr;
 					{/if}
 				</button>
 			</div>

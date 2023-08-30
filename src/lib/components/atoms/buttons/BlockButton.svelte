@@ -3,6 +3,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { NoSymbol } from '@steeze-ui/heroicons';
 	import type { User } from '$lib/interfaces/User';
+	import {t } from '$lib/translations';
 
 	export let type: 'block' | 'unblock' = 'block',
 		user: User,
@@ -52,8 +53,8 @@
 		on:click={block}
 		class="flex items-center gap-3 hover:text-red-500 px-6 py-2 hover:bg-gray-100 dark:hover:text-gray-200 dark:hover:bg-gray-600 font-semibold"
 		><Icon src={NoSymbol} theme="solid" class="h-5 w-5 " aria-hidden="true" />
-		<span class="sr-only">Block</span>
-		<span>Block</span>
+		<span class="sr-only">{$t('global.buttons.block')}</span>
+		<span>{$t('global.buttons.block')}</span>
 	</button>
 {/if}
 
@@ -63,7 +64,7 @@
 		on:click={unblock}
 		class="hover:text-gray-900 px-3 hover:bg-gray-100 dark:hover:text-gray-200 dark:hover:bg-gray-600 font-semibold"
 	>
-		<span class="sr-only">Block</span>
-		<span>Unblock</span>
+		<span class="sr-only">{$t('global.buttons.unblock')}</span>
+		<span>{$t('global.buttons.unblock')}</span>
 	</button>
 {/if}

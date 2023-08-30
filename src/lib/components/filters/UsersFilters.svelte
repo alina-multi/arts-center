@@ -1,6 +1,7 @@
 <script>
 	import { localePath } from '$lib/translations';
 	import UserFiltersGroup from '$lib/components/filters/UserFiltersGroup.svelte';
+	import { t } from '$lib/translations';
 
 	export let tags, params, countries;
 
@@ -50,7 +51,7 @@
 				href={urlGenerator(params, defaultParams)}
 				class="text-sm text-gray-500 dark:text-zinc-300 rounded-full hover:ring-1 hover:ring-gray-300 cursor-pointer dark:hover:rounded-full dark:hover:ring-zinc-800 px-3 py-1"
 			>
-				Clear all
+				{$t('global.buttons.clear') + ' ' + $t('global.filters.filters')}
 			</a>
 		</div>
 	</div>

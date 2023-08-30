@@ -1,12 +1,11 @@
 <script lang="ts">
 	import type { User } from '$lib/interfaces/User';
-	import { Icon } from '@steeze-ui/svelte-icon';
-	import { Home } from '@steeze-ui/heroicons';
 	import MyProfileLinksGroup from './MyProfileLinksGroup.svelte';
-	import SideNavLink from '$lib/components/nav/side/SideNavLink.svelte';
 	import LogoutButton from '../atoms/buttons/LogoutButton.svelte';
 	import Dropdown from '../atoms/Dropdown.svelte';
 	import Avatar from '../atoms/Avatar.svelte';
+	import MyPageLink from '../atoms/MyPageLink.svelte';
+	
 	export let user: User;
 </script>
 
@@ -17,9 +16,7 @@
 
 	<slot:fragment slot="panel">
 		<ul>
-			<SideNavLink href="/{user?.username}"
-				><Icon src={Home} theme="solid" class="h-5 w-5 inline" aria-hidden="true" />My Page</SideNavLink
-			>
+			<MyPageLink href={'/' + user?.username} />
 			<MyProfileLinksGroup />
 
 			<li>

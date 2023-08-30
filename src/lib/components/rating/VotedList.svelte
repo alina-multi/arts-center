@@ -2,6 +2,7 @@
 	import type { User } from '$/lib/interfaces/User';
 	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
 	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
+	import { t } from '$lib/translations';
 
 	export let votes: User[] = [],
 		isLiked = false,
@@ -15,7 +16,7 @@
 <div class="flex items-center gap-1 dark:text-zinc-300 max-[400px]:text-xs text-sm lg:text-base">
 	{#if votes.length > 0}
 		<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointe mr-1">
-			Liked by
+			{$t('global.voting.liked_by')}
 		</button>
 
 		<div class="flex -space-x-3 cursor-pointer">
@@ -30,16 +31,16 @@
 
 	{#if votes.length > 3}
 		<div>
-			<span class="text-zinc-500 dark:text-zinc-400">and</span>
+			<span class="text-zinc-500 dark:text-zinc-400">{$t('global.voting.and')}</span>
 			<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointer">
-				others
+				{$t('global.voting.others')}
 			</button>
 		</div>
 	{/if}
 </div>
 
 <ModalWindow bind:open={showLikedByModal}>
-	<h2 slot="header" class="flex justify-between font-semibold">Liked by</h2>
+	<h2 slot="header" class="flex justify-between font-semibold">{$t('global.voting.liked_by')}</h2>
 
 	<ul
 		class="flex flex-col gap-3 max-h-96 overflow-y-scroll px-3 border-y py-3 dark:border-zinc-800"
@@ -55,7 +56,7 @@
 			class="px-3 py-1 rounded-full text-sm text-zinc-500 hover:ring-1 hover:ring-zinc-300 dark:ring-zinc-700"
 			on:click={() => (showLikedByModal = false)}
 		>
-			Close
+		{$t('global.buttons.close')}
 		</button>
 	</div>
 </ModalWindow>

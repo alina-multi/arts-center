@@ -8,6 +8,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Trash } from '@steeze-ui/heroicons';
 	import CancelButton from '$lib/components/forms/CancelButton.svelte';
+	import {t} from '$lib/translations';
 
 	export let data: PageData;
 	export let form: ActionData;
@@ -24,7 +25,7 @@
 					open = true;
 				}}
 			>
-				<span>Move to drafts</span>
+				<span>{$t('my.buttons.move_to_drafts')}</span>
 				<Icon src={Trash} theme="solid" class="h-4 w-4" />
 			</ActionButton>
 			<ActionButton class={'bg-blue-600 hover:bg-blue-500 focus-visible:outline-blue-600'} />
@@ -34,7 +35,7 @@
 
 {#if open}
 	<ModalWindow bind:open>
-		<div class="font-semibold">Are you sure you want to move this work to drafts?</div>
+		<div class="font-semibold">{$t('my.confirmation.move_to_drafts')}</div>
 		<div slot="footer">
 			<form method="POST" action="?/todrafts">
 				<ButtonsGroup>
@@ -42,7 +43,7 @@
 					<ActionButton
 						class={'bg-red-500 hover:bg-red-400 focus-visible:outline-red-600 flex items-center gap-1'}
 					>
-						<span>Move to drafts</span>
+						<span>{$t('my.buttons.move_to_drafts')}</span>
 						<Icon src={Trash} theme="solid" class="h-4 w-4" />
 					</ActionButton>
 				</ButtonsGroup>

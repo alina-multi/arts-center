@@ -6,6 +6,7 @@
 	import LikeButton from './LikeButton.svelte';
 	import DislikeButton from './DislikeButton.svelte';
 	import AuthModal from '../atoms/AuthModal.svelte';
+	import {t} from '$lib/translations';
 
 	export let entity: Work | Comment,
 		allowDownVote = false,
@@ -44,7 +45,7 @@
 			: 'hover:text-zinc-100'}  dark:bg-zinc-800 bg-white dark:border-zinc-700 dark:text-white"
 	>
 		{#if votable_type === 'work'}
-			<span class="border-r dark:border-zinc-700 pr-3 ">Like {rating}</span>
+			<span class="border-r dark:border-zinc-700 pr-3 ">{$t('global.voting.like')}  <span class="ml-1">{rating}</span></span>
 		{/if}
 		<LikeButton
 		    {size}

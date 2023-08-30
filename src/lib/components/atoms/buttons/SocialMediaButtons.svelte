@@ -1,5 +1,5 @@
 
-<div class="mt-6 grid grid-cols-4 gap-3">
+<div class=" grid grid-cols-4 gap-3">
 <div>
     <a
         href="/"

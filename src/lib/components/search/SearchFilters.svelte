@@ -1,4 +1,5 @@
 <script lang="ts">
+    import {t} from '$lib/translations';
     export let query:string = '',
     options: { title: string; total: number, path:string }[] = [];
  
@@ -9,7 +10,7 @@
     <div class=" flex flex-col divide-y dark:divide-zinc-800 ">
 
 <div  class="pt-3 px-6 pb-3   w-full  bg-gray-100 dark:bg-zinc-900  text-gray-800 dark:text-zinc-400  ">
-    Found for <span class="underline ">{query}</span>
+    {$t('global.search.results.found') + " " + $t('global.search.results.for')}  <span class="underline ">{query}</span>
 </div>
 
 
@@ -20,9 +21,9 @@
     class=" py-3 px-6 w-full text-gray-800 dark:text-white flex items-center justify-between gap-3 hover:text-gray-900 "
 >
     <div class="flex gap-3 items-center">
-        <span class="text-sm text-black dark:text-white">{title}</span>
+        <span class="text-sm text-black dark:text-white">{$t(`global.search.results.${title}`).toUpperCase()}</span>
         <span>-</span>
-        <span class=" underline hover:text-gray-700 text-gray-500 dark:text-zinc-400 dark:hover:text-zinc-200"> {total} results </span>
+        <span class=" underline hover:text-gray-700 text-gray-500 dark:text-zinc-400 dark:hover:text-zinc-200"> {total} {$t('global.search.results.results')}  </span>
     </div>
 </a>
     {/each}

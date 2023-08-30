@@ -11,7 +11,7 @@
 	</div>
 	<div class="flex items-start px-9 py-6 gap-12">
 		<div class="">
-			<h1 class="font-semibold mb-3">About</h1>
+			
 			<ul class="space-y-2">
 				<li>
 					<a href={localePath('/about')}>{$t('global.footer.about')}</a>
@@ -22,7 +22,6 @@
 		</div>
 
 		<div>
-			<h1 class="font-semibold mb-3">Pricing</h1>
 			<ul class="space-y-2">
 				<li>
 					<a href={localePath('/subscriptions')}>{$t('global.footer.subscriptions')}</a>

@@ -3,7 +3,7 @@
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
 	import WorkAddProgressSteps from '$lib/components/work/add/WorkAddProgressSteps.svelte';
 	import FileUploader from '$lib/components/input/FileUploader.svelte';
-	import { locale, localePath } from '$lib/translations';
+	import { locale, localePath, t } from '$lib/translations';
 	import toast from 'svelte-french-toast';
 	import { goto } from '$app/navigation';
 	
@@ -59,7 +59,7 @@
 
 <WorkAddProgressSteps />
 {#if uploadedUrls?.length > 0}
-	<FormGroup h1="Select the main image">
+	<FormGroup h1={$t('my.add_work_page.select_main_image')}>
 		<ul
 			class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8"
 		>
@@ -81,14 +81,14 @@
 						class="text-red-500 underline cursor-pointer text-right"
 						on:click={deleteImage(url.url)}
 					>
-						delete
+						{$t('global.buttons.delete')}
 					</div>
 				</li>
 			{/each}
 		</ul>
 	</FormGroup>
 {:else}
-	<FormGroup h1="What have you been working on?">
+	<FormGroup h1={$t('my.add_work_page.label_step_1')}>
 		<FileUploader {...data.transloadit} on:complete={uploadComplete} />
 	</FormGroup>
 {/if}

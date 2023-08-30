@@ -14,6 +14,7 @@
 	import EllipsisButton from '$lib/components/atoms/buttons/EllipsisButton.svelte';
 	import BlockButton from '../atoms/buttons/BlockButton.svelte';
 	import ReportButton from '../atoms/buttons/ReportButton.svelte';
+	import { t } from '$lib/translations';
 
 	export let comment: Comment,
 		commentable_id: string,
@@ -61,7 +62,7 @@
 		new_comment_loaded = false;
 
 		const fetch = fetchData(value, comment_id);
-		toast.promise(convertFetch(fetch), commentMassage.reply);
+		toast.promise(convertFetch(fetch), commentMassage.add);
 
 		const response = await fetch;
 		answer = await response.json();
@@ -153,13 +154,19 @@
 					class="flex divide-x font-semibold text-zinc-500 dark:text-zinc-400 dark:divide-zinc-800 mr-3"
 				>
 					{#if currentUser && Number(currentUser.id) === Number(comment.owner.id)}
-						{#if isEditable()}<button class="px-3" on:click={() => onEdit()}> Edit </button>{/if}
+						{#if isEditable()}<button class="px-3" on:click={() => onEdit()}>
+								{$t('global.buttons.edit')}
+							</button>{/if}
 						{#if !isMy}
-							<button class="px-3" on:click={() => deleteComment(comment.id)}> Delete</button>{/if}
+							<button class="px-3" on:click={() => deleteComment(comment.id)}>
+								{$t('global.buttons.delete')}
+							</button>{/if}
 					{/if}
 
 					{#if isMy}
-						<button class="px-3" on:click={() => deleteComment(comment.id)}> Delete</button>
+						<button class="px-3" on:click={() => deleteComment(comment.id)}>
+							{$t('global.buttons.delete')}</button
+						>
 					{/if}
 				</div>
 			</div>
@@ -201,7 +208,7 @@
 					on:click={onReply}
 					class="flex gap-2 text-xs items-center hover:text-gray-900 dark:hover:text-white text-zinc-600 dark:text-zinc-300 font-semibold px-3"
 				>
-					<span>Reply</span>
+					<span>{$t('global.comment.reply')}</span>
 				</button>
 				<div class="px-3 flex">
 					<RatingPreviewVote
@@ -229,7 +236,7 @@
 					}}
 					class=" px-6 py-1 shadow-sm border dark:border-zinc-600 text-zinc-500 text-sm font-semibold rounded-full hover:text-white hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
 				>
-					Cancel
+					{$t('global.buttons.cancel')}
 				</button>
 			</CommentInput>
 		{/if}

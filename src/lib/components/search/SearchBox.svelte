@@ -4,6 +4,8 @@
 	import NoResultsStub from './NoResultsStub.svelte';
 	import WorkPreview from '../work/WorkPreview.svelte';
 	import BoxHeader from './BoxHeader.svelte';
+	import {t} from '$lib/translations';
+
 
 	export let open = false,
 		users,
@@ -28,9 +30,9 @@
 		>
 			<div class="relative">
 				{#if users.length > 0}
-					<BoxHeader total={totalUserHits} href={`/search/users/${value}`} title={'Artists'}>
-						Found {totalUserHits}
-						{users.length === 1 ? 'person' : 'people'}
+					<BoxHeader total={totalUserHits} href={`/search/users/${value}`}>
+						{$t('global.search.results.found')} {totalUserHits}
+						{users.length === 1 ? $t('global.search.results.person') : $t('global.search.results.people')}
 					</BoxHeader>
 
 					<MenuItems class="py-2 border-b dark:border-b-zinc-800" static={open}>
@@ -47,9 +49,9 @@
 
 			<div class="relative ">
 				{#if works.length > 0}
-					<BoxHeader total={totalWorksHits} href={`/search/works/${value}`} title={"Works"}>
-						Found {totalWorksHits}
-						{works.length === 1 ? 'work' : 'works'}
+					<BoxHeader total={totalWorksHits} href={`/search/works/${value}`}>
+						{$t('global.search.results.found')}  {totalWorksHits}
+						{works.length === 1 ? $t('global.search.results.work') : $t('global.search.results.works')}
 					</BoxHeader>
 
 					<MenuItems class="py-3 gap-3 px-3 md:max-lg:grid-cols-3  sm:grid sm:grid-cols-2 2xl:grid-cols-3 border-b dark:border-zinc-800 max-xl:divide-y dark:divide-zinc-800 flex flex-col justify-center" static={open}>
@@ -70,7 +72,7 @@
 			{#if value.length < 2}
 				<div>
 					<p class="text-center text-gray-500 dark:text-zinc-400 text-sm py-4">
-						Please enter at least 2 characters
+						{$t('global.search.stub_at_least')} 
 					</p>
 				</div>
 			{/if}

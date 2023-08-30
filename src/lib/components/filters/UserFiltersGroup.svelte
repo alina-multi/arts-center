@@ -2,6 +2,9 @@
 	import { Disclosure, DisclosureButton, DisclosurePanel } from '@rgossiaux/svelte-headlessui';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ChevronDown } from '@steeze-ui/heroicons';
+	import { t } from '$lib/translations';
+
+	
 
 	export let params, options, group, urlGenerator;
 	$: selected = params[group];
@@ -14,12 +17,20 @@
 			: ''} group w-full   text-gray-800 dark:text-white flex items-center justify-between gap-3 hover:text-gray-900 "
 	>
 		<div class="flex gap-1 items-center">
-			<span class="text-sm text-black dark:text-white">{group.toUpperCase()}</span>
+			<span class="text-sm text-black dark:text-white">
+			
+					{$t(`global.filters.${group}`).toUpperCase()}
+			</span>
 			<span>:</span>
 			<div
 				class=" ml-2 inline-flex items-center gap-2 border-amber-600 rounded-full border px-3 dark:text-zinc-200 dark:bg-zinc-800"
 			>
-				{selected}
+			{#if selected === "popular" || selected === "new"}
+							{$t(`global.filters.${selected}`)}
+						{:else}
+							{selected}
+						{/if}
+		
 			</div>
 		</div>
 		<Icon
@@ -43,7 +54,13 @@
 						on:click={() => close()}
 						class="flex grow"
 					>
-						<span>{option.title}</span>
+						<span>
+						{#if option.title === "popular" || option.title === "new"}
+							{$t(`global.filters.${option.title}`)}
+						{:else}
+							{option.title}
+						{/if}
+							</span>
 						{#if option.count}
 							<span class="ml-auto text-gray-500">{option.count}</span>
 						{/if}
