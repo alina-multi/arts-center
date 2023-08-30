@@ -15,44 +15,47 @@
 		"register": "REGISTER",
 		"report": "Report",
 		"save": "Save",
+		"show": "Show",
 		"show_less": "Show less",
 		"show_more": "Show more",
-		"unblock": "Unblock",
-		"show": "Show"
+		"unblock": "Unblock"
 	},
 	"comment": {
-		"placeholder": "Add a comment",
-		"post": "Post comment",
-		"comments": "Comments",
-		"reply": "Reply",
-		"stub": {
-			"no_comments": "No comments yet",
-			"be_first": "Be the first to comment this work"
-		},
 		"add": {
+			"error": "Error adding comment",
 			"loading": "Adding comment...",
-			"success": "Comment added",
-			"error": "Error adding comment"
+			"success": "Comment added"
 		},
+		"comments": "Comments",
 		"delete": {
+			"error": "Error deleting comment",
 			"loading": "Deleting comment...",
-			"success": "Comment deleted",
-			"error": "Error deleting comment"
+			"success": "Comment deleted"
 		},
 		"edit": {
-			"success": "Comment edited",
-			"error": "Error editing comment"
+			"error": "Error editing comment",
+			"success": "Comment edited"
+		},
+		"placeholder": "Add a comment",
+		"post": "Post comment",
+		"reply": "Reply",
+		"stub": {
+			"be_first": "Be the first to comment this work",
+			"no_comments": "No comments yet"
 		}
+	},
+	"common": {
+		"continue_with": "or continue with"
 	},
 	"filters": {
 		"all": "all",
 		"category": "category",
 		"country": "Country",
 		"filters": "filters",
+		"more": "more",
 		"new": "new",
 		"no_results": "no results found",
 		"order": "Order by",
-		"more": "more",
 		"popular": "popular",
 		"sale": "sale",
 		"tags": "Tags"
@@ -64,6 +67,14 @@
 		"privacy": "Privacy policy",
 		"subscriptions": "Subscriptions",
 		"terms": "Terms and conditions"
+	},
+	"login": {
+		"email": "Email",
+		"forgot_password": "Forgot your password?",
+		"page_title": "Sign in to your account",
+		"password": "Password",
+		"remember_me": "Remember me",
+		"sign_in": "Sign in"
 	},
 	"menu": {
 		"gallery": "GALLERY",
@@ -82,7 +93,14 @@
 		"my_profile": "My Page",
 		"saved": "Saved"
 	},
+	"not_logged_in": {
+		"for_comment": "Sign in to comment this work",
+		"for_follow": "You need to login or register to follow",
+		"for_work": "Join the community of people who love this work.  Sign in with your email address to follow this work. ",
+		"sign_in_with_email": "Sign in with email"
+	},
 	"search": {
+		"placeholder": "Search",
 		"results": {
 			"for": "for",
 			"found": "Found",
@@ -93,11 +111,24 @@
 			"work": "work",
 			"works": "works"
 		},
-		"placeholder": "Search",
 		"search_results": "Search results",
 		"stub_at_least": "Please enter at least 2 characters",
 		"stub_nothing": "No results found using that search term.",
 		"view_profile": "View profile"
+	},
+	"subscription": {
+		"annual_membership": "Annual membership",
+		"benefit_1": "A premium account that will set you apart from other users",
+		"benefit_2": "First places in the gallery and searches, which will provide more attention to your profile",
+		"benefit_3": "Access to artificial intelligence tools",
+		"benefit_4": "Opportunity to receive support and rewards from admirers",
+		"get_access": "Get access",
+		"title_1": " Make a profit from your creativity!",
+		"title_2": "Get exclusive benefits that will give you the opportunity to be noticed, gather fans around your work, and convert your art into profit.",
+		"whats_included": "What's included",
+		"why_subscribe_description_1": "We understand that creativity is a process that takes time and focus. We also understand that it takes patience, time, and skill to achieve success and financial growth.",
+		"why_subscribe_description_2": "That's why our platform offers assistance and provides tools to help you draw attention to your talent, showcase your work to the world, and turn it into profit",
+		"why_subscribe_title": "Why subscribe and what are the benefits?"
 	},
 	"user": {
 		"on_arts_since": "on arts since",
@@ -108,37 +139,5 @@
 		"like": "Like",
 		"liked_by": "Liked by",
 		"others": "others"
-	},
-	"not_logged_in": {
-		"for_follow": "You need to login or register to follow",
-		"for_comment": "Sign in to comment this work",
-		"for_work": "Join the community of people who love this work.  Sign in with your email address to follow this work. ",
-		"sign_in_with_email": "Sign in with email"
-	},
-	"subscription": {
-		"title_1": " Make a profit from your creativity!",
-		"title_2": "Get exclusive benefits that will give you the opportunity to be noticed, gather fans around your work, and convert your art into profit.",
-		"why_subscribe_title": "Why subscribe and what are the benefits?",
-		"why_subscribe_description_1": "We understand that creativity is a process that takes time and focus. We also understand that it takes patience, time, and skill to achieve success and financial growth.",
-		"why_subscribe_description_2": "That's why our platform offers assistance and provides tools to help you draw attention to your talent, showcase your work to the world, and turn it into profit",
-		"annual_membership": "Annual membership",
-		"get_access": "Get access",
-		"whats_included": "What's included",
-		"benefit_1": "A premium account that will set you apart from other users",
-		"benefit_2": "First places in the gallery and searches, which will provide more attention to your profile",
-		"benefit_3": "Access to artificial intelligence tools",
-		"benefit_4": "Opportunity to receive support and rewards from admirers"
-	},
-	"login": {
-		"page_title": "Sign in to your account",
-		"email": "Email",
-		"password": "Password",
-		"remember_me": "Remember me",
-		"forgot_password": "Forgot your password?",
-		"sign_in": "Sign in"
-	},
-
-	"common": {
-		"continue_with": "or continue with"
 	}
 }
