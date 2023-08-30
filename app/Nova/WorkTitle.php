@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest as Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
@@ -47,6 +48,10 @@ class WorkTitle extends Resource
             ID::make(__('ID'), 'id')->sortable(),
             Text::make('language')->sortable(),
             Text::make('title'),
+            Text::make('description')->onlyOnIndex()->displayUsing(fn($description) => substr($description, 0, 100)),
+            Textarea::make('description')->alwaysShow(),
+            Text::make('alt'),
+            Text::make('colors'),
             BelongsTo::make('work')
         ];
     }

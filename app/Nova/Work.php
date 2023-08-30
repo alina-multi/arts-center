@@ -86,7 +86,7 @@ class Work extends Resource
                     }
                 }
                 return '<div class="divide-y divide-light-blue-400">' . join("\n", $titles) . '</div>';
-            })->asHtml(),
+            })->asHtml()->hideFromDetail(),
             MorphMany::make('Owners', 'owners', User::class),
             Number::make('rating')->sortable(),
             Number::make('comments')->sortable(),
