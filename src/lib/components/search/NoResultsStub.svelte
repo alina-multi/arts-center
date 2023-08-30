@@ -1,5 +1,6 @@
 <script lang="ts">
     	import cat from '$lib/images/cat-icons.svg';
+        import {t} from '$lib/translations';
     </script>
 
 <div class="p-6 flex flex-col items-center">
@@ -9,6 +10,6 @@
         </svg>
     </div>
     <p class="mt-4 text-sm text-gray-900 dark:text-zinc-400">
-        No results found using that search term.
+        {$t('global.search.stub_nothing')}
     </p>
 </div>

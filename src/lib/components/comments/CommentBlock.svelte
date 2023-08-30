@@ -149,6 +149,7 @@
 				</div>
 				<span class="h-1 w-1 bg-zinc-500 rounded-full" />
 				<Time relative timestamp={comment.created_at} class="text-zinc-500" />
+				<button on:click={() => (document.title = dayjs().format(comment.created_at))}> Set title </button>
 
 				<div
 					class="flex divide-x font-semibold text-zinc-500 dark:text-zinc-400 dark:divide-zinc-800 mr-3"

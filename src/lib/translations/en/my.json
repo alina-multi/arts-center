@@ -32,6 +32,8 @@
 		"email_awaiting_confirmation": "Email awaiting confirmation"
 	},
 	"buttons": {
+		"save": "Save",
+		"reset": "Cancel",
 		"delete_draft": "Delete draft",
 		"move_to_drafts": "Move to drafts",
 		"publish": "Publish",

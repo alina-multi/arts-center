@@ -61,9 +61,9 @@
 				<ActionButton class="bg-blue-600 w-full rounded-md hover:bg-blue-500">{$t('global.login.sign_in')}</ActionButton>
 			</form>
 
-			<div class="mt-6">
-				<Divider>{$t('global.common.continue_with')}</Divider>
-
+			<div class="mt-6"><Divider>{$t('global.common.continue_with')}</Divider></div>
+				
+				<div class="mt-6">
 				<SocialMediaButtons />
 
 				

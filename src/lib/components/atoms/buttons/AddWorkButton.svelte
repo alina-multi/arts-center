@@ -19,5 +19,5 @@
 >
 	<span class="sr-only">{$t('global.buttons.addwork')}</span>
 	<Icon src={PlusCircle} theme="solid" class="h-5 w-5" aria-hidden="true" />
-	<span class="ml-1">{$t('global.buttons.addwork')}</span>
+	<span class="ml-1">{$t('global.buttons.addwork').toUpperCase()}</span>
 </a>

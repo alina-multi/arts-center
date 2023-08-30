@@ -110,7 +110,10 @@
 		"others": "others"
 	},
 	"not_logged_in": {
-		"for_follow": "You need to login or register to follow"
+		"for_follow": "You need to login or register to follow",
+		"for_comment": "Sign in to comment this work",
+		"for_work": "Join the community of people who love this work.  Sign in with your email address to follow this work. ",
+		"sign_in_with_email": "Sign in with email"
 	},
 	"subscription": {
 		"title_1": " Make a profit from your creativity!",

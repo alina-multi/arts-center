@@ -18,8 +18,10 @@
 	<p class="absolute text-sm bottom-0 left-0 right-0 px-3 py-2 text-white bg-gray-900/50">
 		{title}
 	</p>
+
+	<span class="absolute top-0 right-0 m-3 bg-gray-100/50 p-1 rounded-md">
+		<Icon src={PencilSquare} class="w-6 h-6 text-white" />
+	</span>
 </a>
 
-<span class="absolute top-0 right-0 m-3 bg-gray-100/50 p-1 rounded-md">
-	<Icon src={PencilSquare} class="w-6 h-6 text-white" />
-</span>
+

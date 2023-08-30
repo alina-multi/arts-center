@@ -10,13 +10,13 @@
 >
 	{#if rating > 0}<span class="inline-flex items-center gap-1">
 			<Icon src={Heart} class=" w-4 h-4 sm:w-6 sm:h-6 " />
-			<span>{rating.toLocaleString('ru-RU')}</span>
+			<span>{rating}</span>
 		</span>
 	{/if}
 	{#if comments > 0}
 		<span class="inline-flex items-center gap-1">
 			<Icon src={ChatBubbleLeftRight} class=" w-4 h-4 sm:w-6 sm:h-6" />
-			<span>{comments.toLocaleString('ru-RU')}</span>
+			<span>{comments}</span>
 		</span>
 	{/if}
 </div>
