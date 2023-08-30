@@ -23,10 +23,9 @@ class ValidateWorks extends Command
      */
     public function handle()
     {
+        $status = $this->option('status');
         \App\Models\Work::whereNotNull('published_at')
-            ->when($this->option('status'), function (Builder $query, string $status) {
-                $query->where('status', $status);
-            })
+            ->when(isset($status), fn(Builder $query) => $query->where('status', $status))
             ->chunkById(100, function (Collection $works) {
                 $works->map(function ($work) {
                     ValidateWork::dispatch($work);
