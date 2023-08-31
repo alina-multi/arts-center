@@ -32,7 +32,7 @@ class ReImportTitles extends Command
             ->whereNotNull('old_id')
             ->chunkById(1000, function (Collection $works) {
                 $works->map(function (Work $work) {
-                    $oldWork = DB::connection('old')->table('gallery')->where('id', $work->id)->first();
+                    $oldWork = DB::connection('old')->table('gallery')->where('id', $work->old_id)->first();
                     if ($oldWork->title) {
                         $work->titles()->create([
                             'language' => 'ru',
