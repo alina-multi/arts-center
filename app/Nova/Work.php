@@ -11,6 +11,8 @@ use App\Nova\Filters\WorkPublished;
 use App\Nova\Filters\WorkStatus;
 use App\Nova\Metrics\WorksPerDay;
 use App\Models\Product;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Http\Requests\NovaRequest as Request;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
@@ -73,10 +75,8 @@ class Work extends Resource
             ID::make(__('ID'), 'id')->sortable(),
             Image::make('preview')->preview(function ($value, $disk) {
                 return $value ? $value->src : '';
-            })->thumbnail(function ($value, $disk) {
-                return $value ? $value->src : '';
             }),
-            HasMany::make('WorkTitles', 'titles'),
+
             Text::make('Titles', function () use ($getTitle) {
                 $titles = [];
                 foreach (['ru', 'en', 'uk'] as $lang) {
@@ -87,15 +87,25 @@ class Work extends Resource
                 }
                 return '<div class="divide-y divide-light-blue-400">' . join("\n", $titles) . '</div>';
             })->asHtml()->hideFromDetail(),
-            MorphMany::make('Owners', 'owners', User::class),
             Number::make('rating')->sortable(),
             Number::make('comments')->sortable(),
             Number::make('price')->sortable(),
             Text::make('status', fn (\App\Models\Work $work) => $work->status->name),
             DateTime::make('Published', 'published_at')->readonly()->sortable(),
-            Text::make('created_at')->hideFromIndex(),
-            Text::make('updated_at')->hideFromIndex(),
-            Text::make('published_at')->hideFromIndex(),
+        ];
+    }
+
+    public function fieldsForDetail(NovaRequest $request)
+    {
+        return [
+            ...$this->fields($request),
+            DateTime::make('created_at'),
+            DateTime::make('updated_at'),
+            DateTime::make('published_at'),
+            HasMany::make('WorkTitles', 'titles'),
+            MorphMany::make('Owners', 'owners', User::class),
+            BelongsTo::make('Preview', 'preview', \App\Nova\Image::class),
+            BelongsTo::make('Full', 'full', \App\Nova\Image::class),
             HasMany::make('WorkLogs', 'logs'),
         ];
     }
