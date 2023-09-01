@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Nova\Actions\ConvertImage;
+use App\Nova\Actions\ConvertToVariants;
 use Dompdf\FrameDecorator\Text;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
@@ -96,6 +97,6 @@ class Image extends Resource
      */
     public function actions(NovaRequest $request)
     {
-        return [new ConvertImage()];
+        return [new ConvertImage(), new ConvertToVariants()];
     }
 }

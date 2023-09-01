@@ -75,6 +75,8 @@ class Work extends Resource
             ID::make(__('ID'), 'id')->sortable(),
             Image::make('preview')->preview(function ($value, $disk) {
                 return $value ? $value->src : '';
+            })->thumbnail(function ($value, $disk) {
+                return $value ? $value->src : '';
             }),
 
             Text::make('Titles', function () use ($getTitle) {
