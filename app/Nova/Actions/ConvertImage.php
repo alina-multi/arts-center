@@ -2,6 +2,7 @@
 
 namespace App\Nova\Actions;
 
+use App\Models\Image;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;
