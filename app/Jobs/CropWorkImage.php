@@ -28,7 +28,7 @@ class CropWorkImage implements ShouldQueue
     public function handle(): void
     {
         $original = $this->work->full->getOriginalFile();
-        $cropped = Image::make($original)
+        $cropped = Image::make($original)->orientate()
             ->crop($this->crop['width'], $this->crop['height'], $this->crop['x'], $this->crop['y'])
             ->encode('jpg', 80);
 

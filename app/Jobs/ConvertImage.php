@@ -44,7 +44,7 @@ class ConvertImage implements ShouldQueue
     public function handle()
     {
         $this->image->load('variants');
-        $og = ImageManipulator::make($this->image->getOriginalFile());
+        $og = ImageManipulator::make($this->image->getOriginalFile())->orientate();
         $og->backup();
         foreach ($this->targets[$this->image->folder->name] as $width) {
             foreach ([ImageExtentions::jpeg->value, ImageExtentions::webp->value] as $extension) {
