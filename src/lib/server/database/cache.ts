@@ -11,6 +11,14 @@ export async function cacheGet(
 	if (value) {
 		return value;
 	}
+	return cacheReplace(key, storeFunction, ttl);
+}
+
+export async function cacheReplace(
+	key: string,
+	storeFunction: () => Promise<object | string>,
+	ttl = 120
+) {
 	const result = await storeFunction();
 	cache.set(key, result, ttl);
 	return result;

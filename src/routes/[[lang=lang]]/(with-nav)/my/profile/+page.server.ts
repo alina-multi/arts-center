@@ -2,6 +2,7 @@ import type { PageServerLoad, Actions } from './$types';
 import { api } from '$lib/server/api';
 import { availableLocales } from '$lib/translations';
 import { uploadFile } from '$lib/server/s3';
+import { cacheGet, cacheReplace } from '$lib/server/database/cache';
 
 export const load = (async (event) => {
 	return {
@@ -50,5 +51,16 @@ export const actions = {
 				errors: { ...errors, ...json.errors }
 			};
 		}
+		// Invalidate cache to see changes
+		event.locals.user = await cacheReplace(
+			event?.cookies?.get('laravel_session'),
+			async () => {
+				const response = await api({ method: 'GET', path: '/api2/me', event });
+				if (response.ok) {
+					return await response.json();
+				}
+			},
+			360
+		);
 	}
 } satisfies Actions;
