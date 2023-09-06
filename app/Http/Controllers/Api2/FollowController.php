@@ -9,6 +9,23 @@ use Illuminate\Http\Request;
 
 class FollowController extends Controller
 {
+    public function index(Request $request)
+    {
+        $user = $request->user();
+        $user->load('followingUsers',
+            'followingUsers.photo',
+            'followingUsers.photo.variants',
+            'followingWorks',
+            'followingWorks.titles',
+            'followingWorks.preview',
+            'followingWorks.preview.variants'
+        );
+        return [
+            'users'=> $user->followingUsers,
+            'works'=> $user->followingWorks
+        ];
+    }
+
     public function store(FollowRequest $request)
     {
         return Follow::firstOrCreate([
@@ -17,9 +34,6 @@ class FollowController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(FollowRequest $request)
     {
         return Follow::where([

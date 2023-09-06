@@ -35,8 +35,10 @@ Route::middleware(['auth:sanctum', LocaleHeader::class])->group(function () {
     Route::apiResource('comment', CommentController::class);
     Route::post('follow', FollowController::class. '@store');
     Route::delete('follow', FollowController::class. '@destroy');
+    Route::get('follow', FollowController::class. '@index');
     Route::post('blacklist', BlacklistController::class. '@store');
     Route::delete('blacklist', BlacklistController::class. '@destroy');
+    Route::get('blacklist', BlacklistController::class. '@index');
 });
 
 Route::middleware(LocaleHeader::class)->get('health', function () {

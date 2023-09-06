@@ -114,6 +114,16 @@ class User extends Authenticatable
         return $this->hasMany(Follow::class);
     }
 
+    public function followingWorks(): \Illuminate\Database\Eloquent\Relations\MorphToMany
+    {
+        return $this->morphedByMany(Work::class, 'followable','follows');
+    }
+
+    public function followingUsers(): \Illuminate\Database\Eloquent\Relations\MorphToMany
+    {
+        return $this->morphedByMany(User::class, 'followable','follows');
+    }
+
     public function blacklists()
     {
         return $this->hasMany(Blacklist::class);
