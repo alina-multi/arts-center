@@ -9,7 +9,9 @@ use App\Http\Controllers\Api2\{
     CommentController,
     MeController,
     FollowController,
-    BlacklistController
+    BlacklistController,
+    FavoriteController,
+    FavoriteFolderController
 };
 
 /*
@@ -39,6 +41,9 @@ Route::middleware(['auth:sanctum', LocaleHeader::class])->group(function () {
     Route::post('blacklist', BlacklistController::class. '@store');
     Route::delete('blacklist', BlacklistController::class. '@destroy');
     Route::get('blacklist', BlacklistController::class. '@index');
+    Route::post('favorite', FavoriteController::class. '@store');
+    Route::delete('favorite', FavoriteController::class. '@destroy');
+    Route::apiResource('favorite-folder', FavoriteFolderController::class);
 });
 
 Route::middleware(LocaleHeader::class)->get('health', function () {
