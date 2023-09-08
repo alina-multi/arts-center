@@ -15,6 +15,7 @@ return new class extends Migration
             $table->unsignedBigInteger('favorite_folder_id')->index();
             $table->unsignedBigInteger('user_id')->index();
             $table->unsignedBigInteger('work_id');
+            $table->primary(['favorite_folder_id', 'user_id', 'work_id']);
         });
     }
 
