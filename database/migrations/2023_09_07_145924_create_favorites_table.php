@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('favorites', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('favorite_folder_id')->index();
             $table->unsignedBigInteger('user_id')->index();
             $table->unsignedBigInteger('work_id');
-            $table->primary(['favorite_folder_id', 'user_id', 'work_id']);
+            $table->unique(['favorite_folder_id', 'user_id', 'work_id']);
         });
     }
 
