@@ -216,6 +216,10 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-http/message-factory" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-http/promise" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/rap2hpoutre/fast-excel" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/prompts" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/socialite" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/league/oauth1-client" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/clock" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

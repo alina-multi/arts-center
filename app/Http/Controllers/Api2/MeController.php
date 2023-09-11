@@ -17,10 +17,16 @@ class MeController extends Controller
         $follows = $user->follows->mapToGroups(function (Follow $follow) {
             return [$follow->followable_type => $follow->followable_id];
         })->toArray();
+        $favorites = $user->favorites->pluck('work_id')->toArray();
+        $favoriteFolders = $user->favoriteFolders->toArray();
         return [
             ...$user->toArray(),
             'blacklists' => $blacklists,
-            'follows' => $follows
+            'follows' => $follows,
+            'favorites' => [
+                'works' => $favorites,
+                'folders' => $favoriteFolders
+            ]
         ];
     }
 }

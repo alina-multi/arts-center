@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\FavoriteFolder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,14 @@ class FavoriteFactory extends Factory
      */
     public function definition(): array
     {
+        $folders = FavoriteFolder::get();
+        if (empty($folders)) {
+            $folders = FavoriteFolder::factory()->count(3)->create();
+        }
         return [
-            //
+            'favorite_folder_id' => $folders->random()->id,
+            'work_id' => $this->faker->unique()->numberBetween(0,10000),
+            'user_id' => $this->faker->unique()->numberBetween(0,10000)
         ];
     }
 }

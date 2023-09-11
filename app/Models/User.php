@@ -129,6 +129,16 @@ class User extends Authenticatable
         return $this->hasMany(Blacklist::class);
     }
 
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
+    public function favoriteFolders()
+    {
+        return $this->hasMany(FavoriteFolder::class);
+    }
+
     public function isAdmin()
     {
         return $this->email === 'stepanorda87@gmail.com';
