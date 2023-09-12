@@ -1,4 +1,4 @@
-FROM ghcr.io/roadrunner-server/roadrunner AS roadrunner
+FROM ghcr.io/roadrunner-server/roadrunner:latest AS roadrunner
 FROM composer AS composer
 FROM php:8.2-alpine
 
