@@ -222,6 +222,13 @@
       <path value="$PROJECT_DIR$/vendor/laravel/prompts" />
       <path value="$PROJECT_DIR$/vendor/laravel/socialite" />
       <path value="$PROJECT_DIR$/vendor/league/oauth1-client" />
+      <path value="$PROJECT_DIR$/vendor/spiral/logger" />
+      <path value="$PROJECT_DIR$/vendor/spiral/core" />
+      <path value="$PROJECT_DIR$/vendor/spiral/roadrunner-http" />
+      <path value="$PROJECT_DIR$/vendor/spiral/tokenizer" />
+      <path value="$PROJECT_DIR$/vendor/spiral/roadrunner-worker" />
+      <path value="$PROJECT_DIR$/vendor/spiral/roadrunner-cli" />
+      <path value="$PROJECT_DIR$/vendor/spiral/goridge" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />

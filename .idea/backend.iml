@@ -220,6 +220,13 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/socialite" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/oauth1-client" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/clock" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spiral/core" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spiral/goridge" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spiral/logger" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spiral/roadrunner-cli" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spiral/roadrunner-http" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spiral/roadrunner-worker" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spiral/tokenizer" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
