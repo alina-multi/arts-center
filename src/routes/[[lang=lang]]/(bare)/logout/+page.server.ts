@@ -7,5 +7,5 @@ export const load = (async (event) => {
 	await api({ method: 'POST', path: '/auth/logout', event });
 	event.cookies.delete('laravel_token');
 	event.locals.user = undefined;
-	throw redirect(302, event.url.searchParams.get('redirect') ?? localePath('/'));
+	throw redirect(302, event.url.searchParams.get('redirect') || localePath('/'));
 }) satisfies PageServerLoad;
