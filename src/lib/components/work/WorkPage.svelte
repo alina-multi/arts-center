@@ -27,7 +27,7 @@
 			<div class="w-full flex items-center justify-between gap-2 py-3">
 				<RatingPreviewVote entity={work} showVotedPreview votable_type={'work'} />
 			</div>
-			<BookmarkButton />
+			<BookmarkButton {work}/>
 		</div>
 	</div>
 </div>
