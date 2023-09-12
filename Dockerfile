@@ -1,9 +1,9 @@
 FROM ghcr.io/roadrunner-server/roadrunner:latest AS roadrunner
-FROM composer AS composer
+FROM composer AS composerStage
 FROM php:8.2-alpine
 
 COPY --from=roadrunner /usr/bin/rr /usr/local/bin/rr
-COPY --from=composer /usr/bin/composer /usr/bin/composer
+COPY --from=composerStage /usr/bin/composer /usr/bin/composer
 
 # Setup working directory
 WORKDIR /var/www
