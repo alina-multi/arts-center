@@ -52,11 +52,10 @@ test('Add to existing folder', function () {
 
 test('Remove', function () {
     actingAs($this->user)->deleteJson('/api2/favorite', [
-        'folder_id' => 999
-    ])->assertInvalid(['folder_id', 'work_id']);
+        'work_id' => 999
+    ])->assertInvalid(['work_id']);
 
     actingAs($this->user)->deleteJson('/api2/favorite', [
-        'folder_id' => $this->folder->id,
         'work_id' => $this->work->id
     ])->assertNotFound();
 
@@ -67,7 +66,6 @@ test('Remove', function () {
     ]);
 
     actingAs($this->user)->deleteJson('/api2/favorite', [
-        'folder_id' => $this->folder->id,
         'work_id' => $this->work->id
     ])->assertOk();
 

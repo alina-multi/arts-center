@@ -6,16 +6,12 @@ use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class FavoriteRequest extends FormRequest
+class FavoriteStoreRequest extends FavoriteDestroyRequest
 {
     public function rules(): array
     {
         return [
-            'work_id' => [
-                'required',
-                'integer',
-                'exists:works,id'
-            ],
+            ...parent::rules(),
             'folder_title' => [
                 'required_without:folder_id',
                 'string',
