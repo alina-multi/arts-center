@@ -4,7 +4,7 @@
 	import { page } from '$app/stores';
 	import ModalWindow from '../ModalWindow.svelte';
 	import toast from 'svelte-french-toast';
-	import { fetchData } from '$lib/helpers/fetch';
+	import { fetchFavoritesWork } from '$lib/helpers/fetchFavorites';
 	import Button from '$lib/components/atoms/buttons/Button.svelte';
 
 	export let work;
@@ -16,12 +16,13 @@
 	let showInput = false;
 	let error = false;
 	let folderID = 0;
-	$: folderName = showInput ? '' : 'Default';
+	$: folderName = showInput ? '' : 'All works';
 	const folders = currentUser?.favorites.folders;
 
 	function onChange(e: Event) {
 		folderID = Number(e.target.value);
 		showInput = false;
+		error = '';
 	}
 
 	function init(el: HTMLInputElement) {
@@ -34,7 +35,7 @@
 			error = 'Please select a folder';
 			return;
 		}
-		const response = await fetchData('POST', { work_id: workID, folder_id: folderID });
+		const response = await fetchFavoritesWork('POST', { work_id: workID, folder_id: folderID });
 		const data = await response.json();
 
 		if (!response.ok) {
@@ -53,7 +54,7 @@
 			return;
 		}
 
-		const response = await fetchData('POST', {
+		const response = await fetchFavoritesWork('POST', {
 			work_id: workID,
 			folder_title: folderName
 		});
@@ -71,7 +72,7 @@
 	}
 
 	async function remove() {
-		await fetchData('DELETE', { work_id: workID });
+		await fetchFavoritesWork('DELETE', { work_id: workID });
 		isBookmarked = false;
 	}
 </script>
@@ -105,7 +106,7 @@
 					<button
 						on:click={() => ((showInput = true), (folderID = 0))}
 						type="button"
-						class="flex items-center text-sm hover:text-gray-700 text-gray-500 dark:text-white dark:hover:text-zinc-300 cursor-pointer focus-outline-none focus:ring-transparent"
+						class="flex items-center text-sm hover:text-gray-700 text-gray-900 dark:text-white dark:hover:text-zinc-300 cursor-pointer focus-outline-none focus:ring-transparent"
 					>
 						<Icon src={FolderPlus} class="h-7 w-7 " aria-hidden="true" />
 					</button>
@@ -121,7 +122,7 @@
 				<div
 					class="relative divide-y divide-gray-200 dark:divide-zinc-800 border-b border-t border-gray-200 dark:border- dark:border-zinc-800"
 				>
-					{#if error}
+					{#if error && !showInput}
 						<span class="text-red-500 text-xs absolute -top-5 left-0">{error}</span>
 					{/if}
 					{#each folders as folder}

@@ -1,4 +1,4 @@
-export async function fetchData(method: string, body: object) {
+export async function fetchFavoritesWork(method: string, body: object) {
     const response = fetch('/api/favorite', {
         method,
         headers: {
@@ -9,3 +9,4 @@ export async function fetchData(method: string, body: object) {
 
     return response;
 }
+

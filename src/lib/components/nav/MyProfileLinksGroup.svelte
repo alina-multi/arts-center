@@ -1,5 +1,6 @@
 <script>
     import {t}  from '$lib/translations';
+	import {page} from '$app/stores';
 	import SideNavLink from '$lib/components/nav/side/SideNavLink.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import {
@@ -11,6 +12,8 @@
 		Bookmark,
 		NoSymbol
 	} from '@steeze-ui/heroicons';
+	let folderID = $page.data.currentUser.favorites.folders[0].id || 0;
+	
 </script>
 
 <SideNavLink href="/my/profile"
@@ -23,8 +26,8 @@
 	><Icon src={FolderOpen} theme="solid" class="h-5 w-5 " aria-hidden="true" />{$t('global.my_links.drafts')}</SideNavLink
 >
 
-<SideNavLink href="/my/work/saved"
-	><Icon src={Bookmark} theme="solid" class="h-5 w-5 inline" aria-hidden="true" />{$t('global.my_links.saved')}</SideNavLink
+<SideNavLink href="/my/favorites/{folderID}"
+	><Icon src={Bookmark} theme="solid" class="h-5 w-5 inline" aria-hidden="true" />{$t('global.my_links.favorites')}</SideNavLink
 >
 
 <SideNavLink href="/my/followers"

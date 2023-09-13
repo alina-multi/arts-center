@@ -91,7 +91,7 @@
 		"following": "Following",
 		"logout": "Log Out",
 		"my_profile": "My Page",
-		"saved": "Saved"
+		"favorites": "Favorites"
 	},
 	"not_logged_in": {
 		"for_comment": "Sign in to comment this work",
