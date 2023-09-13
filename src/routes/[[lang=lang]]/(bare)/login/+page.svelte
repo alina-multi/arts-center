@@ -6,8 +6,6 @@
 	import InputGroup from '$lib/components/input/InputGroup.svelte';
 	import CheckBox from '$lib/components/input/CheckBox.svelte';
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
-	import Divider from '$lib/components/atoms/Divider.svelte';
-	import SocialMediaButtons from '$lib/components/atoms/buttons/SocialMediaButtons.svelte';
 	import {t} from '$lib/translations';
 
 	export let form: ActionData;

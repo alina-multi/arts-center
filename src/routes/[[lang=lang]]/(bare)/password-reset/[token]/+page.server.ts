@@ -1,5 +1,5 @@
-import type { Actions, PageServerLoad } from './$types';
-import { api, csrf } from '$lib/server/api';
+import type { Actions } from './$types';
+import { api } from '$lib/server/api';
 import { redirect } from '@sveltejs/kit';
 import { localePath } from '$lib/translations';
 
@@ -11,12 +11,11 @@ export const actions = {
 			response = await api({
 				method: 'POST',
 				path: '/auth/reset-password',
-				data:
-					{
-						...Object.fromEntries(data),
-						'email': event.url.searchParams.get('email'),
-						'token': event.params.token
-					},
+				data: {
+					...Object.fromEntries(data),
+					email: event.url.searchParams.get('email'),
+					token: event.params.token
+				},
 				event
 			});
 		} catch (e) {

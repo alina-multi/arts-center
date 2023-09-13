@@ -2,7 +2,6 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Power } from '@steeze-ui/heroicons';
 	import { localePath } from '$lib/translations';
-	import { page } from '$app/stores';
 	import { t } from '$lib/translations';
 </script>
 
