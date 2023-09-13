@@ -74,12 +74,17 @@
 		"page_title": "Увійдіть у свій обліковий запис",
 		"password": "Пароль",
 		"remember_me": "Пам'ятай мене",
-		"sign_in": "Увійти"
+		"sign_in": "Увійти",
+		"recover": "Відновити",
+		"lost_email": "Втратили доступ до електронної пошти?",
+		"contact_us": "Напишіть нам.",
+		"new_password": "Встановить новий пароль",
+		"password_confirmation": "Підтвердження паролю"
 	},
 	"menu": {
 		"gallery": "ГАЛЕРЕЯ",
 		"login": "ВІЙТИ",
-		"register": "РЕГІСТРАЦІЯ",
+		"register": "РЕЄСТРАЦІЯ",
 		"users": "МИТЦІ"
 	},
 	"my_links": {

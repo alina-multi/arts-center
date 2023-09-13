@@ -1,0 +1,35 @@
+import type { Actions, PageServerLoad } from './$types';
+import { api, csrf } from '$lib/server/api';
+import { redirect } from '@sveltejs/kit';
+import { localePath } from '$lib/translations';
+
+export const actions = {
+	default: async (event) => {
+		const data = await event.request.formData();
+		let response;
+		try {
+			response = await api({
+				method: 'POST',
+				path: '/auth/reset-password',
+				data:
+					{
+						...Object.fromEntries(data),
+						'email': event.url.searchParams.get('email'),
+						'token': event.params.token
+					},
+				event
+			});
+		} catch (e) {
+			return {
+				errors: {
+					password: 'Something went wrong'
+				}
+			};
+		}
+		if (response.ok) {
+			throw redirect(301, localePath('/login'));
+		} else {
+			return await response.json();
+		}
+	}
+} satisfies Actions;

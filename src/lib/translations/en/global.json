@@ -74,7 +74,12 @@
 		"page_title": "Sign in to your account",
 		"password": "Password",
 		"remember_me": "Remember me",
-		"sign_in": "Sign in"
+		"sign_in": "Sign in",
+		"recover": "Recover",
+		"lost_email": "Lost access to your email?",
+		"contact_us": "Contact us.",
+		"new_password": "Set new password",
+		"password_confirmation": "Confirm password"
 	},
 	"menu": {
 		"gallery": "GALLERY",
