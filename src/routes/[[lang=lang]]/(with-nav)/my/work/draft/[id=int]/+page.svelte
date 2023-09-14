@@ -11,6 +11,7 @@
 	import CancelButton from '$lib/components/forms/CancelButton.svelte';
 	import {  t } from '$lib/translations';
 
+
 	export let data: PageData;
 	export let form: ActionData;
 	let open = false;
@@ -48,10 +49,10 @@
 	</div>
 </form>
 
-{#if open}
+
 	<ModalWindow bind:open>
 		<div class="font-semibold">{$t("my.confirmation.delete_work")}</div>
-		<div class="text-sm text-gray-500">{$t("my.confirmation.delete_warning")}</div>
+		<div class="text-sm text-gray-500 dark:text-zinc-400">{$t("my.confirmation.delete_warning")}</div>
 
 		<div slot="footer">
 			<form method="POST" action="?/delete">
@@ -67,4 +68,4 @@
 			</form>
 		</div>
 	</ModalWindow>
-{/if}
+

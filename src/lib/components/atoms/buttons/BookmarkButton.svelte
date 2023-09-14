@@ -4,8 +4,9 @@
 	import { page } from '$app/stores';
 	import ModalWindow from '../ModalWindow.svelte';
 	import toast from 'svelte-french-toast';
-	import { fetchFavoritesWork } from '$lib/helpers/fetchFavorites';
-	import Button from '$lib/components/atoms/buttons/Button.svelte';
+	import ActionButton from '$lib/components/forms/ActionButton.svelte';
+	import ButtonsGroup from '$lib/components/forms/ButtonsGroup.svelte';
+	import CancelButton from '$lib/components/forms/CancelButton.svelte';
 
 	export let work;
 	let workID = Number(work.id);
@@ -14,7 +15,7 @@
 
 	let open = false;
 	let showInput = false;
-	let error = false;
+	let error = '';
 	let folderID = 0;
 	$: folderName = showInput ? '' : 'All works';
 	const folders = currentUser?.favorites.folders;
@@ -28,6 +29,18 @@
 	function init(el: HTMLInputElement) {
 		el.focus();
 		error = '';
+	}
+
+	export async function fetchFavoritesWork(method: string, body: object) {
+		const response = fetch('/api/favorite', {
+			method,
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(body)
+		});
+
+		return response;
 	}
 
 	async function saveInExistingFolder() {
@@ -167,26 +180,20 @@
 				</div>
 			{/if}
 
-			<div class="flex items-center justify-end gap-3">
-				<Button
-					type="button"
-					on:click={() => (open = false)}
-					class=" px-3 py-1 text-sm   text-zinc-700 dark:bg-zinc-300 dark:hover:bg-zinc-200 bg-zinc-100 border border-transparent rounded-md hover:bg-zinc-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-zinc-500"
-				>
-					Cancel
-				</Button>
-
-				<Button
+			<ButtonsGroup>
+				<CancelButton bind:open />
+				<ActionButton
 					type="submit"
-					class="px-3 py-1 text-sm  text-white bg-gray-600 dark:bg-zinc-700 dark:hover:bg-zinc-600 border border-transparent rounded-md hover:bg-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-zinc-500"
+					class={'bg-blue-500 hover:bg-red-400 focus-visible:outline-blue-600 flex items-center gap-1'}
 				>
 					Save
-				</Button>
-			</div>
+				</ActionButton>
+			</ButtonsGroup>
 		</form>
 	</ModalWindow>
 {/if}
 
+<!-- -----------------------------REFACOTR----------------------------- -->
 {#if !currentUser}
 	<ModalWindow bind:open>
 		<div class="flex flex-col gap-3">

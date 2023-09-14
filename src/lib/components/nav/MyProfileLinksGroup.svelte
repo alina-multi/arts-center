@@ -12,7 +12,10 @@
 		Bookmark,
 		NoSymbol
 	} from '@steeze-ui/heroicons';
-	let folderID = $page.data.currentUser.favorites.folders[0].id || 0;
+	let folders = $page.data.currentUser.favorites.folders;
+
+	const favorites_href = folders.length === 0 ||folders.length > 1 ?  "/my/favorites" : "/my/favorites/"+folders[0].id;
+
 	
 </script>
 
@@ -26,7 +29,7 @@
 	><Icon src={FolderOpen} theme="solid" class="h-5 w-5 " aria-hidden="true" />{$t('global.my_links.drafts')}</SideNavLink
 >
 
-<SideNavLink href="/my/favorites/{folderID}"
+<SideNavLink href="{favorites_href}"
 	><Icon src={Bookmark} theme="solid" class="h-5 w-5 inline" aria-hidden="true" />{$t('global.my_links.favorites')}</SideNavLink
 >
 
