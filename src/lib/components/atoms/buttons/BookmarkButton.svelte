@@ -31,7 +31,9 @@
 		error = '';
 	}
 
-	export async function fetchFavoritesWork(method: string, body: object) {
+	// -------REFACTOR----------------
+
+	export async function fetchData(method: string, body: object) {
 		const response = fetch('/api/favorite', {
 			method,
 			headers: {
@@ -48,7 +50,7 @@
 			error = 'Please select a folder';
 			return;
 		}
-		const response = await fetchFavoritesWork('POST', { work_id: workID, folder_id: folderID });
+		const response = await fetchData('POST', { work_id: workID, folder_id: folderID });
 		const data = await response.json();
 
 		if (!response.ok) {
@@ -67,7 +69,7 @@
 			return;
 		}
 
-		const response = await fetchFavoritesWork('POST', {
+		const response = await fetchData('POST', {
 			work_id: workID,
 			folder_title: folderName
 		});
@@ -85,7 +87,7 @@
 	}
 
 	async function remove() {
-		await fetchFavoritesWork('DELETE', { work_id: workID });
+		await fetchData('DELETE', { work_id: workID });
 		isBookmarked = false;
 	}
 </script>
