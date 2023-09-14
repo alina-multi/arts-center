@@ -35,6 +35,9 @@
 		{:else }
 			<div class='bg-white dark:bg-zinc-900 px-3 py-6 sm:p-9 sm:shadow rounded-lg'>
 				<form class='space-y-6' method='POST' use:enhance>
+					{#if form?.message}
+						<p class='text-red-600'>{form?.message}</p>
+					{/if}
 					<InputGroup
 						label={$t('global.login.email')}
 						error={form?.errors?.email}
