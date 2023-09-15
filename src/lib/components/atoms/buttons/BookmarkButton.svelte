@@ -9,6 +9,7 @@
 	import CancelButton from '$lib/components/forms/CancelButton.svelte';
 
 	export let work;
+	let url = '/api/favorites';
 	let workID = Number(work.id);
 	let currentUser = $page.data.currentUser;
 	let isBookmarked = currentUser?.favorites.works.some((favorite: number) => favorite === workID);
@@ -20,7 +21,7 @@
 	$: folderName = showInput ? '' : 'All works';
 	const folders = currentUser?.favorites.folders;
 
-	function onChange(e: Event) {
+	function onChange(e: Event & { target: HTMLInputElement }) {
 		folderID = Number(e.target.value);
 		showInput = false;
 		error = '';
@@ -33,8 +34,8 @@
 
 	// -------REFACTOR----------------
 
-	export async function fetchData(method: string, body: object) {
-		const response = fetch('/api/favorite', {
+	export async function fetchData(method: string,url:string, body: object) {
+		const response = fetch(url, {
 			method,
 			headers: {
 				'Content-Type': 'application/json'
@@ -50,7 +51,7 @@
 			error = 'Please select a folder';
 			return;
 		}
-		const response = await fetchData('POST', { work_id: workID, folder_id: folderID });
+		const response = await fetchData('POST','/api/favorite', { work_id: workID, folder_id: folderID });
 		const data = await response.json();
 
 		if (!response.ok) {
@@ -69,7 +70,7 @@
 			return;
 		}
 
-		const response = await fetchData('POST', {
+		const response = await fetchData('POST', url, {
 			work_id: workID,
 			folder_title: folderName
 		});
@@ -87,7 +88,7 @@
 	}
 
 	async function remove() {
-		await fetchData('DELETE', { work_id: workID });
+		await fetchData('DELETE',url, { work_id: workID });
 		isBookmarked = false;
 	}
 </script>

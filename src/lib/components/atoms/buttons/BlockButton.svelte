@@ -11,7 +11,7 @@
 		commentID: string | boolean = false;
 		let url = '/api/blacklist';
 
-
+// ------------REFACTOR-----------
 		async function fetchData(method:string, url:string, body:object) {
 			const res = await fetch(url, {
 				method,
