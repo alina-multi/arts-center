@@ -16,24 +16,37 @@
 	$: value = '';
 	let new_comment: Comment | null = null;
 	let new_comment_loaded = false;
+	let url = '/api/comment';
 
 	if (new_comment) {
 		new_comment = null;
 	}
 
-	async function fetchData(value: string, comment_id: string | undefined = undefined) {
-		return await fetch('/api/comment', {
-			method: 'POST',
+	// async function fetchData(value: string, comment_id: string | undefined = undefined) {
+	// 	return await fetch('/api/comment', {
+	// 		method: 'POST',
+	// 		headers: {
+	// 			'content-type': 'application/json'
+	// 		},
+	// 		body: JSON.stringify({
+	// 			commentable_id,
+	// 			commentable_type: 'work',
+	// 			comment_id,
+	// 			text: value
+	// 		})
+	// 	});
+	// }
+
+	export async function fetchData(method: string,url:string, body: object) {
+		const response = fetch(url, {
+			method,
 			headers: {
-				'content-type': 'application/json'
+				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({
-				commentable_id,
-				commentable_type: 'work',
-				comment_id,
-				text: value
-			})
+			body: JSON.stringify(body)
 		});
+
+		return response;
 	}
 
 	async function addNewComment() {
@@ -42,7 +55,11 @@
 		}
 		new_comment_loaded = false;
 
-		const fetch = fetchData(value);
+		const fetch = fetchData('POST', url, {
+			commentable_id,
+			commentable_type: 'work',
+			text: value
+		});
 		toast.promise(convertFetch(fetch), commentMassage.add);
 		const response = await fetch;
 		new_comment = await response.json();
@@ -70,10 +87,10 @@
 				<div
 					class=" transition-opacity delay-500 {new_comment_loaded ? 'opacity-100' : 'opacity-50'}"
 				>
-					<CommentBlock {comment} {commentable_id} bind:parentComments {fetchData} />
+					<CommentBlock {comment} {commentable_id} bind:parentComments  />
 				</div>
 			{:else}
-				<CommentBlock {comment} {commentable_id} bind:parentComments {fetchData} />
+				<CommentBlock {comment} {commentable_id} bind:parentComments  />
 			{/if}
 		{/each}
 	</div>
