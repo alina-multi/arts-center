@@ -51,7 +51,7 @@
 			error = 'Please select a folder';
 			return;
 		}
-		const response = await fetchData('POST','/api/favorite', { work_id: workID, folder_id: folderID });
+		const response = await fetchData('POST',url, { work_id: workID, folder_id: folderID });
 		const data = await response.json();
 
 		if (!response.ok) {

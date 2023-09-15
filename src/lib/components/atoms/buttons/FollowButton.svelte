@@ -8,6 +8,7 @@
 
 
 	export let user, size: string;
+	let url = '/api/follow';
 	let currentUser = $page.data.currentUser;
 
 	let isMy = handleIsMy(currentUser, user.id);
@@ -16,17 +17,16 @@
 	let follows = currentUser?.follows.user;
 	let isFollowing = follows?.some((id) => id === Number(user.id));
 
-	async function fetchData(method) {
-	 await fetch(`/api/follow`, {
+	export async function fetchData(method: string,url:string, body: object) {
+		const response = fetch(url, {
 			method,
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({
-				followable_type: 'user',
-				followable_id: Number(user.id)
-			})
+			body: JSON.stringify(body)
 		});
+
+		return response;
 	}
 
 	const handleFollow = () => {
@@ -41,18 +41,15 @@
 		}
 	};
 
-	function onFollow() {
+	async function onFollow() {
 		isFollowing = true;
-		fetchData('POST');
-		$page.data.currentUser?.follows.user.push(Number(user.id));
+		 fetchData('POST', url, { followable_type: 'user', followable_id: Number(user.id) });
+	
 	}
 
 	async function onUnfollow() {
 		isFollowing = false;
-		fetchData('DELETE');
-		$page.data.currentUser.follows = $page.data.currentUser?.follows.user.filter(
-			(id) => id !== Number(user.id)
-		);
+		fetchData('DELETE',  url, { followable_type: 'user', followable_id: Number(user.id) });
 		
 	}
 </script>
