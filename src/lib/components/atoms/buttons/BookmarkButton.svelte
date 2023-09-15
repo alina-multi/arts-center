@@ -80,7 +80,8 @@
 	}
 </script>
 
-<button
+<div class="flex">
+	<button
 	type="button"
 	on:click={isBookmarked ? remove : () => (open = true)}
 	class=" text-sm dark:text-zinc-300 text-zinc-600 dark:border-zinc-700"
@@ -93,13 +94,16 @@
 		<span class="sr-only">Bookmark</span>
 		<Icon
 			src={Bookmark}
-			class="h-7 w-7   xl:hover:stroke-zinc-500 fill-white dark:fill-zinc-300 "
+			class="h-7 w-7   xl:hover:stroke-zinc-500 dark:hover:stroke-zinc-100 dark:hover:fill-zinc-100 fill-white dark:fill-zinc-300 "
 			aria-hidden="true"
 		/>
 	{/if}
 </button>
 
+
+
 {#if currentUser}
+
 	<ModalWindow bind:open>
 		<slot name="header">
 			<div class="flex items-center justify-between mb-3">
@@ -165,7 +169,7 @@
 						id="folder"
 						bind:value={folderName}
 						placeholder="Create folder"
-						class="block w-full pl-3 pr-10 py-2 dark:bg-zinc-700 dark:border-zinc-800 dark:focus:ring-zinc-800 text-base border-zinc-500 dark:focus:border-ring-800 focus:outline-none focus:ring-zinc-500 focus:border-zinc-500 sm:text-sm rounded-md dark:text-zinc-100 dark:placeholder:text-zinc-500"
+						class="block w-full pl-3 pr-10 py-2 dark:bg-zinc-700 dark:border-zinc-800 dark:focus:ring-zinc-800 text-base border-zinc-500 dark:focus:border-ring-800 focus:outline-none focus:ring-zinc-500 focus:border-zinc-500 sm:text-sm rounded-sm dark:text-zinc-100 dark:placeholder:text-zinc-500"
 					/>
 				</div>
 			{/if}
@@ -181,8 +185,10 @@
 			</ButtonsGroup>
 		</form>
 	</ModalWindow>
-{/if}
 
+	
+{/if}
+</div>
 <!-- -----------------------------REFACOTR----------------------------- -->
 {#if !currentUser}
 	<ModalWindow bind:open>
@@ -194,13 +200,13 @@
 			<div class="flex flex-col gap-3">
 				<button
 					type="button"
-					class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-zinc-600 border border-transparent rounded-md hover:bg-zinc-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-zinc-500"
+					class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-zinc-600 border border-transparent rounded-sm hover:bg-zinc-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-zinc-500"
 				>
 					Login
 				</button>
 				<button
 					type="button"
-					class="inline-flex justify-center px-4 py-2 text-sm font-medium text-zinc-700 bg-zinc-100 border border-transparent rounded-md hover:bg-zinc-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-zinc-500"
+					class="inline-flex justify-center px-4 py-2 text-sm font-medium text-zinc-700 bg-zinc-100 border border-transparent rounded-sm hover:bg-zinc-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-zinc-500"
 				>
 					Sign up
 				</button>

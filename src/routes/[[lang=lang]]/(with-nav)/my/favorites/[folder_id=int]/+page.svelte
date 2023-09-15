@@ -53,7 +53,8 @@
 <HeaderLayout {title}>
 	<div slot="details" class="flex gap-3 items-center leading-3">
 		<div class="h-1 w-1 bg-gray-500 rounded-full dark:bg-zinc-300" />
-		<span> {data.favorites.works.length} works</span>
+		<span> {data.favorites.works.length} saved  
+			{data.favorites.works.length === 1 ? 'work' : 'works'}</span>
 	</div>
 	<div slot="buttons" class="flex items-center gap-3 dark:text-zinc-300 text-gray-700">
 		<button
@@ -88,7 +89,7 @@
 	</div>
 {/if}
 
-<ActionModal bind:open={modalRename} action={renameFolder} actionName="Save">
+<ActionModal bind:open={modalRename} action={renameFolder} actionName="Save" className="bg-blue-600 hover:bg-blue-500 ">
 	<div slot="title" class="relative">
 		{#if error}
 			<span class="text-red-500 text-xs absolute -top-5 left-0">{error}</span>

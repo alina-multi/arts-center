@@ -8,7 +8,7 @@
 <button
 	on:click
 	{type}
-	class="{clazz} rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+	class="{clazz} flex items-center gap-1 rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
 >
 	<slot>{$t('my.buttons.save')}</slot>
 </button>

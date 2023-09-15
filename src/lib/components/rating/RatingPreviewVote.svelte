@@ -23,7 +23,7 @@
 
 </script>
 
-{#if showVotedPreview}
+	{#if showVotedPreview}
 	<VotedList {votes} {isLiked} {currentUser} />
 {/if}
 
@@ -67,4 +67,8 @@
 	{/if}
 </div>
 
+{#if open}
 <AuthModal bind:open />
+{/if}
+
+
