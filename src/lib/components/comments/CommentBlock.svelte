@@ -15,6 +15,7 @@
 	import BlockButton from '../atoms/buttons/BlockButton.svelte';
 	import ReportButton from '../atoms/buttons/ReportButton.svelte';
 	import { t } from '$lib/translations';
+	import {fetchData} from '$lib/helpers/fetchData';
 
 	export let comment: Comment,
 		commentable_id: string,
@@ -39,18 +40,6 @@
 		answer = null;
 	}
 
-
-	export async function fetchData(method: string,url:string, body: object) {
-		const response = fetch(url, {
-			method,
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(body)
-		});
-
-		return response;
-	}
 
 	function isEditable(): boolean {
 		const now = new Date();

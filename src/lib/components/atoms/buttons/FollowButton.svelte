@@ -5,6 +5,7 @@
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import AuthModal from '../AuthModal.svelte';
 	import { t } from '$lib/translations';
+	import{fetchData} from '$lib/helpers/fetchData';
 
 
 	export let user, size: string;
@@ -17,17 +18,7 @@
 	let follows = currentUser?.follows.user;
 	let isFollowing = follows?.some((id) => id === Number(user.id));
 
-	export async function fetchData(method: string,url:string, body: object) {
-		const response = fetch(url, {
-			method,
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(body)
-		});
 
-		return response;
-	}
 
 	const handleFollow = () => {
 		if (currentUser) {

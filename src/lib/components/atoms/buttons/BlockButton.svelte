@@ -4,24 +4,13 @@
 	import { NoSymbol } from '@steeze-ui/heroicons';
 	import type { User } from '$lib/interfaces/User';
 	import { t } from '$lib/translations';
+	import {fetchData} from '$lib/helpers/fetchData';
 
 	export let type: 'block' | 'unblock' = 'block',
 		user: User,
 		parentComments: [Comment] | boolean = false,
 		commentID: string | boolean = false;
 	let url = '/api/blacklist';
-
-	// ------------REFACTOR-----------
-	async function fetchData(method: string, url: string, body: object) {
-		const res = await fetch(url, {
-			method,
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(body)
-		});
-		return res;
-	}
 
 	async function block() {
 		const res = await fetchData('POST', url, { user_id: Number(user.id) });

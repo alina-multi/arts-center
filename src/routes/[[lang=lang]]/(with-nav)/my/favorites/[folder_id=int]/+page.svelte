@@ -6,6 +6,7 @@
 	import HeaderLayout from '$lib/components/my/HeaderLayout.svelte';
 	import { t } from '$lib/translations';
 	import ActionModal from '$lib/components/my/ActionModal.svelte';
+	import {fetchData} from '$lib/helpers/fetchData';
 	export let data;
 
 	$: gallery = data.favorites.works;
@@ -16,28 +17,21 @@
 	$: title = data.favorites.title;
 	$: folderID = data.favorites.id;
 
+	let url = '/api/favorite-folder';
+
 	function init(el: HTMLInputElement) {
 		el.focus();
 		error = '';
 	}
 
-	async function fetchData(method: string, body: object, folderID: number) {
-		const response = fetch(`/api/favorite-folder/${folderID}`, {
-			method,
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(body)
-		});
-		return response;
-	}
+
 
 	async function renameFolder() {
 		if (newName.trim() === '') {
 			error = 'Please enter a folder name';
 			return;
 		}
-		const res = await fetchData('PUT', { title: newName }, data.favorites.id);
+		const res = await fetchData('PUT', `${url}/${data.favorites.id}`, { title: newName });
 		if (res.ok) {
 			toast.success('Folder renamed');
 			modalRename = false;
@@ -46,7 +40,7 @@
 	}
 
 	async function removeFolder() {
-		const res = await fetchData('DELETE', {}, folderID);
+		const res = await fetchData('DELETE', `${url}/${folderID}`,  {});
 
 		if (res.ok) {
 			toast.success('Folder deleted');

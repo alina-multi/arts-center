@@ -7,6 +7,7 @@
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
 	import ButtonsGroup from '$lib/components/forms/ButtonsGroup.svelte';
 	import CancelButton from '$lib/components/forms/CancelButton.svelte';
+	import {fetchData} from '$lib/helpers/fetchData';
 
 	export let work;
 	let url = '/api/favorites';
@@ -30,20 +31,6 @@
 	function init(el: HTMLInputElement) {
 		el.focus();
 		error = '';
-	}
-
-	// -------REFACTOR----------------
-
-	export async function fetchData(method: string,url:string, body: object) {
-		const response = fetch(url, {
-			method,
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(body)
-		});
-
-		return response;
 	}
 
 	async function saveInExistingFolder() {

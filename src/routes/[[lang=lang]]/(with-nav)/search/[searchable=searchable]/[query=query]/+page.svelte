@@ -8,7 +8,7 @@
 	import SideMenu from '$lib/components/nav/side/SideMenu.svelte';
 	import SearchFilters from '$lib/components/search/SearchFilters.svelte';
 	import WorkPreview from '$lib/components/work/WorkPreview.svelte';
-	import { fetchData } from '$lib/helpers/fetchData';
+	import { getData } from '$lib/helpers/getData';
 
 	export let data;
 	let searchable = data.params.searchable;
@@ -29,7 +29,7 @@
 
 	async function loadMore() {
 		loading = true;
-		const search = await fetchData(`/api/search/${searchable}/${query}/${page}`);
+		const search = await getData(`/api/search/${searchable}/${query}/${page}`);
 
 		newBatch = search.hits;
 		results = [...results, ...newBatch];

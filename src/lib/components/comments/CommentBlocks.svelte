@@ -8,6 +8,7 @@
 	import { сommentValidations, commentMassage, scrollToBottom } from '$lib/helpers/comments';
 	import { tick } from 'svelte';
 	import NoResultsStub from './NoResultsStub.svelte';
+	import {fetchData} from '$lib/helpers/fetchData';
 
 	export let comments, commentable_id: string;
 	commentable_id = commentable_id?.toString();
@@ -20,33 +21,6 @@
 
 	if (new_comment) {
 		new_comment = null;
-	}
-
-	// async function fetchData(value: string, comment_id: string | undefined = undefined) {
-	// 	return await fetch('/api/comment', {
-	// 		method: 'POST',
-	// 		headers: {
-	// 			'content-type': 'application/json'
-	// 		},
-	// 		body: JSON.stringify({
-	// 			commentable_id,
-	// 			commentable_type: 'work',
-	// 			comment_id,
-	// 			text: value
-	// 		})
-	// 	});
-	// }
-
-	export async function fetchData(method: string,url:string, body: object) {
-		const response = fetch(url, {
-			method,
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(body)
-		});
-
-		return response;
 	}
 
 	async function addNewComment() {
