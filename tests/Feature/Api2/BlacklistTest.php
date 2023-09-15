@@ -30,3 +30,14 @@ test('Remove user from blacklist', function () {
     ]);
     actingAs($user1)->deleteJson("api2/blacklist", ['user_id' => $user2->id])->assertNotFound();
 });
+
+test('List blacklists', function () {
+    [$user1, $user2] = User::factory()->count(3)->create();
+    Blacklist::create([
+        'user_id' => $user1->id,
+        'blacklist_user_id' => $user2->id
+    ]);
+    actingAs($user1)->getJson("api2/blacklist")->assertOk()->assertJson([
+            $user2->load('photo', 'photo.variants')->toArray()
+    ]);
+});
