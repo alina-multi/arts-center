@@ -6,7 +6,8 @@
 	import LikeButton from './LikeButton.svelte';
 	import DislikeButton from './DislikeButton.svelte';
 	import AuthModal from '../atoms/AuthModal.svelte';
-	import {t} from '$lib/translations';
+	import { t } from '$lib/translations';
+	import { fetchData } from '$lib/helpers/fetchData';
 
 	export let entity: Work | Comment,
 		allowDownVote = false,
@@ -19,8 +20,10 @@
 	let isLiked = entity?.votes?.some((vote) => vote?.id.toString() === currentUser?.id.toString());
 	let isDownVoted = false;
 	let open = false;
+	let votable_id = entity?.id.toString();
 
 	async function vote(method, vote: number = 1) {
+		console.log('fffff');
 		return await fetch(`/api/vote`, {
 			method,
 			headers: {
@@ -29,10 +32,7 @@
 			body: JSON.stringify({ vote, votable_type, votable_id: entity.id.toString() })
 		});
 	}
-
 </script>
-
-
 
 {#if showVotedPreview}
 	<VotedList {votes} {isLiked} {currentUser} />
@@ -45,20 +45,20 @@
 			: 'hover:text-zinc-100'}  dark:bg-zinc-800 bg-white dark:border-zinc-700 dark:text-white"
 	>
 		{#if votable_type === 'work'}
-			<span class="border-r dark:border-zinc-700 pr-3 ">{$t('global.voting.like')}  <span class="ml-1">{rating}</span></span>
+			<span class="border-r dark:border-zinc-700 pr-3"
+				>{$t('global.voting.like')} <span class="ml-1">{rating}</span></span
+			>
 		{/if}
 		<LikeButton
-		    {size}
+			{size}
 			bind:isLiked
 			bind:isDownVoted
 			bind:rating
 			bind:open
 			{votes}
 			{votable_type}
-			{vote}
-			
+			{votable_id}
 		/>
-			
 	</div>
 
 	{#if votable_type === 'comment' && rating > 0}
@@ -66,17 +66,16 @@
 	{/if}
 
 	{#if allowDownVote}
-	<DislikeButton
-		{size}
-		bind:isLiked
-		bind:isDownVoted
-		bind:rating
-		bind:open
-		{vote}	
-	/>	
+		<DislikeButton
+			{size}
+			bind:isLiked
+			bind:isDownVoted
+			bind:rating
+			bind:open
+			{votable_type}
+			{votable_id}
+		/>
 	{/if}
 </div>
-
-
 
 <AuthModal bind:open />
