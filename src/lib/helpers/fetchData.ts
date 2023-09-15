@@ -1,5 +1,11 @@
-export async function fetchData(url) {
-	const response = await fetch(url);
-	const result = await response.json();
-	return result;
+export async function fetchData(method: string, url: string, body: object) {
+	const response = fetch(url, {
+		method,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(body)
+	});
+
+	return response;
 }

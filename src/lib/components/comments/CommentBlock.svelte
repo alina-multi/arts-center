@@ -15,11 +15,12 @@
 	import BlockButton from '../atoms/buttons/BlockButton.svelte';
 	import ReportButton from '../atoms/buttons/ReportButton.svelte';
 	import { t } from '$lib/translations';
+	import {fetchData} from '$lib/helpers/fetchData';
 
 	export let comment: Comment,
 		commentable_id: string,
-		parentComments: [Comment] | [],
-		fetchData: (value: string, comment_id?: string) => Promise<Response>;
+		parentComments: [Comment] | [];
+		let url = '/api/comment';
 
 	const isMy = $page.data.work.owners.some((owner: { id: string }) =>
 		handleIsMy($page.data.currentUser, owner.id)
@@ -38,6 +39,7 @@
 	if (answer) {
 		answer = null;
 	}
+
 
 	function isEditable(): boolean {
 		const now = new Date();
@@ -61,7 +63,12 @@
 		}
 		new_comment_loaded = false;
 
-		const fetch = fetchData(value, comment_id);
+		const fetch = fetchData('POST', url, {
+			commentable_id,
+			commentable_type: 'work',
+			comment_id,
+			text: value
+		});
 		toast.promise(convertFetch(fetch), commentMassage.add);
 
 		const response = await fetch;
@@ -91,16 +98,10 @@
 			return;
 		}
 
-		const response = await fetch(`/api/comment/${comment_id}`, {
-			method: 'PUT',
-			headers: {
-				'content-type': 'application/json'
-			},
-			body: JSON.stringify({
-				text: value
-			})
+		const response  = await fetchData('PUT', `${url}/${comment_id}`, {
+			text: value
 		});
-
+	
 		toast.promise(convertFetch(response), commentMassage.edit);
 
 		if (!response.ok) {
@@ -114,13 +115,8 @@
 	}
 
 	async function deleteComment(comment_id: string) {
-		const response = await fetch(`/api/comment/${comment_id}`, {
-			method: 'DELETE',
-			headers: {
-				'content-type': 'application/json'
-			},
-			body: JSON.stringify({})
-		});
+	
+		const response = await fetchData('DELETE', `${url}/${comment_id}`, {});
 		toast.dismiss();
 		toast.promise(convertFetch(response), commentMassage.delete);
 
@@ -255,7 +251,7 @@
 									comment={reply}
 									{commentable_id}
 									bind:parentComments={answers}
-									{fetchData}
+									
 								/>
 							</div>
 						{:else}
@@ -263,7 +259,7 @@
 								comment={reply}
 								{commentable_id}
 								bind:parentComments={answers}
-								{fetchData}
+							
 							/>
 						{/if}
 					{/each}

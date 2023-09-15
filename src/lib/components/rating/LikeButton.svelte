@@ -2,6 +2,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { HandThumbUp } from '@steeze-ui/heroicons';
 	import { page } from '$app/stores';
+	import {fetchData} from '$lib/helpers/fetchData';
 
 	export let size = 'w-6 h-6',
 		votable_type: string,
@@ -10,10 +11,12 @@
 		votes: [],
 		rating: number,
 		open: boolean,
-		vote: (method: string, vote: number ) => void;
+		votable_id: string;
 		let currentUser = $page.data.currentUser;
+		let url = '/api/vote';
 
 	async function like() {
+		console.log("like");
 		if (!currentUser) {
 			open = true;
 			return;
@@ -22,16 +25,19 @@
 			isLiked = true;
 			rating += 1;
 			votes?.unshift(currentUser);
-			await vote('POST').then((res) => res.json());
+		    fetchData('POST', url, { vote: 1, votable_type, votable_id });
+			
 			return;
 		}
 		isDownVoted = false;
 		isLiked = true;
 		rating += 2;
-		await vote('DELETE', -1).then((res) => res.json());
+         fetchData('DELETE', url, { vote: -1, votable_type, votable_id });
+	
 	}
 
 	async function cancelVote() {
+		console.log("cancelVote");
 		if (!currentUser) {
 			open = true;
 			return;
@@ -43,7 +49,7 @@
 				votes?.splice(index, 1);
 			}
 		});
-		await vote('DELETE').then((res) => res.json());
+		fetchData('DELETE', url, { vote: -1, votable_type, votable_id });
 	}
 
 </script>

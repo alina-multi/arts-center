@@ -3,28 +3,17 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { NoSymbol } from '@steeze-ui/heroicons';
 	import type { User } from '$lib/interfaces/User';
-	import {t } from '$lib/translations';
+	import { t } from '$lib/translations';
+	import {fetchData} from '$lib/helpers/fetchData';
 
 	export let type: 'block' | 'unblock' = 'block',
 		user: User,
 		parentComments: [Comment] | boolean = false,
 		commentID: string | boolean = false;
-
-	async function fetchData(method) {
-		const res = await fetch(`/api/blacklist`, {
-			method,
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				user_id: Number(user.id)
-			})
-		});
-		return res;
-	}
+	let url = '/api/blacklist';
 
 	async function block() {
-		const res = await fetchData('POST');
+		const res = await fetchData('POST', url, { user_id: Number(user.id) });
 
 		if (res.ok) {
 			parentComments = parentComments.filter((item) => item.id.toString() !== commentID);
@@ -38,7 +27,7 @@
 	}
 
 	async function unblock() {
-		const res = await fetchData('DELETE');
+		const res = await fetchData('DELETE', url, { user_id: Number(user.id) });
 		if (res.ok) {
 			toast.success('User unblocked');
 		} else {

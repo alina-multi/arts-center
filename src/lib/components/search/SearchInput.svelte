@@ -6,8 +6,9 @@
 	import { goto } from '$app/navigation';
 	import Loader from '$lib/components/atoms/Loader.svelte';
 	import newUniqueId from 'locally-unique-id-generator';
-	import { fetchData } from '$lib/helpers/fetchData';
+	import { getData } from '$lib/helpers/getData';
 	import { t } from '$lib/translations';
+
 
 
 	let value = '';
@@ -46,7 +47,7 @@
 	}
 
 	const doSearch = debounce(async (query) => {
-		const search = await fetchData(`/api/search/all/${query}/1`);
+		const search = await getData(`/api/search/all/${query}/1`);
 		users = search.users.hits.slice(0, 6);
 		works = search.works.hits.slice(0, 6);
 		totalUserHits = search.users.totalHits;
