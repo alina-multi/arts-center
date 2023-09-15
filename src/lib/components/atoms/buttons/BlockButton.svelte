@@ -9,22 +9,22 @@
 		user: User,
 		parentComments: [Comment] | boolean = false,
 		commentID: string | boolean = false;
+		let url = '/api/blacklist';
 
-	async function fetchData(method) {
-		const res = await fetch(`/api/blacklist`, {
-			method,
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				user_id: Number(user.id)
-			})
-		});
-		return res;
-	}
+
+		async function fetchData(method:string, url:string, body:object) {
+			const res = await fetch(url, {
+				method,
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(body)
+			});
+			return res;
+		}
 
 	async function block() {
-		const res = await fetchData('POST');
+		const res = await fetchData('POST', url, {user_id: Number(user.id)});
 
 		if (res.ok) {
 			parentComments = parentComments.filter((item) => item.id.toString() !== commentID);
@@ -38,7 +38,7 @@
 	}
 
 	async function unblock() {
-		const res = await fetchData('DELETE');
+		const res = await fetchData('DELETE', url, {user_id: Number(user.id)});
 		if (res.ok) {
 			toast.success('User unblocked');
 		} else {
