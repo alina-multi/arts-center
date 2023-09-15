@@ -7,7 +7,6 @@
 	import DislikeButton from './DislikeButton.svelte';
 	import AuthModal from '../atoms/AuthModal.svelte';
 	import { t } from '$lib/translations';
-	import { fetchData } from '$lib/helpers/fetchData';
 
 	export let entity: Work | Comment,
 		allowDownVote = false,
@@ -22,16 +21,6 @@
 	let open = false;
 	let votable_id = entity?.id.toString();
 
-	async function vote(method, vote: number = 1) {
-		console.log('fffff');
-		return await fetch(`/api/vote`, {
-			method,
-			headers: {
-				'content-type': 'application/json'
-			},
-			body: JSON.stringify({ vote, votable_type, votable_id: entity.id.toString() })
-		});
-	}
 </script>
 
 {#if showVotedPreview}
