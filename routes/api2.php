@@ -38,6 +38,7 @@ Route::middleware(['auth:sanctum', LocaleHeader::class])->group(function () {
     Route::post('follow', FollowController::class. '@store');
     Route::delete('follow', FollowController::class. '@destroy');
     Route::get('follow', FollowController::class. '@index');
+    Route::get('followers', FollowController::class. '@followers');
     Route::post('blacklist', BlacklistController::class. '@store');
     Route::delete('blacklist', BlacklistController::class. '@destroy');
     Route::get('blacklist', BlacklistController::class. '@index');

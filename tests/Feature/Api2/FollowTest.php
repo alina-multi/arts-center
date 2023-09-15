@@ -39,12 +39,9 @@ test('Unfollow', function () {
     actingAs($user1)->deleteJson("api2/follow", $request)->assertNotFound();
 });
 
-test('List follows', function () {
+test('List follows and followers', function () {
     [$user1, $user2] = User::factory()->count(2)->create();
     $work = Work::factory()->hasTitles(1)->convertedImages()->create();
-    assertDatabaseHas('work_titles', [
-        'work_id' => $work->id
-    ]);
     Follow::create([
         'user_id' => $user1->id,
         'followable_type' => 'user',
@@ -55,8 +52,23 @@ test('List follows', function () {
         'followable_type' => 'work',
         'followable_id' => $work->id
     ]);
-    actingAs($user1)
+    // Ugly workaround for now
+    $expectedWork = $work->load('preview', 'preview.variants', 'titles')->toArray();
+    $expectedWork['published_at'] = $expectedWork['published_at']->toISOString();
+        actingAs($user1)
         ->getJson("api2/follow")
-        ->assertJsonCount(1, 'users')
-        ->assertJsonCount(1, 'works');
+        ->assertJson([
+            'users' => [
+                $user2->load('photo', 'photo.variants')->toArray()
+            ],
+            'works'=> [
+                $expectedWork
+            ]
+        ]);
+
+    actingAs($user2)
+        ->getJson("api2/followers")
+        ->assertJson([
+            $user1->load('photo', 'photo.variants')->toArray()
+        ]);
 });

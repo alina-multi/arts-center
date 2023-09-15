@@ -21,8 +21,8 @@ class FollowController extends Controller
             'followingWorks.preview.variants'
         );
         return [
-            'users'=> $user->followingUsers,
-            'works'=> $user->followingWorks
+            'users' => $user->followingUsers,
+            'works' => $user->followingWorks
         ];
     }
 
@@ -40,5 +40,17 @@ class FollowController extends Controller
             ...$request->all(),
             'user_id' => $request->user()->id
         ])->firstOrFail()->delete();
+    }
+
+    public function followers(Request $request)
+    {
+        return Follow::where([
+            'followable_type' => 'user',
+            'followable_id' => $request->user()->id,
+        ])
+            ->get()
+            ->load('user', 'user.photo', 'user.photo.variants')
+            ?->map(fn($row) => $row->user->toArray())
+            ->toArray();
     }
 }
