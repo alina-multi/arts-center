@@ -2,7 +2,7 @@
 	import { t } from '$lib/translations';
 </script>
 
-<div class="flex flex-col gap-1 border p-6 rounded-sm dark:border-zinc-800 dark:bg-zinc-900">
+<div class="flex flex-col gap-3 border p-6 rounded-sm dark:border-zinc-800 dark:bg-zinc-900 ">
 	<p class="lg:text-lg font-semibold dark:text-zinc-100">
 		{$t('global.not_logged_in.for_comment')}
 	</p>

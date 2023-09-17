@@ -48,7 +48,7 @@
 					</InputGroup>
 
 					<ActionButton
-						class='bg-blue-600 w-full rounded-md hover:bg-blue-500'>{$t('global.login.recover')}</ActionButton>
+						class='bg-blue-600 w-full rounded-sm hover:bg-blue-500'>{$t('global.login.recover')}</ActionButton>
 					<p class='mt-10 text-center text-sm text-gray-500'>
 						{$t('global.login.lost_email')}
 						<a href='mailto:info@arts.center'

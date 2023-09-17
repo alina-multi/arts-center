@@ -18,7 +18,7 @@
 		<ImageWork {work} withDesription />
 		<div class="hidden sm:block">
 			<div
-				class="group/edit hidden group-hover/item:block absolute top-3 right-3 text-white bg-black/50 pt-1 px-1 transition-all rounded-md"
+				class="group/edit hidden group-hover/item:block absolute top-3 right-3 text-white bg-black/50 pt-1 px-1 transition-all rounded-sm"
 			>
 				<RatingPreview rating={work.rating} comments={work.comments} />
 			</div>

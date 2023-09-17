@@ -5,8 +5,8 @@
 {#if title}
 	<a
 		{href}
-		class=" border border-gray-200 shadow-sm hover:border-amber-500 lg:hover:shadow-md lg:dark:hover:border-amber-500 rounded-md
-            {active ? 'bg-amber-600 dark:bg-amber-600 text-white' : 'dark:bg-zinc-900 bg-white'} {styles}"
+		class=" border shadow-sm  lg:dark:hover:border-amber-500 rounded-sm
+            {active ? 'bg-amber-600  text-white border-amber-600' : ' border-gray-200 dark:bg-zinc-900 bg-white hover:border-amber-500 lg:hover:shadow-md'} {styles}"
 		>{title}</a
 	>
 {/if}

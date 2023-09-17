@@ -3,7 +3,7 @@
 <div>
     <a
         href="/"
-        class="inline-flex w-full justify-center rounded-md bg-white dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-700 focus:outline-offset-0"
+        class="inline-flex w-full justify-center rounded-sm bg-white dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-700 focus:outline-offset-0"
     >
         <span class="sr-only">Sign in with Facebook</span>
         <svg class="h-5 w-5" fill="currentColor " viewBox="0 0 20 20" aria-hidden="true">
@@ -18,7 +18,7 @@
 <div>
     <a
         href="/"
-        class="inline-flex w-full justify-center rounded-md bg-white dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-700 focus:outline-offset-0"
+        class="inline-flex w-full justify-center rounded-sm bg-white dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-700 focus:outline-offset-0"
     >
         <span class="sr-only">Sign in with Twitter</span>
         <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
@@ -31,7 +31,7 @@
 <div>
     <a
         href="/"
-        class="inline-flex w-full justify-center rounded-md bg-white dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-700 focus:outline-offset-0"
+        class="inline-flex w-full justify-center rounded-sm bg-white dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-700 focus:outline-offset-0"
     >
         <span class="sr-only">Sign in with Google</span>
         <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -45,7 +45,7 @@
 <div>
     <a
         href="/"
-        class="inline-flex w-full justify-center rounded-md bg-white dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-700 focus:outline-offset-0"
+        class="inline-flex w-full justify-center rounded-sm bg-white dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-700 focus:outline-offset-0"
     >
         <span class="sr-only">Sign in with Apple</span>
         <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

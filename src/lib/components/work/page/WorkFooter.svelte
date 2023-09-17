@@ -11,7 +11,7 @@
 </script>
 
 <div
-	class="flex max-lg:flex-col justify-beetwen items-stretch lg:items-start lg:mt-6 gap-3 dark:text-gray-300"
+	class="flex max-lg:flex-col justify-beetwen items-stretch lg:items-start lg:mt-3 gap-3 dark:text-gray-300"
 >
 	<div class="flex flex-col sm:w-full lg:flex-col gap-3 lg:w-2/6">
 		<TagsGroup tags={work.tags} media="hidden lg:flex" />

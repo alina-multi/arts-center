@@ -102,7 +102,12 @@
 		"for_comment": "Sign in to comment this work",
 		"for_follow": "You need to login or register to follow",
 		"for_work": "Join the community of people who love this work.  Sign in with your email address to follow this work. ",
-		"sign_in_with_email": "Sign in with email"
+		"sign_in_with_email": "Sign in with email",
+		"login_to": "Login to",
+		"like": "rate this work",
+		"bookmark": "save this work to your colllection",
+		"comment": "rate comment of other users",
+		"follow": "follow this artist"
 	},
 	"search": {
 		"placeholder": "Search",

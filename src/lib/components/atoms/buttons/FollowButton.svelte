@@ -5,8 +5,7 @@
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import AuthModal from '../AuthModal.svelte';
 	import { t } from '$lib/translations';
-	import{fetchData} from '$lib/helpers/fetchData';
-
+	import { fetchData } from '$lib/helpers/fetchData';
 
 	export let user, size: string;
 	let url = '/api/follow';
@@ -17,8 +16,6 @@
 	let open = false;
 	let follows = currentUser?.follows.user;
 	let isFollowing = follows?.some((id) => id === Number(user.id));
-
-
 
 	const handleFollow = () => {
 		if (currentUser) {
@@ -34,18 +31,16 @@
 
 	async function onFollow() {
 		isFollowing = true;
-		 fetchData('POST', url, { followable_type: 'user', followable_id: Number(user.id) });
-	
+		fetchData('POST', url, { followable_type: 'user', followable_id: Number(user.id) });
 	}
 
 	async function onUnfollow() {
 		isFollowing = false;
-		fetchData('DELETE',  url, { followable_type: 'user', followable_id: Number(user.id) });
-		
+		fetchData('DELETE', url, { followable_type: 'user', followable_id: Number(user.id) });
 	}
 </script>
 
-<AuthModal bind:open />
+<AuthModal bind:open type={$t('global.not_logged_in.follow')} />
 
 {#if !isMy}
 	{#if isFollowing}
@@ -60,7 +55,7 @@
 		<button
 			class="w-full {`text-${size}`} {user.subscribed
 				? ' boder-2 border  bg-blue-700 dark:bg-blue-900 text-white border-blue-700 dark:border-blue-900  dark:hover:bg-blue-700 dark:hover:border-blue-700 hover:bg-blue-600 hover:border-blue-600 '
-				: 'border ring-zinc-500 dark:bg-zinc-800 hover:bg-zinc-50 text-zinc-600 dark:border-zinc-700 dark:hover:bg-zinc-700'}  dark:text-zinc-300 flex items-center justify-center gap-1 rounded-full pl-2 pr-1.5 py-0.5 shadow-sm cursor-pointer"
+				: 'border ring-zinc-500 dark:bg-zinc-800 hover:bg-zinc-50  dark:border-zinc-700 dark:hover:bg-zinc-700'}  dark:text-zinc-300 flex items-center justify-center gap-1 rounded-sm pl-2 pr-1.5 py-0.5 shadow-sm cursor-pointer"
 			on:click={() => handleFollow()}
 		>
 			<span>{$t('global.buttons.follow')}</span>

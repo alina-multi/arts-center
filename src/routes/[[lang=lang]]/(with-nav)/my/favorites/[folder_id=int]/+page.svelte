@@ -102,7 +102,7 @@
 			name="folder"
 			bind:value={newName}
 			placeholder="Rename folder"
-			class="block w-full pl-3 pr-10 py-2 dark:bg-zinc-700 dark:border-zinc-800 dark:focus:ring-zinc-800 text-base border-zinc-500 dark:focus:border-ring-800 focus:outline-none focus:ring-zinc-500 focus:border-zinc-500 sm:text-sm rounded-md dark:text-zinc-100 dark:placeholder:text-zinc-500"
+			class="block w-full pl-3 pr-10 py-2 dark:bg-zinc-700 dark:border-zinc-800 dark:focus:ring-zinc-800 text-base border-zinc-500 dark:focus:border-ring-800 focus:outline-none focus:ring-zinc-500 focus:border-zinc-500 sm:text-sm rounded-sm dark:text-zinc-100 dark:placeholder:text-zinc-500"
 		/>
 	</div>
 </ActionModal>

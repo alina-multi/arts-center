@@ -10,7 +10,7 @@
 		.filter((option) => value?.includes(Number(option?.value)));
 	$: {
 		multiselectProps = {
-			outerDivClass: 'rounded-md border sm:text-sm h-10',
+			outerDivClass: 'rounded-sm border sm:text-sm h-10',
 			ulSelectedClass: 'h-8',
 			liSelectedClass: 'bg-amber-500',
 			options: options.map(tagToOption),
@@ -36,7 +36,7 @@
 	});
 </script>
 
-<div class="border border-gray-300 rounded-md dark:bg-zinc-900 dark:border-zinc-700">
+<div class="border border-gray-300 rounded-sm dark:bg-zinc-900 dark:border-zinc-700">
 	<MultiSelect
 		bind:selected
 		{...multiselectProps}

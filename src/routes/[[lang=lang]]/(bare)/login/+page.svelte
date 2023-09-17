@@ -14,18 +14,18 @@
 <div class="flex min-h-full flex-col pt-12 sm:px-6 lg:px-8 bg:white sm:bg-gray-50 dark:bg-black">
 	<div class="sm:mx-auto sm:w-full sm:max-w-md">
 		<div class="flex items-center justify-center">
-			<Logo />
+			<Logo size="w-64 h-28" />
 		</div>
 
 		<h2
-			class=" mt-3 sm:mt-6 text-center text-2xl md:text-3xl font-bold tracking-tight text-gray-900 dark:text-white"
+			class=" my-3 sm:my-6 text-center text-2xl md:text-3xl font-bold tracking-tight text-gray-900 dark:text-white"
 		>
 			{$t('global.login.page_title')}
 		</h2>
 	</div>
 
-	<div class="mt-3 sm:mx-auto sm:w-full sm:max-w-md">
-		<div class="bg-white dark:bg-zinc-900 px-3 py-6 sm:p-9 sm:shadow rounded-lg">
+	<div class=" sm:mx-auto sm:w-full sm:max-w-md">
+		<div class="bg-white dark:bg-zinc-900 px-3 py-6 sm:p-9 sm:shadow rounded-sm">
 			<form class="space-y-6" method="POST">
 				<InputGroup
 					label={$t('global.login.email')}
@@ -56,7 +56,7 @@
 					</div>
 				</div>
 
-				<ActionButton class="bg-blue-600 w-full rounded-md hover:bg-blue-500">{$t('global.login.sign_in')}</ActionButton>
+				<ActionButton class="bg-blue-600 w-full rounded-sm hover:bg-blue-500">{$t('global.login.sign_in')}</ActionButton>
 			</form>
 
 <!--			<div class="mt-6"><Divider>{$t('global.common.continue_with')}</Divider></div>-->

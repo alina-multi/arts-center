@@ -26,7 +26,7 @@
 		/>
 		
 		<div
-			class="h-screen md:max-h-[600px] md:h-fit absolute z-50 top-20 sm:top-16 lg:top-12 left-0 w-full text-gray-900 dark:text-zinc-300 bg-white dark:bg-black shadow-lg sm:rounded-md  overflow-scroll overscroll-none md:dark:border dark:border-zinc-800"
+			class="h-screen md:max-h-[600px] md:h-fit absolute z-50 top-20 sm:top-16 lg:top-12 left-0 w-full text-gray-900 dark:text-zinc-300 bg-white dark:bg-black shadow-lg sm:rounded-sm  overflow-scroll overscroll-none md:dark:border dark:border-zinc-800"
 		>
 			<div class="relative">
 				{#if users.length > 0}
