@@ -170,9 +170,8 @@
 				<EllipsisButton type={'horizontal'}>
 					<div slot="description" class="flex flex-col">
 						<BlockButton
-							type={'block'}
-							user={comment.owner}
-							bind:parentComments
+							user_id={Number(comment.owner.id)}
+							bind:entity={parentComments}
 							commentID={comment_id}
 						/>
 						<ReportButton />

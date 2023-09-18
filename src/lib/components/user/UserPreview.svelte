@@ -5,7 +5,7 @@
 	import FollowButton from '$lib/components/atoms/buttons/FollowButton.svelte';
 	import Crown from '$lib/components/atoms/CrownIcon.svelte';
 	import type { User } from '$lib/interfaces/User';
-	export let user: User, avatar_size = "h-16 w-16", crown_size = 'w-4 h-4';
+	export let user: User, avatar_size = "h-16 w-16", crown_size = 'w-4 h-4', followButton:boolean | undefined =true;
 
 	$: href = localePath(`/${user.username}`);
 </script>
@@ -28,7 +28,9 @@
 				class="inline-flex hover:text-zinc-800 dark:hover:text-zinc-300 cursor-pointer text-base"
 				>{user.name}</a
 			>
+			{#if followButton}
 			<span><FollowButton {user} size={'sm xl:text-xs'} /></span>
+			{/if}
 		</div>
 		<UserDetails
 			{user}
