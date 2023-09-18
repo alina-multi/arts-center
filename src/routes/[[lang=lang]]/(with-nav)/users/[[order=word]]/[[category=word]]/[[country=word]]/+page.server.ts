@@ -6,9 +6,9 @@ import { userCountries } from '$lib/server/repositories/user';
 import { filteredQuery } from '$lib/server/repositories/user';
 import { locale } from '$lib/translations';
 
-export const load = (async ({params, url, setHeaders}) => {
+export const load = (async ({ params, url, setHeaders }) => {
 	setHeaders({
-		"cache-control": "max-age=600",
+		'cache-control': 'max-age=600'
 	});
 	params = {
 		order: 'popular',

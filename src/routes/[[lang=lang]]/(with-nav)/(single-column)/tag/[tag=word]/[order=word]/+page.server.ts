@@ -14,13 +14,12 @@ export const load = (async ({ params, setHeaders }) => {
 		cacheKey,
 		async () => {
 			return {
-				gallery: await filteredQuery(params.tag, locale.get(), params.order, 1).then(
-					(works) => worksPreviewMap(works)
+				gallery: await filteredQuery(params.tag, locale.get(), params.order, 1).then((works) =>
+					worksPreviewMap(works)
 				),
 				params
 			};
 		},
 		params.order === 'new' ? 5 : 60 * 60 // New updates often
 	);
-
 }) satisfies PageServerLoad;

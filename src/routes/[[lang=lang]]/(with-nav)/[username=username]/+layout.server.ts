@@ -6,9 +6,9 @@ import { error } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
 import { cacheGet } from '$lib/server/database/cache';
 
-export const load = (async ({ params , setHeaders}) => {
+export const load = (async ({ params, setHeaders }) => {
 	setHeaders({
-		"cache-control": "max-age=6000",
+		'cache-control': 'max-age=6000'
 	});
 
 	return await cacheGet(

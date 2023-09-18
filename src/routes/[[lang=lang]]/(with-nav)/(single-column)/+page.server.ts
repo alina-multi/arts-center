@@ -5,9 +5,9 @@ import { getCategories } from '$lib/server/repositories/tag';
 import { tagsMap } from '$lib/server/mappers/tag';
 import { cacheGet } from '$lib/server/database/cache';
 
-export const load = (async ({setHeaders}) => {
+export const load = (async ({ setHeaders }) => {
 	setHeaders({
-		"cache-control": "max-age=6000",
+		'cache-control': 'max-age=6000'
 	});
 
 	return cacheGet(
@@ -24,7 +24,6 @@ export const load = (async ({setHeaders}) => {
 				params: { order: 'popular', tag: 'all', page: 1 }
 			};
 		},
-		60*60
-	)
-
+		60 * 60
+	);
 }) satisfies PageServerLoad;

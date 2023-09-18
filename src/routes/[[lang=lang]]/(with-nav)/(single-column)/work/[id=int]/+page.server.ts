@@ -7,7 +7,7 @@ import { error } from '@sveltejs/kit';
 import { cacheGet } from '$lib/server/database/cache';
 export const load = (async ({ params, setHeaders }) => {
 	setHeaders({
-		"cache-control": "max-age=600",
+		'cache-control': 'max-age=600'
 	});
 	return cacheGet(
 		`frontend.work.${params.id}`,
@@ -25,5 +25,5 @@ export const load = (async ({ params, setHeaders }) => {
 			};
 		},
 		5
-	)
+	);
 }) satisfies PageServerLoad;

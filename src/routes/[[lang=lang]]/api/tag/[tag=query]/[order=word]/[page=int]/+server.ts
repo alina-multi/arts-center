@@ -6,7 +6,7 @@ import * as devalue from 'devalue';
 
 export const GET = (async ({ params, setHeaders }) => {
 	setHeaders({
-		"cache-control": "max-age=600",
+		'cache-control': 'max-age=600'
 	});
 	return new Response(
 		devalue.stringify({
