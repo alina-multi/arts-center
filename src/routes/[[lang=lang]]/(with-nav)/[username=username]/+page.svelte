@@ -8,7 +8,7 @@
 	let user= data.user;
 	let description = user.bio;
 	let title = user.name;
-	let image = user.photo.src;
+	let image = user.photo?.src;
 	
 </script>
 
