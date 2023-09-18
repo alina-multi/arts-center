@@ -53,8 +53,8 @@
 		<div slot="details" class="flex gap-3 items-center leading-3">
 			<div class="h-1 w-1 bg-gray-500 rounded-full dark:bg-zinc-300" />
 			<span>
-				{data.favorites.works.length} saved
-				{data.favorites.works.length === 1 ? 'work' : 'works'}</span
+				{data.favorites.works.length} {$t('my.favorite.saved')}
+				{data.favorites.works.length === 1 ? $t('my.favorite.work') : $t('my.favorite.works')}</span
 			>
 		</div>
 		<div slot="buttons" class="flex items-center gap-3 dark:text-zinc-300 text-gray-700">
@@ -88,7 +88,7 @@
 		<p
 			class=" px-6 border-x border-b py-3 dark:border-t rounded-b-sm dark:border-zinc-800 dark:bg-zinc-900"
 		>
-			There are no works
+			{$t('my.favorite.no_works')}
 		</p>
 	{/if}
 </div>
@@ -103,7 +103,7 @@
 		{#if error}
 			<span class="text-red-500 text-xs absolute -top-5 left-0">{error}</span>
 		{/if}
-		<p class="mb-1">Collection name</p>
+		<p class="mb-1">{$t('my.favorite.collection_name')}</p>
 		<input
 			use:init
 			on:focus={() => (error = '')}
@@ -118,6 +118,8 @@
 
 <ActionModal bind:open={modalDelete} action={removeFolder} actionName={$t('global.buttons.delete')}>
 	<div slot="title" class="font-semibold">
-		Are you sure you want to delete "<span class="underline">{title}</span> colection?
+		{$t('my.confirmation.delete')} "<span class="underline">{title}</span>" {$t(
+			'my.favorite.collection'
+		)}?
 	</div>
 </ActionModal>

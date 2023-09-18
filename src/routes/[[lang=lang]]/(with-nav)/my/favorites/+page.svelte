@@ -2,16 +2,17 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Folder } from '@steeze-ui/heroicons';
 	import HeaderLayout from '$lib/components/my/HeaderLayout.svelte';
+	import {t} from '$lib/translations'
 
 	export let data;
 	let folders = data.folders;
 </script>
 
 <div>
-	<HeaderLayout title="My collections">
+	<HeaderLayout title={$t('my.favorite.my_collections') }>
 		<div slot="details" class="flex gap-3 items-center leading-3">
 			<div class="h-1 w-1 bg-gray-500 dark:bg-zinc-300 rounded-full" />
-			<span class=""> {folders.length} folders</span>
+			<span > {folders.length} {$t('my.favorite.folders') }</span>
 		</div>
 	</HeaderLayout>
 
@@ -30,7 +31,7 @@
 			{/each}
 		{:else}
 			<div class="px-6 py-3">
-				Your collections will be here. Save your first favorite work and start creating collections
+				{$t('my.favorite.no_collections') }
 			</div>
 		{/if}
 	</div>

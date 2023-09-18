@@ -2,6 +2,7 @@
 	import BlockButton from '$lib/components/atoms/buttons/BlockButton.svelte';
 	import UserPreview from '$lib/components/user/UserPreview.svelte';
 	import HeaderLayout from '$lib/components/my/HeaderLayout.svelte';
+	import { t } from '$lib/translations';
 
 	export let data;
 	let blacklist = data.blacklist;
@@ -9,10 +10,10 @@
 
 
 	<div>
-		<HeaderLayout title="Blocked users">
+		<HeaderLayout title={$t('my.blocked')}>
 			<div slot="details" class="flex gap-3 items-center leading-3">
 				<div class="h-1 w-1 bg-gray-500 dark:bg-zinc-300 rounded-full" />
-				<span class=""> {blacklist.length} people </span>
+				<span class=""> {blacklist.length} {$t('my.people')} </span>
 			</div>
 		</HeaderLayout>
 	
@@ -37,7 +38,7 @@
 				{/each}
 			</ul>
 			{:else}
-			<p class="px-6 py-3 ">There are no users in your blacklist</p>
+			<p class="px-6 py-3 ">{$t('my.no_blocked')}</p>
 		{/if}
 		</div>
 
