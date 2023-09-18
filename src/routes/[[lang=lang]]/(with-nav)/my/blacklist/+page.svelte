@@ -2,7 +2,6 @@
 	import { page } from '$app/stores';
 	import BlockButton from '$lib/components/atoms/buttons/BlockButton.svelte';
 	let blacklists = $page.data.currentUser?.blacklists;
-	console.log(blacklists);
 </script>
 
 
