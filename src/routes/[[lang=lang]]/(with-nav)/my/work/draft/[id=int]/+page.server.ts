@@ -26,7 +26,6 @@ export const load = (async (event) => {
 
 export const actions = {
 	post: async (event) => {
-		console.log('POST');
 		const form = await event.request.formData();
 		let crop = form.get('crop');
 		crop = crop ? JSON.parse(crop as string) : undefined;
