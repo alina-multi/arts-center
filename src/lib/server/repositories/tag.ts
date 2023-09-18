@@ -22,6 +22,7 @@ export function getCategories() {
 }
 
 export function titleToId(title: string, language: string) {
+	title = title.replaceAll('_', ' ');
 	return prisma.tag_titles.findFirst({
 		select: {
 			tag_id: true
