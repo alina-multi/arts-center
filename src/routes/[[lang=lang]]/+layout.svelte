@@ -8,10 +8,10 @@
 
 	BigInt.prototype.toJSON = (val) => val.toString();
 
+	let navigationIsDelayed, timer;
 	onMount(() => {
 		if (browser) {
-			let timer = null;
-			const navigationIsDelayed = derived(navigating, (newValue, set) => {
+			navigationIsDelayed = derived(navigating, (newValue, set) => {
 				if (timer) {
 					clearTimeout(timer);
 				}
