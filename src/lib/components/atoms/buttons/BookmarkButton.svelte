@@ -12,7 +12,7 @@
 	import { t } from '$lib/translations';
 
 	export let work;
-	let url = '/api/favorites';
+	let url = '/api/favorite';
 	let workID = Number(work.id);
 	let currentUser = $page.data.currentUser;
 	let isBookmarked = currentUser?.favorites.works.some((favorite: number) => favorite === workID);
@@ -181,7 +181,7 @@
 					<CancelButton bind:open />
 					<ActionButton
 						type="submit"
-						class={'bg-blue-500 hover:bg-red-400 focus-visible:outline-blue-600 flex items-center gap-1'}
+						class={'bg-blue-500 hover:bg-blue-400 focus-visible:outline-blue-600 flex items-center gap-1'}
 					>
 						Save
 					</ActionButton>

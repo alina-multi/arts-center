@@ -45,7 +45,7 @@
 {#if !isMy}
 	{#if isFollowing}
 		<button
-			class="w-full {`text-${size}`} border border-1 text-zinc-600 dark:text-zinc-300 flex items-center justify-center gap-1 rounded-sm pl-2 pr-1.5 py-0.5 shadow-sm cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-700 dark:border-zinc-700 dark:bg-zinc-800"
+			class="w-full {`text-${size}`} border  text-zinc-600 dark:text-zinc-300 flex items-center justify-center gap-1 rounded-sm pl-2 pr-1.5 py-0.5 shadow-sm cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-700 dark:border-zinc-700 dark:bg-zinc-800"
 			on:click={() => handleFollow()}
 		>
 			<span>{$t('global.buttons.following')}</span>

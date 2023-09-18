@@ -7,18 +7,19 @@
 	let blacklist = data.blacklist;
 </script>
 
-{#if blacklist?.length > 0}
+
 	<div>
 		<HeaderLayout title="Blocked users">
 			<div slot="details" class="flex gap-3 items-center leading-3">
 				<div class="h-1 w-1 bg-gray-500 dark:bg-zinc-300 rounded-full" />
-				<span class=""> {blacklist.length} users </span>
+				<span class=""> {blacklist.length} people </span>
 			</div>
 		</HeaderLayout>
-
+	
 		<div
 			class="flex flex-col border-x -mt-1 border-b py-3 dark:border-t rounded-b-sm dark:border-zinc-800 dark:bg-zinc-900"
 		>
+		{#if blacklist?.length > 0}
 			<ul class="lg:divide-y dark:lg:divide-zinc-800">
 				{#each blacklist as user (user.id)}
 					<li class="flex justify-between items-center gap-x-6 py-3 px-3 sm:px-9">
@@ -35,8 +36,10 @@
 					</li>
 				{/each}
 			</ul>
+			{:else}
+			<p class="px-6 py-3 ">There are no users in your blacklist</p>
+		{/if}
 		</div>
+
 	</div>
-{:else}
-	<p>There are no users in your blacklist</p>
-{/if}
+

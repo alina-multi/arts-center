@@ -13,8 +13,8 @@
 		NoSymbol
 	} from '@steeze-ui/heroicons';
 	let folders = $page.data.currentUser.favorites.folders;
-
-	const favorites_href = folders.length === 0 ||folders.length > 1 ?  "/my/favorites" : "/my/favorites/"+folders[0].id;
+console.log(folders)
+	const favorites_href = folders.length === 0 || folders.length > 1 ?  "/my/favorites" : "/my/favorites/"+folders[0].id;
 
 	
 </script>
