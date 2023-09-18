@@ -16,7 +16,6 @@
 		let url = '/api/vote';
 
 	async function like() {
-		console.log("like");
 		if (!currentUser) {
 			open = true;
 			return;
@@ -37,7 +36,6 @@
 	}
 
 	async function cancelVote() {
-		console.log("cancelVote");
 		if (!currentUser) {
 			open = true;
 			return;
