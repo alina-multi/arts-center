@@ -4,7 +4,10 @@ import { worksPreviewMap } from '$lib/server/mappers/gallery';
 import { getCategories } from '$lib/server/repositories/tag';
 import { tagsMap } from '$lib/server/mappers/tag';
 
-export const load = (async () => {
+export const load = (async ({setHeaders}) => {
+	setHeaders({
+		"cache-control": "max-age=6000",
+	});
 	const [gallery, categories] = await Promise.all([
 		indexQuery().then((works) => worksPreviewMap(works)),
 		getCategories().then((categories) => tagsMap(categories))

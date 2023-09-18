@@ -5,7 +5,10 @@ import { worksPreviewMap } from '$lib/server/mappers/gallery';
 import { error } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
 
-export const load = (async ({ params }) => {
+export const load = (async ({ params , setHeaders}) => {
+	setHeaders({
+		"cache-control": "max-age=6000",
+	});
 	const userRaw = await get(params.username);
 	if (!userRaw) throw error(404, 'User not found');
 	const user = await userMap(userRaw);

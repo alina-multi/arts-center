@@ -5,6 +5,6 @@ import { localePath } from '$lib/translations';
 export const load = (async (event) => {
 	// We shouldn't be able to access any of the pages here if we already authorized
 	if (event.locals?.user) {
-		throw redirect(301, localePath('/'));
+		throw redirect(302, localePath('/'));
 	}
 }) satisfies LayoutServerLoad;

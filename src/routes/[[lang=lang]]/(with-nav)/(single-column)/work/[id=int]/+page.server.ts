@@ -1,11 +1,13 @@
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 import { get } from '$lib/server/repositories/work';
 import { workMap } from '$lib/server/mappers/work';
 import { get as getComments } from '$lib/server/repositories/comment';
 import { commentsMap } from '$lib/server/mappers/comments';
 import { error } from '@sveltejs/kit';
-
-export const load = (async ({ params }) => {
+export const load = (async ({ params, setHeaders }) => {
+	setHeaders({
+		"cache-control": "max-age=600",
+	});
 	const [work, comments] = await Promise.all([
 		get(BigInt(params.id)).then((work) => workMap(work)),
 		getComments(BigInt(params.id), 'work').then((comments) => commentsMap(comments))
@@ -17,4 +19,4 @@ export const load = (async ({ params }) => {
 		work,
 		comments
 	};
-}) satisfies PageLoad;
+}) satisfies PageServerLoad;
