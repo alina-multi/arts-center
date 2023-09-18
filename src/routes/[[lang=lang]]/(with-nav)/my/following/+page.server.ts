@@ -6,6 +6,6 @@ export const load = (async (event) => {
 	const following = await response.json();
 
 	return {
-		users:following.users
+		users: following.users
 	};
 }) satisfies PageServerLoad;
