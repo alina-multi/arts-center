@@ -39,7 +39,7 @@
 			<div
 				class=" flex rounded-sm shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-500 dark:bg-zinc-900 dark:ring-0 dark:focus-within:ring-1"
 			>
-				<span class="flex select-none items-center pl-3 text-gray-500 sm:text-sm">arts.center/</span
+				<span class="flex select-none items-center pl-3 text-gray-500 dark:text-zinc-300 sm:text-sm">arts.center/@</span
 				>
 				<input
 					type="text"

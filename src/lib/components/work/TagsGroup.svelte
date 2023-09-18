@@ -1,6 +1,6 @@
 <script lang="ts">
 import TagButton from '$lib/components/atoms/buttons/TagButton.svelte';
-import {t} from '$lib/translations';
+import {t, localePath} from '$lib/translations';
     export let tags = [], media: string;
 </script>
 
@@ -12,7 +12,7 @@ import {t} from '$lib/translations';
 	
 				<span class="font-semibold">{$t('global.filters.tags')}:</span>
 				{#each tags as { title }}
-					<TagButton href={`/tag/${title}/popular`} title={title} styles={'px-3 py-0.5 dark:border-zinc-700 '}  />
+					<TagButton href={localePath(`/tag/${title}/popular`)} title={title} styles={'px-3 py-0.5 dark:border-zinc-700 '}  />
 				{/each}
 			
 				
