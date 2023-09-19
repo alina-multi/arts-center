@@ -5,7 +5,7 @@
 
 <nav aria-label="Progress">
 	<ol
-		class="divide-y divide-gray-300 dark:divide-zinc-800 rounded-md border border-gray-30 dark:border-zinc-800 dark:bg-zinc-900 md:flex md:divide-y-0"
+		class="divide-y divide-gray-300 dark:divide-zinc-800 rounded-sm border border-gray-30 dark:border-zinc-800 dark:bg-zinc-900 md:flex md:divide-y-0"
 	>
 		{#each steps as { label, href }, i}
 			<li class="relative md:flex md:flex-1">

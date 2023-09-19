@@ -15,7 +15,7 @@
 		</p>
 	</div>
 	<div
-		class="rounded-md ring-1 ring-zinc-200 dark:ring-zinc-800 dark:bg-zinc-900 mt-6 lg:mx-0 lg:flex lg:max-w-none overflow-hidden"
+		class="rounded-sm ring-1 ring-zinc-200 dark:ring-zinc-800 dark:bg-zinc-900 mt-6 lg:mx-0 lg:flex lg:max-w-none overflow-hidden"
 	>
 		<div class="p-8 sm:p-10 lg:flex-auto">
 			<h3
@@ -84,7 +84,7 @@
 
 					<a
 						href={$page.data.currentUser ? '/????' : '/login'}
-						class="mt-10 block w-full rounded-md bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+						class="mt-10 block w-full rounded-sm bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
 						>{$t(`global.subscription.get_access`)}</a
 					>
 				</div>

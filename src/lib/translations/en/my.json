@@ -25,6 +25,7 @@
 		"save": "Save"
 	},
 	"confirmation": {
+		"delete": "Are you sure you want to delete",
 		"delete_warning": "This action cannot be undone.",
 		"delete_work": "Are you sure you want to delete this work?",
 		"move_to_drafts": "Are you sure you want to move this work to drafts?"
@@ -44,5 +45,27 @@
 		"username": "Username",
 		"warning_personal_info": "This information will be displayed publicly so be careful what you share."
 	},
-	"test": ""
+	"favorite": {
+		"my_collections": "My collections",
+		"collection": "collection",
+		"saved": "saved",
+		"works": "works",
+		"work": "work",
+		"no_works": "There are no works",
+		"collection_name": "Collection name",
+		"folders": "folders",
+		"no_collections": "Your collections will be here. Save your first favorite work and start creating collections"
+	},
+
+	"follow": {
+		"followers": "Followers",
+		"following": "Following",
+
+		"no_followers": "You'll see all of the people who follow you here",
+		"no_following": "When you follow people you'll see them here"
+	},
+
+	"people": "people",
+	"blocked": "Blocked users",
+	"no_blocked": "There are no users in your blacklist"
 }

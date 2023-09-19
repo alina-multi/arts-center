@@ -36,12 +36,12 @@
 
 			{#if hiddenTags.length > 0}
 				<PopoverButton
-					class="flex items-center gap-2  border px-3 py-1 rounded-md hover:border-amber-500 dark:bg-zinc-900 dark:border-zinc-800 dark:hover:border-amber-500"
+					class="flex items-center gap-2  border px-3 py-1 rounded-sm hover:border-amber-500 dark:bg-zinc-900 dark:border-zinc-800 dark:hover:border-amber-500"
 				>
 					{$t('global.filters.more')}
 				
 					{#if selected !== 'all' && isHiddenTag.length > 0}
-						<span class="text-sm bg-amber-600 text-white px-1 rounded-md">{selected}</span>
+						<span class="text-sm bg-amber-600 text-white px-1 rounded-sm">{selected}</span>
 					{/if}
 					{#if !open}
 						<Icon src={ChevronUp} class="w-5 transform rotate-180" />
@@ -62,7 +62,7 @@
 				leave="transition ease-in duration-75"
 			>
 				<PopoverPanel
-					class="absolute left-0 z-10 mt-2 origin-top-left w-full rounded-md bg-white dark:bg-black/90 shadow-2xl ring-1 ring-black dark:ring-zinc-900 ring-opacity-5 focus:outline-none overflow-hidden"
+					class="absolute left-0 z-10 mt-2 origin-top-left w-full rounded-sm bg-white dark:bg-black/90 shadow-2xl ring-1 ring-black dark:ring-zinc-900 ring-opacity-5 focus:outline-none overflow-hidden"
 					let:close
 				>
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -89,12 +89,12 @@
 <div class="flex lg:hidden text-left z-30 flex-row-reverse">
 	<Popover class=" w-full flex-1  text-gray-800 dark:text-zinc-200  " let:open>
 		<PopoverButton
-			class="w-full flex items-center justify-between gap-2  border px-4 py-2 rounded-md  dark:border-zinc-800 overflow-hidden dark:bg-zinc-900"
+			class="w-full flex items-center justify-between gap-2  border px-4 py-2 rounded-sm  dark:border-zinc-800 overflow-hidden dark:bg-zinc-900"
 		>
 			<span class="space-x-1">
 				<span>{$t('global.filters.filters')}</span>
 				{#if selected !== 'all'}
-					<span class="text-sm bg-amber-600 text-white px-1 py-0.5 rounded-md">{selected}</span>
+					<span class="text-sm bg-amber-600 text-white px-1 py-0.5 rounded-sm">{selected}</span>
 				{/if}
 			</span>
 

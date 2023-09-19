@@ -35,7 +35,7 @@
 	</FormGroup>
 </form>
 <Divider
-styles="rounded-md font-semibold leading-6 text-sm md:text-base px-3 py-1 "
+styles="rounded-sm font-semibold leading-6 text-sm md:text-base px-3 py-1 "
 >{$t('my.add_work_page.preview_small_image')}</Divider>
 <ul
 	class="mt-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 lg:gap-3"

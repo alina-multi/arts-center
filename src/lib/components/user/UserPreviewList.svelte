@@ -38,7 +38,7 @@
 	>
 	{#if users.length === 0}
 		<div
-			class="flex flex-col items-center py-6 border rounded-md dark:bg-zinc-900 dark:border-zinc-800"
+			class="flex flex-col items-center py-6 border rounded-sm dark:bg-zinc-900 dark:border-zinc-800"
 		>
 			<p class="text-gray-500 dark:text-zinc-300 text-xl font-semibold">{$t('global.filters.no_results')}</p>
 			<svg class="h-64 w-64 fill-zinc-800 dark:fill-zinc-300">
@@ -48,7 +48,7 @@
 	{:else}
 		{#each users as user}
 			<div
-				class="flex flex-col items-center sm:flex-row sm;gap-3 shadow-sm border rounded-md w-full dark:bg-zinc-900 dark:border-zinc-800 {user.subscribed
+				class="flex flex-col items-center sm:flex-row sm;gap-3  shadow-sm border  rounded-sm w-full dark:bg-zinc-900 dark:border-zinc-800 {user.subscribed
 					? 'bg-zinc-50 dark:bg-blue-900 shadow-2xl'
 					: 'bg-white'}"
 			>
@@ -58,7 +58,7 @@
 					<UserPreview {user} />
 				</div>
 				<div
-					class=" sm:p-3 lg:p-0 flex justify-end sm:w-1/2 dark:border-gray-700 gap-3 overflow-hidden w-full"
+					class=" sm:p-3 lg:p-0 lg:-my-[1px] flex justify-end sm:w-1/2 dark:border-gray-700 gap-3 overflow-hidden w-full"
 				>
 					<LastWorks works={user.works} />
 				</div>

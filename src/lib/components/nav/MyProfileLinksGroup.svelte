@@ -1,5 +1,5 @@
 <script>
-    import {t}  from '$lib/translations';
+    import {t, localePath}  from '$lib/translations';
 	import {page} from '$app/stores';
 	import SideNavLink from '$lib/components/nav/side/SideNavLink.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
@@ -14,33 +14,33 @@
 	} from '@steeze-ui/heroicons';
 	let folders = $page.data.currentUser.favorites.folders;
 
-	const favorites_href = folders.length === 0 ||folders.length > 1 ?  "/my/favorites" : "/my/favorites/"+folders[0].id;
+	const favorites_href = folders.length === 0 || folders.length > 1 ?  "/my/favorites" : "/my/favorites/"+folders[0].id;
 
 	
 </script>
 
-<SideNavLink href="/my/profile"
+<SideNavLink href={localePath("/my/profile")}
 	><Icon src={PencilSquare} theme="solid" class="h-5 w-5 shrink-0" aria-hidden="true" /> {$t('global.my_links.edit_profile')}</SideNavLink
 >
-<SideNavLink href="/my/work/add"
+<SideNavLink href={localePath("/my/work/add")}
 	><Icon src={PlusCircle} theme="solid" class="h-5 w-5 inline" aria-hidden="true" /> {$t('global.my_links.add_work')}</SideNavLink
 >
-<SideNavLink href="/my/work/draft"
+<SideNavLink href={localePath("/my/work/draft")}
 	><Icon src={FolderOpen} theme="solid" class="h-5 w-5 " aria-hidden="true" />{$t('global.my_links.drafts')}</SideNavLink
 >
 
-<SideNavLink href="{favorites_href}"
+<SideNavLink href={localePath(`${favorites_href}`)}
 	><Icon src={Bookmark} theme="solid" class="h-5 w-5 inline" aria-hidden="true" />{$t('global.my_links.favorites')}</SideNavLink
 >
 
-<SideNavLink href="/my/followers"
+<SideNavLink href={localePath("/my/followers")}
 	><Icon src={UserGroup} theme="solid" class="h-5 w-5" aria-hidden="true" />{$t('global.my_links.followers')}</SideNavLink
 >
 
-<SideNavLink href="/my/following"
+<SideNavLink href={localePath("/my/following")}
 	><Icon src={UserPlus} theme="solid" class="h-5 w-5" aria-hidden="true" />{$t('global.my_links.following')}</SideNavLink
 >
 
-<SideNavLink href="/my/blacklist"
+<SideNavLink href={localePath("/my/blacklist")}
 	><Icon src={NoSymbol} theme="solid" class="h-5 w-5 " aria-hidden="true" />{$t('global.my_links.blocked')}</SideNavLink
 >

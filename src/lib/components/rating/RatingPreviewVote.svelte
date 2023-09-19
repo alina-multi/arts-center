@@ -23,19 +23,21 @@
 
 </script>
 
-{#if showVotedPreview}
+	{#if showVotedPreview}
 	<VotedList {votes} {isLiked} {currentUser} />
 {/if}
 
 <div class="inline-flex items-center gap-2 dark:text-zinc-100 cursor-pointer">
 	<div
 		class="flex items-center gap-2 {votable_type === 'work'
-			? 'border px-4 py-1 rounded-full shadow-md '
+			? 'border  px-4 py-1 rounded-sm '
 			: 'hover:text-zinc-100'}  dark:bg-zinc-800 bg-white dark:border-zinc-700 dark:text-white"
 	>
 		{#if votable_type === 'work'}
-			<span class="border-r dark:border-zinc-700 pr-3"
-				>{$t('global.voting.like')} <span class="ml-1">{rating}</span></span
+			<span class=" flex items-center border-r dark:border-zinc-700 pr-3"
+				>
+				<span class="max-sm:hidden block"> {$t('global.voting.like')} </span>
+				<span class="ml-1">{rating}</span></span
 			>
 		{/if}
 		<LikeButton
@@ -67,4 +69,8 @@
 	{/if}
 </div>
 
-<AuthModal bind:open />
+{#if open}
+<AuthModal bind:open type={votable_type === "comment" ? $t('global.not_logged_in.comment')  : $t('global.not_logged_in.like')} />
+{/if}
+
+

@@ -12,7 +12,7 @@
 	aria-checked="false"
 >
 	<span class="sr-only">Use setting</span>
-	<span aria-hidden="true" class="pointer-events-none absolute h-full w-full rounded-md bg-white" />
+	<span aria-hidden="true" class="pointer-events-none absolute h-full w-full rounded-sm bg-white" />
 	<span
 		aria-hidden="true"
 		class=" {enabled

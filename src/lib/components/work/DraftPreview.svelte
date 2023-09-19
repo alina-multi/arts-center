@@ -19,7 +19,7 @@
 		{title}
 	</p>
 
-	<span class="absolute top-0 right-0 m-3 bg-gray-100/50 p-1 rounded-md">
+	<span class="absolute top-0 right-0 m-3 bg-gray-100/50 p-1 rounded-sm">
 		<Icon src={PencilSquare} class="w-6 h-6 text-white" />
 	</span>
 </a>

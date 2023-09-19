@@ -7,7 +7,7 @@
 
 <Dropdown style={'z-50 mt-6 w-72 min-w-max  left-0 text-sm'}>
 	<div slot="button">
-		<Icon src={Bars4} class="w-7 h-7 stroke-gray-600 dark:stroke-gray-100" />
+		<Icon src={Bars4} class="w-8 h-8 " />
 	</div>
 	<div slot="panel">
 		<FooterContent media="desktop" />

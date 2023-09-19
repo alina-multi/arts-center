@@ -46,7 +46,7 @@
 					<PasswordInput name='password_confirmation' {id} {error} />
 				</InputGroup>
 
-				<ActionButton class='bg-blue-600 w-full rounded-md hover:bg-blue-500'>{$t('global.buttons.save')}</ActionButton>
+				<ActionButton class='bg-blue-600 w-full rounded-sm hover:bg-blue-500'>{$t('global.buttons.save')}</ActionButton>
 			</form>
 		</div>
 	</div>

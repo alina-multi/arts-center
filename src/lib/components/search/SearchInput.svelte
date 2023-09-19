@@ -57,7 +57,7 @@
 </script>
 
 <div
-	class="sm:relative w-full mx-3 md:max-lg:w-3/4 2xl:px-16 2xl:w-1/2 xl:w-4/12 md:mx-auto text-gray-900 dark:text-white"
+	class="sm:relative w-full mx-3 md:max-lg:w-3/4 2xl:px-16 2xl:w-1/2 xl:pl-3 md:mx-auto text-gray-900 dark:text-white"
 >
 	<div class="relative {open ? 'z-50' : 'z-30'} ">
 		<span class="sr-only">{$t('global.search.placeholder')}</span>
@@ -70,7 +70,7 @@
 			id="search-{id}"
 			autocomplete="off"
 			placeholder="{$t('global.search.placeholder')}..."
-			class=" block w-full rounded-full pl-8 py-0.5 dark:bg-zinc-700 dark:border-zinc-700 border-gray-300 border placeholder:text-zinc-400 focus:ring-0 focus:border-gray-500 sm:text-sm sm:leading-6"
+			class=" block w-full rounded-sm pl-8 py-0.5 dark:bg-zinc-700 dark:border-zinc-700 border-gray-300 border placeholder:text-zinc-400 focus:ring-0 focus:border-gray-500 sm:text-sm sm:leading-6"
 		/>
 		<div class="absolute inset-y-0 flex z-50 px-2 pt-[5px]">
 			<Icon src={MagnifyingGlass} class="text-zinc-400  h-5 w-5" />
