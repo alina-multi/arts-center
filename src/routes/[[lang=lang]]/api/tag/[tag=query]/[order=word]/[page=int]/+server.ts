@@ -11,7 +11,7 @@ export const GET = (async ({ params, setHeaders }) => {
 	return new Response(
 		devalue.stringify({
 			gallery: await filteredQuery(
-				params.tag.replace('_', ' '),
+				params.tag.replaceAll('_', ' '),
 				locale.get(),
 				params.order,
 				params.page
