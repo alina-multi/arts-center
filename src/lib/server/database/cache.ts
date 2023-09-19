@@ -2,14 +2,18 @@ import NodeCache from 'node-cache';
 import { createClient } from 'redis';
 import type { RequestEvent } from '@sveltejs/kit';
 import { api } from '$lib/server/api';
+import * as devalue from 'devalue';
 
-const cache = process.env?.REDIS_URL
-	? await createClient({
+let cache;
+if (process.env?.REDIS_URL) {
+	cache = createClient({
 		url: process.env.REDIS_URL
-	})
-		.on('error', err => console.log('Redis Client Error', err))
-		.connect()
-	: new NodeCache();
+	});
+	await cache.on('error', err => console.log('Redis Client Error', err))
+		.connect();
+} else {
+	cache = new NodeCache();
+}
 
 
 export async function cacheGet(
@@ -19,7 +23,7 @@ export async function cacheGet(
 ) {
 	const value = await cache.get(key);
 	if (value) {
-		return value;
+		return devalue.parse(value);
 	}
 	return await cacheReplace(key, storeFunction, ttl);
 }
@@ -30,7 +34,7 @@ export async function cacheReplace(
 	ttl = 120
 ) {
 	const result = await storeFunction();
-	cache.set(key, result, ttl);
+	cache.set(key, devalue.stringify(result), ttl);
 	return result;
 }
 

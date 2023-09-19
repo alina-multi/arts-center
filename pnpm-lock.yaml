@@ -26,6 +26,9 @@ dependencies:
   meilisearch:
     specifier: ^0.34.1
     version: 0.34.1
+  node-cache:
+    specifier: ^5.1.2
+    version: 5.1.2
   redis:
     specifier: ^4.6.8
     version: 4.6.8
@@ -172,9 +175,6 @@ devDependencies:
   locally-unique-id-generator:
     specifier: ^0.1.5
     version: 0.1.5
-  node-cache:
-    specifier: ^5.1.2
-    version: 5.1.2
   photoswipe:
     specifier: ^5.3.8
     version: 5.3.8
@@ -6308,7 +6308,7 @@ packages:
   /clone@2.1.2:
     resolution: {integrity: sha512-3Pe/CF1Nn94hyhIYpjtiLhdCoEoz0DqQ+988E9gmeEdQZlojxnOb74wctFyuwWQHzqyf9X7C7MG8juUpqBJT8w==}
     engines: {node: '>=0.8'}
-    dev: true
+    dev: false
 
   /cluster-key-slot@1.1.2:
     resolution: {integrity: sha512-RMr0FhtfXemyinomL4hrWcYJxmX6deFdCxpJzhDttxgO1+bcCnkk+9drydLVDmAMG7NE6aN/fl4F7ucU/90gAA==}
@@ -8982,7 +8982,7 @@ packages:
     engines: {node: '>= 8.0.0'}
     dependencies:
       clone: 2.1.2
-    dev: true
+    dev: false
 
   /node-dir@0.1.17:
     resolution: {integrity: sha512-tmPX422rYgofd4epzrNoOXiE8XFZYOcCq1vD7MAXCDO+O+zndlA2ztdKKMa+EeuBG5tHETpr4ml4RGgpqDCCAg==}
