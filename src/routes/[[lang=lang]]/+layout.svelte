@@ -1,20 +1,26 @@
-<script lang="ts">
+<script lang='ts'>
 	import '$lib/css/app.css';
 	import { navigating } from '$app/stores';
 	import { derived } from 'svelte/store';
 	import LoaderLayout from '$lib/components/atoms/LoaderLayout.svelte';
+	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
 
 	BigInt.prototype.toJSON = (val) => val.toString();
 
-	let timer = null;
-	const navigationIsDelayed = derived(navigating, (newValue, set) => {
-		if (timer) {
-			clearTimeout(timer);
+	let navigationIsDelayed, timer;
+	onMount(() => {
+		if (browser) {
+			navigationIsDelayed = derived(navigating, (newValue, set) => {
+				if (timer) {
+					clearTimeout(timer);
+				}
+				if (newValue) {
+					timer = setTimeout(() => set(true), 500);
+				}
+				set(false);
+			});
 		}
-		if (newValue) {
-			timer = setTimeout(() => set(true), 500);
-		}
-		set(false);
 	});
 </script>
 

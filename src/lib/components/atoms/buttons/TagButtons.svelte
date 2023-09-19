@@ -14,7 +14,7 @@
 {#each tags as tag}
 	<TagButton
 		title={tag?.title}
-		href={urlGenerator('tags', tag?.title.replace(' ', '-'), params)}
+		href={urlGenerator('tags', tag?.title.replaceAll(' ', '_'), params)}
 		active={active(tag?.title)}
 	/>
 {/each}

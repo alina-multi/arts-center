@@ -24,7 +24,7 @@
 	$: isHiddenTag = hiddenTags?.filter((tag) => tag?.title === selected);
 
 	$: isActive = (tag: string) => {
-		return tag === selected;
+		return tag.replaceAll(' ', '_') === selected;
 	};
 </script>
 
