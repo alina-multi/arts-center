@@ -96,6 +96,7 @@
 		"@sentry/vite-plugin": "^2.6.2",
 		"lodash.debounce": "^4.0.8",
 		"meilisearch": "^0.34.1",
+		"redis": "^4.6.8",
 		"svelte-french-toast": "^1.2.0",
 		"svelte-time": "^0.8.0",
 		"svelte-use-click-outside": "^1.0.0"
