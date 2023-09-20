@@ -29,7 +29,8 @@ async function checkAuth(event: RequestEvent<Partial<Record<string, string>>, st
 		const session = event?.cookies?.get('laravel_session');
 		if (session) {
 			const user = await cacheGet(
-				`frontend.${session}`,
+				'auth',
+				session,
 				async () => {
 					const response = await api({ method: 'GET', path: '/api2/me', event });
 					if (response.ok) {

@@ -12,7 +12,8 @@ export const load = (async ({ params, setHeaders }) => {
 	});
 
 	return await cacheGet(
-		`frontend.user.${params.username}`,
+		'user',
+		params.username,
 		async () => {
 			const userRaw = await get(params.username);
 			if (!userRaw) throw error(404, 'User not found');

@@ -11,7 +11,8 @@ export const GET = (async ({ params, setHeaders }) => {
 	params.query = unslug(params.query);
 	return new Response(
 		await cacheGet(
-			`frontend.search.${params.searchable}.${params.query}.${params.page}`,
+			'search',
+			`${params.searchable}.${params.query}.${params.page}`,
 			async () => {
 				let search;
 				if (params.searchable !== 'all') {

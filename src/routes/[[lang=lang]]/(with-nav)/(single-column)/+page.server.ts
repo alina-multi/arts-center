@@ -11,7 +11,8 @@ export const load = (async ({ setHeaders }) => {
 	});
 
 	return cacheGet(
-		'frontend.index',
+		'page',
+		'index',
 		async () => {
 			const [gallery, categories] = await Promise.all([
 				indexQuery().then((works) => worksPreviewMap(works)),

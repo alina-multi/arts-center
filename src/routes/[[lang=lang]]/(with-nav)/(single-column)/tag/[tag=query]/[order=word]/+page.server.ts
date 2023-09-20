@@ -9,9 +9,10 @@ export const load = (async ({ params, setHeaders }) => {
 		'cache-control': 'max-age=6000'
 	});
 	params = { order: 'popular', tag: 'all', page: 1, ...params };
-	const cacheKey = `frontend.tag.${params.tag}.${locale.get()}.${params.order}.1`;
+	const key = `${params.tag}.${locale.get()}.${params.order}.1`;
 	return cacheGet(
-		cacheKey,
+		'gallery',
+		key,
 		async () => {
 			return {
 				gallery: await filteredQuery(params.tag, locale.get(), params.order, 1).then((works) =>

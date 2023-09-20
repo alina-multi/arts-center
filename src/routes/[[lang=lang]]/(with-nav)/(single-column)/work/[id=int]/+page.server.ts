@@ -10,7 +10,8 @@ export const load = (async ({ params, setHeaders }) => {
 		'cache-control': 'max-age=600'
 	});
 	return cacheGet(
-		`frontend.work.${params.id}`,
+		'work',
+		params.id,
 		async () => {
 			const [work, comments] = await Promise.all([
 				get(BigInt(params.id)).then((work) => workMap(work)),
