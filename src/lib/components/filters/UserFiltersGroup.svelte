@@ -50,7 +50,7 @@
 						: 'text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-zinc-700 '}"
 				>
 					<a
-						href={urlGenerator(params, { [group]: option.title })}
+						href={urlGenerator(params, { [group]: option.value })}
 						on:click={() => close()}
 						class="flex grow"
 					>
