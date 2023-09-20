@@ -4,6 +4,7 @@ import * as SentryNode from '@sentry/node';
 import '@sentry/tracing';
 import { api } from './lib/server/api';
 import { cacheGet } from '$lib/server/database/cache';
+import { PUBLIC_ENV } from '$env/static/public';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	await checkAuth(event);
@@ -40,7 +41,7 @@ async function checkAuth(event: RequestEvent<Partial<Record<string, string>>, st
 			event.locals.user = user;
 		}
 	} catch (error) {
-		if (process.env.PUBLIC_ENV !== 'development') {
+		if (['staging', 'production'].includes(PUBLIC_ENV)) {
 			SentryNode.captureException(error, { contexts: { sveltekit: { event } } });
 		}
 	}
@@ -49,11 +50,14 @@ async function checkAuth(event: RequestEvent<Partial<Record<string, string>>, st
 // use handleError to report errors during server-side data loading
 export const handleError = (({ error, event }) => {
 	// We don't need not found errors in sentry
-	if (!error?.message.startsWith('Not found:')) {
-		SentryNode.captureException(error, { contexts: { sveltekit: { event } } });
+	if (['staging', 'production'].includes(PUBLIC_ENV)) {
+		if (!error?.message.startsWith('Not found:')) {
+			SentryNode.captureException(error, { contexts: { sveltekit: { event } } });
+		}
 	}
 
-	if (process.env.PUBLIC_ENV !== 'development') {
+
+	if (PUBLIC_ENV !== 'development') {
 		return;
 	}
 	return {

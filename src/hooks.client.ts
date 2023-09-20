@@ -14,7 +14,7 @@ SentrySvelte.setTag('svelteKit', 'browser');
 
 // This will catch errors in `load` functions from `+page.ts` files
 export const handleError = (({ error, event }) => {
-	if (process.env.PUBLIC_ENV !== 'development') {
+	if (['staging', 'production'].includes(PUBLIC_ENV)) {
 		SentrySvelte.captureException(error, { contexts: { sveltekit: { event } } });
 	}
 
