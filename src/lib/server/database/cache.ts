@@ -7,7 +7,7 @@ import * as devalue from 'devalue';
 let cache;
 if (process.env?.REDIS_URL) {
 	cache = createClient({
-		url: process.env.REDIS_URL
+		url: `${process.env.REDIS_URL}/2`
 	});
 	await cache.on('error', err => console.log('Redis Client Error', err))
 		.connect();
