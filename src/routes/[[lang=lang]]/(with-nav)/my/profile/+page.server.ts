@@ -2,7 +2,7 @@ import type { PageServerLoad, Actions } from './$types';
 import { api } from '$lib/server/api';
 import { availableLocales } from '$lib/translations';
 import { uploadFile } from '$lib/server/s3';
-import { cacheReplace, reloadCurrentUser } from '$lib/server/database/cache';
+import { reloadCurrentUser } from '$lib/server/database/cache';
 
 export const load = (async (event) => {
 	return {

@@ -75,7 +75,7 @@ export function userCountriesMap(
 	const regionNames = new Intl.DisplayNames([locale], { type: 'region' });
 	return countries.map((country): { title: string; count: number } => {
 		return {
-			title: country.country ? (regionNames.of(country.country) ?? country.country): '',
+			title: country.country ? regionNames.of(country.country) ?? country.country : '',
 			value: country.country,
 			count: country._count.country
 		};

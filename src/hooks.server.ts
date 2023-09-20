@@ -57,7 +57,6 @@ export const handleError = (({ error, event }) => {
 		}
 	}
 
-
 	if (PUBLIC_ENV !== 'development') {
 		return;
 	}
