@@ -1,6 +1,7 @@
 <script lang="ts">
 	import TagButton from '$lib/components/atoms/buttons/TagButton.svelte';
 	import type { Tag } from '$lib/interfaces/Tag';
+	import { slug } from '$lib/helpers/url.js';
 
 	export let tags: Tag[],
 		active = () => false,
@@ -14,7 +15,7 @@
 {#each tags as tag}
 	<TagButton
 		title={tag?.title}
-		href={urlGenerator('tags', tag?.title.replaceAll(' ', '_'), params)}
+		href={urlGenerator('tags', slug(tag?.title), params)}
 		active={active(tag?.title)}
 	/>
 {/each}

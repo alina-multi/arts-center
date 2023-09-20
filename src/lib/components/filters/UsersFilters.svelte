@@ -2,6 +2,7 @@
 	import { localePath } from '$lib/translations';
 	import UserFiltersGroup from '$lib/components/filters/UserFiltersGroup.svelte';
 	import { t } from '$lib/translations';
+	import { slug } from '$lib/helpers/url';
 
 	export let tags, params, countries;
 
@@ -33,7 +34,7 @@
 			return url;
 		}
 		for (let key of filterKeys) {
-			url += `/${newState[key]}`;
+			url += `/${slug(newState[key])}`;
 		}
 		return localePath(url);
 	}

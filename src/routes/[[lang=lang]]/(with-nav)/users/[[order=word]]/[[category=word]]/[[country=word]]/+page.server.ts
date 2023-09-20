@@ -5,6 +5,7 @@ import { tagsMap } from '$lib/server/mappers/tag';
 import { userCountries } from '$lib/server/repositories/user';
 import { filteredQuery } from '$lib/server/repositories/user';
 import { locale } from '$lib/translations';
+import { unslug } from '$lib/helpers/url';
 
 export const load = (async ({ params, url, setHeaders }) => {
 	setHeaders({
@@ -21,7 +22,7 @@ export const load = (async ({ params, url, setHeaders }) => {
 	url.pathname;
 	const [users, categories, countries] = await Promise.all([
 		usersMap(
-			await filteredQuery(params.category, params.country, params.order, locale.get(), params.page)
+			await filteredQuery(unslug(params.category), params.country, params.order, locale.get(), params.page)
 		),
 		getCategories().then((categories) => tagsMap(categories)),
 		userCountries().then((countries) => userCountriesMap(countries, locale.get()))

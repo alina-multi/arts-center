@@ -5,6 +5,7 @@
 	import { ChevronDown, ChevronUp } from '@steeze-ui/heroicons';
 	import TagButtons from '$lib/components/atoms/buttons/TagButtons.svelte';
 	import { t } from '$lib/translations';
+	import { slug } from '$lib/helpers/url.js';
 
 	export let tags: Tag[],
 		selected: string,
@@ -24,7 +25,7 @@
 	$: isHiddenTag = hiddenTags?.filter((tag) => tag?.title === selected);
 
 	$: isActive = (tag: string) => {
-		return tag.replaceAll(' ', '_') === selected;
+		return slug(tag) === selected;
 	};
 </script>
 

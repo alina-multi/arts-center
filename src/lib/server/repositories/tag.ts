@@ -1,4 +1,5 @@
 import { prisma } from '$lib/server/database/prisma';
+import { unslug } from '$lib/helpers/url';
 
 export function getCategories() {
 	return prisma.tags.findMany({
@@ -22,7 +23,7 @@ export function getCategories() {
 }
 
 export function titleToId(title: string, language: string) {
-	title = title.replaceAll('_', ' ');
+	title = unslug(title);
 	return prisma.tag_titles.findFirst({
 		select: {
 			tag_id: true
