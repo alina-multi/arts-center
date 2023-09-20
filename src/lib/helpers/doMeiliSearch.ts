@@ -6,7 +6,6 @@ const client = new MeiliSearch({
 });
 
 export async function doMeiliSearch(searchable, query, page) {
-	query = query.split('-').join(' ');
 	const index = client.index(searchable);
 	const search = await index.search(query, {
 		page: parseInt(page)

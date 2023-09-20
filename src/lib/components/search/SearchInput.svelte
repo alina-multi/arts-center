@@ -8,6 +8,7 @@
 	import newUniqueId from 'locally-unique-id-generator';
 	import { getData } from '$lib/helpers/getData';
 	import { t } from '$lib/translations';
+	import { slug } from '$lib/helpers/url';
 
 
 
@@ -37,9 +38,7 @@
 		searchValue = value;
 		if (searchValue.length < 2) return;
 
-		searchValue = searchValue
-			.replace(/ /g, '-')
-			.replaceAll(/[^a-zA-Z0-9А-ЩЬЮЯҐЄІЇа-щьюяґєії-]/g, '');
+		searchValue = slug(searchValue)
 
 		loading = true;
 		doSearch(searchValue);

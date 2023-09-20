@@ -2,11 +2,13 @@ import type { RequestHandler } from './$types';
 
 import { doMeiliSearch } from '$lib/helpers/doMeiliSearch';
 import { cacheGet } from '$lib/server/database/cache';
+import { unslug } from '$lib/helpers/url';
 
 export const GET = (async ({ params, setHeaders }) => {
 	setHeaders({
 		'cache-control': 'max-age=600'
 	});
+	params.query = unslug(params.query);
 	return new Response(
 		await cacheGet(
 			`frontend.search.${params.searchable}.${params.query}.${params.page}`,
