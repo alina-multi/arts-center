@@ -18,7 +18,7 @@ SentryNode.init({
 	tracesSampleRate: 0.01,
 	// Add the Http integration for tracing
 	integrations: [new SentryNode.Integrations.Http()],
-	environment: process.env.NODE_ENV
+	environment: PUBLIC_ENV
 });
 
 SentryNode.setTag('svelteKit', 'server');
