@@ -32,6 +32,18 @@ const config: Config = {
 			key: 'my',
 			routes: [/\/uk\/my\/.*/],
 			loader: async () => (await import('./uk/my.json')).default
+		},
+		{
+			locale: 'en',
+			key: 'static',
+			routes: [/\/s\/about/],
+			loader: async () => (await import('./en/static.json')).default
+		},
+		{
+			locale: 'uk',
+			key: 'static',
+			routes: [/\/uk\/s\/about/],
+			loader: async () => (await import('./uk/static.json')).default
 		}
 	]
 };

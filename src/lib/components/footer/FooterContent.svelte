@@ -10,26 +10,22 @@
 		<TopNavLangLink lang="uk" />
 	</div>
 	<div class="flex items-start px-9 py-6 gap-12">
-		<div class="">
-			
-			<ul class="space-y-2">
-				<li>
-					<a href={localePath('/about')}>{$t('global.footer.about')}</a>
-				</li>
-				<li><a href={localePath('/contacts')}>{$t('global.footer.contacts')}</a></li>
-				<li><a href={localePath('/blog')}>{$t('global.footer.blog')}</a></li>
-			</ul>
-		</div>
-
 		<div>
 			<ul class="space-y-2">
 				<li>
-					<a href={localePath('/subscriptions')}>{$t('global.footer.subscriptions')}</a>
+					<a href={localePath('/s/about')}>{$t('global.footer.about')}</a>
+				</li>
+				<li><a href={localePath('/s/contacts')}>{$t('global.footer.contacts')}</a></li>
+			</ul>
+		</div>
+		<div>
+			<ul class="space-y-2">
+				<li>
+					<a href={localePath('/s/subscriptions')}>{$t('global.footer.subscriptions')}</a>
 				</li>
 			</ul>
 		</div>
 	</div>
-
 	<div class="flex items-center border-t dark:border-zinc-700 text-xs gap-9 px-6 py-3">
 		<a href={localePath('/privacy')}>{$t('global.footer.privacy')}</a>
 		<a href={localePath('/terms')}>{$t('global.footer.terms')}</a>

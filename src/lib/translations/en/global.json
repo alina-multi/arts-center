@@ -69,17 +69,17 @@
 		"terms": "Terms and conditions"
 	},
 	"login": {
+		"contact_us": "Contact us.",
 		"email": "Email",
 		"forgot_password": "Forgot your password?",
+		"lost_email": "Lost access to your email?",
+		"new_password": "Set new password",
 		"page_title": "Sign in to your account",
 		"password": "Password",
-		"remember_me": "Remember me",
-		"sign_in": "Sign in",
+		"password_confirmation": "Confirm password",
 		"recover": "Recover",
-		"lost_email": "Lost access to your email?",
-		"contact_us": "Contact us.",
-		"new_password": "Set new password",
-		"password_confirmation": "Confirm password"
+		"remember_me": "Remember me",
+		"sign_in": "Sign in"
 	},
 	"menu": {
 		"gallery": "GALLERY",
@@ -92,22 +92,22 @@
 		"blocked": "Blocked",
 		"drafts": "Drafts",
 		"edit_profile": "Edit Profile",
+		"favorites": "Favorites",
 		"followers": "Followers",
 		"following": "Following",
 		"logout": "Log Out",
-		"my_profile": "My Page",
-		"favorites": "Favorites"
+		"my_profile": "My Page"
 	},
 	"not_logged_in": {
+		"bookmark": "save this work to your colllection",
+		"comment": "rate comment of other users",
+		"follow": "follow this artist",
 		"for_comment": "Sign in to comment this work",
 		"for_follow": "You need to login or register to follow",
 		"for_work": "Join the community of people who love this work.  Sign in with your email address to follow this work. ",
-		"sign_in_with_email": "Sign in with email",
-		"login_to": "Login to",
 		"like": "rate this work",
-		"bookmark": "save this work to your colllection",
-		"comment": "rate comment of other users",
-		"follow": "follow this artist"
+		"login_to": "Login to",
+		"sign_in_with_email": "Sign in with email"
 	},
 	"search": {
 		"placeholder": "Search",

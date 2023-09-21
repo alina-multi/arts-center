@@ -16,6 +16,7 @@
 		"step_3": "Preview",
 		"title": "Title"
 	},
+	"blocked": "Blocked users",
 	"buttons": {
 		"back_to_edit": "Back to edit",
 		"delete_draft": "Delete draft",
@@ -46,26 +47,23 @@
 		"warning_personal_info": "This information will be displayed publicly so be careful what you share."
 	},
 	"favorite": {
-		"my_collections": "My collections",
 		"collection": "collection",
-		"saved": "saved",
-		"works": "works",
-		"work": "work",
-		"no_works": "There are no works",
 		"collection_name": "Collection name",
 		"folders": "folders",
-		"no_collections": "Your collections will be here. Save your first favorite work and start creating collections"
+		"my_collections": "My collections",
+		"no_collections": "Your collections will be here. Save your first favorite work and start creating collections",
+		"no_works": "There are no works",
+		"saved": "saved",
+		"work": "work",
+		"works": "works"
 	},
-
 	"follow": {
 		"followers": "Followers",
 		"following": "Following",
-
 		"no_followers": "You'll see all of the people who follow you here",
 		"no_following": "When you follow people you'll see them here"
 	},
-
+	"no_blocked": "There are no users in your blacklist",
 	"people": "people",
-	"blocked": "Blocked users",
-	"no_blocked": "There are no users in your blacklist"
+	"test": ""
 }

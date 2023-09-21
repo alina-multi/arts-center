@@ -16,6 +16,7 @@
 		"step_3": "Попередній перегляд",
 		"title": "Назва"
 	},
+	"blocked": "",
 	"buttons": {
 		"back_to_edit": "Повернутися до редагування",
 		"delete_draft": "Видалити чернетку",
@@ -25,6 +26,7 @@
 		"save": "Зберегти"
 	},
 	"confirmation": {
+		"delete": "",
 		"delete_warning": "Ця дія не може бути відмінена.",
 		"delete_work": "Ви впевнені, що хочете видалити цю роботу?",
 		"move_to_drafts": "Ви впевнені, що хочете перенести цю роботу до чернеток?"
@@ -44,5 +46,24 @@
 		"username": "Ім'я користувача",
 		"warning_personal_info": "Ця інформація буде відображатися на вашій сторінці профілю"
 	},
+	"favorite": {
+		"collection": "",
+		"collection_name": "",
+		"folders": "",
+		"my_collections": "",
+		"no_collections": "",
+		"no_works": "",
+		"saved": "",
+		"work": "",
+		"works": ""
+	},
+	"follow": {
+		"followers": "",
+		"following": "",
+		"no_followers": "",
+		"no_following": ""
+	},
+	"no_blocked": "",
+	"people": "",
 	"test": "Що тут коється?"
 }

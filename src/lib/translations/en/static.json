@@ -1,0 +1,35 @@
+{
+	"about": {
+		"h1": "About us",
+		"history": {
+			"h1": "History",
+			"p1": "The original version of the site arts.in.ua was created in 2009 as a pet project by Stepan Orda. It quickly grew to a big artist community and gallery with more than 10k registered artists and half a million of artwork.",
+			"p2": "Over the years it became somewhat profitable but not enough to be a full-time job. Most of the profit was coming from the advertisement since the site wasn’t taking any commissions on sales.",
+			"p3": "In 2014, when russia first attacked Ukraine, site income came to a grinding halt. Site was hacked multiple times by russian special forces, they posted propaganda and ended up making a mass mailing to russian side of the audience accusing the site administration of standard russian propaganda talking points. That worked for them and most of the russians left the site. At this point, the site stopped being profitable and wasn’t even paying for servers.",
+			"p4": "Over the years it was on life support and only critical bugs were fixed. Had to feed the family and 2 kids, so I couldn't afford to spend much time on a project that wasn’t making any money. But I was dreaming of bringing it back to life at some point. A lot of people still used it so I didn’t want to just shut it down.",
+			"p5": "In 2020 I finally had the time and money to bring new life into the site. I still had a day job so couldn’t invest that much time in it so I hired a junior dev and together with him started a 100% rewrite of the site. The scrappy MVP was ready and at the end of 2021 it was launched in closed beta (only existing users were allowed, registration was disabled). The new version had a lot of problems and we were fixing them as fast as possible. I understood that this arrangement wouldn’t get me far, had some money set aside and planned to leave the work and focus on site development for at least a year. Also at this time the junior dev left me to join a big company.",
+			"p6": "I started the process of incorporation and registered a C-Corp “Arts center online inc.” in the USA. Thought through the whole process of turning a side project into a real business that would bring value to customers and will be self-sustainable.",
+			"p7": "And right after that, the full-scale invasion started. My house was destroyed in the first days but luckily we were all in Egypt at the time. So the project was postponed again while I re-settled in Portugal.",
+			"p8": "At the start of 2023, I finally settled and was ready to continue. It was clear that the site was really far from ideal, so I started rewriting the frontend again to the new hyped framework SvelteKit (keeping the backend code mostly intact) and the new design. This is the 3d iteration of the site you are seeing right now."
+		},
+		"mission": {
+			"h1": "Mission",
+			"p1": "The goal of arts.center is to help the other 99% of professional artists to ensure fair compensation for their talent.",
+			"p2": "It is no secret that most professional artists struggle financially. There are many ways to sell cheap amateur art at some scale. The top 1% of artists that pass the industry gatekeepers earn a lot. But there are a lot of artists in between these 2 extremes.",
+			"p3": "We want to combine all possible ways of monetization and create a democratic platform for every artist."
+		},
+		"stats": {
+			"artists": "Artists",
+			"artworks": "Artworks",
+			"comments": "Comments",
+			"h1": "Stats"
+		},
+		"team": {
+			"stepan": {
+				"alt": "Stepan Orda CEO of arts.center",
+				"name": "Stepan Orda",
+				"title": "CEO"
+			}
+		}
+	}
+}
