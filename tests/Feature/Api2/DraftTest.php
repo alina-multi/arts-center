@@ -162,6 +162,7 @@ test('publish draft', function () {
 });
 
 test('move to draft', function () {
+    Event::fake();
     $user = User::factory()->create();
     $otherUser = User::factory()->create();
     $work = Work::factory()->hasTitles()->create();
@@ -176,6 +177,7 @@ test('move to draft', function () {
 });
 
 test('delete draft', function () {
+    Event::fake();
     $user = User::factory()->create();
     $otherUser = User::factory()->create();
     $work = Work::factory()->hasTitles()->create();
