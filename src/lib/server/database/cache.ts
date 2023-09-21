@@ -1,10 +1,11 @@
 import NodeCache from 'node-cache';
 import { createClient } from 'redis';
 import type { RequestEvent } from '@sveltejs/kit';
+import type { RedisClientType } from 'redis';
 import { api } from '$lib/server/api';
 import * as devalue from 'devalue';
 
-let cache;
+let cache: NodeCache | RedisClientType;
 
 type cacheNemespace = 'work' | 'user' | 'auth' | 'page' | 'gallery' | 'search';
 
