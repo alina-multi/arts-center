@@ -2,32 +2,25 @@
 
 namespace App\Providers;
 
-use App\Events\CommentChanged;
-use App\Events\ImageCreated;
-use App\Events\WorkUserPublished;
-use App\Events\WorkDeleted;
-use App\Events\WorkDrafted;
-use App\Events\WorkPublished;
-use App\Events\WorkReady;
-use App\Events\WorkTranslated;
+use App\Events\{
+    CommentChanged,
+    ImageCreated,
+    UserProfileUpdated,
+    WorkUserPublished,
+    WorkDeleted,
+    WorkDrafted,
+    WorkPublished,
+    WorkReady,
+    WorkTranslated
+};
 use App\Jobs\PublishWork;
-use App\Listeners\AddToFeeds;
-use App\Listeners\ClearCache;
-use App\Listeners\ConvertImage;
-use App\Listeners\SendNotifications;
-use App\Listeners\TranslateWork;
-use App\Listeners\ValidateWork;
+use App\Listeners\{AddToFeeds, ClearCache, ConvertImage, SendNotifications, TranslateWork, ValidateWork};
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
 {
-    /**
-     * The event listener mappings for the application.
-     *
-     * @var array
-     */
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
@@ -52,13 +45,16 @@ class EventServiceProvider extends ServiceProvider
             ClearCache::class,
         ],
         WorkDrafted::class => [
-
+            ClearCache::class
         ],
         WorkDeleted::class => [
             ClearCache::class,
         ],
         ImageCreated::class => [
             ConvertImage::class
+        ],
+        UserProfileUpdated::class => [
+            ClearCache::class
         ]
     ];
 
@@ -70,7 +66,5 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
-        //
     }
 }
