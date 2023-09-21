@@ -7,7 +7,7 @@ import * as devalue from 'devalue';
 
 let cache: NodeCache | RedisClientType;
 
-type cacheNemespace = 'work' | 'user' | 'auth' | 'page' | 'gallery' | 'search';
+type cacheNamespace = 'work' | 'user' | 'auth' | 'page' | 'gallery' | 'search';
 
 if (process.env?.REDIS_URL) {
 	cache = createClient({
@@ -19,7 +19,7 @@ if (process.env?.REDIS_URL) {
 }
 
 export async function cacheGet(
-	namespace: cacheNemespace,
+	namespace: cacheNamespace,
 	key: string,
 	storeFunction: () => Promise<object | string>,
 	ttl = 120
@@ -32,17 +32,19 @@ export async function cacheGet(
 }
 
 export async function cacheReplace(
-	namespace: cacheNemespace,
+	namespace: cacheNamespace,
 	key: string,
 	storeFunction: () => Promise<object | string>,
 	ttl = 120
 ) {
 	const result = await storeFunction();
-	cache.set(buildKey(namespace, key), devalue.stringify(result), ttl);
+	cache.set(buildKey(namespace, key), devalue.stringify(result),
+		process.env?.REDIS_URL ? {EX: ttl} : ttl
+	);
 	return result;
 }
 
-export async function cacheClear(namespace: cacheNemespace, key: string) {
+export async function cacheClear(namespace: cacheNamespace, key: string) {
 	await cache.del(buildKey(namespace, key));
 }
 
@@ -63,6 +65,6 @@ export async function reloadCurrentUser(event: RequestEvent) {
 	}
 }
 
-function buildKey(namespace: cacheNemespace, key: string) {
+function buildKey(namespace: cacheNamespace, key: string) {
 	return `frontend.${namespace}.${key}`;
 }
