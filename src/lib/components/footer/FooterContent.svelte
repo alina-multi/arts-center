@@ -45,8 +45,8 @@
 		</ul>
 
 		<div class="flex items-center justify-center border-t dark:border-zinc-700 gap-9 px-6 py-3">
-			<a href={localePath('/privacy')}>{$t('global.footer.privacy')}</a>
-			<a href={localePath('/terms')}>{$t('global.footer.terms')}</a>
+			<a href={localePath('/s/privacy')}>{$t('global.footer.privacy')}</a>
+			<a href={localePath('/s/terms')}>{$t('global.footer.terms')}</a>
 		</div>
 	</div>
 {/if}
