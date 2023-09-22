@@ -1,6 +1,7 @@
 <script lang='ts'>
 	import { t } from '$lib/translations';
 	import type { PageData } from './$types';
+	import ContactUsBlock from '$lib/components/nav/ContactUsBlock.svelte';
 	export let data: PageData;
 </script>
 
@@ -20,6 +21,7 @@
 				</div>
 				{/each}
 			</dl>
+			<ContactUsBlock/>
 		</div>
 		<div class='space-y-3'>
 			<h2 class='text-2xl my-5'>{$t('static.about.history.h1')}</h2>

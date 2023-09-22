@@ -15,7 +15,6 @@
 				<li>
 					<a href={localePath('/s/about')}>{$t('global.footer.about')}</a>
 				</li>
-				<li><a href={localePath('/s/contacts')}>{$t('global.footer.contacts')}</a></li>
 			</ul>
 		</div>
 		<div>
@@ -40,7 +39,6 @@
 			<li>
 				<a href={localePath('/s/about')}>{$t('global.footer.about')}</a>
 			</li>
-			<li><a href={localePath('/s/contacts')}>{$t('global.footer.contacts')}</a></li>
 			<li>
 				<a href={localePath('/s/subscriptions')}>{$t('global.footer.subscriptions')}</a>
 			</li>

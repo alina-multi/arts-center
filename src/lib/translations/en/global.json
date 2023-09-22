@@ -47,6 +47,11 @@
 	"common": {
 		"continue_with": "or continue with"
 	},
+	"contact": {
+		"email": "Via email:",
+		"h1": "Contact us",
+		"p1": "Don't hesitate to contact us if you have any questions."
+	},
 	"filters": {
 		"all": "all",
 		"category": "category",

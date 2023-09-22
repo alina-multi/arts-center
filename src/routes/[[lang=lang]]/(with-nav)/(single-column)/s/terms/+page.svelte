@@ -1,7 +1,6 @@
-<script lang='ts'>
-	import { localePath } from '$lib/translations';
+<script lang="ts">
+	import ContactUsBlock from '$lib/components/nav/ContactUsBlock.svelte';
 </script>
-
 <div class='space-y-3 py-6'>
 	<h1 class='text-3xl'>Terms &amp; Conditions</h1>
 	<p>Updated at 2021-09-12</p>
@@ -325,10 +324,5 @@
 		agents, or the like will create a warranty. Price and availability information is subject to change without
 		notice. Without limiting the foregoing, Arts center does not warrant that the Arts center Service will be
 		uninterrupted, uncorrupted, timely, or error-free.</p>
-	<h2 class='text-2xl my-5'>Contact Us</h2>
-	<p>Don't hesitate to contact us if you have any questions.</p>
-	<ul class='list-disc list-outside pl-9'>
-		<li>Via Email: <a href='mailto:info@arts.center'>info@arts.center</a></li>
-		<li>Via this Link: <a href={localePath('/s/contacts')}>https://arts.center{localePath('/s/contacts')}</a></li>
-	</ul>
+	<ContactUsBlock/>
 </div>
