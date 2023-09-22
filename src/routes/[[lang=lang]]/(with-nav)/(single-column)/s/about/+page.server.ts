@@ -11,9 +11,9 @@ export const load = (async ({ setHeaders }) => {
 		'about',
 		async () => {
 			return {
-				"artists": 12773,
-				"artworks": 423711,
-				"comments": 2159447
+				"artists": '12k+',
+				"artworks": '420k+',
+				"comments": '2m+'
 			}
 		},
 		30
