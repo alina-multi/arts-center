@@ -11,10 +11,10 @@ export const load = (async ({ setHeaders }) => {
 		'about',
 		async () => {
 			return {
-				"artists": '12k+',
-				"artworks": '420k+',
-				"comments": '2m+'
-			}
+				artists: '12k+',
+				artworks: '420k+',
+				comments: '2m+'
+			};
 		},
 		30
 	);
