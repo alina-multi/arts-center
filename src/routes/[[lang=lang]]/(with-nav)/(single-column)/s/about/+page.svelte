@@ -4,8 +4,7 @@
 	export let data: PageData;
 </script>
 
-<div class='container mx-auto px-3 mt-3 dark:text-white py-12'>
-	<h1 class='text-3xl text-center'>{$t('static.about.h1')}</h1>
+	<h1 class='text-3xl text-center mt-5'>{$t('static.about.h1')}</h1>
 	<div class='grid grid-cols-1 lg:grid-cols-2 gap-6'>
 		<div class='space-y-3'>
 			<h2 class='text-2xl my-5'>{$t('static.about.mission.h1')}</h2>
@@ -43,4 +42,3 @@
 			{/each}
 		</div>
 	</div>
-</div>
