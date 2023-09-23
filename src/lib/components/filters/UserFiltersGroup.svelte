@@ -3,11 +3,10 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ChevronDown } from '@steeze-ui/heroicons';
 	import { t } from '$lib/translations';
-
-	
+	import { unslug } from '$lib/helpers/url';
 
 	export let params, options, group, urlGenerator;
-	$: selected = params[group];
+	$: selected = unslug(params[group]);
 </script>
 
 <Disclosure let:open>
@@ -18,19 +17,17 @@
 	>
 		<div class="flex gap-1 items-center">
 			<span class="text-sm text-black dark:text-white">
-			
-					{$t(`global.filters.${group}`).toUpperCase()}
+				{$t(`global.filters.${group}`).toUpperCase()}
 			</span>
 			<span>:</span>
 			<div
-				class=" ml-2 inline-flex items-center gap-2 border-amber-600 rounded-sm  border px-3 dark:text-zinc-200 dark:bg-zinc-800"
+				class=" ml-2 inline-flex items-center gap-2 border-amber-600 rounded-sm border px-3 dark:text-zinc-200 dark:bg-zinc-800"
 			>
-			{#if selected === "popular" || selected === "new"}
-							{$t(`global.filters.${selected}`)}
-						{:else}
-							{selected}
-						{/if}
-		
+				{#if selected === 'popular' || selected === 'new'}
+					{$t(`global.filters.${selected}`)}
+				{:else}
+					{selected === 'all' ? $t(`global.filters.all`) : selected}
+				{/if}
 			</div>
 		</div>
 		<Icon
@@ -54,13 +51,13 @@
 						on:click={() => close()}
 						class="flex grow"
 					>
-						<span>
-						{#if option.title === "popular" || option.title === "new"}
-							{$t(`global.filters.${option.title}`)}
-						{:else}
-							{option.title}
-						{/if}
-							</span>
+						<span class="">
+							{#if option.title === 'popular' || option.title === 'new'}
+								{$t(`global.filters.${option.title}`)}
+							{:else}
+								{option.title}
+							{/if}
+						</span>
 						{#if option.count}
 							<span class="ml-auto text-gray-500">{option.count}</span>
 						{/if}
