@@ -47,9 +47,8 @@
 		value = e.target.value.trim();
 		searchValue = value;
 		if (searchValue.length < 2) return;
-		console.log('before', searchValue);
+
 		searchValue = slug(searchValue);
-		console.log('after', searchValue);
 
 		loading = true;
 		doSearch(searchValue);
