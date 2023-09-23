@@ -54,7 +54,7 @@
 			<div class="h-1 w-1 bg-gray-500 rounded-full dark:bg-zinc-300" />
 			<span>
 				{data.favorites.works.length} {$t('my.favorite.saved')}
-				{data.favorites.works.length === 1 ? $t('my.favorite.work') : $t('my.favorite.works')}</span
+				{data.favorites.works.length === 1 ? $t('my.work') : $t('my.works')}</span
 			>
 		</div>
 		<div slot="buttons" class="flex items-center gap-3 dark:text-zinc-300 text-gray-700">

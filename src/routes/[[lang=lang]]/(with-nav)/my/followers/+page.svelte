@@ -13,7 +13,7 @@
 	<HeaderLayout title={$t('my.follow.followers')}>
 		<div slot="details" class="flex gap-3 items-center leading-3">
 			<div class="h-1 w-1 bg-gray-500 dark:bg-zinc-300 rounded-full" />
-			<span class=""> {followers.length} {$t('my.people')} </span>
+			<span> {followers.length} {$t('my.people')} </span>
 		</div>
 	</HeaderLayout>
 

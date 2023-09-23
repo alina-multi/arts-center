@@ -53,9 +53,7 @@
 		"my_collections": "My collections",
 		"no_collections": "Your collections will be here. Save your first favorite work and start creating collections",
 		"no_works": "There are no works",
-		"saved": "saved",
-		"work": "work",
-		"works": "works"
+		"saved": "saved"
 	},
 	"follow": {
 		"followers": "Followers",
@@ -65,5 +63,9 @@
 	},
 	"no_blocked": "There are no users in your blacklist",
 	"people": "people",
-	"test": ""
+
+	"work": "work",
+	"works": "works",
+	"drafts": "Drafts",
+	"no_drafts": "There are no drafts"
 }
