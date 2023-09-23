@@ -38,11 +38,11 @@
 		/>
 	</DisclosureButton>
 
-	<DisclosurePanel class=" max-h-96 overflow-scroll " let:close>
-		<ul class="flex flex-col m-6 border dark:border-0 dark:bg-zinc-800 rounded-sm text-sm">
+	<DisclosurePanel class=" max-h-96 overflow-scroll dark:border-zinc-900 dark:border" let:close>
+		<ul class="flex flex-col  dark:bg-zinc-800  text-sm">
 			{#each options as option}
 				<li
-					class="flex cursor-pointer p-3 {option.title === selected
+					class="flex cursor-pointer py-3 px-6 {option.title === selected
 						? 'bg-gray-100 hover:bg-gray-100 dark:border-l dark:border-amber-500  dark:bg-zinc-700 '
 						: 'text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-zinc-700 '}"
 				>
