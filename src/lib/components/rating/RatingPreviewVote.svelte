@@ -28,10 +28,11 @@
 {/if}
 
 <div class="inline-flex items-center gap-2 dark:text-zinc-100 cursor-pointer">
+	
 	<div
-		class="flex items-center gap-2 {votable_type === 'work'
-			? 'border  px-4 py-1 rounded-sm '
-			: 'hover:text-zinc-100'}  dark:bg-zinc-800 bg-white dark:border-zinc-700 dark:text-white"
+		class="flex items-center gap-3 {votable_type === 'work'
+			? '  px-4 py-1 rounded-sm rounded-r-none'
+			: 'hover:text-zinc-100'}  dark:bg-zinc-800 bg-gray-50 shadow dark:border-zinc-700 dark:text-white"
 	>
 		{#if votable_type === 'work'}
 			<span class=" flex items-center border-r dark:border-zinc-700 pr-3"
@@ -50,6 +51,7 @@
 			{votable_type}
 			{votable_id}
 		/>
+		
 	</div>
 
 	{#if votable_type === 'comment' && rating > 0}

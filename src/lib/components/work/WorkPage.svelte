@@ -21,13 +21,11 @@
 	<WorkHeader {work} {isMy} />
 	<WorkBody {work} />
 	<div class="flex items-center justify-between gap-3">
-		<div
-			class=" w-full flex gap-3 items-center   rounded-sm lg:border-0"
-		>
-			<div class="w-full flex items-center justify-between gap-2 py-3">
+		<div class=" w-full flex gap-3 items-center rounded-sm lg:border-0">
+			<div class="w-full flex items-center justify-between gap-3 py-3">
 				<RatingPreviewVote entity={work} showVotedPreview votable_type={'work'} />
 			</div>
-			<BookmarkButton {work}/>
+			<BookmarkButton {work} />
 		</div>
 	</div>
 </div>
