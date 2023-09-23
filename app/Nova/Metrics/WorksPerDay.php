@@ -2,7 +2,9 @@
 
 namespace App\Nova\Metrics;
 
-use App\Work;
+use App\Models\Work;
+use DateInterval;
+use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Trend;
 
@@ -11,7 +13,7 @@ class WorksPerDay extends Trend
     /**
      * Calculate the value of the metric.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param NovaRequest $request
      * @return mixed
      */
     public function calculate(NovaRequest $request)
@@ -38,11 +40,11 @@ class WorksPerDay extends Trend
     /**
      * Determine for how many minutes the metric should be cached.
      *
-     * @return  \DateTimeInterface|\DateInterval|float|int
+     * @return  DateTimeInterface|DateInterval|float|int
      */
     public function cacheFor()
     {
-        return now()->addHours(1);
+        return now()->addHours();
     }
 
     /**

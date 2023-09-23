@@ -2,7 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Tag;
+use App\Enums\TagTypes;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TagFactory extends Factory
@@ -22,8 +23,9 @@ class TagFactory extends Factory
     public function definition()
     {
         return [
-            'type_id' => 2,
-            'old_id' => 1
+            'type_id' => TagTypes::CATEGORY,
+            'old_id' => 1,
+            'count' => 0,
         ];
     }
 }

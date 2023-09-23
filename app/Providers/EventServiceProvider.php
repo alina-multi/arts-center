@@ -2,38 +2,59 @@
 
 namespace App\Providers;
 
+use App\Events\{
+    CommentChanged,
+    ImageCreated,
+    UserProfileUpdated,
+    WorkUserPublished,
+    WorkDeleted,
+    WorkDrafted,
+    WorkPublished,
+    WorkReady,
+    WorkTranslated
+};
+use App\Jobs\PublishWork;
+use App\Listeners\{AddToFeeds, ClearCache, ConvertImage, SendNotifications, TranslateWork, ValidateWork};
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
-    /**
-     * The event listener mappings for the application.
-     *
-     * @var array
-     */
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        \App\Events\CommentChanged::class => [
-            \App\Listeners\SendNotifications::class,
-            \App\Listeners\AddToFeeds::class,
-            \App\Listeners\ClearCache::class,
+        CommentChanged::class => [
+            SendNotifications::class,
+            AddToFeeds::class,
+            ClearCache::class,
         ],
-        \App\Events\WorkPublished::class => [
-            \App\Listeners\SendNotifications::class,
-            \App\Listeners\AddToFeeds::class,
-            \App\Listeners\ClearCache::class,
-            \App\Listeners\TranslateWork::class,
+        WorkUserPublished::class => [
+            TranslateWork::class,
         ],
-        \App\Events\PublishedWorkUpdated::class => [
-            \App\Listeners\ClearCache::class,
+        WorkTranslated::class => [
+            ValidateWork::class
         ],
-        \App\Events\WorkDeleted::class => [
-            \App\Listeners\ClearCache::class,
+        WorkReady::class => [
+            PublishWork::class
+        ],
+        WorkPublished::class => [
+            SendNotifications::class,
+            AddToFeeds::class,
+            ClearCache::class,
+        ],
+        WorkDrafted::class => [
+            ClearCache::class
+        ],
+        WorkDeleted::class => [
+            ClearCache::class,
+        ],
+        ImageCreated::class => [
+            ConvertImage::class
+        ],
+        UserProfileUpdated::class => [
+            ClearCache::class
         ]
     ];
 
@@ -45,7 +66,5 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
-        //
     }
 }

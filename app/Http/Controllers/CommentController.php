@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
+use App\Models\Comment;
 use App\Events\CommentChanged;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\UnauthorizedException;
 use App\Http\Controllers\Gallery\{IndexTrait, RelatedTrait, TagTrait, UserTrait};
@@ -32,7 +33,7 @@ class CommentController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id, Request $request)
     {
@@ -77,14 +78,13 @@ class CommentController extends Controller
 
             if (!$comment['comment_id']) {
                 $tree[] = &$comment;
-                $idRef[$comment['id']] = &$comment;
             } else {
                if (empty($idRef[$comment['comment_id']]['children'])) {
                    $idRef[$comment['comment_id']]['children'] = [];
                }
                $idRef[$comment['comment_id']]['children'][] = &$comment;
-               $idRef[$comment['id']] = &$comment;
             }
+            $idRef[$comment['id']] = &$comment;
         }
         return response()->json(['comments' => $tree, 'users' => $users, 'votes'=> $votes, 'ratings' => $ratings]);
     }

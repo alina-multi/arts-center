@@ -2,7 +2,8 @@
 
 namespace App\Nova;
 
-use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Http\Requests\NovaRequest as Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -16,7 +17,7 @@ class WorkTitle extends Resource
      *
      * @var string
      */
-    public static $model = \App\WorkTitle::class;
+    public static $model = \App\Models\WorkTitle::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -38,7 +39,7 @@ class WorkTitle extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function fields(Request $request)
@@ -47,6 +48,10 @@ class WorkTitle extends Resource
             ID::make(__('ID'), 'id')->sortable(),
             Text::make('language')->sortable(),
             Text::make('title'),
+            Text::make('description')->onlyOnIndex()->displayUsing(fn($description) => substr($description, 0, 100)),
+            Textarea::make('description')->alwaysShow(),
+            Text::make('alt'),
+            Text::make('colors'),
             BelongsTo::make('work')
         ];
     }
@@ -54,7 +59,7 @@ class WorkTitle extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -65,7 +70,7 @@ class WorkTitle extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -76,7 +81,7 @@ class WorkTitle extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -87,7 +92,7 @@ class WorkTitle extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function actions(Request $request)

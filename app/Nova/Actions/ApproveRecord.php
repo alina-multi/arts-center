@@ -8,6 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class ApproveRecord extends Action
 {
@@ -17,8 +18,8 @@ class ApproveRecord extends Action
     /**
      * Perform the action on the given models.
      *
-     * @param  \Laravel\Nova\Fields\ActionFields  $fields
-     * @param  \Illuminate\Support\Collection  $models
+     * @param ActionFields $fields
+     * @param Collection $models
      * @return mixed
      */
     public function handle(ActionFields $fields, Collection $models)
@@ -34,7 +35,7 @@ class ApproveRecord extends Action
      *
      * @return array
      */
-    public function fields()
+    public function fields(NovaRequest $request)
     {
         return [];
     }

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\WorkTitle;
+use App\Models\WorkTitle;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class WorkTitleFactory extends Factory
@@ -22,7 +22,9 @@ class WorkTitleFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->name,
+            'title' => $this->faker->realText(30),
+            'description' => $this->faker->realText(300),
+            'alt' => $this->faker->realText(30),
             'language' => 'en'
         ];
     }

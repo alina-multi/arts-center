@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Follow;
-use App\User;
-use App\Work;
+use App\Models\Follow;
+use App\Models\User;
+use App\Models\Work;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -16,7 +17,7 @@ class FollowController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index(Request $request)
     {
@@ -61,8 +62,8 @@ class FollowController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -86,9 +87,9 @@ class FollowController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Follow $follow
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Follow $follow
+     * @return Response
      */
     public function update(Request $request, Follow $follow)
     {
@@ -98,8 +99,8 @@ class FollowController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Follow $follow
-     * @return \Illuminate\Http\Response
+     * @param Follow $follow
+     * @return Response
      */
     public function destroy(Follow $follow)
     {

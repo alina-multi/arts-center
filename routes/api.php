@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,3 +64,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::get('blog/{blog}', 'BlogController@show');
 Route::get('post/{post}', 'PostController@show');
 
+Route::get('health', function () {
+    return response('OK 1', 200);
+});

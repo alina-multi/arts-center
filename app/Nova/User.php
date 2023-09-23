@@ -5,7 +5,7 @@ namespace App\Nova;
 use App\Nova\Actions\ClearCacheByTag;
 use App\Nova\Metrics\NewUsers;
 use App\Nova\Metrics\UsersPerDay;
-use Illuminate\Http\Request;
+use Laravel\Nova\Http\Requests\NovaRequest as Request;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\HasManyThrough;
@@ -22,7 +22,7 @@ class User extends Resource
      *
      * @var string
      */
-    public static $model = \App\User::class;
+    public static $model = \App\Models\User::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -30,6 +30,8 @@ class User extends Resource
      * @var string
      */
     public static $title = 'name';
+
+    public static $with = ['photo', 'photo.variants'];
 
     /**
      * The columns that should be searched.
@@ -43,7 +45,7 @@ class User extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function fields(Request $request)
@@ -52,9 +54,9 @@ class User extends Resource
             ID::make()->sortable(),
 
             Image::make('photo')->preview(function ($value, $disk) {
-                return $value ? $value->url : '';
+                return $value ? $value->src : '';
             })->thumbnail(function ($value, $disk) {
-                return $value ? $value->url : '';
+                return $value ? $value->src : '';
             }),
 
             Text::make('Name')
@@ -87,7 +89,7 @@ class User extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -98,7 +100,7 @@ class User extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -109,7 +111,7 @@ class User extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -120,7 +122,7 @@ class User extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function actions(Request $request)

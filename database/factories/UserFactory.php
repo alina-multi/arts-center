@@ -2,15 +2,21 @@
 
 namespace Database\Factories;
 
-use App\Image;
-use App\User;
+use App\Enums\ImageExtentions;
+use App\Models\Image;
+use App\Models\ImageVariant;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use function Clue\StreamFilter\fun;
 
 class UserFactory extends Factory
 {
     use WithFaker;
+
     /**
      * The name of the factory's corresponding model.
      *
@@ -25,13 +31,13 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        $image = Image::factory()->create();
+        $image = Image::factory()->converted()->create(['folder' => 'photos']);
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
-            'username' => $this->faker->name,
+            'username' => Str::slug($this->faker->userName),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => Hash::make('paSSword1'),
             'remember_token' => Str::random(10),
             'image_id' => $image->id,
             'country' => $this->faker->countryCode

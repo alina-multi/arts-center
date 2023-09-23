@@ -2,7 +2,7 @@
 
 return [
 
-    'languages' => ['en', 'ru', 'uk'],
+    'languages' => ['en', 'uk'],
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -54,6 +54,8 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+
+    'frontend_url' => env('FRONTEND_URL', 'http://localhost:3000'),
 
 
     /*
@@ -176,6 +178,7 @@ return [
         App\Providers\NovaServiceProvider::class,
         App\Providers\HorizonServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
     ],
 
     /*
@@ -226,6 +229,5 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
     ],
 ];

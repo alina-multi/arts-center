@@ -22,37 +22,48 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.2",
         "darkaonline/l5-swagger": "^8.0",
-        "doctrine/dbal": "^2.10",
+        "doctrine/dbal": "^3.0",
         "everyday/html-to-quill": "dev-quote",
-        "fideloper/proxy": "^4.0",
+        "google/cloud-ai-platform": "^0.23.0",
         "google/cloud-translate": "^1.7",
+        "intervention/image": "^2.7",
+        "itsgoingd/clockwork": "^5.0",
         "laravel/cashier": "^13.5",
-        "laravel/framework": "^8.0",
+        "laravel/framework": "^10.0",
         "laravel/horizon": "^5.2",
-        "laravel/nova": "^3.30",
-        "laravel/sanctum": "^2.6",
-        "laravel/telescope": "^4.6",
+        "laravel/nova": "4.22.2",
+        "laravel/octane": "^1.5.4",
+        "laravel/sanctum": "^3.2",
+        "laravel/scout": "^10.2",
+        "laravel/socialite": "^5.9",
+        "laravel/telescope": "*",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^3.0",
-        "league/flysystem-aws-s3-v3": "^1.0",
-        "league/flysystem-cached-adapter": "^1.1",
-        "limedeck/nova-cashier-overview": "^3.0",
+        "league/flysystem-aws-s3-v3": "^3.0",
+        "meilisearch/meilisearch-php": "^1.2",
         "monarobase/country-list": "^3.2",
-        "nadar/quill-delta-parser": "^2.7",
-        "psr/log": "^1.0",
+        "nadar/quill-delta-parser": "*",
+        "nunomaduro/collision": "^7.0",
         "pusher/pusher-php-server": "^7.0",
-        "sentry/sentry-laravel": "^2.6",
-        "tigroid3/php-imaginary": "^1.03",
-        "stepanorda/nova-quill": "*"
+        "sentry/sentry-laravel": "*",
+        "spiral/roadrunner-cli": "^2.5",
+        "spiral/roadrunner-http": "^3.1",
+        "stepanorda/nova-quill": "*",
+        "symfony/http-client": "^6.3",
+        "symfony/mailgun-mailer": "^6.3",
+        "tigroid3/php-imaginary": "^1.03"
     },
     "require-dev": {
-        "facade/ignition": "^2.3.6",
         "fzaninotto/faker": "^1.4",
+        "laravel-lang/common": "^3.1",
+        "laravel/breeze": "^1.19",
         "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.0"
+        "pestphp/pest": "^2.9",
+        "pestphp/pest-plugin-drift": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0",
+        "phpunit/phpunit": "^10.0",
+        "spatie/laravel-ignition": "^2.0"
     },
     "config": {
         "optimize-autoloader": true,
@@ -61,8 +72,12 @@
         "http-basic": {
             "nova.laravel.com": {
                 "username": "stepanorda87@gmail.com",
-                "password": "*cS*g!!6TfhMnbQ"
+                "password": "YB0aINcaivjtRdbRExdSZSFnxlX1XAFTpkcpK7zFZBjcqx9E82"
             }
+        },
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "pestphp/pest-plugin": true
         }
     },
     "extra": {

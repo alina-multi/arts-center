@@ -2,12 +2,12 @@
 
 namespace App\Listeners;
 
-use App\Comment;
+use App\Models\Comment;
 use App\Events\CommentChanged;
 use App\Events\WorkPublished;
-use App\Feed;
-use App\Follow;
-use App\Work;
+use App\Models\Feed;
+use App\Models\Follow;
+use App\Models\Work;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -18,7 +18,7 @@ class AddToFeeds
     /**
      * Handle the event.
      *
-     * @param \App\Events\CommentChanged|\App\Events\WorkPublished $event
+     * @param CommentChanged|WorkPublished $event
      * @return void
      */
     public function handle(CommentChanged|WorkPublished $event)

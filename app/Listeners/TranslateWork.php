@@ -2,26 +2,13 @@
 
 namespace App\Listeners;
 
-use App\Events\WorkPublished;
-use App\Work;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use App\Enums\WorkStatuses;
+use App\Events\WorkUserPublished;
 
 class TranslateWork
 {
-    /**
-     * Handle the event.
-     *
-     * @param  \App\Events\WorkPublished  $event
-     * @return void
-     */
-    public function handle(WorkPublished $event)
+    public function handle(WorkUserPublished $event)
     {
-        $work = $event->model;
-        if ($work instanceof Work) {
-            if (sizeof($work->titles) < 3) {
-                \App\Jobs\TranslateWork::dispatch($work)->delay(now()->addSeconds(5))->onQueue('high');
-            }
-        }
+        \App\Jobs\TranslateWork::dispatch($event->model)->onQueue('high');
     }
 }

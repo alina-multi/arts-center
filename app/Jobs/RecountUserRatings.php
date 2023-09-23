@@ -2,8 +2,9 @@
 
 namespace App\Jobs;
 
-use App\UserRatings;
-use App\Work;
+use App\Models\User;
+use App\Models\UserRatings;
+use App\Models\Work;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -68,6 +69,11 @@ class RecountUserRatings implements ShouldQueue, ShouldBeUnique
                                                           ]);
             $userRatingModel->rating = $rating;
             $userRatingModel->save();
+            // For now, we just assign english rating as total.
+            // todo: remove all language specific code after migrating to new system
+            if ($language == 'en') {
+                User::where('id', $this->user)->update(['rating' => $rating]);
+            }
         }
 
         foreach ($categoryLanguageRating as $categoryId => $languages) {

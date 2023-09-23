@@ -10,8 +10,8 @@ trait Publishable
     /**
      * Scope a query to only include published models.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param Builder $query
+     * @return Builder
      */
     public function scopePublished(Builder $query)
     {
@@ -21,8 +21,8 @@ trait Publishable
     /**
      * Scope a query to only include unpublished models.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param Builder $query
+     * @return Builder
      */
     public function scopeUnpublished(Builder $query)
     {
@@ -71,7 +71,7 @@ trait Publishable
 
     /**
      * @param  mixed $value
-     * @return \Carbon\Carbon
+     * @return Carbon
      */
     public function getPublishedAtAttribute($value)
     {

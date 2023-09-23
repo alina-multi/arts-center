@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Tag;
-use App\TagTitle;
+use App\Enums\TagTypes;
+use App\Models\Tag;
+use App\Models\TagTitle;
 use Google\Cloud\Translate\V2\TranslateClient;
-use http\Exception\BadQueryStringException;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 class TagController extends Controller
@@ -46,7 +46,7 @@ class TagController extends Controller
         return TagTitle::where('title', 'like', '%' . $query . '%')->whereHas(
             'tag',
             function ($query) {
-                $query->where('type_id', Tag::TYPE_TAG);
+                $query->where('type_id', TagTypes::TAG);
             }
         )->get();
     }
@@ -78,7 +78,7 @@ class TagController extends Controller
 //
 //            }
 //        }
-        $tag = Tag::create(['count' => 1, 'type_id' => Tag::TYPE_TAG, 'old_id' => 0]);
+        $tag = Tag::create(['count' => 1, 'type_id' => TagTypes::TAG, 'old_id' => 0]);
         TagTitle::create(['title' => $request->title, 'language' => $request->language, 'tag_id' => $tag->id]);
         return $tag;
     }

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Blog;
-use App\Post;
+use App\Models\Blacklist;
+use App\Models\Blog;
+use App\Models\Post;
 use App\Http\Requests\PostRequest;
 
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -18,8 +21,8 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(PostRequest $request)
     {
@@ -54,8 +57,8 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Blacklist $blacklist
-     * @return \Illuminate\Http\Response
+     * @param Blacklist $blacklist
+     * @return Response
      */
     public function destroy(Post $post)
     {

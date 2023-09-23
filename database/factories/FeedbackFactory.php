@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Feedback;
-use App\User;
+use App\Models\Feedback;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class FeedbackFactory extends Factory

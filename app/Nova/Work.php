@@ -2,11 +2,18 @@
 
 namespace App\Nova;
 
+use App\Enums\WorkStatuses;
 use App\Nova\Actions\ClearCacheByTag;
+use App\Nova\Actions\PublishWork;
+use App\Nova\Actions\TranslateWork;
+use App\Nova\Actions\ValidateWork;
 use App\Nova\Filters\WorkPublished;
+use App\Nova\Filters\WorkStatus;
 use App\Nova\Metrics\WorksPerDay;
-use App\Product;
-use Illuminate\Http\Request;
+use App\Models\Product;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Http\Requests\NovaRequest as Request;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
@@ -24,9 +31,9 @@ class Work extends Resource
      *
      * @var string
      */
-    public static $model = \App\Work::class;
+    public static $model = \App\Models\Work::class;
 
-    public static $with = ['titles', 'image'];
+    public static $with = ['titles', 'preview', 'preview.variants'];
 
     public function title()
     {
@@ -53,7 +60,7 @@ class Work extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return array
      */
     public function fields(Request $request)
@@ -66,12 +73,12 @@ class Work extends Resource
         };
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Image::make('image')->preview(function ($value, $disk) {
-                return $value ? $value->url : '';
+            Image::make('preview')->preview(function ($value, $disk) {
+                return $value ? $value->src : '';
             })->thumbnail(function ($value, $disk) {
-                return $value ? $value->url : '';
+                return $value ? $value->src : '';
             }),
-            HasMany::make('WorkTitles', 'titles'),
+
             Text::make('Titles', function () use ($getTitle) {
                 $titles = [];
                 foreach (['ru', 'en', 'uk'] as $lang) {
@@ -81,19 +88,27 @@ class Work extends Resource
                     }
                 }
                 return '<div class="divide-y divide-light-blue-400">' . join("\n", $titles) . '</div>';
-            })->asHtml(),
-            MorphMany::make('Owners', 'owners', User::class),
-            HasMany::make('Blacklists', 'blacklist', User::class),
+            })->asHtml()->hideFromDetail(),
             Number::make('rating')->sortable(),
             Number::make('comments')->sortable(),
             Number::make('price')->sortable(),
+            Text::make('status', fn (\App\Models\Work $work) => $work->status->name),
             DateTime::make('Published', 'published_at')->readonly()->sortable(),
-            Boolean::make('show_en')->hideFromIndex(),
-            Boolean::make('show_ru')->hideFromIndex(),
-            Boolean::make('show_uk')->hideFromIndex(),
-            Text::make('created_at')->hideFromIndex(),
-            Text::make('updated_at')->hideFromIndex(),
-            Text::make('published_at')->hideFromIndex(),
+        ];
+    }
+
+    public function fieldsForDetail(NovaRequest $request)
+    {
+        return [
+            ...$this->fields($request),
+            DateTime::make('created_at'),
+            DateTime::make('updated_at'),
+            DateTime::make('published_at'),
+            HasMany::make('WorkTitles', 'titles'),
+            MorphMany::make('Owners', 'owners', User::class),
+            BelongsTo::make('Preview', 'preview', \App\Nova\Image::class),
+            BelongsTo::make('Full', 'full', \App\Nova\Image::class),
+            HasMany::make('WorkLogs', 'logs'),
         ];
     }
 
@@ -101,29 +116,29 @@ class Work extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return array
      */
     public function cards(Request $request)
     {
-        return [new WorksPerDay()];
+        return [new WorksPerDay(), new \App\Nova\Metrics\WorkStatus()];
     }
 
     /**
      * Get the filters available for the resource.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return array
      */
     public function filters(Request $request)
     {
-        return [new WorkPublished()];
+        return [new WorkStatus()];
     }
 
     /**
      * Get the lenses available for the resource.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -134,11 +149,11 @@ class Work extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return array
      */
     public function actions(Request $request)
     {
-        return [(new ClearCacheByTag(['work', 'gallery']))->standalone()];
+        return [(new ClearCacheByTag(['work', 'gallery']))->standalone(), new TranslateWork(), new ValidateWork(), new PublishWork()];
     }
 }

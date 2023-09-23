@@ -14,7 +14,7 @@ class AddPublishedAtToWorksTableRemoveDraft extends Migration
     public function up()
     {
         Schema::table('works', function (Blueprint $table) {
-            $table->timestamp('published_at',0)->nullable()->after('updated_at');
+            $table->timestamp('published_at')->nullable()->after('updated_at');
         });
         Schema::table('works', function (Blueprint $table) {
             $table->dropColumn('draft');

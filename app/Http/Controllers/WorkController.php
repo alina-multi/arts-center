@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Jobs\TranslateWork;
 use App\Rules\OwnsWork;
-use App\Work;
+use App\Models\Work;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Tag;
+use App\Models\Tag;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\UnauthorizedException;
 
@@ -17,8 +18,8 @@ class WorkController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -41,7 +42,7 @@ class WorkController extends Controller
      *         )
      *         )
      *     )
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($language, $id)
     {
@@ -115,9 +116,9 @@ class WorkController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Work $work
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Work $work
+     * @return Response
      */
     public function update(Request $request, Work $work)
     {
@@ -155,8 +156,8 @@ class WorkController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Work $work
-     * @return \Illuminate\Http\Response
+     * @param Work $work
+     * @return Response
      */
     public function destroy(Work $work)
     {

@@ -84,7 +84,7 @@ return [
     */
 
     'waits' => [
-        'redis:default' => 60,
+        'redis:default' => 600,
     ],
 
     /*
@@ -151,7 +151,7 @@ return [
     |
     */
 
-    'memory_limit' => 64,
+    'memory_limit' => 128,
 
     /*
     |--------------------------------------------------------------------------
@@ -169,7 +169,7 @@ return [
             'connection' => 'redis',
             'queue' => ['high', 'default', 'low'],
             'balance' => 'auto',
-            'maxProcesses' => 5,
+            'maxProcesses' => env('HORIZON_MAX_PROCESSES', 10),
             'tries' => 1,
             'nice' => 0,
         ],
@@ -178,15 +178,15 @@ return [
     'environments' => [
         'production' => [
             'supervisor-1' => [
-                'maxProcesses' => 5,
                 'balanceMaxShift' => 1,
                 'balanceCooldown' => 3,
+                'timeout' => 120,
             ],
         ],
 
         'local' => [
             'supervisor-1' => [
-                'maxProcesses' => 10,
+                'maxProcesses' => 5,
             ],
         ],
     ],

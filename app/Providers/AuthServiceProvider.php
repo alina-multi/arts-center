@@ -2,31 +2,35 @@
 
 namespace App\Providers;
 
-use App\Blog;
-use App\Policies\MultipeOwnersPolicy;
-use App\Work;
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Models\Work;
+use App\Models\Blog;
+use App\Policies\MultipleOwnersPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
     /**
      * The policy mappings for the application.
      *
-     * @var array
+     * @var array<class-string, class-string>
      */
     protected $policies = [
-        Blog::class => MultipeOwnersPolicy::class,
-        Work::class => MultipeOwnersPolicy::class
+        Blog::class => MultipleOwnersPolicy::class,
+        Work::class => MultipleOwnersPolicy::class
     ];
 
     /**
      * Register any authentication / authorization services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->registerPolicies();
+
+        ResetPassword::createUrlUsing(function (object $notifiable, string $token) {
+            return config('app.frontend_url')."/password-reset/$token?email={$notifiable->getEmailForPasswordReset()}";
+        });
+
         //
     }
 }

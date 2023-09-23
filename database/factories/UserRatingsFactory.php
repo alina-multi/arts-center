@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\UserRatings;
+use App\Models\UserRatings;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\WithFaker;
 

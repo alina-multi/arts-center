@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Comment;
-use App\Feed;
-use App\User;
-use App\Work;
+use App\Models\Comment;
+use App\Models\Feed;
+use App\Models\User;
+use App\Models\Work;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class FeedFactory extends Factory

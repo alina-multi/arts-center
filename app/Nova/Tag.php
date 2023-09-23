@@ -4,7 +4,7 @@ namespace App\Nova;
 
 use App\Nova\Metrics\NewUsers;
 use App\Nova\Metrics\UsersPerDay;
-use Illuminate\Http\Request;
+use Laravel\Nova\Http\Requests\NovaRequest as Request;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\HasManyThrough;
@@ -22,7 +22,7 @@ class Tag extends Resource
      *
      * @var string
      */
-    public static $model = \App\Tag::class;
+    public static $model = \App\Models\Tag::class;
 
     public static $with = ['titles'];
 
@@ -52,7 +52,7 @@ class Tag extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function fields(Request $request)
@@ -66,7 +66,7 @@ class Tag extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -77,7 +77,7 @@ class Tag extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -88,7 +88,7 @@ class Tag extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -99,7 +99,7 @@ class Tag extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function actions(Request $request)

@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
-use App\WorkBlock;
+use App\Models\WorkBlock;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class WorkBlockFactory extends Factory
 {
+    private static $order = 1;
     /**
      * The name of the factory's corresponding model.
      *
@@ -22,7 +23,8 @@ class WorkBlockFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'order' => self::$order++,
+            'data' => []
         ];
     }
 }

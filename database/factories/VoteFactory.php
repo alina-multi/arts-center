@@ -2,20 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Vote;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
+use App\Models\User;
 
 class VoteFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = Vote::class;
-
     /**
      * Define the model's default state.
      *
@@ -26,7 +17,7 @@ class VoteFactory extends Factory
         return [
             'vote' => 1,
             'ip' => '127.0.0.1',
-            'user_id' => Auth::id()
+            'user_id' => User::all()->random()->id,
         ];
     }
 }

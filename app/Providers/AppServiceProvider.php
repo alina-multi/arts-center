@@ -2,12 +2,19 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Response;
+use App\Models\Comment;
+use App\Models\Feedback;
+use App\Models\Post;
+use App\Models\Tag;
+use App\Models\User;
+use App\Models\Work;
+use App\Models\WorkBlock;
+use App\Nova\Blog;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Laravel\Telescope\Telescope;
+use Illuminate\Validation\Rules\Password;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,15 +41,18 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
+        Password::defaults(fn () => Password::min(8)->mixedCase()->numbers());
+
         Relation::morphMap(
             [
-                'work' => 'App\Work',
-                'comment' => 'App\Comment',
-                'user' => 'App\User',
-                'feedback' => 'App\Feedback',
-                'tag' => 'App\Tag',
-                'blog' => 'App\Blog',
-                'post' => 'App\Post',
+                'work' => Work::class,
+                'comment' => Comment::class,
+                'user' => User::class,
+                'feedback' => Feedback::class,
+                'tag' => Tag::class,
+                'blog' => Blog::class,
+                'post' => Post::class,
+                'work_block' => WorkBlock::class,
             ]
         );
     }

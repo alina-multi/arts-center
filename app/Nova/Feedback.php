@@ -4,7 +4,7 @@ namespace App\Nova;
 
 use App\Nova\Actions\ApproveRecord;
 use Ek0519\Quilljs\Quilljs;
-use Illuminate\Http\Request;
+use Laravel\Nova\Http\Requests\NovaRequest as Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Code;
@@ -23,7 +23,7 @@ class Feedback extends Resource
      *
      * @var string
      */
-    public static $model = \App\Feedback::class;
+    public static $model = \App\Models\Feedback::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -46,7 +46,7 @@ class Feedback extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function fields(Request $request)
@@ -55,8 +55,8 @@ class Feedback extends Resource
             ID::make(__('ID'), 'id')->sortable(),
             BelongsTo::make('user'),
             Text::make('title')->required(),
-            Select::make('type')->options(array_combine(array_keys(\App\Feedback::TYPE_CATEGORY), array_keys(\App\Feedback::TYPE_CATEGORY)))->required(),
-            Select::make('category')->options(array_combine(\App\Feedback::TYPE_CATEGORY['complaint'], \App\Feedback::TYPE_CATEGORY['complaint'])),
+            Select::make('type')->options(array_combine(array_keys(\App\Models\Feedback::TYPE_CATEGORY), array_keys(\App\Models\Feedback::TYPE_CATEGORY)))->required(),
+            Select::make('category')->options(array_combine(\App\Models\Feedback::TYPE_CATEGORY['complaint'], \App\Models\Feedback::TYPE_CATEGORY['complaint'])),
             Code::make('body')->json()->required(),
             Select::make('language')->options(config('app.languages'))->required(),
             Hidden::make('user_id')->default(Auth::id()),
@@ -70,7 +70,7 @@ class Feedback extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -81,7 +81,7 @@ class Feedback extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -92,7 +92,7 @@ class Feedback extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -103,7 +103,7 @@ class Feedback extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function actions(Request $request)

@@ -2,7 +2,9 @@
 
 namespace App\Jobs;
 
-use App\WorkTitle;
+use App\Events\WorkTranslated;
+use App\Models\Work;
+use App\Models\WorkTitle;
 use Google\Cloud\Translate\V2\TranslateClient;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -15,16 +17,13 @@ class TranslateWork implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $work;
-
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($work)
+    public function __construct(public Work $work, public $sourceLanguage = '')
     {
-        $this->work = $work;
     }
 
     /**
@@ -34,35 +33,39 @@ class TranslateWork implements ShouldQueue
      */
     public function handle()
     {
-        $translate = new TranslateClient(['keyFilePath' => '/var/www/config/google.json']);
-        $languages = ['ru', 'en', 'uk'];
-        $alreadyTranslated = [];
-        foreach ($this->work->titles as $title) {
-            $alreadyTranslated[] = $title->language;
-            // We don't really have a preference which one to use so just the last one
-            $lastTitle = $title->title;
-        }
-        if ($lastTitle) {
+        $translate = new TranslateClient(['keyFile' => json_decode(env('GOOGLE'), true)]);
+        $languages = ['en', 'uk'];
+        $alreadyTranslated = $this->work->titles->pluck('language')->toArray();
+        // Get selected language or first one
+        $source = $this->sourceLanguage
+            ? $this->work->titles->where('language', $this->sourceLanguage)->first()
+            : $this->work->titles->first();
+        if ($source) {
             $missingLanguages = array_diff($languages, $alreadyTranslated);
             if (sizeof($missingLanguages)) {
                 foreach ($missingLanguages as $targetLanguage) {
-                    $translated = $translate->translate($lastTitle, [
+                    $condition = [
+                        'language' => $targetLanguage,
+                        'work_id' => $this->work->id
+                    ];
+                    $translated = [];
+                    $translated['title'] = $translate->translate($source->title, [
                         'target' => $targetLanguage,
-                    ]);
+                    ])['text'];
+                    if ($source->description) {
+                        $translated['description'] = $translate->translate($source->description, [
+                            'target' => $targetLanguage,
+                        ])['text'];
+                    }
                     if ($translated) {
-                        $newTitle = WorkTitle::create([
-                                              'language' => $targetLanguage,
-                                              'title' => mb_substr(htmlspecialchars_decode($translated['text']), 0, 30),
-                                              'work_id' => $this->work->id
-                                          ]);
-                        if ($newTitle) {
-                            $field = 'show_' . $targetLanguage;
-                            $this->work->$field = 1;
-                        }
+                        WorkTitle::updateOrCreate($condition, $translated);
+                        $field = 'show_' . $targetLanguage;
+                        $this->work->$field = 1;
                     }
                 }
             }
             $this->work->save();
+            WorkTranslated::dispatch($this->work);
         }
     }
 }

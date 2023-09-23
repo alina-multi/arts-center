@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Edit;
 
 use App\Http\Controllers\Controller;
 use App\Rules\OwnsWork;
-use App\Work;
+use App\Models\Work;
 
 class GetEditController extends Controller
 {
@@ -14,6 +14,6 @@ class GetEditController extends Controller
         if (!$ownsWork->passes('work_id', $id)) {
             abort(401);
         }
-        return Work::where('id', $id)->with('blocks', 'blocks.images', 'titles', 'image')->firstOrFail()->makeVisible('titles');
+        return Work::where('id', $id)->with('blocks', 'blocks.images', 'titles', 'preview')->firstOrFail()->makeVisible('titles');
     }
 }

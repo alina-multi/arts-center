@@ -2,11 +2,11 @@
 
 namespace App\Helpers;
 
-use App\Image;
+use App\Events\ImageCreated;
+use App\Models\Image;
 use GPBMetadata\Google\Api\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\File;
+use Intervention\Image\Facades\Image as ImageManipulator;
 
 class ImageHelper
 {
@@ -21,13 +21,13 @@ class ImageHelper
             "folder" => $folder,
             "extension" => $extension
         ]);
-        $name .= '-'.$image->id; //Insert Id as part of name
+        $name .= '-' . $image->id; //Insert Id as part of name
         //Remove dash if string starts with it
         $name = ltrim($name, '-');
-        // And this is silly but we need to save it again :(
+        // And this is silly, but we need to save it again :(
         $image->name = $name;
         $image->save();
-        $imageFile = Storage::disk('s3')->put($folder . '/' . $name. '.' . $extension, $file, 'public');
+        $imageFile = Storage::disk('s3')->put($folder . '/' . $name . '.' . $extension, $file, 'public');
 
         // If upload failed, delete the image from DB
         if (!$imageFile) {
@@ -35,5 +35,32 @@ class ImageHelper
         } else {
             return $image;
         }
+    }
+
+    static function createFromUploaded($tmpPath, $folder, $userId, $workId = null)
+    {
+        if (!Storage::exists($tmpPath)) {
+            \Sentry\captureMessage("File that should have bean uploaded by SvelteKit $tmpPath, is not found in S3");
+            return;
+        }
+        $image = Image::create([
+            "user_id" => $userId,
+            "folder" => $folder,
+            "work_id" => $workId,
+            "name" => ''
+        ]);
+        $imageObj = ImageManipulator::make(Storage::get($tmpPath));
+        list (, $extension) = explode('/', $imageObj->mime());
+        $variant = $image->variants()->create([
+            'extension' => $extension,
+            'width' => $imageObj->width(),
+            'height' => $imageObj->height(),
+            'size' => Storage::size($tmpPath),
+            'original' => true
+        ]);
+        $newLoc="$folder/$variant->file";
+        Storage::move($tmpPath, "$folder/$variant->file");
+        ImageCreated::dispatch($image);
+        return $image;
     }
 }

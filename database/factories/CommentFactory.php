@@ -2,7 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Comment;
+use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CommentFactory extends Factory
@@ -24,8 +25,8 @@ class CommentFactory extends Factory
         return [
             'commentable_id' => 1,
             'commentable_type' => 'work',
-            'user_id' => 1,
-            'body' => ['delta'=>[]]
+            'user_id' => User::inRandomOrder()->first()->id,
+            'text'=> $this->faker->realText($maxNbChars = 300, $indexSize = 2)
         ];
     }
 }

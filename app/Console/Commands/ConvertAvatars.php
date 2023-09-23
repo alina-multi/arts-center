@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Helpers\ImageHelper;
 use App\Jobs\DownloadAndSaveImage;
 use Illuminate\Console\Command;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Str;
 
 class ConvertAvatars extends Command

@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Image;
+use App\Models\Image;
 use Illuminate\Console\Command;
 
 class ConvertImage extends Command

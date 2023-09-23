@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Gallery\{DraftTrait, IndexTrait, RelatedTrait, TagTrait, UserTrait};
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class GalleryController extends Controller
 {
@@ -15,7 +16,7 @@ class GalleryController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($language, $id, Request $request)
     {

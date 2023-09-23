@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -78,7 +78,7 @@ class ConvertUsers extends Command
                     ]);
                     User::reguard();
 
-                    array_push($GLOBALS['emailsAllreadyInDb'],$oldUser['email']);
+                    $GLOBALS['emailsAllreadyInDb'][] = $oldUser['email'];
                 }
             });
     }

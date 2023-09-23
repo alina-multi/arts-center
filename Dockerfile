@@ -1,58 +1,23 @@
-FROM php:8.1-fpm-alpine
+FROM ghcr.io/roadrunner-server/roadrunner:latest AS roadrunner
+FROM composer AS composerStage
+FROM php:8.2-alpine
 
-# Install dev dependencies
-RUN apk add --no-cache --virtual .build-deps \
-    $PHPIZE_DEPS \
-    curl-dev \
-    libtool \
-    libxml2-dev
-
-# Install production dependencies
-RUN apk add --no-cache \
-    mysql-client \
-    zlib-dev \
-    libzip-dev \
-    libpng-dev \
-    libjpeg-turbo \
-    libjpeg-turbo-dev
-
-RUN docker-php-ext-configure zip && docker-php-ext-configure gd --with-jpeg
-
-RUN docker-php-ext-install \
-    curl \
-    pdo \
-    pdo_mysql \
-    pcntl \
-    gd \
-    opcache
-
-RUN pecl install redis && docker-php-ext-enable redis
-
-# Install composer
-ENV COMPOSER_HOME /composer
-ENV PATH ./vendor/bin:/composer/vendor/bin:$PATH
-ENV COMPOSER_ALLOW_SUPERUSER 1
-RUN curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer
-
-# Cleanup dev dependencies
-RUN apk del -f .build-deps
-
-ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS="0"
-
-# Override defaults
-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-COPY php.ini /usr/local/etc/php/conf.d/php.ini
-COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
-COPY www.conf /usr/local/etc/php-fpm.d/www.conf
+COPY --from=roadrunner /usr/bin/rr /usr/local/bin/rr
+COPY --from=composerStage /usr/bin/composer /usr/bin/composer
 
 # Setup working directory
 WORKDIR /var/www
+
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/install-php-extensions && \
+    install-php-extensions pcntl bcmath zip gd sockets redis pdo_mysql
 
 #So we have a nice cache of vendor
 COPY composer.lock /var/www
 COPY composer.json /var/www
 COPY nova-components /var/www/nova-components
-RUN composer install --no-scripts --no-autoloader
+RUN composer install --no-scripts --no-autoloader --no-dev --prefer-dist
 
 #Now copy files that invalidate cache
 COPY . /var/www
@@ -63,5 +28,10 @@ RUN chmod 0777 -R /var/www/storage/
 RUN composer dump-autoload --optimize
 
 COPY entrypoint.sh /usr/local/bin/
+COPY .env.production .env
 ENTRYPOINT ["entrypoint.sh"]
-CMD ["php-fpm"]
+EXPOSE 8000
+
+ENV LOG_CHANNEL=stderr
+
+CMD ["php", "artisan", "octane:start", "--host=0.0.0.0"]

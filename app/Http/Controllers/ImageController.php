@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
-class ImageController extends \App\Http\Controllers\Controller
+class ImageController extends Controller
 {
     public function __invoke(Request $request)
     {
