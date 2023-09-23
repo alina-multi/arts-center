@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\FeedbackCategory;
+use App\Enums\FeedbackType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Nova\Actions\Actionable;
@@ -21,28 +23,11 @@ class Feedback extends Model
         'feedbackable_id',
         'approved_at'
     ];
-    const TYPE_CATEGORY = [
-        'idea' => [
-
-        ],
-        'complaint' => [
-            'porn',
-            'insult',
-            'fraud',
-            'spam',
-            'politics',
-            'copyright',
-            'violence',
-            'other'
-        ],
-        'feedback' => [
-
-        ]
-    ];
 
     protected $casts = [
-        'body' => 'array',
-        'approved_at'=> 'datetime'
+        'approved_at'=> 'datetime',
+        'type'=> FeedbackType::class,
+        'category' => FeedbackCategory::class
     ];
 
     public function user()
