@@ -11,7 +11,8 @@ use App\Http\Controllers\Api2\{
     FollowController,
     BlacklistController,
     FavoriteController,
-    FavoriteFolderController
+    FavoriteFolderController,
+    FeedbackController
 };
 
 /*
@@ -46,6 +47,7 @@ Route::middleware(['auth:sanctum', LocaleHeader::class])->group(function () {
     Route::post('favorite', FavoriteController::class. '@store');
     Route::delete('favorite', FavoriteController::class. '@destroy');
     Route::apiResource('favorite-folder', FavoriteFolderController::class);
+    Route::post('feedback', FeedbackController::class. '@store');
 });
 
 Route::middleware(LocaleHeader::class)->get('health', function () {
