@@ -13,13 +13,15 @@
 </script>
 
 <div class="hidden xl:flex items-center w-full h-full gap-6">
-	<div class="flex items-center gap-6">
+	<div class="flex items-center gap-6 flex-none">
 		<FooterDropdown />
 		<Logo />
+		<img src="/flag_ua.jpg" alt="ua" class="h-4 mt-0.5" />
 	</div>
 	<TopNavLink exact href={localePath('/')}>{$t('global.menu.gallery')}</TopNavLink>
 	<TopNavLink href={localePath('/users')}>{$t('global.menu.users')}</TopNavLink>
 	<SearchInput />
+
 	<AddWorkButton />
 	{#if user}
 		<UserDropdown {user} />

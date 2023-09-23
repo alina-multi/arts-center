@@ -15,6 +15,7 @@
 	<div class="flex items-center gap-3 text-black">
 		<SideBarNavigation />
 		<Logo />
+		<img src="/flag_ua.jpg" alt="ua" class="h-4 mt-0.5" />
 	</div>
 	<div class="hidden lg:flex w-96"><SearchInput /></div>
 	<div class="flex items-center gap-3 md:gap-6">
