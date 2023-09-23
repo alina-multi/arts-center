@@ -10,6 +10,7 @@
 	import NoResultsStub from './NoResultsStub.svelte';
 	import {fetchData} from '$lib/helpers/fetchData';
 
+
 	export let comments, commentable_id: string;
 	commentable_id = commentable_id?.toString();
 	const currentUser = $page.data.currentUser;
@@ -51,7 +52,7 @@
 	}
 </script>
 
-<div>
+<div class=" {comments.length > 0 || currentUser ? " md:border border-t-transparent dark:border-t-transparent md:px-6 pb-6 gap-6 md:rounded-b-sm dark:border-zinc-800": "" }  flex flex-col  ">
 	<h3 class="sr-only">Comments</h3>
 	{#if currentUser} <CommentInput onSubmit={addNewComment} bind:value /> {/if}
 	{#if comments.length > 0}
