@@ -22,7 +22,7 @@
 
 	function redirectToSearchPage(searchable: string) {
 		open = false;
-		goto(`/search/${searchable}/${value}`, {
+		goto(`/search/${searchable}/${searchValue}`, {
 			replaceState: true
 		}).then(() => {
 			location.reload();
