@@ -82,7 +82,7 @@
 	}
 </script>
 
-<div class="flex bg-gray-50 shadow rounded-sm px-3  py-1">
+<div class="flex border border-l-transparent rounded-sm px-3 -ml-4 py-1">
 	<button
 		type="button"
 		on:click={isBookmarked ? remove : () => (open = true)}
