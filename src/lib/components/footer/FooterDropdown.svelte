@@ -5,7 +5,7 @@
 	import Dropdown from '../atoms/Dropdown.svelte';
 </script>
 
-<Dropdown style={'z-50 mt-6 w-72 min-w-max  left-0 text-sm'}>
+<Dropdown style={'z-50 mt-5 w-72 min-w-max  left-0 text-sm'}>
 	<div slot="button">
 		<Icon src={Bars4} class="w-8 h-8 " />
 	</div>

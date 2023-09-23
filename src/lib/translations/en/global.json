@@ -66,11 +66,11 @@
 		"tags": "Tags"
 	},
 	"footer": {
-		"about": "About",
+		"about": "ABOUT",
 		"blog": "Blog",
 		"contacts": "Contacts",
 		"privacy": "Privacy policy",
-		"subscriptions": "Subscriptions",
+		"subscriptions": "SUBSCRIPTION",
 		"terms": "Terms and conditions"
 	},
 	"login": {

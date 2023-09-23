@@ -54,6 +54,6 @@
 
 <slot />
 
-{#if !$navigationIsDelayed}
+{#if $navigationIsDelayed}
 	<LoaderLayout />
 {/if}
