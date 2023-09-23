@@ -2,7 +2,7 @@ export function slug(text: string) {
 	return text
 		.toLowerCase()
 		.replace(/\s/g, '_')
-		.replace(/[^\w-]+/g, '');
+		.replace(/[^\p{L}]+/ug,'');
 }
 
 export function unslug(text: string) {
