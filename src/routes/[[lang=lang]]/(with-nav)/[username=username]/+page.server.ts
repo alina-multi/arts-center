@@ -11,6 +11,8 @@ export const load = (async ({ parent, params }) => {
 		async () => {
 			return {
 				gallery: await worksPreviewMap(await userQuery(user.id, 'all', 1))
-			}
-		}, 5);
+			};
+		},
+		5
+	);
 }) satisfies PageServerLoad;
