@@ -13,7 +13,5 @@ Disallow: /
 `;
 
 export async function GET() {
-	return new Response(PUBLIC_ENV === 'production'
-		? robots_prod
-		: robots_other);
+	return new Response(PUBLIC_ENV === 'production' ? robots_prod : robots_other);
 }

@@ -4,7 +4,9 @@
 	import Dropdown from '../Dropdown.svelte';
 	export let work,
 		isMy = false,
-		type: 'vertical' | 'horizontal' = 'vertical';
+		type: 'vertical' | 'horizontal' = 'vertical'
+
+		
 </script>
 
 {#if isMy && type === 'vertical'}
