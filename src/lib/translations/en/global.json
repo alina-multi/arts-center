@@ -131,6 +131,18 @@
 		"stub_nothing": "No results found using that search term.",
 		"view_profile": "View profile"
 	},
+	"seo": {
+		"description": {
+			"index": "Helping the other 99% of professional artists to achieve financial freedom."
+		},
+		"title": {
+			"gallery": "{{order}} {{tag}} gallery - ARTS CENTER",
+			"index": "ARTS CENTER - A modern home for traditional art",
+			"user": "{{name}} artist gallery - ARTS CENTER",
+			"users": "{{order}} artists in category: {{category}} from: {{country}} page: {{page}} - ARTS CENTER",
+			"work": "{{title}} by {{name}} - ARTS CENTER"
+		}
+	},
 	"subscription": {
 		"annual_membership": "Annual membership",
 		"benefit_1": "A premium account that will set you apart from other users",

@@ -131,6 +131,18 @@
 		"stub_nothing": "За цим пошуковим терміном не знайдено результатів.",
 		"view_profile": "Переглянути профіль"
 	},
+	"seo": {
+		"description": {
+			"index": "Допомагаємо іншим 99% професійних художників досягти фінансової свободи."
+		},
+		"title": {
+			"gallery": "{{order}} {{tag}} галерея – ARTS CENTER",
+			"index": "ARTS CENTER - Сучасний дім для традиційного мистецтва",
+			"user": "{{name}} галерея художника – ARTS CENTER",
+			"users": "{{order}} митці у категорії: {{category}} з: {{country}} сторінка: {{page}} - ARTS CENTER",
+			"work": "{{title}} від {{name}} – ARTS CENTER"
+		}
+	},
 	"subscription": {
 		"annual_membership": "Річна підписка",
 		"benefit_1": "Преміум-акаунт, який виділить вас серед інших користувачів",
