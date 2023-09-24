@@ -15,7 +15,8 @@
 	import BlockButton from '../atoms/buttons/BlockButton.svelte';
 	import ReportButton from '../atoms/buttons/ReportButton.svelte';
 	import { t } from '$lib/translations';
-	import { fetchData } from '$lib/helpers/fetchData';
+	import {  fetchData  } from '$lib/helpers/fetchData';
+	import AuthModal from '$lib/components/atoms/AuthModal.svelte';
 	import ReportModal from '../atoms/ReportModal.svelte';
 
 	export let comment: Comment, commentable_id: string, parentComments: [Comment] | [];
@@ -34,6 +35,7 @@
 	let editing_comment = null;
 	let new_comment_loaded = false;
 	let isDelited = false;
+	let open = false;
 	let reportModalOpen = false;
 
 	if (answer) {
@@ -49,6 +51,7 @@
 
 	function onReply() {
 		if (!currentUser) {
+			open = true;
 			return;
 		}
 		commentsState.showReplyForm(comment);
@@ -180,7 +183,7 @@
 
 		<div
 			class=" {isEditing ? 'hidden ' : ''} 
-				relative prose prose-sm max-w-none border p-3 pb-6 rounded-md bg-gray-50 dark:bg-zinc-900 dark:text-white dark:border-zinc-800 space-y-2"
+				relative prose prose-sm border p-3 pb-6 rounded-md bg-gray-50 dark:bg-zinc-900 dark:text-white dark:border-zinc-800 space-y-2  "
 		>
 			{#if comment.id === editing_comment?.id}
 				<div
@@ -262,4 +265,8 @@
 		feedbackable_type="comment"
 		feedbackable_id={Number(comment_id)}
 	/>
+{/if}
+
+{#if open}
+	<AuthModal bind:open type={$t('global.not_logged_in.reply')} />
 {/if}

@@ -3,6 +3,7 @@
 	import WorkPage from '$lib/components/work/WorkPage.svelte';
 	import { languageFind } from '$lib/translations';
 	import MetaGroups from '$lib/components/MetaGroups.svelte';
+	import {t} from '$lib/translations'
 
 	export let data: PageData;
 
@@ -14,6 +15,6 @@
 	
 </script>
 
-<MetaGroups {title} {description} {author} {image} />
+<MetaGroups title={$t('global.seo.title.work', {name: author, title})} {description} {author} {image} />
 
 <WorkPage {...data} />

@@ -67,11 +67,11 @@
 		"tags": "Tags"
 	},
 	"footer": {
-		"about": "About",
+		"about": "ABOUT",
 		"blog": "Blog",
 		"contacts": "Contacts",
 		"privacy": "Privacy policy",
-		"subscriptions": "Subscriptions",
+		"subscriptions": "SUBSCRIPTION",
 		"terms": "Terms and conditions"
 	},
 	"login": {
@@ -113,7 +113,8 @@
 		"for_work": "Join the community of people who love this work.  Sign in with your email address to follow this work. ",
 		"like": "rate this work",
 		"login_to": "Login to",
-		"sign_in_with_email": "Sign in with email"
+		"sign_in_with_email": "Sign in with email",
+		"reply": "reply"
 	},
 	"search": {
 		"placeholder": "Search",
@@ -131,6 +132,18 @@
 		"stub_at_least": "Please enter at least 2 characters",
 		"stub_nothing": "No results found using that search term.",
 		"view_profile": "View profile"
+	},
+	"seo": {
+		"description": {
+			"index": "Helping the other 99% of professional artists to achieve financial freedom."
+		},
+		"title": {
+			"gallery": "{{order}} {{tag}} gallery - ARTS CENTER",
+			"index": "ARTS CENTER - A modern home for traditional art",
+			"user": "{{name}} artist gallery - ARTS CENTER",
+			"users": "{{order}} artists in category: {{category}} from: {{country}} page: {{page}} - ARTS CENTER",
+			"work": "{{title}} by {{name}} - ARTS CENTER"
+		}
 	},
 	"subscription": {
 		"annual_membership": "Annual membership",

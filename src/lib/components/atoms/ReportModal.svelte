@@ -25,6 +25,7 @@
 	let error = '';
 	$: checked = '';
 	let language = $page.params?.lang || 'en';
+    
 
 	function onChange(e) {
 		checked = e.target.value;
