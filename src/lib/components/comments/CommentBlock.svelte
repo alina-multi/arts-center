@@ -15,12 +15,11 @@
 	import BlockButton from '../atoms/buttons/BlockButton.svelte';
 	import ReportButton from '../atoms/buttons/ReportButton.svelte';
 	import { t } from '$lib/translations';
-	import {fetchData} from '$lib/helpers/fetchData';
+	import { fetchData } from '$lib/helpers/fetchData';
+	import ReportModal from '../atoms/ReportModal.svelte';
 
-	export let comment: Comment,
-		commentable_id: string,
-		parentComments: [Comment] | [];
-		let url = '/api/comment';
+	export let comment: Comment, commentable_id: string, parentComments: [Comment] | [];
+	let url = '/api/comment';
 
 	const isMy = $page.data.work.owners.some((owner: { id: string }) =>
 		handleIsMy($page.data.currentUser, owner.id)
@@ -35,11 +34,11 @@
 	let editing_comment = null;
 	let new_comment_loaded = false;
 	let isDelited = false;
+	let reportModalOpen = false;
 
 	if (answer) {
 		answer = null;
 	}
-
 
 	function isEditable(): boolean {
 		const now = new Date();
@@ -98,10 +97,10 @@
 			return;
 		}
 
-		const response  = await fetchData('PUT', `${url}/${comment_id}`, {
+		const response = await fetchData('PUT', `${url}/${comment_id}`, {
 			text: value
 		});
-	
+
 		toast.promise(convertFetch(response), commentMassage.edit);
 
 		if (!response.ok) {
@@ -115,7 +114,6 @@
 	}
 
 	async function deleteComment(comment_id: string) {
-	
 		const response = await fetchData('DELETE', `${url}/${comment_id}`, {});
 		toast.dismiss();
 		toast.promise(convertFetch(response), commentMassage.delete);
@@ -174,7 +172,7 @@
 							bind:entity={parentComments}
 							commentID={comment_id}
 						/>
-						<ReportButton />
+						<ReportButton bind:open={reportModalOpen} />
 					</div>
 				</EllipsisButton>
 			{/if}
@@ -246,20 +244,10 @@
 									? 'opacity-100'
 									: 'opacity-50'}"
 							>
-								<svelte:self
-									comment={reply}
-									{commentable_id}
-									bind:parentComments={answers}
-									
-								/>
+								<svelte:self comment={reply} {commentable_id} bind:parentComments={answers} />
 							</div>
 						{:else}
-							<svelte:self
-								comment={reply}
-								{commentable_id}
-								bind:parentComments={answers}
-							
-							/>
+							<svelte:self comment={reply} {commentable_id} bind:parentComments={answers} />
 						{/if}
 					{/each}
 				</div>
@@ -267,3 +255,11 @@
 		{/if}
 	</div>
 </div>
+
+{#if reportModalOpen}
+	<ReportModal
+		bind:open={reportModalOpen}
+		feedbackable_type="comment"
+		feedbackable_id={Number(comment_id)}
+	/>
+{/if}
