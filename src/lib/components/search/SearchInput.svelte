@@ -10,8 +10,6 @@
 	import { t } from '$lib/translations';
 	import { slug } from '$lib/helpers/url';
 
-
-
 	let value = '';
 	let totalUserHits = 0,
 		totalWorksHits = 0,
@@ -22,14 +20,26 @@
 	$: searchValue = '';
 	const id = newUniqueId();
 
+	function redirectToSearchPage(searchable: string) {
+		open = false;
+		goto(`/search/${searchable}/${searchValue}`, {
+			replaceState: true
+		}).then(() => {
+			location.reload();
+		});
+	}
+
 	function onEnter(e: KeyboardEvent) {
-		if (e.key === 'Enter' && totalWorksHits > 20) {
-			open = false;
-			goto(`/search/works/${value}`, {
-				replaceState: true
-			}).then(() => {
-				location.reload();
-			});
+		if (e.key === 'Enter') {
+			if (totalUserHits > 0) {
+				redirectToSearchPage('users');
+				return;
+			}
+
+			if (totalWorksHits > 0) {
+				redirectToSearchPage('works');
+				return;
+			}
 		}
 	}
 
@@ -38,7 +48,7 @@
 		searchValue = value;
 		if (searchValue.length < 2) return;
 
-		searchValue = slug(searchValue)
+		searchValue = slug(searchValue);
 
 		loading = true;
 		doSearch(searchValue);
@@ -75,7 +85,7 @@
 			<Icon src={MagnifyingGlass} class="text-zinc-400  h-5 w-5" />
 		</div>
 		{#if loading && value.length > 0}
-			<div class="absolute inset-y-0 right-0  z-50 pr-8 py-1">
+			<div class="absolute inset-y-0 right-0 z-50 pr-8 py-1">
 				<div class="w-6 h-6"><Loader /></div>
 			</div>
 		{/if}
@@ -91,6 +101,13 @@
 		{/if}
 	</div>
 
-
-	<SearchBox bind:open {users} value={searchValue} {totalUserHits} {totalWorksHits} {works} {loading}/>
+	<SearchBox
+		bind:open
+		{users}
+		value={searchValue}
+		{totalUserHits}
+		{totalWorksHits}
+		{works}
+		{loading}
+	/>
 </div>
