@@ -5,3 +5,30 @@
 body {
 	@apply bg-white dark:bg-black text-black dark:text-gray-100;
 }
+
+* {
+	scrollbar-color: initial !important;
+	scrollbar-width: initial !important;
+}
+*::-webkit-scrollbar {
+	width: 8px;
+}
+*::-webkit-scrollbar-button {
+	all: initial !important;
+}
+*::-webkit-scrollbar-track {
+	all: initial !important;
+}
+*::-webkit-scrollbar-track-piece {
+	all: initial !important;
+}
+*::-webkit-scrollbar-thumb {
+	background: #a1a1aa;
+	border-radius: 10px;
+}
+*::-webkit-scrollbar-corner {
+	all: initial !important;
+}
+*::-webkit-resizer {
+	all: initial !important;
+}

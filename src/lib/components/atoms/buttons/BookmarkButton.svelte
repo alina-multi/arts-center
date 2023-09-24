@@ -82,7 +82,7 @@
 	}
 </script>
 
-<div class="flex">
+<div class="flex border border-l-transparent rounded-sm px-3 -ml-4 py-1 dark:border-zinc-700 dark:bg-zinc-800">
 	<button
 		type="button"
 		on:click={isBookmarked ? remove : () => (open = true)}
@@ -93,14 +93,14 @@
 
 			<Icon
 				src={BookmarkSlash}
-				class="h-7 w-7 text-gray-400 dark:text-zinc-600"
+				class="h-6 w-6 text-gray-400 dark:text-zinc-600"
 				aria-hidden="true"
 			/>
 		{:else}
 			<span class="sr-only">Bookmark</span>
 			<Icon
 				src={Bookmark}
-				class="h-7 w-7   xl:hover:stroke-zinc-500 dark:hover:stroke-zinc-100 dark:hover:fill-zinc-100 fill-white dark:fill-zinc-300 "
+				class="h-6 w-6   xl:hover:stroke-zinc-500 dark:hover:stroke-zinc-100 dark:hover:fill-zinc-100 fill-white dark:fill-zinc-300 "
 				aria-hidden="true"
 			/>
 		{/if}

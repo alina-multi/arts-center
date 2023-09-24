@@ -66,11 +66,11 @@
 		"tags": "Tags"
 	},
 	"footer": {
-		"about": "About",
+		"about": "ABOUT",
 		"blog": "Blog",
 		"contacts": "Contacts",
 		"privacy": "Privacy policy",
-		"subscriptions": "Subscriptions",
+		"subscriptions": "SUBSCRIPTION",
 		"terms": "Terms and conditions"
 	},
 	"login": {
@@ -112,7 +112,8 @@
 		"for_work": "Join the community of people who love this work.  Sign in with your email address to follow this work. ",
 		"like": "rate this work",
 		"login_to": "Login to",
-		"sign_in_with_email": "Sign in with email"
+		"sign_in_with_email": "Sign in with email",
+		"reply": "reply"
 	},
 	"search": {
 		"placeholder": "Search",

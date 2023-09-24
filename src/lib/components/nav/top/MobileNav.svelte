@@ -6,9 +6,10 @@
 </script>
 
 <div class=" flex sm:hidden items-center justify-between w-full">
-	<div class="flex gap-1.5">
+	<div class="flex items-center gap-1.5">
 		<SideBarNavigation />
 		<Logo />
+		<img src="/flag_ua.jpg" alt="ua" class="h-4 mt-0.5" />
 	</div>
 	<div class="flex gap-3">
 		<SearchDialog />

@@ -17,7 +17,7 @@
 		<TagsGroup tags={work.tags} media="hidden lg:flex" />
 
 		{#if !$page.data.currentUser}
-			<div ><AuthStub /></div>
+			<div><AuthStub /></div>
 		{/if}
 
 		<div
@@ -32,16 +32,12 @@
 	<div class="lg:w-4/6">
 		<div class="flex flex-col text-gray-800 dark:text-gray-300">
 			<div class="border py-3 bg-gray-100 dark:bg-zinc-900 dark:border-zinc-800 rounded-t-sm">
-				<span class="font-semibold  px-3 md:px-6">{$t('global.comment.comments')}: {work.comments}</span>
+				<span class="font-semibold px-3 md:px-6"
+					>{$t('global.comment.comments')}: {work.comments}</span
+				>
 			</div>
 
-			<div
-				class="flex flex-col md:border border-t-transparent dark:border-t-transparent md:px-6 pb-6 gap-6 md:rounded-b-sm dark:border-zinc-800 "
-			>
-				
-					<CommentBlocks {comments} commentable_id={work.id} />
-				
-			</div>
+			<CommentBlocks {comments} commentable_id={work.id} />
 		</div>
 	</div>
 
@@ -57,5 +53,3 @@
 		</div>
 	</div>
 </div>
-
-
