@@ -15,8 +15,9 @@
 	import BlockButton from '../atoms/buttons/BlockButton.svelte';
 	import ReportButton from '../atoms/buttons/ReportButton.svelte';
 	import { t } from '$lib/translations';
-	import { fetchData } from '$lib/helpers/fetchData';
+	import {  fetchData  } from '$lib/helpers/fetchData';
 	import AuthModal from '$lib/components/atoms/AuthModal.svelte';
+	import ReportModal from '../atoms/ReportModal.svelte';
 
 	export let comment: Comment, commentable_id: string, parentComments: [Comment] | [];
 	let url = '/api/comment';
@@ -35,6 +36,7 @@
 	let new_comment_loaded = false;
 	let isDelited = false;
 	let open = false;
+	let reportModalOpen = false;
 
 	if (answer) {
 		answer = null;
@@ -173,7 +175,7 @@
 							bind:entity={parentComments}
 							commentID={comment_id}
 						/>
-						<ReportButton />
+						<ReportButton bind:open={reportModalOpen} />
 					</div>
 				</EllipsisButton>
 			{/if}
@@ -256,6 +258,14 @@
 		{/if}
 	</div>
 </div>
+
+{#if reportModalOpen}
+	<ReportModal
+		bind:open={reportModalOpen}
+		feedbackable_type="comment"
+		feedbackable_id={Number(comment_id)}
+	/>
+{/if}
 
 {#if open}
 	<AuthModal bind:open type={$t('global.not_logged_in.reply')} />

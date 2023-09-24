@@ -18,7 +18,8 @@
 		"show": "Show",
 		"show_less": "Show less",
 		"show_more": "Show more",
-		"unblock": "Unblock"
+		"unblock": "Unblock",
+		"send": "Send"
 	},
 	"comment": {
 		"add": {
@@ -167,5 +168,17 @@
 		"like": "Like",
 		"liked_by": "Liked by",
 		"others": "others"
+	},
+	"report": {
+		"title": "Report",
+		"porn": "porn",
+		"insult": "insult",
+		"fraud": "fraud",
+		"spam": "spam",
+		"politics": "politics",
+		"copyright": "copyright",
+		"violence": "violence",
+		"other": "other",
+		"other_placeholder": "Describe problem"
 	}
 }

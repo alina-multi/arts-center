@@ -5,10 +5,13 @@
 	import PriceLabel from '$lib/components/atoms/PriceLabel.svelte';
 	import ReportButton from '$lib/components/atoms/buttons/ReportButton.svelte';
 	import { languageFind } from '$lib/translations';
+	import ReportModal from '$lib/components/atoms/ReportModal.svelte';
+	import type { Work } from '$lib/interfaces/Work';
 
-	export let work;
+	export let work: Work;
 	export let isMy = false;
 	let title = languageFind(work.titles)?.title;
+	let modalOpen = false;
 </script>
 
 <div class=" flex flex-col gap-3 dark:text-gray-400">
@@ -26,7 +29,7 @@
 		<div>
 			<EllipsisButton {work} {isMy} type="vertical">
 				<div slot="description" class="flex flex-col">
-					<ReportButton />
+					<ReportButton bind:open={modalOpen} />
 				</div>
 			</EllipsisButton>
 		</div>
@@ -37,7 +40,10 @@
 			{title}
 		</h1>
 
-
 		<PriceLabel price={work.price} style={'px-3 py-1 '} />
 	</div>
 </div>
+
+{#if modalOpen}
+	<ReportModal bind:open={modalOpen} feedbackable_type="work" feedbackable_id={Number(work.id)} />
+{/if}

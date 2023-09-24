@@ -4,7 +4,7 @@ import { error } from '@sveltejs/kit';
 import { userSelect } from './user';
 import { imageSelect } from '$lib/server/repositories/image';
 import { prisma } from '$lib/server/database/prisma';
-import { locale } from '$lib/translations'
+import { locale } from '$lib/translations';
 
 export function query(
 	where: Prisma.worksWhereInput = {},
@@ -63,7 +63,7 @@ export function indexQuery(page = 1) {
 	);
 }
 
-export async function userQuery(user_id: bigint, tag='all', page = 1) {
+export async function userQuery(user_id: bigint, tag = 'all', page = 1) {
 	let where = {};
 	if (tag !== 'all') {
 		const tagTitle = await titleToId(tag, locale.get());

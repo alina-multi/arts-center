@@ -183,7 +183,7 @@
 						type="submit"
 						class={'bg-blue-500 hover:bg-blue-400 focus-visible:outline-blue-600 flex items-center gap-1'}
 					>
-						Save
+					{$t("global.buttons.save")}
 					</ActionButton>
 				</ButtonsGroup>
 			</form>
