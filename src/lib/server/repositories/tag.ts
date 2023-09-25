@@ -6,8 +6,8 @@ let categoryCache: {
 	count: number | null;
 	titles: {
 		language: string;
-		title: string
-	}[]
+		title: string;
+	}[];
 }[];
 
 let categoryTitleToId = new Map();
@@ -40,11 +40,11 @@ export async function titleToId(title: string, language: string) {
 	if (categoryTitleToId.size === 0) {
 		const categories = await getCategories();
 		categories.forEach((tag) => {
-			tag.titles.forEach((title)=> {
+			tag.titles.forEach((title) => {
 				categoryTitleToId.set(`${title.language}.${title.title}`, tag.id);
-			})
-		})
+			});
+		});
 	}
 	title = unslug(title);
-	return categoryTitleToId.get(`${language}.${title}`)
+	return categoryTitleToId.get(`${language}.${title}`);
 }

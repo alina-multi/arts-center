@@ -4,7 +4,6 @@ import { error } from '@sveltejs/kit';
 import { userSelect } from './user';
 import { imageSelect } from '$lib/server/repositories/image';
 import { prisma } from '$lib/server/database/prisma';
-import { locale } from '$lib/translations';
 
 export function query(
 	where: Prisma.worksWhereInput = {},
@@ -66,13 +65,13 @@ export function indexQuery(page = 1) {
 export async function userQuery(user_id: bigint, tag = 'all', lang = 'en', page = 1) {
 	let where = {};
 	if (tag !== 'all') {
-		const tagTitle = await titleToId(tag, lang);
-		if (!tagTitle) throw error(404, { message: `Tag: ${tag} not found` });
+		const id = await titleToId(tag, lang);
+		if (!id) throw error(404, { message: `Tag: ${tag} not found` });
 		where = {
 			tags: {
 				some: {
 					tag_id: {
-						equals: tagTitle.tag_id
+						equals: id
 					},
 					taggable_type: 'work'
 				}
@@ -117,13 +116,13 @@ export async function userDraftQuery(user_id: bigint, page = 1) {
 export async function filteredQuery(tag: string, lang: string, order = 'popular', page = 1) {
 	let where = {};
 	if (tag !== 'all') {
-		const tagTitle = await titleToId(tag, lang);
-		if (!tagTitle) throw error(404, { message: `Tag: ${tag} not found` });
+		const id = await titleToId(tag, lang);
+		if (!id) throw error(404, { message: `Tag: ${tag} not found` });
 		where = {
 			tags: {
 				some: {
 					tag_id: {
-						equals: tagTitle.tag_id
+						equals: id
 					},
 					taggable_type: 'work'
 				}

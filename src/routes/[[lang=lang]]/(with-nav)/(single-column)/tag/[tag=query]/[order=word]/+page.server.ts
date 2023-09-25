@@ -8,9 +8,10 @@ export const load = (async ({ params, setHeaders }) => {
 	setHeaders({
 		'cache-control': 'max-age=6000'
 	});
+	const lang = locale.get();
 	params = { order: 'popular', tag: 'all', page: 1, ...params };
 	const key = `${params.tag}.${locale.get()}.${params.order}.1`;
-	return cacheGet(
+	return await cacheGet(
 		'gallery',
 		key,
 		async () => {

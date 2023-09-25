@@ -6,7 +6,7 @@ import { locale } from '$lib/translations';
 
 export const load = (async ({ parent, params }) => {
 	const { user } = await parent();
-	const lang= locale.get();
+	const lang = locale.get();
 	return await cacheGet(
 		'gallery',
 		`${params.username}.${params.tag}.${lang}`,

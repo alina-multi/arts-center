@@ -109,13 +109,13 @@ export async function filteredQuery(
 		};
 	}
 	if (category !== 'all') {
-		const tag_id = (await titleToId(category, lang))?.tag_id;
-		if (!tag_id) throw error(404, `Tag not found, ${tag_id}`);
+		const id = await titleToId(category, lang)
+		if (!id) throw error(404, `Tag not found, ${category}`);
 		where = {
 			...where,
 			ratings: {
 				some: {
-					ratable_id: { equals: tag_id },
+					ratable_id: { equals: id },
 					ratable_type: { equals: 'tag' }
 				}
 			}
