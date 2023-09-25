@@ -3,6 +3,8 @@ import { worksPreviewMap } from '$lib/server/mappers/gallery';
 import { filteredQuery } from '$lib/server/repositories/gallery';
 import { locale } from '$lib/translations';
 import { cacheGet } from '$lib/server/database/cache';
+import { getCategories } from '$lib/server/repositories/tag';
+import { tagsMap } from '$lib/server/mappers/tag';
 
 export const load = (async ({ params, setHeaders, url }) => {
 	setHeaders({
@@ -19,6 +21,7 @@ export const load = (async ({ params, setHeaders, url }) => {
 		key,
 		async () => {
 			return {
+				categories: await getCategories().then((categories) => tagsMap(categories)),
 				gallery: await filteredQuery(params.tag, lang, params.order, 1).then((works) =>
 					worksPreviewMap(works)
 				),
