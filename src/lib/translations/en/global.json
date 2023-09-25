@@ -15,11 +15,11 @@
 		"register": "REGISTER",
 		"report": "Report",
 		"save": "Save",
+		"send": "Send",
 		"show": "Show",
 		"show_less": "Show less",
 		"show_more": "Show more",
-		"unblock": "Unblock",
-		"send": "Send"
+		"unblock": "Unblock"
 	},
 	"comment": {
 		"add": {
@@ -105,7 +105,7 @@
 		"my_profile": "My Page"
 	},
 	"not_logged_in": {
-		"bookmark": "save this work to your colllection",
+		"bookmark": "save this work to your collection",
 		"comment": "rate comment of other users",
 		"follow": "follow this artist",
 		"for_comment": "Sign in to comment this work",
@@ -113,8 +113,20 @@
 		"for_work": "Join the community of people who love this work.  Sign in with your email address to follow this work. ",
 		"like": "rate this work",
 		"login_to": "Login to",
-		"sign_in_with_email": "Sign in with email",
-		"reply": "reply"
+		"reply": "reply",
+		"sign_in_with_email": "Sign in with email"
+	},
+	"report": {
+		"copyright": "copyright",
+		"fraud": "fraud",
+		"insult": "insult",
+		"other": "other",
+		"other_placeholder": "Describe problem",
+		"politics": "politics",
+		"porn": "porn",
+		"spam": "spam",
+		"title": "Report",
+		"violence": "violence"
 	},
 	"search": {
 		"placeholder": "Search",
@@ -168,17 +180,5 @@
 		"like": "Like",
 		"liked_by": "Liked by",
 		"others": "others"
-	},
-	"report": {
-		"title": "Report",
-		"porn": "porn",
-		"insult": "insult",
-		"fraud": "fraud",
-		"spam": "spam",
-		"politics": "politics",
-		"copyright": "copyright",
-		"violence": "violence",
-		"other": "other",
-		"other_placeholder": "Describe problem"
 	}
 }
