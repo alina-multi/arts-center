@@ -23,7 +23,7 @@
 	let answers = comment?.answers ? [...(comment?.answers ?? [])] : [];
 	$: isEditing = $commentsState.editCommentId === comment?.id;
 	let isEdited = false;
-	let editing_comment = null;
+	let editing_comment: Comment | null = null;
 	let new_comment_loaded = false;
 	let isDelited = false;
 
@@ -99,7 +99,7 @@
 		isDelited = true;
 		setTimeout(() => {
 			answers = [];
-			parentComments = parentComments.filter((item) => item.id !== comment_id);
+			parentComments = parentComments.filter((item) => item.id.toString() !== comment_id);
 		}, 500);
 	}
 </script>

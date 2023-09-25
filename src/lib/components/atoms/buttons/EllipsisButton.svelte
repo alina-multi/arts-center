@@ -2,7 +2,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { EllipsisVertical, PencilSquare, EllipsisHorizontal } from '@steeze-ui/heroicons';
 	import Dropdown from '../Dropdown.svelte';
-	export let work,
+	export let workId:number | undefined,
 		isMy = false,
 		type: 'vertical' | 'horizontal' = 'vertical'
 
@@ -10,7 +10,7 @@
 </script>
 
 {#if isMy && type === 'vertical'}
-	<a href={`/my/work/edit/${work.id}`} class="flex">
+	<a href={`/my/work/edit/${workId}`} class="flex">
 		<span class="sr-only">Edit work</span>
 
 		<Icon src={PencilSquare} class="w-7 h-7 text-gray-700 hover:text-gray-500 dark:text-zinc-400" />

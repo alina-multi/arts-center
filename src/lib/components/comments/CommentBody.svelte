@@ -6,7 +6,7 @@
 	import { t } from '$lib/translations';
 	import { page } from '$app/stores';
 
-	export let comment: Comment, value:string, isEdited: boolean, isEditing:boolean, editing_comment: Comment;
+	export let comment: Comment, value:string, isEdited: boolean, isEditing:boolean, editing_comment: Comment | null;
 
 	let modalOpenNotLogged = false;
 	const currentUser = $page.data.currentUser;

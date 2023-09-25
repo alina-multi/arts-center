@@ -12,7 +12,7 @@
 
 	export let comment: Comment,
 		onEdit: () => void,
-		deleteComment: () => void,
+		deleteComment: (comment_id: string) => Promise<void>,
 		parentComments: [Comment] | [];
 
 	const currentUser = $page.data.currentUser;
@@ -46,13 +46,13 @@
 						{$t('global.buttons.edit')}
 					</button>{/if}
 				{#if !isMy}
-					<button class="px-3" on:click={() => deleteComment(comment.id)}>
+					<button class="px-3" on:click={() => deleteComment(comment_id)}>
 						{$t('global.buttons.delete')}
 					</button>{/if}
 			{/if}
 
 			{#if isMy}
-				<button class="px-3" on:click={() => deleteComment(comment.id)}>
+				<button class="px-3" on:click={() => deleteComment(comment_id)}>
 					{$t('global.buttons.delete')}</button
 				>
 			{/if}
