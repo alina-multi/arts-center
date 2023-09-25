@@ -8,15 +8,15 @@ export const load = (async ({ params, setHeaders }) => {
 	setHeaders({
 		'cache-control': 'max-age=6000'
 	});
-	const lang = locale.get();
+	const lang = locale.get() ?? 'en';
 	params = { order: 'popular', tag: 'all', page: 1, ...params };
-	const key = `${params.tag}.${locale.get()}.${params.order}.1`;
+	const key = `${params.tag}.${lang}.${params.order}.1`;
 	return await cacheGet(
 		'gallery',
 		key,
 		async () => {
 			return {
-				gallery: await filteredQuery(params.tag, locale.get(), params.order, 1).then((works) =>
+				gallery: await filteredQuery(params.tag, lang, params.order, 1).then((works) =>
 					worksPreviewMap(works)
 				),
 				params

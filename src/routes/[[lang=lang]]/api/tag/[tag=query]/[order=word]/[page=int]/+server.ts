@@ -13,7 +13,7 @@ export const GET = (async ({ params, setHeaders }) => {
 		devalue.stringify({
 			gallery: await filteredQuery(
 				unslug(params.tag),
-				locale.get(),
+				locale.get() ?? 'en',
 				params.order,
 				params.page
 			).then((works) => worksPreviewMap(works))

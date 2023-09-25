@@ -26,7 +26,7 @@ export const load = (async ({ params, url, setHeaders }) => {
 				unslug(params.category),
 				params.country,
 				params.order,
-				locale.get(),
+				locale.get() ?? 'en',
 				params.page
 			)
 		),
