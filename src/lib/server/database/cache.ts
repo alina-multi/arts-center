@@ -10,8 +10,9 @@ let cache: NodeCache | RedisClientType;
 type cacheNamespace = 'work' | 'user' | 'auth' | 'page' | 'gallery' | 'search';
 
 if (process.env?.REDIS_URL) {
+	const dbNumber = process.env.PUBLIC_ENV === 'production' ? 2 : 3;
 	cache = createClient({
-		url: `${process.env.REDIS_URL}/2`
+		url: `${process.env.REDIS_URL}/${dbNumber}`
 	});
 	await cache.on('error', (err) => console.log('Redis Client Error', err)).connect();
 } else {
