@@ -4,27 +4,30 @@
 	import EllipsisButton from '$lib/components/atoms/buttons/EllipsisButton.svelte';
 	import BlockButton from '$lib/components/atoms/buttons/BlockButton.svelte';
 	import ReportButton from '$lib/components/atoms/buttons/ReportButton.svelte';
-    import { handleIsMy } from '$lib/helpers/handleIsMy';
-    import { t } from '$lib/translations';
-    import { page } from '$app/stores';
-    import ReportModal from '../atoms/ReportModal.svelte';
-    
-	export let comment, onEdit, deleteComment, parentComments;
+	import { handleIsMy } from '$lib/helpers/handleIsMy';
+	import { t } from '$lib/translations';
+	import { page } from '$app/stores';
+	import ReportModal from '../atoms/ReportModal.svelte';
+	import type { Comment } from '$lib/interfaces/Comment';
 
-    const currentUser = $page.data.currentUser;
-    const isMy = $page.data.work.owners.some((owner: { id: string }) =>
+	export let comment: Comment,
+		onEdit: () => void,
+		deleteComment: () => void,
+		parentComments: [Comment] | [];
+
+	const currentUser = $page.data.currentUser;
+	const isMy = $page.data.work.owners.some((owner: { id: string }) =>
 		handleIsMy($page.data.currentUser, owner.id)
 	);
-    let reportModalOpen = false;
-    const comment_id = comment?.id?.toString();
+	let reportModalOpen = false;
+	const comment_id = comment?.id?.toString();
 
-    function isEditable(): boolean {
+	function isEditable(): boolean {
 		const now = new Date();
 		const createdAt = new Date(comment.created_at);
 		const elapsedMinutes = (now - createdAt) / (1000 * 60);
 		return elapsedMinutes < 5;
 	}
-
 </script>
 
 <div class="flex items-center justify-between pr-3">
@@ -68,7 +71,6 @@
 		</EllipsisButton>
 	{/if}
 </div>
-
 
 {#if reportModalOpen}
 	<ReportModal
