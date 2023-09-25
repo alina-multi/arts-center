@@ -15,14 +15,14 @@
 	let url = '/api/favorite';
 	let workID = Number(work.id);
 	let currentUser = $page.data.currentUser;
-	let isBookmarked = currentUser?.favorites.works.some((favorite: number) => favorite === workID);
+	let isBookmarked = currentUser?.favorites?.works.some((favorite: number) => favorite === workID);
 
 	let open = false;
 	let showInput = false;
 	let error = '';
 	let folderID = 0;
 	$: folderName = showInput ? '' : 'All works';
-	const folders = currentUser?.favorites.folders;
+	const folders = currentUser?.favorites?.folders;
 
 	function onChange(e: Event & { target: HTMLInputElement }) {
 		folderID = Number(e.target.value);
