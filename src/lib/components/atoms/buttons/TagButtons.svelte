@@ -12,7 +12,7 @@
 		urlGenerator;
 </script>
 
-{#each tags as tag}
+{#each tags as tag (tag?.title)}
 	<TagButton
 		title={tag?.title}
 		href={urlGenerator('tags', slug(tag?.title), params)}

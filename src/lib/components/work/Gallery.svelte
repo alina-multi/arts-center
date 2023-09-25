@@ -11,6 +11,8 @@
 	let page = params.page;
 	let loading = false;
 	let hasMore = true;
+	// Just so svelte will redraw this :)
+	params.lang;
 	$: gallery = [...gallery, ...newBatch];
 	async function fetchData() {
 		loading = true;
