@@ -4,7 +4,7 @@ import { filteredQuery } from '$lib/server/repositories/gallery';
 import { locale } from '$lib/translations';
 import { cacheGet } from '$lib/server/database/cache';
 
-export const load = (async ({ params, setHeaders }) => {
+export const load = (async ({ params, setHeaders, url }) => {
 	setHeaders({
 		'cache-control': 'max-age=6000'
 	});
@@ -12,6 +12,8 @@ export const load = (async ({ params, setHeaders }) => {
 	params.order ??= 'popular';
 	params.tag ??= 'all';
 	const key = `${params.tag}.${lang}.${params.order}.1`;
+	// This is here just to let SvelteKit know to invalidate the page when the pathname changes
+	url.pathname;
 	return await cacheGet(
 		'gallery',
 		key,
