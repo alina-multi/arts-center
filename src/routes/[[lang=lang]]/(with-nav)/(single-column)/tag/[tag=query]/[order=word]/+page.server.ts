@@ -9,7 +9,8 @@ export const load = (async ({ params, setHeaders }) => {
 		'cache-control': 'max-age=6000'
 	});
 	const lang = locale.get() ?? 'en';
-	params = { order: 'popular', tag: 'all', page: 1, ...params };
+	params.order ??= 'popular';
+	params.tag ??= 'all';
 	const key = `${params.tag}.${lang}.${params.order}.1`;
 	return await cacheGet(
 		'gallery',
