@@ -13,6 +13,8 @@ export const load = (async ({ params, setHeaders, url }) => {
 	const lang = locale.get() ?? 'en';
 	params.order ??= 'popular';
 	params.tag ??= 'all';
+	params.page ??= 1;
+
 	const key = `${params.tag}.${lang}.${params.order}.1`;
 	// This is here just to let SvelteKit know to invalidate the page when the pathname changes
 	url.pathname;
