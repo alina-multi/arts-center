@@ -1,40 +1,50 @@
 import { prisma } from '$lib/server/database/prisma';
 import { unslug } from '$lib/helpers/url';
 
-export function getCategories() {
-	return prisma.tags.findMany({
-		select: {
-			id: true,
-			count: true,
-			titles: {
-				select: {
-					title: true,
-					language: true
+let categoryCache: {
+	id: bigint;
+	count: number | null;
+	titles: {
+		language: string;
+		title: string
+	}[]
+}[];
+
+let categoryTitleToId = new Map();
+
+export async function getCategories() {
+	if (!categoryCache) {
+		categoryCache = await prisma.tags.findMany({
+			select: {
+				id: true,
+				count: true,
+				titles: {
+					select: {
+						title: true,
+						language: true
+					}
 				}
+			},
+			where: {
+				type_id: 1
+			},
+			orderBy: {
+				count: 'desc'
 			}
-		},
-		where: {
-			type_id: 1
-		},
-		orderBy: {
-			count: 'desc'
-		}
-	});
+		});
+	}
+	return categoryCache;
 }
 
-export function titleToId(title: string, language: string) {
+export async function titleToId(title: string, language: string) {
+	if (categoryTitleToId.size === 0) {
+		const categories = await getCategories();
+		categories.forEach((tag) => {
+			tag.titles.forEach((title)=> {
+				categoryTitleToId.set(`${title.language}.${title.title}`, tag.id);
+			})
+		})
+	}
 	title = unslug(title);
-	return prisma.tag_titles.findFirst({
-		select: {
-			tag_id: true
-		},
-		where: {
-			title: {
-				equals: title
-			},
-			language: {
-				equals: language
-			}
-		}
-	});
+	return categoryTitleToId.get(`${language}.${title}`)
 }

@@ -63,10 +63,10 @@ export function indexQuery(page = 1) {
 	);
 }
 
-export async function userQuery(user_id: bigint, tag = 'all', page = 1) {
+export async function userQuery(user_id: bigint, tag = 'all', lang = 'en', page = 1) {
 	let where = {};
 	if (tag !== 'all') {
-		const tagTitle = await titleToId(tag, locale.get());
+		const tagTitle = await titleToId(tag, lang);
 		if (!tagTitle) throw error(404, { message: `Tag: ${tag} not found` });
 		where = {
 			tags: {
