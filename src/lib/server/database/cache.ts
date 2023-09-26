@@ -8,7 +8,7 @@ import { PUBLIC_ENV } from '$env/static/public';
 
 let cache: NodeCache | RedisClientType;
 
-type cacheNamespace = 'work' | 'user' | 'auth' | 'page' | 'gallery' | 'search';
+type cacheNamespace = 'work' | 'user' | 'auth' | 'page' | 'gallery' | 'search' | 'sitemap';
 
 if (process.env?.REDIS_URL) {
 	const DB = PUBLIC_ENV === 'production' ? 2 : 3;
