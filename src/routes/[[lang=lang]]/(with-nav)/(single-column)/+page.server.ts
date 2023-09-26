@@ -5,14 +5,14 @@ import { getCategories } from '$lib/server/repositories/tag';
 import { tagsMap } from '$lib/server/mappers/tag';
 import { cacheGet } from '$lib/server/database/cache';
 
-export const load = (async ({ setHeaders }) => {
+export const load = (async ({ setHeaders, params }) => {
 	setHeaders({
 		'cache-control': 'max-age=6000'
 	});
 
 	return cacheGet(
 		'page',
-		'index',
+		`index.${params.lang}`,
 		async () => {
 			const [gallery, categories] = await Promise.all([
 				indexQuery().then((works) => worksPreviewMap(works)),
