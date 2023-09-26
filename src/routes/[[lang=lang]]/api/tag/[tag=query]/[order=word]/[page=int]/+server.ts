@@ -1,7 +1,6 @@
 import type { RequestHandler } from './$types';
 import { worksPreviewMap } from '$lib/server/mappers/gallery';
 import { filteredQuery } from '$lib/server/repositories/gallery';
-import { locale } from '$lib/translations';
 import * as devalue from 'devalue';
 import { unslug } from '$lib/helpers/url';
 
@@ -13,7 +12,7 @@ export const GET = (async ({ params, setHeaders }) => {
 		devalue.stringify({
 			gallery: await filteredQuery(
 				unslug(params.tag),
-				locale.get() ?? 'en',
+				params.lang,
 				params.order,
 				params.page
 			).then((works) => worksPreviewMap(works))

@@ -35,7 +35,7 @@ export const actions = {
 			path: `/api2/draft/${event.params.id}`,
 			event,
 			data: {
-				language: locale.get(),
+				language: event.params.lang,
 				title: form.get('title'),
 				description: form.get('description'),
 				category: form.get('category')?.split(',')

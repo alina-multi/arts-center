@@ -6,13 +6,12 @@ import { locale } from '$lib/translations';
 
 export const load = (async ({ parent, params }) => {
 	const { user } = await parent();
-	const lang = locale.get() ?? 'en';
 	return await cacheGet(
 		'gallery',
-		`${params.username}.${params.tag}.${lang}`,
+		`${params.username}.${params.tag}.${params.lang}`,
 		async () => {
 			return {
-				gallery: await worksPreviewMap(await userQuery(user.id, params.tag, lang, 1))
+				gallery: await worksPreviewMap(await userQuery(user.id, params.tag, params.lang, 1))
 			};
 		},
 		5

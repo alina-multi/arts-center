@@ -13,7 +13,7 @@ export const GET = (async ({ params }) => {
 					unslug(params.category),
 					params.country,
 					params.order,
-					locale.get() ?? 'en',
+					params.lang,
 					params.page
 				)
 			)

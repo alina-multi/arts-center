@@ -4,7 +4,6 @@ import { getCategories } from '$lib/server/repositories/tag';
 import { tagsMap } from '$lib/server/mappers/tag';
 import { userCountries } from '$lib/server/repositories/user';
 import { filteredQuery } from '$lib/server/repositories/user';
-import { locale } from '$lib/translations';
 import { unslug } from '$lib/helpers/url';
 
 export const load = (async ({ params, url, setHeaders }) => {
@@ -14,7 +13,6 @@ export const load = (async ({ params, url, setHeaders }) => {
 	params.order ??= 'popular';
 	params.category ??= 'all';
 	params.country ??= 'all';
-	const lang = locale.get() ?? 'en';
 	// This is here just to let SvelteKit know to invalidate the page when the pathname changes
 	url.pathname;
 	const [users, categories, countries] = await Promise.all([
@@ -23,12 +21,12 @@ export const load = (async ({ params, url, setHeaders }) => {
 				unslug(params.category),
 				params.country,
 				params.order,
-				lang,
+				params.lang,
 				1
 			)
 		),
 		getCategories().then((categories) => tagsMap(categories)),
-		userCountries().then((countries) => userCountriesMap(countries, locale.get()))
+		userCountries().then((countries) => userCountriesMap(countries, params.lang))
 	]);
 	return {
 		users,

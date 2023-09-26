@@ -57,7 +57,7 @@ export function correctLocale(lang: string): boolean {
 }
 
 export function checkUrlLocale(event: RequestEvent): string {
-	const lang = event?.params?.lang || defaultLocale;
+	const lang = event.params.lang;
 	if (!correctLocale(lang)) {
 		throw error(404, {
 			message: 'Language not supported'

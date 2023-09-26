@@ -5,10 +5,9 @@ import { userQuery } from '$lib/server/repositories/gallery';
 import { locale } from '$lib/translations';
 
 export const GET = (async ({ params }) => {
-	const lang = locale.get() ?? 'en';
 	return new Response(
 		devalue.stringify({
-			gallery: await worksPreviewMap(await userQuery(params.user_id, params.tag, lang, params.page))
+			gallery: await worksPreviewMap(await userQuery(params.user_id, params.tag, params.lang, params.page))
 		})
 	);
 }) satisfies RequestHandler;

@@ -1,5 +1,5 @@
 import type { Handle, HandleServerError, RequestEvent } from '@sveltejs/kit';
-import { checkUrlLocale } from '$lib/translations';
+import { checkUrlLocale, defaultLocale } from '$lib/translations';
 import * as SentryNode from '@sentry/node';
 import '@sentry/tracing';
 import { api } from './lib/server/api';
@@ -7,6 +7,7 @@ import { cacheGet } from '$lib/server/database/cache';
 import { PUBLIC_ENV } from '$env/static/public';
 
 export const handle: Handle = async ({ event, resolve }) => {
+	event.params.lang ??= defaultLocale;
 	await checkAuth(event);
 	return resolve(event, {
 		transformPageChunk: ({ html }) => html.replace('%lang%', checkUrlLocale(event))
