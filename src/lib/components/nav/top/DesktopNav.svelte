@@ -16,7 +16,10 @@
 	<div class="flex items-center gap-6 flex-none">
 		<FooterDropdown />
 		<Logo />
-		<img src="/flag_ua.jpg" alt="ua" class="h-4 mt-0.5" />
+		<svg xmlns="http://www.w3.org/2000/svg" width='30' height='16' class="h-4 mt-0.5">
+			<rect width="30" height="8" fill="#0057B7"/>
+			<rect width="30" height="8" y="8" fill="#FFD700"/>
+		</svg>
 	</div>
 	<TopNavLink exact href={localePath('/')}>{$t('global.menu.gallery')}</TopNavLink>
 	<TopNavLink href={localePath('/users')}>{$t('global.menu.users')}</TopNavLink>
