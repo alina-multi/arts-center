@@ -15,7 +15,10 @@
 	<div class="flex items-center gap-3 text-black">
 		<SideBarNavigation />
 		<Logo />
-		<img src="/flag_ua.jpg" alt="ua" class="h-4 mt-0.5" />
+		<svg xmlns="http://www.w3.org/2000/svg" width='30' height='16' class="h-4 mt-0.5">
+			<rect width="30" height="8" fill="#0057B7"/>
+			<rect width="30" height="8" y="8" fill="#FFD700"/>
+		</svg>
 	</div>
 	<div class="hidden lg:flex w-96"><SearchInput /></div>
 	<div class="flex items-center gap-3 md:gap-6">
