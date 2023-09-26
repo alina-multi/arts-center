@@ -32,18 +32,17 @@ export async function GET({ url }) {
 }
 
 function sitemapindex(entity) {
-	return (
-		`<?xml version="1.0" encoding="UTF-8"?>
-    <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` +
-		entity.map((items) => {
-			return items.pages
-				.map((page) => {
-					return `<sitemap>
-        <loc>${site}/sitemap-${items.slug}-${page}.xml</loc>
-    </sitemap>`;
-				})
-				.join('');
-		}) +
-		`</sitemapindex>`
-	);
+	let string = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+	for (let item of entity) {
+		for (let page of item.pages) {
+			string+=`
+	<sitemap>
+		<loc>${site}/sitemap-${item.slug}-${page}.xml</loc>
+	</sitemap>`;
+		}
+	}
+	string+=`
+</sitemapindex>`;
+	return string;
 }
