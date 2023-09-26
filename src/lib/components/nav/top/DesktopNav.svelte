@@ -4,12 +4,11 @@
 	import { localePath, t } from '$lib/translations';
 	import TopNavLink from '../TopNavLink.svelte';
 	import UserDropdown from '../UserDropdown.svelte';
-	import { page } from '$app/stores';
 	import SearchInput from '$lib/components/search/SearchInput.svelte';
 	import Logo from '$lib/components/atoms/Logo.svelte';
 
 	import FooterDropdown from '$lib/components/footer/FooterDropdown.svelte';
-	let user = $page.data.currentUser;
+	export let user;
 </script>
 
 <div class="hidden xl:flex items-center w-full h-full gap-6">

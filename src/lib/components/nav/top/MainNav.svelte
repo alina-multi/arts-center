@@ -4,11 +4,12 @@
 	import DesktopNav from './DesktopNav.svelte';
 	import TopNav from './TopNav.svelte';
 	import DarkSwitch from '../DarkSwitch.svelte';
+	export let user;
 </script>
 
 <TopNav>
-	<DesktopNav />
-	<TabletMainNav />
-	<MobileMainNav />
+	<DesktopNav {user} />
+	<TabletMainNav {user} />
+	<MobileMainNav {user} />
 	<DarkSwitch />
 </TopNav>

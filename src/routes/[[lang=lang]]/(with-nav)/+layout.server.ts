@@ -1,7 +1,7 @@
 import type { LayoutServerLoad } from './$types';
 
-export const load = (async (event) => {
+export const load = (async ({locals, url}) => {
 	return {
-		currentUser: event.locals?.user
+		currentUser: locals?.user
 	};
 }) satisfies LayoutServerLoad;

@@ -23,7 +23,7 @@
 	import { page } from '$app/stores';
 	import FooterContent from '../footer/FooterContent.svelte';
 
-	let currentUser = $page.data.currentUser;
+	export let user;
 	export let open = false;
 </script>
 
@@ -80,13 +80,13 @@
 								>
 							</div>
 
-							{#if currentUser}
+							{#if user}
 								<div class="flex flex-col gap-3 py-3 divide-y dark:divide-zinc-800">
 									<div
 										class="flex justify-between gap-3 pl-6 pr-3 min-[500px]:pr-6 items-center w-full"
 									>
 										<span class="font-semibold flex items-center"
-											><AvatarLink user={currentUser} size={'w-10 h-10 '} withName /></span
+											><AvatarLink user={user} size={'w-10 h-10 '} withName /></span
 										>
 
 										<AddWorkButton />

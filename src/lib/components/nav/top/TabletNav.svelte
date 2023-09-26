@@ -2,13 +2,12 @@
 	import AddWorkButton from '../../atoms/buttons/AddWorkButton.svelte';
 	import LoginLink from '../LoginLink.svelte';
 	import Logo from '../../atoms/Logo.svelte';
-	import { page } from '$app/stores';
 	import SideBarNavigation from '../SideBarNavigation.svelte';
 	import Search from '../../search/SearchDialog.svelte';
 	import SearchInput from '../../search/SearchInput.svelte';
 	import UserDropdown from '../UserDropdown.svelte';
 
-	let user = $page.data.currentUser;
+	export let user;
 </script>
 
 <div class="hidden sm:max-xl:flex items-center justify-between w-full">
