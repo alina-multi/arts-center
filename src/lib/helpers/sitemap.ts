@@ -23,7 +23,7 @@ ${entity
             <loc>${site}/${locale !== 'en' ? `${locale}/` : ''}${slug ? `${slug}/` : ''}${
 							item[key]
 						}</loc>
-            <lastmod>${item.updated_at}</lastmod>
+            <lastmod>${item.updated_at.toISOString()}</lastmod>
         </url>
         `;
 		});
