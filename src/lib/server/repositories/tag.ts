@@ -32,6 +32,7 @@ export async function getCategories() {
 				count: 'desc'
 			}
 		});
+		console.log('just set category cache:', categoryCache)
 	}
 	return categoryCache;
 }
