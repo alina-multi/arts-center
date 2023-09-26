@@ -11,6 +11,8 @@ export const load = (async ({ parent, params }) => {
 		`${params.username}.${params.lang}`,
 		async () => {
 			return {
+				params,
+				user,
 				gallery: await worksPreviewMap(await userQuery(user.id, 'all', params.lang, 1))
 			};
 		},

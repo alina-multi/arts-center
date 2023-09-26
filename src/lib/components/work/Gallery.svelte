@@ -10,7 +10,7 @@
 	let newBatch = [];
 	let page = params.page;
 	let loading = false;
-	let hasMore = true;
+	let hasMore = gallery.length >= 20;
 	// Just so svelte will redraw this :)
 	params.lang;
 	$: gallery = [...gallery, ...newBatch];
