@@ -17,13 +17,7 @@ export const load = (async ({ params, url, setHeaders }) => {
 	url.pathname;
 	const [users, categories, countries] = await Promise.all([
 		usersMap(
-			await filteredQuery(
-				unslug(params.category),
-				params.country,
-				params.order,
-				params.lang,
-				1
-			)
+			await filteredQuery(unslug(params.category), params.country, params.order, params.lang, 1)
 		),
 		getCategories().then((categories) => tagsMap(categories)),
 		userCountries().then((countries) => userCountriesMap(countries, params.lang))

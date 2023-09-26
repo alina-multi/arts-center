@@ -3,7 +3,7 @@
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
 	import WorkAddProgressSteps from '$lib/components/work/add/WorkAddProgressSteps.svelte';
 	import FileUploader from '$lib/components/input/FileUploader.svelte';
-	import { locale, localePath, t } from '$lib/translations';
+	import { localePath, t } from '$lib/translations';
 	import toast from 'svelte-french-toast';
 	import { goto } from '$app/navigation';
 	

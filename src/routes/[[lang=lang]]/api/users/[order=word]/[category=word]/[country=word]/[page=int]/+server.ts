@@ -1,5 +1,4 @@
 import type { RequestHandler } from './$types';
-import { locale } from '$lib/translations';
 import { filteredQuery } from '$lib/server/repositories/user';
 import { usersMap } from '$lib/server/mappers/users';
 import * as devalue from 'devalue';

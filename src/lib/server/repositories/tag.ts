@@ -10,7 +10,7 @@ let categoryCache: {
 	}[];
 }[];
 
-let categoryTitleToId = new Map();
+const categoryTitleToId = new Map();
 
 export async function getCategories() {
 	if (!categoryCache) {

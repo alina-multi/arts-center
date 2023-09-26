@@ -10,12 +10,9 @@ export const GET = (async ({ params, setHeaders }) => {
 	});
 	return new Response(
 		devalue.stringify({
-			gallery: await filteredQuery(
-				unslug(params.tag),
-				params.lang,
-				params.order,
-				params.page
-			).then((works) => worksPreviewMap(works))
+			gallery: await filteredQuery(unslug(params.tag), params.lang, params.order, params.page).then(
+				(works) => worksPreviewMap(works)
+			)
 		})
 	);
 }) satisfies RequestHandler;

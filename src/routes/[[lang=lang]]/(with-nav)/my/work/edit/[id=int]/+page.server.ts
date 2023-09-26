@@ -3,7 +3,7 @@ import { api } from '$lib/server/api';
 import { getCategories } from '$lib/server/repositories/tag';
 import { tagsMap } from '$lib/server/mappers/tag';
 import { error, redirect } from '@sveltejs/kit';
-import { languageFilter, locale, localePath } from '$lib/translations';
+import { languageFilter, localePath } from '$lib/translations';
 export const load = (async (event) => {
 	const [data, categories] = await Promise.all([
 		api({
