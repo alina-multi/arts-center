@@ -15,9 +15,7 @@ export async function GET({ url }) {
 	site = url.origin;
 	const works = await prisma.works.count({
 		where: {
-			NOT: {
-				published_at: {}
-			}
+			status: { gte: 40 },
 		}
 	});
 	const users = await prisma.users.count();

@@ -15,7 +15,8 @@ export async function GET({ params, url }) {
 				where: {
 					NOT: {
 						published_at: null
-					}
+					},
+					status: { gte: 40 },
 				},
 				select: {
 					id: true,
