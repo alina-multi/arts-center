@@ -4,16 +4,14 @@ import type { RequestEvent } from '@sveltejs/kit';
 import type { RedisClientType } from 'redis';
 import { api } from '$lib/server/api';
 import * as devalue from 'devalue';
-import { PUBLIC_ENV } from '$env/static/public';
 
 let cache: NodeCache | RedisClientType;
 
 type cacheNamespace = 'work' | 'user' | 'auth' | 'page' | 'gallery' | 'search' | 'sitemap';
 
 if (process.env?.REDIS_URL) {
-	const DB = PUBLIC_ENV === 'production' ? 2 : 3;
 	cache = createClient({
-		url: `${process.env.REDIS_URL}/${DB}`
+		url: `${process.env.REDIS_URL}/2`
 	});
 	await cache.on('error', (err) => console.log('Redis Client Error', err)).connect();
 } else {
