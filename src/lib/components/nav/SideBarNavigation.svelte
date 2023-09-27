@@ -20,7 +20,6 @@
 	import LogoutButton from '$lib/components/atoms/buttons/LogoutButton.svelte';
 
 	import AvatarLink from '../atoms/AvatarLink.svelte';
-	import { page } from '$app/stores';
 	import FooterContent from '../footer/FooterContent.svelte';
 
 	export let user;

@@ -22,6 +22,6 @@ export async function GET({ params, url }) {
 			return sitemap(users, base, 'username');
 		},
 		60
-	)
+	);
 	return createXml(body);
 }

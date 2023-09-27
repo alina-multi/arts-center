@@ -8,7 +8,7 @@ export async function GET({ params, url }) {
 	const body = await cacheGet(
 		'sitemap',
 		`wroks.${params.page}`,
-		async function() {
+		async function () {
 			const works = await prisma.works.findMany({
 				take: urlsPerSitemap,
 				skip: params.page * urlsPerSitemap,
@@ -16,7 +16,7 @@ export async function GET({ params, url }) {
 					NOT: {
 						published_at: null
 					},
-					status: { gte: 40 },
+					status: { gte: 40 }
 				},
 				select: {
 					id: true,

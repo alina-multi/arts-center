@@ -17,15 +17,15 @@ export function sitemap(entity, site, key, slug = null) {
     xmlns:mobile="https://www.google.com/schemas/sitemap-mobile/1.0"
     xmlns:image="https://www.google.com/schemas/sitemap-image/1.1">
     `;
-	for (let item of entity) {
-		for (let lang of langs) {
-			string+=`
+	for (const item of entity) {
+		for (const lang of langs) {
+			string += `
 	<url>
 		<loc>${site}/${lang !== 'en' ? `${lang}/` : ''}${slug ? `${slug}/` : ''}${item[key]}</loc>
 		<lastmod>${item.updated_at.toISOString()}</lastmod>
 	</url>`;
 		}
 	}
-	string+=`</urlset>`
+	string += `</urlset>`;
 	return string;
 }

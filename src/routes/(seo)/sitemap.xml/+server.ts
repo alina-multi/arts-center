@@ -15,7 +15,7 @@ export async function GET({ url }) {
 	site = url.origin;
 	const works = await prisma.works.count({
 		where: {
-			status: { gte: 40 },
+			status: { gte: 40 }
 		}
 	});
 	const users = await prisma.users.count();
@@ -32,15 +32,15 @@ export async function GET({ url }) {
 function sitemapindex(entity) {
 	let string = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
-	for (let item of entity) {
-		for (let page of item.pages) {
-			string+=`
+	for (const item of entity) {
+		for (const page of item.pages) {
+			string += `
 	<sitemap>
 		<loc>${site}/sitemap-${item.slug}-${page}.xml</loc>
 	</sitemap>`;
 		}
 	}
-	string+=`
+	string += `
 </sitemapindex>`;
 	return string;
 }
