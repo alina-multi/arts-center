@@ -31,9 +31,7 @@ export async function api(params: ApiParams) {
 
 // Check to see that client has XSRF-TOKEN cookie, if not, get it from laravel and pass it back to client
 export async function csrf(event: RequestEvent) {
-	if (!event?.cookies?.get('XSRF-TOKEN')) {
 		await api({ method: 'GET', path: '/auth/sanctum/csrf-cookie', event });
-	}
 }
 
 export function proxyCookies(event: RequestEvent, response: Response) {

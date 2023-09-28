@@ -33,9 +33,13 @@ async function checkAuth(event: RequestEvent<Partial<Record<string, string>>, st
 				'auth',
 				session,
 				async () => {
-					const response = await api({ method: 'GET', path: '/api2/me', event });
-					if (response.ok) {
-						return await response.json();
+					try {
+						const response = await api({ method: 'GET', path: '/api2/me', event });
+						if (response.ok) {
+							return await response.json();
+						}
+					} catch (e) {
+						return;
 					}
 				},
 				360
@@ -43,9 +47,7 @@ async function checkAuth(event: RequestEvent<Partial<Record<string, string>>, st
 			event.locals.user = user;
 		}
 	} catch (error) {
-		if (['staging', 'production'].includes(PUBLIC_ENV)) {
-			SentryNode.captureException(error, { contexts: { sveltekit: { event } } });
-		}
+		SentryNode.captureException(error, { contexts: { sveltekit: { event } } });
 	}
 }
 
