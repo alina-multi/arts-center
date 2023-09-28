@@ -38,11 +38,13 @@ export async function cacheReplace(
 	ttl = 120
 ) {
 	const result = await storeFunction();
-	cache.set(
-		buildKey(namespace, key),
-		devalue.stringify(result),
-		process.env?.REDIS_URL ? { EX: ttl } : ttl
-	);
+	if (result !== undefined) {
+		cache.set(
+			buildKey(namespace, key),
+			devalue.stringify(result),
+			process.env?.REDIS_URL ? { EX: ttl } : ttl
+		);
+	}
 	return result;
 }
 
