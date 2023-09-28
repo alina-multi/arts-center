@@ -14,7 +14,7 @@
 	let isMy = handleIsMy(currentUser, user.id);
 
 	let open = false;
-	let follows = currentUser?.follows.user;
+	let follows = currentUser?.follows?.user;
 	let isFollowing = follows?.some((id) => id === Number(user.id));
 
 	const handleFollow = () => {
