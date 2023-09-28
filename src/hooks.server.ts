@@ -25,10 +25,12 @@ SentryNode.init({
 SentryNode.setTag('svelteKit', 'server');
 
 async function checkAuth(event: RequestEvent<Partial<Record<string, string>>, string | null>) {
+	event.locals.user = false;
 	try {
 		// Make sure it will still work if auth server is down
 		const session = event?.cookies?.get('laravel_session');
 		if (session) {
+			console.log('inCheckAuth', session);
 			const user = await cacheGet(
 				'auth',
 				session,
@@ -45,6 +47,7 @@ async function checkAuth(event: RequestEvent<Partial<Record<string, string>>, st
 				360
 			);
 			event.locals.user = user;
+			console.log('got user', event.locals.user?.id);
 		}
 	} catch (error) {
 		SentryNode.captureException(error, { contexts: { sveltekit: { event } } });

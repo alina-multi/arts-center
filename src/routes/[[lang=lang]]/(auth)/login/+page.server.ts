@@ -31,4 +31,7 @@ export const actions = {
 
 export const load = (async (event) => {
 	await csrf(event);
+	return {
+
+	}
 }) satisfies PageServerLoad;
