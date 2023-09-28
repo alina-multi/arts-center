@@ -16,7 +16,7 @@
 	let currentUser = $page.data.currentUser;
 	let votes = entity?.votes;
 	let rating = entity?.rating;
-	let isLiked = entity?.votes?.some((vote) => vote?.id.toString() === currentUser?.id.toString());
+	let isLiked = entity?.votes?.some((vote) => vote?.id?.toString() === currentUser?.id?.toString());
 	let isDownVoted = false;
 	let open = false;
 	let votable_id = entity?.id.toString();
