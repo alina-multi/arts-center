@@ -9,11 +9,12 @@
 	import { tick } from 'svelte';
 	import NoResultsStub from './NoResultsStub.svelte';
 	import {fetchData} from '$lib/helpers/fetchData';
+	import { user } from '$lib/stores/auth';
 
 
 	export let comments, commentable_id: string;
 	commentable_id = commentable_id?.toString();
-	const currentUser = $page.data.currentUser;
+	const currentUser = $user;
 	let parentComments = [...comments];
 	$: value = '';
 	let new_comment: Comment | null = null;

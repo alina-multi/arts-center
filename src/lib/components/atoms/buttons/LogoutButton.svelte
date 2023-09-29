@@ -1,16 +1,8 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Power } from '@steeze-ui/heroicons';
-	import { localePath } from '$lib/translations';
 	import { t } from '$lib/translations';
-	import { invalidateAll } from '$app/navigation';
-
-	async function logout () {
-		await fetch(localePath('/logout'), {
-			method: 'POST'
-		})
-		await invalidateAll();
-	}
+	import { logout } from '$lib/stores/auth';
 </script>
 
 <button

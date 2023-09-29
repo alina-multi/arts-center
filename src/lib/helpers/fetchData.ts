@@ -1,4 +1,4 @@
-export async function fetchData(method: string, url: string, body: object) {
+export async function fetchData(method: string, url: string, body: object = {}) {
 	const response = fetch(url, {
 		method,
 		headers: {

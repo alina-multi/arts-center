@@ -3,13 +3,12 @@
 	import SideBarNavigation from '../SideBarNavigation.svelte';
 	import SearchDialog from '../../search/SearchDialog.svelte';
 	import AddWorkButton from '../../atoms/buttons/AddWorkButton.svelte';
-
-	export let user;
+	import { user } from '$lib/stores/auth';
 </script>
 
 <div class=" flex sm:hidden items-center justify-between w-full">
 	<div class="flex items-center gap-1.5">
-		<SideBarNavigation {user} />
+		<SideBarNavigation user={$user} />
 		<Logo />
 		<svg xmlns="http://www.w3.org/2000/svg" width='30' height='16' class="h-4 mt-0.5">
 			<rect width="30" height="8" fill="#0057B7"/>

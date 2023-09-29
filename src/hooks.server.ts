@@ -2,13 +2,10 @@ import type { Handle, HandleServerError, RequestEvent } from '@sveltejs/kit';
 import { checkUrlLocale, defaultLocale } from '$lib/translations';
 import * as SentryNode from '@sentry/node';
 import '@sentry/tracing';
-import { api } from './lib/server/api';
-import { cacheGet } from '$lib/server/database/cache';
 import { PUBLIC_ENV } from '$env/static/public';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.params.lang ??= defaultLocale;
-	await checkAuth(event);
 	return resolve(event, {
 		transformPageChunk: ({ html }) => html.replace('%lang%', checkUrlLocale(event))
 	});
@@ -23,36 +20,6 @@ SentryNode.init({
 });
 
 SentryNode.setTag('svelteKit', 'server');
-
-async function checkAuth(event: RequestEvent<Partial<Record<string, string>>, string | null>) {
-	event.locals.user = false;
-	try {
-		// Make sure it will still work if auth server is down
-		const session = event?.cookies?.get('laravel_session');
-		if (session) {
-			console.log('inCheckAuth', session);
-			const user = await cacheGet(
-				'auth',
-				session,
-				async () => {
-					try {
-						const response = await api({ method: 'GET', path: '/api2/me', event });
-						if (response.ok) {
-							return await response.json();
-						}
-					} catch (e) {
-						return;
-					}
-				},
-				360
-			);
-			event.locals.user = user;
-			console.log('got user', event.locals.user?.id);
-		}
-	} catch (error) {
-		SentryNode.captureException(error, { contexts: { sveltekit: { event } } });
-	}
-}
 
 // use handleError to report errors during server-side data loading
 export const handleError = (({ error, event }) => {

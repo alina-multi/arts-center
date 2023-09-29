@@ -10,11 +10,12 @@
 	import { fetchData } from '$lib/helpers/fetchData';
 	import AuthModal from '../AuthModal.svelte';
 	import { t } from '$lib/translations';
+	import { user } from '$lib/stores/auth';
 
 	export let work;
 	let url = '/api/favorite';
 	let workID = Number(work.id);
-	let currentUser = $page.data.currentUser;
+	let currentUser = $user;
 	let isBookmarked = currentUser?.favorites?.works.some((favorite: number) => favorite === workID);
 
 	let open = false;

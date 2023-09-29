@@ -1,12 +1,10 @@
 import type { LayoutServerLoad } from './$types';
-import { redirect } from '@sveltejs/kit';
-import { localePath } from '$lib/translations';
+import { checkAuth } from '$lib/server/auth';
 
 export const load = (async (event) => {
-	// We shouldn't be able to access any of the pages here if we already authorized
-	if (event.locals?.user?.id) {
-		if (!event.url.pathname.includes('logout')) {
-			throw redirect(302, localePath('/'));
-		}
+	// We want to force SvelteKit to run it all the time
+	const path = event.url.pathname;
+	return {
+		user: await checkAuth(event)
 	}
 }) satisfies LayoutServerLoad;

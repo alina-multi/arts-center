@@ -5,7 +5,7 @@ import { getCategories } from '$lib/server/repositories/tag';
 import { tagsMap } from '$lib/server/mappers/tag';
 import { cacheGet } from '$lib/server/database/cache';
 
-export const load = (async ({ setHeaders, params }) => {
+export const load = (async ({ setHeaders, params, isDataRequest }) => {
 	setHeaders({
 		'cache-control': 'max-age=6000'
 	});

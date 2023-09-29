@@ -1,6 +1,5 @@
 <script>
-    import {t, localePath}  from '$lib/translations';
-	import {page} from '$app/stores';
+	import {t, localePath}  from '$lib/translations';
 	import SideNavLink from '$lib/components/nav/side/SideNavLink.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import {
@@ -12,11 +11,10 @@
 		Bookmark,
 		NoSymbol
 	} from '@steeze-ui/heroicons';
-	let folders = $page.data.currentUser.favorites.folders;
+	import { user } from '$lib/stores/auth';
 
+	let folders = $user?.favorites?.folders;
 	const favorites_href = folders.length === 0 || folders.length > 1 ?  "/my/favorites" : "/my/favorites/"+folders[0].id;
-
-	
 </script>
 
 <SideNavLink href={localePath("/my/profile")}

@@ -1,0 +1,45 @@
+import type { RequestEvent, ServerLoadEvent } from '@sveltejs/kit';
+import { cacheGet } from '$lib/server/database/cache';
+import { api } from '$lib/server/api';
+import * as SentryNode from '@sentry/node';
+import { redirect } from '@sveltejs/kit';
+import { localePath } from '$lib/translations';
+
+export async function checkAuth(
+	event: RequestEvent<Partial<Record<string, string>>, string | null>
+) {
+	try {
+		// Make sure it will still work if auth server is down
+		const session = event?.cookies?.get('laravel_session');
+		console.log('session', session);
+		if (session) {
+			console.log('inCheckAuth', session);
+			const user = await cacheGet(
+				'auth',
+				session,
+				async () => {
+					try {
+						const response = await api({ method: 'GET', path: '/api2/me', event });
+						if (response.ok) {
+							return await response.json();
+						}
+					} catch (e) {
+						return;
+					}
+				},
+				360
+			);
+			console.log('got user', user?.id);
+			return user;
+		}
+	} catch (error) {
+		SentryNode.captureException(error, { contexts: { sveltekit: { event } } });
+	}
+}
+
+export async function redirectIfAuthorized({parent}: ServerLoadEvent) {
+	const {user} = await parent();
+	if (user?.id) {
+		throw redirect(302, localePath('/'));
+	}
+}

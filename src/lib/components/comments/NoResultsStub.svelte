@@ -1,11 +1,11 @@
 <script>
 	import {t} from '$lib/translations';
-   import cat from '$lib/images/cat-icons.svg';
-   import { page } from '$app/stores';
+	import cat from '$lib/images/cat-icons.svg';
+	import { user } from '$lib/stores/auth';
 
 
 </script>
-<div class="{$page.data.currentUser ? " rounded-sm border-transparent" :"border-t-transparent dark:border-t-transparent"} flex items-end justify-center gap-3 border   dark:border-zinc-800 dark:bg-zinc-900 pt-6 pb-12 rounded-b-sm">
+<div class="{$user ? " rounded-sm border-transparent" :"border-t-transparent dark:border-t-transparent"} flex items-end justify-center gap-3 border   dark:border-zinc-800 dark:bg-zinc-900 pt-6 pb-12 rounded-b-sm">
 	<div class="flex flex-col items-end  text-gray-500 dark:text-zinc-100 gap-1">
 		<span > {$t('global.comment.stub.no_comments')}</span>
 		<span class="leading-4"> {$t('global.comment.stub.be_first')}</span>

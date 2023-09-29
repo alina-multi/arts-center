@@ -1,7 +1,8 @@
-import type { Actions } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 import { api } from '$lib/server/api';
 import { redirect } from '@sveltejs/kit';
 import { localePath } from '$lib/translations';
+import { redirectIfAuthorized } from '$lib/server/auth';
 
 export const actions = {
 	default: async (event) => {
@@ -32,3 +33,7 @@ export const actions = {
 		}
 	}
 } satisfies Actions;
+
+export const load = (async (event) => {
+	await redirectIfAuthorized(event);
+}) satisfies PageServerLoad;

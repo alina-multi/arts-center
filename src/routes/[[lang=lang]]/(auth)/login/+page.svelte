@@ -10,7 +10,6 @@
 
 	export let form: ActionData;
 </script>
-
 <div class="flex min-h-full flex-col pt-12 sm:px-6 lg:px-8 bg:white sm:bg-gray-50 dark:bg-black">
 	<div class="sm:mx-auto sm:w-full sm:max-w-md">
 		<div class="flex items-center justify-center">
@@ -27,6 +26,9 @@
 	<div class=" sm:mx-auto sm:w-full sm:max-w-md">
 		<div class="bg-white dark:bg-zinc-900 px-3 py-6 sm:p-9 sm:shadow rounded-sm">
 			<form class="space-y-6" method="POST">
+				{#if form?.message}
+					<p class='text-red-600'>{form?.message}</p>
+				{/if}
 				<InputGroup
 					label={$t('global.login.email')}
 					error={form?.errors?.email}

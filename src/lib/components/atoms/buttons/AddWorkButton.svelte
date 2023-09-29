@@ -3,12 +3,13 @@
 	import { PlusCircle } from '@steeze-ui/heroicons';
 	import { localePath, t } from '$lib/translations';
 	import { page } from '$app/stores';
+	import { user } from '$lib/stores/auth';
 
 	let href ='';
 	let redirect = $page.url.pathname.length > 1 ? `?redirect=${$page.url.pathname}` : '';
 	
 
-	if ($page.data.currentUser) {
+	if ($user) {
 		href = localePath(`/my/work/add`);
 	} else {
 	

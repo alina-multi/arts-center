@@ -18,14 +18,15 @@
 	import {  fetchData  } from '$lib/helpers/fetchData';
 	import AuthModal from '$lib/components/atoms/AuthModal.svelte';
 	import ReportModal from '../atoms/ReportModal.svelte';
+	import { user } from '$lib/stores/auth';
 
 	export let comment: Comment, commentable_id: string, parentComments: [Comment] | [];
 	let url = '/api/comment';
 
 	const isMy = $page.data.work.owners.some((owner: { id: string }) =>
-		handleIsMy($page.data.currentUser, owner.id)
+		handleIsMy($user, owner.id)
 	);
-	const currentUser = $page.data.currentUser;
+	const currentUser = $user;
 	const comment_id = comment?.id?.toString();
 	$: value = '';
 	let answer: Comment | null = null;

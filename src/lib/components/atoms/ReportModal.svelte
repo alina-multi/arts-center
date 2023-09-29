@@ -8,6 +8,7 @@
 	import toast from 'svelte-french-toast';
 	import { t } from '$lib/translations';
 	import AuthModal from './AuthModal.svelte';
+	import { user } from '$lib/stores/auth';
 
 	export let open: boolean, feedbackable_type: string, feedbackable_id: number;
 
@@ -89,7 +90,7 @@
 	}
 </script>
 
-{#if $page.data.currentUser}
+{#if $user}
 	<ModalWindow bind:open>
 		<slot name="header">
 			<div class="flex items-center justify-between mb-3">

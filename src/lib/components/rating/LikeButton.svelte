@@ -3,6 +3,7 @@
 	import { HandThumbUp } from '@steeze-ui/heroicons';
 	import { page } from '$app/stores';
 	import {fetchData} from '$lib/helpers/fetchData';
+	import { user } from '$lib/stores/auth';
 
 	export let size = 'w-6 h-6',
 		votable_type: string,
@@ -12,7 +13,7 @@
 		rating: number,
 		open: boolean,
 		votable_id: string;
-		let currentUser = $page.data.currentUser;
+		let currentUser = $user;
 		let url = '/api/vote';
 
 	async function like() {

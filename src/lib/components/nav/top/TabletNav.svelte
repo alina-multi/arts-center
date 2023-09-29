@@ -6,8 +6,7 @@
 	import Search from '../../search/SearchDialog.svelte';
 	import SearchInput from '../../search/SearchInput.svelte';
 	import UserDropdown from '../UserDropdown.svelte';
-
-	export let user;
+	import {user} from '$lib/stores/auth'
 </script>
 
 <div class="hidden sm:max-xl:flex items-center justify-between w-full">
@@ -24,8 +23,8 @@
 		<div class="lg:hidden flex justify-center"><Search /></div>
 		<div class="flex items-center gap-3 md:gap-6 h-full">
 			<AddWorkButton />
-			{#if user}
-				<UserDropdown {user} />
+			{#if $user}
+				<UserDropdown user={$user} />
 			{:else}
 				<LoginLink />
 			{/if}

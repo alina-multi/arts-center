@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import CrownIcon from '$lib/components/atoms/CrownIcon.svelte';
 	import { t } from '$lib/translations';
+	import { user } from '$lib/stores/auth';
 	const benefits = [ "benefit_1" , "benefit_2", "benefit_3", "benefit_4",];
 </script>
 
@@ -83,7 +84,7 @@
 					</p>
 
 					<a
-						href={$page.data.currentUser ? '/????' : '/login'}
+						href={$user ? '/????' : '/login'}
 						class="mt-10 block w-full rounded-sm bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
 						>{$t(`global.subscription.get_access`)}</a
 					>

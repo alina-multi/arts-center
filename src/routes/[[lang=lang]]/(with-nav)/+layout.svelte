@@ -1,18 +1,17 @@
-<script lang="ts">
+<script lang='ts'>
 	import MainNav from '$lib/components/nav/top/MainNav.svelte';
 	import { Toaster } from 'svelte-french-toast';
-	import { onMount } from 'svelte';
 	import type { LayoutData } from './$types';
+	import { browser } from '$app/environment';
+	import { checkAuth } from '$lib/stores/auth';
 
 	export let data: LayoutData;
-	let mounted = false;
-	onMount(() => (mounted = true));
+	if (browser) {
+		checkAuth()
+	}
 </script>
-
-{#if mounted}
+{#if browser}
 	<Toaster />
 {/if}
-{#key data.currentUser?.id}
-	<MainNav user={data.currentUser} />
-{/key}
+<MainNav />
 <slot />

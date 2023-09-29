@@ -6,9 +6,8 @@
 	import UserDropdown from '../UserDropdown.svelte';
 	import SearchInput from '$lib/components/search/SearchInput.svelte';
 	import Logo from '$lib/components/atoms/Logo.svelte';
-
 	import FooterDropdown from '$lib/components/footer/FooterDropdown.svelte';
-	export let user;
+	import { user } from '$lib/stores/auth';
 </script>
 
 <div class="hidden xl:flex items-center w-full h-full gap-6">
@@ -25,8 +24,8 @@
 	<SearchInput />
 
 	<AddWorkButton />
-	{#if user}
-		<UserDropdown {user} />
+	{#if $user}
+		<UserDropdown user={$user} />
 	{:else}
 		<LoginLink />
 	{/if}
