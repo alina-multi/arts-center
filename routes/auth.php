@@ -36,3 +36,5 @@ Route::prefix('/auth')->group(function () {
         ->middleware('auth')
         ->name('logout');
 });
+// Laravel want's this. Why? Idk :)
+Route::get('/dashboard', fn()=>'');
