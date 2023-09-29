@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import CrownIcon from '$lib/components/atoms/CrownIcon.svelte';
 	import { t } from '$lib/translations';
 	import { user } from '$lib/stores/auth';

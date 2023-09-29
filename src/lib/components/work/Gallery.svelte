@@ -3,7 +3,7 @@
 	import GalleryFilters from '$lib/components/work/GalleryFilters.svelte';
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
 	import { localePath } from '$lib/translations/';
-	import * as devalue from 'devalue';
+	import {parse} from 'devalue';
 	export let gallery;
 	export let categories;
 	export let params;
@@ -19,7 +19,7 @@
 		let url = localePath(`/api/tag/${params.tag}/${params.order}/${page}`);
 		const response = await fetch(url);
 		const text = await response.text();
-		const data = devalue.parse(text);
+		const data = parse(text);
 		newBatch = data.gallery;
 		if (newBatch.length < 20) {
 			hasMore = false;

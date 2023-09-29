@@ -3,7 +3,7 @@ import { createClient } from 'redis';
 import type { RequestEvent } from '@sveltejs/kit';
 import type { RedisClientType } from 'redis';
 import { api } from '$lib/server/api';
-import * as devalue from 'devalue';
+import { parse, stringify } from 'devalue';
 
 let cache: NodeCache | RedisClientType;
 
@@ -26,7 +26,7 @@ export async function cacheGet(
 ) {
 	const value = await cache.get(buildKey(namespace, key));
 	if (value) {
-		return devalue.parse(value);
+		return parse(value);
 	}
 	return await cacheReplace(namespace, key, storeFunction, ttl);
 }
@@ -41,7 +41,7 @@ export async function cacheReplace(
 	if (result !== undefined) {
 		cache.set(
 			buildKey(namespace, key),
-			devalue.stringify(result),
+			stringify(result),
 			process.env?.REDIS_URL ? { EX: ttl } : ttl
 		);
 	}

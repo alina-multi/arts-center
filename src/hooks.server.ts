@@ -1,4 +1,4 @@
-import type { Handle, HandleServerError, RequestEvent } from '@sveltejs/kit';
+import type { Handle, HandleServerError } from '@sveltejs/kit';
 import { checkUrlLocale, defaultLocale } from '$lib/translations';
 import * as SentryNode from '@sentry/node';
 import '@sentry/tracing';

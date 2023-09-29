@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { PlusCircle, CheckCircle } from '@steeze-ui/heroicons';
-	import { page } from '$app/stores';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import AuthModal from '../AuthModal.svelte';
 	import { t } from '$lib/translations';

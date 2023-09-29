@@ -1,12 +1,12 @@
 import type { RequestHandler } from './$types';
 import { filteredQuery } from '$lib/server/repositories/user';
 import { usersMap } from '$lib/server/mappers/users';
-import * as devalue from 'devalue';
+import { stringify } from 'devalue';
 import { unslug } from '$lib/helpers/url';
 
 export const GET = (async ({ params }) => {
 	return new Response(
-		devalue.stringify({
+		stringify({
 			users: await usersMap(
 				await filteredQuery(
 					unslug(params.category),

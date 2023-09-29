@@ -37,8 +37,8 @@ export async function checkAuth(
 	}
 }
 
-export async function redirectIfAuthorized({parent}: ServerLoadEvent) {
-	const {user} = await parent();
+export async function redirectIfAuthorized({ parent }: ServerLoadEvent) {
+	const { user } = await parent();
 	if (user?.id) {
 		throw redirect(302, localePath('/'));
 	}

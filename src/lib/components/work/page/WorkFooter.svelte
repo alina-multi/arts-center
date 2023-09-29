@@ -1,7 +1,6 @@
 <script lang="ts">
 	import UserPreview from '$lib/components/user/UserPreview.svelte';
 	import CommentBlocks from '$lib/components/comments/CommentBlocks.svelte';
-	import { page } from '$app/stores';
 	import AuthStub from '../AuthStub.svelte';
 	import TagsGroup from '../TagsGroup.svelte';
 	import { t } from '$lib/translations';

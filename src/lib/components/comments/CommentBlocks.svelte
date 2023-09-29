@@ -1,7 +1,6 @@
 <script lang="ts">
 	import CommentBlock from './CommentBlock.svelte';
 	import type { Comment } from '$lib/interfaces/Comment';
-	import { page } from '$app/stores';
 	import CommentInput from './CommentInput.svelte';
 	import toast from 'svelte-french-toast';
 	import { convertFetch } from '$lib/helpers/convertFetch';

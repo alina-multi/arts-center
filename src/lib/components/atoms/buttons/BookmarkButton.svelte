@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Bookmark, BookmarkSlash, Folder, FolderPlus } from '@steeze-ui/heroicons';
-	import { page } from '$app/stores';
 	import ModalWindow from '../ModalWindow.svelte';
 	import toast from 'svelte-french-toast';
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';

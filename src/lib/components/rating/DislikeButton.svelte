@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { HandThumbDown } from '@steeze-ui/heroicons';
-	import { page } from '$app/stores';
 	import { fetchData } from '$lib/helpers/fetchData';
 	import { user } from '$lib/stores/auth';
 

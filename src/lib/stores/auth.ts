@@ -16,6 +16,6 @@ export async function checkAuth() {
 }
 
 export async function logout() {
-		await fetchData('POST', localePath('/logout'))
-		await checkAuth();
+	await fetchData('POST', localePath('/logout'));
+	await checkAuth();
 }

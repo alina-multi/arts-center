@@ -1,6 +1,6 @@
 <script lang='ts'>
 	import { localePath } from '$lib/translations';
-	import * as devalue from 'devalue';
+	import {parse} from 'devalue';
 	import ImageWork from '$lib/components/atoms/ImageWork.svelte';
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
 	import MetaGroups from '$lib/components/MetaGroups.svelte';
@@ -22,7 +22,7 @@
 		let url = localePath(`/api/user/${user.id}/${params.tag}/${page}`);
 		const response = await fetch(url);
 		const text = await response.text();
-		const data = devalue.parse(text);
+		const data = parse(text);
 		newBatch = data.gallery;
 		if (newBatch.length < 20) {
 			hasMore = false;
