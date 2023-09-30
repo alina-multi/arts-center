@@ -55,7 +55,7 @@ export async function cacheClear(namespace: cacheNamespace, key: string) {
 export async function reloadCurrentUser(event: RequestEvent) {
 	const session = event?.cookies?.get('laravel_session');
 	if (session) {
-		return (event.locals.user = await cacheReplace(
+		return await cacheReplace(
 			'auth',
 			session,
 			async () => {
@@ -65,7 +65,7 @@ export async function reloadCurrentUser(event: RequestEvent) {
 				}
 			},
 			360
-		));
+		);
 	}
 }
 

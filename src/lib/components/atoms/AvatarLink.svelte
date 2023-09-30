@@ -7,7 +7,7 @@
 		size: string,
 		withName: boolean = false,
 		nameStyles: string = '';
-	$: href = localePath(`/${user.username}`);
+	$: href = localePath(`/${user?.username}`);
 
 	if (!size) {
 		size = 'h-6 w-6';
