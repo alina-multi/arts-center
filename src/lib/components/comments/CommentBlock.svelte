@@ -23,9 +23,12 @@
 	export let comment: Comment, commentable_id: string, parentComments: [Comment] | [];
 	let url = '/api/comment';
 
-	const isMy = $page.data.work.owners.some((owner: { id: string }) =>
-		handleIsMy($user, owner.id)
-	);
+	let isMy = false;
+	$:{
+			isMy = $page.data.work.owners.some((owner: { id: string }) =>
+				handleIsMy($user, owner.id)
+			);
+	}
 	const currentUser = $user;
 	const comment_id = comment?.id?.toString();
 	$: value = '';

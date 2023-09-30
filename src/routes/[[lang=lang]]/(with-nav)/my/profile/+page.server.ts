@@ -17,7 +17,7 @@ export const load = (async (event) => {
 
 export const actions = {
 	default: async (event) => {
-		const user  = await checkAuth(event);
+		const user = await checkAuth(event);
 		const form = await event.request.formData();
 		const errors = {};
 		// This is hideous, but I don't know how to do it better

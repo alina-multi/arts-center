@@ -8,5 +8,5 @@ export const load = (async (event) => {
 	if (!user?.id) {
 		throw redirect(301, localePath('/login?redirect=' + event.url.pathname));
 	}
-	return {user}
+	return { user };
 }) satisfies LayoutServerLoad;

@@ -10,7 +10,8 @@
 	export let user, size: string;
 	let url = '/api/follow';
 
-	let isMy = handleIsMy($currentUser, user.id);
+	let isMy = false;
+	$:isMy = handleIsMy($currentUser, user.id);
 
 	let open = false;
 	let follows = $currentUser?.follows?.user;

@@ -1,18 +1,18 @@
 <script lang="ts">
 	import type { Work } from '$lib/interfaces/Work';
 	import type { Comment } from '$lib/interfaces/Comment';
-	import type { User } from '$lib/interfaces/User';
 	import WorkHeader from '$lib/components/work/page/WorkHeader.svelte';
 	import WorkBody from '$lib/components/work/page/WorkBody.svelte';
 	import WorkFooter from '$lib/components/work/page/WorkFooter.svelte';
 	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import BookmarkButton from '$lib/components/atoms/buttons/BookmarkButton.svelte';
+	import { user } from '$lib/stores/auth';
 
 	export let work: Work;
 	export let comments: Comment[];
-	export let currentUser: User;
-	let isMy = work.owners.some((owner) => handleIsMy(currentUser, owner.id));
+	isMy = false;
+	$:isMy = work.owners.some((owner) => handleIsMy($user, owner.id));
 </script>
 
 <div

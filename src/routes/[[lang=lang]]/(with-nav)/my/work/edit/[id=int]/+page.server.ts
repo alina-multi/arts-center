@@ -13,7 +13,7 @@ export const load = (async (event) => {
 		}).then(async (response) => await response.json()),
 		getCategories().then((categories) => tagsMap(categories))
 	]);
-	const {user} = await event.parent();
+	const { user } = await event.parent();
 	// Check that you are the owner
 	if (!data.owners.filter(({ id }) => id === user.id)?.length) {
 		throw error(404, 'Not found');
