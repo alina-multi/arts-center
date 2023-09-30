@@ -104,7 +104,7 @@ export async function userDraftQuery(user_id: bigint, page = 1) {
 					ownable_type: 'work'
 				}
 			},
-			published_at: null
+			status: { lte: 10 },
 		},
 		{
 			id: 'desc'
