@@ -105,6 +105,7 @@ export async function userDraftQuery(user_id: bigint, page = 1) {
 				}
 			},
 			status: { lte: 10 },
+			deleted_at: null
 		},
 		{
 			id: 'desc'
