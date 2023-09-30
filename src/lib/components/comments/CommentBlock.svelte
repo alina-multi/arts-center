@@ -18,7 +18,7 @@
 	import {  fetchData  } from '$lib/helpers/fetchData';
 	import AuthModal from '$lib/components/atoms/AuthModal.svelte';
 	import ReportModal from '../atoms/ReportModal.svelte';
-	import { user } from '$lib/stores/auth';
+	import { user as currentUser } from '$lib/stores/auth';
 
 	export let comment: Comment, commentable_id: string, parentComments: [Comment] | [];
 	let url = '/api/comment';
@@ -26,10 +26,9 @@
 	let isMy = false;
 	$:{
 			isMy = $page.data.work.owners.some((owner: { id: string }) =>
-				handleIsMy($user, owner.id)
+				handleIsMy($currentUser, owner.id)
 			);
 	}
-	const currentUser = $user;
 	const comment_id = comment?.id?.toString();
 	$: value = '';
 	let answer: Comment | null = null;
@@ -54,7 +53,7 @@
 	}
 
 	function onReply() {
-		if (!currentUser) {
+		if (!$currentUser) {
 			open = true;
 			return;
 		}
@@ -87,7 +86,7 @@
 		value = '';
 		commentsState.hideReplyForm();
 
-		answers = [...answers, { ...answer, owner: currentUser }];
+		answers = [...answers, { ...answer, owner: $currentUser }];
 		await tick();
 		new_comment_loaded = true;
 	}
@@ -154,7 +153,7 @@
 				<div
 					class="flex divide-x font-semibold text-zinc-500 dark:text-zinc-400 dark:divide-zinc-800 mr-3"
 				>
-					{#if currentUser && Number(currentUser.id) === Number(comment.owner.id)}
+					{#if $currentUser && Number($currentUser.id) === Number(comment.owner.id)}
 						{#if isEditable()}<button class="px-3" on:click={() => onEdit()}>
 								{$t('global.buttons.edit')}
 							</button>{/if}
@@ -171,7 +170,7 @@
 					{/if}
 				</div>
 			</div>
-			{#if currentUser}
+			{#if $currentUser}
 				<EllipsisButton type={'horizontal'}>
 					<div slot="description" class="flex flex-col">
 						<BlockButton
