@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\FeedbackType;
 use App\Models\Feedback;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -26,8 +27,8 @@ class FeedbackFactory extends Factory
             'title' => $this->faker->word,
             'user_id' => User::factory()->create()->id,
             'language' => 'en',
-            'body' => ['delta'=>[]],
-            'type'=>''
+            'body' => $this->faker->realText(100),
+            'type'=> FeedbackType::feedback->value
         ];
     }
 }
