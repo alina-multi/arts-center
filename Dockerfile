@@ -34,4 +34,6 @@ EXPOSE 8000
 
 ENV LOG_CHANNEL=stderr
 
+RUN echo 'memory_limit = 256M' >> /usr/local/etc/php/conf.d/docker-php-ram-limit.ini
+
 CMD ["php", "artisan", "octane:start", "--host=0.0.0.0"]
