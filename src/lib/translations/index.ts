@@ -70,7 +70,7 @@ export function checkUrlLocale(event: RequestEvent): string {
 	return lang;
 }
 
-export function localePath(path: string): string {
+export function localePath(path: `/${string}`): string {
 	return removeTrailingSlash(localPrefix(locale.get()) + path);
 }
 
