@@ -3,7 +3,7 @@ import type { images, image_variants, imageables } from '@prisma/client';
 
 type ImageFolder = 'preview' | 'works' | 'photos' | 'grids';
 
-interface imageWithRelation extends images {
+export interface imageWithRelation extends images {
 	variants: image_variants[];
 }
 
@@ -15,7 +15,7 @@ export function imagablePicturesMap(images: imageables[]): Picture[] {
 	return images?.map((image) => pictureMap(image?.image));
 }
 
-export function pictureMap(image: imageWithRelation): Picture {
+export function pictureMap(image: imageWithRelation | null): Picture {
 	const sourcesMap: Map<string, { type: string; srcset: string[] }> = new Map();
 	if (!image || !image.variants) {
 		return;
