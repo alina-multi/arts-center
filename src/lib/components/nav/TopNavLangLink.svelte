@@ -5,11 +5,7 @@
 
 	export let lang: string;
 	let active = false;
-	$:{
-		locale.subscribe((val) => {
-			active = val == lang;
-		});
-	}
+	$:active = $locale == lang
 </script>
 
 <TopNavLink href={switchLocalePath(lang, $page.url.pathname)} preload='off' reload {active}>
