@@ -2,8 +2,6 @@ FROM node:20-alpine
 
 WORKDIR /var/www
 ENV PUBLIC_ENV=production
-ENV NODE_ICU_DATA=/usr/share/icu/73.2/icudt73l.dat
-RUN apk add icu-data-full
 COPY package.json .
 COPY pnpm-lock.yaml .
 COPY postcss.config.cjs .
