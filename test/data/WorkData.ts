@@ -1,13 +1,15 @@
 import type { Work } from '$lib/interfaces/Work';
+import PictureData from '$test/data/PictureData';
+import UserData from '$test/data/UserData';
 
 export default {
-	id: BigInt(39),
+	id: 1,
 	published_at: new Date('2023-05-01T21:37:31.000Z'),
 	rating: 1,
 	comments: 1,
 	hosts: 0,
 	price: 1881,
-	full: {},
+	full: PictureData,
 	images: [],
 	titles: [
 		{
@@ -19,7 +21,7 @@ export default {
 			title: 'Test header'
 		}
 	],
-	owners: [],
+	owners: [UserData],
 	votes: [],
 	tags: [],
 	details: null,
