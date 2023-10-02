@@ -15,7 +15,7 @@ export const load = (async (event) => {
 		getCategories().then((categories) => tagsMap(categories))
 	]);
 
-	if (!data.id || data.published_at) {
+	if (!data.id || data.deleted_at) {
 		throw error(404, 'Not found');
 	}
 	return {
