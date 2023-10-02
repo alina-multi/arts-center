@@ -18,5 +18,8 @@
 			"$test/*": ["./test/*"]
 		}
 	},
-	"include": ["./vitest.setup.ts"]
+	"include": [
+		"./vitest.setup.ts",
+		"./test/**/*.ts"
+	]
 }

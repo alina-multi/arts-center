@@ -3,7 +3,7 @@ import PictureData from '$test/data/PictureData';
 import UserData from '$test/data/UserData';
 
 export default {
-	id: 1,
+	id: BigInt(1),
 	published_at: new Date('2023-05-01T21:37:31.000Z'),
 	rating: 1,
 	comments: 1,
