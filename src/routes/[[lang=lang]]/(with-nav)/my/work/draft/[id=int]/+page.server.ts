@@ -3,7 +3,7 @@ import { api } from '$lib/server/api';
 import { error, redirect } from '@sveltejs/kit';
 import { getCategories } from '$lib/server/repositories/tag';
 import { tagsMap } from '$lib/server/mappers/tag';
-import { locale, localePath } from '$lib/translations';
+import { localePath } from '$lib/translations';
 
 export const load = (async (event) => {
 	const [data, categories] = await Promise.all([
@@ -15,7 +15,7 @@ export const load = (async (event) => {
 		getCategories().then((categories) => tagsMap(categories))
 	]);
 
-	if (!data.id || data.published_at) {
+	if (!data.id || data.deleted_at) {
 		throw error(404, 'Not found');
 	}
 	return {
@@ -34,7 +34,7 @@ export const actions = {
 			path: `/api2/draft/${event.params.id}`,
 			event,
 			data: {
-				language: locale.get(),
+				language: event.params.lang,
 				title: form.get('title'),
 				description: form.get('description'),
 				category: form.get('category')?.split(','),

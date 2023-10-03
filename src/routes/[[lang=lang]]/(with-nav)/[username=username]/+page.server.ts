@@ -7,10 +7,12 @@ export const load = (async ({ parent, params }) => {
 	const { user } = await parent();
 	return await cacheGet(
 		'gallery',
-		params.username,
+		`${params.username}.${params.lang}`,
 		async () => {
 			return {
-				gallery: await worksPreviewMap(await userQuery(user.id, 'all', 1))
+				params,
+				user,
+				gallery: await worksPreviewMap(await userQuery(user.id, 'all', params.lang, 1))
 			};
 		},
 		5

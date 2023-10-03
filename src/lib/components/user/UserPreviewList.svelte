@@ -5,7 +5,7 @@
 	import UsersFilters from '$lib/components/filters/UsersFilters.svelte';
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
 	import { localePath, t } from '$lib/translations';
-	import * as devalue from 'devalue';
+	import {parse} from 'devalue';
 	import SideMenu from '$lib/components/nav/side/SideMenu.svelte';
 	import cat from '$lib/images/cat-icons.svg';
 
@@ -23,7 +23,7 @@
 		let url = localePath(`/api/users/${params.order}/${params.category}/${params.country}/${page}`);
 		const response = await fetch(url);
 		const text = await response.text();
-		const data = devalue.parse(text);
+		const data = parse(text);
 		newBatch = data.users;
 		if (newBatch.length < 10) {
 			hasMore = false;

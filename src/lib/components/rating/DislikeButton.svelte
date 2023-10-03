@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { HandThumbDown } from '@steeze-ui/heroicons';
-	import { page } from '$app/stores';
 	import { fetchData } from '$lib/helpers/fetchData';
+	import { user } from '$lib/stores/auth';
 
 	export let size: string,
 		isLiked: boolean,
@@ -13,7 +13,7 @@
 		votable_id: string;
 	let url = '/api/vote';
 
-	let currentUser = $page.data.currentUser;
+	let currentUser = $user;
 
 	async function dislike() {
 		if (!currentUser) {

@@ -1,20 +1,20 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { PlusCircle, CheckCircle } from '@steeze-ui/heroicons';
-	import { page } from '$app/stores';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import AuthModal from '../AuthModal.svelte';
 	import { t } from '$lib/translations';
 	import { fetchData } from '$lib/helpers/fetchData';
+	import {user as currentUser} from '$lib/stores/auth'
 
 	export let user, size: string;
 	let url = '/api/follow';
-	let currentUser = $page.data.currentUser;
 
-	let isMy = handleIsMy(currentUser, user.id);
+	let isMy = false;
+	$:isMy = handleIsMy($currentUser, user.id);
 
 	let open = false;
-	let follows = currentUser?.follows.user;
+	let follows = $currentUser?.follows?.user;
 	let isFollowing = follows?.some((id) => id === Number(user.id));
 
 	const handleFollow = () => {

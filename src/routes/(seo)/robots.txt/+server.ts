@@ -2,7 +2,7 @@ import { PUBLIC_ENV } from '$env/static/public';
 
 const robots_prod = `
 User-agent: *
-Disallow: /my
+Disallow: /my/
 Allow: /
 Sitemap: https://arts.center/sitemap.xml
 `;

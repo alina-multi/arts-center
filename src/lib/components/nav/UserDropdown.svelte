@@ -18,10 +18,9 @@
 		<ul>
 			<MyPageLink href={'/' + user?.username} />
 			<MyProfileLinksGroup />
-
 			<li>
 				<LogoutButton />
 			</li>
-		</ul></slot:fragment
-	>
+		</ul>
+	</slot:fragment>
 </Dropdown>

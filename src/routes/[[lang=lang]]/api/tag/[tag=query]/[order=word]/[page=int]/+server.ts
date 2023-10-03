@@ -1,8 +1,7 @@
 import type { RequestHandler } from './$types';
 import { worksPreviewMap } from '$lib/server/mappers/gallery';
 import { filteredQuery } from '$lib/server/repositories/gallery';
-import { locale } from '$lib/translations';
-import * as devalue from 'devalue';
+import { stringify } from 'devalue';
 import { unslug } from '$lib/helpers/url';
 
 export const GET = (async ({ params, setHeaders }) => {
@@ -10,13 +9,10 @@ export const GET = (async ({ params, setHeaders }) => {
 		'cache-control': 'max-age=600'
 	});
 	return new Response(
-		devalue.stringify({
-			gallery: await filteredQuery(
-				unslug(params.tag),
-				locale.get(),
-				params.order,
-				params.page
-			).then((works) => worksPreviewMap(works))
+		stringify({
+			gallery: await filteredQuery(unslug(params.tag), params.lang, params.order, params.page).then(
+				(works) => worksPreviewMap(works)
+			)
 		})
 	);
 }) satisfies RequestHandler;

@@ -1,13 +1,13 @@
-<script lang="ts">
+<script lang='ts'>
 	import MainNav from '$lib/components/nav/top/MainNav.svelte';
 	import { Toaster } from 'svelte-french-toast';
-	import { onMount } from 'svelte';
-
-	let mounted = false;
-	onMount(() => (mounted = true));
+	import { browser } from '$app/environment';
+	import { checkAuth } from '$lib/stores/auth';
+	if (browser) {
+		checkAuth()
+	}
 </script>
-
-{#if mounted}
+{#if browser}
 	<Toaster />
 {/if}
 <MainNav />

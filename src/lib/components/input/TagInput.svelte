@@ -95,7 +95,7 @@
 		on:keydown={(e) => onBackspace(e)}
 		class="flex flex-wrap gap-1 rounded-sm border p-1 border-gray-300 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 overflow-hidden"
 	>
-		{#each tags as tag, i}
+		{#each tags as tag, i (tag)}
 			<div class="bg-blue-100 inline-flex items-center text-sm rounded">
 				<span class="ml-2 mr-1 leading-relaxed truncate max-w-xs">{tag}</span>
 				<button

@@ -1,10 +1,10 @@
 <script lang="ts">
 	import UserPreview from '$lib/components/user/UserPreview.svelte';
 	import CommentBlocks from '$lib/components/comments/CommentBlocks.svelte';
-	import { page } from '$app/stores';
 	import AuthStub from '../AuthStub.svelte';
 	import TagsGroup from '../TagsGroup.svelte';
 	import { t } from '$lib/translations';
+	import { user } from '$lib/stores/auth';
 
 	export let work,
 		comments = [];
@@ -16,7 +16,7 @@
 	<div class="flex flex-col sm:w-full lg:flex-col gap-3 lg:w-2/6">
 		<TagsGroup tags={work.tags} media="hidden lg:flex" />
 
-		{#if !$page.data.currentUser}
+		{#if !$user}
 			<div><AuthStub /></div>
 		{/if}
 

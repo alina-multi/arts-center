@@ -9,13 +9,14 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
+		// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
+		// BUT PHPStorm doesn't give a shit, so I need to add it here :)
 		"paths": {
 			"$lib": ["./src/lib"],
 			"$lib/*": ["./src/lib/*"],
 			"$test": ["./test"],
 			"$test/*": ["./test/*"]
 		}
-	}
-	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
-	// BUT PHPStorm doesn't give a shit, so I need to add it here :)
+	},
+	"include": ["./vitest.setup.ts", "./test/**/*.ts"]
 }

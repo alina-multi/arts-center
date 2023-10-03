@@ -7,8 +7,8 @@
 </script>
 
 <TopNav>
-	<DesktopNav />
-	<TabletMainNav />
-	<MobileMainNav />
+	<DesktopNav/>
+	<TabletMainNav/>
+	<MobileMainNav/>
 	<DarkSwitch />
 </TopNav>

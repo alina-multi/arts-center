@@ -31,6 +31,7 @@
 		"delete_work": "Are you sure you want to delete this work?",
 		"move_to_drafts": "Are you sure you want to move this work to drafts?"
 	},
+	"drafts": "Drafts",
 	"edit_page": {
 		"bio_tip": "Write a few sentences about yourself",
 		"biography": "Biography",
@@ -62,10 +63,8 @@
 		"no_following": "When you follow people you'll see them here"
 	},
 	"no_blocked": "There are no users in your blacklist",
+	"no_drafts": "There are no drafts",
 	"people": "people",
-
 	"work": "work",
-	"works": "works",
-	"drafts": "Drafts",
-	"no_drafts": "There are no drafts"
+	"works": "works"
 }

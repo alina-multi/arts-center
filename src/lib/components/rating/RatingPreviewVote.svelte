@@ -2,21 +2,21 @@
 	import type { Work } from '$lib/interfaces/Work';
 	import type { Comment } from '$lib/interfaces/Comment';
 	import VotedList from '$lib/components/rating/VotedList.svelte';
-	import { page } from '$app/stores';
 	import LikeButton from './LikeButton.svelte';
 	import DislikeButton from './DislikeButton.svelte';
 	import AuthModal from '../atoms/AuthModal.svelte';
 	import { t } from '$lib/translations';
+	import { user } from '$lib/stores/auth';
 
 	export let entity: Work | Comment,
 		allowDownVote = false,
 		votable_type: string,
 		showVotedPreview = false,
 		size = 'w-6 h-6';
-	let currentUser = $page.data.currentUser;
+	let currentUser = $user;
 	let votes = entity?.votes;
 	let rating = entity?.rating;
-	let isLiked = entity?.votes?.some((vote) => vote?.id.toString() === currentUser?.id.toString());
+	let isLiked = entity?.votes?.some((vote) => vote?.id?.toString() === currentUser?.id?.toString());
 	let isDownVoted = false;
 	let open = false;
 	let votable_id = entity?.id.toString();

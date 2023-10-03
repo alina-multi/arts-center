@@ -1,25 +1,26 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Bookmark, BookmarkSlash, Folder, FolderPlus } from '@steeze-ui/heroicons';
-	import { page } from '$app/stores';
 	import toast from 'svelte-french-toast';
 	import { fetchData } from '$lib/helpers/fetchData';
 	import RadioButton from '$lib/components/input/RadioButton.svelte';
 	import TextInput from '$lib/components/input/TextInput.svelte';
 	import ModalWithForm from '$lib/components/my/ModalWithForm.svelte';
+	import { t } from '$lib/translations';
+	import { user } from '$lib/stores/auth';
 
 	export let work;
 	let url = '/api/favorite';
 	let workID = Number(work.id);
-	let currentUser = $page.data.currentUser;
-	let isBookmarked = currentUser?.favorites.works.some((favorite: number) => favorite === workID);
+	let currentUser = $user;
+	let isBookmarked = currentUser?.favorites?.works.some((favorite: number) => favorite === workID);
 
 	let open = false;
 	let showInput = false;
 	let error = '';
 	let folderID = 0;
 	$: folderName = showInput ? '' : 'All works';
-	const folders = currentUser?.favorites.folders;
+	const folders = currentUser?.favorites?.folders;
 
 	function onChange(e: Event & { target: HTMLInputElement }) {
 		folderID = Number(e.target.value);

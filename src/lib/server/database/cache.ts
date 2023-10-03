@@ -3,11 +3,11 @@ import { createClient } from 'redis';
 import type { RequestEvent } from '@sveltejs/kit';
 import type { RedisClientType } from 'redis';
 import { api } from '$lib/server/api';
-import * as devalue from 'devalue';
+import { parse, stringify } from 'devalue';
 
 let cache: NodeCache | RedisClientType;
 
-type cacheNamespace = 'work' | 'user' | 'auth' | 'page' | 'gallery' | 'search';
+type cacheNamespace = 'work' | 'user' | 'auth' | 'page' | 'gallery' | 'search' | 'sitemap';
 
 if (process.env?.REDIS_URL) {
 	cache = createClient({
@@ -26,7 +26,7 @@ export async function cacheGet(
 ) {
 	const value = await cache.get(buildKey(namespace, key));
 	if (value) {
-		return devalue.parse(value);
+		return parse(value);
 	}
 	return await cacheReplace(namespace, key, storeFunction, ttl);
 }
@@ -38,11 +38,13 @@ export async function cacheReplace(
 	ttl = 120
 ) {
 	const result = await storeFunction();
-	cache.set(
-		buildKey(namespace, key),
-		devalue.stringify(result),
-		process.env?.REDIS_URL ? { EX: ttl } : ttl
-	);
+	if (result !== undefined) {
+		cache.set(
+			buildKey(namespace, key),
+			stringify(result),
+			process.env?.REDIS_URL ? { EX: ttl } : ttl
+		);
+	}
 	return result;
 }
 
@@ -53,7 +55,7 @@ export async function cacheClear(namespace: cacheNamespace, key: string) {
 export async function reloadCurrentUser(event: RequestEvent) {
 	const session = event?.cookies?.get('laravel_session');
 	if (session) {
-		return (event.locals.user = await cacheReplace(
+		return await cacheReplace(
 			'auth',
 			session,
 			async () => {
@@ -63,7 +65,7 @@ export async function reloadCurrentUser(event: RequestEvent) {
 				}
 			},
 			360
-		));
+		);
 	}
 }
 

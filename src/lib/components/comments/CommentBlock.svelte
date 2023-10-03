@@ -9,14 +9,20 @@
 	import { tick } from 'svelte';
 	import { t } from '$lib/translations';
 	import { fetchData } from '$lib/helpers/fetchData';
-	import CommentBody from './CommentBody.svelte';
-
-	import CommentHeader from './CommentHeader.svelte';
+	import CommentHeader from '$lib/components/comments/CommentHeader.svelte';
+	import CommentBody from '$lib/components/comments/CommentBody.svelte';
+	import { user as currentUser } from '$lib/stores/auth';
+	import { handleIsMy } from '$lib/helpers/handleIsMy';
 
 	export let comment: Comment, commentable_id: string, parentComments: [Comment] | [];
 	let url = '/api/comment';
 
-	const currentUser = $page.data.currentUser;
+	let isMy = false;
+	$: {
+		isMy = $page.data.work.owners.some((owner: { id: string }) =>
+			handleIsMy($currentUser, owner.id)
+		);
+	}
 	const comment_id = comment?.id?.toString();
 	$: value = '';
 	let answer: Comment | null = null;
@@ -55,7 +61,7 @@
 		value = '';
 		commentsState.hideReplyForm();
 
-		answers = [...answers, { ...answer, owner: currentUser }];
+		answers = [...answers, { ...answer, owner: $currentUser }];
 		await tick();
 		new_comment_loaded = true;
 	}

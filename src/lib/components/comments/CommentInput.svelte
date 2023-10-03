@@ -1,17 +1,15 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
 	import { t } from '$lib/translations';
+	import { user } from '$lib/stores/auth';
 
 	export let isEditing: boolean | undefined = false,
 		isReplying: boolean | undefined = false,
 		onSubmit: (comment_id: string) => Promise<void>,
 		commentID: string | undefined = undefined,
 		value: string;
-		
-	const currentUser = $page.data.currentUser;
-	commentID = commentID?.toString();
+	    commentID = commentID?.toString();
 	let textarea: HTMLTextAreaElement;
 	$: enabled = value.length > 3;
 
@@ -25,7 +23,7 @@
 <div class="flex flex-col gap-3 dark:border-zinc-800 mt-6">
 	<div class="flex gap-3 w-full items-start">
 		{#if !isEditing}
-			<AvatarLink user={currentUser} size={'h-12 w-12'} />
+			<AvatarLink user={$user} size={'h-12 w-12'} />
 		{/if}
 		<form class="mx-auto w-full" method="POST" on:submit|preventDefault={() => onSubmit(commentID)}>
 			<textarea

@@ -3,7 +3,7 @@ import { api } from '$lib/server/api';
 import { getCategories } from '$lib/server/repositories/tag';
 import { tagsMap } from '$lib/server/mappers/tag';
 import { error, redirect } from '@sveltejs/kit';
-import { languageFilter, locale, localePath } from '$lib/translations';
+import { languageFilter, localePath } from '$lib/translations';
 export const load = (async (event) => {
 	const [data, categories] = await Promise.all([
 		api({
@@ -13,8 +13,9 @@ export const load = (async (event) => {
 		}).then(async (response) => await response.json()),
 		getCategories().then((categories) => tagsMap(categories))
 	]);
+	const { user } = await event.parent();
 	// Check that you are the owner
-	if (!data.owners.filter(({ id }) => id === event.locals.user.id)?.length) {
+	if (!data.owners.filter(({ id }) => id === user.id)?.length) {
 		throw error(404, 'Not found');
 	}
 	data.titles = languageFilter(data.titles);
@@ -35,7 +36,7 @@ export const actions = {
 			path: `/api2/draft/${event.params.id}`,
 			event,
 			data: {
-				language: locale.get(),
+				language: event.params.lang,
 				title: form.get('title'),
 				description: form.get('description'),
 				category: form.get('category')?.split(',')

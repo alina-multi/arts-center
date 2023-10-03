@@ -11,7 +11,7 @@ import {t, localePath} from '$lib/translations';
 			>
 	
 				<span class="font-semibold">{$t('global.filters.tags')}:</span>
-				{#each tags as { title }}
+				{#each tags as { title } (title)}
 					<TagButton href={localePath(`/tag/${title}/popular`)} title={title} styles={'px-3 py-0.5 dark:border-zinc-700 '}  />
 				{/each}
 			

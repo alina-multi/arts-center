@@ -6,7 +6,7 @@
 	export let draft;
 
 	$: title = languageFind(draft.titles)?.title;
-	$: href = localePath(`draft/${draft.id}`);
+	$: href = localePath(`/draft/${draft.id}`);
 </script>
 
 <a {href}>

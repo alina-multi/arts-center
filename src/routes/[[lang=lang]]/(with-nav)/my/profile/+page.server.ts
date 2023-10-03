@@ -3,6 +3,7 @@ import { api } from '$lib/server/api';
 import { availableLocales } from '$lib/translations';
 import { uploadFile } from '$lib/server/s3';
 import { reloadCurrentUser } from '$lib/server/database/cache';
+import { checkAuth } from '$lib/server/auth';
 
 export const load = (async (event) => {
 	return {
@@ -16,6 +17,7 @@ export const load = (async (event) => {
 
 export const actions = {
 	default: async (event) => {
+		const user = await checkAuth(event);
 		const form = await event.request.formData();
 		const errors = {};
 		// This is hideous, but I don't know how to do it better
@@ -34,7 +36,7 @@ export const actions = {
 		};
 
 		const photo = form.get('photo') as File;
-		if (event.locals?.user?.username && photo?.size) {
+		if (user?.username && photo?.size) {
 			const extension = photo.name.split('.').pop();
 			const key = `temp/photos/${Date.now()}/${Math.random()}.${extension}`;
 			if (await uploadFile(photo, key)) {

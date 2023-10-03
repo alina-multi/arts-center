@@ -1,13 +1,12 @@
 import type { User, UserList } from '$lib/interfaces/User';
-import type { user_bios } from '.prisma/client';
+import type { user_bios } from '@prisma/client';
 import type { RatingWithRelations } from './ratings';
 import { ratingsMap } from './ratings';
-import type { WorksWithRelations } from './gallery';
 import { worksPreviewMap } from './gallery';
 import { query } from '$lib/server/repositories/gallery';
-import type { images } from '@prisma/client';
 import { languageFind } from '$lib/translations';
 import { pictureMap } from '$lib/server/mappers/pictures';
+import type { imageWithRelation } from '$lib/server/mappers/pictures';
 
 type userWithRelations = {
 	id: bigint;
@@ -16,7 +15,7 @@ type userWithRelations = {
 	created_at: Date | null;
 	country: string | null;
 	rating: number;
-	photo: images | null;
+	photo: imageWithRelation | null;
 	ratings?: RatingWithRelations[];
 	bios?: user_bios[];
 };
@@ -44,7 +43,7 @@ export async function usersMap(users: userWithRelations[]): Promise<UserList[]> 
 				1,
 				3
 			);
-			const works = worksPreviewMap(tmpWorks as WorksWithRelations[]);
+			const works = worksPreviewMap(tmpWorks);
 			return {
 				...userMap(user),
 				works,
@@ -73,9 +72,9 @@ export function userCountriesMap(
 	locale: string
 ): { title: string; count: number; value: string }[] {
 	const regionNames = new Intl.DisplayNames([locale], { type: 'region' });
-	return countries.map((country): { title: string; count: number } => {
+	return countries.map((country): { title: string; count: number; value: string } => {
 		return {
-			title: country.country ? regionNames.of(country.country) ?? country.country : '',
+			title: regionNames.of(country.country.toUpperCase()) ?? '',
 			value: country.country,
 			count: country._count.country
 		};
