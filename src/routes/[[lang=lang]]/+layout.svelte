@@ -5,6 +5,7 @@
 	import LoaderLayout from '$lib/components/atoms/LoaderLayout.svelte';
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
+	import loading from '$lib/stores/loading';
 
 	BigInt.prototype.toJSON = (val) => val.toString();
 
@@ -54,6 +55,6 @@
 
 <slot />
 
-{#if $navigationIsDelayed}
+{#if $navigationIsDelayed || $loading}
 	<LoaderLayout />
 {/if}

@@ -180,5 +180,8 @@
 		"like": "Like",
 		"liked_by": "Liked by",
 		"others": "others"
+	},
+	"error": {
+		"api": "Unknown API server error"
 	}
 }
