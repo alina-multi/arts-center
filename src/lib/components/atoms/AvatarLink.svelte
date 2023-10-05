@@ -6,7 +6,9 @@
 	export let user: UserType,
 		size: string,
 		withName: boolean = false,
-		nameStyles: string = '';
+		nameStyles: string = '',
+		width: string | boolean = ""
+		
 	$: href = localePath(`/${user?.username}`);
 
 	if (!size) {
@@ -16,7 +18,7 @@
 
 <a
 	{href}
-	class="inline-flex items-center gap-2 shrink-0 text-gray-700 dark:text-zinc-100 hover:text-gray-700 dark:hover:text-zinc-300"
+	class="{width} inline-flex items-center gap-2 shrink-0 text-gray-700 dark:text-zinc-100 hover:text-gray-700 dark:hover:text-zinc-300"
 >
 	<Avatar {user} size={size} />
 
