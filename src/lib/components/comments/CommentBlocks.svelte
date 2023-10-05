@@ -13,7 +13,7 @@
 
 	export let comments, commentable_id: string;
 	commentable_id = commentable_id?.toString();
-	const currentUser = $user;
+	// const currentUser = $user;
 	let parentComments = [...comments];
 	$: value = '';
 	let new_comment: Comment | null = null;
@@ -44,7 +44,7 @@
 		}
 
 		scrollToBottom('parentBlock');
-		parentComments = [...parentComments, { ...new_comment, owner: currentUser }];
+		parentComments = [...parentComments, { ...new_comment, owner: $user }];
 		value = '';
 
 		await tick();
@@ -52,9 +52,9 @@
 	}
 </script>
 
-<div class=" {comments.length > 0 || currentUser ? " md:border border-t-transparent dark:border-t-transparent md:px-6 pb-6 gap-6 md:rounded-b-sm dark:border-zinc-800": "" }  flex flex-col  ">
+<div class=" {comments.length > 0 || $user ? " md:border border-t-transparent dark:border-t-transparent md:px-6 pb-6 gap-6 md:rounded-b-sm dark:border-zinc-800": "" }  flex flex-col  ">
 	<h3 class="sr-only">Comments</h3>
-	{#if currentUser} <CommentInput onSubmit={addNewComment} bind:value /> {/if}
+	{#if $user} <CommentInput onSubmit={addNewComment} bind:value /> {/if}
 	{#if comments.length > 0}
 	<div id="parentBlock">
 		{#each parentComments as comment (comment.id)}

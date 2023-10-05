@@ -16,10 +16,12 @@
 		deleteComment: (comment_id: string) => Promise<void>,
 		parentComments: [Comment] | [];
 
+	
+	$:	isMy = $page.data.work.owners.some((owner: { id: string }) =>
+			handleIsMy($currentUser, owner.id)
+		);
+	
 
-	const isMy = $page.data.work.owners.some((owner: { id: string }) =>
-		handleIsMy($currentUser, owner.id)
-	);
 	let reportModalOpen = false;
 	const comment_id = comment?.id?.toString();
 

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { Comment } from '$lib/interfaces/Comment';
 	import CommentInput from '$lib/components/comments/CommentInput.svelte';
-	import { page } from '$app/stores';
 	import { commentsState } from '$lib/stores/comment';
 	import { convertFetch } from '$lib/helpers/convertFetch';
 	import { сommentValidations, commentMassage, scrollToBottom } from '$lib/helpers/comments';
@@ -12,17 +11,11 @@
 	import CommentHeader from '$lib/components/comments/CommentHeader.svelte';
 	import CommentBody from '$lib/components/comments/CommentBody.svelte';
 	import { user as currentUser } from '$lib/stores/auth';
-	import { handleIsMy } from '$lib/helpers/handleIsMy';
+
 
 	export let comment: Comment, commentable_id: string, parentComments: [Comment] | [];
 	let url = '/api/comment';
 
-	let isMy = false;
-	$: {
-		isMy = $page.data.work.owners.some((owner: { id: string }) =>
-			handleIsMy($currentUser, owner.id)
-		);
-	}
 	const comment_id = comment?.id?.toString();
 	$: value = '';
 	let answer: Comment | null = null;
