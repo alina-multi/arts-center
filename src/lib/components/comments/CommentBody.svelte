@@ -1,21 +1,26 @@
 <script lang="ts">
-    import type { Comment } from '$lib/interfaces/Comment';
+	import type { Comment } from '$lib/interfaces/Comment';
 	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
 	import AuthModal from '$lib/components/atoms/AuthModal.svelte';
 	import { commentsState } from '$lib/stores/comment';
 	import { t } from '$lib/translations';
-	import { page } from '$app/stores';
+	import { user as currentUser } from '$lib/stores/auth';
 
-	export let comment: Comment, value:string, isEdited: boolean, isEditing:boolean, editing_comment: Comment | null;
+	export let comment: Comment,
+		value: string,
+		isEdited: boolean,
+		isEditing: boolean,
+		editing_comment: Comment | null;
 
 	let modalOpenNotLogged = false;
-	const currentUser = $page.data.currentUser;
 
 	function onReply() {
-		if (!currentUser) {
+		if (!$currentUser) {
+			console.log(currentUser)
 			modalOpenNotLogged = true;
 			return;
 		}
+		console.log(currentUser)
 		commentsState.showReplyForm(comment);
 		commentsState.hideEditForm();
 		value = '';

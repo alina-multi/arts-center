@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import ModalWindow from '../atoms/ModalWindow.svelte';
 	import { t } from '$lib/translations';
 	import ButtonsGroup from '../forms/ButtonsGroup.svelte';
 	import ActionButton from '../forms/ActionButton.svelte';
 	import CancelButton from '../forms/CancelButton.svelte';
 	import AuthModal from '../atoms/AuthModal.svelte';
+	import { user } from '$lib/stores/auth';
 
 	export let open: boolean,
 		condition: boolean,
@@ -14,7 +14,7 @@
 		submiInput: () => Promise<void>;
 </script>
 
-{#if $page.data.currentUser}
+{#if $user}
 	<ModalWindow bind:open>
 		<div class="flex items-center justify-between mb-3">
 			<slot name="header" />

@@ -6,18 +6,19 @@
 	import ReportButton from '$lib/components/atoms/buttons/ReportButton.svelte';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import { t } from '$lib/translations';
-	import { page } from '$app/stores';
+	import { user as currentUser } from '$lib/stores/auth';
 	import ReportModal from '../atoms/ReportModal.svelte';
 	import type { Comment } from '$lib/interfaces/Comment';
+	import { page } from '$app/stores';
 
 	export let comment: Comment,
 		onEdit: () => void,
 		deleteComment: (comment_id: string) => Promise<void>,
 		parentComments: [Comment] | [];
 
-	const currentUser = $page.data.currentUser;
+
 	const isMy = $page.data.work.owners.some((owner: { id: string }) =>
-		handleIsMy($page.data.currentUser, owner.id)
+		handleIsMy($currentUser, owner.id)
 	);
 	let reportModalOpen = false;
 	const comment_id = comment?.id?.toString();
@@ -41,7 +42,7 @@
 		<div
 			class="flex divide-x font-semibold text-zinc-500 dark:text-zinc-400 dark:divide-zinc-800 mr-3"
 		>
-			{#if currentUser && Number(currentUser.id) === Number(comment.owner.id)}
+			{#if $currentUser && Number($currentUser.id) === Number(comment.owner.id)}
 				{#if isEditable()}<button class="px-3" on:click={() => onEdit()}>
 						{$t('global.buttons.edit')}
 					</button>{/if}
@@ -58,7 +59,8 @@
 			{/if}
 		</div>
 	</div>
-	{#if currentUser}
+	{#if $currentUser}
+
 		<EllipsisButton type={'horizontal'}>
 			<div slot="description" class="flex flex-col">
 				<BlockButton

@@ -12,15 +12,16 @@
 	export let work;
 	let url = '/api/favorite';
 	let workID = Number(work.id);
-	let currentUser = $user;
-	let isBookmarked = currentUser?.favorites?.works.some((favorite: number) => favorite === workID);
+	$: isBookmarked = $user?.favorites?.works.some((favorite: number) => favorite === workID);
+	
+
 
 	let open = false;
 	let showInput = false;
 	let error = '';
 	let folderID = 0;
 	$: folderName = showInput ? '' : 'All works';
-	const folders = currentUser?.favorites?.folders;
+	$: folders = $user?.favorites?.folders;
 
 	function onChange(e: Event & { target: HTMLInputElement }) {
 		folderID = Number(e.target.value);
@@ -41,7 +42,7 @@
 			error = data.message;
 			return;
 		}
-
+       
 		toast.success('Work saved');
 		open = false;
 		isBookmarked = true;
@@ -105,15 +106,15 @@
 
 	<ModalWithForm
 		bind:open
-		length={folders.length}
-		condition={showInput || folders.length === 0}
+		length={folders?.length}
+		condition={showInput || folders?.length === 0}
 		submitFromList={saveInExistingFolder}
 		submiInput={createFolder}
 	>
 		<svelte:fragment slot="header">
 			<h2 class="text-base font-semibold">Save work to…</h2>
 
-			{#if folders.length > 0}
+			{#if folders?.length > 0}
 				<button
 					on:click={() => ((showInput = true), (folderID = 0))}
 					type="button"
@@ -128,14 +129,14 @@
 			{#if error && !showInput}
 				<span class="text-red-500 text-xs absolute -top-5 left-0">{error}</span>
 			{/if}
-			{#each folders as folder (folder.id)}
+			{#each folders as folder (folder?.id)}
 				<div class="relative flex items-center justify-between ">
 					<RadioButton
-						id={folder.id}
-						label={folder.title}
-						name={folder.id}
-						value={folder.id}
-						checked={folderID === folder.id}
+						id={folder?.id}
+						label={folder?.title}
+						name={folder?.id}
+						value={folder?.id}
+						checked={folderID === folder?.id}
 						{onChange}
 					>
 						<Icon src={Folder} class="h-6 w-6 " aria-hidden="true" />
