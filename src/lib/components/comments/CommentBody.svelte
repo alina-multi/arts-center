@@ -16,11 +16,9 @@
 
 	function onReply() {
 		if (!$currentUser) {
-			console.log(currentUser)
 			modalOpenNotLogged = true;
 			return;
 		}
-		console.log(currentUser)
 		commentsState.showReplyForm(comment);
 		commentsState.hideEditForm();
 		value = '';
