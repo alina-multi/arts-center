@@ -34,6 +34,7 @@ interface worksWithRelations extends works {
 export function workMap(data: worksWithRelations): Work {
 	return {
 		...data,
+		price: null,
 		images: imagablePicturesMap(data.images),
 		owners: ownersMap(data.owners),
 		tags: taggableMap(data.tags),

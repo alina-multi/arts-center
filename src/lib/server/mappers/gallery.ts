@@ -17,7 +17,7 @@ export function worksPreviewMap(works: WorksWithRelations[]): WorkPreview[] {
 			rating: work.rating,
 			comments: work.comments,
 			hosts: work.hosts,
-			price: work.price,
+			price: null,
 			titles: work.titles,
 			owners: ownersMap(work.owners),
 			preview: pictureMap(work.preview)
