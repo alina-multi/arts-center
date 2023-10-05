@@ -13,7 +13,6 @@
 
 	export let comments, commentable_id: string;
 	commentable_id = commentable_id?.toString();
-	// const currentUser = $user;
 	let parentComments = [...comments];
 	$: value = '';
 	let new_comment: Comment | null = null;
