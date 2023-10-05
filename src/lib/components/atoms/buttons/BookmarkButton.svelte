@@ -32,7 +32,7 @@
 
 	async function saveInExistingFolder() {
 		if (folderID === 0) {
-			error = 'Please select a folder';
+			error = $t('global.bookmark.select_folder');
 			return;
 		}
 		const response = await fetchData('POST', url, { work_id: workID, folder_id: folderID });
@@ -43,7 +43,7 @@
 			return;
 		}
        
-		toast.success('Work saved');
+		toast.success($t('global.bookmark.work_saved'));
 		open = false;
 		isBookmarked = true;
 	}
@@ -51,7 +51,7 @@
 	async function createFolder() {
 		folderName = folderName.trim();
 		if (folderName === '') {
-			error = 'Please enter a folder name';
+			error = $t('global.bookmark.enter_folder_name');
 			return;
 		}
 
@@ -66,7 +66,7 @@
 			return;
 		}
 
-		toast.success(`Saved to ${folderName}`);
+		toast.success($t('global.bookmark.saved_to', {folderName: `${folderName}`}));
 		open = false;
 		isBookmarked = true;
 		showInput = false;
@@ -87,7 +87,7 @@
 		class=" text-sm dark:text-zinc-300 text-zinc-600 dark:border-zinc-700"
 	>
 		{#if isBookmarked}
-			<span class="sr-only"> Unbookmark </span>
+		
 
 			<Icon
 				src={BookmarkSlash}
@@ -95,7 +95,7 @@
 				aria-hidden="true"
 			/>
 		{:else}
-			<span class="sr-only">Bookmark</span>
+		
 			<Icon
 				src={Bookmark}
 				class="h-6 w-6   xl:hover:stroke-zinc-500 dark:hover:stroke-zinc-100 dark:hover:fill-zinc-100 fill-white dark:fill-zinc-300 "
@@ -112,7 +112,7 @@
 		submiInput={createFolder}
 	>
 		<svelte:fragment slot="header">
-			<h2 class="text-base font-semibold">Save work to…</h2>
+			<h2 class="text-base font-semibold">{$t('global.bookmark.save_work_to')}</h2>
 
 			{#if folders?.length > 0}
 				<button
@@ -154,7 +154,7 @@
 				id="folder"
 				name="folder"
 				bind:value={folderName}
-				placeholder="Create folder"
+				placeholder={$t('global.bookmark.create_folder')}
 				bind:error
 			/>
 		</svelte:fragment>
