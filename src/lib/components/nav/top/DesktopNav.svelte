@@ -32,9 +32,7 @@
 	
 			{#if $user}
 				<UserDropdown user={$user} />
-			{/if}
-
-			{#if !$user}
+			{:else}
 				<LoginLink />
 			{/if}
 		{/if}

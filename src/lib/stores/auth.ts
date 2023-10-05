@@ -10,7 +10,6 @@ export const isUserLoading: Writable<boolean> = writable(true);
 
 export async function checkAuth() {
 	fetchData('post', '/me').then(async (response) => {
-		// isUserLoading.set(true)
 		const text = await response.text();
 		const userObj = parse(text);
 		user.set(userObj?.id ? userObj : undefined);

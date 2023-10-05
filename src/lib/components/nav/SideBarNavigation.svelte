@@ -31,7 +31,7 @@
 	<Icon src={Bars4} theme="solid" class="h-8 w-8 fill-black dark:fill-white" aria-hidden="true" />
 </Button>
 
-<!-- <div> -->
+
 	<Transition show={open}>
 		<Dialog {open} on:close={() => (open = !open)} class="relative xl:hidden ">
 			<TransitionChild
@@ -114,4 +114,4 @@
 			</TransitionChild>
 		</Dialog>
 	</Transition>
-<!-- </div> -->
+
