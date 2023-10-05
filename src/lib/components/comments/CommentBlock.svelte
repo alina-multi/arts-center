@@ -1,65 +1,33 @@
 <script lang="ts">
 	import type { Comment } from '$lib/interfaces/Comment';
-	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
-	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
 	import CommentInput from '$lib/components/comments/CommentInput.svelte';
-	import { page } from '$app/stores';
-	import Time from 'svelte-time';
 	import { commentsState } from '$lib/stores/comment';
-	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import { convertFetch } from '$lib/helpers/convertFetch';
 	import { сommentValidations, commentMassage, scrollToBottom } from '$lib/helpers/comments';
 	import toast from 'svelte-french-toast';
 	import { tick } from 'svelte';
-	import EllipsisButton from '$lib/components/atoms/buttons/EllipsisButton.svelte';
-	import BlockButton from '../atoms/buttons/BlockButton.svelte';
-	import ReportButton from '../atoms/buttons/ReportButton.svelte';
 	import { t } from '$lib/translations';
-	import {  fetchData  } from '$lib/helpers/fetchData';
-	import AuthModal from '$lib/components/atoms/AuthModal.svelte';
-	import ReportModal from '../atoms/ReportModal.svelte';
+	import { fetchData } from '$lib/helpers/fetchData';
+	import CommentHeader from '$lib/components/comments/CommentHeader.svelte';
+	import CommentBody from '$lib/components/comments/CommentBody.svelte';
 	import { user as currentUser } from '$lib/stores/auth';
+
 
 	export let comment: Comment, commentable_id: string, parentComments: [Comment] | [];
 	let url = '/api/comment';
 
-	let isMy = false;
-	$:{
-			isMy = $page.data.work.owners.some((owner: { id: string }) =>
-				handleIsMy($currentUser, owner.id)
-			);
-	}
 	const comment_id = comment?.id?.toString();
 	$: value = '';
 	let answer: Comment | null = null;
 	let answers = comment?.answers ? [...(comment?.answers ?? [])] : [];
 	$: isEditing = $commentsState.editCommentId === comment?.id;
 	let isEdited = false;
-	let editing_comment = null;
+	let editing_comment: Comment | null = null;
 	let new_comment_loaded = false;
 	let isDelited = false;
-	let open = false;
-	let reportModalOpen = false;
 
 	if (answer) {
 		answer = null;
-	}
-
-	function isEditable(): boolean {
-		const now = new Date();
-		const createdAt = new Date(comment.created_at);
-		const elapsedMinutes = (now - createdAt) / (1000 * 60);
-		return elapsedMinutes < 5;
-	}
-
-	function onReply() {
-		if (!$currentUser) {
-			open = true;
-			return;
-		}
-		commentsState.showReplyForm(comment);
-		commentsState.hideEditForm();
-		value = '';
 	}
 
 	async function reply() {
@@ -130,7 +98,7 @@
 		isDelited = true;
 		setTimeout(() => {
 			answers = [];
-			parentComments = parentComments.filter((item) => item.id !== comment_id);
+			parentComments = parentComments.filter((item) => item.id.toString() !== comment_id);
 		}, 500);
 	}
 </script>
@@ -142,83 +110,8 @@
 	id={comment_id}
 >
 	<div class="pt-6 space-y-1">
-		<div class="flex items-center justify-between pr-3">
-			<div class="flex items-center gap-2">
-				<div class="flex font-semibold">
-					<AvatarLink user={comment.owner} withName={true} size={'w-8 h-8 '} />
-				</div>
-				<span class="h-1 w-1 bg-zinc-500 rounded-full" />
-				<Time relative timestamp={comment.created_at} class="text-zinc-500" />
-
-				<div
-					class="flex divide-x font-semibold text-zinc-500 dark:text-zinc-400 dark:divide-zinc-800 mr-3"
-				>
-					{#if $currentUser && Number($currentUser.id) === Number(comment.owner.id)}
-						{#if isEditable()}<button class="px-3" on:click={() => onEdit()}>
-								{$t('global.buttons.edit')}
-							</button>{/if}
-						{#if !isMy}
-							<button class="px-3" on:click={() => deleteComment(comment.id)}>
-								{$t('global.buttons.delete')}
-							</button>{/if}
-					{/if}
-
-					{#if isMy}
-						<button class="px-3" on:click={() => deleteComment(comment.id)}>
-							{$t('global.buttons.delete')}</button
-						>
-					{/if}
-				</div>
-			</div>
-			{#if $currentUser}
-				<EllipsisButton type={'horizontal'}>
-					<div slot="description" class="flex flex-col">
-						<BlockButton
-							user_id={Number(comment.owner.id)}
-							bind:entity={parentComments}
-							commentID={comment_id}
-						/>
-						<ReportButton bind:open={reportModalOpen} />
-					</div>
-				</EllipsisButton>
-			{/if}
-		</div>
-
-		<div
-			class=" {isEditing ? 'hidden ' : ''} 
-				relative prose prose-sm border p-3 pb-6 rounded-md bg-gray-50 dark:bg-zinc-900 dark:text-white dark:border-zinc-800 space-y-2  "
-		>
-			{#if comment.id === editing_comment?.id}
-				<div
-					class="whitespace-pre-wrap transition-all delay-500 {isEdited
-						? 'opacity-100 '
-						: 'opacity-50'}"
-				>
-					{comment.text}
-				</div>
-			{:else}
-				<div class="whitespace-pre-wrap">{comment.text}</div>
-			{/if}
-
-			<div
-				class="absolute -bottom-4 right-0 flex justify-end items-center border rounded-full bg-white py-1 divide-x dark:border-zinc-600 dark:divide-zinc-600 mr-3 dark:bg-zinc-800"
-			>
-				<button
-					on:click={onReply}
-					class="flex gap-2 text-xs items-center hover:text-gray-900 dark:hover:text-white text-zinc-600 dark:text-zinc-300 font-semibold px-3"
-				>
-					<span>{$t('global.comment.reply')}</span>
-				</button>
-				<div class="px-3 flex">
-					<RatingPreviewVote
-						entity={comment}
-						allowDownVote
-						size={'w-4 h-4'}
-						votable_type={'comment'}
-					/>
-				</div>
-			</div>
-		</div>
+		<CommentHeader {comment} {onEdit} {deleteComment} {parentComments} />
+		<CommentBody {comment} bind:value {isEdited} {isEditing} {editing_comment} />
 
 		{#if $commentsState.replyCommentId === comment.id}
 			<div>
@@ -261,15 +154,3 @@
 		{/if}
 	</div>
 </div>
-
-{#if reportModalOpen}
-	<ReportModal
-		bind:open={reportModalOpen}
-		feedbackable_type="comment"
-		feedbackable_id={Number(comment_id)}
-	/>
-{/if}
-
-{#if open}
-	<AuthModal bind:open type={$t('global.not_logged_in.reply')} />
-{/if}

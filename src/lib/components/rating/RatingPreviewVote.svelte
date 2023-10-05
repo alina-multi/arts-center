@@ -6,17 +6,16 @@
 	import DislikeButton from './DislikeButton.svelte';
 	import AuthModal from '../atoms/AuthModal.svelte';
 	import { t } from '$lib/translations';
-	import { user } from '$lib/stores/auth';
+	import { user  } from '$lib/stores/auth';
 
 	export let entity: Work | Comment,
 		allowDownVote = false,
 		votable_type: string,
 		showVotedPreview = false,
 		size = 'w-6 h-6';
-	let currentUser = $user;
 	let votes = entity?.votes;
 	let rating = entity?.rating;
-	let isLiked = entity?.votes?.some((vote) => vote?.id?.toString() === currentUser?.id?.toString());
+	let isLiked = entity?.votes?.some((vote) => vote?.id?.toString() === $user?.id?.toString());
 	let isDownVoted = false;
 	let open = false;
 	let votable_id = entity?.id.toString();
@@ -24,7 +23,7 @@
 </script>
 
 	{#if showVotedPreview}
-	<VotedList {votes} {isLiked} {currentUser} />
+	<VotedList {votes} {isLiked} currentUser={$user} />
 {/if}
 
 <div class="inline-flex items-center gap-2 dark:text-zinc-100 cursor-pointer">

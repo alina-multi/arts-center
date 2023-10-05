@@ -2,7 +2,7 @@
 	import type { Tag } from '$lib/interfaces/Tag';
 	import { Popover, PopoverButton, PopoverPanel, Transition } from '@rgossiaux/svelte-headlessui';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { ChevronDown, ChevronUp } from '@steeze-ui/heroicons';
+	import { ChevronDown, ChevronUp, AdjustmentsHorizontal } from '@steeze-ui/heroicons';
 	import TagButtons from '$lib/components/atoms/buttons/TagButtons.svelte';
 	import { t } from '$lib/translations';
 	import { slug } from '$lib/helpers/url.js';
@@ -87,11 +87,13 @@
 </div>
 
 <!-- MOBILE -->
-<div class="flex lg:hidden text-left z-30 flex-row-reverse">
+<div class="flex lg:hidden text-left z-20 flex-row-reverse">
 	<Popover class=" w-full flex-1  text-gray-800 dark:text-zinc-200  " let:open>
 		<PopoverButton
 			class="w-full flex items-center justify-between gap-2  border px-4 py-2 rounded-sm  dark:border-zinc-800 overflow-hidden dark:bg-zinc-900"
 		>
+
+		<Icon src={AdjustmentsHorizontal} class="w-5" />
 			<span class="space-x-1">
 				<span>{$t('global.filters.filters')}</span>
 				{#if selected !== 'all'}
