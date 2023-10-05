@@ -2,7 +2,7 @@
 	import WorkPreview from '$lib/components/work/WorkPreview.svelte';
 	import GalleryFilters from '$lib/components/work/GalleryFilters.svelte';
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
-	import { localePath } from '$lib/translations/';
+	import { localePath, locale } from '$lib/translations/';
 	import {parse} from 'devalue';
 	export let gallery;
 	export let categories;
@@ -11,8 +11,6 @@
 	let page = params.page;
 	let loading = false;
 	let hasMore = gallery.length >= 20;
-	// Just so svelte will redraw this :)
-	params.lang;
 	$: gallery = [...gallery, ...newBatch];
 	async function fetchData() {
 		loading = true;
@@ -29,7 +27,7 @@
 </script>
 
 <div class=" mt-3 space-y-3">
-	{#key params.lang}
+	{#key $locale}
 		<GalleryFilters {categories} {params} />
 	{/key}
 	<ul

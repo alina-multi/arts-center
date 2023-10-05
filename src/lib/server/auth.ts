@@ -11,9 +11,7 @@ export async function checkAuth(
 	try {
 		// Make sure it will still work if auth server is down
 		const session = event?.cookies?.get('laravel_session');
-		console.log('session', session);
 		if (session) {
-			console.log('inCheckAuth', session);
 			const user = await cacheGet(
 				'auth',
 				session,
@@ -29,7 +27,6 @@ export async function checkAuth(
 				},
 				360
 			);
-			console.log('got user', user?.id);
 			return user;
 		}
 	} catch (error) {
