@@ -1,5 +1,9 @@
-import type { UserList } from '$lib/interfaces/User';
+import type { User } from '$lib/interfaces/User';
 
 export default {
-	id: BigInt(1)
-} as UserList;
+	id: 12n,
+	username: 'serena10',
+	photo: null,
+	name: 'Test-test',
+	country: null
+} as User;
