@@ -1,11 +1,11 @@
 import { ownerMap, ownersMap } from '$lib/server/mappers/owners';
 import { expect, test } from 'vitest';
-import Owner from '$test/data/OwnerData';
+import User from '$test/data/OwnerData';
 
-const owners = [{ user: Owner }, { test: Owner }];
+const owners = [{ user: User },{ user: User }];
 
 test('ownerMap', () => {
-	const result = ownerMap(Owner);
+	const result = ownerMap(User);
 
 	expect(result).toMatchInlineSnapshot(`
 		{
@@ -22,6 +22,13 @@ test('ownersMap', () => {
 	const result = ownersMap(owners);
 	expect(result).toMatchInlineSnapshot(`
 		[
+		  {
+		    "country": null,
+		    "id": 12n,
+		    "name": "Test-test",
+		    "photo": null,
+		    "username": "serena10",
+		  },
 		  {
 		    "country": null,
 		    "id": 12n,

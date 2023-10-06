@@ -1,4 +1,4 @@
-import type { User as Owner } from '$lib/interfaces/User';
+import type { User } from '$lib/interfaces/User';
 
 export default {
 	id: 12n,
@@ -6,4 +6,4 @@ export default {
 	photo: null,
 	name: 'Test-test',
 	country: null
-} as Owner;
+} as User;
