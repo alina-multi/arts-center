@@ -15,7 +15,7 @@ export function imagablePicturesMap(images: imageables[]): Picture[] {
 	return images?.map((image) => pictureMap(image?.image));
 }
 
-export function pictureMap(image: imageWithRelation | null): Picture|null {
+export function pictureMap(image: imageWithRelation | null): Picture | null {
 	const sourcesMap: Map<string, { type: string; srcset: string[] }> = new Map();
 	if (!image || !image.variants) {
 		return null;
