@@ -1,8 +1,8 @@
 import { ownerMap, ownersMap } from '$lib/server/mappers/owners';
 import { expect, test } from 'vitest';
-import User from '$test/data/OwnerData';
+import User from '$test/data/UserData';
 
-const owners = [{ user: User },{ user: User }];
+const owners = [{ user: User }, { user: User }];
 
 test('ownerMap', () => {
 	const result = ownerMap(User);
