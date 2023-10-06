@@ -13,7 +13,7 @@ test('ownerMap', () => {
 		  "id": 12n,
 		  "name": "Test-test",
 		  "photo": null,
-		  "username": "serena10"
+		  "username": "serena10",
 		}
 	`);
 });
