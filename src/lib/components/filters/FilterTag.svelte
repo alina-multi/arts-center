@@ -9,7 +9,7 @@
 
 	export let tags: Tag[],
 		selected: string,
-		params: { tag: string; order: string },
+		params: { tag: string; order: string } | { tag: string, username: string} ,
 		urlGenerator;
 
 	let visibleTags, hiddenTags;
@@ -33,7 +33,7 @@
 <div class="hidden lg:flex">
 	<Popover class="relative inline-block text-left  z-20 text-gray-800 dark:text-gray-200 " let:open>
 		<div class="flex flex-wrap gap-3 lg:justify-end w-full">
-			<TagButtons tags={visibleTags} {urlGenerator} {params} active={isActive} />
+			<TagButtons tags={visibleTags} {urlGenerator} {params} active={isActive} {selected} />
 
 			{#if hiddenTags.length > 0}
 				<PopoverButton
@@ -92,15 +92,16 @@
 		<PopoverButton
 			class="w-full flex items-center justify-between gap-2  border px-4 py-2 rounded-sm  dark:border-zinc-800 overflow-hidden dark:bg-zinc-900"
 		>
+<div class="flex items-center gap-3">
+	<Icon src={AdjustmentsHorizontal} class="w-5" />
 
-		<Icon src={AdjustmentsHorizontal} class="w-5" />
-			<span class="space-x-1">
-				<span>{$t('global.filters.filters')}</span>
-				{#if selected !== 'all'}
-					<span class="text-sm bg-amber-600 text-white px-1 py-0.5 rounded-sm">{selected}</span>
-				{/if}
-			</span>
-
+		<span>{$t('global.filters.filters')}</span>
+		{#if selected !== 'all'}
+			<span class="text-sm bg-amber-600 text-white px-1 py-0.5 rounded-sm">{selected}</span>
+		{/if}
+	
+</div>
+	
 			{#if !open}
 				<Icon src={ChevronDown} class="w-5" />
 			{/if}
