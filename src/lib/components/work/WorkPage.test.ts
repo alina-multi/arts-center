@@ -6,7 +6,7 @@ import type { Comment } from '$lib/interfaces/Comment';
 import WorkData from '$test/data/WorkData';
 import { loadTranslations } from '$lib/translations';
 import { user } from '$lib/stores/auth';
-import UserData from '$test/data/UserData';
+import { UserData } from '$test/data/UserData';
 interface WorkPageProps {
 	work: Work;
 	comments: Comment[];

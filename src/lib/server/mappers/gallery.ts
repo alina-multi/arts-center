@@ -1,13 +1,13 @@
-import type { WorkPreview } from '$lib/interfaces/Work';
+import type { WorkPreview, WorkTitle } from '$lib/interfaces/Work';
 import type { ownableWithRelations } from './owners';
 import { ownersMap } from './owners';
-import type { images, work_titles, works } from '@prisma/client';
+import type { images, works } from '@prisma/client';
 import { pictureMap } from '$lib/server/mappers/pictures';
 
 export type WorksWithRelations = works & {
 	owners: ownableWithRelations[];
 	preview: images;
-	titles: work_titles[];
+	titles: WorkTitle[];
 };
 export function worksPreviewMap(works: WorksWithRelations[]): WorkPreview[] {
 	return works?.map((work) => {
