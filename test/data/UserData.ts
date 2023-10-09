@@ -2,8 +2,8 @@ import type { User } from '$lib/interfaces/User';
 
 export default {
 	id: 12n,
-	username: 'serena10',
+	username: 'username',
 	photo: null,
-	name: 'Test-test',
+	name: 'Test',
 	country: null
 } as User;
