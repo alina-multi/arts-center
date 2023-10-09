@@ -7,7 +7,10 @@ export const user = {
 	username: 'username',
 	photo: undefined,
 	name: 'Test',
-	country: null
+	country: null,
+	rating: 0,
+	works: [],
+	ratings: []
 };
 
 export const UserData = {
