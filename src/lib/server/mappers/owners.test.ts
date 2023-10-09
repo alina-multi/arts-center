@@ -1,41 +1,18 @@
 import { ownerMap, ownersMap } from '$lib/server/mappers/owners';
 import { expect, test } from 'vitest';
-import User from '$test/data/UserData';
+import { user, UserData } from '$test/data/UserData';
 
-const owners = [{ user: User }, { user: User }];
+const owners = [{ user }, { user }];
+
+const result_owners = [UserData, UserData];
 
 test('ownerMap', () => {
-	const result = ownerMap(User);
+	const result = ownerMap(user);
 
-	expect(result).toMatchInlineSnapshot(`
-		{
-		  "country": null,
-		  "id": 12n,
-		  "name": "Test-test",
-		  "photo": null,
-		  "username": "serena10",
-		}
-	`);
+	expect(result).toStrictEqual(UserData);
 });
 
 test('ownersMap', () => {
 	const result = ownersMap(owners);
-	expect(result).toMatchInlineSnapshot(`
-		[
-		  {
-		    "country": null,
-		    "id": 12n,
-		    "name": "Test-test",
-		    "photo": null,
-		    "username": "serena10",
-		  },
-		  {
-		    "country": null,
-		    "id": 12n,
-		    "name": "Test-test",
-		    "photo": null,
-		    "username": "serena10",
-		  },
-		]
-	`);
+	expect(result).toStrictEqual(result_owners);
 });
