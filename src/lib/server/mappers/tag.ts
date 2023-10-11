@@ -1,15 +1,9 @@
-import type { tag_titles, taggables, tags } from '@prisma/client';
 import type { Tag } from '$lib/interfaces/Tag';
 import { languageFind } from '$lib/translations';
+import type { category_raw} from '../repositories/tag';
 
-interface tagsWithRelations extends tags {
-	titles: tag_titles[];
-}
 
-export interface taggablesWithRelations extends taggables {
-	tag: tagsWithRelations;
-}
-export function tagsMap(tags: tagsWithRelations[]): Tag[] {
+export function tagsMap(tags: category_raw []): Tag[] {
 	return tags?.map((tag) => {
 		return {
 			id: tag.id,
@@ -19,10 +13,10 @@ export function tagsMap(tags: tagsWithRelations[]): Tag[] {
 	});
 }
 
-export function taggableMap(taggables: taggablesWithRelations[]): Tag[] {
+export function taggableMap(taggables: [{tag:category_raw}]): Tag[] {
 	return taggables?.map((taggable) => {
 		return {
-			id: taggable.tag.id,
+			id: taggable.tag?.id,
 			title: languageFind(taggable.tag.titles)?.title || '',
 			...() => (taggable?.tag?.count ? { count: taggable.tag.count } : {})
 		};
