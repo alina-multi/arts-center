@@ -1,4 +1,4 @@
-import type { comments } from '@prisma/client';
+import type { comments } from '../repositories/comment';
 import type { Comment } from '$lib/interfaces/Comment';
 import { ownerMap } from './owners';
 

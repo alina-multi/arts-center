@@ -4,6 +4,7 @@ import { ownersMap } from './owners';
 import type { images, works } from '@prisma/client';
 import { pictureMap } from '$lib/server/mappers/pictures';
 
+
 export type WorksWithRelations = works & {
 	owners: ownableWithRelations[];
 	preview: images;

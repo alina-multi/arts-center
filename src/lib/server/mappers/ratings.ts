@@ -1,15 +1,10 @@
 import { languageFind, languageFilter } from '$lib/translations';
 import type { Rating } from '$lib/interfaces/Rating';
-import type { tag_titles, tags, user_ratings } from '@prisma/client';
 import type { Tag } from '$lib/interfaces/Tag';
+import type { user_ratings_row } from '../repositories/user';
 
-export interface RatingWithRelations extends user_ratings {
-	tag?: tags & {
-		titles?: tag_titles[];
-	};
-}
 
-export function ratingsMap(ratings?: RatingWithRelations[]): Rating[] {
+export function ratingsMap(ratings: user_ratings_row[]): Rating[] {
 	ratings = languageFilter(ratings);
 	return (
 		ratings?.map((rating) => {

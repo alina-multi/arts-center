@@ -8,13 +8,13 @@ export interface UserPreview {
 	photo: Picture | null;
 	name: string;
 	country: string | null;
-	rating: number;
+	rating?: number;
 	works?: WorkPreview[];
 	ratings?: Rating[];
 }
 
 export interface UserList extends UserPreview {
-	created_at: Date | null;
+	created_at?: Date | null;
 }
 
 export interface User extends UserList {

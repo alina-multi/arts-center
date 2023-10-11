@@ -2,6 +2,7 @@ import type { Picture } from './Picture';
 import type { UserPreview } from './User';
 import type { Tag } from './Tag';
 
+
 export interface WorkPreview {
 	id: bigint;
 	published_at: Date | null;
@@ -10,7 +11,7 @@ export interface WorkPreview {
 	hosts: number;
 	price: number | null;
 	titles: WorkTitle[];
-	preview?: Picture;
+	preview?: Picture | null;
 	owners: UserPreview[];
 }
 
@@ -21,7 +22,8 @@ export interface Work extends WorkPreview {
 	length: number | null;
 	tags?: Tag[];
 	votes?: UserPreview[];
-	full: Picture;
+	full: Picture | null;
+	images: Picture[];
 }
 
 export interface WorkTitle {
