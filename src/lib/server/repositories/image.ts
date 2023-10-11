@@ -14,3 +14,19 @@ export const imageSelect = {
 		}
 	}
 };
+
+export interface image {
+	id: bigint,
+		folder: string,
+		variants: variants[]}
+
+export interface variants {
+	id: bigint,
+	extension: string,
+	width: number,
+	height: number,
+	size: number,
+	original: boolean
+}
+
+
