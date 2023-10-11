@@ -15,7 +15,7 @@ export const imageSelect = {
 	}
 };
 
-export interface image {
+export interface image_raw {
 	id: bigint,
 		folder: string,
 		variants: variants[]}

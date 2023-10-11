@@ -4,11 +4,19 @@ import { unslug } from '$lib/helpers/url';
 let categoryCache: {
 	id: bigint;
 	count: number | null;
-	titles: {
-		language: string;
-		title: string;
-	}[];
+	titles: tag_titles_row[];
 }[];
+
+export interface category_raw {
+	id: bigint;
+	count?: number | null;
+	titles?: tag_titles_row[];
+}
+
+export interface tag_titles_row {
+	title: string;
+	language: string;
+}
 
 const categoryTitleToId = new Map();
 

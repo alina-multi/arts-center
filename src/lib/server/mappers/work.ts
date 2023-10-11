@@ -1,6 +1,5 @@
 import type { Work } from '$lib/interfaces/Work';
-import type { imageables, images } from '@prisma/client';
-
+import type { image_raw } from '../repositories/image';
 import { taggableMap } from './tag';
 
 import { ownersMap } from './owners';
@@ -11,9 +10,7 @@ import type {  work_raw  } from '../repositories/work';
 interface worksWithRelations extends  work_raw  {
 	blocks: [
 		{
-			images: imageables & {
-				image: images;
-			};
+			images: image_raw []
 		}
 	];
 }

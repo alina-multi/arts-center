@@ -3,7 +3,7 @@ import { prisma } from '$lib/server/database/prisma';
 import { titleToId } from './tag';
 import { error } from '@sveltejs/kit';
 import { imageSelect } from '$lib/server/repositories/image';
-import type { image } from '$lib/server/repositories/image';
+import type { image_raw  } from '$lib/server/repositories/image';
 
 export const userSelect = {
 	id: true,
@@ -18,7 +18,7 @@ export interface user_basic_raw {
 	id: bigint;
 	username: string;
 	name: string;
-	photo: image | null;
+	photo: image_raw  | null;
 	country: string | null;
 	rating: number;
 }
