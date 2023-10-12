@@ -2,12 +2,16 @@ import type { Picture } from '$lib/interfaces/Picture';
 import type { image_raw } from '../repositories/image';
 import type { ImageFolder } from '../repositories/image';
 
-export function picturesMap(images: image_raw[]): Picture[] | [] {
-	return images.filter((image) => image && image.variants)?.map((image) => pictureMap(image));
+type ImageWithRelations = {
+	image: image_raw 
 }
 
-export function imagablePicturesMap(images: [{ image: image_raw }] | []): Picture[] | [] {
-	return images.filter((image) => image?.image?.variants)?.map((image) => pictureMap(image.image));
+export function picturesMap(images: image_raw[] | [] ): Picture[] | [] {
+	return images.filter((image) => image && image.variants && image.variants.length)?.map((image) => pictureMap(image));
+}
+
+export function imagablePicturesMap(images: ImageWithRelations[] | []): Picture[] | [] {
+	return images.filter((image) => image.image?.variants?.length > 0)?.map((image) => pictureMap(image.image));
 }
 
 export function pictureMap(image: image_raw | null): Picture | null {
