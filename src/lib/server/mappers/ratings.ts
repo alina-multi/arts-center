@@ -3,7 +3,6 @@ import type { Rating } from '$lib/interfaces/Rating';
 import type { Tag } from '$lib/interfaces/Tag';
 import type { user_ratings_row } from '../repositories/user';
 
-
 export function ratingsMap(ratings: user_ratings_row[]): Rating[] {
 	ratings = languageFilter(ratings);
 	return (

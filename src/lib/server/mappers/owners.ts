@@ -14,7 +14,7 @@ export function ownersMap(owners: ownableWithRelations[]): User[] {
 		});
 }
 
-export function ownerMap(user: user_basic_raw ): User {
+export function ownerMap(user: user_basic_raw): User {
 	return {
 		id: user.id,
 		username: user.username,

@@ -13,9 +13,9 @@ type prismaCountryAggregation = {
 		country: number;
 	};
 };
-export async function usersMap(users: user_full_raw []): Promise<UserList[]> {
+export async function usersMap(users: user_full_raw[]): Promise<UserList[]> {
 	return await Promise.all(
-		users.map(async (user: user_full_raw ) => {
+		users.map(async (user: user_full_raw) => {
 			const tmpWorks = await query(
 				{
 					owners: {
@@ -40,7 +40,7 @@ export async function usersMap(users: user_full_raw []): Promise<UserList[]> {
 	);
 }
 
-export function userMap(user: user_full_raw ): User {
+export function userMap(user: user_full_raw): User {
 	return {
 		id: user.id,
 		name: user.name,

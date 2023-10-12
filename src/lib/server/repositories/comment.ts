@@ -12,8 +12,6 @@ export interface comments {
 	owner: user_basic_raw;
 }
 
-
-
 export function get(commentable_id: bigint, commentable_type: string) {
 	return prisma.comments.findMany({
 		select: {

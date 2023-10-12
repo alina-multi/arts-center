@@ -3,7 +3,6 @@ import { ownersMap } from './owners';
 import { pictureMap } from '$lib/server/mappers/pictures';
 import type { work_raw } from '../repositories/work';
 
-
 export function worksPreviewMap(works: work_raw[]): WorkPreview[] {
 	return works?.map((work) => {
 		return {
