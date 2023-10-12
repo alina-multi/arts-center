@@ -42,7 +42,7 @@
 	}
 </script>
 {#if data.work?.full}
-	<NextStepButton href={localePath(`/my/work/${data.work.id}/from`)}/>
+	<NextStepButton href={localePath(`/my/work/${data.work.id}/form`)}/>
 	<FormGroup h1={$t('my.add_work_page.main_image')}>
 		<div class='grid grid-cols-1 sm:grid-cols-2'>
 			<div>
