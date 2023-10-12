@@ -10,6 +10,8 @@ use App\Models\User;
 use App\Models\Work;
 use App\Models\WorkBlock;
 use App\Nova\Blog;
+use Illuminate\Database\Events\MigrationsEnded;
+use Illuminate\Database\Events\MigrationsStarted;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -25,6 +27,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        Event::listen(MigrationsStarted::class, function () {
+            DB::statement('SET SESSION sql_require_primary_key=0');
+        });
+
+        Event::listen(MigrationsEnded::class, function () {
+            DB::statement('SET SESSION sql_require_primary_key=1');
+        });
         Telescope::ignoreMigrations();
         if ($this->app->environment('local')) {
             $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
@@ -41,7 +50,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        Password::defaults(fn () => Password::min(8)->mixedCase()->numbers());
+        Password::defaults(fn() => Password::min(8)->mixedCase()->numbers());
 
         Relation::morphMap(
             [
