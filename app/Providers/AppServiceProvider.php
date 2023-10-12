@@ -12,6 +12,7 @@ use App\Models\WorkBlock;
 use App\Nova\Blog;
 use Illuminate\Database\Events\MigrationsEnded;
 use Illuminate\Database\Events\MigrationsStarted;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -28,13 +29,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Event::listen(MigrationsStarted::class, function () {
-            DB::statement('SET SESSION sql_require_primary_key=0');
-        });
+        if ($this->app->environment('staging')) {
+            Event::listen(MigrationsStarted::class, function () {
+                DB::statement('SET SESSION sql_require_primary_key=0');
+            });
 
-        Event::listen(MigrationsEnded::class, function () {
-            DB::statement('SET SESSION sql_require_primary_key=1');
-        });
+            Event::listen(MigrationsEnded::class, function () {
+                DB::statement('SET SESSION sql_require_primary_key=1');
+            });
+        }
         Telescope::ignoreMigrations();
         if ($this->app->environment('local')) {
             $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
