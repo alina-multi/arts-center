@@ -18,7 +18,7 @@ export const imageSelect = {
 export interface image_raw {
 	id: bigint;
 	folder: ImageFolder;
-	variants: variants[];
+	variants: variants[] | [];
 }
 
 export interface variants {
