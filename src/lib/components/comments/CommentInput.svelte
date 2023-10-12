@@ -9,7 +9,7 @@
 		onSubmit: (comment_id: string) => Promise<void>,
 		commentID: string | undefined = undefined,
 		value: string;
-	commentID = commentID?.toString();
+	    commentID = commentID?.toString();
 	let textarea: HTMLTextAreaElement;
 	$: enabled = value.length > 3;
 
@@ -40,7 +40,11 @@
 						? 'text-zinc-600   dark:bg-zinc-900  dark:text-zinc-200 border dark:ring-1 dark:ring-zinc-800 hover:bg-blue-600 hover:text-white hover:border-blue-600 dark:hover:bg-blue-700'
 						: 'text-zinc-400 dark:bg-zinc-800 dark:text-zinc-600  '}  px-3 py-1 shadow-sm dark:border-0 text-sm font-semibold rounded-full"
 				>
-					{isReplying ? $t('global.comment.reply') : $t('global.comment.post') && !isEditing ? $t('global.comment.post') : $t('global.buttons.save')}
+					{isReplying
+						? $t('global.comment.reply')
+						: $t('global.comment.post') && !isEditing
+						? $t('global.comment.post')
+						: $t('global.buttons.save')}
 				</button>
 
 				<slot />

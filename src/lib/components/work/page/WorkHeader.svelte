@@ -27,7 +27,7 @@
 		</div>
 
 		<div>
-			<EllipsisButton {work} {isMy} type="vertical">
+			<EllipsisButton workId={work.id} {isMy} type="vertical">
 				<div slot="description" class="flex flex-col">
 					<ReportButton bind:open={modalOpen} />
 				</div>

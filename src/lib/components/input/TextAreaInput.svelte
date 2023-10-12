@@ -23,6 +23,7 @@
 		</label>
 	{/if}
 	<textarea
+	    on:focus={()=> error = false}
 		{id}
 		{placeholder}
 		{name}

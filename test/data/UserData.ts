@@ -1,5 +1,22 @@
-import type { UserList } from '$lib/interfaces/User';
+import type { User } from '$lib/interfaces/User';
 
-export default {
-	id: BigInt(1)
-} as UserList;
+export const user = {
+	email: 'email',
+	password: 'password',
+	id: 12n,
+	username: 'username',
+	photo: undefined,
+	name: 'Test',
+	country: null,
+	rating: 0,
+	works: [],
+	ratings: []
+};
+
+export const UserData = {
+	id: 12n,
+	username: 'username',
+	photo: null,
+	name: 'Test',
+	country: null
+} as User;

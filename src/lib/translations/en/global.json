@@ -183,5 +183,16 @@
 		"like": "Like",
 		"liked_by": "Liked by",
 		"others": "others"
+	},
+	"bookmark": {
+		"save_work_to": "Save work to",
+		"create_folder": "Create folder",
+		"select_folder": "Please select a folder",
+		"work_saved": "Work saved",
+		"enter_folder_name": "Please enter a folder name",
+		"saved_to": "Saved to {{folderName}} "
+	},
+	"error": {
+		"api": "Unknown API server error"
 	}
 }

@@ -18,7 +18,7 @@
 	let isFollowing = follows?.some((id) => id === Number(user.id));
 
 	const handleFollow = () => {
-		if (currentUser) {
+		if ($currentUser) {
 			if (isFollowing) {
 				onUnfollow();
 			} else {
@@ -40,7 +40,7 @@
 	}
 </script>
 
-<AuthModal bind:open type={$t('global.not_logged_in.follow')} />
+
 
 {#if !isMy}
 	{#if isFollowing}
@@ -62,4 +62,8 @@
 			<Icon src={PlusCircle} class="w-4 h-4  dark:text-zinc-300 " />
 		</button>
 	{/if}
+{/if}
+
+{#if open}
+<AuthModal bind:open type={$t('global.not_logged_in.follow')} />
 {/if}

@@ -1,6 +1,6 @@
 import type { Work } from '$lib/interfaces/Work';
 import PictureData from '$test/data/PictureData';
-import UserData from '$test/data/UserData';
+import { UserData } from '$test/data/UserData';
 
 export default {
 	id: BigInt(1),

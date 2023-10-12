@@ -2,14 +2,14 @@
 	import type { Tag } from '$lib/interfaces/Tag';
 	import { Popover, PopoverButton, PopoverPanel, Transition } from '@rgossiaux/svelte-headlessui';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { ChevronDown, ChevronUp } from '@steeze-ui/heroicons';
+	import { ChevronDown, ChevronUp, AdjustmentsHorizontal } from '@steeze-ui/heroicons';
 	import TagButtons from '$lib/components/atoms/buttons/TagButtons.svelte';
 	import { t } from '$lib/translations';
 	import { slug } from '$lib/helpers/url.js';
 
 	export let tags: Tag[],
 		selected: string,
-		params: { tag: string; order: string },
+		params: { tag: string; order: string } | { tag: string, username: string} ,
 		urlGenerator;
 
 	let visibleTags, hiddenTags;
@@ -33,7 +33,7 @@
 <div class="hidden lg:flex">
 	<Popover class="relative inline-block text-left  z-20 text-gray-800 dark:text-gray-200 " let:open>
 		<div class="flex flex-wrap gap-3 lg:justify-end w-full">
-			<TagButtons tags={visibleTags} {urlGenerator} {params} active={isActive} />
+			<TagButtons tags={visibleTags} {urlGenerator} {params} active={isActive} {selected} />
 
 			{#if hiddenTags.length > 0}
 				<PopoverButton
@@ -87,18 +87,21 @@
 </div>
 
 <!-- MOBILE -->
-<div class="flex lg:hidden text-left z-30 flex-row-reverse">
+<div class="flex lg:hidden text-left z-20 flex-row-reverse">
 	<Popover class=" w-full flex-1  text-gray-800 dark:text-zinc-200  " let:open>
 		<PopoverButton
 			class="w-full flex items-center justify-between gap-2  border px-4 py-2 rounded-sm  dark:border-zinc-800 overflow-hidden dark:bg-zinc-900"
 		>
-			<span class="space-x-1">
-				<span>{$t('global.filters.filters')}</span>
-				{#if selected !== 'all'}
-					<span class="text-sm bg-amber-600 text-white px-1 py-0.5 rounded-sm">{selected}</span>
-				{/if}
-			</span>
+<div class="flex items-center gap-3">
+	<Icon src={AdjustmentsHorizontal} class="w-5" />
 
+		<span>{$t('global.filters.filters')}</span>
+		{#if selected !== 'all'}
+			<span class="text-sm bg-amber-600 text-white px-1 py-0.5 rounded-sm">{selected}</span>
+		{/if}
+	
+</div>
+	
 			{#if !open}
 				<Icon src={ChevronDown} class="w-5" />
 			{/if}
