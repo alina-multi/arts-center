@@ -102,12 +102,12 @@ return [
 
         'cache' => [
             'url' => env('REDIS_URL'),
-            'database' => env('REDIS_CACHE_DB', 1),
+            'database' => env('REDIS_CACHE_DB', 2),
         ],
 
         'externalCache' => [
             'url' => env('REDIS_URL'),
-            'database' => 2,
+            'database' => env('REDIS_CACHE_DB', 2),
         ]
 
     ],
