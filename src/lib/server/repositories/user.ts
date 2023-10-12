@@ -25,7 +25,7 @@ export interface user_basic_raw {
 
 export interface user_full_raw extends user_basic_raw {
 	created_at: Date | null;
-	ratings: user_ratings_row[];
+	ratings: user_ratings_row[] | [];
 	bios: [
 		{
 			text: string;
@@ -39,13 +39,13 @@ export interface user_ratings_row {
 	language: string;
 	tag: {
 		id: bigint;
-		titles: [
-			{
-				title: string;
-				language: string;
-			}
-		];
-	};
+		titles: titles_raw[];
+	} | null;
+}
+
+export interface titles_raw {
+	title: string;
+	language: string;
 }
 
 const PAGE_SIZE = 10;

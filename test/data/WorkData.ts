@@ -1,6 +1,6 @@
 import type { Work } from '$lib/interfaces/Work';
 import PictureData from '$test/data/PictureData';
-import { UserData } from '$test/data/UserData';
+import { user_basic_data_raw  } from '$test/data/UserData';
 
 export default {
 	id: BigInt(1),
@@ -21,7 +21,7 @@ export default {
 			title: 'Test header'
 		}
 	],
-	owners: [UserData],
+	owners: [user_basic_data_raw ],
 	votes: [],
 	tags: [],
 	details: null,
@@ -29,4 +29,4 @@ export default {
 	height: null,
 	length: null,
 	year: null
-} as Work;
+} ;
