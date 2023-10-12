@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang='ts'>
 	import { onMount } from 'svelte';
 	import { MultiSelect } from 'svelte-multiselect';
 
@@ -7,7 +7,7 @@
 	// Default from value prop to format that component understands
 	let selected = options
 		.map(tagToOption)
-		.filter((option) => value?.includes(Number(option?.value)));
+		.filter((option) => value?.map((value) => Number(value))?.includes(Number(option?.value)));
 	$: {
 		multiselectProps = {
 			outerDivClass: 'rounded-sm border sm:text-sm h-10',
@@ -36,7 +36,7 @@
 	});
 </script>
 
-<div class="border border-gray-300 rounded-sm dark:bg-zinc-900 dark:border-zinc-700">
+<div class='border border-gray-300 rounded-sm dark:bg-zinc-900 dark:border-zinc-700'>
 	<MultiSelect
 		bind:selected
 		{...multiselectProps}
@@ -47,4 +47,4 @@
 	/>
 </div>
 
-<input type="hidden" {name} value={hiddenValue} />
+<input type='hidden' {name} value={hiddenValue} />

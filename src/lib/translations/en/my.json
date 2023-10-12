@@ -1,37 +1,46 @@
 {
 	"add_work_page": {
+		"additional_images": "Additional images",
 		"category": "Category",
 		"confirm_to_delete": "Are you sure you want to delete this work?",
 		"confirm_to_drafts": "Are you sure you want to move this work to drafts?",
+		"crop_hint": "Main image will be cropped only for preview, on work page it will be shown in original proportions",
 		"crop_label": "Crop image preview",
 		"description": "Description",
 		"label_step_1": "What have you been working on?",
+		"main_full": "Full version",
+		"main_image": "Main image",
 		"main_info": "Main information",
+		"main_preview": "Preview (cropped)",
+		"please_select_main": "Please select and crop main image to proceed",
 		"preview_original_image": "This is how your work will look like in the work page",
 		"preview_small_image": "This is how your work will look like in the gallery",
 		"ready_to_publish": "Ready to publish?",
-		"select_main_image": "Select the main image",
 		"step_1": "Upload images",
-		"step_2": "Fill details",
-		"step_3": "Preview",
+		"step_2": "Manage images",
+		"step_3": "Fill details",
+		"step_4": "Preview",
 		"title": "Title"
 	},
 	"blocked": "Blocked users",
 	"buttons": {
 		"back_to_edit": "Back to edit",
+		"crop": "Crop and set as main",
 		"delete_draft": "Delete draft",
+		"delete_image": "Delete image",
 		"move_to_drafts": "Move to drafts",
+		"next": "Next step",
 		"publish": "Publish",
 		"reset": "Cancel",
-		"save": "Save"
+		"save": "Save",
+		"set_main": "Set main"
 	},
 	"confirmation": {
-		"delete": "Are you sure you want to delete",
+		"delete": "Are you sure you want to delete?",
 		"delete_warning": "This action cannot be undone.",
 		"delete_work": "Are you sure you want to delete this work?",
 		"move_to_drafts": "Are you sure you want to move this work to drafts?"
 	},
-	"drafts": "Drafts",
 	"edit_page": {
 		"bio_tip": "Write a few sentences about yourself",
 		"biography": "Biography",
@@ -66,5 +75,17 @@
 	"no_drafts": "There are no drafts",
 	"people": "people",
 	"work": "work",
-	"works": "works"
+	"works": "works",
+	"works_page": {
+		"image": "Main image (cropped version)",
+		"status": "Status",
+		"statuses": {
+			"draft": "Draft",
+			"error": "Error",
+			"processing": "Processing",
+			"published": "Published",
+			"waiting": "Waiting"
+		},
+		"titles": "Work titles"
+	}
 }

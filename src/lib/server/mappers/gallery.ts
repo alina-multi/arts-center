@@ -20,7 +20,8 @@ export function worksPreviewMap(works: WorksWithRelations[]): WorkPreview[] {
 			price: null,
 			titles: work.titles,
 			owners: ownersMap(work.owners),
-			preview: pictureMap(work.preview)
+			preview: pictureMap(work.preview),
+			status: work.status
 		};
 	});
 }

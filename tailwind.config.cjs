@@ -10,5 +10,18 @@ module.exports = {
 		}
 	},
 	plugins: [require('@tailwindcss/forms'), require('@tailwindcss/aspect-ratio')],
-	safelist: ['bg-black', 'bg-white']
+	safelist: [
+		'bg-black',
+		'bg-white',
+		// Badge.svelte
+		{
+			pattern: /bg-(red|green|blue|orange|gray)-50/
+		},
+		{
+			pattern: /text-(red|green|blue|orange|gray)-700/
+		},
+		{
+			pattern: /ring-(red|green|blue|orange|gray)-600\/10/
+		}
+	]
 };

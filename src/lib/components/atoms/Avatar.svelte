@@ -15,7 +15,7 @@
 
 	{#if user.photo}
 		<div class=" {size}  bg-zinc-300 dark:bg-gray-800 rounded-full overflow-hidden shadow-sm">
-			<Picture photo={user.photo} alt={user?.username} style={size + ' object-cover '} />
+			<Picture photo={user.photo} alt={user?.username} class={size + ' object-cover '} />
 		</div>
 	{:else}
 		<Icon

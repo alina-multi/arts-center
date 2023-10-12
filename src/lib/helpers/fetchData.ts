@@ -20,7 +20,10 @@ export async function magicFetch(method: string, url: string, body: object = {},
 	}
 	try {
 		const response = await fetchData(method, url, body);
-		const json = await response.json();
+		let json = {};
+		if (response.status !== 204) {
+			json = await response.json();
+		}
 		if (!response.ok) {
 			throw new Error(json?.message || t.get('global.error.api'));
 		}
