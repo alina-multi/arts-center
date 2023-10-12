@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import WorkAddProgressSteps from '$lib/components/work/add/WorkAddProgressSteps.svelte';
 	import WorkPreview from '$lib/components/work/WorkPreview.svelte';
 	import WorkBody from '$lib/components/work/page/WorkBody.svelte';
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
@@ -17,13 +16,11 @@
 	// 60 days months in advance max
 	const maxDate = new Date(Date.now() + 60 * 60 * 24 * 60 * 1000).toISOString().split('T')[0];
 </script>
-
-<WorkAddProgressSteps currentStep="3" id={data.work.id} />
 <form method="post" use:enhance>
 	<FormGroup h1={$t('my.add_work_page.ready_to_publish')} class="my-5">
 		<div class=" max-md:flex max-md:flex-col md:columns-3">
 			<CancelLinkButton
-				href={localePath(`/my/work/draft/${data.work.id}`)}
+				href={localePath(`/my/work/${data.work.id}/form`)}
 				class="block text-center"
 			>
 				{$t('my.buttons.back_to_edit')}

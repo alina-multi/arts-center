@@ -6,7 +6,7 @@ interface ApiParams {
 	method: string;
 	event: RequestEvent;
 	path: string;
-	data?: Record<string, unknown> | null;
+	data?: object | null;
 }
 
 export async function api(params: ApiParams) {

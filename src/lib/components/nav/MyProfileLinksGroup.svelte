@@ -23,8 +23,8 @@
 <SideNavLink href={localePath("/my/work/add")}
 	><Icon src={PlusCircle} theme="solid" class="h-5 w-5 inline" aria-hidden="true" /> {$t('global.my_links.add_work')}</SideNavLink
 >
-<SideNavLink href={localePath("/my/work/draft")}
-	><Icon src={FolderOpen} theme="solid" class="h-5 w-5 " aria-hidden="true" />{$t('global.my_links.drafts')}</SideNavLink
+<SideNavLink exact href={localePath("/my/work")}
+	><Icon src={FolderOpen} theme="solid" class="h-5 w-5 " aria-hidden="true" />{$t('global.my_links.works')}</SideNavLink
 >
 
 <SideNavLink href={localePath(`${favorites_href}`)}

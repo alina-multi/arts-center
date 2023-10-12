@@ -17,6 +17,6 @@
 		rel="noreferrer"
 		class="cursor-zoom-in"
 	>
-		<Picture photo={image} {alt} {style} />
+		<Picture photo={image} {alt} class={style} />
 	</a>
 </div>
