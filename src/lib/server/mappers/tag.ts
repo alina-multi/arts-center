@@ -1,9 +1,8 @@
 import type { Tag } from '$lib/interfaces/Tag';
 import { languageFind } from '$lib/translations';
-import type { category_raw} from '../repositories/tag';
+import type { category_raw } from '../repositories/tag';
 
-
-export function tagsMap(tags: category_raw []): Tag[] {
+export function tagsMap(tags: category_raw[]): Tag[] {
 	return tags?.map((tag) => {
 		return {
 			id: tag.id,
@@ -13,7 +12,7 @@ export function tagsMap(tags: category_raw []): Tag[] {
 	});
 }
 
-export function taggableMap(taggables: [{tag:category_raw}]): Tag[] {
+export function taggableMap(taggables: [{ tag: category_raw }]): Tag[] {
 	return taggables?.map((taggable) => {
 		return {
 			id: taggable.tag?.id,
