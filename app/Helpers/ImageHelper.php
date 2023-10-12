@@ -58,9 +58,20 @@ class ImageHelper
             'size' => Storage::size($tmpPath),
             'original' => true
         ]);
-        $newLoc="$folder/$variant->file";
         Storage::move($tmpPath, "$folder/$variant->file");
         ImageCreated::dispatch($image);
         return $image;
+    }
+
+    static function attachImages($work, $tmpImages, $user): void
+    {
+        foreach ($tmpImages as $image) {
+            $uploaded[] = ImageHelper::createFromUploaded($image, 'works', $user->id, $work->id);
+        }
+        if (sizeof($uploaded)) {
+            foreach ($uploaded as $image) {
+                $work->images()->attach($image);
+            }
+        }
     }
 }

@@ -9,16 +9,8 @@ use App\Rules\UploadedImage;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class WorkEditRequest extends FormRequest
+class WorkMainImageRequest extends FormRequest
 {
-    protected function prepareForValidation(): void
-    {
-        $this->merge([
-            'title' => strip_tags($this->title ?? ''),
-            'description' => strip_tags($this->description ?? ''),
-        ]);
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -27,16 +19,7 @@ class WorkEditRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'language' => [
-                'required',
-                Rule::in(config('app.languages'))
-            ],
-            'main' => ['string', new UploadedImage()],
-            'more.*' => ['string', new UploadedImage()],
-            'title' => ['string', 'required', 'min:4', 'max:40'],
-            'description' => ['string'],
-            'category' => ['required', 'array'],
-            'category.*' => ['numeric', 'exists:tags,id', new TagType(TagTypes::CATEGORY)],
+            'crop'=>['required'],
             'crop.x' => ['numeric', 'required_with:crop', 'min:0'],
             'crop.y' => ['numeric', 'required_with:crop', 'min:0'],
             'crop.width' => ['numeric', 'required_with:crop', 'min:0'],

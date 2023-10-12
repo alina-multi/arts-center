@@ -9,12 +9,13 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 
 class Image extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'created_at',
@@ -31,7 +32,7 @@ class Image extends Model
 
     protected $appends = ['src', 'sources', 'original'];
 
-    protected $visible = ['src',  'sources', 'original'];
+    protected $visible = ['id', 'src', 'sources', 'original'];
 
     public function variants(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
@@ -72,7 +73,7 @@ class Image extends Model
         }
 
         return [
-            "src"=> $this->variantToSrc($original),
+            "src" => $this->variantToSrc($original),
             "width" => $original->width,
             "height" => $original->height,
         ];
@@ -88,7 +89,7 @@ class Image extends Model
         $originalVariant = $this->variants
             ->where('original', true)
             ->first();
-        $link="{$this->folder->value}/$originalVariant->file";
+        $link = "{$this->folder->value}/$originalVariant->file";
         return "{$this->folder->value}/$originalVariant->file";
     }
 
@@ -96,12 +97,12 @@ class Image extends Model
     {
         return $this->variants
             ->sortBy([
-                ['width','asc'],
-                fn ($a, $b) => $a->extension->value <=> $b->extension->value,
+                ['width', 'asc'],
+                fn($a, $b) => $a->extension->value <=> $b->extension->value,
             ])
-            ->where('original','!=',true)
+            ->where('original', '!=', true)
             ->values() // Here it's important to reset the keys, or it will be an object instead of an array
-            ->groupBy(fn ($a, $b) => $a->extension->value)
+            ->groupBy(fn($a, $b) => $a->extension->value)
             ->map(fn(Collection $variants) => [
                 'type' => "image/{$variants->first()->extension->value}",
                 'srcset' => $variants->map(fn($variant) => "{$this->variantToSrc($variant)} {$variant->width}w")->join(', '),

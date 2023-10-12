@@ -27,22 +27,18 @@ test('create draft', function () {
     }
     $user = User::factory()->create();
 
-    actingAs($user)->postJson('/api2/draft', [
-        'main' => array_shift($images),
-        'more' => $images,
-        'language' => 'en',
+    actingAs($user)->postJson('/api2/work', [
+        'images' => $images,
     ])->assertStatus(201)
         ->assertJson(fn(AssertableJson $json) => $json->where('id', 1)
             ->has('owners', 1)
-            ->has('images', 2)
-            ->has('titles', 1)
-            ->has('full', 3)
+            ->has('images', 3)
             ->etc()
         );
-    Bus::assertDispatched(\App\Jobs\ConvertImage::class);
+    Bus::assertDispatched(\App\Jobs\ConvertImage::class, 3);
 });
 
-test('edit draft', function () {
+test('edit draft form', function () {
     Bus::fake();
     $user = User::factory()->create();
     $otherUser = User::factory()->create();
@@ -66,68 +62,48 @@ test('edit draft', function () {
         ->create();
     $work->owners()->attach($user);
 
-    actingAs($otherUser)->putJson("/api2/draft/$work->id")
+    actingAs($otherUser)->putJson("/api2/work/$work->id")
         ->assertStatus(403);
 
-    // Category and language is required
-    actingAs($user)->putJson("/api2/draft/$work->id", [
-        'title' => 'test title',
-    ])->assertInvalid(['category', 'language']);
+    // Category and titles are required
+    actingAs($user)->putJson("/api2/work/$work->id", [
+    ])->assertInvalid(['category', 'titles']);
 
-    // tags shouldn't be allowed
-    actingAs($user)->putJson("/api2/draft/$work->id", [
-        'title' => 'test',
+    // tags shouldn't be allowed and language is required for title
+    actingAs($user)->putJson("/api2/work/$work->id", [
+        'titles' => [
+            ['title' => 'test']
+        ],
         'category' => [...$categoryIds, ...$tagIds]
-    ])->assertInvalid('category.2');
+    ])->assertInvalid('category.2', 'titles.0.language');
 
-    // title is too short
-    actingAs($user)->putJson("/api2/draft/$work->id", [
-        'title' => 't',
+    // title is too short and language is wrong
+    actingAs($user)->putJson("/api2/work/$work->id", [
+        'titles' => [
+            [
+                'title' => 't',
+                'language' => 'bb'
+            ]
+        ],
         'category' => $categoryIds
-    ])->assertInvalid('title');
-
-    //If crop is set, all fields should be there
-    actingAs($user)->putJson("/api2/draft/$work->id", [
-        'title' => 'test',
-        'category' => $categoryIds,
-        'crop' => [
-            'height' => 450,
-            'y' => 75
-        ]
-    ])->assertInvalid(['crop.x', 'crop.width']);
-
-    //AspectRatio validator, should be 4/3
-    actingAs($user)->putJson("/api2/draft/$work->id", [
-        'title' => 'test',
-        'category' => $categoryIds,
-        'crop' => [
-            'width' => 600,
-            'height' => 400,
-            'x' => 0,
-            'y' => 75
-        ]
-    ])->assertInvalid('crop.height');
+    ])->assertInvalid('titles.0.language', 'titles.0.title');
 
     $validStringButWithHtml = '<b>Valid but with html</b>';
-    actingAs($user)->putJson("/api2/draft/$work->id", [
-        'language' => 'uk',
-        'title' => $validStringButWithHtml,
-        'description' => $validStringButWithHtml,
+    actingAs($user)->putJson("/api2/work/$work->id", [
+        'titles' => [
+            [
+                'title' => $validStringButWithHtml,
+                'description' => $validStringButWithHtml,
+                'language' => 'en'
+            ]
+        ],
         'category' => $categoryIds,
-        'crop' => [
-            'width' => 600,
-            'height' => 450,
-            'x' => 0,
-            'y' => 75
-        ]
     ])->assertValid();
-
-    Bus::assertDispatched(\App\Jobs\CropWorkImage::class);
 
     assertDatabaseHas('work_titles', [
         'title' => strip_tags($validStringButWithHtml),
         'description' => strip_tags($validStringButWithHtml),
-        'language' => 'uk'
+        'language' => 'en'
     ]);
 
     expect(sizeof($categoryIds))->toEqual($work->category()->count());
@@ -137,7 +113,7 @@ test('get draft', function () {
     $user = User::factory()->create();
     $work = Work::factory()->hasTitles()->create();
     $work->owners()->attach($user);
-    actingAs($user)->getJson("/api2/draft/$work->id")
+    actingAs($user)->getJson("/api2/work/$work->id")
         ->assertStatus(200);
 });
 
@@ -147,10 +123,10 @@ test('publish draft', function () {
     $otherUser = User::factory()->create();
     $work = Work::factory()->hasTitles()->create(['published_at' => null]);
     $work->owners()->attach($user);
-    actingAs($otherUser)->putJson("/api2/draft/$work->id/publish", [
+    actingAs($otherUser)->putJson("/api2/work/$work->id/publish", [
         'published_at' => '2033-12-12'
     ])->assertForbidden();
-    actingAs($user)->putJson("/api2/draft/$work->id/publish", [
+    actingAs($user)->putJson("/api2/work/$work->id/publish", [
         'published_at' => '2033-12-12'
     ])->assertNoContent();
     $this->assertDatabaseHas('works', [
@@ -167,8 +143,8 @@ test('move to draft', function () {
     $otherUser = User::factory()->create();
     $work = Work::factory()->hasTitles()->create();
     $work->owners()->attach($user);
-    actingAs($otherUser)->deleteJson("/api2/draft/$work->id/draft")->assertForbidden();
-    actingAs($user)->deleteJson("/api2/draft/$work->id/draft")->assertNoContent();
+    actingAs($otherUser)->deleteJson("/api2/work/$work->id/draft")->assertForbidden();
+    actingAs($user)->deleteJson("/api2/work/$work->id/draft")->assertNoContent();
     $this->assertDatabaseHas('works', [
         'id' => $work->id,
         'published_at' => null,
@@ -182,12 +158,12 @@ test('delete draft', function () {
     $otherUser = User::factory()->create();
     $work = Work::factory()->hasTitles()->create();
     $work->owners()->attach($user);
-    actingAs($otherUser)->deleteJson("/api2/draft/$work->id")->assertForbidden();
+    actingAs($otherUser)->deleteJson("/api2/work/$work->id")->assertForbidden();
     // Published work can not be deleted
-    actingAs($user)->deleteJson("/api2/draft/$work->id")->assertForbidden();
+    actingAs($user)->deleteJson("/api2/work/$work->id")->assertForbidden();
     $work->published_at = null;
     $work->save();
-    actingAs($user)->deleteJson("/api2/draft/$work->id")->assertNoContent();
+    actingAs($user)->deleteJson("/api2/work/$work->id")->assertNoContent();
     $this->assertDatabaseHas('works', [
         'id' => $work->id,
         'deleted_at' => now(),

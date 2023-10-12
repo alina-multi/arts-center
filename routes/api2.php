@@ -1,18 +1,18 @@
 <?php
 
 use App\Http\Middleware\LocaleHeader;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Api2\{
     VoteController,
     ProfileController,
-    DraftController,
+    WorkController,
     CommentController,
     MeController,
     FollowController,
     BlacklistController,
     FavoriteController,
     FavoriteFolderController,
-    FeedbackController
+    FeedbackController,
+    WorkImageController
 };
 
 /*
@@ -32,10 +32,11 @@ Route::middleware(['auth:sanctum', LocaleHeader::class])->group(function () {
     Route::get('me', MeController::class);
     Route::post('vote', VoteController::class . '@store');
     Route::delete('vote', VoteController::class . '@destroy');
-    Route::apiResource('draft', DraftController::class);
-    Route::put('draft/{draft}/publish', DraftController::class . '@publish');
-    Route::delete('draft/{draft}/draft', DraftController::class . '@draft');
+    Route::apiResource('work', WorkController::class);
+    Route::put('work/{work}/publish', WorkController::class . '@publish');
+    Route::delete('work/{work}/draft', WorkController::class . '@draft');
     Route::apiResource('comment', CommentController::class);
+    Route::apiResource('work.images', WorkImageController::class);
     Route::post('follow', FollowController::class. '@store');
     Route::delete('follow', FollowController::class. '@destroy');
     Route::get('follow', FollowController::class. '@index');

@@ -26,6 +26,7 @@ test('to searchable array', function () {
             "src" => "preview/5.jpeg",
             "width" => 1200,
             "height" => 900
-        ]
+        ],
+        "id"=> $image->id
     ]);
 });

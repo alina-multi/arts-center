@@ -6,7 +6,7 @@ use App\Rules\UploadedImage;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class WorkDraftRequest extends FormRequest
+class WorkImagesRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -16,12 +16,7 @@ class WorkDraftRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'language' => [
-                'required',
-                Rule::in(config('app.languages'))
-            ],
-            'main' => ['required', 'string', new UploadedImage()],
-            'more.*' => ['string', new UploadedImage()],
+            'images.*' => ['required', 'string', new UploadedImage()],
         ];
     }
 }
