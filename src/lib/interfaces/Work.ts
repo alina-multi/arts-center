@@ -1,7 +1,7 @@
 import type { Picture } from './Picture';
 import type { UserPreview } from './User';
 import type { Tag } from './Tag';
-import type { work_titles } from '$lib/server/repositories/work';
+import type { work_titles_raw } from '$lib/server/repositories/work';
 import type { image_raw } from '$lib/server/repositories/image';
 
 export interface WorkPreview {
@@ -11,7 +11,7 @@ export interface WorkPreview {
 	comments: number;
 	hosts: number;
 	price: number | null;
-	titles: work_titles[];
+	titles: work_titles_raw[];
 	preview: image_raw | Picture | null;
 	owners: UserPreview[];
 }
@@ -26,7 +26,7 @@ export interface Work extends WorkPreview {
 	full: Picture | null;
 	images: Picture[];
 }
-
+// ??????
 export interface WorkTitle {
 	title: string;
 	language: string;

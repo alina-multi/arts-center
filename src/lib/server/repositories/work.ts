@@ -15,28 +15,28 @@ export interface work_raw {
 	full: image_raw;
 	preview: image_raw | null;
 	images: [{ image: image_raw }] | [];
-	titles: work_titles[];
-	owners: [{ user: user_basic_raw }];
-	votes: [{ user: user_basic_raw }];
-	tags: [
+	titles: work_titles_raw[];
+	owners: { user: user_basic_raw }[];
+	votes: { user: user_basic_raw }[];
+	tags: 
 		{
 			tag: {
 				id: bigint;
 				titles: tag_titles_row[];
 			};
-		}
-	];
-	details: work_details;
+		}[] | []
+	;
+	details: work_details_raw  | null;
 }
 
-interface work_details {
+export interface work_details_raw {
 	year: number | null;
 	width: number | null;
 	height: number | null;
 	length: number | null;
 }
 
-export interface work_titles {
+export interface work_titles_raw {
 	title: string | null;
 	description: string | null;
 	alt: string | null;
