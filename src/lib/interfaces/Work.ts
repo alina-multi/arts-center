@@ -2,7 +2,7 @@ import type { Picture } from './Picture';
 import type { UserPreview } from './User';
 import type { Tag } from './Tag';
 import type { work_titles } from '$lib/server/repositories/work';
-import type { image_raw  } from '$lib/server/repositories/image';
+import type { image_raw } from '$lib/server/repositories/image';
 
 export interface WorkPreview {
 	id: bigint;
@@ -12,7 +12,7 @@ export interface WorkPreview {
 	hosts: number;
 	price: number | null;
 	titles: work_titles[];
-	preview: image_raw  | Picture | null;
+	preview: image_raw | Picture | null;
 	owners: UserPreview[];
 }
 

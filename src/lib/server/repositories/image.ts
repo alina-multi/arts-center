@@ -16,17 +16,18 @@ export const imageSelect = {
 };
 
 export interface image_raw {
-	id: bigint,
-		folder: string,
-		variants: variants[]}
-
-export interface variants {
-	id: bigint,
-	extension: string,
-	width: number,
-	height: number,
-	size: number,
-	original: boolean
+	id: bigint;
+	folder: ImageFolder;
+	variants: variants[];
 }
 
+export interface variants {
+	id: bigint;
+	extension: string;
+	width: number;
+	height: number;
+	size: number;
+	original: boolean;
+}
 
+export type ImageFolder = 'preview' | 'works' | 'photos' | 'grids';

@@ -1,7 +1,9 @@
 import { describe, expect, test, vi } from 'vitest';
-import { pictureMap } from './pictures';
+import { pictureMap, picturesMap, imagablePicturesMap } from './pictures';
+import type { image_raw } from '../repositories/image';
 
 const image = {
+	id: 11n,
 	folder: 'preview',
 	variants: [
 		{
@@ -40,7 +42,7 @@ const image = {
 			original: 0
 		}
 	]
-};
+} satisfies image_raw;
 
 describe('pictureMap converts from sources', () => {
 	test('test if we only have original', () => {
@@ -93,4 +95,63 @@ describe('pictureMap converts from sources', () => {
 		});
 		vi.unstubAllEnvs();
 	});
+});
+
+test('imagablePicturesMap', () => {
+	const pictures = [
+		{ image: { ...image, variants: null } },
+		{ image: image },
+		{ image: null },
+		{ image: undefined }
+	];
+	const result = imagablePicturesMap(pictures);
+	expect(result).toMatchInlineSnapshot(`
+		[
+		  {
+		    "original": {
+		      "height": 1024,
+		      "src": "https://picsum.photos/id/5/400/600",
+		      "width": 1280,
+		    },
+		    "sources": [
+		      {
+		        "srcset": "https://picsum.photos/id/2/400/600 300w, https://picsum.photos/id/4/400/600 600w",
+		        "type": "image/webp",
+		      },
+		      {
+		        "srcset": "https://picsum.photos/id/1/400/600 300w, https://picsum.photos/id/3/400/600 600w",
+		        "type": "image/jpeg",
+		      },
+		    ],
+		    "src": "https://picsum.photos/id/1/400/600",
+		  },
+		]
+	`);
+});
+
+test('picturesMap', () => {
+	const pictures = [{ ...image, variants: null }, image, null, undefined];
+	const result = picturesMap(pictures);
+	expect(result).toMatchInlineSnapshot(`
+		[
+		  {
+		    "original": {
+		      "height": 1024,
+		      "src": "https://picsum.photos/id/5/400/600",
+		      "width": 1280,
+		    },
+		    "sources": [
+		      {
+		        "srcset": "https://picsum.photos/id/2/400/600 300w, https://picsum.photos/id/4/400/600 600w",
+		        "type": "image/webp",
+		      },
+		      {
+		        "srcset": "https://picsum.photos/id/1/400/600 300w, https://picsum.photos/id/3/400/600 600w",
+		        "type": "image/jpeg",
+		      },
+		    ],
+		    "src": "https://picsum.photos/id/1/400/600",
+		  },
+		]
+	`);
 });

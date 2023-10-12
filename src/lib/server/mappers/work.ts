@@ -5,12 +5,12 @@ import { taggableMap } from './tag';
 import { ownersMap } from './owners';
 import { imagablePicturesMap, pictureMap } from '$lib/server/mappers/pictures';
 import type { Picture } from '$lib/interfaces/Picture';
-import type {  work_raw  } from '../repositories/work';
+import type { work_raw } from '../repositories/work';
 
-interface worksWithRelations extends  work_raw  {
+interface worksWithRelations extends work_raw {
 	blocks: [
 		{
-			images: image_raw []
+			images: image_raw[];
 		}
 	];
 }

@@ -1,21 +1,16 @@
 import type { Picture } from '$lib/interfaces/Picture';
+import type { image_raw } from '../repositories/image';
+import type { ImageFolder } from '../repositories/image';
 
-
-import type { image } from '../repositories/image';
-
-type ImageFolder = 'preview' | 'works' | 'photos' | 'grids';
-
-
-
-export function picturesMap(images: image[]): Picture[] | null {
-	return images?.map((image) => pictureMap(image));
+export function picturesMap(images: image_raw[]): Picture[] | [] {
+	return images.filter((image) => image && image.variants)?.map((image) => pictureMap(image));
 }
 
-export function imagablePicturesMap(images: [{image: image}]): Picture[] {
-	return images?.map((image) => pictureMap(image?.image));
+export function imagablePicturesMap(images: [{ image: image_raw }] | []): Picture[] | [] {
+	return images.filter((image) => image?.image?.variants)?.map((image) => pictureMap(image.image));
 }
 
-export function pictureMap(image: image | null): Picture | null {
+export function pictureMap(image: image_raw | null): Picture | null {
 	const sourcesMap: Map<string, { type: string; srcset: string[] }> = new Map();
 	if (!image || !image.variants) {
 		return null;
@@ -39,7 +34,7 @@ export function pictureMap(image: image | null): Picture | null {
 			type,
 			srcset: []
 		};
-		const url = buildSrc(image.folder as ImageFolder, variant.id, variant.extension);
+		const url = buildSrc(image.folder, variant.id, variant.extension);
 		source.srcset.push(`${url} ${variant.width}w`);
 		sourcesMap.set(type, source);
 	}

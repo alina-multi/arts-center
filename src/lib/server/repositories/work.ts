@@ -1,7 +1,7 @@
 import { prisma } from '$lib/server/database/prisma';
 import { userSelect } from './user';
 import { imageSelect } from '$lib/server/repositories/image';
-import type { image_raw  } from '$lib/server/repositories/image';
+import type { image_raw } from '$lib/server/repositories/image';
 import type { user_basic_raw } from './user';
 import type { tag_titles_row } from './tag';
 
@@ -12,20 +12,20 @@ export interface work_raw {
 	comments: number;
 	hosts: number;
 	price: number;
-	full: image_raw  ;
-	preview: image_raw  | null;
-	images: [{image: image_raw  }] |[];
+	full: image_raw;
+	preview: image_raw | null;
+	images: [{ image: image_raw }] | [];
 	titles: work_titles[];
 	owners: [{ user: user_basic_raw }];
-	votes: [{user: user_basic_raw}];
+	votes: [{ user: user_basic_raw }];
 	tags: [
-	{	tag: {
-	      id: bigint;
-		  titles: tag_titles_row [];
-		}}
-	]
-		
-	;
+		{
+			tag: {
+				id: bigint;
+				titles: tag_titles_row[];
+			};
+		}
+	];
 	details: work_details;
 }
 
@@ -42,7 +42,6 @@ export interface work_titles {
 	alt: string | null;
 	language: string;
 }
-
 
 export function get(id: bigint) {
 	return prisma.works.findUnique({
@@ -93,7 +92,7 @@ export function get(id: bigint) {
 			},
 			tags: {
 				select: {
-					tag: {		
+					tag: {
 						select: {
 							id: true,
 							titles: {
