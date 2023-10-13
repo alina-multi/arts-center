@@ -13,8 +13,7 @@ use App\Events\{
     WorkReady,
     WorkTranslated
 };
-use App\Jobs\PublishWork;
-use App\Listeners\{AddToFeeds, ClearCache, ConvertImage, SendNotifications, TranslateWork, ValidateWork};
+use App\Listeners\{AddToFeeds, ClearCache, ConvertImage, SendNotifications, TranslateWork, ValidateWork, PublishWork};
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
