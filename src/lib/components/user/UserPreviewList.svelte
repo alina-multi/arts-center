@@ -23,7 +23,6 @@
 		loading = true;
 		let url = localePath(`/api/users/${params.order}/${params.category}/${params.country}/${page}`);
 		const response = await fetch(url);
-		console.log(page)
 		const text = await response.text();
 		const data = parse(text);
 		newBatch = data.users;
