@@ -49,7 +49,7 @@
 
 		<div class="p-3 flex flex-row-reverse">
 			<a
-				href={urlGenerator(params, defaultParams)}
+				href={localePath('/users')}
 				class="text-sm text-gray-500 dark:text-zinc-300 rounded-sm hover:ring-1 hover:ring-gray-300 cursor-pointer dark:hover:rounded-full dark:hover:ring-zinc-800 px-3 py-1"
 			>
 				{$t('global.buttons.clear') + ' ' + $t('global.filters.filters')}

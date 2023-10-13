@@ -4,9 +4,12 @@
 	import { ChevronDown } from '@steeze-ui/heroicons';
 	import { t } from '$lib/translations';
 	import { unslug } from '$lib/helpers/url';
+	import { locale } from '$lib/translations';
 
 	export let params, options, group, urlGenerator;
 	$: selected = unslug(params[group]);
+
+	const regionNames = new Intl.DisplayNames([$locale], { type: 'region' });
 </script>
 
 <Disclosure let:open>
@@ -26,7 +29,7 @@
 				{#if selected === 'popular' || selected === 'new'}
 					{$t(`global.filters.${selected}`)}
 				{:else}
-					{selected === 'all' ? $t(`global.filters.all`) : selected}
+					{selected === 'all'  ? $t(`global.filters.all`) : group === 'country' ? regionNames.of(selected.toUpperCase()) :selected } 
 				{/if}
 			</div>
 		</div>
@@ -51,7 +54,7 @@
 						on:click={() => close()}
 						class="flex grow"
 					>
-						<span class="">
+						<span>
 							{#if option.title === 'popular' || option.title === 'new'}
 								{$t(`global.filters.${option.title}`)}
 							{:else}
