@@ -1,5 +1,5 @@
 import type { Comment } from '$lib/interfaces/Comment';
-import { user_raw_data, UserData } from './UserData';
+import { user_basic_data_raw, UserBasicData } from './UserData';
 import type { comments } from '$lib/server/repositories/comment';
 
 export const comment_raw_data = {
@@ -10,7 +10,7 @@ export const comment_raw_data = {
 	created_at: new Date('1975-08-19T23:15:30.000Z'),
 	updated_at: new Date('1975-08-19T23:15:30.000Z'),
 	rating: 1,
-	owner: user_raw_data 
+	owner: user_basic_data_raw 
 } satisfies comments;
 
 export const CommentData = {
@@ -20,5 +20,5 @@ export const CommentData = {
 	created_at: new Date('1975-08-19T23:15:30.000Z'),
 	updated_at: new Date('1975-08-19T23:15:30.000Z'),
 	rating: 1,
-	owner: UserData
+	owner: UserBasicData
 } satisfies Comment;

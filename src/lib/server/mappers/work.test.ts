@@ -1,6 +1,6 @@
 import { workMap, workPreviewMap } from './work';
 import { expect, test } from 'vitest';
-import { work_data_raw } from '$test/data/WorkPreviewData';
+import { work_data_raw } from '$test/data/WorkData';
 
 
 const data = {...work_data_raw, full: null, owners:[], details: null}
@@ -55,8 +55,7 @@ test('workMap', () => {
 
 test('workPreviewMap', ()=>{
     const result = workPreviewMap(data)
-    expect(result).toMatchInlineSnapshot(
-      `
+    expect(result).toMatchInlineSnapshot(`
       {
         "comments": 0,
         "details": null,

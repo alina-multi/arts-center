@@ -10,7 +10,7 @@ const user_ratings = [
 ];
 
 beforeAll(async () => {
-	await loadTranslations('uk', '/uk/');
+	await loadTranslations('en', '/en/');
 });
 
 test('ratingsMap', () => {
@@ -18,16 +18,12 @@ test('ratingsMap', () => {
 	expect(result).toMatchInlineSnapshot(`
 		[
 		  {
-		    "language": "uk",
+		    "language": "en",
 		    "rating": 1,
 		    "tag": {
 		      "id": 11n,
-		      "title": "Тестовий заголовок",
+		      "title": "Test header",
 		    },
-		  },
-		  {
-		    "language": "uk",
-		    "rating": 1,
 		  },
 		]
 	`);

@@ -1,9 +1,10 @@
 import type { WorkPreview } from '$lib/interfaces/Work';
 import { ownersMap } from './owners';
 import { pictureMap } from '$lib/server/mappers/pictures';
-import type { work_raw } from '../repositories/work';
+import type { works_raw } from '../repositories/gallery';
 
-export function worksPreviewMap(works: work_raw[]): WorkPreview[] {
+export function worksPreviewMap(works: works_raw[]): WorkPreview[] {
+
 	return works?.map((work) => {
 		return {
 			id: work.id,

@@ -3,6 +3,7 @@ import type { UserPreview } from './User';
 import type { Tag } from './Tag';
 import type { work_titles_raw } from '$lib/server/repositories/work';
 import type { image_raw } from '$lib/server/repositories/image';
+import type { tag_titles_row } from '$lib/server/repositories/tag';
 
 export interface WorkPreview {
 	id: bigint;
@@ -11,9 +12,10 @@ export interface WorkPreview {
 	comments: number;
 	hosts: number;
 	price: number | null;
-	titles: work_titles_raw[];
+	titles: work_titles_raw[] | tag_titles_row [];
 	preview: image_raw | Picture | null;
 	owners: UserPreview[];
+	status?: number 
 }
 
 export interface Work extends WorkPreview {

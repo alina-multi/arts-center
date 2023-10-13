@@ -3,10 +3,12 @@ import { render, screen } from '@testing-library/svelte';
 import WorkPage from './WorkPage.svelte';
 import type { Work } from '$lib/interfaces/Work';
 import type { Comment } from '$lib/interfaces/Comment';
-import WorkData from '$test/data/WorkData';
+
 import { loadTranslations } from '$lib/translations';
 import { user } from '$lib/stores/auth';
-import { UserData } from '$test/data/UserData';
+import { UserBasicData } from '$test/data/UserData';
+import { WorkData } from '$test/data/WorkData';
+
 interface WorkPageProps {
 	work: Work;
 	comments: Comment[];
@@ -26,7 +28,7 @@ describe('Work page', async () => {
 		expect(editButton).not.toBeInTheDocument();
 	});
 	it('My work', async () => {
-		await user.set(UserData);
+		await user.set(UserBasicData);
 		render(WorkPage, {
 			work: WorkData,
 			comments: []

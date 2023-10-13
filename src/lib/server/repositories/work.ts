@@ -14,7 +14,7 @@ export interface work_raw {
 	price: number;
 	full: image_raw | null;
 	preview: image_raw | null;
-	images: [{ image: image_raw }] | [];
+	images: { image: image_raw }[] | [];
 	titles: work_titles_raw[];
 	owners: { user: user_basic_raw }[];
 	votes: { user: user_basic_raw }[];

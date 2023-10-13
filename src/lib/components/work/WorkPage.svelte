@@ -11,7 +11,6 @@
 
 	export let work: Work;
 	export let comments: Comment[];
-	isMy = false;
 	$:isMy = work.owners.some((owner) => handleIsMy($user, owner.id));
 </script>
 
