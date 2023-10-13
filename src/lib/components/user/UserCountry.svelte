@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { MapPin } from '@steeze-ui/heroicons';
+	import { locale } from '$lib/translations';
 	export let user;
 	let country;
-	if (user?.country?.length === 2) {
-		const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+	$: if (user?.country?.length === 2) {
+		const regionNames = new Intl.DisplayNames([$locale], { type: 'region' });
 		country = regionNames.of(user.country);
 	}
 </script>
