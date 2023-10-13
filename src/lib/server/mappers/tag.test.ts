@@ -16,7 +16,6 @@ test('tagsMap', ()=> {
     
     ]
     
-
     const result = tagsMap(categories)
     expect(result).toMatchInlineSnapshot(`
       [

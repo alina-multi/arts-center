@@ -12,7 +12,7 @@ export interface work_raw {
 	comments: number;
 	hosts: number;
 	price: number;
-	full: image_raw;
+	full: image_raw | null;
 	preview: image_raw | null;
 	images: [{ image: image_raw }] | [];
 	titles: work_titles_raw[];
@@ -121,4 +121,4 @@ export function get(id: bigint) {
 			id
 		}
 	});
-}
+} 

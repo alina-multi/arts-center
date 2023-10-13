@@ -26,8 +26,10 @@ export interface Work extends WorkPreview {
 	full: Picture | null;
 	images: Picture[];
 }
-// ??????
+
 export interface WorkTitle {
 	title: string;
+	description: string| null;
+	alt: string| null;
 	language: string;
 }

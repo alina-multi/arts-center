@@ -1,5 +1,4 @@
 import type { Work } from '$lib/interfaces/Work';
-import type { image_raw } from '../repositories/image';
 import { taggableMap } from './tag';
 
 import { ownersMap } from './owners';
@@ -7,14 +6,10 @@ import { imagablePicturesMap, pictureMap } from '$lib/server/mappers/pictures';
 import type { Picture } from '$lib/interfaces/Picture';
 import type { work_raw } from '../repositories/work';
 
-interface worksWithRelations extends work_raw {
-	blocks: [
-		{
-			images: image_raw[];
-		}
-	];
-}
-export function workMap(data: worksWithRelations): Work {
+
+export function workMap(data: work_raw  ): Work {
+
+
 	return {
 		...data,
 		price: null,
@@ -23,14 +18,14 @@ export function workMap(data: worksWithRelations): Work {
 		tags: taggableMap(data.tags),
 		full: pictureMap(data.full),
 		votes: ownersMap(data.votes),
-		width: data?.details?.width,
-		height: data?.details?.height,
-		length: data?.details?.length,
-		year: data?.details?.year
+		width: data?.details?.width ?? null,
+		height: data?.details?.height ?? null,
+		length: data?.details?.length ?? null,
+		year: data?.details?.year ?? null
 	};
 }
 
-export function workPreviewMap(data: worksWithRelations): Work & { preview: Picture | null } {
+export function workPreviewMap(data: work_raw): Work & { preview: Picture | null } {
 	return {
 		...workMap(data),
 		preview: pictureMap(data.preview),
