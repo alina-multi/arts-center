@@ -3,15 +3,19 @@ import type { image_raw } from '../repositories/image';
 import type { ImageFolder } from '../repositories/image';
 
 type ImageWithRelations = {
-	image: image_raw 
-}
+	image: image_raw;
+};
 
-export function picturesMap(images: image_raw[] | [] ): Picture[] | [] {
-	return images.filter((image) => image && image.variants && image.variants.length)?.map((image) => pictureMap(image));
+export function picturesMap(images: image_raw[] | []): Picture[] | [] {
+	return images
+		.filter((image) => image && image.variants && image.variants.length)
+		?.map((image) => pictureMap(image));
 }
 
 export function imagablePicturesMap(images: ImageWithRelations[] | []): Picture[] | [] {
-	return images.filter((image) => image.image?.variants?.length > 0)?.map((image) => pictureMap(image.image));
+	return images
+		.filter((image) => image.image?.variants?.length > 0)
+		?.map((image) => pictureMap(image.image));
 }
 
 export function pictureMap(image: image_raw | null): Picture | null {

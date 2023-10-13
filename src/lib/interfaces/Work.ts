@@ -12,10 +12,10 @@ export interface WorkPreview {
 	comments: number;
 	hosts: number;
 	price: number | null;
-	titles: work_titles_raw[] | tag_titles_row [];
+	titles: work_titles_raw[] | tag_titles_row[];
 	preview: image_raw | Picture | null;
 	owners: UserPreview[];
-	status?: number 
+	status?: number;
 }
 
 export interface Work extends WorkPreview {
@@ -31,7 +31,7 @@ export interface Work extends WorkPreview {
 
 export interface WorkTitle {
 	title: string;
-	description: string| null;
-	alt: string| null;
+	description: string | null;
+	alt: string | null;
 	language: string;
 }

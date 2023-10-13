@@ -7,7 +7,7 @@ export const user_basic_data_raw = {
 	photo: null,
 	name: 'Name',
 	country: null,
-	rating: 0,
+	rating: 0
 } satisfies user_basic_raw;
 
 export const UserBasicData = {

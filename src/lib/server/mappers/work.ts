@@ -6,10 +6,7 @@ import { imagablePicturesMap, pictureMap } from '$lib/server/mappers/pictures';
 import type { Picture } from '$lib/interfaces/Picture';
 import type { work_raw } from '../repositories/work';
 
-
-export function workMap(data: work_raw  ): Work {
-
-
+export function workMap(data: work_raw): Work {
 	return {
 		...data,
 		price: null,

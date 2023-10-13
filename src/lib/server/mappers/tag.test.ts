@@ -3,21 +3,15 @@ import { loadTranslations } from '$lib/translations';
 import { tagsMap, taggableMap } from './tag';
 import { category_data_raw } from '$test/data/TagData';
 
-
 beforeAll(async () => {
 	await loadTranslations('uk', '/uk/');
 });
 
-test('tagsMap', ()=> {
+test('tagsMap', () => {
+	const categories = [category_data_raw, { ...category_data_raw, id: 12n, count: 3 }];
 
-    const categories = [
-        category_data_raw,
-     {   ...category_data_raw, id:12n, count: 3}
-    
-    ]
-    
-    const result = tagsMap(categories)
-    expect(result).toMatchInlineSnapshot(`
+	const result = tagsMap(categories);
+	expect(result).toMatchInlineSnapshot(`
       [
         {
           "id": 11n,
@@ -29,19 +23,18 @@ test('tagsMap', ()=> {
           "title": "Тестовий заголовок",
         },
       ]
-    `)
-})
+    `);
+});
 
-test('taggableMap', ()=> {
+test('taggableMap', () => {
+	const taggables = [
+		{ tag: category_data_raw },
+		{ tag: { ...category_data_raw, id: 12n, count: 3 } }
+	];
 
-    const taggables = [
-        {tag: category_data_raw},
-        {tag:  {   ...category_data_raw, id:12n, count: 3}}
-    ]
+	const result = taggableMap(taggables);
 
-    const result = taggableMap(taggables)
-
-    expect(result).toMatchInlineSnapshot(`
+	expect(result).toMatchInlineSnapshot(`
       [
         {
           "id": 11n,
@@ -53,5 +46,5 @@ test('taggableMap', ()=> {
           "title": "Тестовий заголовок",
         },
       ]
-    `)
-})
+    `);
+});

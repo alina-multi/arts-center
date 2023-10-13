@@ -18,15 +18,15 @@ export interface work_raw {
 	titles: work_titles_raw[];
 	owners: { user: user_basic_raw }[];
 	votes: { user: user_basic_raw }[];
-	tags: 
-		{
-			tag: {
-				id: bigint;
-				titles: tag_titles_row[];
-			};
-		}[] | []
-	;
-	details: work_details_raw  | null;
+	tags:
+		| {
+				tag: {
+					id: bigint;
+					titles: tag_titles_row[];
+				};
+		  }[]
+		| [];
+	details: work_details_raw | null;
 }
 
 export interface work_details_raw {
@@ -121,4 +121,4 @@ export function get(id: bigint) {
 			id
 		}
 	});
-} 
+}

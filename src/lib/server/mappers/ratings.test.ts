@@ -1,5 +1,5 @@
 import { expect, test, beforeAll } from 'vitest';
-import {  user_rating_data_row } from '$test/data/RatingData';
+import { user_rating_data_row } from '$test/data/RatingData';
 import { ratingsMap } from './ratings';
 import { loadTranslations } from '$lib/translations';
 

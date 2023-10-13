@@ -4,10 +4,9 @@ import { error } from '@sveltejs/kit';
 import { userSelect } from './user';
 import { imageSelect } from '$lib/server/repositories/image';
 import { prisma } from '$lib/server/database/prisma';
-import type { user_basic_raw} from './user';
+import type { user_basic_raw } from './user';
 import type { image_raw } from '$lib/server/repositories/image';
 import type { tag_titles_row } from './tag';
-
 
 export interface works_raw {
 	id: bigint;
@@ -19,10 +18,9 @@ export interface works_raw {
 	preview: image_raw | null;
 	status?: number;
 	images: { image: image_raw }[] | [];
-	titles: tag_titles_row [];
+	titles: tag_titles_row[];
 	owners: { user: user_basic_raw }[];
 }
-
 
 export function query(
 	where: Prisma.worksWhereInput = {},

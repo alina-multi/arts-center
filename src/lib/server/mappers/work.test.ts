@@ -2,9 +2,7 @@ import { workMap, workPreviewMap } from './work';
 import { expect, test } from 'vitest';
 import { work_data_raw } from '$test/data/WorkData';
 
-
-const data = {...work_data_raw, full: null, owners:[], details: null}
-
+const data = { ...work_data_raw, full: null, owners: [], details: null };
 
 test('workMap', () => {
 	const result = workMap(data);
@@ -53,9 +51,9 @@ test('workMap', () => {
 	`);
 });
 
-test('workPreviewMap', ()=>{
-    const result = workPreviewMap(data)
-    expect(result).toMatchInlineSnapshot(`
+test('workPreviewMap', () => {
+	const result = workPreviewMap(data);
+	expect(result).toMatchInlineSnapshot(`
       {
         "comments": 0,
         "details": null,
@@ -97,5 +95,5 @@ test('workPreviewMap', ()=>{
         "width": null,
         "year": null,
       }
-    `)
-})
+    `);
+});

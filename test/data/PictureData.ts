@@ -1,7 +1,6 @@
 import type { Picture } from '$lib/interfaces/Picture';
 import type { image_raw } from '$lib/server/repositories/image';
 
-
 export const image_raw_data = {
 	id: 11n,
 	folder: 'preview',
@@ -28,7 +27,7 @@ export const image_raw_data = {
 			height: 500,
 			extension: 'webp',
 			original: false,
-			size: 0,
+			size: 0
 		},
 		{
 			id: 3n,
@@ -48,7 +47,6 @@ export const image_raw_data = {
 		}
 	]
 } satisfies image_raw;
-
 
 export default {
 	src: '',
