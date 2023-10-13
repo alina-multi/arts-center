@@ -12,16 +12,18 @@
 	export let users: Users[], categories, countries, params;
 
 	let newBatch = [];
-	let page = params.page;
+	$: page = 1;
 	let loading = false;
 	let hasMore = true;
 
 	$: users = [...users, ...newBatch];
 
 	async function fetchData() {
+		
 		loading = true;
 		let url = localePath(`/api/users/${params.order}/${params.category}/${params.country}/${page}`);
 		const response = await fetch(url);
+		console.log(page)
 		const text = await response.text();
 		const data = parse(text);
 		newBatch = data.users;
