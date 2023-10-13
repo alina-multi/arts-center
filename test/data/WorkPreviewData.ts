@@ -20,6 +20,7 @@ export const WorkPreviewData = {
 	id: 1n,
 	published_at: null,
 	rating: 0,
+	status: 2,
 	comments: 0,
 	hosts: 0,
 	price: null,

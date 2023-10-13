@@ -14,7 +14,8 @@ export function worksPreviewMap(works: work_raw[]): WorkPreview[] {
 			price: null,
 			titles: work.titles,
 			owners: ownersMap(work.owners),
-			preview: pictureMap(work.preview)
+			preview: pictureMap(work.preview),
+			status: work.status
 		};
 	});
 }

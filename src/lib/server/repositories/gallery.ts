@@ -9,7 +9,8 @@ export function query(
 	where: Prisma.worksWhereInput = {},
 	orderBy: Prisma.worksOrderByWithRelationInput = {},
 	page = 1,
-	perPage = 20
+	perPage = 20,
+	select = {}
 ) {
 	page--;
 	return prisma.works.findMany({
@@ -23,6 +24,7 @@ export function query(
 			hosts: true,
 			price: true,
 			preview: imageSelect,
+			...select,
 			titles: {
 				select: {
 					title: true,
@@ -95,22 +97,27 @@ export async function userQuery(user_id: bigint, tag = 'all', lang = 'en', page 
 	);
 }
 
-export async function userDraftQuery(user_id: bigint, page = 1) {
+export async function userAllWorksQuery(user_id: bigint) {
 	return query(
 		{
+			deleted_at: null,
+			// Silly, but the only way I see to overload it :)
+			status: undefined,
 			owners: {
 				some: {
 					user_id,
 					ownable_type: 'work'
 				}
-			},
-			status: { lte: 10 },
-			deleted_at: null
+			}
 		},
 		{
-			id: 'desc'
+			published_at: 'desc'
 		},
-		page
+		1,
+		100000,
+		{
+			status: true
+		}
 	);
 }
 

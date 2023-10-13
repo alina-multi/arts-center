@@ -11,7 +11,7 @@ type cacheNamespace = 'work' | 'user' | 'auth' | 'page' | 'gallery' | 'search' |
 
 if (process.env?.REDIS_URL) {
 	cache = createClient({
-		url: `${process.env.REDIS_URL}/2`
+		url: `${process.env.REDIS_URL}/${process.env.REDIS_CACHE_DB || 2}`
 	});
 	await cache.on('error', (err) => console.log('Redis Client Error', err)).connect();
 } else {

@@ -6,14 +6,14 @@
 	export let draft;
 
 	$: title = languageFind(draft.titles)?.title;
-	$: href = localePath(`/draft/${draft.id}`);
+	$: href = localePath(`/my/work/draft/${draft.id}`);
 </script>
 
 <a {href}>
 	<Picture
 		photo={draft?.preview}
 		alt={title}
-		style={'aspect-[4/3] flex object-cover w-full h-full hover:opacity-60 transition ease-in-out duration-150'}
+		class={'aspect-[4/3] flex object-cover w-full h-full hover:opacity-60 transition ease-in-out duration-150'}
 	/>
 	<p class="absolute text-sm bottom-0 left-0 right-0 px-3 py-2 text-white bg-gray-900/50">
 		{title}

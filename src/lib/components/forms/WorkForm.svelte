@@ -9,53 +9,73 @@
 	import TextInput from '$lib/components/input/TextInput.svelte';
 	import StyledTab from '$lib/components/layout/StyledTab.svelte';
 	import ButtonsGroup from './ButtonsGroup.svelte';
-	import {t} from '$lib/translations';
+	import { t } from '$lib/translations';
 
-	export let errors;
-	export let data;
+	export let form;
+	export let categories;
+	export let work;
+	// To force redraw of form
+	let version = 1;
+	$: {
+		if (form?.work) {
+			work = {
+				...work,
+				...form.work
+			};
+			version++;
+		}
+	}
 </script>
-
 <FormGroup h1={$t('my.add_work_page.main_info')}>
-	<InputGroup label={$t('my.add_work_page.category')} error={errors?.category}>
-		<SelectInput
-			required
-			options={data.categories}
-			value={data.category}
-			name="category"
-			maxSelect={3}
-		/>
-	</InputGroup>
-
-	<TabGroup>
-		{#if data?.titles?.length > 1}
-			<StyledTabList>
-				{#each data.titles as title}
-					<StyledTab>
-						{title.language}
-					</StyledTab>
-				{/each}
-			</StyledTabList>
-			<!-- without this hack with empty element it doesn't draw panels -->
-		{:else}
-			<TabList class="h-0">
-				<Tab />
-			</TabList>
+		{#if form?.message}
+			<p class='text-red-600'>{form?.message}</p>
 		{/if}
-		<TabPanels>
-			{#each data.titles as title}
-				<StyledTabPanel>
-					<div class="space-y-3">
-						<InputGroup error={errors?.title} label={$t('my.add_work_page.title')}>
-							<TextInput name="title" value={title.title} />
-						</InputGroup>
-						<InputGroup error={errors?.description} label={$t('my.add_work_page.description')}>
-							<TextAreaInput name="description" value={title.description} rows={8} />
-						</InputGroup>
-					</div>
-				</StyledTabPanel>
-			{/each}
-		</TabPanels>
-	</TabGroup>
+		<InputGroup label={$t('my.add_work_page.category')} error={form?.errors?.category}>
+			{#key version}
+				<SelectInput
+					required
+					options={categories}
+					value={work.category}
+					name='category'
+					maxSelect={3}
+				/>
+			{/key}
+		</InputGroup>
 
-	<slot><ButtonsGroup /></slot>
+		<TabGroup>
+			{#if work?.titles?.length > 1}
+				<StyledTabList>
+					{#each work.titles as title}
+						<StyledTab>
+							{title.language}
+						</StyledTab>
+					{/each}
+				</StyledTabList>
+				<!-- without this hack with empty element it doesn't draw panels -->
+			{:else}
+				<TabList class='h-0'>
+					<Tab />
+				</TabList>
+			{/if}
+			<TabPanels>
+				{#each work.titles as title, i (i)}
+					{#key version}
+						<StyledTabPanel>
+							<div class='space-y-3'>
+								<InputGroup error={form?.errors?.[`titles.${i}.title`]} label={$t('my.add_work_page.title')}>
+									<TextInput name={`titles.${i}.title`} value={title.title} />
+								</InputGroup>
+								<InputGroup error={form?.errors?.[`titles.${i}.description`]} label={$t('my.add_work_page.description')}>
+									<TextAreaInput name={`titles.${i}.description`} value={title.description} rows={8} />
+								</InputGroup>
+								<input type='hidden' name={`titles.${i}.language`} value={title.language}>
+							</div>
+						</StyledTabPanel>
+					{/key}
+				{/each}
+			</TabPanels>
+		</TabGroup>
+	<slot>
+		<ButtonsGroup />
+	</slot>
 </FormGroup>

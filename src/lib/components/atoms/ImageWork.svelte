@@ -17,7 +17,7 @@
 			<Picture
 				photo={work.preview}
 				alt={title}
-				style={'aspect-[4/3] flex object-cover w-full h-full'}
+				class={'aspect-[4/3] flex object-cover w-full h-full'}
 			/>
 		{/if}
 	</div>

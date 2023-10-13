@@ -53,6 +53,9 @@
 		"h1": "Contact us",
 		"p1": "Don't hesitate to contact us if you have any questions."
 	},
+	"error": {
+		"api": "Unknown API server error"
+	},
 	"filters": {
 		"all": "all",
 		"category": "category",
@@ -96,13 +99,13 @@
 	"my_links": {
 		"add_work": "Add Work",
 		"blocked": "Blocked",
-		"drafts": "Drafts",
 		"edit_profile": "Edit Profile",
 		"favorites": "Favorites",
 		"followers": "Followers",
 		"following": "Following",
 		"logout": "Log Out",
-		"my_profile": "My Page"
+		"my_profile": "My Page",
+		"works": "My works"
 	},
 	"not_logged_in": {
 		"bookmark": "save this work to your collection",

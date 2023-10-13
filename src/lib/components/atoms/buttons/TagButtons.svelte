@@ -9,13 +9,15 @@
 			tag?: string;
 			order?: string;
 		},
+		selected,
+
 		urlGenerator;
 </script>
 
 {#each tags as tag (tag?.title)}
 	<TagButton
 		title={tag?.title}
-		href={urlGenerator('tags', slug(tag?.title), params)}
+		href={urlGenerator('tags', slug(tag?.title), params, selected)}
 		active={active(tag?.title)}
 	/>
 {/each}

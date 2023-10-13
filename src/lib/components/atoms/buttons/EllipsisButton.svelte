@@ -10,7 +10,7 @@
 </script>
 
 {#if isMy && type === 'vertical'}
-	<a href={`/my/work/edit/${workId}`} class="flex" data-testid="edit-work-button">
+	<a href={`/my/work/${workId}/form`} class="flex" data-testid="edit-work-button">
 		<span class="sr-only">Edit work</span>
 
 		<Icon src={PencilSquare} class="w-7 h-7 text-gray-700 hover:text-gray-500 dark:text-zinc-400" />

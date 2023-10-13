@@ -1,6 +1,6 @@
 import type { Actions, PageLoad } from './$types';
 import { api } from '$lib/server/api';
-import { error, redirect } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 import { get } from '$lib/server/repositories/work';
 import { workPreviewMap } from '$lib/server/mappers/work';
 import { localePath } from '$lib/translations';
@@ -11,7 +11,7 @@ export const load = (async ({ params }) => {
 		}))
 	};
 	if (!data?.work?.id || data?.work?.published_at) {
-		throw error(404, 'Not found');
+		throw redirect(302, localePath(`/work/${data.work.id}`));
 	}
 	return data;
 }) satisfies PageLoad;
@@ -21,7 +21,7 @@ export const actions = {
 		const form = await event.request.formData();
 		const response = await api({
 			method: 'PUT',
-			path: `/api2/draft/${event.params.id}/publish`,
+			path: `/api2/work/${event.params.id}/publish`,
 			event,
 			data: {
 				published_at: form.get('published_at')
