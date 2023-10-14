@@ -24,7 +24,7 @@ export interface user_basic_raw {
 }
 
 export interface user_full_raw extends user_basic_raw {
-	created_at: Date | null;
+	created_at: Date;
 	ratings: user_ratings_row[] | [];
 	bios: [
 		{

@@ -1,4 +1,4 @@
-import type { User } from '$lib/interfaces/User';
+import type { UserBasic } from '$lib/interfaces/User';
 import { pictureMap } from '$lib/server/mappers/pictures';
 import type { user_basic_raw } from '../repositories/user';
 
@@ -6,7 +6,7 @@ export interface ownableWithRelations {
 	user: user_basic_raw;
 }
 
-export function ownersMap(owners: ownableWithRelations[]): User[] {
+export function ownersMap(owners: ownableWithRelations[]): UserBasic[] {
 	return owners
 		?.filter(({ user }) => user)
 		.map(({ user }) => {
@@ -14,7 +14,7 @@ export function ownersMap(owners: ownableWithRelations[]): User[] {
 		});
 }
 
-export function ownerMap(user: user_basic_raw): User {
+export function ownerMap(user: user_basic_raw): UserBasic {
 	return {
 		id: user.id,
 		username: user.username,
