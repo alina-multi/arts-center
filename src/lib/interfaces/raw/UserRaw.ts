@@ -1,4 +1,4 @@
-import type { ImageRaw } from "./ImageRaw";
+import type { ImageRaw } from './ImageRaw';
 
 export interface UserBasicRaw {
 	id: bigint;
@@ -8,7 +8,6 @@ export interface UserBasicRaw {
 	country: string | null;
 	rating: number;
 }
-
 
 export interface UserFullRaw extends UserBasicRaw {
 	created_at: Date;

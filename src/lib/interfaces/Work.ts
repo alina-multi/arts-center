@@ -3,8 +3,6 @@ import type { UserBasic } from './User';
 import type { Tag } from './Tag';
 import type { WorkTitleFullRaw, WorkTitleShort } from './raw/WorkRaw';
 
-
-
 export interface WorkPreview {
 	id: bigint;
 	published_at: Date | null;

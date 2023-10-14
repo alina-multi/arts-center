@@ -1,4 +1,4 @@
-import type { WorkTitleFullRaw } from "$lib/interfaces/raw/WorkRaw";
+import type { WorkTitleFullRaw } from '$lib/interfaces/raw/WorkRaw';
 import type { titles_raw } from '$lib/server/repositories/user';
 
 export const work_titels_data_raw = [

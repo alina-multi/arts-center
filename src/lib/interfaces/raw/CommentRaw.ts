@@ -1,4 +1,4 @@
-import type { UserBasicRaw } from "./UserRaw";
+import type { UserBasicRaw } from './UserRaw';
 
 export interface CommentRaw {
 	id: bigint;

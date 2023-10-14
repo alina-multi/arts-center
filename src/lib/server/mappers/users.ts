@@ -6,7 +6,6 @@ import { languageFind } from '$lib/translations';
 import { pictureMap } from '$lib/server/mappers/pictures';
 import type { UserFullRaw } from '$lib/interfaces/raw/UserRaw';
 
-
 type prismaCountryAggregation = {
 	country: string;
 	_count: {

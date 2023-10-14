@@ -2,14 +2,12 @@ import type { Picture } from '$lib/interfaces/Picture';
 import type { WorkPreview } from './Work';
 import type { Rating } from './Rating';
 
-
-
 export interface UserBasic {
 	id: bigint;
 	username: string;
 	name: string;
-	photo: Picture | null,
-	country: string |null
+	photo: Picture | null;
+	country: string | null;
 }
 
 export interface UserPreview extends UserBasic {
@@ -25,5 +23,3 @@ export interface UserList extends UserPreview {
 export interface User extends UserList {
 	bio?: string;
 }
-
-

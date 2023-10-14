@@ -1,4 +1,4 @@
-import type { UserRatingsRow } from "$lib/interfaces/raw/UserRaw";
+import type { UserRatingsRow } from '$lib/interfaces/raw/UserRaw';
 import { titles_data_raw } from './TitlesData';
 
 export const user_rating_data_row = {

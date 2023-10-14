@@ -1,10 +1,10 @@
 export interface TagRaw {
-    tag: {
-        id: bigint;
-        titles: TagTitleRaw[];
-    };
-} 
+	tag: {
+		id: bigint;
+		titles: TagTitleRaw[];
+	};
+}
 export interface TagTitleRaw {
-    title: string;
+	title: string;
 	language: string;
 }

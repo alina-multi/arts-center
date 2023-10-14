@@ -19,7 +19,7 @@ export function workMap(data: WorkRaw): Work {
 		height: data?.details?.height ?? null,
 		length: data?.details?.length ?? null,
 		year: data?.details?.year ?? null,
-		preview: pictureMap(data.preview),
+		preview: pictureMap(data.preview)
 	};
 }
 

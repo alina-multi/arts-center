@@ -1,7 +1,6 @@
 import type { Picture } from '$lib/interfaces/Picture';
 import type { ImageRaw, ImageFolder } from '$lib/interfaces/raw/ImageRaw';
 
-
 type ImageWithRelations = {
 	image: ImageRaw;
 };

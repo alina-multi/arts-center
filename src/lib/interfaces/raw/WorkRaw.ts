@@ -1,8 +1,6 @@
-
-import type { ImageRaw } from "./ImageRaw";
-import type { UserBasicRaw } from "./UserRaw";
-import type { TagTitleRaw } from "./TagRaw";
-
+import type { ImageRaw } from './ImageRaw';
+import type { UserBasicRaw } from './UserRaw';
+import type { TagTitleRaw } from './TagRaw';
 
 export interface WorkPreviewRaw {
 	id: bigint;
@@ -18,9 +16,7 @@ export interface WorkPreviewRaw {
 	owners: { user: UserBasicRaw }[];
 }
 
-
-
-export interface WorkRaw extends  WorkPreviewRaw{
+export interface WorkRaw extends WorkPreviewRaw {
 	full: ImageRaw | null;
 	votes: { user: UserBasicRaw }[];
 	tags:
@@ -41,18 +37,12 @@ export interface WorkDetailsRaw {
 	length: number | null;
 }
 
-
 export interface WorkTitleShort {
-    title: string | null;
-    language: string;
+	title: string | null;
+	language: string;
 }
 
-export interface WorkTitleFullRaw  extends WorkTitleShort{
+export interface WorkTitleFullRaw extends WorkTitleShort {
 	description: string | null;
 	alt: string | null;
-	
 }
-
-
-
-

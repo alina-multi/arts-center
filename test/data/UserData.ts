@@ -1,4 +1,4 @@
-import type { UserBasic } from "$lib/interfaces/User";
+import type { UserBasic } from '$lib/interfaces/User';
 import type { UserBasicRaw } from '$lib/interfaces/raw/UserRaw';
 
 export const user_basic_data_raw = {

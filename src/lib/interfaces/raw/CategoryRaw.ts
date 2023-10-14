@@ -1,7 +1,7 @@
-import type { TagTitleRaw } from "./TagRaw";
+import type { TagTitleRaw } from './TagRaw';
 
 export interface CategoryRaw {
-    id: bigint;
+	id: bigint;
 	count: number | null;
 	titles: TagTitleRaw[];
 }
