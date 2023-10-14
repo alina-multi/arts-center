@@ -1,10 +1,10 @@
 export interface Picture {
-	src?: string;
-	sources?: {
+	src: string;
+	sources: {
 		type: string;
 		srcset?: string;
 	}[];
-	original?: {
+	original: {
 		src: string;
 		width: number;
 		height: number;
