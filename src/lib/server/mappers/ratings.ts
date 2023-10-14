@@ -1,9 +1,9 @@
 import { languageFind, languageFilter } from '$lib/translations';
 import type { Rating } from '$lib/interfaces/Rating';
 import type { Tag } from '$lib/interfaces/Tag';
-import type { user_ratings_row } from '../repositories/user';
+import type { UserRatingsRow } from '$lib/interfaces/raw/UserRaw';
 
-export function ratingsMap(ratings: user_ratings_row[]): Rating[] {
+export function ratingsMap(ratings: UserRatingsRow[]): Rating[] {
 	ratings = languageFilter(ratings);
 	return (
 		ratings?.map((rating) => {

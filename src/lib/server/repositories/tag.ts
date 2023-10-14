@@ -1,22 +1,8 @@
 import { prisma } from '$lib/server/database/prisma';
 import { unslug } from '$lib/helpers/url';
+import type { CategoryRaw } from '$lib/interfaces/raw/CategoryRaw';
 
-let categoryCache: {
-	id: bigint;
-	count: number | null;
-	titles: tag_titles_row[];
-}[];
-
-export interface category_raw {
-	id: bigint;
-	count?: number | null;
-	titles?: tag_titles_row[];
-}
-
-export interface tag_titles_row {
-	title: string;
-	language: string;
-}
+let categoryCache: CategoryRaw[];
 
 const categoryTitleToId = new Map();
 

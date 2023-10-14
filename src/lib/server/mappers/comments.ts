@@ -1,8 +1,8 @@
-import type { comments } from '../repositories/comment';
+import type { CommentRaw } from '$lib/interfaces/raw/CommentRaw';
 import type { Comment } from '$lib/interfaces/Comment';
 import { ownerMap } from './owners';
 
-export function commentsMap(comments: comments[]): Comment[] {
+export function commentsMap(comments: CommentRaw[]): Comment[] {
 	const tree = [];
 	const idRef = {};
 
@@ -25,7 +25,7 @@ export function commentsMap(comments: comments[]): Comment[] {
 	return tree;
 }
 
-export function commentMap(comment: comments): Comment {
+export function commentMap(comment: CommentRaw): Comment {
 	return {
 		id: comment.id,
 		text: comment.text,

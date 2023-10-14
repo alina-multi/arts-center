@@ -1,4 +1,4 @@
-import type { work_titles_raw } from '$lib/server/repositories/work';
+import type { WorkTitleFullRaw } from "$lib/interfaces/raw/WorkRaw";
 import type { titles_raw } from '$lib/server/repositories/user';
 
 export const work_titels_data_raw = [
@@ -14,7 +14,7 @@ export const work_titels_data_raw = [
 		alt: 'work alt',
 		language: 'en'
 	}
-] satisfies work_titles_raw[];
+] satisfies WorkTitleFullRaw[];
 
 export const titles_data_raw = [
 	{

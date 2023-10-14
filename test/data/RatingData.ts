@@ -1,4 +1,4 @@
-import type { user_ratings_row } from '$lib/server/repositories/user';
+import type { UserRatingsRow } from "$lib/interfaces/raw/UserRaw";
 import { titles_data_raw } from './TitlesData';
 
 export const user_rating_data_row = {
@@ -8,4 +8,4 @@ export const user_rating_data_row = {
 		id: 11n,
 		titles: titles_data_raw
 	}
-} satisfies user_ratings_row;
+} satisfies UserRatingsRow;

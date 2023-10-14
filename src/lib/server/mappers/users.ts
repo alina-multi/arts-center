@@ -4,8 +4,8 @@ import { worksPreviewMap } from './gallery';
 import { query } from '$lib/server/repositories/gallery';
 import { languageFind } from '$lib/translations';
 import { pictureMap } from '$lib/server/mappers/pictures';
+import type { UserFullRaw } from '$lib/interfaces/raw/UserRaw';
 
-import type { user_full_raw } from '../repositories/user';
 
 type prismaCountryAggregation = {
 	country: string;
@@ -13,9 +13,9 @@ type prismaCountryAggregation = {
 		country: number;
 	};
 };
-export async function usersMap(users: user_full_raw[]): Promise<UserList[]> {
+export async function usersMap(users: UserFullRaw[]): Promise<UserList[]> {
 	return await Promise.all(
-		users.map(async (user: user_full_raw) => {
+		users.map(async (user: UserFullRaw) => {
 			const tmpWorks = await query(
 				{
 					owners: {
@@ -40,7 +40,7 @@ export async function usersMap(users: user_full_raw[]): Promise<UserList[]> {
 	);
 }
 
-export function userMap(user: user_full_raw): User {
+export function userMap(user: UserFullRaw): User {
 	return {
 		id: user.id,
 		name: user.name,

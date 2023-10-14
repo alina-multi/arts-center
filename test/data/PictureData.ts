@@ -1,5 +1,5 @@
 import type { Picture } from '$lib/interfaces/Picture';
-import type { image_raw } from '$lib/server/repositories/image';
+import type { ImageRaw } from '$lib/interfaces/raw/ImageRaw';
 
 export const image_raw_data = {
 	id: 11n,
@@ -46,7 +46,7 @@ export const image_raw_data = {
 			size: 0
 		}
 	]
-} satisfies image_raw;
+} satisfies ImageRaw;
 
 export default {
 	src: '',

@@ -4,9 +4,9 @@ import { taggableMap } from './tag';
 import { ownersMap } from './owners';
 import { imagablePicturesMap, pictureMap } from '$lib/server/mappers/pictures';
 import type { Picture } from '$lib/interfaces/Picture';
-import type { work_raw } from '../repositories/work';
+import type { WorkRaw } from '$lib/interfaces/raw/WorkRaw';
 
-export function workMap(data: work_raw): Work {
+export function workMap(data: WorkRaw): Work {
 	return {
 		...data,
 		price: null,
@@ -23,7 +23,7 @@ export function workMap(data: work_raw): Work {
 	};
 }
 
-export function workPreviewMap(data: work_raw): Work & { preview: Picture | null } {
+export function workPreviewMap(data: WorkRaw): Work & { preview: Picture | null } {
 	return {
 		...workMap(data),
 		preview: pictureMap(data.preview),

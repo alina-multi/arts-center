@@ -1,8 +1,9 @@
-import type { Tag } from '$lib/interfaces/Tag';
+import type { Tag, Category } from '$lib/interfaces/Tag';
 import { languageFind } from '$lib/translations';
-import type { category_raw } from '../repositories/tag';
+import type { CategoryRaw } from '$lib/interfaces/raw/CategoryRaw';
+import type { TagRaw } from '$lib/interfaces/raw/TagRaw';
 
-export function tagsMap(tags: category_raw[]): Tag[] {
+export function tagsMap(tags: CategoryRaw[]): Tag[] {
 	let count = {};
 	return tags?.map((tag) => {
 		if (tag.count) {
@@ -17,7 +18,7 @@ export function tagsMap(tags: category_raw[]): Tag[] {
 	});
 }
 
-export function taggableMap(taggables: { tag: category_raw }[]): Tag[] {
+export function taggableMap(taggables: { tag: CategoryRaw }[] | TagRaw[]): Tag[] | Category[] {
 	let count = {};
 	return taggables?.map((taggable) => {
 		if (taggable.tag.count) {

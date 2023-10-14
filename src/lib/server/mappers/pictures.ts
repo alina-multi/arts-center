@@ -1,12 +1,12 @@
 import type { Picture } from '$lib/interfaces/Picture';
-import type { image_raw } from '../repositories/image';
-import type { ImageFolder } from '../repositories/image';
+import type { ImageRaw, ImageFolder } from '$lib/interfaces/raw/ImageRaw';
+
 
 type ImageWithRelations = {
-	image: image_raw;
+	image: ImageRaw;
 };
 
-export function picturesMap(images: image_raw[] | []): Picture[] | [] {
+export function picturesMap(images: ImageRaw[] | []): Picture[] | [] {
 	return images
 		.filter((image) => image && image.variants && image.variants.length)
 		?.map((image) => pictureMap(image));
@@ -18,7 +18,7 @@ export function imagablePicturesMap(images: ImageWithRelations[] | []): Picture[
 		?.map((image) => pictureMap(image.image));
 }
 
-export function pictureMap(image: image_raw | null): Picture | null {
+export function pictureMap(image: ImageRaw | null): Picture | null {
 	const sourcesMap: Map<string, { type: string; srcset: string[] }> = new Map();
 	if (!image || !image.variants) {
 		return null;

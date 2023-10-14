@@ -1,6 +1,6 @@
 import type { Comment } from '$lib/interfaces/Comment';
 import { user_basic_data_raw, UserBasicData } from './UserData';
-import type { comments } from '$lib/server/repositories/comment';
+import type { CommentRaw } from '$lib/interfaces/raw/CommentRaw';
 
 export const comment_raw_data = {
 	id: 11n,
@@ -11,7 +11,7 @@ export const comment_raw_data = {
 	updated_at: new Date('1975-08-19T23:15:30.000Z'),
 	rating: 1,
 	owner: user_basic_data_raw
-} satisfies comments;
+} satisfies CommentRaw;
 
 export const CommentData = {
 	id: 11n,

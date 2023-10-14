@@ -1,9 +1,9 @@
 import type { Work } from '$lib/interfaces/Work';
 import PictureData from '$test/data/PictureData';
 import { UserBasicData, user_basic_data_raw } from './UserData';
-import type { work_raw } from '$lib/server/repositories/work';
+import type { WorkRaw } from '$lib/interfaces/raw/WorkRaw';
 import { image_raw_data } from './PictureData';
-import type { work_details_raw } from '$lib/server/repositories/work';
+import type { WorkDetailsRaw } from '$lib/interfaces/raw/WorkRaw';
 import { work_titels_data_raw } from './TitlesData';
 
 const work_details_data_raw = {
@@ -11,7 +11,7 @@ const work_details_data_raw = {
 	width: null,
 	height: null,
 	length: null
-} satisfies work_details_raw;
+} satisfies WorkDetailsRaw;
 
 export const work_data_raw = {
 	id: BigInt(1),
@@ -28,7 +28,7 @@ export const work_data_raw = {
 	votes: [{ user: user_basic_data_raw }],
 	tags: [],
 	details: work_details_data_raw
-} satisfies work_raw;
+} satisfies WorkRaw;
 
 export const WorkData = {
 	id: BigInt(1),

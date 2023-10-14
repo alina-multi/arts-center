@@ -1,9 +1,9 @@
 import type { Picture } from './Picture';
-import type { UserPreview } from './User';
+import type { UserBasic } from './User';
 import type { Tag } from './Tag';
-import type { work_titles_raw } from '$lib/server/repositories/work';
-import type { image_raw } from '$lib/server/repositories/image';
-import type { tag_titles_row } from '$lib/server/repositories/tag';
+import type { WorkTitleFullRaw, WorkTitleShort } from './raw/WorkRaw';
+
+
 
 export interface WorkPreview {
 	id: bigint;
@@ -12,9 +12,9 @@ export interface WorkPreview {
 	comments: number;
 	hosts: number;
 	price: number | null;
-	titles: work_titles_raw[] | tag_titles_row[];
+	titles: WorkTitleFullRaw[] | WorkTitleShort[];
+	owners: UserBasic[];
 	preview: Picture | null;
-	owners: UserPreview[];
 	status?: number;
 }
 
@@ -24,7 +24,7 @@ export interface Work extends WorkPreview {
 	height: number | null;
 	length: number | null;
 	tags?: Tag[];
-	votes?: UserPreview[];
+	votes?: UserBasic[];
 	full: Picture | null;
 	images: Picture[];
 }
