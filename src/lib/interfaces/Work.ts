@@ -13,7 +13,7 @@ export interface WorkPreview {
 	hosts: number;
 	price: number | null;
 	titles: work_titles_raw[] | tag_titles_row[];
-	preview: image_raw | Picture | null;
+	preview: Picture | null;
 	owners: UserPreview[];
 	status?: number;
 }

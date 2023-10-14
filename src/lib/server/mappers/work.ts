@@ -18,7 +18,8 @@ export function workMap(data: work_raw): Work {
 		width: data?.details?.width ?? null,
 		height: data?.details?.height ?? null,
 		length: data?.details?.length ?? null,
-		year: data?.details?.year ?? null
+		year: data?.details?.year ?? null,
+		preview: pictureMap(data.preview),
 	};
 }
 
