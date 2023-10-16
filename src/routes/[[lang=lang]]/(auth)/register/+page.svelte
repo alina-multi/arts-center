@@ -37,8 +37,8 @@
 					let:hasError={error}
 				>
 					<div class='mt-2 relative'>
-						<span class='absolute left-0 top-0 p-2 select-none text-gray-500'>https://arts.center/</span>
-						<TextInput class='pl-36' name='username' value={form?.username} {id} {error} />
+						<span class='absolute left-0 top-0 p-2 select-none text-gray-500'>arts.center/</span>
+						<TextInput class='pl-24' name='username' value={form?.username} {id} {error} />
 					</div>
 				</InputGroup>
 				<InputGroup

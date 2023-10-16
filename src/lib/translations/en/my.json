@@ -71,6 +71,10 @@
 		"no_followers": "You'll see all of the people who follow you here",
 		"no_following": "When you follow people you'll see them here"
 	},
+	"hint": {
+		"approved": "Your profile is still waiting for review. You can start with filling up your profile and uploading couple of works. They will be visible for other users once your profile is approved.",
+		"email": "Please check your inbox and confirm your email address"
+	},
 	"no_blocked": "There are no users in your blacklist",
 	"no_drafts": "There are no drafts",
 	"people": "people",

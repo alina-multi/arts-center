@@ -4,10 +4,11 @@ import { api } from '$lib/server/api';
 import * as SentryNode from '@sentry/node';
 import { redirect } from '@sveltejs/kit';
 import { localePath } from '$lib/translations';
+import type { UserMe } from '$lib/interfaces/User';
 
 export async function checkAuth(
 	event: RequestEvent<Partial<Record<string, string>>, string | null>
-) {
+): Promise<UserMe | undefined> {
 	try {
 		// Make sure it will still work if auth server is down
 		const session = event?.cookies?.get('laravel_session');

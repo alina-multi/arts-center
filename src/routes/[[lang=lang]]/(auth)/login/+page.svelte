@@ -7,7 +7,6 @@
 	import CheckBox from '$lib/components/input/CheckBox.svelte';
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
 	import {t, localePath} from '$lib/translations';
-	import Divider from '$lib/components/atoms/Divider.svelte';
 
 	export let form: ActionData;
 </script>

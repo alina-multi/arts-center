@@ -26,9 +26,9 @@ export const actions = {
 			throw redirect(301, event.url.searchParams.get('redirect') || localePath('/my/profile'));
 		} else {
 			return {
-				...await response.json(),
+				...(await response.json()),
 				username: data.get('username'),
-				email: data.get('email'),
+				email: data.get('email')
 			};
 		}
 	}

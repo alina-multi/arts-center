@@ -23,3 +23,21 @@ export interface UserList extends UserPreview {
 export interface User extends UserList {
 	bio?: string;
 }
+
+export interface UserMe extends UserBasic {
+	blacklists: bigint[];
+	follows: {
+		user: bigint[];
+		work: bigint[];
+	};
+	favorites: {
+		works: bigint[];
+		folders: {
+			id: bigint;
+			title: string;
+		}[];
+	};
+	approved_at: string | null;
+	email_verified_at: string | null;
+	admin?: boolean;
+}
