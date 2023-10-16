@@ -2,9 +2,13 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\ApproveRecord;
 use App\Nova\Actions\ClearCacheByTag;
+use App\Nova\Filters\ModelApproved;
 use App\Nova\Metrics\NewUsers;
 use App\Nova\Metrics\UsersPerDay;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\URL;
 use Laravel\Nova\Http\Requests\NovaRequest as Request;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
@@ -59,19 +63,24 @@ class User extends Resource
                 return $value ? $value->src : '';
             }),
 
+
             Text::make('Name')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make('Username')
+            URL::make('Username', fn() => config('app.frontend_url')."/$this->username")
+                ->displayUsing(fn() => $this->username)
                 ->sortable()
-                ->rules('required', 'max:255'),
+                ->rules('required', 'max:255')
+            ,
 
             Text::make('Email')
                 ->sortable()
                 ->rules('required', 'email', 'max:254')
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
+
+            Boolean::make('Approved', 'approved_at'),
 
             Password::make('Password')
                 ->onlyOnForms()
@@ -105,7 +114,7 @@ class User extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [new ModelApproved()];
     }
 
     /**
@@ -127,6 +136,6 @@ class User extends Resource
      */
     public function actions(Request $request)
     {
-        return [(new ClearCacheByTag('user'))->standalone()];
+        return [(new ClearCacheByTag('user'))->standalone(), new ApproveRecord()];
     }
 }

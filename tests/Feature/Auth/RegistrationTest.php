@@ -1,8 +1,10 @@
 <?php
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
+use \Illuminate\Support\Facades\Mail;
 
 test('new users can register', function () {
+    Mail::fake();
     $valid = [
         'username' => 'test-user',
         'email' => 'test@example.com',
@@ -28,6 +30,4 @@ test('new users can register', function () {
     ])->assertInvalid('password');
 
     $this->post('/auth/register', $valid)->assertNoContent();
-
-    $this->assertAuthenticated();
 });

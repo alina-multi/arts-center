@@ -23,8 +23,8 @@ class RegisteredUserController extends Controller
     {
         $user = new User();
         $user->password = Hash::make($request->password);
-        $user->email = Hash::make($request->email);
-        $user->username = Hash::make($request->username);
+        $user->email = $request->email;
+        $user->username = $request->username;
         $user->name = $request->username; // User can change this later
         $user->save();
 

@@ -3,9 +3,18 @@ uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 test('PublishWork job', function () {
     // Check that wrong status throws
+    $owner = \App\Models\User::factory()->create([
+        'approved_at'=>null
+    ]);
     $work = \App\Models\Work::factory()->create([
         'status' => \App\Enums\WorkStatuses::ERROR
     ]);
+    $work->owners()->attach($owner);
+    // Not approved user
+    expect(fn() => \App\Jobs\PublishWork::dispatchSync($work))->toThrow("not approved yet");
+    $owner->approved_at = now();
+    $owner->save();
+    // Work not ready
     expect(fn() => \App\Jobs\PublishWork::dispatchSync($work))->toThrow("not in status READY");
 
     // Check that unpublished throws
@@ -25,7 +34,8 @@ test('PublishWork job', function () {
     expect($work->status)->tobe(\App\Enums\WorkStatuses::PUBLISHED);
 
     // Check with premium
-    $work->owners()->attach(\App\Models\User::factory()->create(['premium'=>true]));
+    $owner->premium = true;
+    $owner->save();
     $work->update([
         'status' => \App\Enums\WorkStatuses::READY,
     ]);

@@ -21,6 +21,11 @@ class PublishWork implements ShouldQueue
 
     public function handle(): void
     {
+        foreach ($this->model->owners as $owner) {
+            if (!$owner->approved_at) {
+                throw new \Exception("Shouldn't try to publish work for user that is not approved yet");
+            }
+        }
         if ($this->model->status->value < WorkStatuses::READY->value) {
             throw new \Exception("Shouldn't try to publish work that is not in status READY");
         }

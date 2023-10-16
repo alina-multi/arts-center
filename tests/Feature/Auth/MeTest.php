@@ -21,12 +21,17 @@ it('Returns valid data', function () {
         ->assertJson(fn(AssertableJson $json) => $json->where('id', $user->id)
             ->whereAllType([
                 'id' => 'integer',
+                'name' => 'string',
+                'username' => 'string',
+                'created_at' => 'string',
+                'photo' => 'array',
                 'blacklists' => 'array',
                 'follows.work' => 'array',
                 'follows.user' => 'array',
                 'favorites.works' => 'array',
                 'favorites.folders' => 'array',
+                'approved_at' => 'string',
+                'email_verified_at' => 'string'
             ])
-            ->etc()
         );
 });
