@@ -1,7 +1,7 @@
 import type { Picture } from './Picture';
 import type { UserBasic } from './User';
 import type { Tag } from './Tag';
-import type { WorkTitleFullRaw, WorkTitleShort } from './raw/WorkRaw';
+import type { WorkTitleFullRaw, WorkTitleShort } from './WorkRaw';
 
 export interface WorkPreview {
 	id: bigint;

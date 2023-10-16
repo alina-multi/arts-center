@@ -1,9 +1,9 @@
 import type { Work } from '$lib/interfaces/Work';
 import PictureData from '$test/data/PictureData';
 import { UserBasicData, user_basic_data_raw } from './UserData';
-import type { WorkRaw } from '$lib/interfaces/raw/WorkRaw';
+import type { WorkRaw } from '$lib/interfaces/WorkRaw';
 import { image_raw_data } from './PictureData';
-import type { WorkDetailsRaw } from '$lib/interfaces/raw/WorkRaw';
+import type { WorkDetailsRaw } from '$lib/interfaces/WorkRaw';
 import { work_titels_data_raw } from './TitlesData';
 
 const work_details_data_raw = {

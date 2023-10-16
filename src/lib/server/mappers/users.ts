@@ -4,7 +4,7 @@ import { worksPreviewMap } from './gallery';
 import { query } from '$lib/server/repositories/gallery';
 import { languageFind } from '$lib/translations';
 import { pictureMap } from '$lib/server/mappers/pictures';
-import type { UserFullRaw } from '$lib/interfaces/raw/UserRaw';
+import type { UserFullRaw } from '$lib/interfaces/UserRaw';
 
 type prismaCountryAggregation = {
 	country: string;

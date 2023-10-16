@@ -1,6 +1,6 @@
 import { prisma } from '$lib/server/database/prisma';
 import { unslug } from '$lib/helpers/url';
-import type { CategoryRaw } from '$lib/interfaces/raw/CategoryRaw';
+import type { CategoryRaw } from '$lib/interfaces/CategoryRaw';
 
 let categoryCache: CategoryRaw[];
 

@@ -1,7 +1,7 @@
 import type { Tag, Category } from '$lib/interfaces/Tag';
 import { languageFind } from '$lib/translations';
-import type { CategoryRaw } from '$lib/interfaces/raw/CategoryRaw';
-import type { TagRaw } from '$lib/interfaces/raw/TagRaw';
+import type { CategoryRaw } from '$lib/interfaces/CategoryRaw';
+import type { TagRaw } from '$lib/interfaces/TagRaw';
 
 export function tagsMap(tags: CategoryRaw[]): Tag[] {
 	let count = {};

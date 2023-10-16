@@ -4,7 +4,7 @@ import { taggableMap } from './tag';
 import { ownersMap } from './owners';
 import { imagablePicturesMap, pictureMap } from '$lib/server/mappers/pictures';
 import type { Picture } from '$lib/interfaces/Picture';
-import type { WorkRaw } from '$lib/interfaces/raw/WorkRaw';
+import type { WorkRaw } from '$lib/interfaces/WorkRaw';
 
 export function workMap(data: WorkRaw): Work {
 	return {

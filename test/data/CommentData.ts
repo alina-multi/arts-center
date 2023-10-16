@@ -1,6 +1,6 @@
 import type { Comment } from '$lib/interfaces/Comment';
 import { user_basic_data_raw, UserBasicData } from './UserData';
-import type { CommentRaw } from '$lib/interfaces/raw/CommentRaw';
+import type { CommentRaw } from '$lib/interfaces/CommentRaw';
 
 export const comment_raw_data = {
 	id: 11n,

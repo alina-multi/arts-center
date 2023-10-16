@@ -1,4 +1,4 @@
-import type { CategoryRaw } from '$lib/interfaces/raw/CategoryRaw';
+import type { CategoryRaw } from '$lib/interfaces/CategoryRaw';
 import { titles_data_raw } from './TitlesData';
 
 export const category_data_raw = {

@@ -1,6 +1,6 @@
 import type { UserBasic } from '$lib/interfaces/User';
 import { pictureMap } from '$lib/server/mappers/pictures';
-import type { UserBasicRaw } from '$lib/interfaces/raw/UserRaw';
+import type { UserBasicRaw } from '$lib/interfaces/UserRaw';
 
 export interface ownableWithRelations {
 	user: UserBasicRaw;

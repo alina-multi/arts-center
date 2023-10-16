@@ -1,4 +1,4 @@
-import type { CommentRaw } from '$lib/interfaces/raw/CommentRaw';
+import type { CommentRaw } from '$lib/interfaces/CommentRaw';
 import type { Comment } from '$lib/interfaces/Comment';
 import { ownerMap } from './owners';
 
