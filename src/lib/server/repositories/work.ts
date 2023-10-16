@@ -53,6 +53,7 @@ export function get(id: bigint) {
 				select: {
 					tag: {
 						select: {
+							id: true,
 							titles: {
 								select: {
 									title: true,

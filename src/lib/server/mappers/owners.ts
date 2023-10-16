@@ -1,15 +1,12 @@
-import type { images, users } from '@prisma/client';
-import type { User } from '$lib/interfaces/User';
+import type { UserBasic } from '$lib/interfaces/User';
 import { pictureMap } from '$lib/server/mappers/pictures';
+import type { UserBasicRaw } from '$lib/interfaces/UserRaw';
 
 export interface ownableWithRelations {
-	user: usersWithRelations;
+	user: UserBasicRaw;
 }
 
-export interface usersWithRelations extends users {
-	photo: images;
-}
-export function ownersMap(owners: ownableWithRelations[]): User[] {
+export function ownersMap(owners: ownableWithRelations[]): UserBasic[] {
 	return owners
 		?.filter(({ user }) => user)
 		.map(({ user }) => {
@@ -17,7 +14,7 @@ export function ownersMap(owners: ownableWithRelations[]): User[] {
 		});
 }
 
-export function ownerMap(user: usersWithRelations): User {
+export function ownerMap(user: UserBasicRaw): UserBasic {
 	return {
 		id: user.id,
 		username: user.username,

@@ -1,24 +1,10 @@
 import type { User, UserList } from '$lib/interfaces/User';
-import type { user_bios } from '@prisma/client';
-import type { RatingWithRelations } from './ratings';
 import { ratingsMap } from './ratings';
 import { worksPreviewMap } from './gallery';
 import { query } from '$lib/server/repositories/gallery';
 import { languageFind } from '$lib/translations';
 import { pictureMap } from '$lib/server/mappers/pictures';
-import type { imageWithRelation } from '$lib/server/mappers/pictures';
-
-type userWithRelations = {
-	id: bigint;
-	name: string;
-	username: string;
-	created_at: Date | null;
-	country: string | null;
-	rating: number;
-	photo: imageWithRelation | null;
-	ratings?: RatingWithRelations[];
-	bios?: user_bios[];
-};
+import type { UserFullRaw } from '$lib/interfaces/UserRaw';
 
 type prismaCountryAggregation = {
 	country: string;
@@ -26,9 +12,9 @@ type prismaCountryAggregation = {
 		country: number;
 	};
 };
-export async function usersMap(users: userWithRelations[]): Promise<UserList[]> {
+export async function usersMap(users: UserFullRaw[]): Promise<UserList[]> {
 	return await Promise.all(
-		users.map(async (user: userWithRelations) => {
+		users.map(async (user: UserFullRaw) => {
 			const tmpWorks = await query(
 				{
 					owners: {
@@ -53,7 +39,7 @@ export async function usersMap(users: userWithRelations[]): Promise<UserList[]> 
 	);
 }
 
-export function userMap(user: userWithRelations): User {
+export function userMap(user: UserFullRaw): User {
 	return {
 		id: user.id,
 		name: user.name,

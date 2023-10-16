@@ -1,22 +1,19 @@
-import type { User } from '$lib/interfaces/User';
+import type { UserBasic } from '$lib/interfaces/User';
+import type { UserBasicRaw } from '$lib/interfaces/UserRaw';
 
-export const user = {
-	email: 'email',
-	password: 'password',
-	id: 12n,
-	username: 'username',
-	photo: undefined,
-	name: 'Test',
-	country: null,
-	rating: 0,
-	works: [],
-	ratings: []
-};
-
-export const UserData = {
+export const user_basic_data_raw = {
 	id: 12n,
 	username: 'username',
 	photo: null,
-	name: 'Test',
+	name: 'Name',
+	country: null,
+	rating: 0
+} satisfies UserBasicRaw;
+
+export const UserBasicData = {
+	id: 12n,
+	username: 'username',
+	photo: null,
+	name: 'Name',
 	country: null
-} as User;
+} as UserBasic;

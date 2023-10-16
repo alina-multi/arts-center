@@ -1,23 +1,23 @@
 import { commentMap, commentsMap } from './comments';
 import { expect, test } from 'vitest';
-import { comment, CommentData } from '$test/data/CommentData';
+import { comment_raw_data, CommentData } from '$test/data/CommentData';
 
 const comments = [
 	{
-		...comment,
+		...comment_raw_data,
 		id: 1n
 	},
 	{
-		...comment,
+		...comment_raw_data,
 		id: 2n
 	},
 	{
-		...comment,
+		...comment_raw_data,
 		id: 3n,
 		comment_id: 1n
 	},
 	{
-		...comment,
+		...comment_raw_data,
 		id: 4n,
 		comment_id: 999n
 	}
@@ -42,7 +42,7 @@ const comments_result = [
 ];
 
 test('commentMap', () => {
-	const result = commentMap(comment);
+	const result = commentMap(comment_raw_data);
 	expect(result).toStrictEqual(CommentData);
 });
 

@@ -1,6 +1,7 @@
 import type { Picture } from './Picture';
-import type { UserPreview } from './User';
+import type { UserBasic } from './User';
 import type { Tag } from './Tag';
+import type { WorkTitleFullRaw, WorkTitleShort } from './WorkRaw';
 
 export interface WorkPreview {
 	id: bigint;
@@ -9,9 +10,10 @@ export interface WorkPreview {
 	comments: number;
 	hosts: number;
 	price: number | null;
-	titles: WorkTitle[];
-	preview?: Picture;
-	owners: UserPreview[];
+	titles: WorkTitleFullRaw[] | WorkTitleShort[];
+	owners: UserBasic[];
+	preview: Picture | null;
+	status?: number;
 }
 
 export interface Work extends WorkPreview {
@@ -20,11 +22,14 @@ export interface Work extends WorkPreview {
 	height: number | null;
 	length: number | null;
 	tags?: Tag[];
-	votes?: UserPreview[];
-	full: Picture;
+	votes?: UserBasic[];
+	full: Picture | null;
+	images: Picture[];
 }
 
 export interface WorkTitle {
 	title: string;
+	description: string | null;
+	alt: string | null;
 	language: string;
 }

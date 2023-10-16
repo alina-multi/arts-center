@@ -1,15 +1,15 @@
 import { ownerMap, ownersMap } from '$lib/server/mappers/owners';
 import { expect, test } from 'vitest';
-import { user, UserData } from '$test/data/UserData';
+import { user_basic_data_raw, UserBasicData } from '$test/data/UserData';
 
-const owners = [{ user }, { user }];
+const owners = [{ user: user_basic_data_raw }];
 
-const result_owners = [UserData, UserData];
+const result_owners = [UserBasicData];
 
 test('ownerMap', () => {
-	const result = ownerMap(user);
+	const result = ownerMap(user_basic_data_raw);
 
-	expect(result).toStrictEqual(UserData);
+	expect(result).toStrictEqual(UserBasicData);
 });
 
 test('ownersMap', () => {

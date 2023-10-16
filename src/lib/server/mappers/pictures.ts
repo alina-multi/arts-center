@@ -1,21 +1,23 @@
 import type { Picture } from '$lib/interfaces/Picture';
-import type { images, image_variants, imageables } from '@prisma/client';
+import type { ImageRaw, ImageFolder } from '$lib/interfaces/ImageRaw';
 
-type ImageFolder = 'preview' | 'works' | 'photos' | 'grids';
+type ImageWithRelations = {
+	image: ImageRaw;
+};
 
-export interface imageWithRelation extends images {
-	variants: image_variants[];
+export function picturesMap(images: ImageRaw[] | []): Picture[] | [] {
+	return images
+		.filter((image) => image && image.variants && image.variants.length)
+		?.map((image) => pictureMap(image));
 }
 
-export function picturesMap(images: imageWithRelation[]): Picture[] {
-	return images?.map((image) => pictureMap(image));
+export function imagablePicturesMap(images: ImageWithRelations[] | []): Picture[] | [] {
+	return images
+		.filter((image) => image.image?.variants?.length > 0)
+		?.map((image) => pictureMap(image.image));
 }
 
-export function imagablePicturesMap(images: imageables[]): Picture[] {
-	return images?.map((image) => pictureMap(image?.image));
-}
-
-export function pictureMap(image: imageWithRelation | null): Picture | null {
+export function pictureMap(image: ImageRaw | null): Picture | null {
 	const sourcesMap: Map<string, { type: string; srcset: string[] }> = new Map();
 	if (!image || !image.variants) {
 		return null;
@@ -39,7 +41,7 @@ export function pictureMap(image: imageWithRelation | null): Picture | null {
 			type,
 			srcset: []
 		};
-		const url = buildSrc(image.folder as ImageFolder, variant.id, variant.extension);
+		const url = buildSrc(image.folder, variant.id, variant.extension);
 		source.srcset.push(`${url} ${variant.width}w`);
 		sourcesMap.set(type, source);
 	}
@@ -53,7 +55,7 @@ export function pictureMap(image: imageWithRelation | null): Picture | null {
 	}
 	//Fallback if we don't have over src
 	if (!src) {
-		src = original?.src;
+		src = original.src;
 	}
 	return {
 		original,

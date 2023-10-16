@@ -1,37 +1,12 @@
 import type { Work } from '$lib/interfaces/Work';
-import type {
-	imageables,
-	votes,
-	work_blocks,
-	work_details,
-	work_titles,
-	works,
-	images
-} from '@prisma/client';
-import type { taggablesWithRelations } from './tag';
 import { taggableMap } from './tag';
-import type { ownableWithRelations, usersWithRelations } from './owners';
+
 import { ownersMap } from './owners';
 import { imagablePicturesMap, pictureMap } from '$lib/server/mappers/pictures';
 import type { Picture } from '$lib/interfaces/Picture';
+import type { WorkRaw } from '$lib/interfaces/WorkRaw';
 
-interface workBlocksWithRelations extends work_blocks {
-	images: imageables & {
-		image: images;
-	};
-}
-interface worksWithRelations extends works {
-	blocks: workBlocksWithRelations[];
-	titles: work_titles[];
-	details: work_details;
-	owners: ownableWithRelations[];
-	tags: taggablesWithRelations[];
-	images: imageables;
-	votes: (votes & {
-		user: usersWithRelations;
-	})[];
-}
-export function workMap(data: worksWithRelations): Work {
+export function workMap(data: WorkRaw): Work {
 	return {
 		...data,
 		price: null,
@@ -40,14 +15,15 @@ export function workMap(data: worksWithRelations): Work {
 		tags: taggableMap(data.tags),
 		full: pictureMap(data.full),
 		votes: ownersMap(data.votes),
-		width: data?.details?.width,
-		height: data?.details?.height,
-		length: data?.details?.length,
-		year: data?.details?.year
+		width: data?.details?.width ?? null,
+		height: data?.details?.height ?? null,
+		length: data?.details?.length ?? null,
+		year: data?.details?.year ?? null,
+		preview: pictureMap(data.preview)
 	};
 }
 
-export function workPreviewMap(data: worksWithRelations): Work & { preview: Picture } {
+export function workPreviewMap(data: WorkRaw): Work & { preview: Picture | null } {
 	return {
 		...workMap(data),
 		preview: pictureMap(data.preview),

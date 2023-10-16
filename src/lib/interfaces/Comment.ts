@@ -1,4 +1,4 @@
-import type { User } from './User';
+import type { UserBasic } from './User';
 
 export interface Comment {
 	id: bigint;
@@ -7,6 +7,6 @@ export interface Comment {
 	created_at: Date;
 	updated_at: Date;
 	rating: number;
-	owner: User;
+	owner: UserBasic;
 	answers?: Comment[];
 }
