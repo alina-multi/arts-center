@@ -2,7 +2,7 @@ export interface Picture {
 	src: string;
 	sources: {
 		type: string;
-		srcset?: string;
+		srcset: string;
 	}[];
 	original: {
 		src: string;

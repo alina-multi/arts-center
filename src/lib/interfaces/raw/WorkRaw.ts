@@ -38,7 +38,7 @@ export interface WorkDetailsRaw {
 }
 
 export interface WorkTitleShort {
-	title: string | null;
+	title: string;
 	language: string;
 }
 

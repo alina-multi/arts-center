@@ -1,10 +1,10 @@
 export interface ImageRaw {
 	id: bigint;
 	folder: ImageFolder;
-	variants: VariansRaw[] | [];
+	variants: VariantsRaw[] | [];
 }
 
-export interface VariansRaw {
+export interface VariantsRaw {
 	id: bigint;
 	extension: string;
 	width: number;
