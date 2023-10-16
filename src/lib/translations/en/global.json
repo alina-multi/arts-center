@@ -1,4 +1,12 @@
 {
+	"bookmark": {
+		"create_folder": "Create folder",
+		"enter_folder_name": "Please enter a folder name",
+		"save_work_to": "Save work to",
+		"saved_to": "Saved to {{folderName}} ",
+		"select_folder": "Please select a folder",
+		"work_saved": "Work saved"
+	},
 	"buttons": {
 		"addwork": "ADD WORK",
 		"block": "Block",
@@ -87,6 +95,7 @@
 		"password": "Password",
 		"password_confirmation": "Confirm password",
 		"recover": "Recover",
+		"register": "Register",
 		"remember_me": "Remember me",
 		"sign_in": "Sign in"
 	},
@@ -118,6 +127,11 @@
 		"login_to": "Login to",
 		"reply": "reply",
 		"sign_in_with_email": "Sign in with email"
+	},
+	"register": {
+		"page_title": "Register",
+		"password_confirmation": "Confirm password",
+		"username": "Username"
 	},
 	"report": {
 		"copyright": "copyright",
@@ -183,16 +197,5 @@
 		"like": "Like",
 		"liked_by": "Liked by",
 		"others": "others"
-	},
-	"bookmark": {
-		"save_work_to": "Save work to",
-		"create_folder": "Create folder",
-		"select_folder": "Please select a folder",
-		"work_saved": "Work saved",
-		"enter_folder_name": "Please enter a folder name",
-		"saved_to": "Saved to {{folderName}} "
-	},
-	"error": {
-		"api": "Unknown API server error"
 	}
 }

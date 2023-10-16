@@ -1,4 +1,12 @@
 {
+	"bookmark": {
+		"create_folder": "",
+		"enter_folder_name": "",
+		"save_work_to": "",
+		"saved_to": "",
+		"select_folder": "",
+		"work_saved": ""
+	},
 	"buttons": {
 		"addwork": "Додати роботу",
 		"block": "Заблокувати",
@@ -87,6 +95,7 @@
 		"password": "Пароль",
 		"password_confirmation": "Підтвердження паролю",
 		"recover": "Відновити",
+		"register": "Зареєструватися",
 		"remember_me": "Пам'ятай мене",
 		"sign_in": "Увійти"
 	},
@@ -118,6 +127,11 @@
 		"login_to": "Увійти в",
 		"reply": "відповісти",
 		"sign_in_with_email": "Увійти з електронною поштою"
+	},
+	"register": {
+		"page_title": "Зареєструватися",
+		"password_confirmation": "Підтвердьте пароль",
+		"username": "Ім'я користувача"
 	},
 	"report": {
 		"copyright": "авторське право",

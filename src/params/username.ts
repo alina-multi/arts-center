@@ -4,5 +4,5 @@ const excluded = ['uk'];
 
 export const match = ((param) => {
 	if (excluded.includes(param)) return false;
-	return /^[\wабвгґдеєжзиіїйклмнопрстуфхцчшщьюя.]+$/iu.test(param);
+	return /^[a-zA-Z0-9-]+$/.test(param);
 }) satisfies ParamMatcher;

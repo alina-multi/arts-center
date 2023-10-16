@@ -6,7 +6,8 @@
 	import InputGroup from '$lib/components/input/InputGroup.svelte';
 	import CheckBox from '$lib/components/input/CheckBox.svelte';
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
-	import {t} from '$lib/translations';
+	import {t, localePath} from '$lib/translations';
+	import Divider from '$lib/components/atoms/Divider.svelte';
 
 	export let form: ActionData;
 </script>
@@ -60,6 +61,7 @@
 
 				<ActionButton class="bg-blue-600 w-full rounded-sm hover:bg-blue-500">{$t('global.login.sign_in')}</ActionButton>
 			</form>
+			<a href={localePath('/register')} class='block mt-3 text-center bg-amber-500 rounded-sm hover:bg-amber-400 rounded-sm px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'>Register</a>
 
 <!--			<div class="mt-6"><Divider>{$t('global.common.continue_with')}</Divider></div>-->
 <!--				-->
