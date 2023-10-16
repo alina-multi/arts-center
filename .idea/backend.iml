@@ -228,6 +228,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/spiral/roadrunner-worker" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spiral/tokenizer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/mailgun-mailer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/arandilopez/laravel-profane" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

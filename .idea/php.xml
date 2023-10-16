@@ -230,6 +230,7 @@
       <path value="$PROJECT_DIR$/vendor/spiral/roadrunner-cli" />
       <path value="$PROJECT_DIR$/vendor/spiral/goridge" />
       <path value="$PROJECT_DIR$/vendor/symfony/mailgun-mailer" />
+      <path value="$PROJECT_DIR$/vendor/arandilopez/laravel-profane" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />

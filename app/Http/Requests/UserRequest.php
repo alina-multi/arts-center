@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ReservedWords;
 use App\Rules\Username;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
@@ -19,8 +20,9 @@ class UserRequest extends FormRequest
         // Convert all rules to array syntax
         return [
             'username' => [
-                'required', 'string', 'min:5', 'max:191',
+                'required', 'string', 'min:5', 'max:191', 'profane',
                 new Username(),
+                new ReservedWords(),
                 Rule::unique('users', 'username')->ignore($this?->user()?->id),
             ],
             'email' => [
