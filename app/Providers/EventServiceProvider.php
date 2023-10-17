@@ -2,18 +2,24 @@
 
 namespace App\Providers;
 
-use App\Events\{
-    CommentChanged,
+use App\Events\{CommentChanged,
     ImageCreated,
+    MeChanged,
     UserProfileUpdated,
     WorkUserPublished,
     WorkDeleted,
     WorkDrafted,
     WorkPublished,
     WorkReady,
-    WorkTranslated
-};
-use App\Listeners\{AddToFeeds, ClearCache, ConvertImage, SendNotifications, TranslateWork, ValidateWork, PublishWork};
+    WorkTranslated};
+use App\Listeners\{AddToFeeds,
+    ClearAuthCache,
+    ClearCache,
+    ConvertImage,
+    SendNotifications,
+    TranslateWork,
+    ValidateWork,
+    PublishWork};
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -54,6 +60,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         UserProfileUpdated::class => [
             ClearCache::class
+        ],
+        MeChanged::class => [
+            ClearAuthCache::class
         ]
     ];
 
