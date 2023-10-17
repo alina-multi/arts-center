@@ -8,6 +8,7 @@
 	import { t } from '$lib/translations';
 	import TextInput from '$lib/components/input/TextInput.svelte';
 	import { enhance } from '$app/forms';
+	import PrefixedInput from '$lib/components/input/PrefixedInput.svelte';
 
 	export let form: ActionData;
 </script>
@@ -36,10 +37,7 @@
 					let:elementId={id}
 					let:hasError={error}
 				>
-					<div class='mt-2 relative'>
-						<span class='absolute left-0 top-0 p-2 select-none text-gray-500'>arts.center/</span>
-						<TextInput class='pl-24' name='username' value={form?.username} {id} {error} />
-					</div>
+					<PrefixedInput name='username' value={form?.username} {id} {error}>arts.center/</PrefixedInput>
 				</InputGroup>
 				<InputGroup
 					label={$t('global.login.email')}
