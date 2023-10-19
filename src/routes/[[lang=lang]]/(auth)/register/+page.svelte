@@ -6,7 +6,6 @@
 	import InputGroup from '$lib/components/input/InputGroup.svelte';
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
 	import { t } from '$lib/translations';
-	import TextInput from '$lib/components/input/TextInput.svelte';
 	import { enhance } from '$app/forms';
 	import PrefixedInput from '$lib/components/input/PrefixedInput.svelte';
 

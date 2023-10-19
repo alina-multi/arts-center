@@ -5,8 +5,6 @@
 		error: boolean = false,
 		name: string;
 
-	let clazz;
-	export { clazz as class };
 </script>
 <div
 	class=" flex rounded-sm shadow-sm  ring-1 dark:ring-zinc-700 ring-inset focus-within:ring-2 focus-within:ring-inset dark:bg-zinc-900    {error
