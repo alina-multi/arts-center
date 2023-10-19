@@ -10,6 +10,7 @@
 	import AvatarInput from '$lib/components/user/AvatarInput.svelte';
 	import ButtonsGroup from '$lib/components/forms/ButtonsGroup.svelte';
 	import { t } from '$lib/translations';
+	import PrefixedInput from '$lib/components/input/PrefixedInput.svelte';
 
 	export let data: PageData;
 	export let form: ActionData;
@@ -35,21 +36,9 @@
 			label={$t('my.edit_page.username')}
 			error={form?.errors?.username}
 			let:elementId={id}
+			let:hasError={error}
 		>
-			<div
-				class=" flex rounded-sm shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-500 dark:bg-zinc-900 dark:ring-0 dark:focus-within:ring-1"
-			>
-				<span class="flex select-none items-center pl-3 text-gray-500 dark:text-zinc-300 sm:text-sm">arts.center/</span
-				>
-				<input
-					type="text"
-					name="username"
-					{id}
-					value={profile.username}
-					class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 dark:text-white"
-					placeholder="janesmith"
-				/>
-			</div>
+			<PrefixedInput name='username' value={profile.username} {id} {error}>arts.center/</PrefixedInput>
 		</InputGroup>
 
 		<div class="col-span-full">
