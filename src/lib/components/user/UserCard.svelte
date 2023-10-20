@@ -6,6 +6,7 @@
 	import TotalRating from './TotalRating.svelte';
 	import OnArtSince from '../atoms/OnArtsSince.svelte';
 	import Crown from '../atoms/CrownIcon.svelte';
+	import DonateForm from '../atoms/DonateForm.svelte';
 
 	export let user;
 	$: showRatings = false;
@@ -18,14 +19,14 @@
 	<div
 		class="flex xl:flex-col gap-3 items-start {showRatings ? ' items-start ' : 'sm:items-center'}"
 	>
-	<div class="relative">
-		<Avatar {user} size={' w-32 h-32  max-xl:w-28 max-xl:h-28'} />
-		{#if user.subscribed}
-			<div class="absolute -top-1.5 right-3 p-1.5 bg-amber-500/60 rounded-full">
-				<Crown style="{"w-4 h-4"} stroke-white" />
-			</div>
-		{/if}
-	</div>
+		<div class="relative">
+			<Avatar {user} size={' w-32 h-32  max-xl:w-28 max-xl:h-28'} />
+			{#if user.subscribed}
+				<div class="absolute -top-1.5 right-3 p-1.5 bg-amber-500/60 rounded-full">
+					<Crown style="{'w-4 h-4'} stroke-white" />
+				</div>
+			{/if}
+		</div>
 
 		<div class="flex flex-col gap-1 xl:items-center w-full">
 			<div class="flex gap-3 items-start sm:items-center xl:px-6">
@@ -44,9 +45,11 @@
 				<OnArtSince {user} />
 			</div>
 
-			<span class="hidden xl:block my-2 w-1/2"><FollowButton {user} size={'sm'} /></span>
+			<div class="hidden xl:block my-2 w-full space-y-3 px-6">
+				<FollowButton {user} size={'sm font-semibold'} />
+			</div>
+			<DonateForm />
 
-			<div class="hidden xl:block border-b h-1 dark:border-zinc-800 w-full my-2" />
 			<div class=""><TotalRating {user} full /></div>
 
 			<div class="w-full xl:text-base xl:px-9 xl:mt-2">
