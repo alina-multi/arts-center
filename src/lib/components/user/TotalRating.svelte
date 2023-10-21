@@ -3,7 +3,6 @@
 	import { Star } from '@steeze-ui/heroicons';
 	import { t } from '$lib/translations';
 	export let user,
-		full = false,
 		forSubscribed = false;
 </script>
 
@@ -15,11 +14,14 @@
 		</div>
 	{/if}
 
-{#if !forSubscribed }
-		<div class="flex items-center text-sm {full ? 'gap-1 font-semibold' : ''} ">
-			<Icon src={Star} theme="solid" class="  w-[16px] fill-amber-600 stroke-amber-600 " />
-			{#if full} <span>{$t('global.user.total_rating')}: </span> {/if}
+	{#if !forSubscribed}
+	<div class="flex items-center font-semibold justify-between ">
+		<span>{$t('global.user.total_rating')} </span>
+		<div class="flex items-center gap-1">
+			<Icon src={Star} theme="solid" class="  w-[18px] fill-amber-500 stroke-amber-500 " />
 			<span> {user.rating}</span>
 		</div>
-	{/if}
+	</div>
 {/if}
+{/if}
+

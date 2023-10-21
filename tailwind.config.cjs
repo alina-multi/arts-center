@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
 	darkMode: 'class',
 	content: ['./public/**/*.html', './src/**/*.{html,js,svelte,ts}'],
@@ -7,6 +9,10 @@ module.exports = {
 		extend: {},
 		fontFamily: {
 			sans: ['Helvetica, sans-serif']
+		},
+		screens: {
+			xs: '500px',
+			...defaultTheme.screens
 		}
 	},
 	plugins: [require('@tailwindcss/forms'), require('@tailwindcss/aspect-ratio')],
