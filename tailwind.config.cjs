@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
 	darkMode: 'class',
@@ -11,9 +11,9 @@ module.exports = {
 			sans: ['Helvetica, sans-serif']
 		},
 		screens: {
-			'xs': '500px',
-			...defaultTheme.screens,
-		  },
+			xs: '500px',
+			...defaultTheme.screens
+		}
 	},
 	plugins: [require('@tailwindcss/forms'), require('@tailwindcss/aspect-ratio')],
 	safelist: [
