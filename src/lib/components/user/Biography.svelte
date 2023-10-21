@@ -19,7 +19,7 @@
 
 {#if user?.bio}
 	<div class="relative flex flex-col text-sm lg:text-base ">
-		<div class=" text- font-semibold   mb-1">Biography</div>
+		<div class=" text-lg font-semibold   mb-1">BIOGRAPHY</div>
 		<div
 			id="bio"
 			class="{showBio ? 'dark:text-gray-300' : ' line-clamp-4 leading-6 overflow-hidden '}  {lines >

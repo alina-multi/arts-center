@@ -1,5 +1,5 @@
 <svg
-			class="w-10 fill-zinc-600"
+			class="w-10 fill-zinc-600 flex-none"
 			version="1.1"
 			id="Layer_1"
 			xmlns="http://www.w3.org/2000/svg"
