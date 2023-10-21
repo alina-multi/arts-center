@@ -190,12 +190,18 @@
 	},
 	"user": {
 		"on_arts_since": "on arts since",
-		"total_rating": "Total Rating"
+		"total_rating": "Total Rating",
+		"rating_by_category": "Rating by category",
+		"bio": "biography"
 	},
 	"voting": {
 		"and": "and",
 		"like": "Like",
 		"liked_by": "Liked by",
 		"others": "others"
+	},
+	"donation": {
+		"title": "Buy supplies for the artist",
+		"support": "Support"
 	}
 }

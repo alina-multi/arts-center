@@ -8,7 +8,7 @@
 </script>
 
 <button on:click={() => (show = !show)} class="flex items-center justify-between w-full xl:hidden">
-	<span>Rating by category</span>
+	<span>{$t('global.user.rating_by_category')}</span>
 	<Icon src={show ? ChevronUp : ChevronDown} class="w-6 h-6 " />
 </button>
 

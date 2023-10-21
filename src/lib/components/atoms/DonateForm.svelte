@@ -2,6 +2,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { XMark } from '@steeze-ui/heroicons';
 	import TubeIcon from './TubeIcon.svelte';
+	import {t} from '$lib/translations';
 
 	const options = [1, 3, 5];
 	let invalidChars = ['-', '+', 'e'];
@@ -14,7 +15,7 @@
 	class="px-6 w-full xs:px-9 sm:w-3/4 md:px-6 sm:max-md:mx-auto md:w-1/2 py-6 xl:w-full border rounded-sm shadow bg-gray-50 dark:bg-gray-800 dark:border-gray-700"
 >
 	<div class=" space-y-6">
-		<div class="text-lg font-semibold text-center">Buy supplies for the artist</div>
+		<div class="text-lg font-semibold text-center">{$t('global.donation.title')}</div>
 		<div class=" flex items-center justify-between sm:justify-around sm:max-md:gap-6">
 			<TubeIcon />
 
@@ -70,7 +71,7 @@
 				? 'bg-gray-400 cursor-not-allowed'
 				: 'bg-gray-600 cursor-pointer'}  text-white w-full rounded-sm text-[16px] font-semibold py-2 shadow flex items-center justify-center gap-3 mb-3"
 		>
-			<span>Support</span>
+			<span>{$t('global.donation.support')}</span>
 			<span>{selected * 5} &#36;</span>
 		</button>
 	</div>
