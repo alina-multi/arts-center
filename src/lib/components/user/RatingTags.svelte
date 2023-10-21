@@ -14,8 +14,8 @@
 
 <div class=" space-y-2 overflow-hidden {show ? 'block' : 'hidden'} xl:block">
 	{#each user.ratings as tag}
-		<div class="flex items-center justify-between w-full">
-			<a href={localePath(`/${user.username}/tag/${tag?.tag?.title}`)}>{tag?.tag?.title}</a>
+		<div class="flex items-center justify-between w-full ">
+			<a href={localePath(`/${user.username}/tag/${tag?.tag?.title}`)} class="cursor-pointer hover:underline">{tag?.tag?.title}</a>
 			<div class="flex items-center gap-1">
 				<Icon src={Heart} theme="solid" class=" h-4 w-4  fill-zinc-400" />
 				<span> {tag?.rating}</span>

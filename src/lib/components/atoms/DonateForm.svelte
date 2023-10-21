@@ -19,25 +19,25 @@
 		<div class=" flex items-center justify-between sm:justify-around sm:max-md:gap-6">
 			<TubeIcon />
 
-			<Icon src={XMark} class="w-6  text-gray-600 " />
+			<Icon src={XMark} class="w-6  text-gray-600  dark:text-white" />
 
 			<fieldset class=" font-semibold flex gap-4 xs:gap-6 md:gap-3 items-center text-[16px]">
 				{#each options as option (option)}
 					<div class="flex relative">
 						<input
 							on:focus={() => {
-								(value = selected), console.log(value);
+								(value = selected);
 							}}
 							bind:group={selected}
 							id="price-{option}"
 							type="radio"
 							value={option}
 							name="price-{option}"
-							class="absolute peer opacity-0 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+							class="absolute peer opacity-0  "
 						/>
 						<label
 							for="price-{option}"
-							class="py-2 px-4 rounded-full shadow flex cursor-pointer border border-amber-500 justify-center items-center peer-checked:bg-amber-500 peer-checked:text-white"
+							class="py-2 px-4 rounded-full shadow flex cursor-pointer border border-amber-500  peer-checked:hover:border-amber-500 hover:border-amber-600 justify-center items-center peer-checked:bg-amber-500 peer-checked:text-white "
 							>{option}</label
 						>
 					</div>
@@ -58,7 +58,7 @@
 					type="number"
 					name="price-custom"
 					id="price-custom"
-					class="block text-center shadow py-2 px-1 rounded-sm border-0 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-1 focus:ring-gray-300"
+					class="block text-center shadow py-2 px-1 rounded-sm border-0 text-gray-900 dark:text-white hover:ring-amber-600 dark:hover:ring-amber-600 dark:focus:ring-amber-600 dark:focus:bg-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 dark:bg-gray-600 dark:placeholder:text-gray-200 dark:ring-gray-500  focus:ring-inset focus:ring-1 focus:ring-gray-600"
 					placeholder="10"
 				/>
 			</fieldset>
@@ -66,10 +66,9 @@
 
 		<button
 			{disabled}
-			on:click={() => console.log('hello')}
 			class="{disabled
-				? 'bg-gray-400 cursor-not-allowed'
-				: 'bg-gray-600 cursor-pointer'}  text-white w-full rounded-sm text-[16px] font-semibold py-2 shadow flex items-center justify-center gap-3 mb-3"
+				? 'bg-gray-400 dark:bg-zinc-500 dark:text-zinc-700 cursor-not-allowed '
+				: 'bg-gray-600  cursor-pointer  hover:scale-[1.02] transform transition-transform'}  text-white w-full rounded-sm text-[16px] font-semibold py-2 shadow flex items-center justify-center gap-3 mb-3 "
 		>
 			<span>{$t('global.donation.support')}</span>
 			<span>{selected * 5} &#36;</span>

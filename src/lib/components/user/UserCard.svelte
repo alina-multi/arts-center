@@ -11,8 +11,8 @@
 </script>
 
 <div class="w-full">
-	<div class="w-full h-32 rounded-sm flex flex-col items-center bg-gray-600 shadow" />
-	<div class="border rounded-sm border-t-transparent w-full flex flex-col items-center pb-6">
+	<div class="w-full h-32 rounded-sm flex flex-col items-center bg-gray-600 dark:bg-zinc-700 shadow" />
+	<div class="border rounded-sm border-t-transparent dark:border-zinc-800 dark:border-t-transparent w-full flex flex-col items-center pb-6 dark:bg-zinc-900">
 		<div class=" flex flex-col gap-3 items-center max-sm:w-full w-fit px-6 xs:px-9">
 			<div class=" -mt-20">
 				<Avatar {user} size={' w-32 h-32  max-xl:w-28 max-xl:h-28 '} />
