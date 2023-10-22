@@ -18,11 +18,11 @@
 
 <a
 	{href}
-	class="{width} inline-flex items-center gap-2 shrink-0 text-gray-700 dark:text-zinc-100 hover:text-gray-700 dark:hover:text-zinc-300"
+	class="{width} inline-flex items-center gap-2  text-gray-700 dark:text-zinc-100 hover:text-gray-700 dark:hover:text-zinc-300"
 >
 	<Avatar {user} size={size} />
 
 	{#if withName}
-		<p class="hover:underline {nameStyles}  ">{user?.name}</p>
+		<p class="hover:underline flex-1 {nameStyles}  ">{user?.name}</p>
 	{/if}
 </a>
