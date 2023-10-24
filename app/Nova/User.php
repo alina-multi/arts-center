@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Nova\Actions\ApproveRecord;
 use App\Nova\Actions\ClearCacheByTag;
+use App\Nova\Actions\VerifyUser;
 use App\Nova\Filters\ModelApproved;
 use App\Nova\Metrics\NewUsers;
 use App\Nova\Metrics\UsersPerDay;
@@ -81,6 +82,7 @@ class User extends Resource
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
             Boolean::make('Approved', 'approved_at'),
+            Boolean::make('Verified', 'verified_at'),
 
             Password::make('Password')
                 ->onlyOnForms()
@@ -136,6 +138,6 @@ class User extends Resource
      */
     public function actions(Request $request)
     {
-        return [(new ClearCacheByTag('user'))->standalone(), new ApproveRecord()];
+        return [(new ClearCacheByTag('user'))->standalone(), new ApproveRecord(), new VerifyUser()];
     }
 }
