@@ -27,6 +27,6 @@ class DonationReceived extends Notification
             ->line(__('notifications.donation.received', ['total' => number_format($this->donation->amount_net / 100, 2)]))
             ->lineIf($this->donation->message, __('notifications.donation.message'))
             ->lineIf($this->donation->message, $this->donation->message)
-            ->action(__('notifications.donation.my'), UrlHelper::localePath('/my/donations'));
+            ->action(__('notifications.donation.my'), UrlHelper::localePath('/my/transactions'));
     }
 }

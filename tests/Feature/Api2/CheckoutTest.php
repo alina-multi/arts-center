@@ -19,6 +19,5 @@ test('Create checkout session for frontend', function () {
         'quantity' => 3,
         'username' => $user->username,
         'type' => \App\Enums\TransactionTypes::DONATION
-    ])->assertJson(fn(AssertableJson $json) => $json->whereType('clientSecret', 'string')
-    );
+    ])->assertJson(fn(AssertableJson $json) => $json->whereType('clientSecret', 'string'));
 });
