@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Events\{CommentChanged,
+    TransactionCreated,
     ImageCreated,
     MeChanged,
     UserProfileUpdated,
@@ -11,18 +12,23 @@ use App\Events\{CommentChanged,
     WorkDrafted,
     WorkPublished,
     WorkReady,
-    WorkTranslated};
+    WorkTranslated
+};
 use App\Listeners\{AddToFeeds,
     ClearAuthCache,
     ClearCache,
     ConvertImage,
+    DonationNotifications,
     SendNotifications,
+    CheckoutSessionCompleted,
     TranslateWork,
     ValidateWork,
-    PublishWork};
+    PublishWork
+};
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Laravel\Cashier\Events\WebhookReceived;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -63,6 +69,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         MeChanged::class => [
             ClearAuthCache::class
+        ],
+        WebhookReceived::class => [
+            CheckoutSessionCompleted::class
+        ],
+        TransactionCreated::class => [
+            DonationNotifications::class
         ]
     ];
 

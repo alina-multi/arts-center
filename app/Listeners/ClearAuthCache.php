@@ -3,7 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\MeChanged;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
 
 class ClearAuthCache
@@ -17,7 +16,6 @@ class ClearAuthCache
     public function handle(MeChanged $event)
     {
         $key = "frontend.auth.$event->session";
-        Log::info("Clearing key $key");
         Redis::connection('externalCache')->del($key);
     }
 }

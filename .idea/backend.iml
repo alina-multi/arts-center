@@ -132,10 +132,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/tigroid3/php-imaginary" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/darkaonline/l5-swagger" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nadar/quill-delta-parser" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/dompdf/dompdf" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/zircote/swagger-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/pusher/pusher-php-server" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/sabberworm/php-css-parser" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/umpirsky/country-list" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/swagger-api/swagger-ui" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/monarobase/country-list" />
@@ -148,7 +146,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/itsgoingd/clockwork" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laminas/laminas-diactoros" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/octane" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/masterminds/html5" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nunomaduro/termwind" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/backtrace" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/flare-client-php" />
@@ -207,8 +204,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/hamcrest/hamcrest-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/moneyphp/money" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/phenx/php-font-lib" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/phenx/php-svg-lib" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-http/client-common" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-http/discovery" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-http/httplug" />
