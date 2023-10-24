@@ -43,13 +43,13 @@ class CheckoutController extends Controller
             'mode' => 'payment',
             'return_url' => UrlHelper::localePath("/{$request->username}/confirmation?session_id={CHECKOUT_SESSION_ID}")
         ]);
-        return response()->json([
+        return [
             'clientSecret' => $session['client_secret']
-        ]);
+        ];
     }
 
     public function show($checkout)
     {
-        return response()->json(Cashier::stripe()->checkout->sessions->retrieve($checkout));
+        return Cashier::stripe()->checkout->sessions->retrieve($checkout);
     }
 }
