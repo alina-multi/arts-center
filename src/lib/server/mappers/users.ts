@@ -46,10 +46,11 @@ export function userMap(user: UserFullRaw): User {
 		username: user.username,
 		country: user.country,
 		created_at: user.created_at,
+		verified_at: user.verified_at,
 		rating: user.rating,
 		ratings: ratingsMap(user.ratings),
 		photo: pictureMap(user.photo),
-		bio: languageFind(user.bios)?.text
+		bio: languageFind(user.bios)?.text,
 	};
 }
 

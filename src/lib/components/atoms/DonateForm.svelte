@@ -2,13 +2,55 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { XMark } from '@steeze-ui/heroicons';
 	import TubeIcon from './TubeIcon.svelte';
-	import {t} from '$lib/translations';
+	import { localePath, t } from '$lib/translations';
+	import type { User } from '$lib/interfaces/User';
+	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
+	import newUniqueId from 'locally-unique-id-generator';
+	import { tick } from 'svelte';
+	import { magicFetch } from '$lib/helpers/fetchData';
+	import { getStripe } from '$lib/helpers/stripe';
 
+	export let user: User;
+	let clientSecret, open = false, quantity = 1;
+
+	let id;
+
+	let stripeCheckout;
+
+	async function checkout() {
+		open = true;
+		id = newUniqueId();
+		await tick();
+		try {
+			const { clientSecret } = await magicFetch('POST', localePath('/api/checkout'), {
+				user_id: user.id.toString(),
+				username: user.username,
+				type: 1, // Donation
+				quantity
+			});
+			const stripe = await getStripe();
+			stripeCheckout = await stripe.initEmbeddedCheckout({
+				clientSecret
+			});
+			stripeCheckout.mount(`#${id}`);
+		} catch (e) {
+			open = false;
+			await tick();
+			onClose();
+			throw e;
+		}
+	}
+
+	function onClose() {
+		if (stripeCheckout) {
+			stripeCheckout.destroy();
+		}
+	}
+	
 	const options = [1, 3, 5];
 	let invalidChars = ['-', '+', 'e'];
-	$: selected = 1;
-	$: value = selected === 1 ? '' : selected;
-	$: disabled = selected === 0;
+	$: value = quantity === 1 ? '' : quantity;
+	$: disabled = quantity === 0;
 </script>
 
 <div
@@ -26,9 +68,9 @@
 					<div class="flex relative">
 						<input
 							on:focus={() => {
-								(value = selected);
+								(value = quantity);
 							}}
-							bind:group={selected}
+							bind:group={quantity}
 							id="price-{option}"
 							type="radio"
 							value={option}
@@ -48,7 +90,7 @@
 					max="5000"
 					bind:value
 					on:input={() => {
-						selected = value;
+						quantity = value;
 					}}
 					on:keydown={(e) => {
 						if (invalidChars.includes(e.key)) {
@@ -65,13 +107,18 @@
 		</div>
 
 		<button
+			on:click={checkout}
 			{disabled}
 			class="{disabled
 				? 'bg-gray-400 dark:bg-zinc-500 dark:text-zinc-700 cursor-not-allowed '
 				: 'bg-gray-600  cursor-pointer  hover:scale-[1.02] transform transition-transform'}  text-white w-full rounded-sm text-[16px] font-semibold py-2 shadow flex items-center justify-center gap-3 mb-3 "
 		>
 			<span>{$t('global.donation.support')}</span>
-			<span>{selected * 5} &#36;</span>
+			<span>{quantity * 5} &#36;</span>
 		</button>
 	</div>
 </div>
+
+<ModalWindow bind:open={open} on:close={onClose}>
+	<div {id} />
+</ModalWindow>

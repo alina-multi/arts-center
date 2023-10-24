@@ -10,7 +10,9 @@ export const userSelect = {
 	name: true,
 	photo: imageSelect,
 	country: true,
-	rating: true
+	rating: true,
+	verified_at: true,
+	approved_at: true
 };
 
 const PAGE_SIZE = 10;

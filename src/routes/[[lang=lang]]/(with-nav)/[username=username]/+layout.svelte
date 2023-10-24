@@ -17,7 +17,10 @@
 		<UserCard user={data.user} />
 
 		<div class="flex max-md:flex-col xl:flex-col items-start gap-6 w-full justify-center">
-			<DonateForm />
+			{#if data.user.verified_at}
+				<DonateForm user={data.user} />
+			{/if}
+			{#if data.user.ratings?.length}
 			<div
 				class="border w-full dark:bg-zinc-900 rounded-sm dark:border-zinc-800 py-6 px-6 xs:px-9 sm:w-3/4 sm:max-md:mx-auto md:w-1/2 md:px-6 xl:w-full space-y-2"
 			>
@@ -25,6 +28,7 @@
 
 				<RatingTags user={data.user} />
 			</div>
+			{/if}
 		</div>
 	</div>
 	<main class="flex flex-col gap-6 xl:pl-3 xl:w-8/12">

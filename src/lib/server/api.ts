@@ -1,6 +1,6 @@
 import type { RequestEvent } from '@sveltejs/kit';
 import setCookie from 'set-cookie-parser';
-import { defaultLocale } from '$lib/translations';
+import { availableLocales, defaultLocale } from '$lib/translations';
 
 interface ApiParams {
 	method: string;
@@ -52,7 +52,10 @@ export function proxyCookies(event: RequestEvent, response: Response) {
 export async function proxyApi(event: RequestEvent) {
 	const data = await event.request.json();
 	const reqUrl = new URL(event.request.url);
-	const path = reqUrl.pathname.replace('/api', '/api2');
+	let path = reqUrl.pathname.replace('/api', '/api2');
+	for (const locale of availableLocales) {
+		path = path.replace(`/${locale}/`,'/');
+	}
 
 	const response = await api({
 		method: event.request.method,

@@ -61,6 +61,16 @@
 		"h1": "Contact us",
 		"p1": "Don't hesitate to contact us if you have any questions."
 	},
+	"donation": {
+		"confirmation": {
+			"back": "⬅ Back to artist gallery",
+			"confirmation": "A confirmation email will be sent to {{email}}",
+			"support": "If you have any questions, please email info@arts.center",
+			"title": "Thank you for your generous donation!"
+		},
+		"support": "Support",
+		"title": "Buy supplies for the artist"
+	},
 	"error": {
 		"api": "Unknown API server error"
 	},
@@ -114,6 +124,7 @@
 		"following": "Following",
 		"logout": "Log Out",
 		"my_profile": "My Page",
+		"transactions": "Transactions",
 		"works": "My works"
 	},
 	"not_logged_in": {
@@ -189,19 +200,15 @@
 		"why_subscribe_title": "Why subscribe and what are the benefits?"
 	},
 	"user": {
+		"bio": "biography",
 		"on_arts_since": "on arts since",
-		"total_rating": "Total Rating",
 		"rating_by_category": "Rating by category",
-		"bio": "biography"
+		"total_rating": "Total Rating"
 	},
 	"voting": {
 		"and": "and",
 		"like": "Like",
 		"liked_by": "Liked by",
 		"others": "others"
-	},
-	"donation": {
-		"title": "Buy supplies for the artist",
-		"support": "Support"
 	}
 }

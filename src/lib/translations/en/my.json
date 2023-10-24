@@ -78,6 +78,17 @@
 	"no_blocked": "There are no users in your blacklist",
 	"no_drafts": "There are no drafts",
 	"people": "people",
+	"transactions": {
+		"amount": "Amount",
+		"balance": "Balance",
+		"date": "Date",
+		"header": "Transactions",
+		"message": "Message",
+		"type": "Type",
+		"types": {
+			"1": "Donation"
+		}
+	},
 	"work": "work",
 	"works": "works",
 	"works_page": {

@@ -28,7 +28,7 @@
 		{#each columns as column (column.title)}
 			<th
 				scope='col'
-				class='px-3 py-4 text-left text-sm font-semibold text-gray-900'
+				class='px-3 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100'
 			>
 				{column.title}
 			</th>
@@ -37,9 +37,9 @@
 	</thead>
 	<tbody>
 	{#each data as row (row[keyColumn])}
-		<tr class='space-x-3 even:bg-gray-50'>
+		<tr class='space-x-3 even:bg-gray-50 dark:even:bg-gray-900'>
 			{#each columns as column}
-				<td class='px-3 py-4 text-sm text-gray-500'>
+				<td class='px-3 py-4 text-sm text-gray-500 dark:text-gray-300'>
 					{#if column?.component}
 						<svelte:component this={column.component} {...row}/>
 					{:else}

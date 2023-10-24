@@ -7,6 +7,7 @@ export interface UserBasicRaw {
 	photo: ImageRaw | null;
 	country: string | null;
 	rating: number;
+	verified_at: string | null;
 }
 
 export interface UserFullRaw extends UserBasicRaw {

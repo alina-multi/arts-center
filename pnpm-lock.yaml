@@ -94,6 +94,9 @@ devDependencies:
   '@storybook/testing-library':
     specifier: ^0.2.2
     version: 0.2.2
+  '@stripe/stripe-js':
+    specifier: ^2.1.9
+    version: 2.1.9
   '@sveltejs/adapter-auto':
     specifier: ^2.1.0
     version: 2.1.0(@sveltejs/kit@1.25.1)
@@ -4804,6 +4807,10 @@ packages:
       '@types/babel__core': 7.20.2
       '@types/express': 4.17.18
       file-system-cache: 2.3.0
+    dev: true
+
+  /@stripe/stripe-js@2.1.9:
+    resolution: {integrity: sha512-0RSvCJrzEVx52e8hbSAcZ2vv6OzoFj5fe5XC50GSrcev1Y4t2XDE6W5CIhR/Y6l3CPgO/P4luqoLWuvpUkBhig==}
     dev: true
 
   /@sveltejs/adapter-auto@2.1.0(@sveltejs/kit@1.25.1):

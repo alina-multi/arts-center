@@ -4,23 +4,28 @@ import { error } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
 import { cacheGet } from '$lib/server/database/cache';
 export const load = (async ({ params, setHeaders }) => {
-	setHeaders({
-		'cache-control': 'max-age=6000'
-	});
+
 	params.tag ??= 'all';
 
-	return await cacheGet(
+	const data =  await cacheGet(
 		'user',
 		`${params.username}.${params.lang}`,
 		async () => {
 			const userRaw = await get(params.username);
-			if (!userRaw) throw error(404, 'User not found');
+			if (!userRaw || !userRaw.approved_at) throw error(404, 'User not found');
 			const user = await userMap(userRaw);
 			return {
 				user,
 				params
 			};
 		},
-		5
+		60
 	);
+
+	// Important to add headers here, after potential 404 we don't want to cache it
+	setHeaders({
+		'cache-control': 'max-age=6000'
+	});
+
+	return data;
 }) satisfies LayoutServerLoad;

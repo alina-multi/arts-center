@@ -9,7 +9,8 @@
 		FolderOpen,
 		UserPlus,
 		Bookmark,
-		NoSymbol
+		NoSymbol,
+		CurrencyDollar
 	} from '@steeze-ui/heroicons';
 	import { user } from '$lib/stores/auth';
 
@@ -25,6 +26,9 @@
 >
 <SideNavLink exact href={localePath("/my/work")}
 	><Icon src={FolderOpen} theme="solid" class="h-5 w-5 " aria-hidden="true" />{$t('global.my_links.works')}</SideNavLink
+>
+<SideNavLink exact href={localePath("/my/transactions")}
+	><Icon src={CurrencyDollar} theme="solid" class="h-5 w-5 " aria-hidden="true" />{$t('global.my_links.transactions')}</SideNavLink
 >
 
 <SideNavLink href={localePath(`${favorites_href}`)}

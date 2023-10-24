@@ -8,6 +8,7 @@ export interface UserBasic {
 	name: string;
 	photo: Picture | null;
 	country: string | null;
+	verified_at: string | null;
 }
 
 export interface UserPreview extends UserBasic {
