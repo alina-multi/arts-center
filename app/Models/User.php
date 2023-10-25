@@ -140,6 +140,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(FavoriteFolder::class);
     }
 
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'to_user_id');
+    }
+
     public function isAdmin()
     {
         return $this->email === 'stepanorda87@gmail.com';

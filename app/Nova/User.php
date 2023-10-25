@@ -88,6 +88,7 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
+            HasMany::make('Transactions'),
             MorphedByMany::make('Works'),
             HasMany::make('User Ratings', 'ratings'),
             HasMany::make('Comments'),
