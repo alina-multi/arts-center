@@ -11,7 +11,7 @@
 	import { getStripe } from '$lib/helpers/stripe';
 
 	export let user: User;
-	let clientSecret, open = false, quantity = 1;
+	let open = false, quantity = 1;
 
 	let id;
 

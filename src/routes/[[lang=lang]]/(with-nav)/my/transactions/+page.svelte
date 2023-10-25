@@ -3,6 +3,8 @@
 	import HeaderLayout from '$lib/components/my/HeaderLayout.svelte';
 	import { t, locale } from '$lib/translations';
 	import FilteredTable from '$lib/components/table/FilteredTable.svelte';
+	import Hint from '$lib/components/atoms/Hint.svelte';
+	import {user} from '$lib/stores/auth';
 
 	export let data: PageData;
 	let total = 0;
@@ -36,7 +38,7 @@
 		{
 			title: $t('my.transactions.date'),
 			valueFn(row): string {
-				return row.created_at.toLocaleString(locale.get())
+				return row.created_at.toLocaleString(locale.get());
 			}
 		}
 	];
@@ -46,8 +48,20 @@
 	<div slot='details' class='flex gap-3 items-center leading-3'>
 		<div class='h-1 w-1 bg-gray-500 dark:bg-zinc-300 rounded-full' />
 		<span>
-			Balance: {(total / 100).toFixed(2)}$
+			{$t('my.transactions.balance', { 'total': (total / 100).toFixed(2) })}
 		</span>
 	</div>
 </HeaderLayout>
-<FilteredTable {columns} data={data.transactions} />
+<Hint type='info'>
+	{$t('my.transactions.commissions_and_payout')}
+</Hint>
+{#if !$user.verified_at}
+	<Hint type='warning'>
+		{$t('my.transactions.need_verification')}
+	</Hint>
+{/if}
+
+<FilteredTable {columns} data={data.transactions}>
+
+</FilteredTable>
+

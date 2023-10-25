@@ -3548,6 +3548,21 @@
 								</translations>
 							</concept_node>
 							<concept_node>
+								<name>commissions_and_payout</name>
+								<description/>
+								<comment/>
+								<translations>
+									<translation>
+										<language>en-US</language>
+										<approved>false</approved>
+									</translation>
+									<translation>
+										<language>uk-UA</language>
+										<approved>false</approved>
+									</translation>
+								</translations>
+							</concept_node>
+							<concept_node>
 								<name>date</name>
 								<description/>
 								<comment/>
@@ -3579,6 +3594,21 @@
 							</concept_node>
 							<concept_node>
 								<name>message</name>
+								<description/>
+								<comment/>
+								<translations>
+									<translation>
+										<language>en-US</language>
+										<approved>false</approved>
+									</translation>
+									<translation>
+										<language>uk-UA</language>
+										<approved>false</approved>
+									</translation>
+								</translations>
+							</concept_node>
+							<concept_node>
+								<name>need_verification</name>
 								<description/>
 								<comment/>
 								<translations>

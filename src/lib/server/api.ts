@@ -54,7 +54,7 @@ export async function proxyApi(event: RequestEvent) {
 	const reqUrl = new URL(event.request.url);
 	let path = reqUrl.pathname.replace('/api', '/api2');
 	for (const locale of availableLocales) {
-		path = path.replace(`/${locale}/`,'/');
+		path = path.replace(`/${locale}/`, '/');
 	}
 
 	const response = await api({

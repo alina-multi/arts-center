@@ -6,7 +6,9 @@
 		field?: string, // defaults to title if not set
 		sortable?: boolean,
 		filterable?: boolean,
+
 		valueFn?(),
+
 		component?: SvelteComponent
 	}
 
@@ -14,7 +16,7 @@
 	export let columns: Column[];
 	export let keyColumn = 'id';
 
-	function getCellValue (row, column) {
+	function getCellValue(row, column) {
 		if (column?.valueFn) {
 			return column.valueFn(row);
 		} else {
@@ -22,33 +24,37 @@
 		}
 	}
 </script>
-<table class='min-w-full divide-y divide-gray-300'>
-	<thead>
-	<tr class='space-x-3'>
-		{#each columns as column (column.title)}
-			<th
-				scope='col'
-				class='px-3 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100'
-			>
-				{column.title}
-			</th>
-		{/each}
-	</tr>
-	</thead>
-	<tbody>
-	{#each data as row (row[keyColumn])}
-		<tr class='space-x-3 even:bg-gray-50 dark:even:bg-gray-900'>
-			{#each columns as column}
-				<td class='px-3 py-4 text-sm text-gray-500 dark:text-gray-300'>
-					{#if column?.component}
-						<svelte:component this={column.component} {...row}/>
-					{:else}
-						<!-- eslint-disable-next-line -->
-						{@html getCellValue(row, column)}
-					{/if}
-				</td>
+{#if data.length}
+	<table class='min-w-full divide-y divide-gray-300'>
+		<thead>
+		<tr class='space-x-3'>
+			{#each columns as column (column.title)}
+				<th
+					scope='col'
+					class='px-3 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100'
+				>
+					{column.title}
+				</th>
 			{/each}
 		</tr>
-	{/each}
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+		{#each data as row (row[keyColumn])}
+			<tr class='space-x-3 even:bg-gray-50 dark:even:bg-gray-900'>
+				{#each columns as column}
+					<td class='px-3 py-4 text-sm text-gray-500 dark:text-gray-300'>
+						{#if column?.component}
+							<svelte:component this={column.component} {...row} />
+						{:else}
+							<!-- eslint-disable-next-line -->
+							{@html getCellValue(row, column)}
+						{/if}
+					</td>
+				{/each}
+			</tr>
+		{/each}
+		</tbody>
+	</table>
+{:else }
+	<slot/>
+{/if}

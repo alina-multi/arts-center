@@ -5,7 +5,7 @@ let stripeClient: Stripe;
 
 export async function getStripe(): Promise<Stripe> {
 	if (!stripeClient) {
-		stripeClient = await loadStripe(env.PUBLIC_STIPE) as Stripe;
+		stripeClient = (await loadStripe(env.PUBLIC_STIPE)) as Stripe;
 	}
-	return stripeClient
+	return stripeClient;
 }

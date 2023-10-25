@@ -50,7 +50,7 @@ export function userMap(user: UserFullRaw): User {
 		rating: user.rating,
 		ratings: ratingsMap(user.ratings),
 		photo: pictureMap(user.photo),
-		bio: languageFind(user.bios)?.text,
+		bio: languageFind(user.bios)?.text
 	};
 }
 

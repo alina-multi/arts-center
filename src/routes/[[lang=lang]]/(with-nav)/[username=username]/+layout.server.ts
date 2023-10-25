@@ -4,10 +4,9 @@ import { error } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
 import { cacheGet } from '$lib/server/database/cache';
 export const load = (async ({ params, setHeaders }) => {
-
 	params.tag ??= 'all';
 
-	const data =  await cacheGet(
+	const data = await cacheGet(
 		'user',
 		`${params.username}.${params.lang}`,
 		async () => {
