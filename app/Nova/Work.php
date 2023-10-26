@@ -81,10 +81,11 @@ class Work extends Resource
 
             Text::make('Titles', function () use ($getTitle) {
                 $titles = [];
-                foreach (['ru', 'en', 'uk'] as $lang) {
+                foreach (config('app.languages') as $lang) {
                     $local = $getTitle($lang);
                     if ($local) {
-                        $titles[] = "<div><b>$lang</b>: " . $getTitle($lang) . "</div>";
+                        $url = config('app.frontend_url'). ($lang=='en'?'':"/$lang") . "/work/$this->id";
+                        $titles[] = "<a target='_blank' class='block text-primary-800 hover:text-primary-500' href='$url'>$lang: " . $getTitle($lang) . "</a>";
                     }
                 }
                 return '<div class="divide-y divide-light-blue-400">' . join("\n", $titles) . '</div>';

@@ -10,7 +10,7 @@ class Blog extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $hidden = ['created_at','deleted_at','updated_at'];
+    protected $hidden = ['created_at', 'deleted_at', 'updated_at'];
 
     public function posts()
     {
@@ -25,5 +25,10 @@ class Blog extends Model
     public function owners()
     {
         return $this->morphToMany(User::class, 'ownable');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

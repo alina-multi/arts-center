@@ -40,7 +40,8 @@ class UserFactory extends Factory
             'password' => Hash::make('paSSword1'),
             'remember_token' => Str::random(10),
             'image_id' => $image->id,
-            'country' => $this->faker->countryCode
+            'country' => $this->faker->countryCode,
+            'approved_at' => now()
         ];
     }
 }

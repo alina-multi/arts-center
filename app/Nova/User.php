@@ -2,9 +2,16 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\ApproveRecord;
 use App\Nova\Actions\ClearCacheByTag;
+use App\Nova\Actions\SendBlogPost;
+use App\Nova\Actions\VerifyUser;
+use App\Nova\Filters\ModelApproved;
+use App\Nova\Filters\UserNotCountry;
 use App\Nova\Metrics\NewUsers;
 use App\Nova\Metrics\UsersPerDay;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\URL;
 use Laravel\Nova\Http\Requests\NovaRequest as Request;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
@@ -59,13 +66,16 @@ class User extends Resource
                 return $value ? $value->src : '';
             }),
 
+
             Text::make('Name')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make('Username')
+            URL::make('Username', fn() => config('app.frontend_url')."/$this->username")
+                ->displayUsing(fn() => $this->username)
                 ->sortable()
-                ->rules('required', 'max:255'),
+                ->rules('required', 'max:255')
+            ,
 
             Text::make('Email')
                 ->sortable()
@@ -73,10 +83,16 @@ class User extends Resource
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
+            Text::make('Country'),
+
+            Boolean::make('Approved', 'approved_at'),
+            Boolean::make('Verified', 'verified_at'),
+
             Password::make('Password')
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
+            HasMany::make('Transactions'),
             MorphedByMany::make('Works'),
             HasMany::make('User Ratings', 'ratings'),
             HasMany::make('Comments'),
@@ -105,7 +121,10 @@ class User extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new ModelApproved(),
+            new UserNotCountry()
+        ];
     }
 
     /**
@@ -127,6 +146,11 @@ class User extends Resource
      */
     public function actions(Request $request)
     {
-        return [(new ClearCacheByTag('user'))->standalone()];
+        return [
+            (new ClearCacheByTag('user'))->standalone(),
+            new ApproveRecord(),
+            new VerifyUser(),
+            new SendBlogPost()
+        ];
     }
 }

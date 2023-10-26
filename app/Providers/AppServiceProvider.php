@@ -13,6 +13,7 @@ use App\Nova\Blog;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Laravel\Cashier\Cashier;
 use Laravel\Telescope\Telescope;
 use Illuminate\Validation\Rules\Password;
 
@@ -25,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        Cashier::ignoreRoutes();
         Telescope::ignoreMigrations();
         if ($this->app->environment('local')) {
             $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);

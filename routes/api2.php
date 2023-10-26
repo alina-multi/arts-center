@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Middleware\LocaleHeader;
 use App\Http\Controllers\Api2\{
     VoteController,
     ProfileController,
@@ -12,7 +11,8 @@ use App\Http\Controllers\Api2\{
     FavoriteController,
     FavoriteFolderController,
     FeedbackController,
-    WorkImageController
+    WorkImageController,
+    CheckoutController
 };
 
 /*
@@ -26,7 +26,7 @@ use App\Http\Controllers\Api2\{
 |
 */
 
-Route::middleware(['auth:sanctum', LocaleHeader::class])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('profile', ProfileController::class . '@update');
     Route::get('profile', ProfileController::class . '@index');
     Route::get('me', MeController::class);
@@ -51,6 +51,11 @@ Route::middleware(['auth:sanctum', LocaleHeader::class])->group(function () {
     Route::post('feedback', FeedbackController::class. '@store');
 });
 
-Route::middleware(LocaleHeader::class)->get('health', function () {
+// These ones are not requited to have auth
+Route::post('stripe/webhook', [\Laravel\Cashier\Http\Controllers\WebhookController::class, 'handleWebhook'])->name('cashier.webhook');
+Route::get('stripe/payment/{id}', [\Laravel\Cashier\Http\Controllers\PaymentController::class, 'show'])->name('cashier.payment');
+Route::apiResource('checkout', CheckoutController::class);
+
+Route::get('health', function () {
     return response(__('health.ok'), 200);
 });

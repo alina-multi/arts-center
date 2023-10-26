@@ -21,12 +21,16 @@ class MeController extends Controller
         $favoriteFolders = $user->favoriteFolders->toArray();
         return [
             ...$user->toArray(),
+            'approved_at' => $user->approved_at,
+            'verified_at' => $user->verified_at,
+            'email_verified_at' => $user->email_verified_at,
             'blacklists' => $blacklists,
             'follows' => $follows,
             'favorites' => [
                 'works' => $favorites,
                 'folders' => $favoriteFolders
-            ]
+            ],
+            ...$user->isAdmin() ? ['admin' => true] : []
         ];
     }
 }

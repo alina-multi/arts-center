@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Cache;
 use App\Notifications\MailResetPasswordNotification;
 use Laravel\Scout\Searchable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, Notifiable, HasFactory, Billable, Searchable;
 
@@ -137,6 +138,11 @@ class User extends Authenticatable
     public function favoriteFolders()
     {
         return $this->hasMany(FavoriteFolder::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'to_user_id');
     }
 
     public function isAdmin()

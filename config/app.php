@@ -55,7 +55,7 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    'frontend_url' => env('FRONTEND_URL', 'http://localhost:3000'),
+    'frontend_url' => env('FRONTEND_URL', env('APP_URL', 'http://localhost:3000')),
 
 
     /*
@@ -167,6 +167,8 @@ return [
         /*
          * Package Service Providers...
          */
+        LaravelProfane\ProfaneServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -178,7 +180,6 @@ return [
         App\Providers\NovaServiceProvider::class,
         App\Providers\HorizonServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class
     ],
 
     /*

@@ -16,17 +16,23 @@ it('Returns valid data', function () {
         ->hasFollows(10)
         ->hasFavoriteFolders(3)
         ->hasFavorites(10)
-        ->create();
+        ->create(['verified_at'=>now()]);
     actingAs($user)->getJson('/api2/me')->assertOk()
         ->assertJson(fn(AssertableJson $json) => $json->where('id', $user->id)
             ->whereAllType([
                 'id' => 'integer',
+                'name' => 'string',
+                'username' => 'string',
+                'created_at' => 'string',
+                'photo' => 'array',
                 'blacklists' => 'array',
                 'follows.work' => 'array',
                 'follows.user' => 'array',
                 'favorites.works' => 'array',
                 'favorites.folders' => 'array',
+                'approved_at' => 'string',
+                'verified_at' => 'string',
+                'email_verified_at' => 'string'
             ])
-            ->etc()
         );
 });

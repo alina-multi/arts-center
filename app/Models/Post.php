@@ -14,7 +14,11 @@ class Post extends Model
     protected $hidden = ['created_at','deleted_at','updated_at'];
 
     protected $fillable = [
-        'blog_id', 'published_at'
+        'blog_id', 'published_at', 'title', 'text'
+    ];
+
+    protected $casts = [
+        'published_at' => 'datetime'
     ];
 
     public function blog()
