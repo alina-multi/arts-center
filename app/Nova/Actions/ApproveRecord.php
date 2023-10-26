@@ -10,7 +10,7 @@ use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class ApproveRecord extends Action
+class ApproveRecord extends Action implements ShouldQueue
 {
     use InteractsWithQueue, Queueable;
 
@@ -24,10 +24,10 @@ class ApproveRecord extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {
-        foreach ($models as $model) {
-            $model->approved_at = $model->freshTimestamp();
-            $model->save();
-        }
+        $models->each(function (\Eloquent $model) {
+            $model->update(['approved_at'=>now()]);
+            $this->markAsFinished($model);
+        });
     }
 
     /**

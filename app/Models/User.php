@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
+use Laravel\Nova\Actions\Actionable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Cache;
 use App\Notifications\MailResetPasswordNotification;
@@ -15,7 +16,7 @@ use Laravel\Scout\Searchable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, Notifiable, HasFactory, Billable, Searchable;
+    use HasApiTokens, Notifiable, HasFactory, Billable, Searchable, Actionable;
 
     /**
      * The attributes that are mass assignable.

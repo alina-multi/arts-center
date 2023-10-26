@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Notifications\BlogPostContent;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;
 use Laravel\Nova\Actions\Action;
@@ -13,7 +14,7 @@ use Laravel\Nova\Fields\ActionFields;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class SendBlogPost extends Action
+class SendBlogPost extends Action implements ShouldQueue
 {
     use InteractsWithQueue, Queueable;
 
@@ -27,7 +28,10 @@ class SendBlogPost extends Action
     public function handle(ActionFields $fields, Collection $models)
     {
         $post = Post::firstOrFail('id', $fields['post']);
-        $models->each(fn(User $user) => $user->notify(new BlogPostContent($post)));
+        $models->each(function (User $user) use ($post) {
+            $user->notify(new BlogPostContent($post));
+            $this->markAsFinished($user);
+        });
     }
 
     /**
