@@ -16,7 +16,7 @@ it('Returns valid data', function () {
         ->hasFollows(10)
         ->hasFavoriteFolders(3)
         ->hasFavorites(10)
-        ->create();
+        ->create(['verified_at'=>now()]);
     actingAs($user)->getJson('/api2/me')->assertOk()
         ->assertJson(fn(AssertableJson $json) => $json->where('id', $user->id)
             ->whereAllType([

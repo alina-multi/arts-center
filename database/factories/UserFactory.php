@@ -41,8 +41,7 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'image_id' => $image->id,
             'country' => $this->faker->countryCode,
-            'approved_at' => now(),
-            'verified_at' => now(),
+            'approved_at' => now()
         ];
     }
 }
