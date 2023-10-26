@@ -4,8 +4,10 @@ namespace App\Nova;
 
 use App\Nova\Actions\ApproveRecord;
 use App\Nova\Actions\ClearCacheByTag;
+use App\Nova\Actions\SendBlogPost;
 use App\Nova\Actions\VerifyUser;
 use App\Nova\Filters\ModelApproved;
+use App\Nova\Filters\UserNotCountry;
 use App\Nova\Metrics\NewUsers;
 use App\Nova\Metrics\UsersPerDay;
 use Laravel\Nova\Fields\Boolean;
@@ -81,6 +83,8 @@ class User extends Resource
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
+            Text::make('Country'),
+
             Boolean::make('Approved', 'approved_at'),
             Boolean::make('Verified', 'verified_at'),
 
@@ -117,7 +121,10 @@ class User extends Resource
      */
     public function filters(Request $request)
     {
-        return [new ModelApproved()];
+        return [
+            new ModelApproved(),
+            new UserNotCountry()
+        ];
     }
 
     /**
@@ -139,6 +146,11 @@ class User extends Resource
      */
     public function actions(Request $request)
     {
-        return [(new ClearCacheByTag('user'))->standalone(), new ApproveRecord(), new VerifyUser()];
+        return [
+            (new ClearCacheByTag('user'))->standalone(),
+            new ApproveRecord(),
+            new VerifyUser(),
+            new SendBlogPost()
+        ];
     }
 }

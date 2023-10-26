@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Http\Requests\NovaRequest as Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
@@ -9,7 +10,6 @@ use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Post extends Resource
 {
@@ -22,15 +22,7 @@ class Post extends Resource
 
     public function title()
     {
-        if (sizeof($this->translations) > 0) {
-            $returnTitle = $this->id;
-            foreach ($this->translations as $title) {
-                $returnTitle .= " $title->language: $title->title";
-            }
-            return $returnTitle;
-        } else {
-            return $this->id;
-        }
+        return $this->title;
     }
 
     /**
@@ -39,10 +31,8 @@ class Post extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'title'
     ];
-
-    public static $with = ['translations'];
 
     /**
      * Get the fields displayed by the resource.
@@ -55,19 +45,13 @@ class Post extends Resource
         return [
             ID::make(__('ID'), 'id')->sortable(),
             BelongsTo::make('blog'),
-            Text::make('Titles', function () {
-                $titles = [];
-                foreach ($this->translations as $translation) {
-                    $titles[] = "<div><b>$translation->language</b>: $translation->title </div>";
-                }
-                return '<div class="divide-y divide-light-blue-400">' . join("\n", $titles) . '</div>';
-            })->asHtml(),
-            Number::make('Rating'),
+            Text::make('title')->required(),
+            Markdown::make('text')->required()->alwaysShow(),
+            Number::make('Rating')->onlyOnIndex(),
             DateTime::make('published_at'),
             DateTime::make('created_at')->onlyOnDetail(),
             DateTime::make('updated_at')->onlyOnDetail(),
-            DateTime::make('deleted_at')->onlyOnDetail(),
-            HasMany::make('Translations', 'translations', PostTranslation::class)
+            DateTime::make('deleted_at')->onlyOnDetail()
         ];
     }
 

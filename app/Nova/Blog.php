@@ -2,14 +2,14 @@
 
 namespace App\Nova;
 
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Markdown;
+use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest as Request;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
-use Laravel\Nova\Fields\HasManyThrough;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\MorphMany;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Number;
 
@@ -24,15 +24,7 @@ class Blog extends Resource
 
     public function title()
     {
-        if (sizeof($this->translations) > 0) {
-            $returnTitle = $this->id;
-            foreach ($this->translations as $title) {
-                $returnTitle .= " $title->language: $title->title";
-            }
-            return $returnTitle;
-        } else {
-            return $this->id;
-        }
+        return $this->title;
     }
 
     /**
@@ -41,10 +33,8 @@ class Blog extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'title'
     ];
-
-    public static $with = ['translations'];
 
     /**
      * Get the fields displayed by the resource.
@@ -56,21 +46,19 @@ class Blog extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Text::make('Titles', function () {
-                $titles = [];
-                foreach ($this->translations as $translation) {
-                    $titles[] = "<div><b>$translation->language</b>: $translation->title </div>";
-                }
-                return '<div class="divide-y divide-light-blue-400">' . join("\n", $titles) . '</div>';
-            })->asHtml(),
+            Select::make('language')
+                ->options(
+                    array_combine(config('app.languages'), config('app.languages'))
+                )->required(),
+            BelongsTo::make('User')->required(),
+            Text::make('Title')->required(),
+            Markdown::make('Text'),
             Boolean::make('Featured'),
-            Number::make('Rating'),
-            DateTime::make('created_at'),
-            DateTime::make('updated_at'),
-            DateTime::make('deleted_at'),
-            HasMany::make('Translations', 'translations', BlogTranslation::class),
+            Number::make('Rating')->onlyOnIndex(),
+            DateTime::make('created_at')->onlyOnDetail(),
+            DateTime::make('updated_at')->onlyOnDetail(),
+            DateTime::make('deleted_at')->onlyOnDetail(),
             HasMany::make('Posts'),
-            MorphMany::make('Owners', 'owners', User::class),
         ];
     }
 
