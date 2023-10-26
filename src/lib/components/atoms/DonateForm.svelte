@@ -114,7 +114,7 @@
 				: 'bg-gray-600  cursor-pointer  hover:scale-[1.02] transform transition-transform'}  text-white w-full rounded-sm text-[16px] font-semibold py-2 shadow flex items-center justify-center gap-3 mb-3 "
 		>
 			<span>{$t('global.donation.support')}</span>
-			<span>{quantity * 5} &#36;</span>
+			<span>{quantity * 5} €</span>
 		</button>
 	</div>
 </div>
