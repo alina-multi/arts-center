@@ -21,7 +21,7 @@ class CheckoutController extends Controller
             'ui_mode' => 'embedded',
             'submit_type' => 'donate',
             'line_items' => [[
-                'price' => 'price_1O2zBCFwLM8clJwajfgmg8T9',
+                'price' => env('STRIPE_PRICE','price_1O2zBCFwLM8clJwajfgmg8T9'),
                 'quantity' => $request->quantity,
             ]],
             'metadata' => [
