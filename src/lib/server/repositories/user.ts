@@ -30,7 +30,14 @@ export function query(
 			...userSelect,
 			created_at: true
 		},
-		where,
+		where: {
+			...where,
+			NOT: {
+				country: {
+					equals: 'ru'
+				}
+			}
+		},
 		orderBy
 	});
 }
@@ -87,8 +94,8 @@ export function userCountries() {
 			}
 		},
 		where: {
-			NOT: {
-				country: null
+			country: {
+				notIn: ['ru']
 			}
 		}
 	});
