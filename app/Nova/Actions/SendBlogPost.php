@@ -39,8 +39,7 @@ class SendBlogPost extends Action
      */
     public function fields(NovaRequest $request)
     {
-        $lastPosts = Post::published()
-            ->orderBy('published_at', 'desc')
+        $lastPosts = Post::orderBy('published_at', 'desc')
             ->get()
             ->mapWithKeys(fn(Post $post) => [$post->id => $post->title])->toArray();
 
