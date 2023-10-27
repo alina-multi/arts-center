@@ -6,7 +6,6 @@
 	import { t } from '$lib/translations';
 	import { user } from '$lib/stores/auth';
 	import DonateForm from '$lib/components/atoms/DonateForm.svelte';
-	import { languageFind } from '$lib/translations';
 
 	export let work,
 		comments = [];
