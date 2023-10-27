@@ -27,7 +27,7 @@
 
 <div
 	class=" {isEditing ? 'hidden ' : ''} 
-				relative prose prose-sm border p-3 pb-6 rounded-md bg-gray-50 dark:bg-zinc-900 dark:text-white dark:border-zinc-800 space-y-2"
+				relative prose prose-sm border  border-zinc-200 p-3 pb-6 rounded-md bg-zinc-50 dark:bg-zinc-900 dark:text-white dark:border-zinc-800 space-y-2"
 >
 	{#if comment.id === editing_comment?.id}
 		<div

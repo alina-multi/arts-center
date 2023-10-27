@@ -25,11 +25,11 @@
 		<div class="flex items-center gap-3 max-md:justify-between">
 			<a
 				{href}
-				class="inline-flex hover:text-zinc-800 dark:hover:text-zinc-300 cursor-pointer text-base"
+				class="inline-flex  hover:text-zinc-800 dark:hover:text-zinc-300 cursor-pointer text-base"
 				>{user.name}</a
 			>
 			{#if followButton}
-			<span><FollowButton {user} size={'sm xl:text-xs'} /></span>
+			<span><FollowButton {user} size={'sm'} /></span>
 			{/if}
 		</div>
 		<UserDetails

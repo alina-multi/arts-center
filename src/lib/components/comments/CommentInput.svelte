@@ -38,7 +38,7 @@
 				<button
 					class="border {enabled
 						? 'text-zinc-600   dark:bg-zinc-900  dark:text-zinc-200 border dark:ring-1 dark:ring-zinc-800 hover:bg-blue-600 hover:text-white hover:border-blue-600 dark:hover:bg-blue-700'
-						: 'text-zinc-400 dark:bg-zinc-800 dark:text-zinc-600  '}  px-3 py-1 shadow-sm dark:border-0 text-sm font-semibold rounded-full"
+						: 'text-zinc-400 dark:bg-zinc-800 dark:text-zinc-600  '}  px-3 py-2 shadow-sm dark:border-0 text-sm font-semibold rounded-sm"
 				>
 					{isReplying
 						? $t('global.comment.reply')

@@ -19,30 +19,30 @@
 </script>
 
 <SideNavLink href={localePath("/my/profile")}
-	><Icon src={PencilSquare} theme="solid" class="h-5 w-5 shrink-0" aria-hidden="true" /> {$t('global.my_links.edit_profile')}</SideNavLink
+	><Icon src={PencilSquare} theme="solid" class="h-6 w-6" aria-hidden="true" /> {$t('global.my_links.edit_profile')}</SideNavLink
 >
 <SideNavLink href={localePath("/my/work/add")}
-	><Icon src={PlusCircle} theme="solid" class="h-5 w-5 inline" aria-hidden="true" /> {$t('global.my_links.add_work')}</SideNavLink
+	><Icon src={PlusCircle} theme="solid" class="h-6 w-6" aria-hidden="true" /> {$t('global.my_links.add_work')}</SideNavLink
 >
 <SideNavLink exact href={localePath("/my/work")}
-	><Icon src={FolderOpen} theme="solid" class="h-5 w-5 " aria-hidden="true" />{$t('global.my_links.works')}</SideNavLink
+	><Icon src={FolderOpen} theme="solid" class="h-6 w-6 " aria-hidden="true" />{$t('global.my_links.works')}</SideNavLink
 >
 <SideNavLink exact href={localePath("/my/transactions")}
-	><Icon src={CurrencyDollar} theme="solid" class="h-5 w-5 " aria-hidden="true" />{$t('global.my_links.transactions')}</SideNavLink
+	><Icon src={CurrencyDollar} theme="solid" class="h-6 w-6 " aria-hidden="true" />{$t('global.my_links.transactions')}</SideNavLink
 >
 
 <SideNavLink href={localePath(`${favorites_href}`)}
-	><Icon src={Bookmark} theme="solid" class="h-5 w-5 inline" aria-hidden="true" />{$t('global.my_links.favorites')}</SideNavLink
+	><Icon src={Bookmark} theme="solid" class="h-6 w-6 inline" aria-hidden="true" />{$t('global.my_links.favorites')}</SideNavLink
 >
 
 <SideNavLink href={localePath("/my/followers")}
-	><Icon src={UserGroup} theme="solid" class="h-5 w-5" aria-hidden="true" />{$t('global.my_links.followers')}</SideNavLink
+	><Icon src={UserGroup} theme="solid" class="h-6 w-6" aria-hidden="true" />{$t('global.my_links.followers')}</SideNavLink
 >
 
 <SideNavLink href={localePath("/my/following")}
-	><Icon src={UserPlus} theme="solid" class="h-5 w-5" aria-hidden="true" />{$t('global.my_links.following')}</SideNavLink
+	><Icon src={UserPlus} theme="solid" class="h-6 w-6" aria-hidden="true" />{$t('global.my_links.following')}</SideNavLink
 >
 
 <SideNavLink href={localePath("/my/blacklist")}
-	><Icon src={NoSymbol} theme="solid" class="h-5 w-5 " aria-hidden="true" />{$t('global.my_links.blocked')}</SideNavLink
+	><Icon src={NoSymbol} theme="solid" class="h-6 w-6 " aria-hidden="true" />{$t('global.my_links.blocked')}</SideNavLink
 >

@@ -22,7 +22,7 @@
 			title: $t('my.works_page.titles'),
 			field: 'titles',
 			valueFn(row) {
-				return row?.titles?.map((title)=>`${title.language}: ${title.title}`).join('<br>')
+				return row?.titles?.map((title) => `${title.language}: ${title.title}`).join('<br>');
 			}
 		},
 		{
@@ -32,17 +32,14 @@
 		{
 			title: '',
 			component: WorkControllsCell
-		},
-	]
+		}
+	];
 </script>
 
 <HeaderLayout title={$t('my.works')}>
-	<div slot="details" class="flex gap-3 items-center leading-3">
-		<div class="h-1 w-1 bg-gray-500 dark:bg-zinc-300 rounded-full" />
-		<span
-			>{data.gallery.length}
-			{data.gallery.length === 1 ? $t('my.work') : $t('my.works')}
-		</span>
-	</div>
+	<span slot="details"
+		>{data.gallery.length}
+		{data.gallery.length === 1 ? $t('my.work') : $t('my.works')}
+	</span>
 </HeaderLayout>
-<FilteredTable {columns} data={data.gallery}/>
+<FilteredTable {columns} data={data.gallery} />

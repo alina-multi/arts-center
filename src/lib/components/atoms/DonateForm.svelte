@@ -54,7 +54,7 @@
 </script>
 
 <div
-	class="px-6 w-full xs:px-9 sm:w-3/4 md:px-6 sm:max-md:mx-auto md:w-1/2 py-6 xl:w-full border rounded-sm shadow bg-gray-50 dark:bg-gray-800 dark:border-gray-700"
+	class="px-6 w-full xs:px-9 sm:w-3/4 md:px-6 sm:max-md:mx-auto md:w-1/2 py-6 xl:w-full border rounded-sm shadow bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-700"
 >
 	<div class=" space-y-6">
 		<div class="text-lg font-semibold text-center">{$t('global.donation.title')}</div>
@@ -100,7 +100,7 @@
 					type="number"
 					name="price-custom"
 					id="price-custom"
-					class="block text-center shadow py-2 px-1 rounded-sm border-0 text-gray-900 dark:text-white hover:ring-amber-600 dark:hover:ring-amber-600 dark:focus:ring-amber-600 dark:focus:bg-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 dark:bg-gray-600 dark:placeholder:text-gray-200 dark:ring-gray-500  focus:ring-inset focus:ring-1 focus:ring-gray-600"
+					class="block text-center shadow py-2 px-1 rounded-sm border-0 text-zinc-900 dark:text-white hover:ring-amber-600 dark:hover:ring-amber-600 dark:focus:ring-amber-600 dark:focus:bg-zinc-500 ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 dark:bg-zinc-600 dark:placeholder:text-zinc-200 dark:ring-zinc-500  focus:ring-inset focus:ring-1 focus:ring-zinc-600"
 					placeholder="10"
 				/>
 			</fieldset>
@@ -110,8 +110,8 @@
 			on:click={checkout}
 			{disabled}
 			class="{disabled
-				? 'bg-gray-400 dark:bg-zinc-500 dark:text-zinc-700 cursor-not-allowed '
-				: 'bg-gray-600  cursor-pointer  hover:scale-[1.02] transform transition-transform'}  text-white w-full rounded-sm text-[16px] font-semibold py-2 shadow flex items-center justify-center gap-3 mb-3 "
+				? 'bg-zinc-400 dark:bg-zinc-500 dark:text-zinc-700 cursor-not-allowed '
+				: 'bg-zinc-600  cursor-pointer  hover:scale-[1.02] transform transition-transform'}  text-white w-full rounded-sm text-[16px] font-semibold py-2 shadow flex items-center justify-center gap-3 mb-3 "
 		>
 			<span>{$t('global.donation.support')}</span>
 			<span>{quantity * 5} €</span>
@@ -119,6 +119,8 @@
 	</div>
 </div>
 
-<ModalWindow bind:open={open} on:close={onClose}>
-	<div {id} />
+
+
+<ModalWindow bind:open={open} on:close={onClose} class="md:w-[70%] md:mx-auto rounded-[12px]  mx-6 my-6 sm:my-20 sm:mx-20 ">
+	<div class="xl:py-12 xl:bg-zinc-900 rounded-[12px] overflow-hidden" {id} />
 </ModalWindow>

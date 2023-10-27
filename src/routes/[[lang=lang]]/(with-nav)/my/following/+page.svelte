@@ -2,22 +2,19 @@
 	import UserPreview from '$lib/components/user/UserPreview.svelte';
 	import HeaderLayout from '$lib/components/my/HeaderLayout.svelte';
 	import FollowButton from '$lib/components/atoms/buttons/FollowButton.svelte';
-	import {t} from "$lib/translations";
+	import { t } from '$lib/translations';
 
 	export let data;
 	let users = data.users;
 </script>
 
 <div>
-	<HeaderLayout title={$t("my.follow.following")}>
-		<div slot="details" class="flex gap-3 items-center leading-3">
-			<div class="h-1 w-1 bg-gray-500 dark:bg-zinc-300 rounded-full" />
-			<span class=""> {users.length} {$t("my.people")}  </span>
-		</div>
+	<HeaderLayout title={$t('my.follow.following')}>
+		<span slot="details"> {users.length} {$t('my.people')} </span>
 	</HeaderLayout>
 
 	<div
-		class="flex flex-col border-x -mt-1 border-b py-3 dark:border-t rounded-b-sm dark:border-zinc-800 dark:bg-zinc-900"
+		class="flex flex-col border-x  border-b py-3 rounded-b-sm dark:border-zinc-800 dark:bg-zinc-900"
 	>
 		{#if users?.length > 0}
 			<ul class="lg:divide-y dark:lg:divide-zinc-800">
@@ -37,7 +34,7 @@
 				{/each}
 			</ul>
 		{:else}
-			<p class="px-6 py-3">{$t("my.follow.no_following")} </p>
+			<p class="px-6 py-3">{$t('my.follow.no_following')}</p>
 		{/if}
 	</div>
 </div>

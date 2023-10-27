@@ -23,5 +23,5 @@
 	}
 </script>
 <FormGroup h1={$t('my.add_work_page.label_step_1')}>
-	<FileUploader {...transloadit} on:complete={uploadComplete} />
+<FileUploader {...transloadit} on:complete={uploadComplete} />	
 </FormGroup>

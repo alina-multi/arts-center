@@ -80,11 +80,11 @@
 					{#if user}
 						<div class="flex flex-col gap-3 pb-3">
 							<div
-								class="flex justify-between gap-3 pl-6 pr-3 min-[500px]:pr-6 items-center w-full border-y py-6 bg-gray-50"
+								class="flex justify-between gap-3 pl-6 pr-3 min-[500px]:pr-6 items-center w-full border-y dark:border-zinc-800 py-3 "
 							>
-								<AvatarLink {user} size={'w-12 h-12 '} withName nameStyles="font-semibold  " />
+								<AvatarLink {user} size={'w-12 h-12 '} withName nameStyles="font-semibold" />
 
-								<AddWorkButton small />
+								<AddWorkButton  />
 							</div>
 
 							<ul class=" flex flex-col gap-2">

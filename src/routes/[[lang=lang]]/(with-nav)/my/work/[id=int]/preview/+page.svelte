@@ -17,8 +17,8 @@
 	const maxDate = new Date(Date.now() + 60 * 60 * 24 * 60 * 1000).toISOString().split('T')[0];
 </script>
 <form method="post" use:enhance>
-	<FormGroup h1={$t('my.add_work_page.ready_to_publish')} class="my-5">
-		<div class=" max-md:flex max-md:flex-col md:columns-3">
+	<FormGroup h1={$t('my.add_work_page.ready_to_publish')} class="mt-3">
+		<div class=" max-sm:space-y-6 max-md:flex max-md:flex-col md:columns-3">
 			<CancelLinkButton
 				href={localePath(`/my/work/${data.work.id}/form`)}
 				class="block text-center"
@@ -35,9 +35,9 @@
 styles="rounded-sm font-semibold leading-6 text-sm md:text-base px-3 py-1 "
 >{$t('my.add_work_page.preview_small_image')}</Divider>
 <ul
-	class="mt-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 lg:gap-3"
+	class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 px-3"
 >
 	<WorkPreview work={data.work} />
 </ul>
-<Divider>{$t('my.add_work_page.preview_original_image')}</Divider>
+<Divider styles="rounded-sm font-semibold leading-6 text-sm md:text-base px-3 py-1 " >{$t('my.add_work_page.preview_original_image')}</Divider>
 <WorkBody {...data} />

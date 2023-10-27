@@ -7,7 +7,7 @@
 
 <button
 	on:click={logout}
-	class=" flex gap-x-3 py-2 px-6  font-semibold text-gray-700 hover:bg-gray-50 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-700 rounded-sm"
+	class=" flex gap-x-3 py-2 px-6  font-semibold text-gray-700 hover:bg-gray-50 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-700 rounded-sm w-full"
 	data-sveltekit-preload-data="tap"
 	data-sveltekit-reload
 >

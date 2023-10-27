@@ -79,7 +79,7 @@
 </script>
 
 <div
-	class="flex border border-l-transparent rounded-sm px-3 -ml-4 py-1 dark:border-zinc-700 dark:bg-zinc-800"
+	class="flex group border border-zinc-200 rounded-sm px-3 shadow  py-2 dark:border-zinc-700 dark:bg-zinc-800"
 >
 	<button
 		type="button"
@@ -89,16 +89,16 @@
 		{#if isBookmarked}
 		
 
-			<Icon
-				src={BookmarkSlash}
-				class="h-6 w-6 text-gray-400 dark:text-zinc-600"
-				aria-hidden="true"
-			/>
+		<Icon
+		src={Bookmark}
+		class="h-7 w-7 group-hover:scale-105  stroke-zinc-700  fill-zinc-700 dark:fill-zinc-500  dark:stroke-zinc-500    "
+		aria-hidden="true"
+	/>
 		{:else}
 		
 			<Icon
 				src={Bookmark}
-				class="h-6 w-6   xl:hover:stroke-zinc-500 dark:hover:stroke-zinc-100 dark:hover:fill-zinc-100 fill-white dark:fill-zinc-300 "
+				class="h-7 w-7 group-hover:scale-105  stroke-zinc-600 dark:stroke-zinc-300    "
 				aria-hidden="true"
 			/>
 		{/if}
@@ -110,6 +110,8 @@
 		condition={showInput || folders?.length === 0}
 		submitFromList={saveInExistingFolder}
 		submiInput={createFolder}
+		not_logged_in_messsage={$t('global.not_logged_in.bookmark')}
+		action_button={'save'}
 	>
 		<svelte:fragment slot="header">
 			<h2 class="text-base font-semibold">{$t('global.bookmark.save_work_to')}</h2>
@@ -139,7 +141,7 @@
 						checked={folderID === folder?.id}
 						{onChange}
 					>
-						<Icon src={Folder} class="h-6 w-6 " aria-hidden="true" />
+						<Icon src={Folder} class="h-7 w-7 " aria-hidden="true" />
 					</RadioButton>
 				</div>
 			{/each}

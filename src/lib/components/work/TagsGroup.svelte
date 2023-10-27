@@ -7,12 +7,12 @@ import {t, localePath} from '$lib/translations';
 {#if tags.length > 0}
 
 			<div
-				class="{media} flex-wrap items-center justify-start border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 sm:p-3 gap-3 md:py-[9px] p-3 rounded-sm  bg-gray-100"
+				class="{media} flex-wrap items-center justify-start border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 sm:p-6 gap-6 md:py-6  p-3 rounded-sm"
 			>
 	
 				<span class="font-semibold">{$t('global.filters.tags')}:</span>
 				{#each tags as { title } (title)}
-					<TagButton href={localePath(`/tag/${title}/popular`)} title={title} styles={'px-3 py-0.5 dark:border-zinc-700 '}  />
+					<TagButton href={localePath(`/tag/${title}/popular`)} title={title} styles={'px-3 py-1 dark:border-zinc-700 '}  />
 				{/each}
 			
 				

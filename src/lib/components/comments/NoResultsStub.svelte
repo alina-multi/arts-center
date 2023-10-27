@@ -5,7 +5,7 @@
 
 
 </script>
-<div class="{$user ? " rounded-sm border-transparent" :"border-t-transparent dark:border-t-transparent"} flex items-end justify-center gap-3 border   dark:border-zinc-800 dark:bg-zinc-900 pt-6 pb-12 rounded-b-sm">
+<div class="{$user ? " rounded-sm border-transparent" :"border-t-transparent dark:border-t-transparent"} flex items-end justify-center gap-3 border bg-zinc-50 border-zinc-100   dark:border-zinc-800 dark:bg-zinc-900 pt-6 pb-12 rounded-b-sm">
 	<div class="flex flex-col items-end  text-gray-500 dark:text-zinc-100 gap-1">
 		<span > {$t('global.comment.stub.no_comments')}</span>
 		<span class="leading-4"> {$t('global.comment.stub.be_first')}</span>

@@ -12,18 +12,20 @@
 		rating: number,
 		open: boolean,
 		votable_id: string;
-		let currentUser = $user;
+
 		let url = '/api/vote';
 
 	async function like() {
-		if (!currentUser) {
+		console.log(isLiked)
+		console.log($user)
+		if (!$user) {
 			open = true;
 			return;
 		}
 		if (!isDownVoted) {
 			isLiked = true;
 			rating += 1;
-			votes?.unshift(currentUser);
+			votes?.unshift($user);
 		    fetchData('POST', url, { vote: 1, votable_type, votable_id });
 			
 			return;
@@ -36,14 +38,14 @@
 	}
 
 	async function cancelVote() {
-		if (!currentUser) {
+		if (!$user) {
 			open = true;
 			return;
 		}
 		isLiked = false;
 		rating -= 1;
 		votes?.some((vote, index) => {
-			if (vote.id.toString() === currentUser.id.toString()) {
+			if (vote.id.toString() === $user.id.toString()) {
 				votes?.splice(index, 1);
 			}
 		});
@@ -59,7 +61,7 @@
 			theme="solid"
 			class=" {size}   {votable_type === 'comment'
 				? 'fill-blue-700 '
-				: 'fill-gray-700 dark:fill-blue-600 '}"
+				: 'fill-zinc-700 dark:fill-zinc-500'}"
 		/></button
 	>
 {:else}
@@ -67,7 +69,7 @@
 		><Icon
 			src={HandThumbUp}
 			theme="outline"
-			class=" {size} stroke-zinc-700 hover:scale-110 dark:stroke-zinc-100 hover:stroke-grzincay-700  "
+			class=" {size} stroke-zinc-700 hover:scale-110 dark:stroke-zinc-100   "
 		/></button
 	>
 {/if}
