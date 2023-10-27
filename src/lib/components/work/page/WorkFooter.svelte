@@ -16,18 +16,17 @@
 	class="flex max-lg:flex-col justify-beetwen items-stretch lg:items-start lg:mt-6 gap-6 dark:text-gray-300"
 >
 	<div class="flex flex-col sm:w-full lg:flex-col gap-6 lg:w-2/6">
-		<div
-			class="hidden lg:flex flex-col border border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900 rounded-sm shadow-sm md:max-lg:w-1/2"
-		>
-			<div class="bg-zinc-600 dark:bg-zinc-800 dark:ring-1 dark:ring-zinc-700 text-white dark:text-zinc-200 font-semibold py-3 px-6">
-				Owner of <span class=" font-normal ml-2">"{languageFind(work.titles)?.title}""</span>
-			</div>
-			{#each work.owners as user}
+		{#each work.owners as user}
+			<div
+				class="hidden lg:flex flex-col border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-sm shadow-sm md:max-lg:w-1/2"
+			>
 				<div class="px-6 py-6"><UserPreview {user} /></div>
-			{/each}
-		</div>
+			</div>
 
-		<DonateForm />
+			{#if user.verified_at}
+				<DonateForm {user} />
+			{/if}
+		{/each}
 
 		{#if !$user}
 			<div><AuthStub /></div>

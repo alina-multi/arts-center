@@ -12,6 +12,7 @@
 	let description = languageFind(work.titles)?.description
 	let author = work.owners.map((owner) => owner.name).join(', ');
 	let image = work?.full?.original?.src;
+
 	
 </script>
 
