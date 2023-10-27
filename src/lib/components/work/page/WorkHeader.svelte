@@ -12,7 +12,7 @@
 	export let isMy = false;
 	let title = languageFind(work.titles)?.title;
 	let modalOpen = false;
-	console.log(work.owners)
+
 </script>
 
 <div class=" flex flex-col gap-3 dark:text-gray-400">

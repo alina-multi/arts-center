@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { Bookmark, BookmarkSlash, Folder, FolderPlus } from '@steeze-ui/heroicons';
+	import { Bookmark,  Folder, FolderPlus } from '@steeze-ui/heroicons';
 	import toast from 'svelte-french-toast';
 	import { fetchData } from '$lib/helpers/fetchData';
 	import RadioButton from '$lib/components/input/RadioButton.svelte';

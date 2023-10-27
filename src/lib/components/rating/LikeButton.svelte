@@ -16,8 +16,6 @@
 		let url = '/api/vote';
 
 	async function like() {
-		console.log(isLiked)
-		console.log($user)
 		if (!$user) {
 			open = true;
 			return;
