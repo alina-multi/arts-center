@@ -12,7 +12,19 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = [
-        'to_user_id', 'from_user_id', 'from_email', 'event', 'amount_gross', 'amount_net', 'message', 'type'
+        'to_user_id',
+        'from_user_id',
+        'from_email',
+        'event',
+        'amount_gross',
+        'amount_net',
+        'message',
+        'type',
+        'currency',
+        'stripe_net',
+        'stripe_fee',
+        'our_fee',
+        'payment_intent'
     ];
 
     protected $casts = [

@@ -2,10 +2,12 @@
 
 namespace App\Listeners;
 
+use App\Jobs\GetPaymentNetJob;
 use App\Models\Transaction;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Laravel\Cashier\Events\WebhookReceived;
+use Stripe\Checkout\Session;
 
 class CheckoutSessionCompleted
 {
@@ -16,27 +18,27 @@ class CheckoutSessionCompleted
     {
         if ($event->payload['type'] === 'checkout.session.completed') {
             DB::transaction(function () use ($event) {
-                $total = Arr::get($event->payload, 'data.object.amount_total');
-                $user_id = Arr::get($event->payload, 'data.object.metadata.user_id');
-                $type = Arr::get($event->payload, 'data.object.metadata.type');
-                $email = Arr::get($event->payload, 'data.object.customer_details.email');
-                $customFields = collect(Arr::get($event->payload, 'data.object.custom_fields'));
-                $message = null;
-                if ($messageObj = $customFields->where('key', 'message')->first()) {
-                    $message = Arr::get($messageObj, 'text.value');
+                $stripeEvent = \Stripe\Event::constructFrom($event->payload);
+                /** @var Session $session */
+                $session = $stripeEvent->data->object;
+                // Because stipe custom fields are so not convenient!
+                $message = Arr::get($event->payload, 'data.object.custom_fields.0.text.value');
+                if ($message) {
                     $message = strip_tags($message);
                 }
-
-                $net = round($total * 0.9);
-                Transaction::create([
-                    'to_user_id' => $user_id,
-                    'type' => $type,
-                    'from_email' => $email,
+                $transaction = Transaction::create([
+                    'to_user_id' => $session->metadata->user_id,
+                    'type' => $session->metadata->type,
+                    'from_email' => $session->customer_details->email,
                     'event' => $event->payload,
-                    'amount_gross' => $total,
-                    'amount_net' => $net,
-                    'message' => $message
+                    'amount_gross' => $session->amount_total,
+                    'currency' => $session->currency,
+                    'payment_intent' => $session->payment_intent,
+                    'message' => $message,
+                    'event' => $event->payload
                 ]);
+
+                GetPaymentNetJob::dispatchSync($transaction);
             });
         }
     }

@@ -16,14 +16,14 @@ class TransactionFactory extends Factory
      */
     public function definition(): array
     {
-        $amount = rand(1,10) * 500;
-        $net = round($amount*0,9);
+        $amount = rand(1, 10) * 500;
         return [
-            'from_user_id'=>null,
-            'from_email'=> $this->faker->email,
+            'from_user_id' => null,
+            'from_email' => $this->faker->email,
             'event' => [],
             'amount_gross' => $amount,
-            'amount_net' => $net
+            'to_user_id' => rand(0, 20),
+            'type' => 1
         ];
     }
 }
