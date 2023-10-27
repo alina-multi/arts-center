@@ -82,7 +82,7 @@
 	"transactions": {
 		"amount": "Amount",
 		"balance": "Balance {{total}}$",
-		"commissions_and_payout": "Site commission is 10% and includes all payment processor and other third party commissions for us to receive money of your behalf. Withdraw commissions depend on payment method. Minimum withdraw amount is 100$. At this stage of site development all payouts are manual and would be carried out once a month to your bank account. We don't collect taxes on your behalf, so please do that in accordance with your local regulations.",
+		"commissions_and_payout": "Site commission is 8% plus payment processor commissions. Withdraw commissions depend on payment method. Minimum withdraw amount is 100$. At this stage of site development all payouts are manual and would be carried out once a month to your bank account. We don't collect taxes on your behalf, so please do that in accordance with your local regulations.",
 		"date": "Date",
 		"header": "Transactions",
 		"message": "Message",
