@@ -54,11 +54,11 @@
 </script>
 
 <div
-	class="px-6 w-full xs:px-9 sm:w-3/4 md:px-6 sm:max-md:mx-auto md:w-1/2 py-6 xl:w-full border rounded-sm shadow bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-700"
+	class="px-6 w-full xs:px-9 sm:w- md:px-6 sm:max-md:mx-auto  py-6 xl:w-full border rounded-sm shadow bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-700"
 >
 	<div class=" space-y-6">
 		<div class="text-lg font-semibold text-center">{$t('global.donation.title')}</div>
-		<div class=" flex items-center justify-between sm:justify-around sm:max-md:gap-6">
+		<div class=" flex items-center justify-between sm:max-md:justify-center md:justify-around lg:justify-between xl:justify-around sm:max-md:gap-6">
 			<TubeIcon />
 
 			<Icon src={XMark} class="w-6  text-gray-600  dark:text-white" />
