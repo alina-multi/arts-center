@@ -9,7 +9,6 @@ export const user_basic_data_raw = {
 	country: null,
 	rating: 0,
 	verified_at: null
-	
 } satisfies UserBasicRaw;
 
 export const UserBasicData = {
@@ -21,13 +20,12 @@ export const UserBasicData = {
 	verified_at: null
 } as UserBasic;
 
-
 export const UserMeData = {
 	...UserBasicData,
 	blacklists: [],
 	follows: {
 		user: [],
-		work: [],
+		work: []
 	},
 	favorites: {
 		works: [],
@@ -36,4 +34,4 @@ export const UserMeData = {
 	approved_at: null,
 	email_verified_at: null,
 	admin: false
-}
+};
