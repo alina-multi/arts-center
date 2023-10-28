@@ -35,7 +35,7 @@
 		</div>
 
 		<div slot="panel" class="py-1">
-			{#if $$slots.description}
+			{#if $$slots?.description}
 				<slot name="description" />
 			{/if}
 		</div>

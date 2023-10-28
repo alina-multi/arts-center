@@ -33,6 +33,10 @@
 				clientSecret
 			});
 			stripeCheckout.mount(`#${id}`);
+			gtag('event', 'donate_modal_opened', {
+				quantity,
+				username: user.username
+			});
 		} catch (e) {
 			open = false;
 			await tick();

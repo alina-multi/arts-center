@@ -121,6 +121,9 @@ devDependencies:
   '@types/cookie':
     specifier: ^0.5.2
     version: 0.5.2
+  '@types/gtag.js':
+    specifier: ^0.0.17
+    version: 0.0.17
   '@typescript-eslint/eslint-plugin':
     specifier: ^6.7.4
     version: 6.7.4(@typescript-eslint/parser@6.7.4)(eslint@8.50.0)(typescript@5.2.2)
@@ -5124,6 +5127,10 @@ packages:
     resolution: {integrity: sha512-MhzcwU8aUygZroVwL2jeYk6JisJrPl/oov/gsgGCue9mkgl9wjGbzReYQClxiUgFDnib9FuHqTndccKeZKxTRw==}
     dependencies:
       '@types/node': 20.8.2
+    dev: true
+
+  /@types/gtag.js@0.0.17:
+    resolution: {integrity: sha512-OsSO6Yyuygr3DeeTovOY0ppLiAVHoXg4CSanO9/vzDQCV+e8pkZNE+HR2dVxGJfUbtRe2IqzC97PYuHSNUepJw==}
     dev: true
 
   /@types/http-errors@2.0.2:

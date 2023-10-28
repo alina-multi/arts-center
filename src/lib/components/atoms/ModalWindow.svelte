@@ -28,13 +28,13 @@
 			class="m-24 z-10 items-end justify-center sm:items-center transform overflow-y-auto rounded-sm bg-white dark:bg-zinc-900 dark:text-zinc-300 transition-all p-6 {clazz}"
 		>
 			<div class="flex flex-col gap-3">
-				{#if $$slots.header}
+				{#if $$slots?.header}
 					<DialogTitle as="h3" class="text-lg font-medium leading-6 ">
 						<slot name="header" />
 					</DialogTitle>
 				{/if}
 				<slot />
-				{#if $$slots.footer}
+				{#if $$slots?.footer}
 					<slot name="footer" />
 				{/if}
 			</div>
