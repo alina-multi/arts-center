@@ -32,10 +32,11 @@ export function query(
 		},
 		where: {
 			...where,
-			NOT: {
-				country: {
-					equals: 'ru'
-				}
+			country: {
+				not: 'ru'
+			},
+			approved_at: {
+				not: null
 			}
 		},
 		orderBy
