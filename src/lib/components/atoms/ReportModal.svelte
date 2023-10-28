@@ -91,6 +91,7 @@
 	length={categories.length}
 	submitFromList={onCategory}
 	submiInput={onOtherCategory}
+	not_logged_in_messsage={$t('global.buttons.report').toLowerCase()}
 >
 	<h2 slot="header" class="text-base font-semibold">{$t('global.report.title')}</h2>
 	<svelte:fragment slot="list">

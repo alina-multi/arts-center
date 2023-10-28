@@ -45,7 +45,7 @@ export const WorkData = {
 	height: null,
 	length: null,
 	tags: [],
-	votes: [],
+	votes: [user_basic_data_raw],
 	full: null,
 	images: []
 } satisfies Work;

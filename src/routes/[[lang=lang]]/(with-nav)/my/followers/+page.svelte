@@ -12,13 +12,12 @@
 <div>
 	<HeaderLayout title={$t('my.follow.followers')}>
 		<div slot="details" class="flex gap-3 items-center leading-3">
-			<div class="h-1 w-1 bg-gray-500 dark:bg-zinc-300 rounded-full" />
-			<span> {followers.length} {$t('my.people')} </span>
+			{followers.length} {$t('my.people')} 
 		</div>
 	</HeaderLayout>
 
 	<div
-		class="flex flex-col border-x -mt-1 border-b py-3 dark:border-t rounded-b-sm dark:border-zinc-800 dark:bg-zinc-900"
+		class="flex flex-col border-x border-b py-3 dark:border-t rounded-b-sm dark:border-zinc-800 dark:bg-zinc-900"
 	>
 		{#if followers?.length > 0}
 			<ul class="lg:divide-y dark:lg:divide-zinc-800">

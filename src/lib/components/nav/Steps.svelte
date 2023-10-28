@@ -5,7 +5,7 @@
 
 <nav aria-label="Progress">
 	<ol
-		class="divide-y divide-gray-300 dark:divide-zinc-800 rounded-sm border border-gray-30 dark:border-zinc-800 dark:bg-zinc-900 md:flex md:divide-y-0"
+		class="divide-y divide-zinc-300 dark:divide-zinc-700  rounded-sm border border-zinc-300 dark:border-zinc-700 dark:bg-zinc-800 md:flex md:divide-y-0 shadow"
 	>
 		{#each steps as { label, href }, i}
 			<li class="relative md:flex md:flex-1">
@@ -14,7 +14,7 @@
 					<a {href} data-sveltekit-preload-data="off" class="group flex w-full items-center">
 						<span class="flex items-center px-6 py-3 text-sm font-medium">
 							<span
-								class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 group-hover:bg-blue-800"
+								class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-emerald-600 group-hover:bg-emerald-500"
 							>
 								<svg
 									class="h-6 w-6 text-white"
@@ -29,7 +29,7 @@
 									/>
 								</svg>
 							</span>
-							<span class="ml-4 text-sm font-medium text-gray-900 dark:text-zinc-100">{label}</span>
+							<span class="ml-4 text-sm font-medium text-zinc-900 dark:text-white">{label}</span>
 						</span>
 					</a>
 				{/if}
@@ -37,25 +37,25 @@
 					<!-- Current Step -->
 					<a {href} class="flex items-center px-6 py-3 text-sm font-medium" aria-current="step">
 						<span
-							class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-blue-600"
+							class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-emerald-600 font-semibold"
 						>
-							<span class="text-blue-600">{i + 1}</span>
+							<span class="text-emerald-600 ">{i + 1}</span>
 						</span>
-						<span class="ml-4 text-sm font-medium text-blue-600">{label}</span>
+						<span class="ml-4 text-sm font-semibold  text-emerald-600">{label}</span>
 					</a>
 				{/if}
 				{#if i + 1 > currentStep}
-					<a {href} class="group flex items-center">
+					<a {href} class="group flex items-center hover:cursor-default">
 						<span class="flex items-center px-6 py-3 text-sm font-medium">
 							<span
-								class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 dark:border-zinc-600 group-hover:border-gray-400 dark:group-hover:border-zinc-500"
+								class="flex h-10 w-10 flex-shrink-0 items-center justify-center  rounded-full border-2 border-zinc-300 dark:border-zinc-400 "
 							>
-								<span class="text-gray-500 group-hover:text-gray-900 dark:group-hover:text-zinc-400"
+								<span class=" text-zinc-600 dark:text-zinc-400 "
 									>{i + 1}</span
 								>
 							</span>
 							<span
-								class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900 dark:group-hover:text-zinc-400"
+								class="ml-4 text-sm font-medium text-zinc-600 dark:text-zinc-400"
 								>{label}</span
 							>
 						</span>
@@ -63,9 +63,9 @@
 				{/if}
 				{#if i + 1 < steps.length}
 					<!-- Arrow separator for lg screens and up -->
-					<div class="absolute right-0 top-0 hidden h-full w-5 md:block" aria-hidden="true">
+					<div class="absolute right-0 top-0 hidden h-full w-5 md:block " aria-hidden="true">
 						<svg
-							class="h-full w-full text-gray-300 dark:text-zinc-700"
+							class="h-full w-full text-zinc-300 dark:text-zinc-700"
 							viewBox="0 0 22 80"
 							fill="none"
 							preserveAspectRatio="none"

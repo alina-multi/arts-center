@@ -12,19 +12,19 @@
 	export let isMy = false;
 	let title = languageFind(work.titles)?.title;
 	let modalOpen = false;
+
 </script>
 
 <div class=" flex flex-col gap-3 dark:text-gray-400">
 	<div class="flex justify-between items-center">
-		<div class="flex flex-col">
+
 			{#each work.owners as user}
-				<div class="flex items-center gap-3">
+				<div class="flex items-center gap-3 ">
 					<AvatarLink {user} withName size={'w-8 h-8'} />
 
-					<FollowButton size={'sm'} {user} />
+					<div><FollowButton size={'sm'} {user} /></div>
 				</div>
 			{/each}
-		</div>
 
 		<div>
 			<EllipsisButton workId={work.id} {isMy} type="vertical">

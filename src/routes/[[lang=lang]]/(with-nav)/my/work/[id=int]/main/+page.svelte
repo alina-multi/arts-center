@@ -4,7 +4,7 @@
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
 	import Picture from '$lib/components/atoms/Picture.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { Trash, InformationCircle } from '@steeze-ui/heroicons';
+	import {  InformationCircle } from '@steeze-ui/heroicons';
 	import Cropper from 'svelte-easy-crop';
 	import ActionModal from '$lib/components/my/ActionModal.svelte';
 	import { magicFetch } from '$lib/helpers/fetchData';
@@ -44,34 +44,36 @@
 {#if data.work?.full}
 	<NextStepButton href={localePath(`/my/work/${data.work.id}/form`)}/>
 	<FormGroup h1={$t('my.add_work_page.main_image')}>
-		<div class='grid grid-cols-1 sm:grid-cols-2'>
+		<div class='grid grid-cols-1 sm:grid-cols-2 gap-6'>
 			<div>
-				<h3 class='text-center font-bold'>{$t('my.add_work_page.main_preview')}</h3>
+				<h3 class='text-center font-bold mb-3'>{$t('my.add_work_page.main_preview')}</h3>
 				<Picture class='inline-block' photo={data.work.preview} />
 			</div>
 			<div>
-				<h3 class='text-center font-bold'>{$t('my.add_work_page.main_full')}</h3>
+				<h3 class='text-center font-bold mb-3'>{$t('my.add_work_page.main_full')}</h3>
 				<Picture class='inline-block w-full h-auto' photo={data.work.full} />
 			</div>
 		</div>
 	</FormGroup>
-{:else}
-	{$t('my.add_work_page.please_select_main')}
-{/if}
+	{/if}
+
 
 {#if data.work?.images?.length}
-	<FormGroup h1={$t('my.add_work_page.additional_images')}>
-		<div class='mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-6 xl:gap-x-8'>
+	<FormGroup h1={$t('my.add_work_page.additional_images')} >
+		{#if !data.work?.full}
+		{$t('my.add_work_page.please_select_main')}
+		{/if}
+		<div class=' grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:gap-6 '>
 			{#each data.work.images as image}
-				<div>
+				<div class=" gap-3 text-center flex flex-col">
 					<button on:click={()=>cropImage=image}
-									class='border-2 border-zinc-100 hover:border-green-500 cursor-pointer rounded-sm'>
-						<Picture photo={image} />
-						{$t('my.buttons.set_main')}
+									class='cursor-pointer rounded-sm hover:text-green-500 hover:scale-[1.01] transition hover:opacity-80'>
+						<Picture photo={image} class="w-full"/>
+						<div class="py-2 font-semibold border-x border-zinc-300 border-b  hover:border-green-600 ">{$t('my.buttons.set_main') }</div>
 					</button>
-					<button on:click={()=>imageToDelete=image} class='text-center w-full bg-zinc-100 hover:bg-red-100'>
+					<button on:click={()=>imageToDelete=image} class='text-center w-full  px-3 border hover:text-red-500 hover:bg-zinc-50 py-1 text-sm text-red-300'>
 						{$t('my.buttons.delete_image')}
-						<Icon src={Trash} class='h-4 w-4 inline-block' />
+						
 					</button>
 				</div>
 			{/each}

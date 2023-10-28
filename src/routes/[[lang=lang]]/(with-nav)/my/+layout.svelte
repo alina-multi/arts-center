@@ -18,8 +18,8 @@
 		{/if}
 		<slot />
 		<div slot="nav" class="text-sm ">
-			<div class="bg-gray-600 dark:bg-zinc-700  h-20 w-full rounded-t-sm shadow-lg " />
-			<div class="text-center -mt-10 pb-3 border-b dark:border-b dark:border-zinc-800 ">
+			<div class="bg-zinc-600 dark:bg-zinc-800  h-20 w-full rounded-t-sm shadow-lg " />
+			<div class="text-center -mt-10 pb-3 border-b dark:border-b dark:border-zinc-800 flex flex-col justify-center items-center gap-3">
 				<AvatarLink user={$user} size="h-20 w-20" />
 				<a
 					href={localePath(`/${$user.username}`)}

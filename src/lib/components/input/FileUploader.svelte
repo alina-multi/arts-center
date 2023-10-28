@@ -62,5 +62,5 @@
 </script>
 
 {#if uppy}
-	<Dashboard  {props} {uppy} plugins={['Webcam']} />
+<div class="xl:mx-auto"><Dashboard  {props} {uppy} plugins={['Webcam']} /></div>	
 {/if}

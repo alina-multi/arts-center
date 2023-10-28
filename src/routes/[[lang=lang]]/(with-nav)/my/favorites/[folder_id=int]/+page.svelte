@@ -51,26 +51,25 @@
 <div>
 	<HeaderLayout {title}>
 		<div slot="details" class="flex gap-3 items-center leading-3">
-			<div class="h-1 w-1 bg-gray-500 rounded-full dark:bg-zinc-300" />
 			<span>
 				{data.favorites.works.length} {$t('my.favorite.saved')}
 				{data.favorites.works.length === 1 ? $t('my.work') : $t('my.works')}</span
 			>
 		</div>
-		<div slot="buttons" class="flex items-center gap-3 dark:text-zinc-300 text-gray-700">
+		<div slot="buttons" class="flex items-center gap-3 text-zinc-100">
 			<button
 				on:click={() => ((modalRename = true), (newName = title))}
-				class="  hover:text-gray-500 dark:hover:text-zinc-50 cursor-pointer"
+				class="  hover:scale-105 cursor-pointer"
 			>
-				<Icon src={PencilSquare} class="w-6 h-6" />
+				<Icon src={PencilSquare} class="w-7 h-7" />
 			</button>
 
 			{#if gallery.length === 0}
 				<button
 					on:click={() => (modalDelete = true)}
-					class=" hover:text-gray-500 dark:hover:text-zinc-50 cursor-pointer"
+					class=" hover:text-red-500 hover:scale-105  cursor-pointer"
 				>
-					<Icon src={Trash} class="w-6 h-6 " />
+					<Icon src={Trash} class="w-7 h-7 " />
 				</button>
 			{/if}
 		</div>
@@ -97,7 +96,7 @@
 	bind:open={modalRename}
 	action={renameFolder}
 	actionName="Save"
-	className="bg-blue-600 hover:bg-blue-500 "
+	class="bg-blue-600 hover:bg-blue-500 "
 >
 	<div slot="title" class="relative">
 		{#if error}

@@ -34,8 +34,8 @@
 {/if}
 
 {#if media === 'mobile'}
-	<div class="mt-auto mb-12 border-y dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 text-">
-		<ul class="flex flex-col justify-center gap-3 py-6 pl-6">
+	<div class="mt-auto mb-12 border-y dark:border-zinc-700 text-zinc-600 dark:text-zinc-100 text-">
+		<ul class="flex flex-col justify-center gap-3 py-3 pl-6">
 			<li>
 				<a href={localePath('/s/about')}>{$t('global.footer.about')}</a>
 			</li>

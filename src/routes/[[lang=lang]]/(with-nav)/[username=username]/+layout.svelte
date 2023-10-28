@@ -22,7 +22,7 @@
 			{/if}
 			{#if data.user.ratings?.length}
 			<div
-				class="border w-full dark:bg-zinc-900 rounded-sm dark:border-zinc-800 py-6 px-6 xs:px-9 sm:w-3/4 sm:max-md:mx-auto md:w-1/2 md:px-6 xl:w-full space-y-2"
+				class="border w-full dark:bg-zinc-900 shrink-0 rounded-sm dark:border-zinc-800 py-6 px-6 xs:px-9 sm:w-3/4 sm:max-md:mx-auto md:w-1/2 md:px-6 xl:w-full space-y-2"
 			>
 				<TotalRating user={data.user} />
 

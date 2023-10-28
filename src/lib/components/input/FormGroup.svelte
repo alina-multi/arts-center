@@ -5,19 +5,20 @@
 </script>
 
 <div
-	class="{clazz} rounded-sm overflow-hidden border bg-white shadow-sm dark:bg-zinc-800 dark:border-zinc-700"
+	class="{clazz} rounded-sm overflow-hidden  bg-white   dark:bg-zinc-800 dark:border-zinc-700 "
 >
 	{#if h1}
 		<h2
-			class="text-base font-semibold leading-7 text-gray-900 dark:text-white border-b py-3 px-9 shadow-sm dark:border-b-zinc-700"
+			class="text-base font-semibold leading-7 bg-zinc-600 dark:dark:bg-zinc-900 dark:border border-zinc-700  text-white dark:text-white  py-3 px-9 shadow-sm "
 		>
 			{h1}
 		</h2>
 	{/if}
-	{#if h2}
-		<p class="px-9 pt-3 mt-1 text-sm leading-6 text-gray-600 dark:text-zinc-400">{h2}</p>
+
+	<div class="flex flex-col gap-6 px-6 md:px-9 py-6 border-x border-b   border-zinc-200 dark:border-zinc-700">
+		{#if h2}
+		<p class="text-sm leading-6 text-zinc-600 dark:text-zinc-300">{h2}</p>
 	{/if}
-	<div class="flex flex-col gap-6 px-9 py-6">
 		<slot />
 	</div>
 </div>

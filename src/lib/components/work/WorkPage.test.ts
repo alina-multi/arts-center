@@ -6,7 +6,7 @@ import type { Comment } from '$lib/interfaces/Comment';
 
 import { loadTranslations } from '$lib/translations';
 import { user } from '$lib/stores/auth';
-import { UserBasicData } from '$test/data/UserData';
+import { UserMeData } from '$test/data/UserData';
 import { WorkData } from '$test/data/WorkData';
 
 interface WorkPageProps {
@@ -28,7 +28,7 @@ describe('Work page', async () => {
 		expect(editButton).not.toBeInTheDocument();
 	});
 	it('My work', async () => {
-		await user.set(UserBasicData);
+		await user.set(UserMeData);
 		render(WorkPage, {
 			work: WorkData,
 			comments: []

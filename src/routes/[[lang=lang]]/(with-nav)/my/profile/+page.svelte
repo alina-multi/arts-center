@@ -46,7 +46,7 @@
 			<p class=" text-sm text-gray-600 py-1 dark:text-zinc-400">
 				{$t('my.edit_page.bio_tip')}
 			</p>
-			<div class="grid grid-cols-2 gap-3">
+			<div class=" space-y-6">
 				{#each availableLocales as locale}
 					<div class="col">
 						<InputGroup
@@ -60,6 +60,7 @@
 								{error}
 								name="bios[{locale}]"
 								value={profile?.bios?.[locale] ?? ''}
+								rows={6}
 							/>
 						</InputGroup>
 					</div>
@@ -93,7 +94,16 @@
 		</InputGroup>
 
 		<InputGroup
-			label={$t('my.edit_page.password')}
+			label={$t('my.edit_page.current_password')}
+			error={form?.errors?.current_password}
+			let:elementId={id}
+			let:hasError={error}
+		>
+			<PasswordInput {id} {error} name="current_password" autocomplete="off" />
+		</InputGroup>
+
+		<InputGroup
+			label={$t('my.edit_page.new_password')}
 			error={form?.errors?.password}
 			let:elementId={id}
 			let:hasError={error}
@@ -105,14 +115,7 @@
 			<PasswordInput {id} name="password_confirmation" autocomplete="off" />
 		</InputGroup>
 
-		<InputGroup
-			label={$t('my.edit_page.current_password')}
-			error={form?.errors?.current_password}
-			let:elementId={id}
-			let:hasError={error}
-		>
-			<PasswordInput {id} {error} name="current_password" autocomplete="off" />
-		</InputGroup>
+		
 	</FormGroup>
 	<slot><ButtonsGroup /></slot>
 </form>

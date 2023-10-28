@@ -12,7 +12,7 @@
 		allowDownVote = false,
 		votable_type: string,
 		showVotedPreview = false,
-		size = 'w-6 h-6';
+		size = 'w-7 h-7';
 	let votes = entity?.votes;
 	let rating = entity?.rating;
 	let isLiked = entity?.votes?.some((vote) => vote?.id?.toString() === $user?.id?.toString());
@@ -26,14 +26,14 @@
 	<VotedList {votes} {isLiked} currentUser={$user} />
 {/if}
 
-<div class="inline-flex items-center gap-2 dark:text-zinc-100 cursor-pointer">
+<div class="inline-flex items-center gap-2 dark:text-zinc-100 cursor-pointer ">
 	<div
 		class="flex items-center gap-2 {votable_type === 'work'
-			? 'border  px-4 py-1 rounded-sm rounded-r-none '
-			: 'hover:text-zinc-100'}  dark:bg-zinc-800 bg-white dark:border-zinc-700 dark:text-white"
+			? 'border  border-zinc-200 pr-4 rounded-sm shadow'
+			: 'hover:text-zinc-100'}  dark:bg-zinc-800  dark:border-zinc-700 dark:text-white"
 	>
 		{#if votable_type === 'work'}
-			<span class=" flex items-center border-r dark:border-zinc-700 pr-3"
+			<span class=" flex text-lg items-center border-r dark:border-zinc-700   dark:bg-zinc-700 px-4 mr-2  py-2 text-zinc-900 dark:text-white"
 				>
 				<span class="max-sm:hidden block"> {$t('global.voting.like')} </span>
 				<span class="ml-1">{rating}</span></span

@@ -13,9 +13,9 @@
 	let showLikedByModal = false;
 </script>
 
-<div class="flex items-center gap-1 dark:text-zinc-300 ">
+<div class="flex items-center gap-1 dark:text-zinc-300 text-base xl:text-lg">
 	{#if votes.length > 0}
-		<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointe mr-1">
+		<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointe mr-1 ">
 			{$t('global.voting.liked_by')}
 		</button>
 
@@ -39,21 +39,21 @@
 	{/if}
 </div>
 
-<ModalWindow bind:open={showLikedByModal}>
-	<h2 slot="header" class="flex justify-between font-semibold">{$t('global.voting.liked_by')}</h2>
+<ModalWindow bind:open={showLikedByModal} class="xl:w-1/3 rounded-sm my-24  sm:w-3/4 md:w-2/3">
+	<h2 slot="header" class="flex justify-between font-semibold  pb-3 pt-6 px-6">{$t('global.voting.liked_by')}</h2>
 
 	<ul
-		class="flex flex-col gap-3 max-h-96 overflow-y-scroll px-3 border-y py-3 dark:border-zinc-800"
+		class=" flex flex-col gap-3 lg:max-h-96 h-2/3 overflow-y-scroll px-6 border-y py-3 dark:border-zinc-800 "
 	>
 		{#each votes as user}
 			<li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-				<AvatarLink {user} withName size={'w-8 h-8'} nameStyles={'text-sm font-semibold text-black dark:text-white'} />
+				<AvatarLink {user} withName size={'w-9 h-9'} nameStyles={'text-sm font-semibold text-black dark:text-white'} />
 			</li>
 		{/each}
 	</ul>
-	<div slot="footer" class="text-right">
+	<div slot="footer" class="text-right px-6 pb-5">
 		<button
-			class="px-3 py-1 rounded-full text-sm text-zinc-500 hover:ring-1 hover:ring-zinc-300 dark:ring-zinc-700"
+			class="py-1 px-3   rounded-sm  text-zinc-500 hover:ring-1 hover:ring-zinc-300 dark:ring-zinc-700"
 			on:click={() => (showLikedByModal = false)}
 		>
 		{$t('global.buttons.close')}
