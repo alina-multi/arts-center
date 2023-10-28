@@ -25,7 +25,8 @@ class ApproveRecord extends Action implements ShouldQueue
     public function handle(ActionFields $fields, Collection $models)
     {
         $models->each(function ($model) {
-            $model->update(['approved_at'=>now()]);
+            $model->approved_at = now();
+            $model->save();
             $this->markAsFinished($model);
         });
     }
