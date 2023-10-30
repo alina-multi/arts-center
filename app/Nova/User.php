@@ -7,6 +7,7 @@ use App\Nova\Actions\ClearCacheByTag;
 use App\Nova\Actions\SendBlogPost;
 use App\Nova\Actions\VerifyUser;
 use App\Nova\Filters\ModelApproved;
+use App\Nova\Filters\UserCountry;
 use App\Nova\Filters\UserNotCountry;
 use App\Nova\Metrics\NewUsers;
 use App\Nova\Metrics\UsersPerDay;
@@ -123,7 +124,8 @@ class User extends Resource
     {
         return [
             new ModelApproved(),
-            new UserNotCountry()
+            new UserNotCountry(),
+            new UserCountry()
         ];
     }
 
