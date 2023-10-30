@@ -2,7 +2,7 @@ import type { Handle, HandleServerError } from '@sveltejs/kit';
 import { checkUrlLocale, defaultLocale } from '$lib/translations';
 import * as SentryNode from '@sentry/node';
 import '@sentry/tracing';
-import { PUBLIC_ENV } from '$env/static/public';
+import { env } from '$env/dynamic/public';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.params.lang ??= defaultLocale;
@@ -16,7 +16,7 @@ SentryNode.init({
 	tracesSampleRate: 0.01,
 	// Add the Http integration for tracing
 	integrations: [new SentryNode.Integrations.Http()],
-	environment: PUBLIC_ENV
+	environment: env.PUBLIC_ENV
 });
 
 SentryNode.setTag('svelteKit', 'server');
@@ -24,13 +24,13 @@ SentryNode.setTag('svelteKit', 'server');
 // use handleError to report errors during server-side data loading
 export const handleError = (({ error, event }) => {
 	// We don't need not found errors in sentry
-	if (['staging', 'production'].includes(PUBLIC_ENV)) {
+	if (['staging', 'production'].includes(env.PUBLIC_ENV)) {
 		if (!error?.message.startsWith('Not found:')) {
 			SentryNode.captureException(error, { contexts: { sveltekit: { event } } });
 		}
 	}
 
-	if (PUBLIC_ENV !== 'development') {
+	if (env.PUBLIC_ENV !== 'development') {
 		return;
 	}
 	return {

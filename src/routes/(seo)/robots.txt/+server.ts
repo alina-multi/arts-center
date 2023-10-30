@@ -1,4 +1,4 @@
-import { PUBLIC_ENV } from '$env/static/public';
+import { env } from '$env/dynamic/public';
 
 const robots_prod = `
 User-agent: *
@@ -13,5 +13,5 @@ Disallow: /
 `;
 
 export async function GET() {
-	return new Response(PUBLIC_ENV === 'production' ? robots_prod : robots_other);
+	return new Response(env.PUBLIC_ENV === 'production' ? robots_prod : robots_other);
 }

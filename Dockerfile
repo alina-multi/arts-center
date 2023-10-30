@@ -1,7 +1,6 @@
 FROM node:20-alpine
 
 WORKDIR /var/www
-ENV PUBLIC_ENV=production
 COPY package.json .
 COPY pnpm-lock.yaml .
 COPY postcss.config.cjs .
