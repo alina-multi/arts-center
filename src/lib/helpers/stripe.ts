@@ -1,11 +1,11 @@
 import type { Stripe } from '@stripe/stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import { env } from '$env/dynamic/public';
+import { PUBLIC_STIPE } from '$env/static/public';
 let stripeClient: Stripe;
 
 export async function getStripe(): Promise<Stripe> {
 	if (!stripeClient) {
-		stripeClient = (await loadStripe(env.PUBLIC_STIPE)) as Stripe;
+		stripeClient = (await loadStripe(PUBLIC_STIPE)) as Stripe;
 	}
 	return stripeClient;
 }

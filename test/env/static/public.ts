@@ -1,0 +1,1 @@
+export const PUBLIC_STIPE="mysql://root@localhost:3306/arts"

@@ -9,7 +9,8 @@ export default defineConfig({
 			$lib: path.resolve(__dirname, './src/lib'),
 			// We need this for tests/mocks
 			$app: path.resolve(__dirname, './test/app'),
-			$test: path.resolve(__dirname, './test')
+			$test: path.resolve(__dirname, './test'),
+			$env:  path.resolve(__dirname, './test/env'),
 		}
 	},
 	test: {
