@@ -27,7 +27,7 @@ class SendBlogPost extends Action implements ShouldQueue
      */
     public function handle(ActionFields $fields, Collection $models)
     {
-        $post = Post::firstOrFail('id', $fields['post']);
+        $post = Post::where('id', $fields['post'])->firstOrFail();
         $models->each(function (User $user) use ($post) {
             $user->notify(new BlogPostContent($post));
             $this->markAsFinished($user);
