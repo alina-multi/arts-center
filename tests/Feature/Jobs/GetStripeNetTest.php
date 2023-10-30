@@ -7,6 +7,7 @@ uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 
 test('Get stripe net', function () {
+    Event::fake();
     $transaction = \App\Models\Transaction::factory()->createQuietly([
         'amount_gross' => 1500,
         'amount_net' => null,
@@ -25,4 +26,5 @@ test('Get stripe net', function () {
         'stripe_fee' => 75,
         'our_fee' => 119,
     ]);
+    Event::assertDispatched(\App\Events\TransactionCreated::class);
 });

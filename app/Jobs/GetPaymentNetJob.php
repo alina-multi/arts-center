@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\TransactionCreated;
 use App\Models\Transaction;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -39,5 +40,6 @@ class GetPaymentNetJob implements ShouldQueue
             'amount_net' => $amount_net,
             'our_fee' => $bt->net - $amount_net
         ]);
+        TransactionCreated::dispatch($this->transaction);
     }
 }

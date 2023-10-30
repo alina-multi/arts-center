@@ -32,10 +32,6 @@ class Transaction extends Model
         'type' => TransactionTypes::class
     ];
 
-    protected $dispatchesEvents = [
-        'created' => TransactionCreated::class
-    ];
-
     public function to()
     {
         return $this->belongsTo(User::class, 'to_user_id');

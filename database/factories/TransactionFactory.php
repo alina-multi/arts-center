@@ -23,7 +23,8 @@ class TransactionFactory extends Factory
             'event' => [],
             'amount_gross' => $amount,
             'to_user_id' => rand(0, 20),
-            'type' => 1
+            'type' => 1,
+            'payment_intent'=> $this->faker->uuid
         ];
     }
 }
