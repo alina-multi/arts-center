@@ -29,6 +29,7 @@
 		"tests/**/*.ts",
 		"tests/**/*.svelte",
 		"./vitest.setup.ts",
-		"./test/**/*.ts"
+		"./test/**/*.ts",
+		"src/app.html"
 	]
 }

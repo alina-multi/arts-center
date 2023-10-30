@@ -10,7 +10,7 @@ export default defineConfig({
 			// We need this for tests/mocks
 			$app: path.resolve(__dirname, './test/app'),
 			$test: path.resolve(__dirname, './test'),
-			$env:  path.resolve(__dirname, './test/env'),
+			$env: path.resolve(__dirname, './test/env')
 		}
 	},
 	test: {

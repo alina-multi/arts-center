@@ -6,7 +6,7 @@
 	export let data: PageData;
 
 	if (browser) {
-		gtag('event', 'donate_confirmed', {
+		window.gtag('event', 'donate_confirmed', {
 			username: data.user.username
 		});
 	}
