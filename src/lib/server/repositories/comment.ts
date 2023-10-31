@@ -1,4 +1,6 @@
 import { prisma } from '$lib/server/database/prisma';
+import { imageSelect } from '$lib/server/repositories/image';
+
 
 export function get(commentable_id: bigint, commentable_type: string) {
 	return prisma.comments.findMany({
@@ -15,7 +17,7 @@ export function get(commentable_id: bigint, commentable_type: string) {
 					id: true,
 					username: true,
 					name: true,
-					photo: true
+					photo: imageSelect
 				}
 			}
 		},
