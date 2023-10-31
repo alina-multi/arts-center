@@ -51,13 +51,6 @@
 			}
 		}
 
-		if (type === 'order' && title === 'popular' && selected.tags === 'all') {
-			url = '/';
-		}
-		if (type === 'tags' && title === 'all' && selected.order === 'popular') {
-			url = '/';
-		}
-
 		return localePath(url);
 	};
 </script>

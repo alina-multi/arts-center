@@ -1,30 +1,26 @@
 import type { PageServerLoad } from './$types';
-import { indexQuery } from '$lib/server/repositories/gallery';
-import { worksPreviewMap } from '$lib/server/mappers/gallery';
-import { getCategories } from '$lib/server/repositories/tag';
-import { tagsMap } from '$lib/server/mappers/tag';
-import { cacheGet } from '$lib/server/database/cache';
+import { query } from '$lib/server/repositories/user';
+import { usersMap } from '$lib/server/mappers/users';
+import { latest } from '$lib/server/repositories/comment';
+import { lastCommentsMap } from '$lib/server/mappers/comments';
 
-export const load = (async ({ setHeaders, params }) => {
+export const load = (async ({ setHeaders }) => {
 	setHeaders({
-		'cache-control': 'max-age=6000'
+		'cache-control': 'max-age=60'
 	});
-
-	return cacheGet(
-		'page',
-		`index.${params.lang}`,
-		async () => {
-			const [gallery, categories] = await Promise.all([
-				indexQuery().then((works) => worksPreviewMap(works)),
-				getCategories().then((categories) => tagsMap(categories))
-			]);
-
-			return {
-				gallery,
-				categories,
-				params: { order: 'popular', tag: 'all', page: 1 }
-			};
+	const users = await query(
+		{
+			verified_at: { not: null }
 		},
-		60 * 60
+		{
+			verified_at: 'desc'
+		}
 	);
+
+	const comments = await latest();
+
+	return {
+		users: await usersMap(users),
+		comments: await lastCommentsMap(comments)
+	};
 }) satisfies PageServerLoad;

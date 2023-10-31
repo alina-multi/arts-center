@@ -7,13 +7,13 @@ type ImageWithRelations = {
 
 export function picturesMap(images: ImageRaw[] | []): Picture[] | [] {
 	return images
-		.filter((image) => image && image.variants && image.variants.length)
+		?.filter((image) => image && image.variants && image.variants.length)
 		?.map((image) => pictureMap(image));
 }
 
 export function imagablePicturesMap(images: ImageWithRelations[] | []): Picture[] | [] {
 	return images
-		.filter((image) => image.image?.variants?.length > 0)
+		?.filter((image) => image.image?.variants?.length > 0)
 		?.map((image) => pictureMap(image.image));
 }
 

@@ -5,6 +5,31 @@ import { userSelect } from './user';
 import { imageSelect } from '$lib/server/repositories/image';
 import { prisma } from '$lib/server/database/prisma';
 
+export const gallerySelect = {
+	id: true,
+	published_at: true,
+	rating: true,
+	comments: true,
+	hosts: true,
+	price: true,
+	preview: imageSelect,
+	titles: {
+		select: {
+			title: true,
+			language: true
+		}
+	},
+	owners: {
+		select: {
+			user: {
+				select: userSelect
+			}
+		},
+		where: {
+			ownable_type: 'work'
+		}
+	}
+};
 export function query(
 	where: Prisma.worksWhereInput = {},
 	orderBy: Prisma.worksOrderByWithRelationInput = {},
@@ -17,30 +42,8 @@ export function query(
 		take: perPage,
 		skip: page * perPage,
 		select: {
-			id: true,
-			published_at: true,
-			rating: true,
-			comments: true,
-			hosts: true,
-			price: true,
-			preview: imageSelect,
-			...select,
-			titles: {
-				select: {
-					title: true,
-					language: true
-				}
-			},
-			owners: {
-				select: {
-					user: {
-						select: userSelect
-					}
-				},
-				where: {
-					ownable_type: 'work'
-				}
-			}
+			...gallerySelect,
+			...select
 		},
 		where: {
 			status: { gte: 40 },
@@ -142,7 +145,7 @@ export async function filteredQuery(tag: string, lang: string, order = 'popular'
 		where = {
 			...where,
 			rating: {
-				gte: 20
+				gte: 5
 			}
 		};
 	}

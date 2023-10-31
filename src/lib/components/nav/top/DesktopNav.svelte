@@ -20,7 +20,7 @@
 			<rect width="30" height="8" y="8" fill="#FFD700" />
 		</svg>
 	</div>
-	<TopNavLink exact href={localePath('/')}>{$t('global.menu.gallery')}</TopNavLink>
+	<TopNavLink exact href={localePath('/tag/all/popular')}>{$t('global.menu.gallery')}</TopNavLink>
 
 	<TopNavLink href={localePath('/users')}>{$t('global.menu.users')}</TopNavLink>
 
