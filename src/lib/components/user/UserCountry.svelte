@@ -3,7 +3,7 @@
 	import { MapPin } from '@steeze-ui/heroicons';
 	import { locale } from '$lib/translations';
 	export let user;
-	let country;
+	$: country = null;
 	$: if (user?.country?.length === 2) {
 		const regionNames = new Intl.DisplayNames([$locale], { type: 'region' });
 		country = regionNames.of(user.country);
