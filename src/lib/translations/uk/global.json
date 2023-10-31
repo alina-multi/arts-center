@@ -1,11 +1,13 @@
 {
 	"bookmark": {
-		"create_folder": "",
-		"enter_folder_name": "",
+		"create_folder": "Створити коллекцію",
+		"enter_folder_name": "Введіть назву",
 		"save_work_to": "",
-		"saved_to": "",
-		"select_folder": "",
-		"work_saved": ""
+		"saved_to": "Збережено до коллекції",
+		"select_folder": "Виберіть коллекцію",
+		"work_saved": "Збережено",
+		"save": "Зберегти",
+		"saved": "Збережено"
 	},
 	"buttons": {
 		"addwork": "Додати роботу",

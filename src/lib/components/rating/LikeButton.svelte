@@ -59,7 +59,7 @@
 			theme="solid"
 			class=" {size}   {votable_type === 'comment'
 				? 'fill-blue-700 '
-				: 'fill-zinc-700 dark:fill-zinc-500'}"
+				: 'fill-blue-400 dark:fill-zinc-500'}"
 		/></button
 	>
 {:else}
