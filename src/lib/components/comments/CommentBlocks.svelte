@@ -55,19 +55,19 @@
 	<h3 class="sr-only">Comments</h3>
 	{#if $user} <CommentInput onSubmit={addNewComment} bind:value /> {/if}
 	{#if comments.length > 0}
-	<div id="parentBlock">
+	<ul id="parentBlock">
 		{#each parentComments as comment (comment.id)}
 			{#if comment.id === new_comment?.id}
-				<div
+				<li
 					class=" transition-opacity delay-500 {new_comment_loaded ? 'opacity-100' : 'opacity-50'}"
 				>
 					<CommentBlock {comment} {commentable_id} bind:parentComments  />
-				</div>
+	</li>
 			{:else}
 				<CommentBlock {comment} {commentable_id} bind:parentComments  />
 			{/if}
 		{/each}
-	</div>
+			</ul>
 	{:else}
 	<NoResultsStub />
 	{/if}

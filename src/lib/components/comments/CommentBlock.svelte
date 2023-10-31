@@ -103,7 +103,7 @@
 	}
 </script>
 
-<div
+<li
 	class="text-sm text-gray-800 dark:text-gray-400 transition-opacity delay-0 {isDelited
 		? 'opacity-50'
 		: 'opacity-100'}"
@@ -134,23 +134,23 @@
 		{/if}
 
 		{#if answers.length > 0}
-			<div class="lg:ml-12">
+			<ul class="lg:ml-12">
 				<div class=" border-l pl-6 lg:pl-9 dark:border-zinc-800">
 					{#each answers as reply (reply.id)}
 						{#if reply.id.toString() === answer?.id.toString()}
-							<div
+							<li
 								class=" transition-opacity delay-500 {new_comment_loaded
 									? 'opacity-100'
 									: 'opacity-50'}"
 							>
 								<svelte:self comment={reply} {commentable_id} bind:parentComments={answers} />
-							</div>
+								</li>
 						{:else}
 							<svelte:self comment={reply} {commentable_id} bind:parentComments={answers} />
 						{/if}
 					{/each}
 				</div>
-			</div>
+			</ul>
 		{/if}
 	</div>
-</div>
+</li>
