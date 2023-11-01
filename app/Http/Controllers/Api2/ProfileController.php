@@ -21,7 +21,9 @@ class ProfileController extends Controller
     public function update(ProfileRequest $request)
     {
         $user = $request->user();
-        $user->fill($request->toArray());
+        $user->fill($request->except([
+            'username'
+        ]));
         if ($request->has('password')) {
             $user->password = Hash::make($request->password);
         }

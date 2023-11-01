@@ -151,5 +151,6 @@ return [
 
     'currency' => 'USD',
     'storage_disk' => env('NOVA_STORAGE_DISK', 'public'),
+    'license_key' => env('NOVA_LICENSE_KEY', 'YB0aINcaivjtRdbRExdSZSFnxlX1XAFTpkcpK7zFZBjcqx9E82'),
 
 ];
