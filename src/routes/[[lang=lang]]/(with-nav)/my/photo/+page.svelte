@@ -5,6 +5,7 @@
 	import { browser } from '$app/environment';
 	import { magicFetch } from '$lib/helpers/fetchData';
 	import { invalidateAll } from '$app/navigation';
+	import { checkAuth } from '$lib/stores/auth';
 	export let data;
 	const imageEditorOptions = {
 		actions: {
@@ -33,6 +34,7 @@
 			image
 		});
 		await invalidateAll()
+		await checkAuth()
 	}
 </script>
 
