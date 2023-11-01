@@ -1,11 +1,11 @@
 {
 	"bookmark": {
-		"create_folder": "",
-		"enter_folder_name": "",
-		"save_work_to": "",
-		"saved_to": "",
-		"select_folder": "",
-		"work_saved": ""
+		"create_folder": "Створити папку",
+		"enter_folder_name": "Введіть назву папки",
+		"save_work_to": "Зберегти роботу в",
+		"saved_to": "Збережено в {{folderName}} ",
+		"select_folder": "Виберіть папку",
+		"work_saved": "Робота збережена"
 	},
 	"buttons": {
 		"addwork": "Додати роботу",
@@ -23,7 +23,7 @@
 		"register": "Зареєструватися",
 		"report": "Поскаржитись",
 		"save": "Зберегти",
-		"send": "",
+		"send": "Надіслати",
 		"show": "Показати",
 		"show_less": "Згорнути",
 		"show_more": "Показати більше",
@@ -68,8 +68,8 @@
 			"support": "Якщо у вас виникли запитання, пишіть на адресу info@arts.center",
 			"title": "Дякуємо за вашу щедру пожертву!"
 		},
-		"support": "",
-		"title": ""
+		"support": "Підтримка",
+		"title": "Купуйте приладдя для художника"
 	},
 	"error": {
 		"api": "Невідома помилка бакенд сервера"
@@ -117,6 +117,7 @@
 	},
 	"my_links": {
 		"add_work": "Додати роботу",
+		"avatar": "Завантажити аватар",
 		"blocked": "Заблоковано",
 		"edit_profile": "Редагувати профіль",
 		"favorites": "Улюблені",
@@ -200,9 +201,9 @@
 		"why_subscribe_title": "Навіщо підписуватися і які переваги?"
 	},
 	"user": {
-		"bio": "",
+		"bio": "біографія",
 		"on_arts_since": "митець на ARTS від",
-		"rating_by_category": "",
+		"rating_by_category": "Рейтинг за категоріями",
 		"total_rating": "Pейтинг"
 	},
 	"voting": {

@@ -7,10 +7,8 @@
 	import { availableLocales } from '$lib/translations';
 	import InputGroup from '$lib/components/input/InputGroup.svelte';
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
-	import AvatarInput from '$lib/components/user/AvatarInput.svelte';
 	import ButtonsGroup from '$lib/components/forms/ButtonsGroup.svelte';
 	import { t } from '$lib/translations';
-	import PrefixedInput from '$lib/components/input/PrefixedInput.svelte';
 
 	export let data: PageData;
 	export let form: ActionData;
@@ -19,19 +17,6 @@
 
 <form method="post" enctype="multipart/form-data" class="space-y-3">
 	<FormGroup h1={$t('my.edit_page.personal_info')} h2={$t('my.edit_page.warning_personal_info')}>
-		<InputGroup error={form?.errors?.avatar} let:elementId={id}>
-			<AvatarInput {id} currentAvatar={profile?.photo} />
-		</InputGroup>
-
-<!--		<InputGroup-->
-<!--			label={$t('my.edit_page.username')}-->
-<!--			error={form?.errors?.username}-->
-<!--			let:elementId={id}-->
-<!--			let:hasError={error}-->
-<!--		>-->
-<!--			<PrefixedInput name='username' disabled value={profile.username} {id} {error}>arts.center/</PrefixedInput>-->
-<!--		</InputGroup>-->
-
 		<InputGroup
 			label={$t('my.edit_page.full_name')}
 			error={form?.errors?.email}
