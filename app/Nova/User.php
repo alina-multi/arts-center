@@ -9,6 +9,7 @@ use App\Nova\Actions\VerifyUser;
 use App\Nova\Filters\ModelApproved;
 use App\Nova\Filters\UserCountry;
 use App\Nova\Filters\UserNotCountry;
+use App\Nova\Filters\UserVerified;
 use App\Nova\Metrics\NewUsers;
 use App\Nova\Metrics\UsersPerDay;
 use Laravel\Nova\Fields\Boolean;
@@ -124,6 +125,7 @@ class User extends Resource
     {
         return [
             new ModelApproved(),
+            new UserVerified(),
             new UserNotCountry(),
             new UserCountry()
         ];
