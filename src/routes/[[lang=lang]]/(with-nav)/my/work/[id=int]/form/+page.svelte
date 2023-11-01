@@ -13,7 +13,7 @@
 
 	export let data: PageData;
 	export let form: ActionData;
-	const isPublished = data?.work?.status > 5;
+	const isPublished = data?.work?.status > 5 || data?.work?.published_at;
 	let deleteModal = false;
 	// If we don't have title yet, add :)
 	$: {
