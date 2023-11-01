@@ -14,7 +14,7 @@ export let user;
 		<UserPreview {user} />
 	</div>
 	<div
-		class=" sm:p-3 lg:p-0 lg:-my-[1px] flex justify-end sm:w-1/2 dark:border-gray-700 gap-3 overflow-hidden w-full"
+		class=" sm:px-3 lg:p-0 lg:-my-[1px] flex justify-end sm:w-1/2 dark:border-gray-700 gap-3 overflow-hidden w-full"
 	>
 		<LastWorks works={user.works} />
 	</div>
