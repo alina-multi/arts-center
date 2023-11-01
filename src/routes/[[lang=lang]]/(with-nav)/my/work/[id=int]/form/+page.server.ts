@@ -23,27 +23,5 @@ export const actions = {
 			...(await response.json()),
 			work: data
 		};
-	},
-	delete: async (event) => {
-		const response = await api({
-			method: 'DELETE',
-			path: `/api2/draft/${event.params.id}`,
-			event
-		});
-		if (response.ok) {
-			throw redirect(302, localePath(`/my/work/draft`));
-		}
-		return await response.json();
-	},
-	todrafts: async (event) => {
-		const response = await api({
-			method: 'DELETE',
-			path: `/api2/draft/${event.params.id}/draft`,
-			event
-		});
-		if (response.ok) {
-			throw redirect(302, localePath(`/my/work/draft`));
-		}
-		return await response.json();
 	}
 } satisfies Actions;
