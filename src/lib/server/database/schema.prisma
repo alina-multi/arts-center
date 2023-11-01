@@ -79,6 +79,7 @@ model comments {
   depth            Int       @default(0) @db.TinyInt
   rating           Int       @default(1) @db.SmallInt
   owner            users?    @relation(fields: [user_id], references: [id])
+  work             works?    @relation(fields: [commentable_id], references: [id])
 }
 
 model failed_jobs {
@@ -477,6 +478,7 @@ model works {
   votes         votes[]
   tags          taggables[]
   images        imageables[]
+  commentsDummy comments[]
 
   @@index([show_en], map: "works_show_en_index")
   @@index([show_ru], map: "works_show_ru_index")

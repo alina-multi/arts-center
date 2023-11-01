@@ -23,6 +23,15 @@
 			<AvatarInput {id} currentAvatar={profile?.photo} />
 		</InputGroup>
 
+<!--		<InputGroup-->
+<!--			label={$t('my.edit_page.username')}-->
+<!--			error={form?.errors?.username}-->
+<!--			let:elementId={id}-->
+<!--			let:hasError={error}-->
+<!--		>-->
+<!--			<PrefixedInput name='username' disabled value={profile.username} {id} {error}>arts.center/</PrefixedInput>-->
+<!--		</InputGroup>-->
+
 		<InputGroup
 			label={$t('my.edit_page.full_name')}
 			error={form?.errors?.email}
@@ -30,15 +39,6 @@
 			let:hasError={error}
 		>
 			<TextInput name="name" value={profile.name} {id} {error} />
-		</InputGroup>
-
-		<InputGroup
-			label={$t('my.edit_page.username')}
-			error={form?.errors?.username}
-			let:elementId={id}
-			let:hasError={error}
-		>
-			<PrefixedInput name='username' value={profile.username} {id} {error}>arts.center/</PrefixedInput>
 		</InputGroup>
 
 		<div class="col-span-full">

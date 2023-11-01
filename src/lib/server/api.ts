@@ -63,6 +63,5 @@ export async function proxyApi(event: RequestEvent) {
 		data,
 		event
 	});
-
-	return new Response(await response.text());
+	return new Response(await response.text() || null, response);
 }

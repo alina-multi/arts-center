@@ -1,6 +1,7 @@
 import type { CommentRaw } from '$lib/interfaces/CommentRaw';
 import type { Comment } from '$lib/interfaces/Comment';
 import { ownerMap } from './owners';
+import { workPreviewMap } from '$lib/server/mappers/work';
 
 export function commentsMap(comments: CommentRaw[]): Comment[] {
 	const tree = [];
@@ -35,4 +36,11 @@ export function commentMap(comment: CommentRaw): Comment {
 		rating: comment.rating,
 		owner: ownerMap(comment.owner)
 	};
+}
+
+export function lastCommentsMap(comments: CommentRaw[]): Comment {
+	return comments.map((comment) => ({
+		...commentMap(comment),
+		work: workPreviewMap(comment.work)
+	}));
 }

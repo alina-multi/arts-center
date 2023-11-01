@@ -1,6 +1,4 @@
 <script lang="ts">
-	import UserPreview from '$lib/components/user/UserPreview.svelte';
-	import LastWorks from '$lib/components/atoms/LastWorks.svelte';
 	import type { UserPreview as Users } from '$lib/interfaces/User.ts';
 	import UsersFilters from '$lib/components/filters/UsersFilters.svelte';
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
@@ -8,6 +6,7 @@
 	import {parse} from 'devalue';
 	import SideMenu from '$lib/components/nav/side/SideMenu.svelte';
 	import cat from '$lib/images/cat-icons.svg';
+	import UserPreviewWithWorks from '$lib/components/user/UserPreviewWithWorks.svelte';
 
 	export let users: Users[], categories, countries, params;
 
@@ -48,22 +47,7 @@
 		</div>
 	{:else}
 		{#each users as user}
-			<div
-				class="flex flex-col items-center sm:flex-row sm;gap-3  shadow-sm border  rounded-sm w-full dark:bg-zinc-900 dark:border-zinc-800 {user.subscribed
-					? 'bg-zinc-50 dark:bg-blue-900 shadow-2xl'
-					: 'bg-white'}"
-			>
-				<div
-					class=" flex items-center grow w-full sm:w-1/2 text-lg px-3 sm:max-lg:pt-3 py-3 gap-3 overflow-hidden"
-				>
-					<UserPreview {user} />
-				</div>
-				<div
-					class=" sm:p-3 lg:p-0 lg:-my-[1px] flex justify-end sm:w-1/2 dark:border-gray-700 gap-3 overflow-hidden w-full"
-				>
-					<LastWorks works={user.works} />
-				</div>
-			</div>
+			<UserPreviewWithWorks {user}/>
 		{/each}
 		<InfiniteScroll
 			{hasMore}

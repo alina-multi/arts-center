@@ -212,5 +212,10 @@
 		"like": "Like",
 		"liked_by": "Liked by",
 		"others": "others"
+	},
+	"main_page": {
+		"last_verified": "Last verified artists",
+		"discussions": "Discussions",
+		"comment_work": "commented on the work"
 	}
 }

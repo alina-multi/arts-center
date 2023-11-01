@@ -12,7 +12,8 @@ export const userSelect = {
 	country: true,
 	rating: true,
 	verified_at: true,
-	approved_at: true
+	approved_at: true,
+	created_at: true
 };
 
 const PAGE_SIZE = 10;
@@ -27,8 +28,7 @@ export function query(
 		take: PAGE_SIZE,
 		skip: page * PAGE_SIZE,
 		select: {
-			...userSelect,
-			created_at: true
+			...userSelect
 		},
 		where: {
 			...where,
@@ -47,7 +47,6 @@ export function get(username: string) {
 	return prisma.users.findUnique({
 		select: {
 			...userSelect,
-			created_at: true,
 			ratings: {
 				select: {
 					rating: true,

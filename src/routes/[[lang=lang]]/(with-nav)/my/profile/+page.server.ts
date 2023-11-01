@@ -24,7 +24,6 @@ export const actions = {
 		const data = {
 			country: form.get('country'),
 			name: form.get('name'),
-			username: form.get('username'),
 			email: form.get('email'),
 			password: form.get('password') || undefined,
 			password_confirmation: form.get('password_confirmation') || undefined,
