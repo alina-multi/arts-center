@@ -25,9 +25,10 @@
 	}
 </script>
 
-<div
+<a
+href="#{comment.id}"
 	class=" {isEditing ? 'hidden ' : ''} 
-				relative prose prose-sm border  border-zinc-200 p-3 pb-6 rounded-md bg-zinc-50 dark:bg-zinc-900 dark:text-white dark:border-zinc-800 space-y-2"
+				relative prose prose-sm border block border-zinc-200 p-3 pb-6 rounded-md bg-zinc-50 dark:bg-zinc-900 dark:text-white dark:border-zinc-800 space-y-2"
 >
 	{#if comment.id === editing_comment?.id}
 		<div
@@ -54,7 +55,7 @@
 			<RatingPreviewVote entity={comment} allowDownVote size={'w-4 h-4'} votable_type={'comment'} />
 		</div>
 	</div>
-</div>
+</a>
 
 {#if modalOpenNotLogged}
 	<AuthModal bind:open={modalOpenNotLogged} type={$t('global.not_logged_in.reply')} />
