@@ -12,7 +12,8 @@ use App\Http\Controllers\Api2\{
     FavoriteFolderController,
     FeedbackController,
     WorkImageController,
-    CheckoutController
+    CheckoutController,
+    PhotoController
 };
 
 /*
@@ -49,6 +50,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('favorite', FavoriteController::class. '@destroy');
     Route::apiResource('favorite-folder', FavoriteFolderController::class);
     Route::post('feedback', FeedbackController::class. '@store');
+    Route::post('photo', PhotoController::class);
 });
 
 // These ones are not requited to have auth
