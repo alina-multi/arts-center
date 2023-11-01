@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api2;
 
 use App\Enums\ImageFolders;
+use App\Events\MeChanged;
 use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Rules\UploadedImage;
@@ -19,6 +20,7 @@ class PhotoController extends Controller
         $image = ImageHelper::createFromUploaded($request->image, ImageFolders::Photos->value, $user->id);
         $user->image_id = $image->id;
         $user->save();
+        MeChanged::dispatch($request->cookie('laravel_session'));
         return response()->noContent();
     }
 }
