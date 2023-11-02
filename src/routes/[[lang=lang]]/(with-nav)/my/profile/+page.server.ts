@@ -34,21 +34,11 @@ export const actions = {
 			)
 		};
 
-		const photo = form.get('photo') as File;
-		if (user?.username && photo?.size) {
-			const extension = photo.name.split('.').pop();
-			const key = `temp/photos/${Date.now()}/${Math.random()}.${extension}`;
-			if (await uploadFile(photo, key)) {
-				data.photo = key;
-			} else {
-				errors.photo = 'Failed to upload photo';
-			}
-		}
-
 		const response = await api({ method: 'PUT', path: '/api2/profile', data, event });
 		if (!response.ok) {
 			const json = await response.json();
 			return {
+				data,
 				errors: { ...errors, ...json.errors }
 			};
 		}

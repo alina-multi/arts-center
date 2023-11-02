@@ -12,9 +12,12 @@
 
 	export let data: PageData;
 	export let form: ActionData;
-	const profile = data.profile.data;
+	let profile;
+	$: profile =  {
+		...data.profile.data,
+		...form?.data ?? {}
+	};
 </script>
-
 <form method="post" enctype="multipart/form-data" class="space-y-3">
 	<FormGroup h1={$t('my.edit_page.personal_info')} h2={$t('my.edit_page.warning_personal_info')}>
 		<InputGroup
@@ -36,13 +39,10 @@
 					<div class="col">
 						<InputGroup
 							label={locale}
-							error={form?.errors?.country}
 							let:elementId={id}
-							let:hasError={error}
 						>
 							<TextAreaInput
 								{id}
-								{error}
 								name="bios[{locale}]"
 								value={profile?.bios?.[locale] ?? ''}
 								rows={6}
