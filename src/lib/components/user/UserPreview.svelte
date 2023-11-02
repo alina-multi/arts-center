@@ -5,8 +5,8 @@
 	import FollowButton from '$lib/components/atoms/buttons/FollowButton.svelte';
 	import Crown from '$lib/components/atoms/CrownIcon.svelte';
 	import type { User } from '$lib/interfaces/User';
-	import { Icon } from '@steeze-ui/svelte-icon';
-	import { CheckBadge } from '@steeze-ui/heroicons';
+	import VerificationBadge from '../atoms/VerificationBadge.svelte';
+	
 	export let user: User,
 		avatar_size = 'h-16 w-16',
 		crown_size = 'w-4 h-4',
@@ -34,9 +34,7 @@
 			>
 				<div class="flex gap-2">
 					{user.name}
-					{#if user.verified_at}
-						<Icon src={CheckBadge} theme="solid" class="w-5 h-5 fill-emerald-500" />
-					{/if}
+					<VerificationBadge user_verified={user.verified_at} />
 				</div>
 			</a>
 			{#if followButton}

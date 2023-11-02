@@ -5,6 +5,7 @@
 	import Country from './UserCountry.svelte';
 	import OnArtSince from '../atoms/OnArtsSince.svelte';
 	import Crown from '../atoms/CrownIcon.svelte';
+	import VerificationBadge from '../atoms/VerificationBadge.svelte';
 
 	export let user: User;
 
@@ -24,8 +25,9 @@
 			</div>
 
 			<div class="flex gap-3 items-start sm:items-center xl:px-6">
-				<p class="text-lg text-center md:text-xl font-semibold text-gray-900 dark:text-gray-100">
+				<p class="text-lg text-center md:text-xl font-semibold text-gray-900 dark:text-gray-100 flex gap-2">
 					{user.name}
+					<VerificationBadge user_verified={user.verified_at} size="w-6 h-6" />
 				</p>
 			</div>
 
