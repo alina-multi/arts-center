@@ -7,6 +7,8 @@
 	import { languageFind } from '$lib/translations';
 	import ReportModal from '$lib/components/atoms/ReportModal.svelte';
 	import type { Work } from '$lib/interfaces/Work';
+	import Time from 'svelte-time/src/Time.svelte';
+
 
 	export let work: Work;
 	export let isMy = false;
@@ -35,13 +37,15 @@
 		</div>
 	</div>
 
-	<div class="flex justify-between items-start">
+	<div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-1">
 		<h1 class="text-xl sm:text-2xl text-gray-00 dark:text-gray-100">
 			{title}
 		</h1>
+	<span class="text-zinc-500 text-sm" >Published	<Time relative timestamp={work.published_at} /></span>
 
-		<PriceLabel price={work.price} style={'px-3 py-1 '} />
+	 <PriceLabel price={work.price} style={'px-3 py-1 '} /> 
 	</div>
+	
 </div>
 
 {#if modalOpen}

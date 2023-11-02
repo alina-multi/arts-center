@@ -29,11 +29,11 @@
 <div class="inline-flex items-center gap-2 dark:text-zinc-100 cursor-pointer ">
 	<div
 		class="flex items-center gap-2 {votable_type === 'work'
-			? 'border  border-zinc-200 pr-4 rounded-sm shadow'
+			? 'border  border-zinc-200 pr-2 xs:pr-4 rounded-sm shadow'
 			: 'hover:text-zinc-100'}  dark:bg-zinc-800  dark:border-zinc-700 dark:text-white"
 	>
 		{#if votable_type === 'work'}
-			<span class=" flex text-lg items-center border-r dark:border-zinc-700   dark:bg-zinc-700 px-4 mr-2  py-2 text-zinc-900 dark:text-white"
+			<span class=" flex text-lg items-center border-r dark:border-zinc-700   dark:bg-zinc-700 px-2 xs:px-4 xs:mr-2  py-2 text-zinc-900 dark:text-white"
 				>
 				<span class="max-sm:hidden block"> {$t('global.voting.like')} </span>
 				<span class="ml-1">{rating}</span></span

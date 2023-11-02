@@ -79,28 +79,32 @@
 </script>
 
 <div
-	class="flex group border border-zinc-200 rounded-sm px-3 shadow  py-2 dark:border-zinc-700 dark:bg-zinc-800"
+	class="flex group border border-zinc-200 rounded-sm  shadow   dark:border-zinc-700 dark:bg-zinc-800"
 >
+
+
 	<button
 		type="button"
 		on:click={isBookmarked ? remove : () => (open = true)}
-		class=" text-sm dark:text-zinc-300 text-zinc-600 dark:border-zinc-700"
+		class=" text-sm dark:text-zinc-300 text-zinc-600 dark:border-zinc-700  flex items-center"
 	>
 		{#if isBookmarked}
-		
-
-		<Icon
+		<span class="text-lg  border-r dark:border-zinc-700 px-2 xs:px-3 py-2 max-md:hidden text-zinc-400">{$t('global.bookmark.saved')}</span>
+<span class="px-2 xs:px-3 py-2">
+	<Icon
 		src={Bookmark}
-		class="h-7 w-7 group-hover:scale-105  stroke-zinc-700  fill-zinc-700 dark:fill-zinc-500  dark:stroke-zinc-500    "
+		class="h-7 w-7 group-hover:scale-105  stroke-amber-400  fill-amber-400 dark:fill-amber-500  dark:stroke-amber-500    "
 		aria-hidden="true"
 	/>
-		{:else}
+</span>
 		
-			<Icon
+		{:else}
+		<span class="text-lg  border-r dark:border-zinc-700 px-2 xs:px-3 py-2 max-md:hidden">{$t('global.bookmark.save')}</span>
+		<span class="px-2 xs:px-3 py-2">	<Icon
 				src={Bookmark}
 				class="h-7 w-7 group-hover:scale-105  stroke-zinc-600 dark:stroke-zinc-300    "
 				aria-hidden="true"
-			/>
+			/></span>
 		{/if}
 	</button>
 

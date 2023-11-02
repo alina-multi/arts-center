@@ -1,4 +1,5 @@
 import { prisma } from '$lib/server/database/prisma';
+import { imageSelect } from '$lib/server/repositories/image';
 import { gallerySelect } from '$lib/server/repositories/gallery';
 
 const commentSelect = {
@@ -14,7 +15,7 @@ const commentSelect = {
 			id: true,
 			username: true,
 			name: true,
-			photo: true
+			photo: imageSelect
 		}
 	}
 };

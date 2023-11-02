@@ -31,8 +31,8 @@
 
 	{#if votes.length > 3}
 		<div class=" hidden min-[400px]:block">
-			<span class="text-zinc-500 dark:text-zinc-400">{$t('global.voting.and')}</span>
-			<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointer">
+			<span class="text-zinc-500 dark:text-zinc-400 max-sm:hidden">{$t('global.voting.and')}</span>
+			<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointer max-sm:hidden">
 				{$t('global.voting.others')}
 			</button>
 		</div>

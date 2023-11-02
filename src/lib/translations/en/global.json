@@ -1,11 +1,13 @@
 {
 	"bookmark": {
-		"create_folder": "Create folder",
-		"enter_folder_name": "Please enter a folder name",
+		"create_folder": "Create collection",
+		"enter_folder_name": "Please enter a collection name",
 		"save_work_to": "Save work to",
 		"saved_to": "Saved to {{folderName}} ",
-		"select_folder": "Please select a folder",
-		"work_saved": "Work saved"
+		"select_folder": "Please select a collection",
+		"work_saved": "Work saved",
+		"save": "Save",
+		"saved": "Saved"
 	},
 	"buttons": {
 		"addwork": "ADD WORK",

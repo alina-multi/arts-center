@@ -37,7 +37,7 @@
 		<div class="flex flex-col text-black dark:text-gray-300">
 			<div class="border py-3 bg-zinc-50 dark:bg-zinc-900 dark:border-zinc-800 rounded-t-sm">
 				<span class="font-semibold px-3 md:px-6"
-					>{$t('global.comment.comments')}: {work.comments}</span
+					>{work.comments} {$t('global.comment.comments').toLowerCase()}</span
 				>
 			</div>
 
