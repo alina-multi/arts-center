@@ -4,7 +4,7 @@
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
 	import Picture from '$lib/components/atoms/Picture.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import {  InformationCircle } from '@steeze-ui/heroicons';
+	import { InformationCircle } from '@steeze-ui/heroicons';
 	import Cropper from 'svelte-easy-crop';
 	import ActionModal from '$lib/components/my/ActionModal.svelte';
 	import { magicFetch } from '$lib/helpers/fetchData';
@@ -38,11 +38,11 @@
 	async function deleteImage() {
 		await magicFetch('DELETE', `/api/work/${data.work.id}/images/${imageToDelete.id}`);
 		await invalidateAll();
-		imageToDelete=undefined;
+		imageToDelete = undefined;
 	}
 </script>
 {#if data.work?.full}
-	<NextStepButton href={localePath(`/my/work/${data.work.id}/form`)}/>
+	<NextStepButton href={localePath(`/my/work/${data.work.id}/form`)} />
 	<FormGroup h1={$t('my.add_work_page.main_image')}>
 		<div class='grid grid-cols-1 sm:grid-cols-2 gap-6'>
 			<div>
@@ -55,25 +55,26 @@
 			</div>
 		</div>
 	</FormGroup>
-	{/if}
+{/if}
 
 
 {#if data.work?.images?.length}
-	<FormGroup h1={$t('my.add_work_page.additional_images')} >
+	<FormGroup h1={$t('my.add_work_page.additional_images')}>
 		{#if !data.work?.full}
-		{$t('my.add_work_page.please_select_main')}
+			{$t('my.add_work_page.please_select_main')}
 		{/if}
 		<div class=' grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:gap-6 '>
 			{#each data.work.images as image}
-				<div class=" gap-3 text-center flex flex-col">
+				<div class=' gap-3 text-center flex flex-col'>
 					<button on:click={()=>cropImage=image}
 									class='cursor-pointer rounded-sm hover:text-green-500 hover:scale-[1.01] transition hover:opacity-80'>
-						<Picture photo={image} class="w-full"/>
-						<div class="py-2 font-semibold border-x border-zinc-300 border-b  hover:border-green-600 ">{$t('my.buttons.set_main') }</div>
+						<Picture photo={image} class='w-full' />
+						<div
+							class='py-2 font-semibold border-x border-zinc-300 border-b  hover:border-green-600 '>{$t('my.buttons.set_main') }</div>
 					</button>
-					<button on:click={()=>imageToDelete=image} class='text-center w-full  px-3 border hover:text-red-500 hover:bg-zinc-50 py-1 text-sm text-red-300'>
+					<button on:click={()=>imageToDelete=image}
+									class='text-center w-full  px-3 border hover:text-red-500 hover:bg-zinc-50 py-1 text-sm text-red-300'>
 						{$t('my.buttons.delete_image')}
-						
 					</button>
 				</div>
 			{/each}

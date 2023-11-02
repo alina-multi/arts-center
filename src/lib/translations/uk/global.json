@@ -2,10 +2,11 @@
 	"bookmark": {
 		"create_folder": "Створити коллекцію",
 		"enter_folder_name": "Введіть назву",
-		"select_folder": "Виберіть коллекцію",
 		"save": "Зберегти",
 		"save_work_to": "Зберегти роботу в",
+		"saved": "",
 		"saved_to": "Збережено в {{folderName}} ",
+		"select_folder": "Виберіть коллекцію",
 		"work_saved": "Робота збережена"
 	},
 	"buttons": {
@@ -110,6 +111,11 @@
 		"remember_me": "Пам'ятай мене",
 		"sign_in": "Увійти"
 	},
+	"main_page": {
+		"comment_work": "прокоментував(ла) роботу",
+		"discussions": "Обговорення",
+		"last_verified": "Останні верифіковані"
+	},
 	"menu": {
 		"gallery": "ГАЛЕРЕЯ",
 		"login": "ВІЙТИ",
@@ -212,10 +218,5 @@
 		"like": "Вподобайок",
 		"liked_by": "Подобається",
 		"others": "іншим"
-	},
-	"main_page": {
-		"last_verified": "Нещодавно верифікованні митці",
-		"discussions": "Обговорення",
-		"comment_work": "прокоментував(ла) роботу"
 	}
 }

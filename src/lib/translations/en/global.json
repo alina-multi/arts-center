@@ -2,12 +2,12 @@
 	"bookmark": {
 		"create_folder": "Create collection",
 		"enter_folder_name": "Please enter a collection name",
+		"save": "Save",
 		"save_work_to": "Save work to",
+		"saved": "Saved",
 		"saved_to": "Saved to {{folderName}} ",
 		"select_folder": "Please select a collection",
-		"work_saved": "Work saved",
-		"save": "Save",
-		"saved": "Saved"
+		"work_saved": "Work saved"
 	},
 	"buttons": {
 		"addwork": "ADD WORK",
@@ -111,6 +111,11 @@
 		"remember_me": "Remember me",
 		"sign_in": "Sign in"
 	},
+	"main_page": {
+		"comment_work": "commented on the work",
+		"discussions": "Discussions",
+		"last_verified": "Last verified artists"
+	},
 	"menu": {
 		"gallery": "GALLERY",
 		"login": "LOGIN",
@@ -213,10 +218,5 @@
 		"like": "Like",
 		"liked_by": "Liked by",
 		"others": "others"
-	},
-	"main_page": {
-		"last_verified": "Last verified artists",
-		"discussions": "Discussions",
-		"comment_work": "commented on the work"
 	}
 }

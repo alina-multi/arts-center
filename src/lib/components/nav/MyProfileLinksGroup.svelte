@@ -36,7 +36,8 @@
 		{
 			path: '/my/work',
 			src: FolderOpen,
-			text: 'works'
+			text: 'works',
+			exact: true
 		},
 		{
 			path: '/my/transactions',
@@ -65,8 +66,8 @@
 		}
 	];
 </script>
-{#each links as { path, src, text } (path)}
-	<SideNavLink href={localePath(path)}>
+{#each links as { path, src, text, exact } (path)}
+	<SideNavLink href={localePath(path)} {exact}>
 		<Icon {src} theme='solid' class='h-6 w-6 ' aria-hidden='true' />{$t('global.my_links.' + text)}
 	</SideNavLink>
 {/each}
