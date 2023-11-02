@@ -40,7 +40,6 @@ export async function usersMap(users: UserFullRaw[]): Promise<UserList[]> {
 }
 
 export function userMap(user: UserFullRaw): User {
-	
 	return {
 		id: user.id,
 		name: user.name,
