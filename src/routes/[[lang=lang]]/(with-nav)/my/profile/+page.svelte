@@ -15,17 +15,12 @@
 	export let data: PageData;
 	export let form: ActionData;
 
-	let profile =  {
+	let profile = {
 		...data.profile.data,
-		...form?.data ?? {}
+		...(form?.data ?? {})
 	};
 
-	const countries = countryList.getData();
-	let countryOptions = countries.map(countryToOption);
-
-	let initialCountry = [
-		countryToOption(countries.find((country) => country.code === profile.country))
-	];
+	let countryOptions = countryList.getData().map(countryToOption);
 
 	function countryToOption(option) {
 		return {
@@ -67,15 +62,11 @@
 			</div>
 		</div>
 
-
-		<InputGroup
-			label={$t('my.edit_page.country')}
-			error={form?.errors?.country}
-		>
+		<InputGroup label={$t('my.edit_page.country')} error={form?.errors?.country}>
 			<SelectInput
 				required
 				options={countryOptions}
-				value={initialCountry}
+				value={[profile.country]}
 				name="country"
 				maxSelect={1}
 				placeholder="Select Country"

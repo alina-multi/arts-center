@@ -3,10 +3,11 @@
 	import { MultiSelect } from 'svelte-multiselect';
 
 	export let options, maxSelect, required, name, value, placeholder;
+	
 	let multiselectProps, hiddenValue;
-	// Default from value prop to format that component understands
-	let selected = options.filter((option) => value?.map((value) => Number(value))?.includes(Number(option?.value)));
 
+	// Default from value prop to format that component understands
+	let selected = options.filter((option) => value?.map((value) => value.toString()).includes(option?.value));
 		multiselectProps = {
 			outerDivClass: 'rounded-sm border sm:text-sm h-10',
 			ulSelectedClass: 'h-8',
