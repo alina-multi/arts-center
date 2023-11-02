@@ -10,7 +10,7 @@
 	import AvatarInput from '$lib/components/user/AvatarInput.svelte';
 	import ButtonsGroup from '$lib/components/forms/ButtonsGroup.svelte';
 	import { t } from '$lib/translations';
-	import PrefixedInput from '$lib/components/input/PrefixedInput.svelte';
+
 
 	export let data: PageData;
 	export let form: ActionData;
