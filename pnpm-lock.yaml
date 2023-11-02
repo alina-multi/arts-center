@@ -139,6 +139,9 @@ devDependencies:
   '@uppy/drag-drop':
     specifier: ^3.0.3
     version: 3.0.3(@uppy/core@3.6.1)
+  '@uppy/image-editor':
+    specifier: ^2.2.2
+    version: 2.2.2(@uppy/core@3.6.1)
   '@uppy/locales':
     specifier: ^3.3.1
     version: 3.3.1
@@ -5561,6 +5564,17 @@ packages:
       preact: 10.18.1
     dev: true
 
+  /@uppy/image-editor@2.2.2(@uppy/core@3.6.1):
+    resolution: {integrity: sha512-DfboBqgTBCv9uYLRxlSJTjAD8CNjyzqpPKftG3dnsUCD58F3j3s2EgPcdiJmF7vj/1wV/ye/DHVVu8OEI4I5Bw==}
+    peerDependencies:
+      '@uppy/core': ^3.6.0
+    dependencies:
+      '@uppy/core': 3.6.1
+      '@uppy/utils': 5.5.2
+      cropperjs: 1.5.7
+      preact: 10.18.1
+    dev: true
+
   /@uppy/informer@3.0.4(@uppy/core@3.6.1):
     resolution: {integrity: sha512-gzocdxn8qAFsW2EryehwjghladaBgv6Isjte53FTBV7o/vjaHPP6huKGbYpljyuQi8i9V+KrmvNGslofssgJ4g==}
     peerDependencies:
@@ -6649,6 +6663,10 @@ packages:
 
   /core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
+    dev: true
+
+  /cropperjs@1.5.7:
+    resolution: {integrity: sha512-sGj+G/ofKh+f6A4BtXLJwtcKJgMUsXYVUubfTo9grERiDGXncttefmue/fyQFvn8wfdyoD1KhDRYLfjkJFl0yw==}
     dev: true
 
   /cross-fetch@3.1.8:

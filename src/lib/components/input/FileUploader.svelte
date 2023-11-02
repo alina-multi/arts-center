@@ -1,19 +1,28 @@
-<script lang="ts">
+<script lang='ts'>
 	import { Dashboard } from '@uppy/svelte';
 	import Uppy from '@uppy/core';
 	import Webcam from '@uppy/webcam';
+	import ImageEditor from '@uppy/image-editor';
 	import { onMount } from 'svelte';
 	import Transloadit from '@uppy/transloadit';
 	import { locale } from '$lib/translations';
 	import Ukrainian from '@uppy/locales/lib/uk_UA';
 	import { createEventDispatcher } from 'svelte';
+	import type { ImageEditorOptions } from '@uppy/image-editor';
 
-	// Don't forget the CSS: core and UI components + plugins you are using
+	// Remember the CSS: core and UI components + plugins you are using
 	import '@uppy/core/dist/style.css';
 	import '@uppy/dashboard/dist/style.css';
 	import '@uppy/webcam/dist/style.css';
+	import '@uppy/image-editor/dist/style.min.css';
 
-	export let key: string, signature: string, expires: string, template_id: string;
+	export let key: string,
+		signature: string,
+		expires: string,
+		template_id: string,
+		imageEditorOptions: ImageEditorOptions,
+		maxNumberOfFiles = 10
+	;
 
 	const dispatch = createEventDispatcher();
 
@@ -25,7 +34,7 @@
 			locale: locale.get() === 'uk' ? Ukrainian : undefined,
 			restrictions: {
 				maxFileSize: 10485760,
-				maxNumberOfFiles: 10,
+				maxNumberOfFiles,
 				allowedFileTypes: ['image/jpeg', 'image/png', 'image/webp']
 			},
 			thumbnailWidth: 600
@@ -34,18 +43,23 @@
 			note: 'Minimum 1600px width recommended. Max 10MB each. Only upload media you own the rights to.',
 			theme: document.body.classList.contains('dark') ? 'dark' : 'light',
 			proudlyDisplayPoweredByUppy: false,
-			doneButtonHandler: null
+			doneButtonHandler: null,
+			autoOpenFileEditor: !!imageEditorOptions
 		};
-		uppy = new Uppy(UppyOptions).use(Webcam, { modes: 'picture' }).use(Transloadit, {
-			assemblyOptions: {
-				params: {
-					auth: { key, expires },
-					template_id
+		uppy = new Uppy(UppyOptions).use(Webcam, { modes: 'picture' })
+			.use(Transloadit, {
+				assemblyOptions: {
+					params: {
+						auth: { key, expires },
+						template_id
+					},
+					signature
 				},
-				signature
-			},
-			waitForEncoding: true
-		});
+				waitForEncoding: true
+			});
+		if (imageEditorOptions) {
+			uppy.use(ImageEditor, imageEditorOptions);
+		}
 		uppy.on('thumbnail:generated', (file, preview) => {
 			previews.set(file.name, preview);
 		});
@@ -62,5 +76,7 @@
 </script>
 
 {#if uppy}
-<div class="xl:mx-auto"><Dashboard  {props} {uppy} plugins={['Webcam']} /></div>	
+	<div class='xl:mx-auto'>
+		<Dashboard {props} {uppy} plugins={['Webcam', 'ImageEditor']} />
+	</div>
 {/if}

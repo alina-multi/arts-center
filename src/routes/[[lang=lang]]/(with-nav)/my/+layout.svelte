@@ -1,7 +1,7 @@
 <script>
 	import SideMenu from '$lib/components/nav/side/SideMenu.svelte';
 	import SideNav from '$lib/components/nav/side/SideNav.svelte';
-	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
+	import AvatarEditLink from '$lib/components/user/AvatarEditLink.svelte';
 	import MyProfileLinksGroup from '$lib/components/nav/MyProfileLinksGroup.svelte';
 	import { user } from '$lib/stores/auth';
 	import Hint from '$lib/components/atoms/Hint.svelte';
@@ -20,7 +20,7 @@
 		<div slot="nav" class="text-sm ">
 			<div class="bg-zinc-600 dark:bg-zinc-800  h-20 w-full rounded-t-sm shadow-lg " />
 			<div class="text-center -mt-10 pb-3 border-b dark:border-b dark:border-zinc-800 flex flex-col justify-center items-center gap-3">
-				<AvatarLink user={$user} size="h-20 w-20" />
+				<AvatarEditLink user={$user} />
 				<a
 					href={localePath(`/${$user.username}`)}
 					class=" inline-flex items-center gap-2 hover:underline flex-1 font-semibold text-base text-gray-900 dark:text-zinc-100 hover:text-gray-700 dark:hover:text-zinc-300"

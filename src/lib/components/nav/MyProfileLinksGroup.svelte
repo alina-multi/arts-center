@@ -1,5 +1,5 @@
 <script>
-	import {t, localePath}  from '$lib/translations';
+	import { t, localePath } from '$lib/translations';
 	import SideNavLink from '$lib/components/nav/side/SideNavLink.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import {
@@ -10,39 +10,63 @@
 		UserPlus,
 		Bookmark,
 		NoSymbol,
-		CurrencyDollar
+		CurrencyDollar,
+		Camera
 	} from '@steeze-ui/heroicons';
 	import { user } from '$lib/stores/auth';
 
 	let folders = $user?.favorites?.folders;
-	const favorites_href = folders.length === 0 || folders.length > 1 ?  "/my/favorites" : "/my/favorites/"+folders[0].id;
+	const favorites_href = folders.length === 0 || folders.length > 1 ? '/my/favorites' : '/my/favorites/' + folders[0].id;
+	const links = [
+		{
+			path: '/my/profile',
+			src: PencilSquare,
+			text: 'edit_profile'
+		},
+		{
+			path: '/my/photo',
+			src: Camera,
+			text: 'avatar'
+		},
+		{
+			path: '/my/work/add',
+			src: PlusCircle,
+			text: 'add_work'
+		},
+		{
+			path: '/my/work',
+			src: FolderOpen,
+			text: 'works'
+		},
+		{
+			path: '/my/transactions',
+			src: CurrencyDollar,
+			text: 'transactions'
+		},
+		{
+			path: favorites_href,
+			src: Bookmark,
+			text: 'favorites'
+		},
+		{
+			path: '/my/followers',
+			src: UserGroup,
+			text: 'followers'
+		},
+		{
+			path: '/my/following',
+			src: UserPlus,
+			text: 'following'
+		},
+		{
+			path: '/my/blacklist',
+			src: NoSymbol,
+			text: 'blocked'
+		}
+	];
 </script>
-
-<SideNavLink href={localePath("/my/profile")}
-	><Icon src={PencilSquare} theme="solid" class="h-6 w-6" aria-hidden="true" /> {$t('global.my_links.edit_profile')}</SideNavLink
->
-<SideNavLink href={localePath("/my/work/add")}
-	><Icon src={PlusCircle} theme="solid" class="h-6 w-6" aria-hidden="true" /> {$t('global.my_links.add_work')}</SideNavLink
->
-<SideNavLink exact href={localePath("/my/work")}
-	><Icon src={FolderOpen} theme="solid" class="h-6 w-6 " aria-hidden="true" />{$t('global.my_links.works')}</SideNavLink
->
-<SideNavLink exact href={localePath("/my/transactions")}
-	><Icon src={CurrencyDollar} theme="solid" class="h-6 w-6 " aria-hidden="true" />{$t('global.my_links.transactions')}</SideNavLink
->
-
-<SideNavLink href={localePath(`${favorites_href}`)}
-	><Icon src={Bookmark} theme="solid" class="h-6 w-6 inline" aria-hidden="true" />{$t('global.my_links.favorites')}</SideNavLink
->
-
-<SideNavLink href={localePath("/my/followers")}
-	><Icon src={UserGroup} theme="solid" class="h-6 w-6" aria-hidden="true" />{$t('global.my_links.followers')}</SideNavLink
->
-
-<SideNavLink href={localePath("/my/following")}
-	><Icon src={UserPlus} theme="solid" class="h-6 w-6" aria-hidden="true" />{$t('global.my_links.following')}</SideNavLink
->
-
-<SideNavLink href={localePath("/my/blacklist")}
-	><Icon src={NoSymbol} theme="solid" class="h-6 w-6 " aria-hidden="true" />{$t('global.my_links.blocked')}</SideNavLink
->
+{#each links as { path, src, text } (path)}
+	<SideNavLink href={localePath(path)}>
+		<Icon {src} theme='solid' class='h-6 w-6 ' aria-hidden='true' />{$t('global.my_links.' + text)}
+	</SideNavLink>
+{/each}
