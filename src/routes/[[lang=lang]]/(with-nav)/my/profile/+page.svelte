@@ -9,35 +9,23 @@
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
 	import ButtonsGroup from '$lib/components/forms/ButtonsGroup.svelte';
 	import { t } from '$lib/translations';
-	import { MultiSelect } from 'svelte-multiselect';
 	import countryList from 'country-list';
-	import { onMount } from 'svelte';
+	import SelectInput from '$lib/components/input/SelectInput.svelte';
 
 	export let data: PageData;
 	export let form: ActionData;
 
-	let profile = {
+	let profile =  {
 		...data.profile.data,
-		...(form?.data ?? {})
+		...form?.data ?? {}
 	};
 
 	const countries = countryList.getData();
+	let countryOptions = countries.map(countryToOption);
 
-	const initialCountry = countries.find((country) => country.code === profile.country);
-
-	let selected = [countryToOption(initialCountry)];
-
-	$: hiddenValue = selected.map(({ value }) => value).join(',');
-
-	let multiselectProps = {
-		outerDivClass: 'rounded-sm border sm:text-sm h-10',
-		ulSelectedClass: 'h-8',
-		liSelectedClass: 'bg-amber-500',
-		options: countries.map(countryToOption),
-		maxSelect: 1,
-		required: true,
-		placeholder: 'Select Country'
-	};
+	let initialCountry = [
+		countryToOption(countries.find((country) => country.code === profile.country))
+	];
 
 	function countryToOption(option) {
 		return {
@@ -45,13 +33,6 @@
 			value: option.code
 		};
 	}
-
-	let isDark = false;
-	onMount(() => {
-		if (typeof window !== 'undefined') {
-			isDark = document.documentElement.classList.contains('dark');
-		}
-	});
 </script>
 
 <form method="post" enctype="multipart/form-data" class="space-y-3">
@@ -86,29 +67,20 @@
 			</div>
 		</div>
 
-		<InputGroup label={$t('my.edit_page.country')} error={form?.errors?.country}>
-			<div class="border border-gray-300 rounded-sm dark:bg-zinc-900 dark:border-zinc-700">
-				<MultiSelect
-					bind:selected
-					{...multiselectProps}
-					--sms-options-bg={isDark ? 'gray' : 'white'}
-					--sms-border={'transparent '}
-					--sms-bg={isDark ? ' ' : ''}
-					--sms-options-padding={'18px'}
-				/>
-			</div>
 
-			<input type="hidden" name="country" value={hiddenValue} />
-		</InputGroup>
-
-		<!-- <InputGroup
+		<InputGroup
 			label={$t('my.edit_page.country')}
 			error={form?.errors?.country}
-			let:elementId={id}
-			let:hasError={error}
 		>
-			<TextInput {id} {error} name="country" value={profile.country} />
-		</InputGroup> -->
+			<SelectInput
+				required
+				options={countryOptions}
+				value={initialCountry}
+				name="country"
+				maxSelect={1}
+				placeholder="Select Country"
+			/>
+		</InputGroup>
 	</FormGroup>
 
 	<FormGroup h1={$t('my.edit_page.login_info')}>

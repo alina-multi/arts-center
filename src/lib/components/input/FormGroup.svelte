@@ -5,11 +5,11 @@
 </script>
 
 <div
-	class="{clazz} rounded-sm overflow-hidden  bg-white   dark:bg-zinc-800 dark:border-zinc-700 "
+	class="{clazz} rounded-sm   bg-white   dark:bg-zinc-800 dark:border-zinc-700 "
 >
 	{#if h1}
 		<h2
-			class="text-base font-semibold leading-7 bg-zinc-600 dark:dark:bg-zinc-900 dark:border border-zinc-700  text-white dark:text-white  py-3 px-9 shadow-sm "
+			class="text-base font-semibold leading-7 rounded-t-sm bg-zinc-600 dark:dark:bg-zinc-900 dark:border border-zinc-700  text-white dark:text-white  py-3 px-9 shadow-sm "
 		>
 			{h1}
 		</h2>

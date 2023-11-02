@@ -2,31 +2,24 @@
 	import { onMount } from 'svelte';
 	import { MultiSelect } from 'svelte-multiselect';
 
-	export let options, maxSelect, required, name, value;
+	export let options, maxSelect, required, name, value, placeholder;
 	let multiselectProps, hiddenValue;
 	// Default from value prop to format that component understands
-	let selected = options
-		.map(tagToOption)
-		.filter((option) => value?.map((value) => Number(value))?.includes(Number(option?.value)));
-	$: {
+	let selected = options.filter((option) => value?.map((value) => Number(value))?.includes(Number(option?.value)));
+
 		multiselectProps = {
 			outerDivClass: 'rounded-sm border sm:text-sm h-10',
 			ulSelectedClass: 'h-8',
 			liSelectedClass: 'bg-amber-500',
-			options: options.map(tagToOption),
+			options: options,
+			placeholder,
 			maxSelect,
 			required
 		};
-	}
+	
 	// Back to array of id's for the backend
 	$: hiddenValue = selected.map(({ value }) => value).join(',');
 
-	function tagToOption({ title, id }) {
-		return {
-			label: title,
-			value: id?.toString()
-		};
-	}
 
 	let isDark = false;
 	onMount(() => {
