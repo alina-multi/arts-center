@@ -10,7 +10,7 @@
 </script>
 
 <a
-	href={localePath('/my/avatar')}
+	href={localePath('/my/photo')}
 	class='relative inline-flex items-center gap-2 text-transparent hover:text-gray-700'
 >
 	<Avatar {user} size='h-20 w-20' />
