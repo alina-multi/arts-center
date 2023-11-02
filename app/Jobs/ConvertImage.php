@@ -20,10 +20,10 @@ class ConvertImage implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private array $targets = [
-        ImageFolders::Works->name => [1200, 2400],
-        ImageFolders::Preview->name => [300, 600],
-        ImageFolders::Photos->name => [300, 600],
-        ImageFolders::Grids->name => [300, 600, 1200, 2400]
+        ImageFolders::Works->name => [600, 1200, 2400],
+        ImageFolders::Preview->name => [150, 200, 250, 300, 600],
+        ImageFolders::Photos->name => [64, 300, 600],
+        ImageFolders::Grids->name => [150, 300, 600, 1200, 2400]
     ];
     private Client $client;
 

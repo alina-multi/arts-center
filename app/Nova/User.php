@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Nova\Actions\ApproveRecord;
 use App\Nova\Actions\ClearCacheByTag;
+use App\Nova\Actions\ConvertUserImages;
 use App\Nova\Actions\SendBlogPost;
 use App\Nova\Actions\VerifyUser;
 use App\Nova\Filters\ModelApproved;
@@ -154,7 +155,8 @@ class User extends Resource
             (new ClearCacheByTag('user'))->standalone(),
             new ApproveRecord(),
             new VerifyUser(),
-            new SendBlogPost()
+            new SendBlogPost(),
+            new ConvertUserImages()
         ];
     }
 }
