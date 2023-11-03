@@ -46,7 +46,6 @@
 
 <HeaderLayout title={$t('my.transactions.header')}>
 	<div slot='details' class='flex gap-3 items-center leading-3'>
-		<div class='h-1 w-1 bg-gray-500 dark:bg-zinc-300 rounded-full' />
 		<span>
 			{$t('my.transactions.balance', { 'total': (total / 100).toFixed(2) })}
 		</span>

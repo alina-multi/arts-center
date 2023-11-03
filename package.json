@@ -97,6 +97,7 @@
 		"@sentry/tracing": "^7.77.0",
 		"@sentry/vite-plugin": "^2.9.0",
 		"@testing-library/jest-dom": "^6.1.4",
+		"country-list": "^2.3.0",
 		"lodash.debounce": "^4.0.8",
 		"meilisearch": "^0.34.2",
 		"node-cache": "^5.1.2",

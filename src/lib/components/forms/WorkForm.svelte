@@ -25,6 +25,15 @@
 			version++;
 		}
 	}
+
+	function tagToOption({ title, id }) {
+		return {
+			label: title,
+			value: id?.toString()
+		};
+	}
+
+	let categoryOptions = categories.map(tagToOption)
 </script>
 <FormGroup h1={$t('my.add_work_page.main_info')}>
 		{#if form?.message}
@@ -34,7 +43,7 @@
 			{#key version}
 				<SelectInput
 					required
-					options={categories}
+					options={categoryOptions}
 					value={work.category}
 					name='category'
 					maxSelect={3}
