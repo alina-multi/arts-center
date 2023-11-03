@@ -60,7 +60,7 @@
 
 				<ActionButton class="bg-blue-600 w-full rounded-sm hover:bg-blue-500">{$t('global.login.sign_in')}</ActionButton>
 			</form>
-			<a href={localePath('/register')} class='block mt-3 text-center bg-amber-500 rounded-sm hover:bg-amber-400 rounded-sm px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'>Register</a>
+			<a href={localePath('/register')} class='block mt-3 text-center bg-amber-500 rounded-sm hover:bg-amber-400 rounded-sm px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'>{$t('global.buttons.register')}</a>
 
 <!--			<div class="mt-6"><Divider>{$t('global.common.continue_with')}</Divider></div>-->
 <!--				-->
