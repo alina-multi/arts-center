@@ -34,7 +34,7 @@
 	<FormGroup h1={$t('my.edit_page.personal_info')} h2={$t('my.edit_page.warning_personal_info')}>
 		<InputGroup
 			label={$t('my.edit_page.full_name')}
-			error={form?.errors?.email}
+			error={form?.errors?.name}
 			let:elementId={id}
 			let:hasError={error}
 		>
