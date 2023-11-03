@@ -17,6 +17,7 @@ export const actions = {
 			});
 		} catch (e) {
 			return {
+				email: data.get('email'),
 				errors: {
 					email: 'Something went wrong'
 				}
@@ -25,7 +26,10 @@ export const actions = {
 		if (response.ok) {
 			throw redirect(301, event.url.searchParams.get('redirect') || localePath('/'));
 		} else {
-			return await response.json();
+			return {
+				...await response.json(),
+				email: data.get('email')
+			};
 		}
 	}
 } satisfies Actions;

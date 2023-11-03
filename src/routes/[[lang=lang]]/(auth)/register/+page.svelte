@@ -6,7 +6,6 @@
 	import InputGroup from '$lib/components/input/InputGroup.svelte';
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
 	import { t } from '$lib/translations';
-	import { enhance } from '$app/forms';
 	import PrefixedInput from '$lib/components/input/PrefixedInput.svelte';
 
 	export let form: ActionData;
@@ -26,7 +25,7 @@
 
 	<div class=' sm:mx-auto sm:w-full sm:max-w-md'>
 		<div class='bg-white dark:bg-zinc-900 px-3 py-6 sm:p-9 sm:shadow rounded-sm'>
-			<form class='space-y-6' method='POST' use:enhance>
+			<form class='space-y-6' method='POST'>
 				{#if form?.message}
 					<p class='text-red-600'>{form?.message}</p>
 				{/if}

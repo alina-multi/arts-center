@@ -4,7 +4,7 @@
 		"enter_folder_name": "Введіть назву",
 		"save": "Зберегти",
 		"save_work_to": "Зберегти роботу в",
-		"saved": "",
+		"saved": "Збережено",
 		"saved_to": "Збережено в {{folderName}} ",
 		"select_folder": "Виберіть коллекцію",
 		"work_saved": "Робота збережена"

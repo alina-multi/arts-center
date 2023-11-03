@@ -35,7 +35,7 @@
 					let:elementId={id}
 					let:hasError={error}
 				>
-					<EmailInput name="email" {id} {error} />
+					<EmailInput name="email" value={form?.email} {id} {error} />
 				</InputGroup>
 				<InputGroup
 					label={$t('global.login.password')}
