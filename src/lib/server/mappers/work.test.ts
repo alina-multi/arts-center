@@ -38,7 +38,7 @@ test('workMap', () => {
 		  ],
 		  "votes": [
 		    {
-		      "country": null,
+		      "country": undefined,
 		      "id": 12n,
 		      "name": "Name",
 		      "photo": null,
@@ -86,7 +86,7 @@ test('workPreviewMap', () => {
 		  ],
 		  "votes": [
 		    {
-		      "country": null,
+		      "country": undefined,
 		      "id": 12n,
 		      "name": "Name",
 		      "photo": null,
