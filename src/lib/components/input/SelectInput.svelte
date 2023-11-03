@@ -7,7 +7,7 @@
 	let multiselectProps, hiddenValue;
 
 	// Default from value prop to format that component understands
-	let selected = options.filter((option) => value?.map((value) => value.toString()).includes(option?.value));
+	let selected = options.filter((option) => value?.map((value) => value?.toString()).includes(option?.value));
 		multiselectProps = {
 			outerDivClass: 'rounded-sm border sm:text-sm h-10',
 			ulSelectedClass: 'h-8',
