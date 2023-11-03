@@ -35,7 +35,7 @@
 			class="absolute left-0 z-10 mt-2 w-40 origin-top-left rounded-sm bg-white dark:bg-zinc-900 shadow-2xl ring-1 ring-black dark:ring-zinc-800 ring-opacity-5 focus:outline-none overflow-hidden"
 			role="menu"
 		>
-			{#each option as { title }}
+			{#each option as { title } (title)}
 				<ListboxOption let:selected value={title}>
 					<a
 						href={urlGenerator(type, title, params)}

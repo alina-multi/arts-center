@@ -7,7 +7,7 @@
 
 <picture class={clazz}>
 	{#if photo?.sources}
-		{#each photo.sources as { srcset, type }}
+		{#each photo.sources as { srcset, type } (type)}
 			<source {srcset} {type} />
 		{/each}
 	{/if}

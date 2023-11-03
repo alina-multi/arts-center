@@ -20,7 +20,7 @@
 <div class=" flex flex-col gap-3 dark:text-gray-400">
 	<div class="flex justify-between items-center">
 
-			{#each work.owners as user}
+			{#each work.owners as user (user.id)}
 				<div class="flex items-center gap-3 ">
 					<AvatarLink {user} withName size={'w-8 h-8'} />
 

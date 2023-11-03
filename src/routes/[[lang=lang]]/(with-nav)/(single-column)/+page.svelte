@@ -37,7 +37,7 @@
 						class=" sm:px-3 lg:p-0 flex justify-end sm:max-xl:w-1/2 dark:border-gray-700 gap-3 overflow-hidden w-full"
 					>
 						<div class="grid xl:grid-cols-1 grid-cols-3 gap-1 overflow-hidden">
-							{#each user.works as work}
+							{#each user.works as work (work.id)}
 								<div class="xl:odd:hidden xl:ml-3"><ImageWork {work} /></div>
 							{/each}
 						</div>

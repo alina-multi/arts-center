@@ -33,7 +33,7 @@
 <MetaGroups title={$t('global.seo.title.user', user)} description={user?.bio} image={user?.photo} />
 
 <ul class=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-	{#each gallery as work}
+	{#each gallery as work (work.id)}
 		<li>
 			<ImageWork {work} withDesription />
 		</li>

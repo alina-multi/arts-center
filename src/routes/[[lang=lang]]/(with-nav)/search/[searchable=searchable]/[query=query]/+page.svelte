@@ -56,7 +56,7 @@
 		{#if data.params.searchable === 'users'}
 			<div class="  dark:lg:bg-zinc-900 pt-3 lg:border dark:border-0 mb-3">
 				<ul role="search" class="lg:divide-y divide-gray-100 dark:lg:divide-zinc-800">
-					{#each results as user}
+					{#each results as user (user.id)}
 						<li class="flex justify-between gap-x-6 py-3 lg:px-9">
 							<div><UserPreview {user} avatar_size={'w-12 h-12'} crown_size={'w-3 h-3'} /></div>
 
@@ -75,7 +75,7 @@
 
 		{#if data.params.searchable === 'works'}
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-3">
-				{#each results as work}
+				{#each results as work (work.id)}
 					<WorkPreview {work} />
 				{/each}
 			</div>

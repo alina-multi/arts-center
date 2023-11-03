@@ -20,7 +20,7 @@
 		</button>
 
 		<div class="flex -space-x-3 cursor-pointer">
-			{#each votesPreview as user}
+			{#each votesPreview as user (user.id)}
 				<AvatarLink {user} size={'w-9 h-9'} />
 			{/each}
 			{#if isLiked}
@@ -45,7 +45,7 @@
 	<ul
 		class=" flex flex-col gap-3 lg:max-h-96 h-2/3 overflow-y-scroll px-6 border-y py-3 dark:border-zinc-800 "
 	>
-		{#each votes as user}
+		{#each votes as user (user.id)}
 			<li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
 				<AvatarLink {user} withName size={'w-9 h-9'} nameStyles={'text-sm font-semibold text-black dark:text-white'} />
 			</li>

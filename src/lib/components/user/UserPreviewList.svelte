@@ -46,7 +46,7 @@
 			</svg>
 		</div>
 	{:else}
-		{#each users as user}
+		{#each users as user (user.id)}
 			<UserPreviewWithWorks {user}/>
 		{/each}
 		<InfiniteScroll

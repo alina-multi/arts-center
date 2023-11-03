@@ -43,7 +43,7 @@
 
 	<DisclosurePanel class=" max-h-96 overflow-x-auto dark:border-zinc-900 dark:border" let:close>
 		<ul class="flex flex-col dark:bg-zinc-800 text-sm">
-			{#each options as option}
+			{#each options as option (option.title)}
 				<li
 					class="flex cursor-pointer py-3 px-6 {option.title === selected
 						? 'bg-gray-100 hover:bg-gray-100 dark:border-l dark:border-amber-500  dark:bg-zinc-700 '

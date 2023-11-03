@@ -4,7 +4,7 @@
 </script>
 
 <div class="grid grid-cols-3 gap-1 overflow-hidden w-full">
-	{#each works as work}
+	{#each works as work (work.id)}
 		<div><ImageWork {work} /></div>
 	{/each}
 </div>

@@ -54,7 +54,7 @@
 		<TabGroup>
 			{#if work?.titles?.length > 1}
 				<StyledTabList>
-					{#each work.titles as title}
+					{#each work.titles as title (title.language)}
 						<StyledTab>
 							{title.language}
 						</StyledTab>
