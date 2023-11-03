@@ -16,7 +16,7 @@ class Username implements ValidationRule
      */
     public function validate($attribute, $value, Closure $fail): void
     {
-        if (!preg_match('/^[a-zA-Z0-9-]+$/', $value)) {
+        if (!preg_match('/^[a-zA-Z0-9_]+$/', $value)) {
             $fail('a-Z 0-9 _')->translate();
         }
     }
