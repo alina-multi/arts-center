@@ -27,7 +27,7 @@ export const actions = {
 			throw redirect(301, event.url.searchParams.get('redirect') || localePath('/'));
 		} else {
 			return {
-				...await response.json(),
+				...(await response.json()),
 				email: data.get('email')
 			};
 		}
