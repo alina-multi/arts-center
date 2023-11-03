@@ -35,7 +35,7 @@
 	}
 </script>
 
-<FormGroup h1={$t('my.add_work_page.label_step_1')}>
+<FormGroup h1={$t('global.my_links.avatar')}>
 	{#if browser}
 		<FileUploader {...data.transloadit} maxNumberOfFiles=1 {imageEditorOptions} on:complete={uploadComplete} />
 	{/if}

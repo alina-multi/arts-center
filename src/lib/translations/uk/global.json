@@ -4,7 +4,7 @@
 		"enter_folder_name": "Введіть назву",
 		"save": "Зберегти",
 		"save_work_to": "Зберегти роботу в",
-		"saved": "",
+		"saved": "Збережено",
 		"saved_to": "Збережено в {{folderName}} ",
 		"select_folder": "Виберіть коллекцію",
 		"work_saved": "Робота збережена"
@@ -102,13 +102,13 @@
 		"email": "Електронна пошта",
 		"forgot_password": "Забули свій пароль?",
 		"lost_email": "Втратили доступ до електронної пошти?",
-		"new_password": "Встановить новий пароль",
+		"new_password": "Встановити новий пароль",
 		"page_title": "Увійдіть у свій обліковий запис",
 		"password": "Пароль",
 		"password_confirmation": "Підтвердження паролю",
 		"recover": "Відновити",
 		"register": "Зареєструватися",
-		"remember_me": "Пам'ятай мене",
+		"remember_me": "Запам'ятати мене",
 		"sign_in": "Увійти"
 	},
 	"main_page": {
@@ -118,7 +118,7 @@
 	},
 	"menu": {
 		"gallery": "ГАЛЕРЕЯ",
-		"login": "ВІЙТИ",
+		"login": "УВIЙТИ",
 		"register": "РЕЄСТРАЦІЯ",
 		"users": "МИТЦІ"
 	},

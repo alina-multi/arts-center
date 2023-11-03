@@ -14,7 +14,7 @@
 					<a {href} data-sveltekit-preload-data="off" class="group flex w-full items-center">
 						<span class="flex items-center px-6 py-3 text-sm font-medium">
 							<span
-								class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-emerald-600 group-hover:bg-emerald-500"
+								class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500 group-hover:bg-emerald-500"
 							>
 								<svg
 									class="h-6 w-6 text-white"
@@ -37,11 +37,11 @@
 					<!-- Current Step -->
 					<a {href} class="flex items-center px-6 py-3 text-sm font-medium" aria-current="step">
 						<span
-							class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-emerald-600 font-semibold"
+							class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-emerald-500 font-semibold"
 						>
-							<span class="text-emerald-600 ">{i + 1}</span>
+							<span class="text-emerald-500 ">{i + 1}</span>
 						</span>
-						<span class="ml-4 text-sm font-semibold  text-emerald-600">{label}</span>
+						<span class="ml-4 text-sm font-semibold  text-emerald-500">{label}</span>
 					</a>
 				{/if}
 				{#if i + 1 > currentStep}

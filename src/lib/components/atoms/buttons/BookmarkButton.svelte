@@ -20,7 +20,7 @@
 	let showInput = false;
 	let error = '';
 	let folderID = 0;
-	$: folderName = showInput ? '' : 'All works';
+	$: folderName = showInput ? '' : $t('global.my_links.favorites');
 	$: folders = $user?.favorites?.folders;
 
 	function onChange(e: Event & { target: HTMLInputElement }) {
