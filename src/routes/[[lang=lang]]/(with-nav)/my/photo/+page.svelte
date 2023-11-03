@@ -35,7 +35,7 @@
 	}
 </script>
 
-<FormGroup h1={$t('global.my_links.avatar')}>
+<FormGroup h1={$t('my.edit_page.photo')}>
 	{#if browser}
 		<FileUploader {...data.transloadit} maxNumberOfFiles=1 {imageEditorOptions} on:complete={uploadComplete} />
 	{/if}

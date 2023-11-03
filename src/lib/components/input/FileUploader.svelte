@@ -5,7 +5,7 @@
 	import ImageEditor from '@uppy/image-editor';
 	import { onMount } from 'svelte';
 	import Transloadit from '@uppy/transloadit';
-	import { locale } from '$lib/translations';
+	import { locale, t } from '$lib/translations';
 	import Ukrainian from '@uppy/locales/lib/uk_UA';
 	import { createEventDispatcher } from 'svelte';
 	import type { ImageEditorOptions } from '@uppy/image-editor';
@@ -40,7 +40,7 @@
 			thumbnailWidth: 600
 		};
 		props = {
-			note: 'Minimum 1600px width recommended. Max 10MB each. Only upload media you own the rights to.',
+			note: $t('my.add_work_page.allowed_files_hint'),
 			theme: document.body.classList.contains('dark') ? 'dark' : 'light',
 			proudlyDisplayPoweredByUppy: false,
 			doneButtonHandler: null,
