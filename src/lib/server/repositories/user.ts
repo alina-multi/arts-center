@@ -31,13 +31,13 @@ export function query(
 			...userSelect
 		},
 		where: {
-			...where,
 			country: {
 				not: 'ru'
 			},
 			approved_at: {
 				not: null
-			}
+			},
+			...where
 		},
 		orderBy
 	});
