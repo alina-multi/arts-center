@@ -33,7 +33,7 @@
 		"publish": "Publish",
 		"reset": "Cancel",
 		"save": "Save",
-		"set_main": "Set main"
+		"set_main": "Set as main"
 	},
 	"confirmation": {
 		"delete": "Are you sure you want to delete?",

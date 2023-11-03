@@ -5,6 +5,7 @@
 	import Dropdown from '../atoms/Dropdown.svelte';
 	import Avatar from '../atoms/Avatar.svelte';
 	import MyPageLink from '../atoms/MyPageLink.svelte';
+
 	
 	export let user: User;
 </script>
@@ -16,7 +17,9 @@
 
 	<slot:fragment slot="panel">
 		<ul>
+			{#if user.approved_at}
 			<MyPageLink href={'/' + user?.username} />
+			{/if}
 			<MyProfileLinksGroup />
 			<li>
 				<LogoutButton />
