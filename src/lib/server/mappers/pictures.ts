@@ -55,7 +55,7 @@ export function pictureMap(image: ImageRaw | null): Picture | null {
 	}
 	//Fallback if we don't have over src
 	if (!src) {
-		src = original.src;
+		src = original?.src;
 	}
 	return {
 		original,
