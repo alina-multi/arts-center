@@ -25,7 +25,7 @@ class WorkImageController extends Controller
     public function store(WorkImagesRequest $request, Work $work)
     {
         ImageHelper::attachImages($work, $request->images, $request->user());
-        return WorkEditResource::make($work->load('owners', 'images'));;
+        return WorkEditResource::make($work->load('owners', 'images'));
     }
 
     /**

@@ -18,15 +18,15 @@ class ConvertUserImages extends Action implements ShouldQueue
     /**
      * Perform the action on the given models.
      *
-     * @param  \Laravel\Nova\Fields\ActionFields  $fields
-     * @param  \Illuminate\Support\Collection  $models
+     * @param \Laravel\Nova\Fields\ActionFields $fields
+     * @param \Illuminate\Support\Collection $models
      * @return mixed
      */
     public function handle(ActionFields $fields, Collection $models)
     {
         $models->each(function (User $user) {
-            Image::where('user_id', $user->id)->chunk(100, function (Image $image) {
-               \App\Jobs\ConvertImage::dispatch($image);
+            Image::where('user_id', $user->id)->chunk(100, function (Collection $images) {
+                $images->each(fn($image) => \App\Jobs\ConvertImage::dispatch($image));
             });
             $this->markAsFinished($user);
         });
