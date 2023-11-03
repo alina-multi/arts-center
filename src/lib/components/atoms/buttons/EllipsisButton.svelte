@@ -2,6 +2,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { EllipsisVertical, PencilSquare, EllipsisHorizontal } from '@steeze-ui/heroicons';
 	import Dropdown from '../Dropdown.svelte';
+	import { localePath } from '$lib/translations';
 	export let workId:number | undefined,
 		isMy = false,
 		type: 'vertical' | 'horizontal' = 'vertical'
@@ -10,7 +11,7 @@
 </script>
 
 {#if isMy && type === 'vertical'}
-	<a href={`/my/work/${workId}/form`} class="flex" data-testid="edit-work-button">
+	<a href={localePath(`/my/work/${workId}/form`)} class="flex" data-testid="edit-work-button">
 		<span class="sr-only">Edit work</span>
 
 		<Icon src={PencilSquare} class="w-7 h-7 text-gray-700 hover:text-gray-500 dark:text-zinc-400" />
