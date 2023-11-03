@@ -5,7 +5,6 @@ namespace App\Nova;
 use App\Nova\Actions\ClearCacheByTag;
 use App\Nova\Filters\CommentType;
 use Laravel\Nova\Http\Requests\NovaRequest as Request;
-use Laravel\Nova\Fields\Code;
 use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphTo;
@@ -53,14 +52,14 @@ class Comment extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Text::make('commentable_type'),
-            Number::make('commentable_id'),
-            NovaQuill::make('Body'),
+            MorphTo::make('Commentable', 'commentable'),
+            Text::make('text', fn() => mb_substr($this->text, 0, 100))->onlyOnIndex(),
+            Text::make('text')->hideFromIndex(),
             Number::make('rating')->readonly()->sortable(),
             DateTime::make('created_at')->readonly(),
-
             HasOne::make('User'),
-            MorphTo::make('Commentable', 'commentable')
+            Text::make('commentable_type'),
+            Number::make('commentable_id'),
         ];
     }
 
