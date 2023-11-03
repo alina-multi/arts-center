@@ -17,9 +17,6 @@
 			},
 			{
 				title: 'new'
-			},
-			{
-				title: 'sale'
 			}
 		]
 	};
