@@ -8,12 +8,8 @@
 	export let transloadit;
 	export let work;
 
-	function urlToPath(url) {
-		return url.replace('https://i.arts.center/', '');
-	}
-
 	async function uploadComplete({ detail }) {
-		const images = detail.map(({ url }) => urlToPath(url));
+		const images = detail.map(({ file }) => `temp/works/${file}`);
 		// Depending on how we use this, for new work or adding images we have 2 backend endpoints
 		const json = await magicFetch('POST', work?.id? `/api/work/${work.id}/images`: '/api/work', {
 			images

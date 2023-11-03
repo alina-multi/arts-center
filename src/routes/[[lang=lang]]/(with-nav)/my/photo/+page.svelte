@@ -24,12 +24,9 @@
 			aspectRatio: 1
 		}
 	}
-	function urlToPath(url) {
-		return (new URL(url)).pathname;
-	}
 
 	async function uploadComplete({ detail }) {
-		const image =  urlToPath(detail[0].url);
+		const image =  `temp/photos/${detail[0].file}`;
 		await magicFetch('POST','/api/photo', {
 			image
 		});

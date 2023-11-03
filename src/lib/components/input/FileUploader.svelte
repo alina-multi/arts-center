@@ -67,7 +67,7 @@
 			dispatch(
 				'complete',
 				assembly.uploads?.map((upload) => ({
-					url: upload.ssl_url,
+					file: `${upload.original_id}.${upload.ext}`,
 					preview: previews.get(upload.name)
 				})) ?? []
 			);
