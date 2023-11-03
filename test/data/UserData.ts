@@ -16,7 +16,7 @@ export const UserBasicData = {
 	username: 'username',
 	photo: null,
 	name: 'Name',
-	country: null,
+	country: undefined,
 	verified_at: null
 } as UserBasic;
 

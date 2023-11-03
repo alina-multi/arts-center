@@ -20,7 +20,7 @@ export function ownerMap(user: UserBasicRaw): UserBasic {
 		username: user.username,
 		name: user.name,
 		photo: pictureMap(user.photo),
-		country: user.country,
+		country: user.country?.toUpperCase(),
 		verified_at: user.verified_at
 	};
 }

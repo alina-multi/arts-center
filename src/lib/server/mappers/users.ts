@@ -44,7 +44,7 @@ export function userMap(user: UserFullRaw): User {
 		id: user.id,
 		name: user.name,
 		username: user.username,
-		country: user.country,
+		country: user.country?.toUpperCase(),
 		created_at: user.created_at,
 		verified_at: user.verified_at,
 		rating: user.rating,

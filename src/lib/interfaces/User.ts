@@ -7,7 +7,7 @@ export interface UserBasic {
 	username: string;
 	name: string;
 	photo: Picture | null;
-	country: string | null;
+	country: string | null | undefined;
 	verified_at: string | null;
 }
 
