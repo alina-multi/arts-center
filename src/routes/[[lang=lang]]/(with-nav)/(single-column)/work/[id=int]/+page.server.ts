@@ -5,7 +5,7 @@ import { get as getComments } from '$lib/server/repositories/comment';
 import { commentsMap } from '$lib/server/mappers/comments';
 import { error } from '@sveltejs/kit';
 
-export const load = (async ({ params, setHeaders }) => {
+export const load = (async ({ params }) => {
 	const [work, comments] = await Promise.all([
 		get(BigInt(params.id)).then((work) => workMap(work)),
 		getComments(BigInt(params.id), 'work').then((comments) => commentsMap(comments))
