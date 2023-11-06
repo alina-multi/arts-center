@@ -3,7 +3,7 @@
 	import CommentBlocks from '$lib/components/comments/CommentBlocks.svelte';
 	import AuthStub from '../AuthStub.svelte';
 	import TagsGroup from '../TagsGroup.svelte';
-	import { t } from '$lib/translations';
+
 	import { user } from '$lib/stores/auth';
 	import DonateForm from '$lib/components/atoms/DonateForm.svelte';
 
@@ -33,17 +33,8 @@
 		<TagsGroup tags={work.tags} media="hidden lg:flex" />
 	</div>
 
-	<div class="lg:w-4/6">
-		<div class="flex flex-col text-black dark:text-gray-300">
-			<div class="border py-3 bg-zinc-50 dark:bg-zinc-900 dark:border-zinc-800 rounded-t-sm">
-				<span class="font-semibold px-3 md:px-6"
-					>{work.comments} {$t('global.comment.comments').toLowerCase()}</span
-				>
-			</div>
+			<CommentBlocks {comments} commentable_id={work.id} work_comments={work.comments} />
 
-			<CommentBlocks {comments} commentable_id={work.id} />
-		</div>
-	</div>
 
 	
 		<TagsGroup tags={work.tags} media="flex w-full  lg:hidden" />

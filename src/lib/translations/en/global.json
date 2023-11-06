@@ -38,6 +38,7 @@
 			"success": "Comment added"
 		},
 		"comments": "Comments",
+		"comment": "Comment",
 		"delete": {
 			"error": "Error deleting comment",
 			"loading": "Deleting comment...",
