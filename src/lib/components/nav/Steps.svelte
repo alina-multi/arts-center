@@ -55,7 +55,7 @@
 								>
 							</span>
 							<span
-								class="ml-4 text-sm font-medium text-zinc-600 dark:text-zinc-400"
+								class="ml-4 text-sm font-medium text-black dark:text-zinc-400"
 								>{label}</span
 							>
 						</span>

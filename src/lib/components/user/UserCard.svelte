@@ -25,7 +25,7 @@
 			</div>
 
 			<div class="flex gap-3 items-start sm:items-center xl:px-6">
-				<p class="text-lg text-center md:text-xl font-semibold text-gray-900 dark:text-gray-100 flex gap-2">
+				<p class="text-lg text-center md:text-xl font-semibold text-black dark:text-gray-100 flex gap-2">
 					{user.name}
 					<VerificationBadge user_verified={user.verified_at} size="w-6 h-6" />
 				</p>

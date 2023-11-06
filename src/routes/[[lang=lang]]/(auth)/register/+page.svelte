@@ -17,7 +17,7 @@
 		</div>
 
 		<h2
-			class=' my-3 sm:my-6 text-center text-2xl md:text-3xl font-bold tracking-tight text-gray-900 dark:text-white'
+			class=' my-3 sm:my-6 text-center text-2xl md:text-3xl font-bold tracking-tight text-black dark:text-white'
 		>
 			{$t('global.register.page_title')}
 		</h2>

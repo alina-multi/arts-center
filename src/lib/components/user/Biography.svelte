@@ -33,7 +33,7 @@
 			<div class=" self-end {showBio ? '' : 'absolute bottom-0'}">
 				<button
 					on:click={() => (showBio = !showBio)}
-					class=" pl-2 rounded-full text-gray-800 leading-6 bg-white dark:bg-black dark:text-zinc-300 dark:hover:text-blue-600 hover:text-blue-700"
+					class=" pl-2 rounded-full text-black leading-6 bg-white dark:bg-black dark:text-zinc-300 dark:hover:text-blue-600 hover:text-blue-700"
 				>
 					{#if showBio}
 					{$t('global.buttons.show_less')}

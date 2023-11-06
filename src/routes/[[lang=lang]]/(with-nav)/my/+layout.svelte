@@ -23,7 +23,7 @@
 				<AvatarEditLink user={$user} />
 				<a
 					href={localePath(`/${$user.username}`)}
-					class=" inline-flex items-center gap-2 hover:underline flex-1 font-semibold text-base text-gray-900 dark:text-zinc-100 hover:text-gray-700 dark:hover:text-zinc-300"
+					class=" inline-flex items-center gap-2 hover:underline flex-1 font-semibold text-base text-black dark:text-white hover:text-gray-700 dark:hover:text-zinc-300"
 				>
 					{$user.name}
 				</a>

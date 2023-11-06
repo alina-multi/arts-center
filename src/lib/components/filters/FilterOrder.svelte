@@ -15,7 +15,7 @@
 
 <Listbox value={selectedOrder} class="relative inline-block text-left z-30" let:open>
 	<ListboxButton
-		class=" inline-flex space-x-2 justify-center items-center  border dark:border-zinc-800 dark:bg-zinc-900 px-4 py-2 rounded-sm text-gray-900 hover:bg-gray-50 dark:hover:bg-zinc-700  hover:shadow-lg dark:text-white focus:outline-none focus-visible:ring-2 dark:focus-visible:ring-white/75
+		class=" inline-flex space-x-2 justify-center items-center  border dark:border-zinc-800 dark:bg-zinc-900 px-4 py-2 rounded-sm  hover:bg-gray-50 dark:hover:bg-zinc-700  hover:shadow-lg dark:text-white focus:outline-none focus-visible:ring-2 dark:focus-visible:ring-white/75
 		{selectedOrder != 'popular' ? ' shadow-sm' : ''}"
 	>
 		<span>{$t(`global.filters.${selectedOrder}`)}</span>
@@ -41,7 +41,7 @@
 						href={urlGenerator(type, title, params)}
 						class=" block px-4 py-2 border-l-2 {selected
 							? ' bg-gray-100 dark:text-white  dark:bg-zinc-800  border-amber-500'
-							: 'text-gray-900 dark:text-zinc-300 hover:bg-gray-50/50  hover:text-gray-600 border-transparent hover:border-gray-300 dark:hover:border-zinc-700 dark:hover:text-white  dark:hover:bg-zinc-800/30'}"
+							: 'text-black dark:text-zinc-300 hover:bg-gray-50/50  hover:text-gray-600 border-transparent hover:border-gray-300 dark:hover:border-zinc-700 dark:hover:text-white  dark:hover:bg-zinc-800/30'}"
 						>
 						<!-- {title} -->
 						{$t(`global.filters.${title}`)}

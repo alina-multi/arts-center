@@ -17,7 +17,7 @@
 		</div>
 
 		<h2
-			class=' mt-3 sm:mt-6 text-center text-2xl md:text-3xl font-bold tracking-tight text-gray-900 dark:text-white'
+			class=' mt-3 sm:mt-6 text-center text-2xl md:text-3xl font-bold tracking-tight text-black dark:text-white'
 		>
 			{$t('global.login.forgot_password')}
 		</h2>

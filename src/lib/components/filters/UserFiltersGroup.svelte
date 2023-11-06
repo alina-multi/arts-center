@@ -16,7 +16,7 @@
 	<DisclosureButton
 		class="p-6 {open
 			? 'border-b dark:border-b-zinc-800'
-			: ''} group w-full   text-gray-800 dark:text-white flex items-center justify-between gap-3 hover:text-gray-900 "
+			: ''} group w-full   text-black dark:text-white flex items-center justify-between gap-3 hover:text-black "
 	>
 		<div class="flex gap-1 items-center">
 			<span class="text-sm text-black dark:text-white">
@@ -54,7 +54,7 @@
 						on:click={() => close()}
 						class="flex w-full cursor-pointer py-3 px-6 {option.title === selected
 							? 'bg-gray-100 hover:bg-gray-100 dark:border-l dark:border-amber-500  dark:bg-zinc-700 '
-							: 'text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-zinc-700 '}"
+							: 'text-black dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-zinc-700 '}"
 					>
 						<span>
 							{#if option.title === 'popular' || option.title === 'new'}

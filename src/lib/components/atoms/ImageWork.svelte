@@ -23,7 +23,7 @@
 	</div>
 	{#if withDesription}
 		<div
-			class=" inline-flex items-center justify-between font-medium text-gray-900 dark:text-gray-100"
+			class=" inline-flex items-center justify-between font-medium text-black dark:text-gray-100"
 		>
 			<div class="flex items-center sm:justify-between w-full">
 				<h3 class="lg:text-sm">{title}</h3>

@@ -1,3 +1,3 @@
-<h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+<h1 class="text-2xl font-bold tracking-tight text-black sm:text-3xl">
 	<slot />
 </h1>

@@ -8,7 +8,7 @@
 
 <Disclosure class="py-3" let:open>
 	<DisclosureButton
-		class="w-full text-xs sm:text-sm lg:text-base text-gray-800 flex items-center justify-between gap-3 hover:text-gray-900"
+		class="w-full text-xs sm:text-sm lg:text-base text-black flex items-center justify-between gap-3 hover:text-black"
 	>
 		<div class="flex gap-1 items-center">
 			<span>{label}</span>
@@ -32,7 +32,7 @@
 				<li
 					class=" flex px-3 cursor-pointer py-1 hover:bg-gray-100 {title === selected
 						? 'bg-gray-100 hover:bg-gray-100  '
-						: 'text-gray-800 dark:text-gray-200'}"
+						: 'text-black dark:text-gray-200'}"
 					on:click={() => close()}
 				>
 					<a href={urlGenerator(type, title, params)} class="flex grow">

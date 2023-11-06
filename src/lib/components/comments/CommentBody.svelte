@@ -47,7 +47,7 @@ href="#{comment.id}"
 	>
 		<button
 			on:click={onReply}
-			class="flex gap-2 text-xs items-center hover:text-gray-900 dark:hover:text-white text-zinc-600 dark:text-zinc-300 font-semibold px-3"
+			class="flex gap-2 text-xs items-center hover:text-black dark:hover:text-white text-zinc-600 dark:text-zinc-300 font-semibold px-3"
 		>
 			<span>{$t('global.comment.reply')}</span>
 		</button>

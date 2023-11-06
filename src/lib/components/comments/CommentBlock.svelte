@@ -108,7 +108,7 @@
 </script>
 
 <li
-	class="text-sm text-gray-800 dark:text-gray-400 transition-opacity delay-0 {isDelited
+	class="text-sm text-black dark:text-gray-400 transition-opacity delay-0 {isDelited
 		? 'opacity-50'
 		: 'opacity-100'}"
 	id={comment_id}
