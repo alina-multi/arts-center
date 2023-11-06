@@ -29,7 +29,11 @@
 				{#if selected === 'popular' || selected === 'new'}
 					{$t(`global.filters.${selected}`)}
 				{:else}
-					{selected === 'all'  ? $t(`global.filters.all`) : group === 'country' ? regionNames.of(selected.toUpperCase()) :selected } 
+					{selected === 'all'
+						? $t(`global.filters.all`)
+						: group === 'country'
+						? regionNames.of(selected.toUpperCase())
+						: selected}
 				{/if}
 			</div>
 		</div>
@@ -44,15 +48,13 @@
 	<DisclosurePanel class=" max-h-96 overflow-x-auto dark:border-zinc-900 dark:border" let:close>
 		<ul class="flex flex-col dark:bg-zinc-800 text-sm">
 			{#each options as option (option.title)}
-				<li
-					class="flex cursor-pointer py-3 px-6 {option.title === selected
-						? 'bg-gray-100 hover:bg-gray-100 dark:border-l dark:border-amber-500  dark:bg-zinc-700 '
-						: 'text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-zinc-700 '}"
-				>
+				<li>
 					<a
 						href={urlGenerator(params, { [group]: option.value ?? option.title })}
 						on:click={() => close()}
-						class="flex grow"
+						class="flex w-full cursor-pointer py-3 px-6 {option.title === selected
+							? 'bg-gray-100 hover:bg-gray-100 dark:border-l dark:border-amber-500  dark:bg-zinc-700 '
+							: 'text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-zinc-700 '}"
 					>
 						<span>
 							{#if option.title === 'popular' || option.title === 'new'}
