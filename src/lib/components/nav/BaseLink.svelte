@@ -21,6 +21,7 @@
 </script>
 
 <a
+	on:click
 	{href}
 	class="{clazz} {computedActive}"
 	data-sveltekit-reload={reload ? '' : 'off'}
