@@ -10,7 +10,7 @@ export const load = (async ({ params }) => {
 		get(BigInt(params.id)).then((work) => workMap(work)),
 		getComments(BigInt(params.id), 'work').then((comments) => commentsMap(comments))
 	]);
-	if (!work.published_at) {
+	if (work.status < 10) {
 		throw error(404);
 	}
 	return {
