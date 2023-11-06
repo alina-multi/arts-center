@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\CommentChanged;
+use App\Events\CommentCreated;
 use App\Events\WorkPublished;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -22,10 +22,10 @@ class SendNotifications
     /**
      * Handle the event.
      *
-     * @param CommentChanged|WorkPublished $event
+     * @param CommentNotifications|WorkPublished $event
      * @return void
      */
-    public function handle(CommentChanged|WorkPublished $event)
+    public function handle(CommentCreated|WorkPublished $event)
     {
         //
     }

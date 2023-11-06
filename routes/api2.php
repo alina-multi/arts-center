@@ -16,6 +16,8 @@ use App\Http\Controllers\Api2\{
     PhotoController
 };
 
+use Illuminate\Broadcasting\BroadcastController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -38,19 +40,23 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('work/{work}/draft', WorkController::class . '@draft');
     Route::apiResource('comment', CommentController::class);
     Route::apiResource('work.images', WorkImageController::class);
-    Route::post('follow', FollowController::class. '@store');
-    Route::delete('follow', FollowController::class. '@destroy');
-    Route::get('follow', FollowController::class. '@index');
-    Route::get('followers', FollowController::class. '@followers');
-    Route::post('blacklist', BlacklistController::class. '@store');
-    Route::delete('blacklist', BlacklistController::class. '@destroy');
-    Route::get('blacklist', BlacklistController::class. '@index');
-    Route::get('blacklist', BlacklistController::class. '@index');
-    Route::post('favorite', FavoriteController::class. '@store');
-    Route::delete('favorite', FavoriteController::class. '@destroy');
+    Route::post('follow', FollowController::class . '@store');
+    Route::delete('follow', FollowController::class . '@destroy');
+    Route::get('follow', FollowController::class . '@index');
+    Route::get('followers', FollowController::class . '@followers');
+    Route::post('blacklist', BlacklistController::class . '@store');
+    Route::delete('blacklist', BlacklistController::class . '@destroy');
+    Route::get('blacklist', BlacklistController::class . '@index');
+    Route::get('blacklist', BlacklistController::class . '@index');
+    Route::post('favorite', FavoriteController::class . '@store');
+    Route::delete('favorite', FavoriteController::class . '@destroy');
     Route::apiResource('favorite-folder', FavoriteFolderController::class);
-    Route::post('feedback', FeedbackController::class. '@store');
+    Route::post('feedback', FeedbackController::class . '@store');
     Route::post('photo', PhotoController::class);
+    Route::match(
+        ['get', 'post'], 'broadcasting',
+        [BroadcastController::class, 'authenticate']
+    )->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
 });
 
 // These ones are not requited to have auth

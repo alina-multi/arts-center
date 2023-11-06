@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Models\Comment;
-use App\Events\CommentChanged;
+use App\Events\CommentCreated;
 use App\Events\WorkPublished;
 use App\Models\Feed;
 use App\Models\Follow;
@@ -18,10 +18,10 @@ class AddToFeeds
     /**
      * Handle the event.
      *
-     * @param CommentChanged|WorkPublished $event
+     * @param CommentNotifications|WorkPublished $event
      * @return void
      */
-    public function handle(CommentChanged|WorkPublished $event)
+    public function handle(CommentCreated|WorkPublished $event)
     {
         $model = $event->model;
         if ($model instanceof Comment) {

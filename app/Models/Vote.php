@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\VoteCreated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,4 +16,13 @@ class Vote extends Model
     {
         return $this->hasOne(User::class,'id','user_id');
     }
+
+    public function votable()
+    {
+        return $this->morphTo();
+    }
+
+    protected $dispatchesEvents = [
+        'created'=> VoteCreated::class
+    ];
 }

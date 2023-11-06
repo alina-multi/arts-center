@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
-use App\Events\{CommentChanged,
+use App\Events\{CommentCreated,
+    CommentDeleted,
     TransactionCreated,
     ImageCreated,
     MeChanged,
     UserProfileUpdated,
+    VoteCreated,
     WorkUserPublished,
     WorkDeleted,
     WorkDrafted,
@@ -17,13 +19,16 @@ use App\Events\{CommentChanged,
 use App\Listeners\{AddToFeeds,
     ClearAuthCache,
     ClearCache,
+    CommentNotifications,
     ConvertImage,
     DonationNotifications,
+    RecountCommentCount,
     SendNotifications,
     CheckoutSessionCompleted,
     TranslateWork,
     ValidateWork,
-    PublishWork
+    PublishWork,
+    VoteNotifications
 };
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -36,10 +41,16 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        CommentChanged::class => [
-            SendNotifications::class,
-            AddToFeeds::class,
+        CommentCreated::class => [
             ClearCache::class,
+            CommentNotifications::class,
+            RecountCommentCount::class
+        ],
+        CommentDeleted::class => [
+            RecountCommentCount::class
+        ],
+        VoteCreated::class => [
+            VoteNotifications::class
         ],
         WorkUserPublished::class => [
             TranslateWork::class,

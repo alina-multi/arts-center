@@ -10,6 +10,7 @@ uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 test('photo upload', function () {
     Storage::fake('s3');
+    Event::fake();
     $filePath = 'temp/photos/1_1.jpeg';
     $file = UploadedFile::fake()->image("test.jpeg", 1600, 1600);
     Storage::disk('s3')->putFileAs('', $file, $filePath);

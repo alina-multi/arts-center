@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use App\Events\CommentChanged;
+use App\Events\CommentCreated;
+use App\Events\CommentDeleted;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -18,14 +19,12 @@ class Comment extends Model
     ];
 
     protected $hidden = [
-        'deleted_at', 'depth'
+        'deleted_at', 'depth', 'body'
     ];
 
     protected $dispatchesEvents = [
-        'created' => CommentChanged::class,
-        'updated' => CommentChanged::class,
-        'deleted' => CommentChanged::class,
-        'restored' => CommentChanged::class,
+        'created' => CommentCreated::class,
+        'deleted' => CommentDeleted::class
     ];
 
     public function user()
@@ -45,7 +44,7 @@ class Comment extends Model
 
     public function parent()
     {
-        return $this->hasOne(Comment::class);
+        return $this->belongsTo(Comment::class, 'comment_id');
     }
 
     public function canDelete($userId)

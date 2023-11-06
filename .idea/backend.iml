@@ -224,6 +224,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/spiral/tokenizer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/mailgun-mailer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/arandilopez/laravel-profane" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/ably/ably-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/ably/laravel-broadcaster" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/rybakit/msgpack" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

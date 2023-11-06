@@ -23,6 +23,7 @@
     ],
     "require": {
         "php": "^8.2",
+        "ably/laravel-broadcaster": "^1.0",
         "arandilopez/laravel-profane": "^0.5.0",
         "darkaonline/l5-swagger": "^8.0",
         "doctrine/dbal": "^3.0",

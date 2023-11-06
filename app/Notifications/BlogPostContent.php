@@ -19,7 +19,11 @@ class BlogPostContent extends Notification
 
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return [
+            // todo: uncomment before commit :) 'mail',
+            'broadcast',
+            'database'
+        ];
     }
 
     public function toMail(object $notifiable): MailMessage
@@ -29,5 +33,10 @@ class BlogPostContent extends Notification
             ->subject($this->model->title)
             ->markdown('mail.post', ['text' => $this->model->text])
             ;
+    }
+
+    public function toArray()
+    {
+        return $this->model->toArray();
     }
 }

@@ -12,8 +12,13 @@ use App\Models\WorkTitle;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Illuminate\Support\Facades\Notification;
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
+
+beforeEach(function () {
+    Notification::fake();
+});
 
 test('vote for work', function () {
     $response = doVote('work');
@@ -43,7 +48,7 @@ test('double vote', function () {
 
 test('change vote', function () {
     $user = User::factory()->create();
-    $comment = Comment::factory()->create();
+    $comment = Comment::factory()->createQuietly();
     $json = [
         'vote' => 1,
         'votable_type' => 'comment',
@@ -100,12 +105,26 @@ test('vote work tag rating', function () {
     Bus::assertDispatched(RecountUserRatings::class);
 });
 
+test('vote notification', function () {
+    $user = User::factory()->create();
+    $owner = User::factory()->create();
+    $work = Work::factory()->create();
+    $work->owners()->attach($owner);
+    $json = [
+        'vote' => 1,
+        'votable_type' => 'work',
+        'votable_id' => $work->id
+    ];
+    $this->actingAs($user)->postJson('/api2/vote', $json);
+    Notification::assertSentTo($owner, \App\Notifications\NewWorkVote::class);
+});
+
 function doVote($type, $vote = 1)
 {
     $class = Relation::getMorphedModel($type);
     $user = User::factory()->create();
     $user2 = User::factory()->create();
-    $entity = $class::factory()->create();
+    $entity = $class::factory()->createQuietly();
     $json = [
         'vote' => $vote,
         'votable_type' => $type,

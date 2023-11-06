@@ -5,8 +5,9 @@ use \Illuminate\Support\Facades\Mail;
 
 test('new users can register', function () {
     Mail::fake();
+    Event::fake();
     $valid = [
-        'username' => 'test-user',
+        'username' => 'test_user',
         'email' => 'test@example.com',
         'password' => 'paSSword1',
         'password_confirmation' => 'paSSword1',
