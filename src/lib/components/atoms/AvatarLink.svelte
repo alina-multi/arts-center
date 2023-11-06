@@ -18,7 +18,7 @@
 
 <a
 	{href}
-	class="{width} inline-flex items-center gap-2  text-gray-700 dark:text-zinc-100 hover:text-gray-700 dark:hover:text-zinc-300"
+	class="{width} inline-flex items-center gap-2  text-black dark:text-zinc-100 hover:text-gray-700 dark:hover:text-zinc-300"
 >
 	<Avatar {user} size={size} />
 
