@@ -218,5 +218,6 @@
 		"like": "Like",
 		"liked_by": "Liked by",
 		"others": "others"
-	}
+	},
+	"published_on": "Published on"
 }
