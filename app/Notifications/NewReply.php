@@ -8,17 +8,13 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewReply extends NewComment
+class NewReply extends NewWorkComment
 {
     public function toArray(object $notifiable): array
     {
         return [
             ...parent::toArray(),
-            'parent' => $this->comment->parent
+            'original_text' => $this->comment->parent->text
         ];
-    }
-    public function broadcastType(): string
-    {
-        return 'NewReply';
     }
 }

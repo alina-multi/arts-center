@@ -4,7 +4,7 @@ use App\Models\Comment;
 use App\Models\User;
 use App\Models\Work;
 use Illuminate\Support\Facades\Notification;
-use App\Notifications\{NewReply, NewComment};
+use App\Notifications\{NewReply, NewWorkComment};
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
@@ -71,7 +71,7 @@ test('post comment', function () {
             'text' => 'test'
         ]
     )->assertCreated();
-    Notification::assertSentTo($owner, NewComment::class);
+    Notification::assertSentTo($owner, NewWorkComment::class);
     $this->assertDatabaseHas('comments', ['commentable_id' => $work->id, 'commentable_type' => 'work', 'text' => 'test']);
 
     $this->actingAs($commenter2)->postJson('api2/comment',

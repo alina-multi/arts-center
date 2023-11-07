@@ -57,6 +57,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ['get', 'post'], 'broadcasting',
         [BroadcastController::class, 'authenticate']
     )->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
+    Route::get('notifications', [\App\Http\Controllers\Api2\NotificationController::class, 'index']);
+    Route::post('notifications/mark-all-read', [\App\Http\Controllers\Api2\NotificationController::class, 'markAllRead']);
 });
 
 // These ones are not requited to have auth

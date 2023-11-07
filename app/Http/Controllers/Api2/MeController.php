@@ -30,6 +30,7 @@ class MeController extends Controller
                 'works' => $favorites,
                 'folders' => $favoriteFolders
             ],
+            'unread' => $user->unreadNotifications->count(),
             ...$user->isAdmin() ? ['admin' => true] : []
         ];
     }

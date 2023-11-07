@@ -39,13 +39,10 @@ class NewWorkVote extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'vote' => $this->vote->vote,
-            'work'=> $this->votable
+            'name' => $this->vote->user->name,
+            'username' => $this->vote->user->username,
+            'work_id' => $this->vote->votable->id,
+            'work_titles' => $this->vote->votable->titles
         ];
-    }
-
-    public function broadcastType(): string
-    {
-        return 'NewWorkVote';
     }
 }
