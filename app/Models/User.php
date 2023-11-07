@@ -37,6 +37,8 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'verified_at' => 'datetime',
+        'approved_at' => 'datetime',
     ];
 
     public function toSearchableArray(): array

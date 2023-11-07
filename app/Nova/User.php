@@ -14,6 +14,7 @@ use App\Nova\Filters\UserVerified;
 use App\Nova\Metrics\NewUsers;
 use App\Nova\Metrics\UsersPerDay;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\URL;
 use Laravel\Nova\Http\Requests\NovaRequest as Request;
 use Laravel\Nova\Fields\Gravatar;
@@ -88,8 +89,10 @@ class User extends Resource
 
             Text::make('Country'),
 
-            Boolean::make('Approved', 'approved_at'),
-            Boolean::make('Verified', 'verified_at'),
+            Boolean::make('Approved', 'approved_at')->onlyOnIndex(),
+            Boolean::make('Verified', 'verified_at')->onlyOnIndex(),
+            DateTime::make('Approved', 'approved_at')->nullable()->onlyOnForms(),
+            DateTime::make('Verified', 'verified_at')->nullable()->onlyOnForms(),
 
             Password::make('Password')
                 ->onlyOnForms()
