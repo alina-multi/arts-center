@@ -13,7 +13,7 @@ export interface WorkPreview {
 	titles: WorkTitleFullRaw[] | WorkTitleShort[];
 	owners: UserBasic[];
 	preview: Picture | null;
-	status?: number;
+	status: number;
 }
 
 export interface Work extends WorkPreview {

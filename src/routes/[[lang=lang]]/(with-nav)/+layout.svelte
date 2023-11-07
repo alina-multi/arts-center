@@ -3,12 +3,15 @@
 	import { Toaster } from 'svelte-french-toast';
 	import { browser } from '$app/environment';
 	import { checkAuth } from '$lib/stores/auth';
+	import NotificationToasts from '$lib/components/notification/NotificationToasts.svelte';
+
 	if (browser) {
-		checkAuth()
+		checkAuth();
 	}
 </script>
 {#if browser}
 	<Toaster />
+	<NotificationToasts/>
 {/if}
 <MainNav />
 <slot />

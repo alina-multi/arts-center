@@ -11,13 +11,19 @@
 		Bookmark,
 		NoSymbol,
 		CurrencyDollar,
-		Camera
+		Camera,
+		Bell
 	} from '@steeze-ui/heroicons';
 	import { user } from '$lib/stores/auth';
 
 	let folders = $user?.favorites?.folders;
 	const favorites_href = folders.length === 0 || folders.length > 1 ? '/my/favorites' : '/my/favorites/' + folders[0].id;
 	const links = [
+		{
+			path: '/my/notifications',
+			src: Bell,
+			text: 'notifications'
+		},
 		{
 			path: '/my/profile',
 			src: PencilSquare,

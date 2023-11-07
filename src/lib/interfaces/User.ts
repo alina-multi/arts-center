@@ -41,4 +41,5 @@ export interface UserMe extends UserBasic {
 	approved_at: string | null;
 	email_verified_at: string | null;
 	admin?: boolean;
+	unread: number;
 }
