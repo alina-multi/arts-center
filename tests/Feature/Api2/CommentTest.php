@@ -84,8 +84,18 @@ test('post comment', function () {
     )->assertCreated();
     $this->assertDatabaseHas('comments', ['comment_id' => 1]);
     $this->assertDatabaseHas('works', ['comments' => 2]);
-    Notification::assertSentTo($owner, NewComment::class);
     Notification::assertSentTo($commenter1, NewReply::class);
+    Notification::fake();
+    // Don't send notification if you comment your own work
+    $this->actingAs($owner)->postJson('api2/comment',
+        [
+            'commentable_id' => $work->id,
+            'commentable_type' => 'work',
+            'text' => 'test'
+        ]
+    )->assertCreated();
+    $this->assertDatabaseHas('works', ['comments' => 3]);
+    Notification::assertNothingSentTo($owner);
 });
 
 test('edit comment', function () {

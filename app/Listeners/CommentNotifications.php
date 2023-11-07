@@ -3,12 +3,9 @@
 namespace App\Listeners;
 
 use App\Events\CommentCreated;
-use App\Models\Comment;
 use App\Models\Work;
 use App\Notifications\NewComment;
 use App\Notifications\NewReply;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class CommentNotifications
 {
@@ -19,11 +16,18 @@ class CommentNotifications
     {
         $comment = $event->model;
         if ($comment->commentable_type === 'work') {
+            $ownerId = $comment->user->id;
             /** @var Work $work */
             $work = $comment->commentable;
-            $work?->owners?->each(fn($owner) => $owner->notify(new NewComment($comment)));
+            $work?->owners?->each(function ($owner) use ($comment, $ownerId) {
+                if ($owner->id != $ownerId) {
+                    $owner->notify(new NewComment($comment));
+                }
+            });
             if ($comment->parent) {
-                $comment?->parent?->user?->notify(new NewReply($comment));
+                if ($comment?->parent?->user->id !== $ownerId) {
+                    $comment?->parent?->user?->notify(new NewReply($comment));
+                }
             }
         }
     }
