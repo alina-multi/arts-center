@@ -12,8 +12,10 @@
 	import CommentBody from '$lib/components/comments/CommentBody.svelte';
 	import { user as currentUser } from '$lib/stores/auth';
 
-
-	export let comment: Comment, commentable_id: string, parentComments: [Comment] | [];
+	export let comment: Comment,
+		commentable_id: string,
+		parentComments: [Comment] | [],
+		work_comments: number;
 	let url = '/api/comment';
 
 	const comment_id = comment?.id?.toString();
@@ -57,6 +59,7 @@
 		answers = [...answers, { ...answer, owner: $currentUser }];
 		await tick();
 		new_comment_loaded = true;
+		work_comments = work_comments + 1;
 	}
 
 	function onEdit() {
@@ -100,11 +103,12 @@
 			answers = [];
 			parentComments = parentComments.filter((item) => item.id.toString() !== comment_id);
 		}, 500);
+		work_comments = work_comments - 1;
 	}
 </script>
 
 <li
-	class="text-sm text-gray-800 dark:text-gray-400 transition-opacity delay-0 {isDelited
+	class="text-sm text-black dark:text-gray-400 transition-opacity delay-0 {isDelited
 		? 'opacity-50'
 		: 'opacity-100'}"
 	id={comment_id}
@@ -143,10 +147,20 @@
 									? 'opacity-100'
 									: 'opacity-50'}"
 							>
-								<svelte:self comment={reply} {commentable_id} bind:parentComments={answers} />
-								</li>
+								<svelte:self
+									comment={reply}
+									{commentable_id}
+									bind:parentComments={answers}
+									bind:work_comments
+								/>
+							</li>
 						{:else}
-							<svelte:self comment={reply} {commentable_id} bind:parentComments={answers} />
+							<svelte:self
+								comment={reply}
+								{commentable_id}
+								bind:parentComments={answers}
+								bind:work_comments
+							/>
 						{/if}
 					{/each}
 				</div>

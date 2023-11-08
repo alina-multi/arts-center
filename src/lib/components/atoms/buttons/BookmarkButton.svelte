@@ -124,7 +124,7 @@
 				<button
 					on:click={() => ((showInput = true), (folderID = 0))}
 					type="button"
-					class="flex items-center text-sm hover:text-gray-700 text-gray-900 dark:text-white dark:hover:text-zinc-300 cursor-pointer focus-outline-none focus:ring-transparent"
+					class="flex items-center text-sm hover:text-gray-700 text-black dark:text-white dark:hover:text-zinc-300 cursor-pointer focus-outline-none focus:ring-transparent"
 				>
 					<Icon src={FolderPlus} class="h-7 w-7 " aria-hidden="true" />
 				</button>

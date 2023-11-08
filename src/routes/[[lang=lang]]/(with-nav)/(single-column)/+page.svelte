@@ -15,7 +15,7 @@
 
 <MetaGroups title={$t('global.seo.title.index')} description={$t('global.seo.description.index')} />
 
-<div class="grid xl:grid-cols-2 xl:gap-6 mt-6 gap-12">
+<div class="grid grid-cols-1 xl:grid-cols-2 xl:gap-6 mt-6 gap-12">
 	<!------- Last verified artists ------>
 	<div>
 		<div class="border-b pb-3 mb-6 dark:border-zinc-800 flex items-center gap-3">
@@ -57,7 +57,7 @@
 
 		<div class="space-y-6 h-36">
 			{#each data.comments as comment (comment.id)}
-				<div class="flex gap-3 sm:gap-6 transition-all">
+				<div class="flex gap-3 sm:gap-6 ">
 					<a
 						href={localePath(`/work/${comment.work.id}`)}
 						class="flex w-4/12 h-fit rounded-sm overflow-hidden shrink-0 hover:opacity-90"

@@ -31,7 +31,7 @@
 
 <!-- DESkTOP -->
 <div class="hidden lg:flex">
-	<Popover class="relative inline-block text-left  z-20 text-gray-800 dark:text-gray-200 " let:open>
+	<Popover class="relative inline-block text-left  z-20 text-black  dark:text-white" let:open>
 		<div class="flex flex-wrap gap-3 lg:justify-end w-full">
 			<TagButtons tags={visibleTags} {urlGenerator} {params} active={isActive} {selected} />
 
@@ -88,7 +88,7 @@
 
 <!-- MOBILE -->
 <div class="flex lg:hidden text-left z-20 flex-row-reverse">
-	<Popover class=" w-full flex-1  text-gray-800 dark:text-zinc-200  " let:open>
+	<Popover class=" w-full flex-1  text-black dark:text-zinc-200  " let:open>
 		<PopoverButton
 			class="w-full flex items-center justify-between gap-2  border px-4 py-2 rounded-sm  dark:border-zinc-800 overflow-hidden dark:bg-zinc-900"
 		>

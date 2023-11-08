@@ -25,7 +25,7 @@
 		/>
 
 		<div
-			class="h-screen md:max-h-[600px] md:h-fit absolute z-50 top-20 sm:top-16 lg:top-12 left-0 w-full text-gray-900 dark:text-zinc-300 bg-white dark:bg-black shadow-lg sm:rounded-sm overflow-scroll overscroll-none md:dark:border dark:border-zinc-800"
+			class="h-screen md:max-h-[600px] md:h-fit absolute z-50 top-20 sm:top-16 lg:top-12 left-0 w-full text-black dark:text-zinc-300 bg-white dark:bg-black shadow-lg sm:rounded-sm overflow-scroll overscroll-none md:dark:border dark:border-zinc-800"
 		>
 			<div class="relative">
 				{#if users.length > 0}
@@ -43,7 +43,7 @@
 							<!-- svelte-ignore a11y-click-events-have-key-events -->
 							<div
 								on:click={() => (open = false)}
-								class="flex gap-3 items-center w-full text-left text-sm px-6 py-1 hover:bg-gray-100 hover:text-gray-900 cursor-pointer dark:hover:bg-zinc-800"
+								class="flex gap-3 items-center w-full text-left text-sm px-6 py-1.5 hover:bg-gray-100 hover:text-black cursor-pointer dark:hover:bg-zinc-800"
 							>
 								<AvatarLink  {user} size={'h-10 w-10'} withName nameStyles={'text-sm '}  width={'w-full'}/>
 							</div>
@@ -63,7 +63,7 @@
 					</BoxHeader>
 
 					<ul
-						class="py-3 gap-3 px-3 md:max-lg:grid-cols-3 sm:grid sm:grid-cols-2 2xl:grid-cols-3 border-b dark:border-zinc-800 max-xl:divide-y dark:divide-zinc-800 flex flex-col justify-center"
+						class="py-3 gap-6 lg:gap-3 px-3 md:max-lg:grid-cols-3 sm:grid sm:grid-cols-2 2xl:grid-cols-3 border-b dark:border-zinc-800 max-xl:divide-y dark:divide-zinc-800 flex flex-col justify-center"
 					
 					>
 						<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->

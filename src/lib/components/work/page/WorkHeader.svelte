@@ -7,26 +7,31 @@
 	import { languageFind } from '$lib/translations';
 	import ReportModal from '$lib/components/atoms/ReportModal.svelte';
 	import type { Work } from '$lib/interfaces/Work';
-	import Time from 'svelte-time/src/Time.svelte';
-
+	import { locale, t } from '$lib/translations';
 
 	export let work: Work;
 	export let isMy = false;
 	let title = languageFind(work.titles)?.title;
 	let modalOpen = false;
 
+	let dateObject = new Date(work?.published_at).toLocaleDateString($locale, {
+		year: '2-digit',
+		month: 'short',
+		day: '2-digit'
+	});
+
+
 </script>
 
 <div class=" flex flex-col gap-3 dark:text-gray-400">
 	<div class="flex justify-between items-center">
+		{#each work.owners as user (user.id)}
+			<div class="flex items-center gap-3">
+				<AvatarLink {user} withName size={'w-8 h-8'} />
 
-			{#each work.owners as user (user.id)}
-				<div class="flex items-center gap-3 ">
-					<AvatarLink {user} withName size={'w-8 h-8'} />
-
-					<div><FollowButton size={'sm'} {user} /></div>
-				</div>
-			{/each}
+				<div><FollowButton size={'sm'} {user} /></div>
+			</div>
+		{/each}
 
 		<div>
 			<EllipsisButton workId={work.id} {isMy} type="vertical">
@@ -37,15 +42,14 @@
 		</div>
 	</div>
 
-	<div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-1">
+	<div class="flex flex-col md:flex-row md:justify-between md:items-center gap-1">
 		<h1 class="text-xl sm:text-2xl text-gray-00 dark:text-gray-100">
 			{title}
 		</h1>
-	<span class="text-zinc-500 text-sm" >Published	<Time relative timestamp={work.published_at} /></span>
+		<span class="text-zinc-500 text-sm">{$t('global.published_on')} {dateObject} </span>
 
-	 <PriceLabel price={work.price} style={'px-3 py-1 '} /> 
+		<PriceLabel price={work.price} style={'px-3 py-1 '} />
 	</div>
-	
 </div>
 
 {#if modalOpen}

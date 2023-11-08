@@ -6,12 +6,23 @@
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 	import loading from '$lib/stores/loading';
+	import {switchLocalePath} from '$lib/translations';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 
 	BigInt.prototype.toJSON = (val) => val.toString();
 
 	let navigationIsDelayed, timer;
+
+	
 	onMount(() => {
 		if (browser) {
+			let storedLang = localStorage.getItem('lang')
+			if (storedLang && storedLang != 'en') {
+				goto(switchLocalePath(storedLang, $page.url.pathname), { replaceState: true });
+			} 
+		
+			
 			navigationIsDelayed = derived(navigating, (newValue, set) => {
 				if (timer) {
 					clearTimeout(timer);
@@ -27,6 +38,8 @@
 
 <svelte:head>
 	<script>
+	
+
 		let dark = false;
 
 		function onLoad() {

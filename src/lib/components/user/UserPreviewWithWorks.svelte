@@ -4,7 +4,7 @@ import LastWorks from '$lib/components/atoms/LastWorks.svelte';
 export let user;
 </script>
 <div
-	class="flex flex-col items-center sm:flex-row sm;gap-3  shadow-sm border  rounded-sm w-full dark:bg-zinc-900 dark:border-zinc-800 {user.subscribed
+	class="flex flex-col items-center sm:flex-row  shadow-sm border  rounded-sm w-full dark:bg-zinc-900 dark:border-zinc-800 {user.subscribed
 					? 'bg-zinc-50 dark:bg-blue-900 shadow-2xl'
 					: 'bg-white'}"
 >

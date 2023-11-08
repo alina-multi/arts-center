@@ -9,7 +9,7 @@
             <use href="{cat}#icon-cat-with-ball" />
         </svg>
     </div>
-    <p class="mt-4 text-sm text-gray-900 dark:text-zinc-400">
+    <p class="mt-4 text-sm text-black dark:text-zinc-400">
         {$t('global.search.stub_nothing')}
     </p>
 </div>

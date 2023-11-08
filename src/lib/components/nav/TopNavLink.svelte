@@ -8,7 +8,6 @@
 	export let preload = 'hover';
 	export let media = 'desktop';
 	let style;
-	
 
 	let styleDesktop = 'border-b-2 px-1 pt-1';
 	let styleMobile = 'border-l-2 px-3 py-1 ';
@@ -22,6 +21,7 @@
 </script>
 
 <BaseLink
+	on:click
 	{href}
 	{reload}
 	{preload}

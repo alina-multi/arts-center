@@ -28,7 +28,7 @@
 
 <Button on:click={() => (open = !open)} type={'button'}>
 	<span class="sr-only">Open main menu</span>
-	<Icon src={Bars4} theme="solid" class="h-8 w-8 fill-black dark:fill-white" aria-hidden="true" />
+	<Icon src={Bars4} class="h-9 w-9 fill-black dark:fill-white" aria-hidden="true" />
 </Button>
 
 <Transition show={open}>
@@ -57,7 +57,7 @@
 				<div class=" h-screen flex flex-col">
 					<TopNav>
 						<Logo />
-						<div class="flex items-center gap-3 ml-6 h-full">
+						<div class="flex items-center gap-6 ml-6 h-full">
 							<TopNavLangLink lang="en" />
 							<TopNavLangLink lang="uk" />
 
@@ -80,11 +80,11 @@
 					{#if user}
 						<div class="flex flex-col gap-3 pb-3">
 							<div
-								class="flex justify-between gap-3 pl-6 pr-3 min-[500px]:pr-6 items-center w-full border-y dark:border-zinc-800 py-3 "
+								class="flex justify-between gap-3 pl-6 pr-3 min-[500px]:pr-6 items-center w-full border-y dark:border-zinc-800 py-3"
 							>
 								<AvatarLink {user} size={'w-12 h-12 '} withName nameStyles="font-semibold" />
 
-								<AddWorkButton  />
+								<AddWorkButton />
 							</div>
 
 							<ul class=" flex flex-col gap-2">
@@ -95,7 +95,7 @@
 							</ul>
 						</div>
 					{:else}
-						<div class="flex items-center py-6 justify-center gap-6 border-y">
+						<div class="flex items-center py-6 justify-center gap-6 border-y dark:border-zinc-800">
 							<AddWorkButton />
 							<LoginLink />
 						</div>

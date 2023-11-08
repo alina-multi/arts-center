@@ -8,7 +8,7 @@
 </script>
 
 <div class=" flex sm:hidden items-center justify-between w-full gap-6">
-	<div class="flex items-center gap-1.5">
+	<div class="flex items-center gap-3">
 		<SideBarNavigation user={$user} />
 		<Logo />
 		<svg

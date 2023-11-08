@@ -38,6 +38,7 @@
 			"success": "Comment added"
 		},
 		"comments": "Comments",
+		"comment": "Comment",
 		"delete": {
 			"error": "Error deleting comment",
 			"loading": "Deleting comment...",
@@ -219,5 +220,6 @@
 		"like": "Like",
 		"liked_by": "Liked by",
 		"others": "others"
-	}
+	},
+	"published_on": "Published on"
 }
