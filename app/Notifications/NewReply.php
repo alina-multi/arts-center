@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notification;
 
 class NewReply extends NewWorkComment
 {
-    public function toArray(object $notifiable): array
+    public function toArray(): array
     {
         return [
             ...parent::toArray(),

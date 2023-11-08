@@ -21,7 +21,7 @@ class DonationSent extends Notification
         return ['mail'];
     }
 
-    public function toMail(object $notifiable): MailMessage
+    public function toMail(): MailMessage
     {
         return (new MailMessage)
             ->line(__('notifications.donation.sent', ['total' => number_format($this->donation->amount_gross / 100, 2)]))

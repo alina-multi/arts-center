@@ -16,12 +16,12 @@ class DonationReceived extends Notification
     {
     }
 
-    public function via(object $notifiable): array
+    public function via(): array
     {
         return ['mail', 'broadcast'];
     }
 
-    public function toMail(object $notifiable): MailMessage
+    public function toMail(): MailMessage
     {
         return (new MailMessage)
             ->line(__('notifications.donation.received', ['total' => number_format($this->donation->amount_net / 100, 2)]))

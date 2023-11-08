@@ -17,7 +17,7 @@ class BlogPostContent extends Notification
     {
     }
 
-    public function via(object $notifiable): array
+    public function via(): array
     {
         return [
             // todo: uncomment before commit :) 'mail',
@@ -26,7 +26,7 @@ class BlogPostContent extends Notification
         ];
     }
 
-    public function toMail(object $notifiable): MailMessage
+    public function toMail(): MailMessage
     {
         $this->model->refresh();
         return (new MailMessage)

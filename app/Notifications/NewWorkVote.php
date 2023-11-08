@@ -36,7 +36,7 @@ class NewWorkVote extends Notification
      *
      * @return array<string, mixed>
      */
-    public function toArray(object $notifiable): array
+    public function toArray(): array
     {
         return [
             'name' => $this->vote->user->name,
