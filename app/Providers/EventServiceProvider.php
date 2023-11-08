@@ -63,7 +63,6 @@ class EventServiceProvider extends ServiceProvider
         ],
         WorkPublished::class => [
             SendNotifications::class,
-            AddToFeeds::class,
             ClearCache::class,
         ],
         WorkDrafted::class => [
