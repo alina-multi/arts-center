@@ -57,6 +57,6 @@ class NewWorkComment extends Notification
             ->subject(__('notifications.comment.received'))
             ->line($this->comment->text)
             ->line(__('notifications.comment.from', ['name' => $this->comment->user->name]))
-            ->action(__('notifications.comment.view'), UrlHelper::localePath("/work/{$this->comment->commentable->id}#$this->comment->id"));
+            ->action(__('notifications.comment.view'), UrlHelper::localePath("/work/{$this->comment->commentable->id}#{$this->comment->id}"));
     }
 }
