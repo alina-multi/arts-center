@@ -46,7 +46,8 @@ class NewWorkComment extends Notification
             'name' => $this->comment->user->name,
             'username' => $this->comment->user->username,
             'work_id' => $this->comment->commentable->id,
-            'work_titles' => $this->comment->commentable->titles
+            'work_titles' => $this->comment->commentable->titles,
+            'comment_id' => $this->comment->id
         ];
     }
 
