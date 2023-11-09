@@ -36,7 +36,7 @@
 	];
 </script>
 
-<HeaderLayout title={$t('my.works')}>
+<HeaderLayout title={$t('my.my_works')}>
 	<span slot="details"
 		>{data.gallery.length}
 		{data.gallery.length === 1 ? $t('my.work') : $t('my.works')}
