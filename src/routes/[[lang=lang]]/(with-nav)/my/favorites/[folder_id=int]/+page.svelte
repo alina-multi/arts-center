@@ -56,7 +56,7 @@
 				{data.favorites.works.length === 1 ? $t('my.work') : $t('my.works')}</span
 			>
 		</div>
-		<div slot="buttons" class="flex items-center gap-3 text-zinc-100">
+		<div slot="buttons" class="flex items-center gap-3 ">
 			<button
 				on:click={() => ((modalRename = true), (newName = title))}
 				class="  hover:scale-105 cursor-pointer"
@@ -76,7 +76,7 @@
 	</HeaderLayout>
 
 	{#if gallery.length > 0}
-		<ul class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-3">
+		<ul class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-3 gap-6 ">
 			{#each gallery as work (work.id)}
 				<li>
 					<ImageWork {work} withDesription />
@@ -85,7 +85,7 @@
 		</ul>
 	{:else}
 		<p
-			class=" px-6 border-x border-b py-3 dark:border-t rounded-b-sm dark:border-zinc-800 dark:bg-zinc-900"
+			class=" px-6  py-3 dark:border-zinc-800 dark:bg-zinc-900"
 		>
 			{$t('my.favorite.no_works')}
 		</p>

@@ -54,7 +54,7 @@
 	<button
 		type="button"
 		on:click={unblock}
-		class=" px-3 py-1 cursor-pointer items-center dark:bg-zinc-700 dark:border dark:border-zinc-500 text-sm flex flex-0 rounded-sm bg-zinc-500 text-white hover:bg-zinc-400 dark:hover:bg-zinc-600 font-semibold"
+		class=" px-3 py-1 cursor-pointer items-center dark:bg-zinc-700 dark:border dark:border-zinc-500 text-sm flex flex-0 rounded-sm bg-zinc-400 text-white hover:bg-zinc-500 dark:hover:bg-zinc-600 font-semibold"
 	>
 		<span>{$t('global.buttons.unblock')}</span>
 	</button>

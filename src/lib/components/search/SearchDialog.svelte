@@ -8,6 +8,8 @@
 	let open = false;
 </script>
 
+{#if open}
+
 <Dialog class="flex items-center justify-center " {open} on:close={() => (open = false)}>
 	<DialogOverlay class="fixed z-30 inset-0 bg-zinc-900 opacity-50 dark:opacity-80" />
 
@@ -23,7 +25,9 @@
 	</DialogDescription>
 </Dialog>
 
+{/if}
+
 <Button on:click={() => (open = !open)} type={'button'}>
 	<span class="sr-only">Search</span>
-	<Icon src={MagnifyingGlass} theme="solid" class="h-7 w-7" />
+	<Icon src={MagnifyingGlass} theme="solid" class="h-8 w-8" />
 </Button>

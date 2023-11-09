@@ -8,21 +8,16 @@
 	let blacklist = data.blacklist;
 </script>
 
+<div>
+	<HeaderLayout title={$t('my.blocked')}>
+		<span slot="details"> {blacklist.length} {$t('my.people')} </span>
+	</HeaderLayout>
 
-	<div>
-		<HeaderLayout title={$t('my.blocked')}>
-			
-				<span slot="details" > {blacklist.length} {$t('my.people')} </span>
-			
-		</HeaderLayout>
-	
-		<div
-			class="flex flex-col border-x  border-b py-3 dark:border--ttransparent rounded-b-sm  dark:border-zinc-800 dark:bg-zinc-900"
-		>
+	<div class="flex flex-col dark:border-zinc-800 dark:bg-zinc-900">
 		{#if blacklist?.length > 0}
 			<ul class="lg:divide-y dark:lg:divide-zinc-800">
 				{#each blacklist as user (user.id)}
-					<li class="flex justify-between items-center gap-x-6 py-3 px-3 sm:px-9">
+					<li class="flex justify-between items-center gap-x-6 py-3 px-3 sm:px-6">
 						<div>
 							<UserPreview
 								{user}
@@ -36,10 +31,8 @@
 					</li>
 				{/each}
 			</ul>
-			{:else}
-			<p class="px-6 py-3 ">{$t('my.no_blocked')}</p>
+		{:else}
+			<p class="px-6 py-3">{$t('my.no_blocked')}</p>
 		{/if}
-		</div>
-
 	</div>
-
+</div>

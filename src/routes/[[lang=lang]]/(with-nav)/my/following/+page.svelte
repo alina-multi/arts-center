@@ -14,12 +14,12 @@
 	</HeaderLayout>
 
 	<div
-		class="flex flex-col border-x  border-b py-3 rounded-b-sm dark:border-zinc-800 dark:bg-zinc-900"
+		class="flex flex-col dark:bg-zinc-900"
 	>
 		{#if users?.length > 0}
 			<ul class="lg:divide-y dark:lg:divide-zinc-800">
 				{#each users as user (user.id)}
-					<li class="flex justify-between items-center gap-x-6 py-3 px-3 sm:px-9">
+					<li class="flex justify-between items-center gap-x-6 py-3 px-3 sm:px-6">
 						<div>
 							<UserPreview
 								{user}

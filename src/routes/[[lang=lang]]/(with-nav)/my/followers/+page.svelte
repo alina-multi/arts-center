@@ -17,7 +17,7 @@
 	</HeaderLayout>
 
 	<div
-		class="flex flex-col border-x border-b py-3 dark:border-t rounded-b-sm dark:border-zinc-800 dark:bg-zinc-900"
+		class="flex flex-col     dark:border-zinc-800 dark:bg-zinc-900"
 	>
 		{#if followers?.length > 0}
 			<ul class="lg:divide-y dark:lg:divide-zinc-800">
