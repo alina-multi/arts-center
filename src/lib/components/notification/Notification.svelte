@@ -4,6 +4,7 @@
 	import NewReply from '$lib/components/notification/NewReply.svelte';
 
 	export let notification;
+
 	// Dirty workaround for now, until there is a new release for svelte-french-toast
 	export let toast;
 	if (!notification) {
@@ -18,4 +19,4 @@
 	let component = typeToComponent.get(notification.type);
 </script>
 
-<svelte:component this={component} {notification} />
+<svelte:component this={component} {notification}  />

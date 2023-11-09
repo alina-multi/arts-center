@@ -5,9 +5,6 @@ export const load = (async (event) => {
 	const response = await api({ method: 'GET', path: '/api2/notifications', event });
 	const notifications = await response.json();
 
-
-
-
 	return {
 		// Flatten structure because it broadcasts flat but in db it's in data
 		notifications: notifications.map((notification) => ({
