@@ -18,16 +18,16 @@
 		<UaFlag />
 	</div>
 
-	<div class="hidden lg:block w-[429px] pl-9"><SearchInput /></div>
+	<div class="hidden lg:block w-[400px] pl-9"><SearchInput /></div>
 
 	<div class="flex items-center gap-6 h-full justify-end ml-9 max-md:mr-3">
 		{#if !$isUserLoading}
 			<div class="lg:hidden flex justify-center"><Search /></div>
 
 			<div class="hidden md:flex"><AddWorkButton /></div>
-			
+
 			{#if $user}
-			<BellButton />
+				<BellButton />
 				<UserDropdown />
 			{:else}
 				<LoginLink />
