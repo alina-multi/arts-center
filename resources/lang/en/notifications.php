@@ -1,6 +1,10 @@
 <?php
 return [
-    "comment" => ["received" => "You have received new comment to your work!"],
+    "comment" => [
+        "from" => "From user: :name",
+        "received" => "You have received new comment to your work!",
+        "view" => "View comment on site"
+    ],
     "donation" => [
         "message" => "Message to artist",
         "my" => "List of all received donations",

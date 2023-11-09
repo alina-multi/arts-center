@@ -54,8 +54,9 @@ class NewWorkComment extends Notification
     public function toMail(): MailMessage
     {
         return (new MailMessage)
-            ->action(__('notifications.comment.received'), UrlHelper::localePath("/work/{$this->comment->commentable->id}"))
+            ->subject(__('notifications.comment.received'))
             ->line($this->comment->text)
-            ->action($this->comment->user->name, UrlHelper::localePath("/{$this->comment->user->username}"));
+            ->line(__('notifications.comment.from', ['name' => $this->comment->user->name]))
+            ->action(__('notifications.comment.view'), UrlHelper::localePath("/work/{$this->comment->commentable->id}#$this->comment->id"));
     }
 }
