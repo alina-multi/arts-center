@@ -2,8 +2,10 @@
 
 namespace App\Notifications;
 
+use App\Helpers\UrlHelper;
 use App\Models\Comment;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class NewWorkComment extends Notification
@@ -27,7 +29,8 @@ class NewWorkComment extends Notification
     {
         return [
             'broadcast',
-            'database'
+            'database',
+            'mail'
         ];
     }
 
@@ -45,5 +48,13 @@ class NewWorkComment extends Notification
             'work_id' => $this->comment->commentable->id,
             'work_titles' => $this->comment->commentable->titles
         ];
+    }
+
+    public function toMail(): MailMessage
+    {
+        return (new MailMessage)
+            ->action(__('notifications.comment.received'), UrlHelper::localePath("/work/{$this->comment->commentable->id}"))
+            ->line($this->comment->text)
+            ->action($this->comment->user->name, UrlHelper::localePath("/{$this->comment->user->username}"));
     }
 }

@@ -1,5 +1,6 @@
 <?php
 return [
+    "comment" => ["received" => "You have received new comment to your work!"],
     "donation" => [
         "message" => "Message to artist",
         "my" => "List of all received donations",
