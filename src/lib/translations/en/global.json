@@ -221,5 +221,15 @@
 		"liked_by": "Liked by",
 		"others": "others"
 	},
-	"published_on": "Published on"
+	"published_on": "Published on",
+
+	"notifications": {
+		"commented": "commented",
+		"on_your_work": "on your work",
+		"liked": "liked",
+		"your_work": "your work",
+		"replied": "replied",
+		"to_your_comment": " to your comment",
+		"mark_all_as_read": "Mark all as read"
+	}
 }

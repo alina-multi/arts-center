@@ -96,6 +96,7 @@
 	},
 	"work": "work",
 	"works": "works",
+	"my_works": "My works",
 	"works_page": {
 		"image": "Main image (cropped version)",
 		"status": "Status",
@@ -107,5 +108,10 @@
 			"waiting": "Waiting"
 		},
 		"titles": "Work titles"
+	},
+	"notifications": {
+		"notifications": "Notifications",
+		"no_notifications": "All your notifications will be here",
+		"unread": "unread"
 	}
 }
