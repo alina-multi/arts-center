@@ -8,17 +8,15 @@
 	import Logo from '$lib/components/atoms/Logo.svelte';
 	import FooterDropdown from '$lib/components/footer/FooterDropdown.svelte';
 	import { user, isUserLoading } from '$lib/stores/auth';
-
+	import BellButton from '../BellButton.svelte';
+	import UaFlag from '../UaFlag.svelte';
 </script>
 
 <div class="hidden xl:flex items-center w-full h-full gap-6">
 	<div class="flex items-center gap-6 flex-none">
 		<FooterDropdown />
 		<Logo />
-		<svg xmlns="http://www.w3.org/2000/svg" width="30" height="16" class="h-4 mt-0.5">
-			<rect width="30" height="8" fill="#0057B7" />
-			<rect width="30" height="8" y="8" fill="#FFD700" />
-		</svg>
+		<UaFlag />
 	</div>
 	<TopNavLink exact href={localePath('/tag/all/popular')}>{$t('global.menu.gallery')}</TopNavLink>
 
@@ -26,20 +24,16 @@
 
 	<SearchInput />
 
-	<div class=" items-center flex  gap-6 justify-end flex-1">
+	<div class=" items-center flex gap-6 justify-end flex-1">
 		{#if !$isUserLoading}
-		<AddWorkButton />
-	
+			<AddWorkButton />
+
 			{#if $user}
-				<UserDropdown user={$user} />
+				<BellButton />
+				<UserDropdown/>
 			{:else}
 				<LoginLink />
 			{/if}
 		{/if}
 	</div>
-
-
-
-		
-	
 </div>

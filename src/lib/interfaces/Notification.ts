@@ -4,25 +4,26 @@ import type { User } from '$lib/interfaces/User';
 
 type BaseNotification = {
 	id: string;
-}
+};
 
 export type NewWorkCommentNotification = BaseNotification & {
-	type: "App\\Notifications\\NewWorkComment";
+	type: 'App\\Notifications\\NewWorkComment';
 	text: string;
 	name: string;
-	username:string;
+	username: string;
 	work_id: bigint;
-	work_titles: WorkTitle[]
-}
+	work_titles: WorkTitle[];
+	comment_id: bigint;
+};
 
 export type NewReplyNotification = NewWorkCommentNotification & {
 	original_text: string;
-}
+};
 
 export type NewWorkVoteNotification = BaseNotification & {
-	type: "App\\Notifications\\NewWorkVote";
+	type: 'App\\Notifications\\NewWorkVote';
 	votable: Work | Comment;
-	user: User
-}
+	user: User;
+};
 
-export type Notification = NewCommentNotification | NewVoteNotification | NewReplyNotification
+export type Notification = NewCommentNotification | NewVoteNotification | NewReplyNotification;

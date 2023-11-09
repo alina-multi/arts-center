@@ -6,9 +6,9 @@ import { parse } from 'devalue';
 import { localePath } from '$lib/translations';
 import * as Ably from 'ably';
 import Echo from '@ably/laravel-echo';
-import type {Notification} from '$lib/interfaces/Notification';
+import type { Notification } from '$lib/interfaces/Notification';
 
-export const user: Writable<UserMe | undefined> = writable();
+export const user: Writable<UserMe> = writable();
 export const isUserLoading: Writable<boolean> = writable(true);
 
 export const notifications: Writable<Notification[]> = writable([]);
@@ -29,22 +29,19 @@ export async function logout() {
 
 // Since we make auth client-side, this should be safe
 user.subscribe((user) => {
-	if (user?.id) {
+	if (user?.id && !window.Echo) {
 		window.Ably = Ably;
 		window.Echo = new Echo({
 			broadcaster: 'ably',
 			authEndpoint: '/api/broadcasting'
 		});
 
-		window.Echo.connector.ably.connection.on(stateChange => {
-			console.log(stateChange);
+		window.Echo.connector.ably.connection.on((stateChange) => {
+			console.log('stateChange', stateChange);
 		});
 		console.log('subscribing to user private channel', `user.${user.id}`);
-		window.Echo.private(`user.${user.id}`)
-			.notification((notification) => {
-				notifications.update((current) => [...current, notification]);
-			});
+		window.Echo.private(`user.${user.id}`).notification((notification) => {
+			notifications.update((current) => [...current, notification]);
+		});
 	}
 });
-
-

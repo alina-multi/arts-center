@@ -18,20 +18,19 @@
 	import TopNavLink from './TopNavLink.svelte';
 	import MyProfileLinksGroup from './MyProfileLinksGroup.svelte';
 	import LogoutButton from '$lib/components/atoms/buttons/LogoutButton.svelte';
-
 	import AvatarLink from '../atoms/AvatarLink.svelte';
 	import FooterContent from '../footer/FooterContent.svelte';
+	import { user } from '$lib/stores/auth';
 
-	export let user;
 	export let open = false;
 </script>
 
 <Button on:click={() => (open = !open)} type={'button'}>
 	<span class="sr-only">Open main menu</span>
-	<Icon src={Bars4} class="h-9 w-9 fill-black dark:fill-white" aria-hidden="true" />
+	<Icon src={Bars4} class="h-9 w-9  dark:text-white" aria-hidden="true" />
 </Button>
 
-<Transition show={open}>
+<Transition show={open} class="hidden">
 	<Dialog {open} on:close={() => (open = !open)} class="relative xl:hidden ">
 		<TransitionChild
 			class="fixed inset-0 z-40 "
@@ -69,7 +68,7 @@
 					</TopNav>
 
 					<div class="flex flex-col p-6 gap-3 w-full">
-						<TopNavLink media={'mobile'} exact href={localePath('/')}
+						<TopNavLink media={'mobile'} exact href={localePath('/tag/all/popular')}
 							>{$t('global.menu.gallery')}</TopNavLink
 						>
 						<TopNavLink media={'mobile'} href={localePath('/users')}
@@ -77,12 +76,12 @@
 						>
 					</div>
 
-					{#if user}
+					{#if $user}
 						<div class="flex flex-col gap-3 pb-3">
 							<div
 								class="flex justify-between gap-3 pl-6 pr-3 min-[500px]:pr-6 items-center w-full border-y dark:border-zinc-800 py-3"
 							>
-								<AvatarLink {user} size={'w-12 h-12 '} withName nameStyles="font-semibold" />
+								<AvatarLink user={$user} size={'w-12 h-12 '} withName nameStyles="font-semibold" />
 
 								<AddWorkButton />
 							</div>
