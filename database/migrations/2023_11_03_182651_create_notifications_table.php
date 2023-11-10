@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('notifications', function (Blueprint $table) {
-            if (config('database.default' !== 'sqlite')) {
+            if (config('database.default') !== 'sqlite') {
                 \Illuminate\Support\Facades\DB::statement('SET SESSION sql_require_primary_key=0');
             }
             $table->uuid('id')->primary();
