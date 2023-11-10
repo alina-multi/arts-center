@@ -35,11 +35,6 @@ user.subscribe((user) => {
 			broadcaster: 'ably',
 			authEndpoint: '/api/broadcasting'
 		});
-
-		window.Echo.connector.ably.connection.on((stateChange) => {
-			console.log('stateChange', stateChange);
-		});
-		console.log('subscribing to user private channel', `user.${user.id}`);
 		window.Echo.private(`user.${user.id}`).notification((notification) => {
 			notifications.update((current) => [...current, notification]);
 		});
