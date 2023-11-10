@@ -98,7 +98,7 @@
 		{#if error && !showInput}
 			<span class="text-red-500 text-xs absolute -top-5 left-0">{error}</span>
 		{/if}
-		{#each categories as category}
+		{#each categories as category (category)}
 			<div class="relative flex items-center justify-between">
 				<RadioButton
 					id={category}

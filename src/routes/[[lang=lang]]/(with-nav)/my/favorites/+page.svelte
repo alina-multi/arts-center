@@ -17,7 +17,7 @@
 		class="divide-y dark:divide-zinc-800 "
 	>
 		{#if folders.length > 0}
-			{#each folders as folder}
+			{#each folders as folder (folder.id)}
 				<a
 					href="favorites/{folder.id}"
 					class="flex items-center gap-3 px-6 py-3 hover:bg-zinc-100 dark:hover:bg-zinc-800"
