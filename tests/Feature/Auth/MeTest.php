@@ -32,7 +32,8 @@ it('Returns valid data', function () {
                 'favorites.folders' => 'array',
                 'approved_at' => 'string',
                 'verified_at' => 'string',
-                'email_verified_at' => 'string'
+                'email_verified_at' => 'string',
+                'unread' => 'integer',
             ])
         );
 });
