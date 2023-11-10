@@ -78,8 +78,14 @@
 		"approved": "Your profile is still waiting for review. You can start with filling up your profile and uploading couple of works. They will be visible for other users once your profile is approved.",
 		"email": "Please check your inbox and confirm your email address"
 	},
+	"my_works": "My works",
 	"no_blocked": "There are no users in your blacklist",
 	"no_drafts": "There are no drafts",
+	"notifications": {
+		"no_notifications": "All your notifications will be here",
+		"notifications": "Notifications",
+		"unread": "unread"
+	},
 	"people": "people",
 	"transactions": {
 		"amount": "Amount",
@@ -96,7 +102,6 @@
 	},
 	"work": "work",
 	"works": "works",
-	"my_works": "My works",
 	"works_page": {
 		"image": "Main image (cropped version)",
 		"status": "Status",
@@ -108,10 +113,5 @@
 			"waiting": "Waiting"
 		},
 		"titles": "Work titles"
-	},
-	"notifications": {
-		"notifications": "Notifications",
-		"no_notifications": "All your notifications will be here",
-		"unread": "unread"
 	}
 }

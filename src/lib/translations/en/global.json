@@ -37,8 +37,8 @@
 			"loading": "Adding comment...",
 			"success": "Comment added"
 		},
-		"comments": "Comments",
 		"comment": "Comment",
+		"comments": "Comments",
 		"delete": {
 			"error": "Error deleting comment",
 			"loading": "Deleting comment...",
@@ -149,6 +149,16 @@
 		"reply": "reply",
 		"sign_in_with_email": "Sign in with email"
 	},
+	"notifications": {
+		"commented": "commented",
+		"liked": "liked",
+		"mark_all_as_read": "Mark all as read",
+		"on_your_work": "on your work",
+		"replied": "replied",
+		"to_your_comment": " to your comment",
+		"your_work": "your work"
+	},
+	"published_on": "Published on",
 	"register": {
 		"page_title": "Register",
 		"password_confirmation": "Confirm password",
@@ -220,16 +230,5 @@
 		"like": "Like",
 		"liked_by": "Liked by",
 		"others": "others"
-	},
-	"published_on": "Published on",
-
-	"notifications": {
-		"commented": "commented",
-		"on_your_work": "on your work",
-		"liked": "liked",
-		"your_work": "your work",
-		"replied": "replied",
-		"to_your_comment": " to your comment",
-		"mark_all_as_read": "Mark all as read"
 	}
 }
