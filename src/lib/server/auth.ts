@@ -13,22 +13,10 @@ export async function checkAuth(
 		// Make sure it will still work if auth server is down
 		const session = event?.cookies?.get('laravel_session');
 		if (session) {
-			const user = await cacheGet(
-				'auth',
-				session,
-				async () => {
-					try {
-						const response = await api({ method: 'GET', path: '/api2/me', event });
-						if (response.ok) {
-							return await response.json();
-						}
-					} catch (e) {
-						return;
-					}
-				},
-				360
-			);
-			return user;
+			const response = await api({ method: 'GET', path: '/api2/me', event });
+			if (response.ok) {
+				return await response.json();
+			}
 		}
 	} catch (error) {
 		SentryNode.captureException(error, { contexts: { sveltekit: { event } } });
