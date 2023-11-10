@@ -1,5 +1,4 @@
 import type { RequestEvent, ServerLoadEvent } from '@sveltejs/kit';
-import { cacheGet } from '$lib/server/database/cache';
 import { api } from '$lib/server/api';
 import * as SentryNode from '@sentry/node';
 import { redirect } from '@sveltejs/kit';
