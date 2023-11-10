@@ -3,6 +3,7 @@ return [
     "comment" => [
         "from" => "From user: :name",
         "received" => "You have received new comment to your work!",
+        "reply" => "You have received new reply to your comment!",
         "view" => "View comment on site"
     ],
     "donation" => [
