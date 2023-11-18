@@ -3,7 +3,7 @@ import { cacheGet } from '$lib/server/database/cache';
 
 export const load = (async ({ setHeaders }) => {
 	setHeaders({
-		'cache-control': 'max-age=6000'
+		'cache-control': 'max-age=600'
 	});
 	// Todo: get from DB :)
 	return cacheGet(

@@ -23,7 +23,7 @@ export const load = (async ({ params, setHeaders }) => {
 
 	// Important to add headers here, after potential 404 we don't want to cache it
 	setHeaders({
-		'cache-control': 'max-age=6000'
+		'cache-control': 'max-age=600'
 	});
 
 	return data;

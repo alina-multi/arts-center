@@ -6,7 +6,7 @@ import { tagsMap } from '$lib/server/mappers/tag';
 
 export const load = (async ({ params, setHeaders, url }) => {
 	setHeaders({
-		'cache-control': 'max-age=6000'
+		'cache-control': 'max-age=600'
 	});
 	params.order ??= 'popular';
 	params.tag ??= 'all';
