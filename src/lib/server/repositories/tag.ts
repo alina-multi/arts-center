@@ -20,7 +20,8 @@ export async function getCategories() {
 				}
 			},
 			where: {
-				type_id: 1
+				type_id: 1,
+				deleted_at: null
 			},
 			orderBy: {
 				count: 'desc'

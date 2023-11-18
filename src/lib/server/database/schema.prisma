@@ -319,6 +319,7 @@ model tags {
   titles       tag_titles[]
   taggables    taggables[]
   user_ratings user_ratings[]
+  deleted_at   DateTime?      @db.Timestamp(0)
 }
 
 model telescope_entries {
