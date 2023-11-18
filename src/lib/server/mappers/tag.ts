@@ -3,19 +3,21 @@ import { languageFind } from '$lib/translations';
 import type { CategoryRaw } from '$lib/interfaces/CategoryRaw';
 import type { TagRaw } from '$lib/interfaces/TagRaw';
 
-export function tagsMap(tags: CategoryRaw[]): Tag[] {
+export function tagsMap(tags: CategoryRaw[], lang = undefined): Tag[] {
 	let count = {};
-	return tags?.map((tag) => {
-		if (tag.count) {
-			count = { count: tag.count };
-		}
+	return tags
+		?.filter((tag) => tag.deleted_at === null)
+		?.map((tag) => {
+			if (tag.count) {
+				count = { count: tag.count };
+			}
 
-		return {
-			id: tag.id,
-			title: languageFind(tag.titles)?.title || '',
-			...count
-		};
-	});
+			return {
+				id: tag.id,
+				title: languageFind(tag.titles, lang)?.title || '',
+				...count
+			};
+		});
 }
 
 export function taggableMap(taggables: { tag: CategoryRaw }[] | TagRaw[]): Tag[] | Category[] {

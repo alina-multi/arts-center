@@ -14,7 +14,8 @@ export const GET = (async ({ params }) => {
 					params.order,
 					params.lang,
 					params.page
-				)
+				),
+				params.lang
 			)
 		})
 	);

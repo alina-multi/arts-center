@@ -12,7 +12,7 @@ export const load = (async ({ params, setHeaders }) => {
 		async () => {
 			const userRaw = await get(params.username);
 			if (!userRaw || !userRaw.approved_at) throw error(404, 'User not found');
-			const user = await userMap(userRaw);
+			const user = await userMap(userRaw, params.lang);
 			return {
 				user,
 				params

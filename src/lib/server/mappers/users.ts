@@ -12,7 +12,7 @@ type prismaCountryAggregation = {
 		country: number;
 	};
 };
-export async function usersMap(users: UserFullRaw[]): Promise<UserList[]> {
+export async function usersMap(users: UserFullRaw[], lang = undefined): Promise<UserList[]> {
 	return await Promise.all(
 		users.map(async (user: UserFullRaw) => {
 			const tmpWorks = await query(
@@ -31,7 +31,7 @@ export async function usersMap(users: UserFullRaw[]): Promise<UserList[]> {
 			);
 			const works = worksPreviewMap(tmpWorks);
 			return {
-				...userMap(user),
+				...userMap(user, lang),
 				works,
 				photo: pictureMap(user.photo)
 			};
@@ -39,7 +39,7 @@ export async function usersMap(users: UserFullRaw[]): Promise<UserList[]> {
 	);
 }
 
-export function userMap(user: UserFullRaw): User {
+export function userMap(user: UserFullRaw, lang = undefined): User {
 	return {
 		id: user.id,
 		name: user.name,
@@ -48,7 +48,7 @@ export function userMap(user: UserFullRaw): User {
 		created_at: user.created_at,
 		verified_at: user.verified_at,
 		rating: user.rating,
-		ratings: ratingsMap(user.ratings),
+		ratings: ratingsMap(user.ratings, lang),
 		photo: pictureMap(user.photo),
 		bio: languageFind(user.bios)?.text
 	};

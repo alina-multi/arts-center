@@ -10,7 +10,7 @@ beforeAll(async () => {
 test('tagsMap', () => {
 	const categories = [category_data_raw, { ...category_data_raw, id: 12n, count: 3 }];
 
-	const result = tagsMap(categories);
+	const result = tagsMap(categories, 'uk');
 	expect(result).toMatchInlineSnapshot(`
       [
         {

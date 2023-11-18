@@ -5,6 +5,6 @@ import { tagsMap } from '$lib/server/mappers/tag';
 export const load = (async ({ params }) => {
 	params.lang;
 	return {
-		categories: await getCategories().then((categories) => tagsMap(categories))
+		categories: tagsMap(await getCategories(), params.lang)
 	};
 }) satisfies LayoutServerLoad;

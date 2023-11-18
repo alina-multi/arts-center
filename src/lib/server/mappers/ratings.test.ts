@@ -14,7 +14,7 @@ beforeAll(async () => {
 });
 
 test('ratingsMap', () => {
-	const result = ratingsMap(user_ratings);
+	const result = ratingsMap(user_ratings, 'en');
 	expect(result).toMatchInlineSnapshot(`
 		[
 		  {

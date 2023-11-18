@@ -16,16 +16,14 @@ export const load = (async ({ params, url, setHeaders }) => {
 	// This is here just to let SvelteKit know to invalidate the page when the pathname changes
 	url.pathname;
 	const [users, categories, countries] = await Promise.all([
-		usersMap(
-			await filteredQuery(unslug(params.category), params.country, params.order, params.lang, 1)
-		),
-		getCategories().then((categories) => tagsMap(categories)),
-		userCountries().then((countries) => userCountriesMap(countries, params.lang))
+		filteredQuery(unslug(params.category), params.country, params.order, params.lang, 1),
+		getCategories(),
+		userCountries()
 	]);
 	return {
-		users,
-		categories,
-		countries,
+		users: usersMap(users, params.lang),
+		categories: tagsMap(categories, params.lang),
+		countries: userCountriesMap(countries, params.lang),
 		params
 	};
 }) satisfies PageServerLoad;

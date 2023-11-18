@@ -4,7 +4,7 @@ import { usersMap } from '$lib/server/mappers/users';
 import { latest } from '$lib/server/repositories/comment';
 import { lastCommentsMap } from '$lib/server/mappers/comments';
 
-export const load = (async ({ setHeaders }) => {
+export const load = (async ({ setHeaders, params }) => {
 	setHeaders({
 		'cache-control': 'max-age=60'
 	});
@@ -20,7 +20,7 @@ export const load = (async ({ setHeaders }) => {
 	const comments = await latest();
 
 	return {
-		users: await usersMap(users),
+		users: await usersMap(users, params.lang),
 		comments: await lastCommentsMap(comments)
 	};
 }) satisfies PageServerLoad;

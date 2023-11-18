@@ -1,18 +1,15 @@
 import type { PageServerLoad, Actions } from './$types';
 import { api } from '$lib/server/api';
-import { getCategories } from '$lib/server/repositories/tag';
-import { tagsMap } from '$lib/server/mappers/tag';
 import { error, redirect } from '@sveltejs/kit';
 import { languageFilter, localePath } from '$lib/translations';
+
 export const load = (async (event) => {
-	const [data, categories] = await Promise.all([
-		api({
-			method: 'GET',
-			path: `/api2/draft/${event.params.id}`,
-			event
-		}).then(async (response) => await response.json()),
-		getCategories().then((categories) => tagsMap(categories))
-	]);
+	const data = await api({
+		method: 'GET',
+		path: `/api2/draft/${event.params.id}`,
+		event
+	}).then(async (response) => await response.json());
+
 	const { user } = await event.parent();
 	// Check that you are the owner
 	if (!data.owners.filter(({ id }) => id === user.id)?.length) {
@@ -22,10 +19,7 @@ export const load = (async (event) => {
 	if (!data.id || !data.published_at) {
 		throw error(404, 'Not found');
 	}
-	return {
-		...data,
-		categories
-	};
+	return data;
 }) satisfies PageServerLoad;
 
 export const actions = {

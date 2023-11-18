@@ -12,6 +12,7 @@ export async function getCategories() {
 			select: {
 				id: true,
 				count: true,
+				deleted_at: true,
 				titles: {
 					select: {
 						title: true,
@@ -20,8 +21,7 @@ export async function getCategories() {
 				}
 			},
 			where: {
-				type_id: 1,
-				deleted_at: null
+				type_id: 1
 			},
 			orderBy: {
 				count: 'desc'
@@ -33,7 +33,7 @@ export async function getCategories() {
 
 export async function titleToId(title: string, language: string) {
 	if (categoryTitleToId.size === 0) {
-		const categories = await getCategories();
+		const categories = await getCategories({ not: null });
 		categories.forEach((tag) => {
 			tag.titles.forEach((title) => {
 				categoryTitleToId.set(`${title.language}.${title.title}`, tag.id);

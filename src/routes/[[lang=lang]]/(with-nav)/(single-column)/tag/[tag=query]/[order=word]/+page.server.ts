@@ -15,10 +15,8 @@ export const load = (async ({ params, setHeaders, url }) => {
 	// This is here just to let SvelteKit know to invalidate the page when the pathname changes
 	url.pathname;
 	return {
-		categories: await getCategories().then((categories) => tagsMap(categories)),
-		gallery: await filteredQuery(params.tag, params.lang, params.order, 1).then((works) =>
-			worksPreviewMap(works)
-		),
+		categories: tagsMap(await getCategories(), params.lang),
+		gallery: worksPreviewMap(await filteredQuery(params.tag, params.lang, params.order, 1)),
 		params
 	};
 }) satisfies PageServerLoad;
