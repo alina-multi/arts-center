@@ -18,7 +18,7 @@
 		if (browser) {
 			let storedLang = localStorage.getItem('lang')
 			if (storedLang && storedLang != $locale) {
-				window.location.replace(switchLocalePath(storedLang, $page.url.pathname));
+				window.location.href = switchLocalePath(storedLang, $page.url.pathname);
 			}
 			
 			navigationIsDelayed = derived(navigating, (newValue, set) => {
