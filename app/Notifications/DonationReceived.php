@@ -18,7 +18,7 @@ class DonationReceived extends Notification
 
     public function via(): array
     {
-        return ['mail', 'broadcast'];
+        return ['mail'];
     }
 
     public function toMail(): MailMessage
