@@ -32,7 +32,7 @@
 			{/if}
 
 			{#if condition}
-				<div class="relative dark:border-zinc-800 dark:border rounded-sm ">
+				<div class="relative  rounded-sm ">
 					<slot name="showInput" />
 				</div>
 			{/if}
