@@ -152,10 +152,15 @@
 	},
 	"notifications": {
 		"commented": "commented",
+		"donation_received": "You received donation",
+		"donation_received_message": "message",
 		"liked": "liked",
 		"mark_all_as_read": "Mark all as read",
 		"on_your_work": "on your work",
+		"profile_approved": "Your profile was approved by moderator, it is now visible on site",
+		"profile_verified": "Your documents were verified by moderator, you can now receive money from site",
 		"replied": "replied",
+		"started_following_you": "is now following you",
 		"to_your_comment": " to your comment",
 		"your_work": "your work"
 	},

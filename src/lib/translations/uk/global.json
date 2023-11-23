@@ -152,10 +152,15 @@
 	},
 	"notifications": {
 		"commented": "прокоментував",
+		"donation_received": "Ви отримали пожертву",
+		"donation_received_message": "повідомлення",
 		"liked": "вподобав",
 		"mark_all_as_read": "Позначити все як прочитане",
 		"on_your_work": "на вашу роботу",
+		"profile_approved": "Ваш профіль схвалено модератором, тепер він видимий на сайті",
+		"profile_verified": "Ваші документи були перевірені модератором, тепер ви можете отримувати гроші з сайту",
 		"replied": "Відповів",
+		"started_following_you": "підписався на вас",
 		"to_your_comment": " на ваш коментар",
 		"your_work": "Ваша робота"
 	},
