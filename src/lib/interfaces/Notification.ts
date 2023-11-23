@@ -27,9 +27,9 @@ export type NewWorkVoteNotification = BaseNotification & {
 };
 
 export type DonationReceived = BaseNotification & {
-	total: string,
-	message: string
-}
+	total: string;
+	message: string;
+};
 
 export type NewFollower = BaseNotification & {
 	type: 'App\\Notifications\\NewFollower';
@@ -38,7 +38,7 @@ export type NewFollower = BaseNotification & {
 };
 
 export type Notification =
-	NewWorkCommentNotification
+	| NewWorkCommentNotification
 	| NewWorkVoteNotification
 	| NewReplyNotification
 	| DonationReceived

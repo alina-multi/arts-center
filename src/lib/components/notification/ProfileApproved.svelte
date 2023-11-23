@@ -2,8 +2,6 @@
 	import { t } from '$lib/translations';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { CheckCircle } from '@steeze-ui/heroicons';
-
-	export let notification;
 </script>
 
 <span class='flex gap-3 items-center text-sm w-full py-3'>
