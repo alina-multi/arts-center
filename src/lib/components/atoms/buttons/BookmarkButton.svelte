@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { Bookmark,  Folder, FolderPlus } from '@steeze-ui/heroicons';
+	import { Bookmark, Folder, FolderPlus } from '@steeze-ui/heroicons';
 	import toast from 'svelte-french-toast';
 	import { fetchData } from '$lib/helpers/fetchData';
 	import RadioButton from '$lib/components/input/RadioButton.svelte';
@@ -13,14 +13,12 @@
 	let url = '/api/favorite';
 	let workID = Number(work.id);
 	$: isBookmarked = $user?.favorites?.works.some((favorite: number) => favorite === workID);
-	
-
 
 	let open = false;
 	let showInput = false;
 	let error = '';
 	let folderID = 0;
-	$: folderName = showInput ? '' : $t('global.my_links.favorites');
+	let folderName = '';
 	$: folders = $user?.favorites?.folders;
 
 	function onChange(e: Event & { target: HTMLInputElement }) {
@@ -28,7 +26,6 @@
 		showInput = false;
 		error = '';
 	}
-	
 
 	async function saveInExistingFolder() {
 		if (folderID === 0) {
@@ -42,7 +39,7 @@
 			error = data.message;
 			return;
 		}
-       
+
 		toast.success($t('global.bookmark.work_saved'));
 		open = false;
 		isBookmarked = true;
@@ -66,7 +63,7 @@
 			return;
 		}
 
-		toast.success($t('global.bookmark.saved_to', {folderName: `${folderName}`}));
+		toast.success($t('global.bookmark.saved_to', { folderName: `${folderName}` }));
 		open = false;
 		isBookmarked = true;
 		showInput = false;
@@ -79,32 +76,36 @@
 </script>
 
 <div
-	class="flex group border border-zinc-200 rounded-sm  shadow   dark:border-zinc-700 dark:bg-zinc-800"
+	class="flex group border border-zinc-200 rounded-sm shadow dark:border-zinc-700 dark:bg-zinc-800"
 >
-
-
 	<button
 		type="button"
 		on:click={isBookmarked ? remove : () => (open = true)}
-		class=" text-sm dark:text-zinc-300 text-zinc-600 dark:border-zinc-700  flex items-center"
+		class=" text-sm dark:text-zinc-300 text-zinc-600 dark:border-zinc-700 flex items-center"
 	>
 		{#if isBookmarked}
-		<span class="text-lg  border-r dark:border-zinc-700 px-2 xs:px-3 py-2 max-md:hidden text-zinc-400">{$t('global.bookmark.saved')}</span>
-<span class="px-2 xs:px-3 py-2">
-	<Icon
-		src={Bookmark}
-		class="h-7 w-7 group-hover:scale-105  stroke-amber-400  fill-amber-400 dark:fill-amber-500  dark:stroke-amber-500    "
-		aria-hidden="true"
-	/>
-</span>
-		
+			<span
+				class="text-lg border-r dark:border-zinc-700 px-2 xs:px-3 py-2 max-md:hidden text-zinc-400"
+				>{$t('global.bookmark.saved')}</span
+			>
+			<span class="px-2 xs:px-3 py-2">
+				<Icon
+					src={Bookmark}
+					class="h-7 w-7 group-hover:scale-105  stroke-amber-400  fill-amber-400 dark:fill-amber-500  dark:stroke-amber-500    "
+					aria-hidden="true"
+				/>
+			</span>
 		{:else}
-		<span class="text-lg  border-r dark:border-zinc-700 px-2 xs:px-3 py-2 max-md:hidden">{$t('global.bookmark.save')}</span>
-		<span class="px-2 xs:px-3 py-2">	<Icon
-				src={Bookmark}
-				class="h-7 w-7 group-hover:scale-105  stroke-zinc-600 dark:stroke-zinc-300    "
-				aria-hidden="true"
-			/></span>
+			<span class="text-lg border-r dark:border-zinc-700 px-2 xs:px-3 py-2 max-md:hidden"
+				>{$t('global.bookmark.save')}</span
+			>
+			<span class="px-2 xs:px-3 py-2">
+				<Icon
+					src={Bookmark}
+					class="h-7 w-7 group-hover:scale-105  stroke-zinc-600 dark:stroke-zinc-300    "
+					aria-hidden="true"
+				/></span
+			>
 		{/if}
 	</button>
 
@@ -131,12 +132,12 @@
 			{/if}
 		</svelte:fragment>
 
-		<svelte:fragment  slot="list">
+		<svelte:fragment slot="list">
 			{#if error && !showInput}
 				<span class="text-red-500 text-xs absolute -top-5 left-0">{error}</span>
 			{/if}
 			{#each folders as folder (folder?.id)}
-				<div class="relative flex items-center justify-between ">
+				<div class="relative flex items-center justify-between">
 					<RadioButton
 						id={folder?.id}
 						label={folder?.title}
@@ -149,7 +150,7 @@
 					</RadioButton>
 				</div>
 			{/each}
-		</svelte:fragment >
+		</svelte:fragment>
 
 		<svelte:fragment slot="showInput">
 			{#if error}
@@ -165,8 +166,4 @@
 			/>
 		</svelte:fragment>
 	</ModalWithForm>
-
-
 </div>
-
-
