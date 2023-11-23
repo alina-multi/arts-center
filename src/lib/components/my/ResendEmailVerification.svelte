@@ -6,7 +6,7 @@
 	let visible = true;
 
 	async function resend() {
-		magicFetch('post','/auth/email/verification-notification').then(()=>{
+		magicFetch('post','/api/verification-notification').then(()=>{
 			toast($t('my.edit_page.email_sent'));
 			visible = false;
 		});
