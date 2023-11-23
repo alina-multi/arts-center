@@ -1397,6 +1397,41 @@
 									</concept_node>
 								</children>
 							</folder_node>
+							<folder_node>
+								<name>follower</name>
+								<children>
+									<concept_node>
+										<name>started_following_you</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>uk-UA</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>subject</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>uk-UA</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+								</children>
+							</folder_node>
 						</children>
 					</file_node>
 					<file_node>

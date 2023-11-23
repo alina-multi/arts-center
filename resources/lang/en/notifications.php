@@ -11,5 +11,9 @@ return [
         "my" => "List of all received donations",
         "received" => "We are pleased to inform you that a new donation of \$:total has been received on your behalf. This generous contribution will support your artistic endeavors and inspire your creative journey. Thank you for your dedication to your craft.",
         "sent" => "We want to express our sincere gratitude for your generous donation of \$:total. Your support empowers the artist's creative journey, serving as a significant source of motivation. Your contribution will enable the artist to continue sharing their work with the world."
+    ],
+    "follower" => [
+        "started_following_you" => "is now following you",
+        "subject" => ":name is now following you"
     ]
 ];

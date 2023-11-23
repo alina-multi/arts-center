@@ -6,12 +6,14 @@ use App\Models\{User, Follow, Work};
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 test('Follow user', function () {
+    \Illuminate\Support\Facades\Notification::fake();
     [$user1, $user2] = User::factory()->count(2)->create();
     $request = [
         'followable_type' => 'user',
         'followable_id' => $user2->id
     ];
     actingAs($user1)->postJson("api2/follow", $request)->assertCreated();
+    Notification::assertSentTo($user2, \App\Notifications\NewFollower::class);
     assertDatabaseHas('follows', [
         ...$request,
         'user_id' => $user1->id
