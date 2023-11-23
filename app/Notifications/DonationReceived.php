@@ -18,7 +18,19 @@ class DonationReceived extends Notification
 
     public function via(): array
     {
-        return ['mail'];
+        return [
+            'broadcast',
+            'database',
+            'mail'
+        ];
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'total' => number_format($this->donation->amount_net / 100, 2),
+            'message' => $this->donation->message
+        ];
     }
 
     public function toMail(): MailMessage
