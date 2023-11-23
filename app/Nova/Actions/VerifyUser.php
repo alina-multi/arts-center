@@ -2,13 +2,12 @@
 
 namespace App\Nova\Actions;
 
+use App\Notifications\ProfileVerified;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
-use Laravel\Nova\Http\Requests\NovaRequest;
 
 class VerifyUser extends Action
 {
@@ -27,6 +26,8 @@ class VerifyUser extends Action
         foreach ($models as $model) {
             $model->verified_at = $model->freshTimestamp();
             $model->save();
+            $model->notify(new ProfileVerified());
+            $this->markAsFinished($model);
         }
     }
 }

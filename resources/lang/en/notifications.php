@@ -15,5 +15,9 @@ return [
     "follower" => [
         "started_following_you" => "is now following you",
         "subject" => ":name is now following you"
+    ],
+    "profile" => [
+        "approved" => "Your profile was approved by moderator, it is now visible on site",
+        "verified" => "Your documents were verified by moderator, you can now receive money from site"
     ]
 ];

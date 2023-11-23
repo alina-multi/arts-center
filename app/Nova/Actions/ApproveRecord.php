@@ -2,6 +2,8 @@
 
 namespace App\Nova\Actions;
 
+use App\Models\User;
+use App\Notifications\ProfileApproved;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -27,6 +29,9 @@ class ApproveRecord extends Action implements ShouldQueue
         $models->each(function ($model) {
             $model->approved_at = now();
             $model->save();
+            if ($model instanceof User) {
+                $model->notify(new ProfileApproved());
+            }
             $this->markAsFinished($model);
         });
     }
