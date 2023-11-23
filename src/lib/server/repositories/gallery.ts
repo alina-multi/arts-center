@@ -30,9 +30,10 @@ export const gallerySelect = {
 		}
 	}
 };
+
 export function query(
 	where: Prisma.worksWhereInput = {},
-	orderBy: Prisma.worksOrderByWithRelationInput = {},
+	orderBy: Prisma.worksOrderByWithRelationInput | Prisma.worksOrderByWithRelationInput[] = {},
 	page = 1,
 	perPage = 20,
 	select = {}
@@ -47,6 +48,7 @@ export function query(
 		},
 		where: {
 			status: { gte: 40 },
+			published_at: { lte: new Date() },
 			...where
 		},
 		orderBy
@@ -93,9 +95,14 @@ export async function userQuery(user_id: bigint, tag = 'all', lang = 'en', page 
 				}
 			}
 		},
-		{
-			published_at: 'desc'
-		},
+		[
+			{
+				published_at: 'desc'
+			},
+			{
+				id: 'desc'
+			}
+		],
 		page
 	);
 }
