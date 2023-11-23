@@ -13,7 +13,7 @@
 	export let data: PageData;
 </script>
 
-<MetaGroups title={$t('global.seo.title.index')} description={$t('global.seo.description.index')} />
+<MetaGroups title={$t('global.seo.title.index')} description={$t('global.seo.description.index')} image='https://i.arts.center/logo_white.png' />
 
 <div class="grid grid-cols-1 xl:grid-cols-2 xl:gap-6 mt-6 gap-12">
 	<!------- Last verified artists ------>
