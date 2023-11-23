@@ -3523,6 +3523,21 @@
 								</translations>
 							</concept_node>
 							<concept_node>
+								<name>email_sent</name>
+								<description/>
+								<comment/>
+								<translations>
+									<translation>
+										<language>en-US</language>
+										<approved>false</approved>
+									</translation>
+									<translation>
+										<language>uk-UA</language>
+										<approved>false</approved>
+									</translation>
+								</translations>
+							</concept_node>
+							<concept_node>
 								<name>full_name</name>
 								<description/>
 								<comment/>
@@ -3599,6 +3614,21 @@
 							</concept_node>
 							<concept_node>
 								<name>photo</name>
+								<description/>
+								<comment/>
+								<translations>
+									<translation>
+										<language>en-US</language>
+										<approved>false</approved>
+									</translation>
+									<translation>
+										<language>uk-UA</language>
+										<approved>false</approved>
+									</translation>
+								</translations>
+							</concept_node>
+							<concept_node>
+								<name>resend_email</name>
 								<description/>
 								<comment/>
 								<translations>

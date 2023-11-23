@@ -11,6 +11,7 @@
 	import { t } from '$lib/translations';
 	import countryList from 'country-list';
 	import SelectInput from '$lib/components/input/SelectInput.svelte';
+	import ResendEmailVerification from '$lib/components/my/ResendEmailVerification.svelte';
 
 	export let data: PageData;
 	export let form: ActionData;
@@ -84,6 +85,7 @@
 			{#if !profile?.email_verified_at}
 				<p class="mt-1 text-sm leading-6 text-gray-600">
 					{$t('my.edit_page.email_awaiting_confirmation')}
+					<ResendEmailVerification/>
 				</p>
 			{/if}
 			<EmailInput {id} {error} name="email" value={profile.email} />

@@ -6,12 +6,13 @@
 	import { user } from '$lib/stores/auth';
 	import Hint from '$lib/components/atoms/Hint.svelte';
 	import { t, localePath } from '$lib/translations';
+	import ResendEmailVerification from '$lib/components/my/ResendEmailVerification.svelte';
 </script>
 
 {#if $user}
 	<SideMenu style="hidden xl:block ">
 		{#if !$user.email_verified_at}
-			<Hint type="warning">{$t('my.hint.email')}</Hint>
+			<Hint type="warning">{$t('my.hint.email')} <ResendEmailVerification/></Hint>
 		{/if}
 		{#if !$user.approved_at}
 			<Hint type="danger">{$t('my.hint.approved')}</Hint>
