@@ -5,6 +5,7 @@ namespace App\Nova;
 use App\Enums\WorkStatuses;
 use App\Nova\Actions\ClearCacheByTag;
 use App\Nova\Actions\PublishWork;
+use App\Nova\Actions\ReadyWork;
 use App\Nova\Actions\TranslateWork;
 use App\Nova\Actions\ValidateWork;
 use App\Nova\Filters\WorkPublished;
@@ -155,6 +156,6 @@ class Work extends Resource
      */
     public function actions(Request $request)
     {
-        return [(new ClearCacheByTag(['work', 'gallery']))->standalone(), new TranslateWork(), new ValidateWork(), new PublishWork()];
+        return [(new ClearCacheByTag(['work', 'gallery']))->standalone(), new TranslateWork(), new ValidateWork(), new PublishWork(), new ReadyWork()];
     }
 }
