@@ -23,7 +23,8 @@ class ConvertImage implements ShouldQueue
         ImageFolders::Works->name => [600, 1200, 2400],
         ImageFolders::Preview->name => [150, 200, 250, 300, 600],
         ImageFolders::Photos->name => [64, 300, 600],
-        ImageFolders::Grids->name => [150, 300, 600, 1200, 2400]
+        ImageFolders::Grids->name => [150, 300, 600, 1200, 2400],
+        ImageFolders::Posts->name => [150, 300, 600, 1200],
     ];
     private Client $client;
 

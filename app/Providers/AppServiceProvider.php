@@ -53,8 +53,7 @@ class AppServiceProvider extends ServiceProvider
                 'feedback' => Feedback::class,
                 'tag' => Tag::class,
                 'blog' => Blog::class,
-                'post' => Post::class,
-                'work_block' => WorkBlock::class,
+                'post' => Post::class
             ]
         );
     }

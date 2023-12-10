@@ -133,7 +133,7 @@ return [
     */
 
     'meilisearch' => [
-        'host' => env('MEILISEARCH_HOST', 'https://ms-592552fd0ab4-4380.fra.meilisearch.io'),
+        'host' => env('MEILISEARCH_HOST', 'https://edge.meilisearch.com'),
         'key' => env('MEILISEARCH_KEY'),
         'index-settings' => [
              'users' => [

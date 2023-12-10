@@ -4,9 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use App\Models\Work;
-use App\Models\Blog;
-use App\Policies\MultipleOwnersPolicy;
+use App\Models\{Work, Post, Image};
+use App\Policies\{MultipleOwnersPolicy, SingleOwnerPolicy};
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -16,7 +15,9 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        Work::class => MultipleOwnersPolicy::class
+        Work::class => MultipleOwnersPolicy::class,
+        Post::class => SingleOwnerPolicy::class,
+        Image::class => SingleOwnerPolicy::class,
     ];
 
     /**

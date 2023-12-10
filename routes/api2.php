@@ -13,7 +13,10 @@ use App\Http\Controllers\Api2\{
     FeedbackController,
     WorkImageController,
     CheckoutController,
-    PhotoController
+    PhotoController,
+    PostController,
+    NotificationController,
+    ImageController
 };
 
 use Illuminate\Broadcasting\BroadcastController;
@@ -57,11 +60,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ['get', 'post'], 'broadcasting',
         [BroadcastController::class, 'authenticate']
     )->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
-    Route::get('notifications', [\App\Http\Controllers\Api2\NotificationController::class, 'index']);
-    Route::post('notifications/mark-all-read', [\App\Http\Controllers\Api2\NotificationController::class, 'markAllRead']);
+    Route::get('notifications', [NotificationController::class, 'index']);
+    Route::post('notifications/mark-all-read', [NotificationController::class, 'markAllRead']);
     Route::post('verification-notification', [\App\Http\Controllers\Auth\EmailVerificationNotificationController::class, 'store'])
         ->middleware(['auth', 'throttle:6,1'])
         ->name('verification.send');
+    Route::apiResource('post', PostController::class);
+    Route::apiResource('image', ImageController::class);
 });
 
 // These ones are not requited to have auth

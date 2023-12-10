@@ -11,23 +11,29 @@ class Post extends Model
 {
     use HasFactory, SoftDeletes, Publishable;
 
-    protected $hidden = ['created_at','deleted_at','updated_at'];
+    protected $hidden = ['created_at', 'deleted_at', 'updated_at'];
 
     protected $fillable = [
-        'blog_id', 'published_at', 'title', 'text'
+        'user_id', 'published_at', 'title', 'body'
     ];
 
     protected $casts = [
-        'published_at' => 'datetime'
+        'published_at' => 'datetime',
+        'body' => 'json',
     ];
 
-    public function blog()
+    public function user()
     {
-        return $this->belongsTo(Blog::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function translations()
+    public function image()
     {
-        return $this->hasMany(PostTranslation::class);
+        return $this->belongsTo(Image::class);
+    }
+
+    public function images()
+    {
+        return $this->morphToMany(Image::class, 'imageable');
     }
 }

@@ -25,29 +25,42 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'blog_id' => [
+            'title' => [
                 'required',
-                'numeric'
+                'string',
+                'min:5',
+                'max:191'
             ],
             'published_at' => [
                 'date',
                 'nullable'
             ],
-            'translations' => [
-                'required',
+            'body' => [
                 'array'
             ],
-            'translations.*.language' => [
+            'body.*.type' => [
                 'required',
-                'distinct',
-                Rule::in(config('app.languages'))
+                Rule::in(['text', 'image', 'work'])
             ],
-            'translations.*.title' => [
-                'required'
+            'body.*.image_id' => [
+                'integer',
+                'nullable',
+                'required_if:body.*.type,image',
+                'exists:images,id'
             ],
-            'translations.*.body' => [
+            'body.*.text' => [
+                'string',
+                'nullable',
+                'required_if:body.*.type,text',
+            ],
+            'body.*.works' => [
                 'array',
-                'required'
+                'nullable',
+                'required_if:body.*.type,work',
+            ],
+            'body.*.works.*' => [
+                'integer',
+                'exists:works,id',
             ]
         ];
     }
