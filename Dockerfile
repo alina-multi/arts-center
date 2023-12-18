@@ -34,4 +34,4 @@ EXPOSE 8000
 
 RUN echo 'memory_limit = 512M' >> /usr/local/etc/php/conf.d/docker-php-ram-limit.ini
 ENTRYPOINT ["php"]
-CMD ["artisan", "octane:start", "--host=0.0.0.0"]
+CMD ["artisan", "octane:start", "--host=0.0.0.0", "--log-level=notice"]
