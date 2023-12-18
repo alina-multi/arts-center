@@ -6,7 +6,7 @@ import { env } from '$env/dynamic/public';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.params.lang ??= defaultLocale;
-	console.log(`${new Date().toISOString()} ${event.url.pathname}`)
+	console.log(`${event.request.method} ${event.url.pathname}`);
 	return resolve(event, {
 		transformPageChunk: ({ html }) => html.replace('%lang%', checkUrlLocale(event))
 	});
