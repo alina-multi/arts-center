@@ -6,6 +6,7 @@ import { env } from '$env/dynamic/public';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.params.lang ??= defaultLocale;
+	console.log(`${new Date().toISOString()} ${event.url.pathname}`)
 	return resolve(event, {
 		transformPageChunk: ({ html }) => html.replace('%lang%', checkUrlLocale(event))
 	});
@@ -31,6 +32,7 @@ export const handleError = (({ error, event }) => {
 	}
 
 	if (env.PUBLIC_ENV !== 'development') {
+		console.error(error);
 		return;
 	}
 	return {
