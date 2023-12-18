@@ -32,7 +32,6 @@ export const handleError = (({ error, event }) => {
 	}
 
 	if (env.PUBLIC_ENV !== 'development') {
-		console.error(error);
 		return;
 	}
 	return {
