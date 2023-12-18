@@ -12,7 +12,9 @@
 		NoSymbol,
 		CurrencyDollar,
 		Camera,
-		Bell
+		Bell,
+		ArrowUpOnSquareStack,
+		RectangleStack
 	} from '@steeze-ui/heroicons';
 	import { user } from '$lib/stores/auth';
 
@@ -43,6 +45,17 @@
 			path: '/my/work',
 			src: FolderOpen,
 			text: 'works',
+			exact: true
+		},
+		{
+			path: '/my/post/add',
+			src: ArrowUpOnSquareStack,
+			text: 'add_post'
+		},
+		{
+			path: '/my/post',
+			src: RectangleStack,
+			text: 'posts',
 			exact: true
 		},
 		{

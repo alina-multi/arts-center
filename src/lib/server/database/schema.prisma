@@ -40,31 +40,6 @@ model blacklists {
   updated_at        DateTime? @db.Timestamp(0)
 }
 
-model blog_translations {
-  id         BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
-  blog_id    Int
-  language   String    @db.Char(2)
-  title      String
-  about      String    @db.LongText
-  deleted_at DateTime? @db.Timestamp(0)
-  created_at DateTime? @db.Timestamp(0)
-  updated_at DateTime? @db.Timestamp(0)
-
-  @@unique([blog_id, language], map: "blog_translations_blog_id_language_unique")
-}
-
-model blogs {
-  id         BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
-  featured   Boolean   @default(false)
-  rating     Int?      @default(0)
-  created_at DateTime? @db.Timestamp(0)
-  updated_at DateTime? @db.Timestamp(0)
-  deleted_at DateTime? @db.Timestamp(0)
-
-  @@index([featured], map: "blogs_featured_index")
-  @@index([rating], map: "blogs_rating_index")
-}
-
 model comments {
   id               BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
   commentable_id   BigInt
@@ -159,6 +134,7 @@ model images {
   variants         image_variants[]
   previewWorkImage works[]          @relation("previewWorkImage")
   fullWorkImage    works[]          @relation("fullWorkImage")
+  posts            posts[]
 
   @@index([folder], map: "images_folder_index")
 }
@@ -211,30 +187,21 @@ model personal_access_tokens {
   @@index([tokenable_type, tokenable_id], map: "personal_access_tokens_tokenable_type_tokenable_id_index")
 }
 
-model post_translations {
-  id         BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
-  post_id    Int
-  language   String    @db.Char(2)
-  title      String
-  body       String    @db.LongText
-  deleted_at DateTime? @db.Timestamp(0)
-  created_at DateTime? @db.Timestamp(0)
-  updated_at DateTime? @db.Timestamp(0)
-
-  @@unique([post_id, language], map: "post_translations_post_id_language_unique")
-}
-
 model posts {
   id           BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
-  blog_id      Int
   rating       Int?      @default(0)
   comments     Int?      @default(0)
   published_at DateTime? @db.Timestamp(0)
   deleted_at   DateTime? @db.Timestamp(0)
   created_at   DateTime? @db.Timestamp(0)
   updated_at   DateTime? @db.Timestamp(0)
+  title        String?
+  body         Json?
+  image_id     BigInt?   @db.UnsignedBigInt
+  user_id      BigInt    @db.UnsignedBigInt
+  image        images?   @relation(fields: [image_id], references: [id])
+  user         users     @relation(fields: [user_id], references: [id])
 
-  @@index([blog_id], map: "posts_blog_id_index")
   @@index([comments], map: "posts_comments_index")
   @@index([published_at], map: "posts_published_at_index")
   @@index([rating], map: "posts_rating_index")
@@ -408,6 +375,7 @@ model users {
   bios              user_bios[]
   approved_at       DateTime?      @db.Timestamp(0)
   verified_at       DateTime?      @db.Timestamp(0)
+  posts             posts[]
 
   @@index([country], map: "users_country_index")
   @@index([stripe_id], map: "users_stripe_id_index")
