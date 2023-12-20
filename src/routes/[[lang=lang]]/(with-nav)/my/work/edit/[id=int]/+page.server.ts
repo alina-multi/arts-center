@@ -37,7 +37,7 @@ export const actions = {
 			}
 		});
 		if (response.ok) {
-			throw redirect(302, localePath($locale, `/work/${event.params.id}`));
+			throw redirect(302, localePath(event.params.lang, `/work/${event.params.id}`));
 		}
 		return await response.json();
 	},
@@ -48,7 +48,7 @@ export const actions = {
 			event
 		});
 		if (response.ok) {
-			throw redirect(302, localePath($locale, `/my/work/draft`));
+			throw redirect(302, localePath(event.params.lang, `/my/work/draft`));
 		}
 		return await response.json();
 	}
