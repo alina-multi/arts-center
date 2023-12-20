@@ -3,7 +3,7 @@ import type { Rating } from '$lib/interfaces/Rating';
 import type { Tag } from '$lib/interfaces/Tag';
 import type { UserRatingsRow } from '$lib/interfaces/UserRaw';
 
-export function ratingsMap(ratings: UserRatingsRow[], lang: string): Rating[] {
+export function ratingsMap(ratings: UserRatingsRow[], lang: "en" | "uk"): Rating[] {
 	ratings = languageFilter(ratings, lang);
 	return (
 		ratings?.map((rating) => {
