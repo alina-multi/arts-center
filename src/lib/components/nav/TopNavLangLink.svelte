@@ -6,7 +6,7 @@
 
 	const t = getContext('t');
 	const locale = getContext('locale');
-	export let lang: string;
+	export let lang: "en" | "uk";
 	let active = false;
 	$: active = $locale == lang;
 </script>
