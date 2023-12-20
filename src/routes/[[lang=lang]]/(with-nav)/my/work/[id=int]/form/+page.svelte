@@ -24,7 +24,7 @@
 		if (!data?.work?.titles?.length) {
 			data.work.titles = [
 				{
-					language: locale.get(),
+					language: $locale,
 					title: '',
 					description: ''
 				}
