@@ -3,7 +3,7 @@ import { languageFind } from '$lib/translations';
 import type { CategoryRaw } from '$lib/interfaces/CategoryRaw';
 import type { TagRaw } from '$lib/interfaces/TagRaw';
 
-export function tagsMap(tags: CategoryRaw[], lang): Tag[] {
+export function tagsMap(tags: CategoryRaw[], lang: "en" | "uk"): Tag[] {
 	let count = {};
 	return tags
 		?.filter((tag) => tag.deleted_at === null)
@@ -22,7 +22,7 @@ export function tagsMap(tags: CategoryRaw[], lang): Tag[] {
 
 export function taggableMap(
 	taggables: { tag: CategoryRaw }[] | TagRaw[],
-	lang
+	lang: "en" | "uk"
 ): Tag[] | Category[] {
 	let count = {};
 	return taggables?.map((taggable) => {
