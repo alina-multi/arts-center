@@ -74,7 +74,7 @@ export function checkUrlLocale(event: RequestEvent): (typeof availableLocales)[n
 
 export function localePath(
 	currentLang: (typeof availableLocales)[number],
-	path: `/${string}`
+	path: `/${string}` | "/"
 ): string {
 	return removeTrailingSlash(localPrefix(currentLang) + path);
 }
