@@ -69,7 +69,7 @@
 			</form>
 			<a
 				href={localePath($locale, '/register')}
-				class="block mt-3 text-center bg-amber-500 rounded-sm hover:bg-amber-400 rounded-sm px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+				class="block mt-3 text-center bg-amber-500 rounded-sm hover:bg-amber-400 px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
 				>{$t('global.buttons.register')}</a
 			>
 
