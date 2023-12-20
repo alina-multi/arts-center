@@ -25,7 +25,7 @@ export const actions = {
 		if (response.ok) {
 			throw redirect(
 				301,
-				event.url.searchParams.get('redirect') || localePath($locale, '/my/profile')
+				event.url.searchParams.get('redirect') || localePath(event.params.lang, '/my/profile')
 			);
 		} else {
 			return {
