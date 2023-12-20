@@ -1,19 +1,27 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import MetaGroups from '$lib/components/MetaGroups.svelte';
-	import { t, languageFind, localePath } from '$lib/translations';
-	import { CheckBadge, ChatBubbleBottomCenterText } from '@steeze-ui/heroicons';
+	import { languageFind, localePath } from '$lib/translations';
+	import { ChatBubbleBottomCenterText, CheckBadge } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import Picture from '$lib/components/atoms/Picture.svelte';
 	import Time from 'svelte-time/src/Time.svelte';
 	import UserPreview from '$lib/components/user/UserPreview.svelte';
 
 	import ImageWork from '$lib/components/atoms/ImageWork.svelte';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
+	const locale = getContext('locale');
 
 	export let data: PageData;
 </script>
 
-<MetaGroups title={$t('global.seo.title.index')} description={$t('global.seo.description.index')} image='https://i.arts.center/logo_white.png' />
+<MetaGroups
+	title={$t('global.seo.title.index')}
+	description={$t('global.seo.description.index')}
+	image="https://i.arts.center/logo_white.png"
+/>
 
 <div class="grid grid-cols-1 xl:grid-cols-2 xl:gap-6 mt-6 gap-12">
 	<!------- Last verified artists ------>
@@ -57,9 +65,9 @@
 
 		<div class="space-y-6 h-36">
 			{#each data.comments as comment (comment.id)}
-				<div class="flex gap-3 sm:gap-6 ">
+				<div class="flex gap-3 sm:gap-6">
 					<a
-						href={localePath(`/work/${comment.work.id}`)}
+						href={localePath($locale, `/work/${comment.work.id}`)}
 						class="flex w-4/12 h-fit rounded-sm overflow-hidden shrink-0 hover:opacity-90"
 					>
 						<Picture
@@ -77,17 +85,19 @@
 						/>
 						<div class="text-sm mt-1 flex flex-wrap items-center gap-1">
 							<a
-								href={localePath(`/${comment.owner.username} `)}
+								href={localePath($locale, `/${comment.owner.username} `)}
 								class="font-semibold hover:underline">{comment.owner.name}</a
 							>
 							<span class="dark:text-zinc-300">{$t('global.main_page.comment_work')}</span>
-							<a href={localePath(`/work/${comment.work.id}`)} class="font-semibold hover:underline"
-								>"{languageFind(comment.work.titles)?.title}"</a
+							<a
+								href={localePath($locale, `/work/${comment.work.id}`)}
+								class="font-semibold hover:underline"
+								>"{languageFind(comment.work.titles, $locale)?.title}"</a
 							>
 						</div>
 
 						<a
-							href={localePath(`/work/${comment.work.id}#${comment.id}`)}
+							href={localePath($locale, `/work/${comment.work.id}#${comment.id}`)}
 							class="block w-fit prose prose-sm text-sm border mt-2 border-zinc-200 p-3 rounded-md bg-zinc-50 dark:bg-zinc-900 dark:text-white dark:border-zinc-800 space-y-2"
 						>
 							<div class="line-clamp-2 whitespace-pre-wrap">{comment.text}</div>

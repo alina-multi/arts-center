@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { localePath, t } from '$lib/translations';
+	import { localePath } from '$lib/translations';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ChevronRight } from '@steeze-ui/heroicons';
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
@@ -9,6 +9,10 @@
 	import SearchFilters from '$lib/components/search/SearchFilters.svelte';
 	import WorkPreview from '$lib/components/work/WorkPreview.svelte';
 	import { getData } from '$lib/helpers/getData';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
+	const locale = getContext('locale');
 
 	export let data;
 	let searchable = data.params.searchable;
@@ -61,7 +65,7 @@
 							<div><UserPreview {user} avatar_size={'w-12 h-12'} crown_size={'w-3 h-3'} /></div>
 
 							<a
-								href={localePath(`/${user.username}`)}
+								href={localePath($locale, `/${user.username}`)}
 								class="cursor-pointer hidden sm:inline-flex gap-3 flex-0 items-center text-sm text-zinc-500 hover:scale-105 hover:text-gray-600 transition ease-in-out duration-150"
 							>
 								<span> {$t('global.search.view_profile')}</span>

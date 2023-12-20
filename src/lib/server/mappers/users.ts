@@ -39,7 +39,7 @@ export async function usersMap(users: UserFullRaw[], lang = undefined): Promise<
 	);
 }
 
-export function userMap(user: UserFullRaw, lang = undefined): User {
+export function userMap(user: UserFullRaw, lang): User {
 	return {
 		id: user.id,
 		name: user.name,
@@ -50,7 +50,7 @@ export function userMap(user: UserFullRaw, lang = undefined): User {
 		rating: user.rating,
 		ratings: ratingsMap(user.ratings, lang),
 		photo: pictureMap(user.photo),
-		bio: languageFind(user.bios)?.text
+		bio: languageFind(user.bios, lang)?.text
 	};
 }
 

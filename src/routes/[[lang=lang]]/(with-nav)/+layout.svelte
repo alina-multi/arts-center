@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang="ts">
 	import MainNav from '$lib/components/nav/top/MainNav.svelte';
 	import { Toaster } from 'svelte-french-toast';
 	import { browser } from '$app/environment';
@@ -9,9 +9,10 @@
 		checkAuth();
 	}
 </script>
+
 {#if browser}
 	<Toaster />
-	<NotificationToasts/>
+	<NotificationToasts />
 {/if}
 <MainNav />
 <slot />

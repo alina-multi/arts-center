@@ -2,7 +2,10 @@
 	import { localePath } from '$lib/translations';
 	import FilterTag from '$lib/components/filters/FilterTag.svelte';
 	import { page } from '$app/stores';
+	import { getContext } from 'svelte';
+
 	export let tags, params: { username: string; tag: string };
+	const locale = getContext('locale');
 
 	$: path = $page.url.pathname.split('/');
 	$: index = path.findIndex((el) => el === 'tag');
@@ -19,9 +22,9 @@
 		selected: string
 	) => {
 		if (selected === title) {
-			return localePath(`/${params?.username}`);
+			return localePath($locale, `/${params?.username}`);
 		}
-		return localePath(`/${params?.username}/tag/${title}`);
+		return localePath($locale, `/${params?.username}/tag/${title}`);
 	};
 </script>
 

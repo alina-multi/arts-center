@@ -5,7 +5,6 @@
 	import Avatar from '../atoms/Avatar.svelte';
 	import MyPageLink from '../atoms/MyPageLink.svelte';
 	import { user } from '$lib/stores/auth';
-
 </script>
 
 <Dropdown style="-right-[60px]  z-40 w-60  text-sm mt-2" z={30}>

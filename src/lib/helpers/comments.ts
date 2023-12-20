@@ -1,24 +1,5 @@
 import toast from 'svelte-french-toast';
 import { tick } from 'svelte';
-import { t } from '$lib/translations';
-
-export const commentMassage = {
-	add: {
-		loading: t.get('global.comment.add.loading'),
-		success: t.get('global.comment.add.success'),
-		error: t.get('global.comment.add.error')
-	},
-	delete: {
-		loading: t.get('global.comment.delete.loading'),
-		success: t.get('global.comment.delete.success'),
-		error: t.get('global.comment.delete.error')
-	},
-	edit: {
-		loading: t.get('global.comment.add.loading'),
-		success: t.get('global.comment.edit.success'),
-		error: t.get('global.comment.edit.error')
-	}
-};
 
 export function сommentValidations(value: string) {
 	value = value.trim();

@@ -7,11 +7,11 @@
 		value: string,
 		error: string | boolean = false,
 		name: string,
-		rows = 3, 
+		rows = 3,
 		id = newUniqueId();
 
 	// Generate a unique ID for the fields
-	
+
 	const descriptionId = id + '-description';
 	const errorId = id + '-error';
 </script>
@@ -23,7 +23,7 @@
 		</label>
 	{/if}
 	<textarea
-	    on:focus={()=> error = false}
+		on:focus={() => (error = false)}
 		{id}
 		{placeholder}
 		{name}

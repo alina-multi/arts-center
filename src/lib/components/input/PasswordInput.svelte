@@ -2,7 +2,11 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Eye, EyeSlash } from '@steeze-ui/heroicons';
 
-	export let id: string , value: string , error: boolean = false, name: string, autocomplete: string;
+	export let id: string,
+		value: string,
+		error: boolean = false,
+		name: string,
+		autocomplete: string;
 	let type = 'password';
 
 	let show_password = false;

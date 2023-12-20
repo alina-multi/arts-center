@@ -2,6 +2,9 @@
 	import { localePath } from '$lib/translations';
 	import type { Tag } from '$lib/interfaces/Tag';
 	import FiltersBase from '$lib/components/filters/FiltersBase.svelte';
+	import { getContext } from 'svelte';
+
+	const locale = getContext('locale');
 
 	export let categories: Tag[];
 	export let params: {
@@ -48,7 +51,7 @@
 			}
 		}
 
-		return localePath(url);
+		return localePath($locale, url);
 	};
 </script>
 

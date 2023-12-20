@@ -6,9 +6,10 @@
 	import RadioButton from '$lib/components/input/RadioButton.svelte';
 	import TextInput from '$lib/components/input/TextInput.svelte';
 	import ModalWithForm from '$lib/components/my/ModalWithForm.svelte';
-	import { t } from '$lib/translations';
 	import { user } from '$lib/stores/auth';
+	import { getContext } from 'svelte';
 
+	const t = getContext('t');
 	export let work;
 	let url = '/api/favorite';
 	let workID = Number(work.id);

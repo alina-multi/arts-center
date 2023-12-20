@@ -3,12 +3,15 @@
 	import Picture from '$lib/components/atoms/Picture.svelte';
 	import RatingPreview from '$lib/components/rating/RatingPreview.svelte';
 	import PriceLabel from './PriceLabel.svelte';
+	import { getContext } from 'svelte';
 
 	export let work,
 		withDesription: boolean = false;
 
-	let title = languageFind(work.titles)?.title;
-	let href = localePath(`/work/${work.id}`);
+	const locale = getContext('locale');
+
+	let title = languageFind(work.titles, $locale)?.title;
+	let href = localePath($locale, `/work/${work.id}`);
 </script>
 
 <a {href} class="grid gap-1">

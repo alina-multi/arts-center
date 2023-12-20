@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PageData, ActionData } from './$types';
+	import type { ActionData, PageData } from './$types';
 	import { enhance } from '$app/forms';
 	import WorkForm from '$lib/components/forms/WorkForm.svelte';
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
@@ -8,7 +8,9 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Trash } from '@steeze-ui/heroicons';
 	import CancelButton from '$lib/components/forms/CancelButton.svelte';
-	import {t} from '$lib/translations';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
 
 	export let data: PageData;
 	export let form: ActionData;

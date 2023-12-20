@@ -12,6 +12,15 @@ declare namespace App {
 	// interface Platform {}
 }
 
+declare module 'svelte' {
+	export function getContext(
+		key: 't'
+	): Awaited<ReturnType<(typeof import('$lib/translations'))['loadTranslations']['t']>>;
+	export function getContext(
+		key: 'locale'
+	): Awaited<ReturnType<(typeof import('$lib/translations'))['loadTranslations']['locale']>>;
+}
+
 declare global {
 	interface Window {
 		gtag;

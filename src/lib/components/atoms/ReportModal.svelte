@@ -2,11 +2,12 @@
 	import { fetchData } from '$lib/helpers/fetchData';
 	import { page } from '$app/stores';
 	import toast from 'svelte-french-toast';
-	import { t } from '$lib/translations';
 	import RadioButton from '../input/RadioButton.svelte';
 	import TextAreaInput from '../input/TextAreaInput.svelte';
 	import ModalWithForm from '../my/ModalWithForm.svelte';
+	import { getContext } from 'svelte';
 
+	const t = getContext('t');
 
 	export let open: boolean, feedbackable_type: string, feedbackable_id: number;
 
@@ -83,8 +84,6 @@
 	}
 </script>
 
-
-
 <ModalWithForm
 	bind:open
 	condition={showInput}
@@ -122,4 +121,3 @@
 		/>
 	</div>
 </ModalWithForm>
-

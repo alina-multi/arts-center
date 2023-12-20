@@ -2,10 +2,11 @@
 	import { Disclosure, DisclosureButton, DisclosurePanel } from '@rgossiaux/svelte-headlessui';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ChevronDown } from '@steeze-ui/heroicons';
-	import { t } from '$lib/translations';
 	import { unslug } from '$lib/helpers/url';
-	import { locale } from '$lib/translations';
+	import { getContext } from 'svelte';
 
+	const t = getContext('t');
+	const locale = getContext('locale');
 	export let params, options, group, urlGenerator;
 	$: selected = unslug(params[group]);
 
@@ -32,8 +33,8 @@
 					{selected === 'all'
 						? $t(`global.filters.all`)
 						: group === 'country'
-						? regionNames.of(selected.toUpperCase())
-						: selected}
+							? regionNames.of(selected.toUpperCase())
+							: selected}
 				{/if}
 			</div>
 		</div>

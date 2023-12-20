@@ -1,18 +1,22 @@
 <script lang="ts">
 	import type { NewWorkCommentNotification } from '$lib/interfaces/Notification';
-	import { localePath, languageFind, t } from '$lib/translations';
+	import { languageFind, localePath } from '$lib/translations';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ChatBubbleBottomCenterText } from '@steeze-ui/heroicons';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
+	const locale = getContext('locale');
 
 	export let notification: NewWorkCommentNotification;
 
 	let { username, name, text } = notification;
-	let href = localePath(`/${username}`);
-	let title = languageFind(notification.work_titles)?.title;
+	let href = localePath($locale, `/${username}`);
+	let title = languageFind(notification.work_titles, $locale)?.title;
 </script>
 
 <a
-	href={localePath(`/work/${notification?.work_id}#${notification?.comment_id}`)}
+	href={localePath($locale, `/work/${notification?.work_id}#${notification?.comment_id}`)}
 	class="flex gap-3 items-center w-full py-3 text-sm"
 >
 	<span class="p-1.5 rounded-full bg-emerald-500"

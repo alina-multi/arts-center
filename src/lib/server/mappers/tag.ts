@@ -1,9 +1,9 @@
-import type { Tag, Category } from '$lib/interfaces/Tag';
+import type { Category, Tag } from '$lib/interfaces/Tag';
 import { languageFind } from '$lib/translations';
 import type { CategoryRaw } from '$lib/interfaces/CategoryRaw';
 import type { TagRaw } from '$lib/interfaces/TagRaw';
 
-export function tagsMap(tags: CategoryRaw[], lang = undefined): Tag[] {
+export function tagsMap(tags: CategoryRaw[], lang): Tag[] {
 	let count = {};
 	return tags
 		?.filter((tag) => tag.deleted_at === null)
@@ -20,7 +20,10 @@ export function tagsMap(tags: CategoryRaw[], lang = undefined): Tag[] {
 		});
 }
 
-export function taggableMap(taggables: { tag: CategoryRaw }[] | TagRaw[]): Tag[] | Category[] {
+export function taggableMap(
+	taggables: { tag: CategoryRaw }[] | TagRaw[],
+	lang
+): Tag[] | Category[] {
 	let count = {};
 	return taggables?.map((taggable) => {
 		if (taggable.tag.count) {
@@ -28,7 +31,7 @@ export function taggableMap(taggables: { tag: CategoryRaw }[] | TagRaw[]): Tag[]
 		}
 		return {
 			id: taggable.tag?.id,
-			title: languageFind(taggable.tag.titles)?.title || '',
+			title: languageFind(taggable.tag.titles, lang)?.title || '',
 			...count
 		};
 	});

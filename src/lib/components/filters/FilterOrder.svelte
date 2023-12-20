@@ -8,7 +8,9 @@
 	} from '@rgossiaux/svelte-headlessui';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ChevronDown, ChevronUp } from '@steeze-ui/heroicons';
-	import {t} from '$lib/translations';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
 
 	export let option, selectedOrder, params, type, urlGenerator;
 </script>
@@ -42,11 +44,10 @@
 						class=" block px-4 py-2 border-l-2 {selected
 							? ' bg-gray-100 dark:text-white  dark:bg-zinc-800  border-amber-500'
 							: 'text-black dark:text-zinc-300 hover:bg-gray-50/50  hover:text-gray-600 border-transparent hover:border-gray-300 dark:hover:border-zinc-700 dark:hover:text-white  dark:hover:bg-zinc-800/30'}"
-						>
+					>
 						<!-- {title} -->
 						{$t(`global.filters.${title}`)}
-						</a
-					>
+					</a>
 				</ListboxOption>
 			{/each}
 		</ListboxOptions>

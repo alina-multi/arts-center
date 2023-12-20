@@ -1,4 +1,4 @@
-import type { PageServerLoad, Actions } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 import { api } from '$lib/server/api';
 import { error, redirect } from '@sveltejs/kit';
 import { languageFilter, localePath } from '$lib/translations';
@@ -15,7 +15,7 @@ export const load = (async (event) => {
 	if (!data.owners.filter(({ id }) => id === user.id)?.length) {
 		throw error(404, 'Not found');
 	}
-	data.titles = languageFilter(data.titles);
+	data.titles = languageFilter(data.titles, event.params.lang);
 	if (!data.id || !data.published_at) {
 		throw error(404, 'Not found');
 	}
@@ -37,7 +37,7 @@ export const actions = {
 			}
 		});
 		if (response.ok) {
-			throw redirect(302, localePath(`/work/${event.params.id}`));
+			throw redirect(302, localePath($locale, `/work/${event.params.id}`));
 		}
 		return await response.json();
 	},
@@ -48,7 +48,7 @@ export const actions = {
 			event
 		});
 		if (response.ok) {
-			throw redirect(302, localePath(`/my/work/draft`));
+			throw redirect(302, localePath($locale, `/my/work/draft`));
 		}
 		return await response.json();
 	}

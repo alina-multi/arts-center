@@ -7,11 +7,14 @@
 	import { languageFind } from '$lib/translations';
 	import ReportModal from '$lib/components/atoms/ReportModal.svelte';
 	import type { Work } from '$lib/interfaces/Work';
-	import { locale, t } from '$lib/translations';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
+	const locale = getContext('locale');
 
 	export let work: Work;
 	export let isMy = false;
-	let title = languageFind(work.titles)?.title;
+	let title = languageFind(work.titles, $locale)?.title;
 	let modalOpen = false;
 
 	let dateObject = new Date(work?.published_at).toLocaleDateString($locale, {
@@ -19,8 +22,6 @@
 		month: 'short',
 		day: '2-digit'
 	});
-
-
 </script>
 
 <div class=" flex flex-col gap-3 dark:text-gray-400">

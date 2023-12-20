@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { t } from '$lib/translations';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
 	let clazz = '';
 	export { clazz as class };
 	export let href;

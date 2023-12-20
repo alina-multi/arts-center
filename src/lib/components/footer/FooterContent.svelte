@@ -1,6 +1,10 @@
 <script lang="ts">
-	import { localePath, t } from '$lib/translations';
+	import { localePath } from '$lib/translations';
 	import TopNavLangLink from '../nav/TopNavLangLink.svelte';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
+	const locale = getContext('locale');
 	export let media: string;
 </script>
 
@@ -14,22 +18,22 @@
 
 	<ul class="flex flex-col items-start py-3 text-black dark:text-white">
 		<li class="w-full">
-			<a class="hover:bg-gray-100 dark:hover:bg-zinc-700 px-6 block py-1.5" href={localePath('/s/about')}
-				>{$t('global.footer.about')}</a
-			>
-		</li>
-		<li class="w-full">
-			<a class=" dark:hover:bg-zinc-700 hover:bg-gray-100 py-1.5 px-6 block" href={localePath('/s/subscriptions')}
-				>{$t('global.footer.subscriptions')}</a
+			<a
+				class="hover:bg-gray-100 dark:hover:bg-zinc-700 px-6 block py-1.5"
+				href={localePath($locale, '/s/about')}>{$t('global.footer.about')}</a
 			>
 		</li>
 	</ul>
 
 	<div class="flex flex-col border-t dark:border-zinc-700 text-xs py-1.5">
-		<a  class=" dark:hover:bg-zinc-700 hover:bg-gray-100 py-1.5 px-6 block" 
-		href={localePath('/s/privacy')}>{$t('global.footer.privacy')}</a>
-		<a class=" dark:hover:bg-zinc-700 hover:bg-gray-100 py-1.5 px-6 block" 
-		 href={localePath('/s/terms')}>{$t('global.footer.terms')}</a>
+		<a
+			class=" dark:hover:bg-zinc-700 hover:bg-gray-100 py-1.5 px-6 block"
+			href={localePath($locale, '/s/privacy')}>{$t('global.footer.privacy')}</a
+		>
+		<a
+			class=" dark:hover:bg-zinc-700 hover:bg-gray-100 py-1.5 px-6 block"
+			href={localePath($locale, '/s/terms')}>{$t('global.footer.terms')}</a
+		>
 	</div>
 {/if}
 
@@ -37,19 +41,12 @@
 	<div class="mt-auto mb-12 border-y dark:border-zinc-700 text-zinc-600 dark:text-zinc-100 text-">
 		<ul class="flex flex-col justify-center gap-3 py-3 pl-6">
 			<li>
-				<a href={localePath('/s/about')}>{$t('global.footer.about')}</a>
+				<a href={localePath($locale, '/s/about')}>{$t('global.footer.about')}</a>
 			</li>
 			<li>
-				<a href={localePath('/s/subscriptions')}>{$t('global.footer.subscriptions')}</a>
+				<a href={localePath($locale, '/s/privacy')}>{$t('global.footer.privacy')}</a>
 			</li>
-			<li>
-				<a href={localePath('/s/privacy')}>{$t('global.footer.privacy')}</a></li>
-			<li><a href={localePath('/s/terms')}>{$t('global.footer.terms')}</a></li>
-		
+			<li><a href={localePath($locale, '/s/terms')}>{$t('global.footer.terms')}</a></li>
 		</ul>
-
-		
-			
-		
 	</div>
 {/if}

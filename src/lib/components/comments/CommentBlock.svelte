@@ -3,15 +3,15 @@
 	import CommentInput from '$lib/components/comments/CommentInput.svelte';
 	import { commentsState } from '$lib/stores/comment';
 	import { convertFetch } from '$lib/helpers/convertFetch';
-	import { сommentValidations, commentMassage, scrollToBottom } from '$lib/helpers/comments';
+	import { scrollToBottom, сommentValidations } from '$lib/helpers/comments';
 	import toast from 'svelte-french-toast';
-	import { tick } from 'svelte';
-	import { t } from '$lib/translations';
+	import { getContext, tick } from 'svelte';
 	import { fetchData } from '$lib/helpers/fetchData';
 	import CommentHeader from '$lib/components/comments/CommentHeader.svelte';
 	import CommentBody from '$lib/components/comments/CommentBody.svelte';
 	import { user as currentUser } from '$lib/stores/auth';
 
+	const t = getContext('t');
 	export let comment: Comment,
 		commentable_id: string,
 		parentComments: [Comment] | [],
@@ -27,6 +27,25 @@
 	let editing_comment: Comment | null = null;
 	let new_comment_loaded = false;
 	let isDelited = false;
+
+	// Todo, just use them in place
+	const commentMassage = {
+		add: {
+			loading: $t('global.comment.add.loading'),
+			success: $t('global.comment.add.success'),
+			error: $t('global.comment.add.error')
+		},
+		delete: {
+			loading: $t('global.comment.delete.loading'),
+			success: $t('global.comment.delete.success'),
+			error: $t('global.comment.delete.error')
+		},
+		edit: {
+			loading: $t('global.comment.add.loading'),
+			success: $t('global.comment.edit.success'),
+			error: $t('global.comment.edit.error')
+		}
+	};
 
 	if (answer) {
 		answer = null;

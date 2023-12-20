@@ -5,8 +5,10 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { NoSymbol } from '@steeze-ui/heroicons';
 	import type { User } from '$lib/interfaces/User';
-	import { t } from '$lib/translations';
 	import { fetchData } from '$lib/helpers/fetchData';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
 
 	export let type: 'block' | 'unblock' = 'block',
 		user_id: number,

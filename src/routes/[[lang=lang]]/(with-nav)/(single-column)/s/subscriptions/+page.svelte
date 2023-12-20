@@ -1,8 +1,10 @@
 <script lang="ts">
 	import CrownIcon from '$lib/components/atoms/CrownIcon.svelte';
-	import { t } from '$lib/translations';
 	import { user } from '$lib/stores/auth';
-	const benefits = [ "benefit_1" , "benefit_2", "benefit_3", "benefit_4",];
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
+	const benefits = ['benefit_1', 'benefit_2', 'benefit_3', 'benefit_4'];
 </script>
 
 <div class=" my-9 container">
@@ -29,7 +31,9 @@
 				<br />{$t(`global.subscription.why_subscribe_description_2`)} <br />
 			</p>
 			<div class="mt-10 flex items-center gap-x-4">
-				<h4 class="flex-none text-sm font-semibold leading-6 text-blue-600">{$t(`global.subscription.whats_included`)} </h4>
+				<h4 class="flex-none text-sm font-semibold leading-6 text-blue-600">
+					{$t(`global.subscription.whats_included`)}
+				</h4>
 				<div class="h-px flex-auto bg-gray-100 dark:bg-zinc-800" />
 			</div>
 			<ul
@@ -62,16 +66,13 @@
 				class="w-full bg-gray-50 dark:bg-gray-800 py-10 border-l border-gray-900/5 lg:flex lg:flex-col lg:justify-center h-full"
 			>
 				<div class="mx-auto max-w-xs px-8">
-			
 					<p
-					class=" text-xl leading-5 font-semibold text-zinc-600 dark:text-zinc-300 flex items-center flex-col justify-center gap-3"
-				>
-				<CrownIcon style="w-7 h-7 stroke-amber-600 " />
-					<span>{$t(`global.subscription.annual_membership`)}</span>
+						class=" text-xl leading-5 font-semibold text-zinc-600 dark:text-zinc-300 flex items-center flex-col justify-center gap-3"
+					>
+						<CrownIcon style="w-7 h-7 stroke-amber-600 " />
+						<span>{$t(`global.subscription.annual_membership`)}</span>
+					</p>
 
-					
-				</p>
-				
 					<p class="mt-6 flex items-baseline justify-center gap-x-2">
 						<span class="text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-200"
 							>$80</span

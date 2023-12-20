@@ -1,23 +1,28 @@
 <script>
-	import { t, localePath } from '$lib/translations';
+	import { localePath } from '$lib/translations';
 	import SideNavLink from '$lib/components/nav/side/SideNavLink.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import {
+		Bell,
+		Bookmark,
+		Camera,
+		CurrencyDollar,
+		FolderOpen,
+		NoSymbol,
+		PencilSquare,
 		PlusCircle,
 		UserGroup,
-		PencilSquare,
-		FolderOpen,
-		UserPlus,
-		Bookmark,
-		NoSymbol,
-		CurrencyDollar,
-		Camera,
-		Bell
+		UserPlus
 	} from '@steeze-ui/heroicons';
 	import { user } from '$lib/stores/auth';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
+	const locale = getContext('locale');
 
 	let folders = $user?.favorites?.folders;
-	const favorites_href = folders.length === 0 || folders.length > 1 ? '/my/favorites' : '/my/favorites/' + folders[0].id;
+	const favorites_href =
+		folders.length === 0 || folders.length > 1 ? '/my/favorites' : '/my/favorites/' + folders[0].id;
 	const links = [
 		{
 			path: '/my/notifications',
@@ -72,8 +77,9 @@
 		}
 	];
 </script>
+
 {#each links as { path, src, text, exact } (path)}
-	<SideNavLink href={localePath(path)} {exact}>
-		<Icon {src} theme='solid' class='h-6 w-6 ' aria-hidden='true' />{$t('global.my_links.' + text)}
+	<SideNavLink href={localePath($locale, path)} {exact}>
+		<Icon {src} theme="solid" class="h-6 w-6 " aria-hidden="true" />{$t('global.my_links.' + text)}
 	</SideNavLink>
 {/each}
