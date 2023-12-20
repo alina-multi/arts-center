@@ -27,7 +27,7 @@ export const actions = {
 			};
 		}
 		if (response.ok) {
-			throw redirect(301, localePath($locale, '/login'));
+			throw redirect(301, localePath(event.params.lang, '/login'));
 		} else {
 			return await response.json();
 		}
