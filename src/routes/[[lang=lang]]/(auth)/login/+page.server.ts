@@ -24,7 +24,7 @@ export const actions = {
 			};
 		}
 		if (response.ok) {
-			throw redirect(301, event.url.searchParams.get('redirect') || localePath($locale, '/'));
+			throw redirect(301, event.url.searchParams.get('redirect') || localePath(event.params.lang, '/'));
 		} else {
 			return {
 				...(await response.json()),
