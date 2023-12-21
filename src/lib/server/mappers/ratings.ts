@@ -1,9 +1,9 @@
-import { languageFind, languageFilter } from '$lib/translations';
+import { languageFind, languageFilter, type AvailableLocales } from '$lib/translations';
 import type { Rating } from '$lib/interfaces/Rating';
 import type { Tag } from '$lib/interfaces/Tag';
 import type { UserRatingsRow } from '$lib/interfaces/UserRaw';
 
-export function ratingsMap(ratings: UserRatingsRow[], lang: 'en' | 'uk'): Rating[] {
+export function ratingsMap(ratings: UserRatingsRow[], lang: AvailableLocales): Rating[] {
 	ratings = languageFilter(ratings, lang);
 	return (
 		ratings?.map((rating) => {

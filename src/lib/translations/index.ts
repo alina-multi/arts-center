@@ -53,12 +53,13 @@ const config: Config = {
 export const defaultLocale = 'en';
 
 export const availableLocales = ['en', 'uk'] as const;
+export type AvailableLocales = (typeof availableLocales)[number];
 
-export function correctLocale(lang: (typeof availableLocales)[number]): boolean {
+export function correctLocale(lang: string): boolean {
 	return availableLocales.includes(lang);
 }
 
-export function checkUrlLocale(event: RequestEvent): (typeof availableLocales)[number] {
+export function checkUrlLocale(event: RequestEvent): AvailableLocales {
 	const lang = event.params.lang || defaultLocale;
 	if (!correctLocale(lang)) {
 		throw error(404, {
@@ -72,23 +73,20 @@ export function checkUrlLocale(event: RequestEvent): (typeof availableLocales)[n
 	return lang;
 }
 
-export function localePath(
-	currentLang: (typeof availableLocales)[number],
-	path: `/${string}`
-): string {
+export function localePath(currentLang: AvailableLocales, path: `/${string}`): string {
 	return removeTrailingSlash(localPrefix(currentLang) + path);
 }
 
 export function switchLocalePath(
-	currentLang: (typeof availableLocales)[number],
-	newLang: (typeof availableLocales)[number],
+	currentLang: AvailableLocales,
+	newLang: AvailableLocales,
 	path: string
 ): string {
 	const pathWithoutLocale = path.replace(localPrefix(currentLang), '');
 	return removeTrailingSlash(localPrefix(newLang) + pathWithoutLocale || '/');
 }
 
-export function localPrefix(lang: (typeof availableLocales)[number]): string {
+export function localPrefix(lang: AvailableLocales): string {
 	return lang === defaultLocale ? '' : `/${lang}`;
 }
 
@@ -96,7 +94,7 @@ function removeTrailingSlash(str: string): string {
 	return str.endsWith('/') && str.length > 1 ? str.slice(0, -1) : str;
 }
 
-export async function loadTranslations(lang: (typeof availableLocales)[number], route: string) {
+export async function loadTranslations(lang: AvailableLocales, route: string) {
 	const instance = new i18n(config);
 	await instance.loadTranslations(lang, route);
 	return {
@@ -107,7 +105,7 @@ export async function loadTranslations(lang: (typeof availableLocales)[number], 
 
 export function languageFilter<Type extends Translatable>(
 	rows: Type[] | undefined,
-	lang: (typeof availableLocales)[number]
+	lang: AvailableLocales
 ): Type[] {
 	return (
 		rows?.filter((row) => {
@@ -119,7 +117,7 @@ export function languageFilter<Type extends Translatable>(
 
 export function languageFind<Type extends Translatable>(
 	rows: Type[] | undefined,
-	lang: (typeof availableLocales)[number]
+	lang: AvailableLocales
 ): Type | undefined {
 	return rows?.find((row) => row.language == lang);
 }

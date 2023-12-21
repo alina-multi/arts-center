@@ -3,6 +3,7 @@ import { prisma } from '$lib/server/database/prisma';
 import { titleToId } from './tag';
 import { error } from '@sveltejs/kit';
 import { imageSelect } from '$lib/server/repositories/image';
+import type { AvailableLocales } from '$lib/translations';
 
 export const userSelect = {
 	id: true,
@@ -105,7 +106,7 @@ export async function filteredQuery(
 	category: string,
 	country: string,
 	order = 'popular',
-	lang: string,
+	lang: AvailableLocales,
 	page = 1
 ) {
 	let where = {};

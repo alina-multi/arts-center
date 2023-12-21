@@ -4,6 +4,7 @@ import { error } from '@sveltejs/kit';
 import { userSelect } from './user';
 import { imageSelect } from '$lib/server/repositories/image';
 import { prisma } from '$lib/server/database/prisma';
+import type { AvailableLocales } from '$lib/translations';
 
 export const gallerySelect = {
 	id: true,
@@ -131,7 +132,12 @@ export async function userAllWorksQuery(user_id: bigint) {
 	);
 }
 
-export async function filteredQuery(tag: string, lang: string, order = 'popular', page = 1) {
+export async function filteredQuery(
+	tag: string,
+	lang: AvailableLocales,
+	order = 'popular',
+	page = 1
+) {
 	let where = {};
 	if (tag !== 'all') {
 		const id = await titleToId(tag, lang);
