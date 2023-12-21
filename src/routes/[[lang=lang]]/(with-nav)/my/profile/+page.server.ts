@@ -1,6 +1,6 @@
 import type { PageServerLoad, Actions } from './$types';
 import { api } from '$lib/server/api';
-import { availableLocales } from '$lib/translations';
+import { type AvailableLocales, availableLocales } from '$lib/translations';
 import { reloadCurrentUser } from '$lib/server/database/cache';
 
 export const load = (async (event) => {
@@ -27,7 +27,7 @@ export const actions = {
 			current_password: form.get('current_password') || undefined,
 			// Creates bios[lang]=text
 			bios: Object.fromEntries(
-				availableLocales.map((locale: string) => [locale, form.get(`bios[${locale}]`)])
+				availableLocales.map((locale: AvailableLocales) => [locale, form.get(`bios[${locale}]`)])
 			)
 		};
 

@@ -15,7 +15,7 @@ interface WorkPageProps {
 	comments: Comment[];
 }
 beforeAll(async () => {
-	const {t, locale} = await loadTranslations('uk', '/uk/work/39');
+	const { t, locale } = await loadTranslations('uk', '/uk/work/39');
 	setContext('t', t);
 	setContext('locale', locale);
 });

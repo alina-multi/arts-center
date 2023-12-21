@@ -2,7 +2,7 @@ import type { User, UserList } from '$lib/interfaces/User';
 import { ratingsMap } from './ratings';
 import { worksPreviewMap } from './gallery';
 import { query } from '$lib/server/repositories/gallery';
-import { languageFind } from '$lib/translations';
+import { type AvailableLocales, languageFind } from '$lib/translations';
 import { pictureMap } from '$lib/server/mappers/pictures';
 import type { UserFullRaw } from '$lib/interfaces/UserRaw';
 
@@ -39,7 +39,7 @@ export async function usersMap(users: UserFullRaw[], lang = undefined): Promise<
 	);
 }
 
-export function userMap(user: UserFullRaw, lang): User {
+export function userMap(user: UserFullRaw, lang: AvailableLocales): User {
 	return {
 		id: user.id,
 		name: user.name,
@@ -56,7 +56,7 @@ export function userMap(user: UserFullRaw, lang): User {
 
 export function userCountriesMap(
 	countries: prismaCountryAggregation[],
-	locale: string
+	locale: AvailableLocales
 ): { title: string; count: number; value: string }[] {
 	const regionNames = new Intl.DisplayNames([locale], { type: 'region' });
 	return countries.map((country): { title: string; count: number; value: string } => {
