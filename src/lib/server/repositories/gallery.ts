@@ -114,6 +114,7 @@ export async function userAllWorksQuery(user_id: bigint) {
 			deleted_at: null,
 			// Silly, but the only way I see to overload it :)
 			status: undefined,
+			published_at:undefined,
 			owners: {
 				some: {
 					user_id,
