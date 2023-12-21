@@ -1,9 +1,11 @@
 <script>
 	import { localePath } from '$lib/translations';
 	import UserFiltersGroup from '$lib/components/filters/UserFiltersGroup.svelte';
-	import { t } from '$lib/translations';
 	import { slug } from '$lib/helpers/url';
+	import { getContext } from 'svelte';
 
+	const t = getContext('t');
+	const locale = getContext('locale');
 	export let tags, params, countries;
 
 	const filterKeys = ['order', 'category', 'country'];
@@ -36,7 +38,7 @@
 		for (let key of filterKeys) {
 			url += `/${slug(newState[key])}`;
 		}
-		return localePath(url);
+		return localePath($locale, url);
 	}
 </script>
 
@@ -49,7 +51,7 @@
 
 		<div class="p-3 flex flex-row-reverse">
 			<a
-				href={localePath('/users')}
+				href={localePath($locale, '/users')}
 				class="text-sm text-gray-500 dark:text-zinc-300 rounded-sm hover:ring-1 hover:ring-gray-300 cursor-pointer dark:hover:rounded-full dark:hover:ring-zinc-800 px-3 py-1"
 			>
 				{$t('global.buttons.clear') + ' ' + $t('global.filters.filters')}

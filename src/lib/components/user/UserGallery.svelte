@@ -1,10 +1,13 @@
-<script lang='ts'>
+<script lang="ts">
 	import { localePath } from '$lib/translations';
-	import {parse} from 'devalue';
+	import { parse } from 'devalue';
 	import ImageWork from '$lib/components/atoms/ImageWork.svelte';
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
 	import MetaGroups from '$lib/components/MetaGroups.svelte';
-	import { t } from '$lib/translations';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
+	const locale = getContext('locale');
 
 	export let gallery;
 	export let params;
@@ -19,7 +22,7 @@
 
 	async function fetchData() {
 		loading = true;
-		let url = localePath(`/api/user/${user.id}/${params.tag}/${page}`);
+		let url = localePath($locale, `/api/user/${user.id}/${params.tag}/${page}`);
 		const response = await fetch(url);
 		const text = await response.text();
 		const data = parse(text);
@@ -30,9 +33,10 @@
 		loading = false;
 	}
 </script>
+
 <MetaGroups title={$t('global.seo.title.user', user)} description={user?.bio} image={user?.photo} />
 
-<ul class=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+<ul class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 	{#each gallery as work (work.id)}
 		<li>
 			<ImageWork {work} withDesription />

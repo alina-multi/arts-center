@@ -2,14 +2,15 @@
 	import type { Tag } from '$lib/interfaces/Tag';
 	import { Popover, PopoverButton, PopoverPanel, Transition } from '@rgossiaux/svelte-headlessui';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { ChevronDown, ChevronUp, AdjustmentsHorizontal } from '@steeze-ui/heroicons';
+	import { AdjustmentsHorizontal, ChevronDown, ChevronUp } from '@steeze-ui/heroicons';
 	import TagButtons from '$lib/components/atoms/buttons/TagButtons.svelte';
-	import { t } from '$lib/translations';
 	import { slug } from '$lib/helpers/url.js';
+	import { getContext } from 'svelte';
 
+	const t = getContext('t');
 	export let tags: Tag[],
 		selected: string,
-		params: { tag: string; order: string } | { tag: string, username: string} ,
+		params: { tag: string; order: string } | { tag: string; username: string },
 		urlGenerator;
 
 	let visibleTags, hiddenTags;
@@ -40,7 +41,7 @@
 					class="flex items-center gap-2  border px-3 py-1 rounded-sm hover:border-amber-500 dark:bg-zinc-900 dark:border-zinc-800 dark:hover:border-amber-500"
 				>
 					{$t('global.filters.more')}
-				
+
 					{#if selected !== 'all' && isHiddenTag.length > 0}
 						<span class="text-sm bg-amber-600 text-white px-1 rounded-sm">{selected}</span>
 					{/if}
@@ -74,8 +75,7 @@
 
 					{#if selected !== 'all'}
 						<button on:click={() => (selected = 'all')} class="w-full text-right pb-6 pr-3">
-							<span
-								class=" text-zinc-400  hover:text-red-600 px-3 py-0.5 text-sm underline"
+							<span class=" text-zinc-400 hover:text-red-600 px-3 py-0.5 text-sm underline"
 								>{$t('global.buttons.clear') + ' ' + $t('global.filters.filters')}</span
 							>
 						</button>
@@ -92,16 +92,15 @@
 		<PopoverButton
 			class="w-full flex items-center justify-between gap-2  border px-4 py-2 rounded-sm  dark:border-zinc-800 overflow-hidden dark:bg-zinc-900"
 		>
-<div class="flex items-center gap-3">
-	<Icon src={AdjustmentsHorizontal} class="w-5" />
+			<div class="flex items-center gap-3">
+				<Icon src={AdjustmentsHorizontal} class="w-5" />
 
-		<span>{$t('global.filters.filters')}</span>
-		{#if selected !== 'all'}
-			<span class="text-sm bg-amber-600 text-white px-1 py-0.5 rounded-sm">{selected}</span>
-		{/if}
-	
-</div>
-	
+				<span>{$t('global.filters.filters')}</span>
+				{#if selected !== 'all'}
+					<span class="text-sm bg-amber-600 text-white px-1 py-0.5 rounded-sm">{selected}</span>
+				{/if}
+			</div>
+
 			{#if !open}
 				<Icon src={ChevronDown} class="w-5" />
 			{/if}
@@ -124,10 +123,9 @@
 					on:click={() => (selected = 'all')}
 					class="w-full text-right pt-3 pb-6 px-3 border-t border-gray-300 dark:border-zinc-900"
 				>
-				<span
-				class=" text-zinc-400  hover:text-red-600 px-3 py-0.5 text-sm hover:underline"
-				>{$t('global.buttons.clear') + ' ' + $t('global.filters.filters')}</span
-			>
+					<span class=" text-zinc-400 hover:text-red-600 px-3 py-0.5 text-sm hover:underline"
+						>{$t('global.buttons.clear') + ' ' + $t('global.filters.filters')}</span
+					>
 				</button>
 			{/if}
 		</PopoverPanel>

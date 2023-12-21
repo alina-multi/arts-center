@@ -1,12 +1,16 @@
 <script lang="ts">
 	import type { NewFollower } from '$lib/interfaces/Notification';
-	import { localePath,t } from '$lib/translations';
+	import { localePath } from '$lib/translations';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { UserPlus } from '@steeze-ui/heroicons';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
+	const locale = getContext('locale');
 
 	export let notification: NewFollower;
 	let { username, name } = notification;
-	let href = localePath(`/${username}`);
+	let href = localePath($locale, `/${username}`);
 </script>
 
 <a {href} class="flex gap-3 items-center text-sm w-full py-3">

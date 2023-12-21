@@ -10,7 +10,6 @@
 			order?: string;
 		},
 		selected,
-
 		urlGenerator;
 </script>
 

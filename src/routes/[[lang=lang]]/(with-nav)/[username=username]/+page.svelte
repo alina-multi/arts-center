@@ -3,5 +3,5 @@
 	import UserGallery from '$lib/components/user/UserGallery.svelte';
 	export let data: PageData;
 </script>
-<UserGallery {...data}/>
 
+<UserGallery {...data} />

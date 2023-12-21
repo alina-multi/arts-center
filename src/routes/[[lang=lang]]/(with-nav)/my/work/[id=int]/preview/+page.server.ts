@@ -4,6 +4,7 @@ import { redirect } from '@sveltejs/kit';
 import { get } from '$lib/server/repositories/work';
 import { workPreviewMap } from '$lib/server/mappers/work';
 import { localePath } from '$lib/translations';
+
 export const load = (async ({ params }) => {
 	const data = {
 		work: await get(BigInt(params.id)).then((work) => ({
@@ -11,7 +12,7 @@ export const load = (async ({ params }) => {
 		}))
 	};
 	if (!data?.work?.id || data?.work?.published_at) {
-		throw redirect(302, localePath(`/work/${data.work.id}`));
+		throw redirect(302, localePath(params.lang, `/work/${data.work.id}`));
 	}
 	return data;
 }) satisfies PageLoad;
@@ -28,7 +29,7 @@ export const actions = {
 			}
 		});
 		if (response.ok) {
-			throw redirect(302, localePath(`/work/${event.params.id}`));
+			throw redirect(302, localePath(event.params.lang, `/work/${event.params.id}`));
 		}
 		return await response.json();
 	}

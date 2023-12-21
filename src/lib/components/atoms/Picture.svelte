@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let alt: string;
 	export let photo;
-	let clazz:string;
+	let clazz: string;
 	export { clazz as class };
 </script>
 

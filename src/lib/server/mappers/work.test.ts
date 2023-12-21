@@ -5,7 +5,7 @@ import { work_data_raw } from '$test/data/WorkData';
 const data = { ...work_data_raw, full: null, owners: [], details: null };
 
 test('workMap', () => {
-	const result = workMap(data);
+	const result = workMap(data, 'en');
 	expect(result).toMatchInlineSnapshot(`
 		{
 		  "comments": 0,

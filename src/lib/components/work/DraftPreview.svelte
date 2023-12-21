@@ -3,10 +3,13 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { PencilSquare } from '@steeze-ui/heroicons';
 	import Picture from '$lib/components/atoms/Picture.svelte';
-	export let draft;
+	import { getContext } from 'svelte';
 
-	$: title = languageFind(draft.titles)?.title;
-	$: href = localePath(`/my/work/draft/${draft.id}`);
+	export let draft;
+	const locale = getContext('locale');
+
+	$: title = languageFind(draft.titles, $locale)?.title;
+	$: href = localePath($locale, `/my/work/draft/${draft.id}`);
 </script>
 
 <a {href}>
@@ -23,5 +26,3 @@
 		<Icon src={PencilSquare} class="w-6 h-6 text-white" />
 	</span>
 </a>
-
-

@@ -1,7 +1,7 @@
 import type { RequestEvent, ServerLoadEvent } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 import { api } from '$lib/server/api';
 import * as SentryNode from '@sentry/node';
-import { redirect } from '@sveltejs/kit';
 import { localePath } from '$lib/translations';
 import type { UserMe } from '$lib/interfaces/User';
 
@@ -22,9 +22,9 @@ export async function checkAuth(
 	}
 }
 
-export async function redirectIfAuthorized({ parent }: ServerLoadEvent) {
+export async function redirectIfAuthorized({ parent, params }: ServerLoadEvent) {
 	const { user } = await parent();
 	if (user?.id) {
-		throw redirect(302, localePath('/'));
+		throw redirect(302, localePath(params.lang, '/'));
 	}
 }

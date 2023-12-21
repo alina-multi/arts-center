@@ -2,7 +2,9 @@
 	import BlockButton from '$lib/components/atoms/buttons/BlockButton.svelte';
 	import UserPreview from '$lib/components/user/UserPreview.svelte';
 	import HeaderLayout from '$lib/components/my/HeaderLayout.svelte';
-	import { t } from '$lib/translations';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
 
 	export let data;
 	let blacklist = data.blacklist;

@@ -1,5 +1,5 @@
-import { writable } from 'svelte/store';
 import type { Writable } from 'svelte/store';
+import { writable } from 'svelte/store';
 import type { UserMe } from '$lib/interfaces/User';
 import { fetchData } from '$lib/helpers/fetchData';
 import { parse } from 'devalue';
@@ -22,8 +22,8 @@ export async function checkAuth() {
 	});
 }
 
-export async function logout() {
-	await fetchData('POST', localePath('/logout'));
+export async function logout(lang) {
+	await fetchData('POST', localePath(lang, '/logout'));
 	await checkAuth();
 }
 

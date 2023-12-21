@@ -1,28 +1,27 @@
-<script lang='ts'>
+<script lang="ts">
 	import { Dashboard } from '@uppy/svelte';
 	import Uppy from '@uppy/core';
 	import Webcam from '@uppy/webcam';
-	import ImageEditor from '@uppy/image-editor';
-	import { onMount } from 'svelte';
-	import Transloadit from '@uppy/transloadit';
-	import { locale, t } from '$lib/translations';
-	import Ukrainian from '@uppy/locales/lib/uk_UA';
-	import { createEventDispatcher } from 'svelte';
 	import type { ImageEditorOptions } from '@uppy/image-editor';
-
+	import ImageEditor from '@uppy/image-editor';
+	import { createEventDispatcher, getContext, onMount } from 'svelte';
+	import Transloadit from '@uppy/transloadit';
+	import Ukrainian from '@uppy/locales/lib/uk_UA';
 	// Remember the CSS: core and UI components + plugins you are using
 	import '@uppy/core/dist/style.css';
 	import '@uppy/dashboard/dist/style.css';
 	import '@uppy/webcam/dist/style.css';
 	import '@uppy/image-editor/dist/style.min.css';
 
+	const t = getContext('t');
+	const locale = getContext('locale');
+
 	export let key: string,
 		signature: string,
 		expires: string,
 		template_id: string,
 		imageEditorOptions: ImageEditorOptions,
-		maxNumberOfFiles = 10
-	;
+		maxNumberOfFiles = 10;
 
 	const dispatch = createEventDispatcher();
 
@@ -46,17 +45,16 @@
 			doneButtonHandler: null,
 			autoOpenFileEditor: !!imageEditorOptions
 		};
-		uppy = new Uppy(UppyOptions).use(Webcam, { modes: 'picture' })
-			.use(Transloadit, {
-				assemblyOptions: {
-					params: {
-						auth: { key, expires },
-						template_id
-					},
-					signature
+		uppy = new Uppy(UppyOptions).use(Webcam, { modes: 'picture' }).use(Transloadit, {
+			assemblyOptions: {
+				params: {
+					auth: { key, expires },
+					template_id
 				},
-				waitForEncoding: true
-			});
+				signature
+			},
+			waitForEncoding: true
+		});
 		if (imageEditorOptions) {
 			uppy.use(ImageEditor, imageEditorOptions);
 		}
@@ -76,7 +74,7 @@
 </script>
 
 {#if uppy}
-	<div class='xl:mx-auto'>
+	<div class="xl:mx-auto">
 		<Dashboard {props} {uppy} plugins={['Webcam', 'ImageEditor']} />
 	</div>
 {/if}

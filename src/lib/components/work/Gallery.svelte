@@ -2,8 +2,11 @@
 	import WorkPreview from '$lib/components/work/WorkPreview.svelte';
 	import GalleryFilters from '$lib/components/work/GalleryFilters.svelte';
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
-	import { localePath, locale } from '$lib/translations/';
-	import {parse} from 'devalue';
+	import { localePath } from '$lib/translations/';
+	import { parse } from 'devalue';
+	import { getContext } from 'svelte';
+
+	const locale = getContext('locale');
 	export let gallery;
 	export let categories;
 	export let params;
@@ -14,7 +17,7 @@
 	$: gallery = [...gallery, ...newBatch];
 	async function fetchData() {
 		loading = true;
-		let url = localePath(`/api/tag/${params.tag}/${params.order}/${page}`);
+		let url = localePath($locale, `/api/tag/${params.tag}/${params.order}/${page}`);
 		const response = await fetch(url);
 		const text = await response.text();
 		const data = parse(text);

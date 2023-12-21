@@ -1,15 +1,16 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { getContext, onMount } from 'svelte';
 	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
-	import { t } from '$lib/translations';
 	import { user } from '$lib/stores/auth';
+
+	const t = getContext('t');
 
 	export let isEditing: boolean | undefined = false,
 		isReplying: boolean | undefined = false,
 		onSubmit: (comment_id: string) => Promise<void>,
 		commentID: string | undefined = undefined,
 		value: string;
-	    commentID = commentID?.toString();
+	commentID = commentID?.toString();
 	let textarea: HTMLTextAreaElement;
 	$: enabled = value.length > 3;
 
@@ -43,8 +44,8 @@
 					{isReplying
 						? $t('global.comment.reply')
 						: $t('global.comment.post') && !isEditing
-						? $t('global.comment.post')
-						: $t('global.buttons.save')}
+							? $t('global.comment.post')
+							: $t('global.buttons.save')}
 				</button>
 
 				<slot />

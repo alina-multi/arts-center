@@ -6,10 +6,15 @@
 	import InputGroup from '$lib/components/input/InputGroup.svelte';
 	import CheckBox from '$lib/components/input/CheckBox.svelte';
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
-	import {t, localePath} from '$lib/translations';
+	import { localePath } from '$lib/translations';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
+	const locale = getContext('locale');
 
 	export let form: ActionData;
 </script>
+
 <div class="flex min-h-full flex-col pt-12 sm:px-6 lg:px-8 bg:white sm:bg-gray-50 dark:bg-black">
 	<div class="sm:mx-auto sm:w-full sm:max-w-md">
 		<div class="flex items-center justify-center">
@@ -27,7 +32,7 @@
 		<div class="bg-white dark:bg-zinc-900 px-3 py-6 sm:p-9 sm:shadow rounded-sm">
 			<form class="space-y-6" method="POST">
 				{#if form?.message}
-					<p class='text-red-600'>{form?.message}</p>
+					<p class="text-red-600">{form?.message}</p>
 				{/if}
 				<InputGroup
 					label={$t('global.login.email')}
@@ -58,17 +63,23 @@
 					</div>
 				</div>
 
-				<ActionButton class="bg-blue-600 w-full rounded-sm hover:bg-blue-500">{$t('global.login.sign_in')}</ActionButton>
+				<ActionButton class="bg-blue-600 w-full rounded-sm hover:bg-blue-500"
+					>{$t('global.login.sign_in')}</ActionButton
+				>
 			</form>
-			<a href={localePath('/register')} class='block mt-3 text-center bg-amber-500 rounded-sm hover:bg-amber-400 rounded-sm px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'>{$t('global.buttons.register')}</a>
+			<a
+				href={localePath($locale, '/register')}
+				class="block mt-3 text-center bg-amber-500 rounded-sm hover:bg-amber-400 px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+				>{$t('global.buttons.register')}</a
+			>
 
-<!--			<div class="mt-6"><Divider>{$t('global.common.continue_with')}</Divider></div>-->
-<!--				-->
-<!--				<div class="mt-6">-->
-<!--				<SocialMediaButtons />-->
+			<!--			<div class="mt-6"><Divider>{$t('global.common.continue_with')}</Divider></div>-->
+			<!--				-->
+			<!--				<div class="mt-6">-->
+			<!--				<SocialMediaButtons />-->
 
-<!--				-->
-<!--			</div>-->
+			<!--				-->
+			<!--			</div>-->
 		</div>
 	</div>
 </div>

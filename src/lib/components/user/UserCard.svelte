@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { User } from '$lib/interfaces/User';
+	import type { User } from '$lib/interfaces/User';
 	import Avatar from '$lib/components/atoms/Avatar.svelte';
 	import FollowButton from '../atoms/buttons/FollowButton.svelte';
 	import Country from './UserCountry.svelte';
@@ -8,12 +8,15 @@
 	import VerificationBadge from '../atoms/VerificationBadge.svelte';
 
 	export let user: User;
-
 </script>
 
 <div class="w-full">
-	<div class="w-full h-32 rounded-sm flex flex-col items-center bg-zinc-600 dark:bg-zinc-700 shadow" />
-	<div class="border rounded-sm border-t-transparent dark:border-zinc-800 dark:border-t-transparent w-full flex flex-col items-center pb-6 dark:bg-zinc-900">
+	<div
+		class="w-full h-32 rounded-sm flex flex-col items-center bg-zinc-600 dark:bg-zinc-700 shadow"
+	/>
+	<div
+		class="border rounded-sm border-t-transparent dark:border-zinc-800 dark:border-t-transparent w-full flex flex-col items-center pb-6 dark:bg-zinc-900"
+	>
 		<div class=" flex flex-col gap-3 items-center max-sm:w-full w-fit px-6 xs:px-9">
 			<div class=" -mt-20">
 				<Avatar {user} size={' w-32 h-32  max-xl:w-28 max-xl:h-28 '} />
@@ -25,7 +28,9 @@
 			</div>
 
 			<div class="flex gap-3 items-start sm:items-center xl:px-6">
-				<p class="text-lg text-center md:text-xl font-semibold text-black dark:text-gray-100 flex gap-2">
+				<p
+					class="text-lg text-center md:text-xl font-semibold text-black dark:text-gray-100 flex gap-2"
+				>
 					{user.name}
 					<VerificationBadge user_verified={user.verified_at} size="w-6 h-6" />
 				</p>

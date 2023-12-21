@@ -11,7 +11,7 @@
 
 	export let work: Work;
 	export let comments: Comment[];
-	$:isMy = work.owners.some((owner) => handleIsMy($user, owner.id));
+	$: isMy = work.owners.some((owner) => handleIsMy($user, owner.id));
 </script>
 
 <div
@@ -21,7 +21,7 @@
 	<WorkBody {work} />
 	<div class="flex items-center justify-between gap-3">
 		<div class=" w-full flex gap-3 xs:gap-6 items-center rounded-sm lg:border-0">
-			<div class="w-full flex items-center  justify-between gap-3 py-6 ">
+			<div class="w-full flex items-center justify-between gap-3 py-6">
 				<RatingPreviewVote entity={work} showVotedPreview votable_type={'work'} />
 			</div>
 			<BookmarkButton {work} />

@@ -1,6 +1,8 @@
 <script lang="ts">
 	import ActionButton from './ActionButton.svelte';
-	import { t } from '$lib/translations';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
 
 	export let open = false;
 </script>

@@ -5,7 +5,7 @@
 
 <nav aria-label="Progress">
 	<ol
-		class="divide-y divide-zinc-300 dark:divide-zinc-700  rounded-sm border border-zinc-300 dark:border-zinc-700 dark:bg-zinc-800 md:flex md:divide-y-0 shadow"
+		class="divide-y divide-zinc-300 dark:divide-zinc-700 rounded-sm border border-zinc-300 dark:border-zinc-700 dark:bg-zinc-800 md:flex md:divide-y-0 shadow"
 	>
 		{#each steps as { label, href }, i}
 			<li class="relative md:flex md:flex-1">
@@ -39,31 +39,26 @@
 						<span
 							class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-emerald-500 font-semibold"
 						>
-							<span class="text-emerald-500 ">{i + 1}</span>
+							<span class="text-emerald-500">{i + 1}</span>
 						</span>
-						<span class="ml-4 text-sm font-semibold  text-emerald-500">{label}</span>
+						<span class="ml-4 text-sm font-semibold text-emerald-500">{label}</span>
 					</a>
 				{/if}
 				{#if i + 1 > currentStep}
 					<a {href} class="group flex items-center hover:cursor-default">
 						<span class="flex items-center px-6 py-3 text-sm font-medium">
 							<span
-								class="flex h-10 w-10 flex-shrink-0 items-center justify-center  rounded-full border-2 border-zinc-300 dark:border-zinc-400 "
+								class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-zinc-300 dark:border-zinc-400"
 							>
-								<span class=" text-zinc-600 dark:text-zinc-400 "
-									>{i + 1}</span
-								>
+								<span class=" text-zinc-600 dark:text-zinc-400">{i + 1}</span>
 							</span>
-							<span
-								class="ml-4 text-sm font-medium text-black dark:text-zinc-400"
-								>{label}</span
-							>
+							<span class="ml-4 text-sm font-medium text-black dark:text-zinc-400">{label}</span>
 						</span>
 					</a>
 				{/if}
 				{#if i + 1 < steps.length}
 					<!-- Arrow separator for lg screens and up -->
-					<div class="absolute right-0 top-0 hidden h-full w-5 md:block " aria-hidden="true">
+					<div class="absolute right-0 top-0 hidden h-full w-5 md:block" aria-hidden="true">
 						<svg
 							class="h-full w-full text-zinc-300 dark:text-zinc-700"
 							viewBox="0 0 22 80"

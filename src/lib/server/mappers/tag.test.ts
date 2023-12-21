@@ -32,7 +32,7 @@ test('taggableMap', () => {
 		{ tag: { ...category_data_raw, id: 12n, count: 3 } }
 	];
 
-	const result = taggableMap(taggables);
+	const result = taggableMap(taggables, 'uk');
 
 	expect(result).toMatchInlineSnapshot(`
       [

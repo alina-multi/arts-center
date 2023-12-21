@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang="ts">
 	import NewWorkComment from '$lib/components/notification/NewWorkComment.svelte';
 	import NewWorkVote from '$lib/components/notification/NewWorkVote.svelte';
 	import NewReply from '$lib/components/notification/NewReply.svelte';
@@ -20,10 +20,11 @@
 		['App\\Notifications\\NewReply', NewReply],
 		['App\\Notifications\\DonationReceived', DonationReceived],
 		['App\\Notifications\\ProfileVerified', ProfileVerified],
-		['App\\Notifications\\ProfileApproved', ProfileApproved],
+		['App\\Notifications\\ProfileApproved', ProfileApproved]
 	]);
 	let component = typeToComponent.get(notification.type);
 </script>
+
 {#if component}
-	<svelte:component this={component} {notification}  />
+	<svelte:component this={component} {notification} />
 {/if}

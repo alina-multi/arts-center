@@ -7,7 +7,7 @@ import { error } from '@sveltejs/kit';
 
 export const load = (async ({ params }) => {
 	const [work, comments] = await Promise.all([
-		get(BigInt(params.id)).then((work) => workMap(work)),
+		get(BigInt(params.id)).then((work) => workMap(work, params.lang)),
 		getComments(BigInt(params.id), 'work').then((comments) => commentsMap(comments))
 	]);
 	if (!work || work.status < 10) {

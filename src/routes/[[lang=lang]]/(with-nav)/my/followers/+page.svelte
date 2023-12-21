@@ -2,7 +2,9 @@
 	import UserPreview from '$lib/components/user/UserPreview.svelte';
 	import HeaderLayout from '$lib/components/my/HeaderLayout.svelte';
 	import FollowButton from '$lib/components/atoms/buttons/FollowButton.svelte';
-	import { t } from '$lib/translations';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
 
 	export let data;
 	let followers = data.followers;
@@ -12,13 +14,12 @@
 <div>
 	<HeaderLayout title={$t('my.follow.followers')}>
 		<div slot="details" class="flex gap-3 items-center leading-3">
-			{followers.length} {$t('my.people')} 
+			{followers.length}
+			{$t('my.people')}
 		</div>
 	</HeaderLayout>
 
-	<div
-		class="flex flex-col     dark:border-zinc-800 dark:bg-zinc-900"
-	>
+	<div class="flex flex-col dark:border-zinc-800 dark:bg-zinc-900">
 		{#if followers?.length > 0}
 			<ul class="lg:divide-y dark:lg:divide-zinc-800">
 				{#each followers as user (user.id)}

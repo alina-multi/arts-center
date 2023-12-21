@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { t } from '$lib/translations';
+	import { getContext, onMount } from 'svelte';
+
+	const t = getContext('t');
 	export let user;
 	let showBio = false;
 	let lines = 0;
@@ -18,8 +19,8 @@
 </script>
 
 {#if user?.bio}
-	<div class="relative flex flex-col text-sm lg:text-base ">
-		<div class=" text-lg font-semibold   mb-1">{$t('global.user.bio').toUpperCase()}</div>
+	<div class="relative flex flex-col text-sm lg:text-base">
+		<div class=" text-lg font-semibold mb-1">{$t('global.user.bio').toUpperCase()}</div>
 		<div
 			id="bio"
 			class="{showBio ? 'dark:text-gray-300' : ' line-clamp-4 leading-6 overflow-hidden '}  {lines >
@@ -36,9 +37,9 @@
 					class=" pl-2 rounded-full text-black leading-6 bg-white dark:bg-black dark:text-zinc-300 dark:hover:text-blue-600 hover:text-blue-700"
 				>
 					{#if showBio}
-					{$t('global.buttons.show_less')}
+						{$t('global.buttons.show_less')}
 					{:else}
-					{$t('global.buttons.show_more')} &darr;
+						{$t('global.buttons.show_more')} &darr;
 					{/if}
 				</button>
 			</div>

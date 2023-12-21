@@ -1,12 +1,12 @@
 <script lang="ts">
 	import {
 		Dialog,
-		DialogOverlay,
 		DialogDescription,
+		DialogOverlay,
 		Transition,
 		TransitionChild
 	} from '@rgossiaux/svelte-headlessui';
-	import { localePath, t } from '$lib/translations';
+	import { localePath } from '$lib/translations';
 	import Button from '$lib/components/atoms/buttons/Button.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Bars4, XMark } from '@steeze-ui/heroicons';
@@ -21,6 +21,10 @@
 	import AvatarLink from '../atoms/AvatarLink.svelte';
 	import FooterContent from '../footer/FooterContent.svelte';
 	import { user } from '$lib/stores/auth';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
+	const locale = getContext('locale');
 
 	export let open = false;
 </script>
@@ -68,10 +72,10 @@
 					</TopNav>
 
 					<div class="flex flex-col p-6 gap-3 w-full">
-						<TopNavLink media={'mobile'} exact href={localePath('/tag/all/popular')}
+						<TopNavLink media={'mobile'} exact href={localePath($locale, '/tag/all/popular')}
 							>{$t('global.menu.gallery')}</TopNavLink
 						>
-						<TopNavLink media={'mobile'} href={localePath('/users')}
+						<TopNavLink media={'mobile'} href={localePath($locale, '/users')}
 							>{$t('global.menu.users')}</TopNavLink
 						>
 					</div>

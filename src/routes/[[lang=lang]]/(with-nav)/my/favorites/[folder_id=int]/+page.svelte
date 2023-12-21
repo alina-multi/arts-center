@@ -4,9 +4,11 @@
 	import { PencilSquare, Trash } from '@steeze-ui/heroicons';
 	import toast from 'svelte-french-toast';
 	import HeaderLayout from '$lib/components/my/HeaderLayout.svelte';
-	import { t } from '$lib/translations';
 	import ActionModal from '$lib/components/my/ActionModal.svelte';
 	import { fetchData } from '$lib/helpers/fetchData';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
 	export let data;
 
 	$: gallery = data.favorites.works;
@@ -52,11 +54,12 @@
 	<HeaderLayout {title}>
 		<div slot="details" class="flex gap-3 items-center leading-3">
 			<span>
-				{data.favorites.works.length} {$t('my.favorite.saved')}
+				{data.favorites.works.length}
+				{$t('my.favorite.saved')}
 				{data.favorites.works.length === 1 ? $t('my.work') : $t('my.works')}</span
 			>
 		</div>
-		<div slot="buttons" class="flex items-center gap-3 ">
+		<div slot="buttons" class="flex items-center gap-3">
 			<button
 				on:click={() => ((modalRename = true), (newName = title))}
 				class="  hover:scale-105 cursor-pointer"
@@ -67,7 +70,7 @@
 			{#if gallery.length === 0}
 				<button
 					on:click={() => (modalDelete = true)}
-					class=" hover:text-red-500 hover:scale-105  cursor-pointer"
+					class=" hover:text-red-500 hover:scale-105 cursor-pointer"
 				>
 					<Icon src={Trash} class="w-7 h-7 " />
 				</button>
@@ -76,7 +79,7 @@
 	</HeaderLayout>
 
 	{#if gallery.length > 0}
-		<ul class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-3 gap-6 ">
+		<ul class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-3 gap-6">
 			{#each gallery as work (work.id)}
 				<li>
 					<ImageWork {work} withDesription />
@@ -84,9 +87,7 @@
 			{/each}
 		</ul>
 	{:else}
-		<p
-			class=" px-6  py-3 dark:border-zinc-800 dark:bg-zinc-900"
-		>
+		<p class=" px-6 py-3 dark:border-zinc-800 dark:bg-zinc-900">
 			{$t('my.favorite.no_works')}
 		</p>
 	{/if}

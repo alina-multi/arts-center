@@ -9,11 +9,7 @@
 	export let work: Work;
 </script>
 
-<li
-	class="flex flex-col gap-1 lg:gap-0 overflow-hidden {work.subscribed
-		? ' '
-		: ''} "
->
+<li class="flex flex-col gap-1 lg:gap-0 overflow-hidden {work.subscribed ? ' ' : ''} ">
 	<div class="group/item relative">
 		<ImageWork {work} withDesription />
 		<div class="hidden sm:block">

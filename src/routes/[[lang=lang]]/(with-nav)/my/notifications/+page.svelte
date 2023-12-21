@@ -1,6 +1,5 @@
 <script lang="ts">
 	import HeaderLayout from '$lib/components/my/HeaderLayout.svelte';
-	import { t } from '$lib/translations';
 	import Notification from '$lib/components/notification/Notification.svelte';
 	import { Check } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
@@ -8,6 +7,9 @@
 	import { user } from '$lib/stores/auth.js';
 	import { invalidateAll } from '$app/navigation';
 	import type { UserMe } from '$lib/interfaces/User.js';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
 
 	export let data;
 	async function markAllAsRead() {

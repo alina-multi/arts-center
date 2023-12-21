@@ -1,11 +1,13 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import HeaderLayout from '$lib/components/my/HeaderLayout.svelte';
-	import { t, locale } from '$lib/translations';
 	import FilteredTable from '$lib/components/table/FilteredTable.svelte';
 	import Hint from '$lib/components/atoms/Hint.svelte';
 	import { user } from '$lib/stores/auth';
+	import { getContext } from 'svelte';
 
+	const t = getContext('t');
+	const locale = getContext('locale');
 	export let data: PageData;
 	let total = 0;
 	$: total = data?.transactions?.reduce((accumulator, row) => {

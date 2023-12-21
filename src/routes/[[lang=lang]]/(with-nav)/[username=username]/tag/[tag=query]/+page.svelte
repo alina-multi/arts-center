@@ -4,4 +4,4 @@
 	export let data: PageData;
 </script>
 
-<UserGallery {...data}/>
+<UserGallery {...data} />

@@ -18,12 +18,7 @@
 			/>
 
 			<div class="  w-full flex flex-row-reverse">
-				<FilterTag
-					tags={options.tags}
-					selected={params.tag}
-					{urlGenerator}
-					{params}
-				/>
+				<FilterTag tags={options.tags} selected={params.tag} {urlGenerator} {params} />
 			</div>
 		</div>
 	{/if}

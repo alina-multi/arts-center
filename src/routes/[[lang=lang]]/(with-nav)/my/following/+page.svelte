@@ -2,7 +2,9 @@
 	import UserPreview from '$lib/components/user/UserPreview.svelte';
 	import HeaderLayout from '$lib/components/my/HeaderLayout.svelte';
 	import FollowButton from '$lib/components/atoms/buttons/FollowButton.svelte';
-	import { t } from '$lib/translations';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
 
 	export let data;
 	let users = data.users;
@@ -13,9 +15,7 @@
 		<span slot="details"> {users.length} {$t('my.people')} </span>
 	</HeaderLayout>
 
-	<div
-		class="flex flex-col dark:bg-zinc-900"
-	>
+	<div class="flex flex-col dark:bg-zinc-900">
 		{#if users?.length > 0}
 			<ul class="lg:divide-y dark:lg:divide-zinc-800">
 				{#each users as user (user.id)}

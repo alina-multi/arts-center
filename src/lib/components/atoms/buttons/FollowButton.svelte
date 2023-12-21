@@ -1,17 +1,19 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { PlusCircle, CheckCircle } from '@steeze-ui/heroicons';
+	import { CheckCircle, PlusCircle } from '@steeze-ui/heroicons';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import AuthModal from '../AuthModal.svelte';
-	import { t } from '$lib/translations';
 	import { fetchData } from '$lib/helpers/fetchData';
-	import {user as currentUser} from '$lib/stores/auth'
+	import { user as currentUser } from '$lib/stores/auth';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
 
 	export let user, size: string;
 	let url = '/api/follow';
 
 	let isMy = false;
-	$:isMy = handleIsMy($currentUser, user.id);
+	$: isMy = handleIsMy($currentUser, user.id);
 
 	let open = false;
 	let follows = $currentUser?.follows?.user;
@@ -40,12 +42,10 @@
 	}
 </script>
 
-
-
 {#if !isMy}
 	{#if isFollowing}
 		<button
-			class="w-full {`text-${size}`} border  text-zinc-600 dark:text-zinc-300 flex items-center justify-center gap-1 rounded-sm pl-2 pr-1.5 py-1 shadow cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-700 dark:border-zinc-700 dark:bg-zinc-800"
+			class="w-full {`text-${size}`} border text-zinc-600 dark:text-zinc-300 flex items-center justify-center gap-1 rounded-sm pl-2 pr-1.5 py-1 shadow cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-700 dark:border-zinc-700 dark:bg-zinc-800"
 			on:click={() => handleFollow()}
 		>
 			<span>{$t('global.buttons.following')}</span>
@@ -65,5 +65,5 @@
 {/if}
 
 {#if open}
-<AuthModal bind:open type={$t('global.not_logged_in.follow')} />
+	<AuthModal bind:open type={$t('global.not_logged_in.follow')} />
 {/if}

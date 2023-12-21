@@ -3,9 +3,10 @@
 	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
 	import AuthModal from '$lib/components/atoms/AuthModal.svelte';
 	import { commentsState } from '$lib/stores/comment';
-	import { t } from '$lib/translations';
 	import { user as currentUser } from '$lib/stores/auth';
+	import { getContext } from 'svelte';
 
+	const t = getContext('t');
 	export let comment: Comment,
 		value: string,
 		isEdited: boolean,
@@ -26,7 +27,7 @@
 </script>
 
 <a
-href="#{comment.id}"
+	href="#{comment.id}"
 	class=" {isEditing ? 'hidden ' : ''} 
 				relative prose prose-sm border block border-zinc-200 p-3 pb-6 rounded-md bg-zinc-50 dark:bg-zinc-900 dark:text-white dark:border-zinc-800 space-y-2"
 >

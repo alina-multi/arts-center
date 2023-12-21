@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PageData, ActionData } from './$types';
+	import type { ActionData, PageData } from './$types';
 	import EmailInput from '$lib/components/input/EmailInput.svelte';
 	import PasswordInput from '$lib/components/input/PasswordInput.svelte';
 	import TextInput from '$lib/components/input/TextInput.svelte';
@@ -8,10 +8,12 @@
 	import InputGroup from '$lib/components/input/InputGroup.svelte';
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
 	import ButtonsGroup from '$lib/components/forms/ButtonsGroup.svelte';
-	import { t } from '$lib/translations';
 	import countryList from 'country-list';
 	import SelectInput from '$lib/components/input/SelectInput.svelte';
 	import ResendEmailVerification from '$lib/components/my/ResendEmailVerification.svelte';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
 
 	export let data: PageData;
 	export let form: ActionData;
@@ -85,7 +87,7 @@
 			{#if !profile?.email_verified_at}
 				<p class="mt-1 text-sm leading-6 text-gray-600">
 					{$t('my.edit_page.email_awaiting_confirmation')}
-					<ResendEmailVerification/>
+					<ResendEmailVerification />
 				</p>
 			{/if}
 			<EmailInput {id} {error} name="email" value={profile.email} />

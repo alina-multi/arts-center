@@ -1,13 +1,15 @@
 <script>
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Flag } from '@steeze-ui/heroicons';
-	import { t } from '$lib/translations';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
 
 	export let open = false;
 </script>
 
 <button
-	on:click={() => open = true}
+	on:click={() => (open = true)}
 	type="button"
 	class="flex items-center gap-3 px-6 py-2 hover:bg-gray-100 dark:hover:text-gray-200 dark:hover:bg-gray-600 font-semibold"
 >

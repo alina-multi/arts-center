@@ -6,13 +6,16 @@
 	import Crown from '$lib/components/atoms/CrownIcon.svelte';
 	import type { User } from '$lib/interfaces/User';
 	import VerificationBadge from '../atoms/VerificationBadge.svelte';
-	
+	import { getContext } from 'svelte';
+
+	const locale = getContext('locale');
+
 	export let user: User,
 		avatar_size = 'h-16 w-16',
 		crown_size = 'w-4 h-4',
 		followButton: boolean | undefined = true;
 
-	$: href = localePath(`/${user.username}`);
+	$: href = localePath($locale, `/${user.username}`);
 </script>
 
 <div class="flex items-center gap-3 w-full">

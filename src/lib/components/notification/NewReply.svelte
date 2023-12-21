@@ -1,16 +1,20 @@
 <script lang="ts">
 	import type { NewReplyNotification } from '$lib/interfaces/Notification';
-	import { localePath,t } from '$lib/translations';
+	import { localePath } from '$lib/translations';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ArrowUturnRight } from '@steeze-ui/heroicons';
+	import { getContext } from 'svelte';
+
+	const t = getContext('t');
+	const locale = getContext('locale');
 
 	export let notification: NewReplyNotification;
 	let { username, name, text, original_text } = notification;
-	let href = localePath(`/${username}`);
+	let href = localePath($locale, `/${username}`);
 </script>
 
 <a
-	href={localePath(`/work/${notification?.work_id}#${notification?.comment_id}`)}
+	href={localePath($locale, `/work/${notification?.work_id}#${notification?.comment_id}`)}
 	class="flex gap-3 items-center text-sm w-full py-3"
 >
 	<span class="p-1.5 rounded-full bg-blue-500"
@@ -18,7 +22,7 @@
 	>
 	<div class="flex flex-wrap items-center">
 		<a {href} class="font-semibold mr-3 hover:underline">{name}</a>
-		<span class="mr-1"> {$t(`global.notifications.replied`)}:  </span>
+		<span class="mr-1"> {$t(`global.notifications.replied`)}: </span>
 		<span class="mr-3 font-semibold text-sm">"{text}"</span>
 		<span class=" mr-1">{$t(`global.notifications.to_your_comment`)}: </span>
 		<span>"{original_text}"</span>

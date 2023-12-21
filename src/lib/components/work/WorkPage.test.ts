@@ -8,13 +8,16 @@ import { loadTranslations } from '$lib/translations';
 import { user } from '$lib/stores/auth';
 import { UserMeData } from '$test/data/UserData';
 import { WorkData } from '$test/data/WorkData';
+import { setContext } from 'svelte';
 
 interface WorkPageProps {
 	work: Work;
 	comments: Comment[];
 }
 beforeAll(async () => {
-	await loadTranslations('uk', '/uk/work/39');
+	const { t, locale } = await loadTranslations('uk', '/uk/work/39');
+	setContext('t', t);
+	setContext('locale', locale);
 });
 describe('Work page', async () => {
 	it('Not owning the work', async () => {

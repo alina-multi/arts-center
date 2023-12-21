@@ -1,4 +1,4 @@
-import { locales } from '$lib/translations';
+import { availableLocales } from '$lib/translations';
 
 export function createXml(body) {
 	const response = new Response(body);
@@ -8,7 +8,6 @@ export function createXml(body) {
 }
 
 export function sitemap(entity, site, key, slug = null) {
-	const langs = locales.get();
 	let string = `<?xml version="1.0" encoding="UTF-8" ?>
     <urlset 
     xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
@@ -18,7 +17,7 @@ export function sitemap(entity, site, key, slug = null) {
     xmlns:image="https://www.google.com/schemas/sitemap-image/1.1">
     `;
 	for (const item of entity) {
-		for (const lang of langs) {
+		for (const lang of availableLocales) {
 			string += `
 	<url>
 		<loc>${site}/${lang !== 'en' ? `${lang}/` : ''}${slug ? `${slug}/` : ''}${item[key]}</loc>

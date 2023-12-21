@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount, onDestroy, createEventDispatcher } from 'svelte';
 	import Loader from '$lib/components/atoms/Loader.svelte';
-	export let hasMore:boolean = true;
-	export let loading:boolean = false;
+	export let hasMore: boolean = true;
+	export let loading: boolean = false;
 	const dispatch = createEventDispatcher();
 	let el, observer;
 	async function loadMore(entries) {

@@ -1,12 +1,13 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import HeaderLayout from '$lib/components/my/HeaderLayout.svelte';
-	import { t } from '$lib/translations';
 	import FilteredTable from '$lib/components/table/FilteredTable.svelte';
 	import PictureCell from '$lib/components/table/PictureCell.svelte';
 	import WorkStatusCell from '$lib/components/table/WorkStatusCell.svelte';
 	import WorkControllsCell from '$lib/components/table/WorkControllsCell.svelte';
+	import { getContext } from 'svelte';
 
+	const t = getContext('t');
 	export let data: PageData;
 
 	const columns = [
