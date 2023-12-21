@@ -3,6 +3,5 @@ import type { LayoutLoad } from './$types';
 
 export const load = (async ({ params, url }) => {
 	const initLocale = params.lang || defaultLocale; // set default if no locale already set
-	console.log(`Loading translations for ${initLocale}`);
 	return await loadTranslations(initLocale, url.pathname);
 }) satisfies LayoutLoad;

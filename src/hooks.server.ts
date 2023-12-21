@@ -7,7 +7,6 @@ import { prisma } from '$lib/server/database/prisma';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.params.lang ??= defaultLocale;
-	console.log(`${event.request.method} ${event.url.pathname}`);
 	return resolve(event, {
 		transformPageChunk: ({ html }) => html.replace('%lang%', checkUrlLocale(event))
 	});
