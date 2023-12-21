@@ -3,6 +3,7 @@ import { checkUrlLocale, defaultLocale } from '$lib/translations';
 import * as SentryNode from '@sentry/node';
 import '@sentry/tracing';
 import { env } from '$env/dynamic/public';
+import { prisma } from '$lib/server/database/prisma';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.params.lang ??= defaultLocale;
@@ -16,7 +17,10 @@ SentryNode.init({
 	dsn: 'https://c2838269ac4d4b72995864bb70794bab@o740081.ingest.sentry.io/4504873190424576',
 	tracesSampleRate: 0.01,
 	// Add the Http integration for tracing
-	integrations: [new SentryNode.Integrations.Http()],
+	integrations: [
+		new SentryNode.Integrations.Http(),
+		new SentryNode.Integrations.Prisma(prisma)
+	],
 	environment: env.PUBLIC_ENV
 });
 
