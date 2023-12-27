@@ -2,11 +2,15 @@ import type { PageServerLoad } from './$types';
 import { get } from '$lib/server/repositories/post';
 import { generateSignature } from '$lib/server/transloadit';
 import { error } from '@sveltejs/kit';
+import { postMap } from '$lib/server/mappers/post';
 
 export const load = (async ({ params, parent }) => {
 	const { user } = await parent();
-	const post = await get(params.id);
-	if (post?.user_id != user.id) {
+	const postRaw = await get(params.id);
+	if (!postRaw) {
+    throw error(404);
+  }
+	if (postRaw?.user?.id != user.id) {
 		throw error(403, {
 			message: 'Unauthorized'
 		});
@@ -17,7 +21,7 @@ export const load = (async ({ params, parent }) => {
     });
 	}
 	return {
-		post,
+		post: postMap(postRaw),
 		transloadit: generateSignature(process.env.TRANSLOADIT_IMAGE_TEMPLATE)
 	};
 }) satisfies PageServerLoad;

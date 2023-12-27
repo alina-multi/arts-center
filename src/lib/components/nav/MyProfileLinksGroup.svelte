@@ -3,6 +3,7 @@
 	import SideNavLink from '$lib/components/nav/side/SideNavLink.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import {
+		ArrowUpOnSquareStack,
 		Bell,
 		Bookmark,
 		Camera,
@@ -10,7 +11,7 @@
 		FolderOpen,
 		NoSymbol,
 		PencilSquare,
-		PlusCircle,
+		PlusCircle, RectangleStack,
 		UserGroup,
 		UserPlus
 	} from '@steeze-ui/heroicons';

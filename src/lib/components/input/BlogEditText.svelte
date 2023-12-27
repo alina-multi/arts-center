@@ -11,7 +11,8 @@
       dispatch('addBlock');
 			event.preventDefault();
     }
-		if (event.key === 'Backspace' && value === '') {
+		// When you delete everything, browser adds <br>
+		if (event.key === 'Backspace' && ['<br>', ''].includes(value)) {
 			dispatch('removeBlock');
       event.preventDefault();
 		}
@@ -35,7 +36,6 @@
 			range.collapse(false);
 			selection?.addRange(range);
 			inputElement?.focus();
-			focus = undefined;
 		}
 	}
 </script>
@@ -46,4 +46,6 @@
 	contenteditable
 	bind:innerHTML={value}
 	on:keydown={keyDown}
+	on:focusin={() => focus = index}
+	tabindex={index + 2}
 />

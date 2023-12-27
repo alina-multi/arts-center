@@ -16,16 +16,17 @@
 		text: ''
 	};
 	let body = [
-		...data.body ?? [{ ...defaultBlock }]
+		...data?.post?.body ?? [{ ...defaultBlock }]
 	];
-	let title = data.title ?? '';
+
+	let images = data?.post?.images ?? new Map();
+	let title = data?.post?.title ?? '';
 	let focus: number | undefined = undefined;
 	let titleElement: HTMLInputElement;
 	let uploadImage: number | undefined;
 	let errors, message;
 	$:if (focus === -1) {
 		titleElement?.focus();
-		focus = undefined;
 	}
 
 	function addBlock(index: number | undefined) {
@@ -69,9 +70,11 @@
 		if (Array.isArray(result) && uploadImage !== undefined) {
 			body[uploadImage] = {
 				type: 'image',
-				image: result[0],
 				image_id: result[0].id
 			};
+			images.set(result[0].id, result[0]);
+			// Trigger svelte update
+			images = images;
 			body = body;
 		}
 		uploadImage = undefined;
@@ -83,14 +86,12 @@
 			body
 		});
 		const json = await response.json();
-		if (json.errors) {
-			errors = json.errors;
-			message = json.message;
-		}
+		errors = json?.errors;
+		message = json?.message;
 	}
 </script>
-<InputGroup let:hasError error={errors?.title}>
-<input bind:this={titleElement} on:keydown={titleKeyDown} class='border-0 outline-0' type='text' name='title'
+<InputGroup let:hasError error={errors?.title} class='pl-16 {focus===-1?"ring-1 ring-gray-300":""}'>
+<input tabindex=1 on:focusin={()=>focus = -1} bind:this={titleElement} on:keydown={titleKeyDown} class='border-0 focus:ring-0 p-0 text-xl' type='text' name='title'
 			 placeholder='Title' bind:value={title}>
 </InputGroup>
 {#each body as row, index}
@@ -101,22 +102,15 @@
 							 on:uploadImage={()=>uploadImage = index}
 							 {index}
 							 bind:row={row}
+							 {images}
 							 bind:focus
 	/>
 {/each}
 
-<ActionButton class={'bg-green-600 hover:bg-green-500 focus-visible:outline-green-600'} on:click={save}>Save
+<ActionButton class={'bg-green-600 hover:bg-green-500 focus-visible:outline-green-600'} on:click={save}>
+	Save
 </ActionButton>
 
 <ModalWindow open={uploadImage!== undefined} on:close={()=>uploadImage=undefined} class='w-auto'>
 	<FileUploader {...data.transloadit} maxNumberOfFiles={1} on:complete={uploadComplete} />
 </ModalWindow>
-
-{JSON.stringify(body)}
-
-<div>
-	Message: {message}
-	<hr/>
-	Errors: {JSON.stringify(errors)}
-</div>
-

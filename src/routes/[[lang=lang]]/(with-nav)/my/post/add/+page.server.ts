@@ -1,6 +1,6 @@
 import type { PageServerLoad } from './$types';
 import { api } from '$lib/server/api';
-import { redirect } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 import { localePath } from '$lib/translations';
 
 export const load = (async (event) => {
@@ -10,5 +10,8 @@ export const load = (async (event) => {
 		event
 	});
 	const { id } = await response.json();
-	throw redirect(301, localePath(`/my/post/edit/${id}`));
+	if (!id) {
+		throw error(500, 'Could not create post');
+	}
+	throw redirect(301, localePath(event.params.lang, `/my/post/edit/${id}`));
 }) satisfies PageServerLoad;

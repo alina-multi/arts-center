@@ -5,14 +5,18 @@
 	import BlogEditImage from '$lib/components/input/BlogEditImage.svelte';
 	import BlogEditWorks from '$lib/components/input/BlogEditWorks.svelte';
 	import {createEventDispatcher} from 'svelte';
+	import type { Picture } from '$lib/interfaces/Picture';
 	const dispatch = createEventDispatcher();
 
 	export let row;
+	export let images: Map<string, Picture>;
 	export let index:number, focus:number|undefined;
 
 	let displayPlus = true;
 	let displayTypeButtons = false;
+
 	$:displayPlus = row.type === 'text' && row.text === '';
+	$: isFocused = index === focus;
 
 	function toggleTypeButtons() {
 		displayTypeButtons = !displayTypeButtons;
@@ -28,7 +32,7 @@
 		}
 	}
 </script>
-<div class='flex group h-10 border-dashed border-1 border-zinc-100'>
+<div class='flex group border-dashed border-1 border-zinc-100 {isFocused?"ring-1 ring-gray-300":""}'>
 	<div class='w-16'>
 		{#if displayPlus}
 			<button class:rotate-45={displayTypeButtons} on:click={toggleTypeButtons}>
@@ -51,7 +55,7 @@
 				<BlogEditText on:addBlock on:removeBlock on:moveUp on:moveDown bind:value={row.text} bind:focus {index} />
 			{/if}
 			{#if row.type === 'image'}
-				<BlogEditImage on:addBlock on:removeBlock on:moveUp on:moveDown image={row.image} bind:focus {index} />
+				<BlogEditImage on:addBlock on:removeBlock on:moveUp on:moveDown image={images.get(row?.image_id.toString())} bind:focus {index} />
 			{/if}
 			{#if row.type === 'work'}
 				<BlogEditWorks on:addBlock on:removeBlock on:moveUp on:moveDown bind:value={row.works} bind:focus {index} />

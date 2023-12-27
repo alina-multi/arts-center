@@ -12,7 +12,7 @@ type prismaCountryAggregation = {
 		country: number;
 	};
 };
-export async function usersMap(users: UserFullRaw[], lang = undefined): Promise<UserList[]> {
+export async function usersMap(users: UserFullRaw[], lang: AvailableLocales): Promise<UserList[]> {
 	return await Promise.all(
 		users.map(async (user: UserFullRaw) => {
 			const tmpWorks = await query(

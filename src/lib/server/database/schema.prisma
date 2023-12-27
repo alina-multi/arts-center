@@ -113,6 +113,7 @@ model imageables {
   imageable_type String
   image          images @relation(fields: [image_id], references: [id])
   works          works? @relation(fields: [imageable_id], references: [id])
+  posts          posts? @relation(fields: [imageable_id], references: [id], map: "postToImage")
 }
 
 model images {
@@ -188,19 +189,20 @@ model personal_access_tokens {
 }
 
 model posts {
-  id           BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
-  rating       Int?      @default(0)
-  comments     Int?      @default(0)
-  published_at DateTime? @db.Timestamp(0)
-  deleted_at   DateTime? @db.Timestamp(0)
-  created_at   DateTime? @db.Timestamp(0)
-  updated_at   DateTime? @db.Timestamp(0)
+  id           BigInt       @id @default(autoincrement()) @db.UnsignedBigInt
+  rating       Int?         @default(0)
+  comments     Int?         @default(0)
+  published_at DateTime?    @db.Timestamp(0)
+  deleted_at   DateTime?    @db.Timestamp(0)
+  created_at   DateTime?    @db.Timestamp(0)
+  updated_at   DateTime?    @db.Timestamp(0)
   title        String?
   body         Json?
-  image_id     BigInt?   @db.UnsignedBigInt
-  user_id      BigInt    @db.UnsignedBigInt
-  image        images?   @relation(fields: [image_id], references: [id])
-  user         users     @relation(fields: [user_id], references: [id])
+  image_id     BigInt?      @db.UnsignedBigInt
+  user_id      BigInt       @db.UnsignedBigInt
+  image        images?      @relation(fields: [image_id], references: [id])
+  user         users        @relation(fields: [user_id], references: [id])
+  images       imageables[]
 
   @@index([comments], map: "posts_comments_index")
   @@index([published_at], map: "posts_published_at_index")

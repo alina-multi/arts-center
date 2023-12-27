@@ -1,4 +1,6 @@
 import { prisma } from '$lib/server/database/prisma';
+import { imageSelect } from '$lib/server/repositories/image';
+import { userSelect } from '$lib/server/repositories/user';
 
 const PAGE_SIZE = 10;
 const postSelect = {
@@ -6,11 +8,21 @@ const postSelect = {
 	rating: true,
 	comments: true,
 	published_at: true,
-	user_id: true,
+	updated_at: true,
 	title: true,
-	body: true
-	// image: { select: imageSelect },
-	// user: { select: userSelect }
+	body: true,
+	user: {
+		select: userSelect
+	},
+	image: imageSelect,
+	images: {
+		select: {
+			image: imageSelect
+		},
+		where: {
+			imageable_type: 'post'
+		}
+	},
 };
 
 export function query(where = {}, orderBy = {}, page = 1) {
