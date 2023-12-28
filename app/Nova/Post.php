@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Laravel\Nova\Fields\Code;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Http\Requests\NovaRequest as Request;
 use Laravel\Nova\Fields\BelongsTo;
@@ -44,9 +45,9 @@ class Post extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            BelongsTo::make('blog'),
+            BelongsTo::make('user'),
             Text::make('title')->required(),
-            Markdown::make('text')->required()->alwaysShow(),
+            Code::make('body')->json(),
             Number::make('Rating')->onlyOnIndex(),
             DateTime::make('published_at'),
             DateTime::make('created_at')->onlyOnDetail(),

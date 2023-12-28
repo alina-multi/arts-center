@@ -104,7 +104,8 @@ class User extends Resource
             HasMany::make('Comments'),
             HasMany::make('Feeds'),
             HasMany::make('Follows'),
-            HasMany::make('Blacklists')
+            HasMany::make('Blacklists'),
+            HasMany::make('Posts')
         ];
     }
 

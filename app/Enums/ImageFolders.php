@@ -10,4 +10,5 @@ enum ImageFolders: string
     case Preview = "preview";
     // todo: get rid of this and move to gridS
     case Grid = "grid";
+    case Posts = "posts";
 }
