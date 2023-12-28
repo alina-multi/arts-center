@@ -89,6 +89,9 @@
 		"unread": "unread"
 	},
 	"people": "people",
+	"post": {
+		"image": "Image"
+	},
 	"transactions": {
 		"amount": "Amount",
 		"balance": "Balance {{total}}$",
@@ -96,7 +99,7 @@
 		"date": "Date",
 		"header": "Transactions",
 		"message": "Message",
-		"need_verification": "In order be able to receive money on our platform you first need to apply for verification using info@arts.center. Please attach official government issued document with photo and name matching the ones on site and selfie with one or more of your works visible in the picture. We don't work with russian citizens.",
+		"need_verification": "In order be able to receive money on our platform you first need to apply for verification using info@arts.center. Please attach official government issued document with \n\n\n\n and name matching the ones on site and selfie with one or more of your works visible in the picture. We don't work with russian citizens.",
 		"type": "Type",
 		"types": {
 			"1": "Donation"

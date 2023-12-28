@@ -1,6 +1,5 @@
 <script lang="ts">
-
-export let value, focus;
+	export let value;
 </script>
 
-<textarea bind:value/>
+<textarea bind:value />

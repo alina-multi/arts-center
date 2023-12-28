@@ -1,31 +1,43 @@
-<script lang='ts'>
+<script lang="ts">
 	import type { PageData } from './$types';
 	import BlogEditRow from '$lib/components/input/BlogEditRow.svelte';
-	import BlogEditText from '$lib/components/input/BlogEditText.svelte';
 	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
 	import FileUploader from '$lib/components/input/FileUploader.svelte';
 	import { fetchData, magicFetch } from '$lib/helpers/fetchData';
-	import { invalidateAll } from '$app/navigation';
-	import { checkAuth } from '$lib/stores/auth';
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
 	import InputGroup from '$lib/components/input/InputGroup.svelte';
+	import { afterNavigate } from '$app/navigation';
+	import type { Picture } from '$lib/interfaces/Picture';
+	import DateInput from '$lib/components/input/DateInput.svelte';
+	import { getContext } from 'svelte';
+	import { localePath } from '$lib/translations';
+	import FormGroup from '$lib/components/input/FormGroup.svelte';
+
+	let t = getContext('t');
+	let locale = getContext('locale');
 
 	export let data: PageData;
+	const maxDate = new Date(Date.now() + 60 * 60 * 24 * 60 * 1000).toISOString().split('T')[0];
 	const defaultBlock = {
 		type: 'text',
 		text: ''
 	};
-	let body = [
-		...data?.post?.body ?? [{ ...defaultBlock }]
-	];
+	let images: Map<string, Picture>,
+		body = [],
+		title: string,
+		published_at: Date;
+	({ body, images, title, published_at } = data.post);
+	published_at = published_at?.toISOString().split('T')[0];
+	afterNavigate(() => {
+		({ body, images, title, published_at } = data.post);
+		published_at = published_at?.toISOString().split('T')[0];
+	});
 
-	let images = data?.post?.images ?? new Map();
-	let title = data?.post?.title ?? '';
 	let focus: number | undefined = undefined;
 	let titleElement: HTMLInputElement;
 	let uploadImage: number | undefined;
-	let errors, message;
-	$:if (focus === -1) {
+	let errors;
+	$: if (focus === -1) {
 		titleElement?.focus();
 	}
 
@@ -72,7 +84,7 @@
 				type: 'image',
 				image_id: result[0].id
 			};
-			images.set(result[0].id, result[0]);
+			images.set(result[0].id.toString(), result[0]);
 			// Trigger svelte update
 			images = images;
 			body = body;
@@ -81,36 +93,58 @@
 	}
 
 	async function save() {
-		const response = await fetchData('PUT', `/api/post/${data.post.id}`, {
+		const response = await fetchData('PUT', localePath($locale, `/api/post/${data.post.id}`), {
 			title,
-			body
+			body,
+			published_at
 		});
 		const json = await response.json();
 		errors = json?.errors;
-		message = json?.message;
 	}
 </script>
-<InputGroup let:hasError error={errors?.title} class='pl-16 {focus===-1?"ring-1 ring-gray-300":""}'>
-<input tabindex=1 on:focusin={()=>focus = -1} bind:this={titleElement} on:keydown={titleKeyDown} class='border-0 focus:ring-0 p-0 text-xl' type='text' name='title'
-			 placeholder='Title' bind:value={title}>
+
+<InputGroup error={errors?.title} class="pl-16 {focus === -1 ? 'ring-1 ring-gray-300' : ''}">
+	<!-- svelte-ignore a11y-positive-tabindex -->
+	<input
+		tabindex="1"
+		on:focusin={() => (focus = -1)}
+		bind:this={titleElement}
+		on:keydown={titleKeyDown}
+		class="border-0 focus:ring-0 p-0 text-xl"
+		type="text"
+		name="title"
+		placeholder={$t('my.add_work_page.title')}
+		bind:value={title}
+	/>
 </InputGroup>
+
 {#each body as row, index}
-	<BlogEditRow on:moveUp={()=>moveFocus(index-1)}
-							 on:moveDown={()=>moveFocus(index+1)}
-							 on:addBlock={()=>addBlock(index)}
-							 on:removeBlock={()=>removeBlock(index)}
-							 on:uploadImage={()=>uploadImage = index}
-							 {index}
-							 bind:row={row}
-							 {images}
-							 bind:focus
+	<BlogEditRow
+		on:moveUp={() => moveFocus(index - 1)}
+		on:moveDown={() => moveFocus(index + 1)}
+		on:addBlock={() => addBlock(index)}
+		on:removeBlock={() => removeBlock(index)}
+		on:uploadImage={() => (uploadImage = index)}
+		{index}
+		bind:row
+		{images}
+		bind:focus
 	/>
 {/each}
+<FormGroup h1={$t('my.add_work_page.ready_to_publish')} class="mt-3">
+	<div class=" max-sm:space-y-6 max-md:flex max-md:flex-col md:columns-2">
+		<DateInput bind:value={published_at} min={published_at} max={maxDate} name="published_at" />
 
-<ActionButton class={'bg-green-600 hover:bg-green-500 focus-visible:outline-green-600'} on:click={save}>
-	Save
-</ActionButton>
+		<ActionButton class="block w-full bg-blue-600 hover:bg-blue-500" on:click={save}>
+			{$t('global.buttons.save')}
+		</ActionButton>
+	</div>
+</FormGroup>
 
-<ModalWindow open={uploadImage!== undefined} on:close={()=>uploadImage=undefined} class='w-auto'>
+<ModalWindow
+	open={uploadImage !== undefined}
+	on:close={() => (uploadImage = undefined)}
+	class="w-auto"
+>
 	<FileUploader {...data.transloadit} maxNumberOfFiles={1} on:complete={uploadComplete} />
 </ModalWindow>

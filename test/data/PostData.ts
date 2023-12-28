@@ -2,7 +2,6 @@ import { user_basic_data_raw } from './UserData';
 import { image_raw_data } from './PictureData';
 import type { PostRaw } from '$lib/interfaces/PostRaw';
 
-
 export const post_raw_data = {
 	id: 1234567890123456n,
 	rating: 5,
@@ -18,5 +17,5 @@ export const post_raw_data = {
 	],
 	user: user_basic_data_raw,
 	image: image_raw_data,
-	images: [{image: image_raw_data}]
+	images: [{ image: image_raw_data }]
 } satisfies PostRaw;

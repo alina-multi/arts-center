@@ -7,6 +7,7 @@
 
 <li>
 	<BaseLink
+		preload="tap"
 		{href}
 		{exact}
 		class=" flex items-center gap-x-3 py-2 px-6  font-semibold "

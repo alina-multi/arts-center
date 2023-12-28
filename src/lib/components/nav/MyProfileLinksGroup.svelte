@@ -11,7 +11,8 @@
 		FolderOpen,
 		NoSymbol,
 		PencilSquare,
-		PlusCircle, RectangleStack,
+		PlusCircle,
+		RectangleStack,
 		UserGroup,
 		UserPlus
 	} from '@steeze-ui/heroicons';

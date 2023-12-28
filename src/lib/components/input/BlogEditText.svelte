@@ -1,20 +1,18 @@
-<script lang='ts'>
-	import newUniqueId from 'locally-unique-id-generator';
-	import {createEventDispatcher} from'svelte';
-	import { browser } from '$app/environment';
+<script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
 
 	export let value = '';
-	export let index:number, focus:number;
+	export let index: number, focus: number;
 	function keyDown(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
-      dispatch('addBlock');
+			dispatch('addBlock');
 			event.preventDefault();
-    }
+		}
 		// When you delete everything, browser adds <br>
 		if (event.key === 'Backspace' && ['<br>', ''].includes(value)) {
 			dispatch('removeBlock');
-      event.preventDefault();
+			event.preventDefault();
 		}
 		if (event.key === 'ArrowUp') {
 			dispatch('moveUp');
@@ -25,7 +23,7 @@
 			event.preventDefault();
 		}
 	}
-	let inputElement:HTMLElement;
+	let inputElement: HTMLElement;
 
 	$: {
 		if (focus === index && inputElement) {
@@ -40,12 +38,14 @@
 	}
 </script>
 
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
 	bind:this={inputElement}
-	class='text-xl outline-0'
+	class="text-xl outline-0"
 	contenteditable
 	bind:innerHTML={value}
 	on:keydown={keyDown}
-	on:focusin={() => focus = index}
+	on:focusin={() => (focus = index)}
 	tabindex={index + 2}
 />

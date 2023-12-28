@@ -22,7 +22,7 @@ const postSelect = {
 		where: {
 			imageable_type: 'post'
 		}
-	},
+	}
 };
 
 export function query(where = {}, orderBy = {}, page = 1) {

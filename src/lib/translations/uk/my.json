@@ -89,6 +89,9 @@
 		"unread": "Непрочитане"
 	},
 	"people": "люди",
+	"post": {
+		"image": "Зображення"
+	},
 	"transactions": {
 		"amount": "Сума",
 		"balance": "Баланс {{total}}$",

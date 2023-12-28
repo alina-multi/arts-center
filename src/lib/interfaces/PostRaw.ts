@@ -7,8 +7,8 @@ interface TextRow {
 }
 
 interface ImageRow {
-  type: 'image';
-  image_id: number;
+	type: 'image';
+	image_id: number;
 }
 
 export type PostRow = TextRow | ImageRow;
@@ -23,5 +23,5 @@ export interface PostRaw {
 	body: PostRow[];
 	image?: ImageRaw;
 	images: { image: ImageRaw }[];
-	user: UserBasicRaw
+	user: UserBasicRaw;
 }

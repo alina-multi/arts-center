@@ -125,6 +125,7 @@
 		"users": "ARTISTS"
 	},
 	"my_links": {
+		"add_post": "Add post",
 		"add_work": "Add Work",
 		"avatar": "Change photo",
 		"blocked": "Blocked",
@@ -135,6 +136,7 @@
 		"logout": "Log Out",
 		"my_profile": "My Page",
 		"notifications": "Notifications",
+		"posts": "Posts",
 		"transactions": "Transactions",
 		"works": "My works"
 	},

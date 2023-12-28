@@ -16,10 +16,7 @@ SentryNode.init({
 	dsn: 'https://c2838269ac4d4b72995864bb70794bab@o740081.ingest.sentry.io/4504873190424576',
 	tracesSampleRate: 0.01,
 	// Add the Http integration for tracing
-	integrations: [
-		new SentryNode.Integrations.Http(),
-		new SentryNode.Integrations.Prisma(prisma)
-	],
+	integrations: [new SentryNode.Integrations.Http(), new SentryNode.Integrations.Prisma(prisma)],
 	environment: env.PUBLIC_ENV
 });
 
