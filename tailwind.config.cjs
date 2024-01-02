@@ -8,7 +8,8 @@ module.exports = {
 	theme: {
 		extend: {},
 		fontFamily: {
-			sans: ['Helvetica, sans-serif']
+			sans: ['Helvetica, sans-serif'],
+			serif: ['ui-serif', 'Georgia']
 		},
 		screens: {
 			xs: '500px',

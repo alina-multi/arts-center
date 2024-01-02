@@ -9,10 +9,12 @@
 	const elementId = newUniqueId();
 	const descriptionElementId = elementId + '-description';
 	const errorElementId = elementId + '-error';
+	let clazz = '';
+	export { clazz as class };
 	$: hasError = !!error;
 </script>
 
-<div>
+<div class={clazz}>
 	{#if label}
 		<label for={elementId} class="block text-sm font-semibold mb-1 text-zinc-900 dark:text-white">
 			{label}

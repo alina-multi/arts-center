@@ -3,6 +3,7 @@
 	import SideNavLink from '$lib/components/nav/side/SideNavLink.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import {
+		ArrowUpOnSquareStack,
 		Bell,
 		Bookmark,
 		Camera,
@@ -11,6 +12,7 @@
 		NoSymbol,
 		PencilSquare,
 		PlusCircle,
+		RectangleStack,
 		UserGroup,
 		UserPlus
 	} from '@steeze-ui/heroicons';
@@ -48,6 +50,17 @@
 			path: '/my/work',
 			src: FolderOpen,
 			text: 'works',
+			exact: true
+		},
+		{
+			path: '/my/post/add',
+			src: ArrowUpOnSquareStack,
+			text: 'add_post'
+		},
+		{
+			path: '/my/post',
+			src: RectangleStack,
+			text: 'posts',
 			exact: true
 		},
 		{
