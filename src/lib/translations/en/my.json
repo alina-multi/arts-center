@@ -118,5 +118,8 @@
 			"waiting": "Waiting"
 		},
 		"titles": "Work titles"
+	},
+	"blog": {
+		"create_title": "Create a title and press Enter ⏎  to tell your story"
 	}
 }

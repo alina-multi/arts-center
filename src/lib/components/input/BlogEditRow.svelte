@@ -40,23 +40,23 @@
 	}
 </script>
 
-<div class="flex group border-zinc-100 ring-1 {isFocused ? 'ring-gray-300' : 'ring-transparent'}">
-	<div class="w-16">
+<div class="flex group {isFocused ? ' ring-0 ring-transparent' : 'ring-transparent'}">
+	<div class="md:w-16 w-9">
 		{#if displayPlus}
 			<button class:rotate-45={displayTypeButtons} on:click={toggleTypeButtons}>
-				<Icon src={PlusCircle} class="w-6 h-6 text-gray-500" />
+				<Icon src={PlusCircle} class="w-8 h-8 xs:w-10 xs:h-10 stroke-1 mt-1" />
 			</button>
 		{/if}
 		{#if displayRowActions}
 			<button on:click={removeBlock}>
-				<Icon src={Trash} class="w-6 h-6 text-red-500" />
+				<Icon src={Trash} class="w-6 h-6 text-red-300 stroke-1 " />
 			</button>
 		{/if}
 	</div>
-	<div class="grow">
+	<div class="w-full">
 		{#if displayTypeButtons}
 			<button on:click={() => changeType('image')} class="hover:underline">
-				<Icon src={Photo} class="w-10 h-10 inline-block" />
+				<Icon src={Photo} class="w-10 h-10 inline-block stroke-1 mt-1" />
 				{$t('my.post.image')}
 			</button>
 			{#if false}

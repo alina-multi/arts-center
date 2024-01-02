@@ -42,7 +42,7 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
 	bind:this={inputElement}
-	class="text-xl outline-0"
+	class="sm:text-xl outline-0 font-serif leading-7 md:leading-8"
 	contenteditable
 	bind:innerHTML={value}
 	on:keydown={keyDown}

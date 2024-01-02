@@ -88,6 +88,7 @@
 			// Trigger svelte update
 			images = images;
 			body = body;
+			addBlock(undefined);
 		}
 		uploadImage = undefined;
 	}
@@ -103,43 +104,52 @@
 	}
 </script>
 
-<InputGroup error={errors?.title} class="pl-16 {focus === -1 ? 'ring-1 ring-gray-300' : ''}">
-	<!-- svelte-ignore a11y-positive-tabindex -->
-	<input
-		tabindex="1"
-		on:focusin={() => (focus = -1)}
-		bind:this={titleElement}
-		on:keydown={titleKeyDown}
-		class="border-0 focus:ring-0 p-0 text-xl"
-		type="text"
-		name="title"
-		placeholder={$t('my.add_work_page.title')}
-		bind:value={title}
-	/>
-</InputGroup>
+<div class=" lg:mt-3 min-h-screen flex flex-col lg:mx-12 xl:ml-6 xl:mr-0">
+	<InputGroup
+		error={errors?.title}
+		class="lg:pr-3 md:px-16 lg:px-12 lg:pl-16 pt-3 max-md:ml-9  mb-9   {focus === -1
+			? ' border-y-0 border-l-0 border-black  border-2 ring-gray-300'
+			: ''}"
+	>
+		<!-- svelte-ignore a11y-positive-tabindex -->
+		<textarea
+			tabindex="1"
+			on:focusin={() => (focus = -1)}
+			bind:this={titleElement}
+			on:keydown={titleKeyDown}
+			class="border-0 focus:ring-0 p-0 text-xl sm:text-2xl lg:text-3xl w-full font-semibold font-serif placeholder:font-normal sm:max-xl:placeholder:text-center dark:bg-black dark:placeholder:text-zinc-400"
+			name="title"
+			placeholder={$t('my.blog.create_title')}
+			bind:value={title}
+		/>
+	</InputGroup>
 
-{#each body as row, index}
-	<BlogEditRow
-		on:moveUp={() => moveFocus(index - 1)}
-		on:moveDown={() => moveFocus(index + 1)}
-		on:addBlock={() => addBlock(index)}
-		on:removeBlock={() => removeBlock(index)}
-		on:uploadImage={() => (uploadImage = index)}
-		{index}
-		bind:row
-		{images}
-		bind:focus
-	/>
-{/each}
-<FormGroup h1={$t('my.add_work_page.ready_to_publish')} class="mt-3">
-	<div class=" max-sm:space-y-6 max-md:flex max-md:flex-col md:columns-2">
-		<DateInput bind:value={published_at} min={published_at} max={maxDate} name="published_at" />
-
-		<ActionButton class="block w-full bg-blue-600 hover:bg-blue-500" on:click={save}>
-			{$t('global.buttons.save')}
-		</ActionButton>
+	<div class="space-y-9 mb-9 md:max-lg:mr-16 max-md:ml-2">
+		{#each body as row, index}
+			<BlogEditRow
+				on:moveUp={() => moveFocus(index - 1)}
+				on:moveDown={() => moveFocus(index + 1)}
+				on:addBlock={() => addBlock(index)}
+				on:removeBlock={() => removeBlock(index)}
+				on:uploadImage={() => (uploadImage = index)}
+				{index}
+				bind:row
+				{images}
+				bind:focus
+			/>
+		{/each}
 	</div>
-</FormGroup>
+
+	<FormGroup h1={$t('my.add_work_page.ready_to_publish')} class="mt-auto  xl:ml-16">
+		<div class=" max-sm:space-y-6 max-md:flex max-md:flex-col md:columns-2">
+			<DateInput bind:value={published_at} min={published_at} max={maxDate} name="published_at" />
+
+			<ActionButton class="block w-full bg-blue-600 hover:bg-blue-500" on:click={save}>
+				{$t('global.buttons.save')}
+			</ActionButton>
+		</div>
+	</FormGroup>
+</div>
 
 <ModalWindow
 	open={uploadImage !== undefined}
