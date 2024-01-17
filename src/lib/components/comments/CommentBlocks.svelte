@@ -31,7 +31,7 @@
 		}
 	};
 
-	export let comments, commentable_id: string, work_comments: number;
+	export let comments, commentable_id: bigint, commentable_type: 'work'|'post', commentsCount: number;
 	commentable_id = commentable_id?.toString();
 	let parentComments = [...comments];
 	$: value = '';
@@ -52,13 +52,13 @@
 
 		const fetch = fetchData('POST', url, {
 			commentable_id,
-			commentable_type: 'work',
+			commentable_type,
 			text: value
 		});
 		toast.promise(convertFetch(fetch), commentMassage.add);
 		const response = await fetch;
 		new_comment = await response.json();
-		work_comments++;
+		commentsCount++;
 
 		if (!response.ok) {
 			return;
@@ -81,8 +81,8 @@
 			> -->
 
 			<span class="font-semibold px-3 md:px-6"
-				>{work_comments}
-				{work_comments === 1
+				>{commentsCount}
+				{commentsCount === 1
 					? $t('global.comment.comment').toLowerCase()
 					: $t('global.comment.comments').toLowerCase()}</span
 			>
@@ -106,10 +106,10 @@
 									? 'opacity-100'
 									: 'opacity-50'}"
 							>
-								<CommentBlock {comment} {commentable_id} bind:parentComments bind:work_comments />
+								<CommentBlock {comment} {commentable_id} bind:parentComments bind:commentsCount />
 							</li>
 						{:else}
-							<CommentBlock {comment} {commentable_id} bind:parentComments bind:work_comments />
+							<CommentBlock {comment} {commentable_id} bind:parentComments bind:commentsCount />
 						{/if}
 					{/each}
 				</ul>

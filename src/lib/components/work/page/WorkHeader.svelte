@@ -8,6 +8,7 @@
 	import ReportModal from '$lib/components/atoms/ReportModal.svelte';
 	import type { Work } from '$lib/interfaces/Work';
 	import { getContext } from 'svelte';
+	import LocaleDate from '$lib/components/atoms/LocaleDate.svelte';
 
 	const t = getContext('t');
 	const locale = getContext('locale');
@@ -16,12 +17,6 @@
 	export let isMy = false;
 	let title = languageFind(work.titles, $locale)?.title;
 	let modalOpen = false;
-
-	let dateObject = new Date(work?.published_at).toLocaleDateString($locale, {
-		year: '2-digit',
-		month: 'short',
-		day: '2-digit'
-	});
 </script>
 
 <div class=" flex flex-col gap-3 dark:text-gray-400">
@@ -47,7 +42,7 @@
 		<h1 class="text-xl sm:text-2xl text-gray-00 dark:text-gray-100">
 			{title}
 		</h1>
-		<span class="text-zinc-500 text-sm">{$t('global.published_on')} {dateObject} </span>
+		<span class="text-zinc-500 text-sm">{$t('global.published_on')} <LocaleDate date={work?.published_at}/> </span>
 
 		<PriceLabel price={work.price} style={'px-3 py-1 '} />
 	</div>

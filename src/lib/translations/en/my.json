@@ -24,6 +24,9 @@
 		"title": "Title"
 	},
 	"blocked": "Blocked users",
+	"blog": {
+		"create_title": "Create a title and press Enter ⏎  to tell your story"
+	},
 	"buttons": {
 		"back_to_edit": "Back to edit",
 		"crop": "Crop and set as main",
@@ -90,7 +93,9 @@
 	},
 	"people": "people",
 	"post": {
-		"image": "Image"
+		"image": "Image",
+		"published_at": "Published",
+		"title": "Title"
 	},
 	"transactions": {
 		"amount": "Amount",
@@ -118,8 +123,5 @@
 			"waiting": "Waiting"
 		},
 		"titles": "Work titles"
-	},
-	"blog": {
-		"create_title": "Create a title and press Enter ⏎  to tell your story"
 	}
 }

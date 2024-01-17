@@ -15,7 +15,7 @@
 	export let comment: Comment,
 		commentable_id: string,
 		parentComments: [Comment] | [],
-		work_comments: number;
+		commentsCount: number;
 	let url = '/api/comment';
 
 	const comment_id = comment?.id?.toString();
@@ -78,7 +78,7 @@
 		answers = [...answers, { ...answer, owner: $currentUser }];
 		await tick();
 		new_comment_loaded = true;
-		work_comments = work_comments + 1;
+		commentsCount = commentsCount + 1;
 	}
 
 	function onEdit() {
@@ -122,7 +122,7 @@
 			answers = [];
 			parentComments = parentComments.filter((item) => item.id.toString() !== comment_id);
 		}, 500);
-		work_comments = work_comments - 1;
+		commentsCount = commentsCount - 1;
 	}
 </script>
 
@@ -170,7 +170,7 @@
 									comment={reply}
 									{commentable_id}
 									bind:parentComments={answers}
-									bind:work_comments
+									bind:commentsCount
 								/>
 							</li>
 						{:else}
@@ -178,7 +178,7 @@
 								comment={reply}
 								{commentable_id}
 								bind:parentComments={answers}
-								bind:work_comments
+								bind:commentsCount
 							/>
 						{/if}
 					{/each}
