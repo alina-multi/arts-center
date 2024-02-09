@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang="ts">
 	import type { PageData } from './';
 	import FilteredTable from '$lib/components/table/FilteredTable.svelte';
 	import { getContext } from 'svelte';

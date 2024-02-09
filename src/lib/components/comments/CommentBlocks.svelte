@@ -31,7 +31,10 @@
 		}
 	};
 
-	export let comments, commentable_id: bigint, commentable_type: 'work'|'post', commentsCount: number;
+	export let comments,
+		commentable_id: bigint,
+		commentable_type: 'work' | 'post',
+		commentsCount: number;
 	commentable_id = commentable_id?.toString();
 	let parentComments = [...comments];
 	$: value = '';

@@ -16,5 +16,5 @@ export function postMap(data: PostRaw): Post {
 }
 
 export function postsMap(data: PostRaw[]): Post[] {
-  return data.map((post) => postMap(post));
+	return data.map((post) => postMap(post));
 }

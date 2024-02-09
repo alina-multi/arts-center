@@ -10,13 +10,13 @@
 
 	export let row;
 	export let images: Map<string, Picture>;
-	export let index: number, focus: number | undefined;
+	export let tabindex: number, focus: number | undefined;
 
 	let t = getContext('t');
 	let displayTypeButtons = false;
 
 	$: displayPlus = row.type === 'text' && ['<br>', ''].includes(row.text);
-	$: isFocused = index === focus;
+	$: isFocused = tabindex === focus;
 	$: displayRowActions = isFocused && !displayPlus;
 
 	function toggleTypeButtons() {
@@ -41,6 +41,9 @@
 </script>
 
 <div class="flex group {isFocused ? ' ring-0 ring-transparent' : 'ring-transparent'}">
+	<div class="w-6 text-gray-300">
+		#{tabindex}
+	</div>
 	<div class="md:w-16 w-9">
 		{#if displayPlus}
 			<button class:rotate-45={displayTypeButtons} on:click={toggleTypeButtons}>
@@ -74,7 +77,7 @@
 					on:moveDown
 					bind:value={row.text}
 					bind:focus
-					{index}
+					{tabindex}
 				/>
 			{/if}
 			{#if row.type === 'image'}
@@ -85,7 +88,7 @@
 					on:moveDown
 					image={images.get(row?.image_id.toString())}
 					bind:focus
-					{index}
+					{tabindex}
 				/>
 			{/if}
 			{#if row.type === 'work'}
@@ -96,7 +99,7 @@
 					on:moveDown
 					bind:value={row.works}
 					bind:focus
-					{index}
+					{tabindex}
 				/>
 			{/if}
 		{/if}

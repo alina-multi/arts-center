@@ -54,14 +54,14 @@ export function get(id: string, where = {}) {
 
 export function userAllPostsQuery(user_id: string) {
 	return prisma.posts.findMany({
-    select: postSelect,
-    where: {
-      user_id,
-      deleted_at: null,
-			published_at: { lte: new Date() },
-    },
-    orderBy: {
-      published_at: 'desc'
-    }
-  });
+		select: postSelect,
+		where: {
+			user_id,
+			deleted_at: null,
+			published_at: { lte: new Date() }
+		},
+		orderBy: {
+			published_at: 'desc'
+		}
+	});
 }

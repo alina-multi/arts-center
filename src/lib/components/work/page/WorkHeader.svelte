@@ -42,7 +42,9 @@
 		<h1 class="text-xl sm:text-2xl text-gray-00 dark:text-gray-100">
 			{title}
 		</h1>
-		<span class="text-zinc-500 text-sm">{$t('global.published_on')} <LocaleDate date={work?.published_at}/> </span>
+		<span class="text-zinc-500 text-sm"
+			>{$t('global.published_on')} <LocaleDate date={work?.published_at} />
+		</span>
 
 		<PriceLabel price={work.price} style={'px-3 py-1 '} />
 	</div>

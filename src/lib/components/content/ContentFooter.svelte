@@ -10,7 +10,12 @@
 	import type { Comment } from '$lib/interfaces/Comment';
 	import type { UserBasic } from '$lib/interfaces/User';
 
-	export let owners: UserBasic[], tags: Tag[], comments: Comment, commentsCount:number, commentable_id:bigint, commentable_type: string = 'work'
+	export let owners: UserBasic[],
+		tags: Tag[],
+		comments: Comment,
+		commentsCount: number,
+		commentable_id: bigint,
+		commentable_type: string = 'work';
 </script>
 
 <div
@@ -35,13 +40,13 @@
 			<div><AuthStub /></div>
 		{/if}
 		{#if tags}
-			<TagsGroup tags={tags} media="hidden lg:flex" />
+			<TagsGroup {tags} media="hidden lg:flex" />
 		{/if}
 	</div>
 
 	<CommentBlocks {comments} {commentable_id} {commentable_type} {commentsCount} />
 
 	{#if tags}
-		<TagsGroup tags={tags} media="flex w-full  lg:hidden" />
+		<TagsGroup {tags} media="flex w-full  lg:hidden" />
 	{/if}
 </div>

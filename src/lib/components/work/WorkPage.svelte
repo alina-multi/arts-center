@@ -28,4 +28,10 @@
 		</div>
 	</div>
 </div>
-<ContentFooter owners={work.owners} commentable_id={work.id} commentsCount={work.comments} tags={work.tags} {comments} />
+<ContentFooter
+	owners={work.owners}
+	commentable_id={work.id}
+	commentsCount={work.comments}
+	tags={work.tags}
+	{comments}
+/>

@@ -61,6 +61,9 @@ devDependencies:
   '@fontsource/fira-mono':
     specifier: ^4.5.10
     version: 4.5.10
+  '@livingdocs/editable.js':
+    specifier: ^5.0.3
+    version: 5.0.3
   '@neoconfetti/svelte':
     specifier: ^1.0.0
     version: 1.0.0
@@ -76,6 +79,9 @@ devDependencies:
   '@steeze-ui/heroicons':
     specifier: ^2.2.3
     version: 2.2.3
+  '@steeze-ui/material-design-icons':
+    specifier: ^1.1.2
+    version: 1.1.2
   '@steeze-ui/svelte-icon':
     specifier: ^1.5.0
     version: 1.5.0(svelte@4.2.8)
@@ -2594,6 +2600,14 @@ packages:
     resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
     dev: true
 
+  /@livingdocs/editable.js@5.0.3:
+    resolution: {integrity: sha512-HSS9KXjM5N0VvGVbTV6wU8Q4DrC8gEJzzGKumtxziU2n/04WyCImnT4Y5PGGA1AXFX4N8HnHjrtonM/wPgMgWA==}
+    engines: {node: '>=16', npm: '>=8'}
+    dependencies:
+      '@babel/runtime': 7.23.6
+      lodash-es: 4.17.21
+    dev: true
+
   /@mdx-js/react@2.3.0(react@18.2.0):
     resolution: {integrity: sha512-zQH//gdOmuu7nt2oJR29vFhDv88oGPmVw6BggmrHeMI+xgEkp1B2dX9/bMBSYtK0dyLX/aOmesKS09g222K1/g==}
     peerDependencies:
@@ -4009,6 +4023,10 @@ packages:
 
   /@steeze-ui/heroicons@2.2.3:
     resolution: {integrity: sha512-bv4YK375U9TDS50SmJ5VdFy2UmMhgKbJCCbo6IUU3qs2luEj2VX6sQoDy96j8AIKttxMd62ih1j0lZj7CTjIfA==}
+    dev: true
+
+  /@steeze-ui/material-design-icons@1.1.2:
+    resolution: {integrity: sha512-p1csJ9RR8J2zG+ED3JJehVHxIi88B0ilUhg0ScbduVe54lgTZ1suAu5d94zOrBww/ImKDPhFshEXUWodVpELLw==}
     dev: true
 
   /@steeze-ui/svelte-icon@1.5.0(svelte@4.2.8):
@@ -8866,6 +8884,10 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       p-locate: 6.0.0
+    dev: true
+
+  /lodash-es@4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
     dev: true
 
   /lodash._baseiteratee@4.7.0:
