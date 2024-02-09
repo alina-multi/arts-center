@@ -41,9 +41,9 @@
 		</div>
 	</div>
 	{#each data.post.body as row}
-		<div>
+		<div class='highlight-links'>
 			{#if row.type === 'text'}
-				{row.text}
+				{@html row.text}
 			{:else if row.type === 'image'}
 				<Picture photo={data.post.images.get(row?.image_id.toString())} />
 			{/if}

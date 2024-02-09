@@ -159,7 +159,7 @@
 	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 	<div
 		bind:this={inputElement}
-		class={clazz + ' contenteditable'}
+		class={clazz + ' highlight-links'}
 		contenteditable
 		bind:innerHTML={value}
 		on:focusin={() => (focus = tabindex)}
@@ -169,11 +169,11 @@
 {value}
 
 <style>
-	:global(.contenteditable a) {
+	:global(.highlight-links a) {
 		color: blue;
 		text-decoration: underline !important;
 	}
-	:global(.contenteditable a:hover) {
+	:global(.highlight-links a:hover) {
 		color: lightblue;
 	}
 </style>
