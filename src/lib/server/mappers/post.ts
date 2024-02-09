@@ -8,9 +8,13 @@ export function postMap(data: PostRaw): Post {
 		...data,
 		user: ownerMap(data.user),
 		images: new Map(
-			data?.images
+			data.images
 				?.filter((image) => image.image?.variants?.length > 0)
 				?.map(({ image }) => [image.id.toString(), pictureMap(image)])
 		)
 	};
+}
+
+export function postsMap(data: PostRaw[]): Post[] {
+	return data.map((post) => postMap(post));
 }

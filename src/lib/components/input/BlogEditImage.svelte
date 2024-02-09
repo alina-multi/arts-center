@@ -2,7 +2,7 @@
 	import Picture from '$lib/components/atoms/Picture.svelte';
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
-	export let image, focus, index;
+	export let image, focus, tabindex;
 
 	function onKeydown(event: KeyboardEvent) {
 		if (event.key === 'Backspace') {
@@ -27,7 +27,7 @@
 {#if image}
 	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<div on:keydown={onKeydown} on:focusin={() => (focus = index)} tabindex={index + 2}>
+	<div on:keydown={onKeydown} on:focusin={() => (focus = tabindex)} {tabindex}>
 		<Picture class="w-full" photo={image} />
 	</div>
 {/if}

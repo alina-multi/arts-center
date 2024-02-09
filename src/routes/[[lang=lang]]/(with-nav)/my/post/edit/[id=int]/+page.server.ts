@@ -7,7 +7,6 @@ import { postMap } from '$lib/server/mappers/post';
 export const load = (async ({ params, parent }) => {
 	const { user } = await parent();
 	const postRaw = await get(params.id);
-	console.log(postRaw);
 	if (!postRaw) {
 		throw error(404);
 	}

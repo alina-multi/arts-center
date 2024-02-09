@@ -1,26 +1,33 @@
 <script lang="ts">
 	import UserPreview from '$lib/components/user/UserPreview.svelte';
 	import CommentBlocks from '$lib/components/comments/CommentBlocks.svelte';
-	import AuthStub from '../AuthStub.svelte';
-	import TagsGroup from '../TagsGroup.svelte';
+	import AuthStub from '$lib/components/content/AuthStub.svelte';
+	import TagsGroup from '$lib/components/content/TagsGroup.svelte';
 
 	import { user } from '$lib/stores/auth';
 	import DonateForm from '$lib/components/atoms/DonateForm.svelte';
+	import type { Tag } from '$lib/interfaces/Tag';
+	import type { Comment } from '$lib/interfaces/Comment';
+	import type { UserBasic } from '$lib/interfaces/User';
 
-	export let work,
-		comments = [];
+	export let owners: UserBasic[],
+		tags: Tag[],
+		comments: Comment,
+		commentsCount: number,
+		commentable_id: bigint,
+		commentable_type: string = 'work';
 </script>
 
 <div
 	class="flex max-md:flex-col-reverse justify-beetwen items-stretch lg:items-start lg:mt-6 gap-6 dark:text-gray-300"
 >
-	<TagsGroup tags={work.tags} media="flex w-full  md:hidden" />
+	<TagsGroup {tags} media="flex w-full  md:hidden" />
 
 	<div class="lg:w-4/6">
-		<CommentBlocks {comments} commentable_id={work.id} work_comments={work.comments} />
+		<CommentBlocks {comments} {commentable_id} {commentable_type} {commentsCount} />
 	</div>
 	<div class="flex flex-col lg:w-1/3 gap-6">
-		{#each work.owners as user (user.id)}
+		{#each owners as user (user.id)}
 			<div
 				class="flex flex-col md:max-lg:shadow border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-sm"
 			>
@@ -35,6 +42,6 @@
 		{#if !$user}
 			<div><AuthStub /></div>
 		{/if}
-		<TagsGroup tags={work.tags} media="hidden md:flex" />
+		<TagsGroup {tags} media="hidden md:flex" />
 	</div>
 </div>

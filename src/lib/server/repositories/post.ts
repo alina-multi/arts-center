@@ -42,11 +42,26 @@ export function query(where = {}, orderBy = {}, page = 1) {
 	});
 }
 
-export function get(id: string) {
+export function get(id: string, where = {}) {
 	return prisma.posts.findUnique({
 		select: postSelect,
 		where: {
-			id
+			id,
+			...where
+		}
+	});
+}
+
+export function userAllPostsQuery(user_id: string) {
+	return prisma.posts.findMany({
+		select: postSelect,
+		where: {
+			user_id,
+			deleted_at: null,
+			published_at: { lte: new Date() }
+		},
+		orderBy: {
+			published_at: 'desc'
 		}
 	});
 }

@@ -3,11 +3,11 @@
 	import type { Comment } from '$lib/interfaces/Comment';
 	import WorkHeader from '$lib/components/work/page/WorkHeader.svelte';
 	import WorkBody from '$lib/components/work/page/WorkBody.svelte';
-	import WorkFooter from '$lib/components/work/page/WorkFooter.svelte';
 	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import BookmarkButton from '$lib/components/atoms/buttons/BookmarkButton.svelte';
 	import { user } from '$lib/stores/auth';
+	import ContentFooter from '$lib/components/content/ContentFooter.svelte';
 
 	export let work: Work;
 	export let comments: Comment[];
@@ -28,4 +28,10 @@
 		</div>
 	</div>
 </div>
-<WorkFooter {work} {comments} />
+<ContentFooter
+	owners={work.owners}
+	commentable_id={work.id}
+	commentsCount={work.comments}
+	tags={work.tags}
+	{comments}
+/>

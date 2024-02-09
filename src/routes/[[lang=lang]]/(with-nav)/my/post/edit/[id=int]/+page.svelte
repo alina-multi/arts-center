@@ -43,30 +43,30 @@
 
 	function addBlock(index: number | undefined) {
 		index ??= body.length;
-		body = body.toSpliced(index + 1, 0, { ...defaultBlock });
+		body = body.toSpliced(index, 0, { ...defaultBlock });
 		moveFocus(index + 1);
 	}
 
 	function removeBlock(index: number) {
 		body = body.toSpliced(index, 1);
-		moveFocus(index - 1);
+		moveFocus(index || -1);
 	}
 
 	function moveFocus(index: number | undefined) {
 		index ??= body.length - 1;
-		focus = index;
+		focus = index || -1;
 	}
 
 	function titleKeyDown(e: KeyboardEvent) {
 		if (e.key === 'Enter') {
 			e.preventDefault();
-			addBlock(-1);
+			addBlock(0);
 		}
 		if (e.key === 'ArrowDown') {
 			if (body.length) {
-				moveFocus(0);
+				moveFocus(1);
 			} else {
-				addBlock(-1);
+				addBlock(0);
 			}
 		}
 	}
@@ -104,6 +104,7 @@
 	}
 </script>
 
+Focus: {focus}
 <div class=" lg:mt-3 min-h-screen flex flex-col lg:mx-12 xl:ml-6 xl:mr-0">
 	<InputGroup
 		error={errors?.title}
@@ -126,13 +127,14 @@
 
 	<div class="space-y-9 mb-9 md:max-lg:mr-16 max-md:ml-2">
 		{#each body as row, index}
+			{@const tabindex = index + 1}
 			<BlogEditRow
-				on:moveUp={() => moveFocus(index - 1)}
-				on:moveDown={() => moveFocus(index + 1)}
-				on:addBlock={() => addBlock(index)}
+				on:moveUp={() => moveFocus(tabindex - 1)}
+				on:moveDown={() => moveFocus(tabindex + 1)}
+				on:addBlock={() => addBlock(tabindex)}
 				on:removeBlock={() => removeBlock(index)}
 				on:uploadImage={() => (uploadImage = index)}
-				{index}
+				{tabindex}
 				bind:row
 				{images}
 				bind:focus
