@@ -2,14 +2,12 @@
 	import { getContext } from 'svelte';
 	import LoginLink from '../nav/LoginLink.svelte';
 
-
-	
-
 	const t = getContext('t');
-
 </script>
 
-<div class="flex flex-col gap-3 border px-6 xs:px-9 py-6 rounded-sm dark:border-zinc-800 dark:bg-zinc-900">
+<div
+	class="flex flex-col gap-3 border px-6 xs:px-9 py-6 rounded-sm dark:border-zinc-800 dark:bg-zinc-900"
+>
 	<p class="lg:text-lg font-semibold dark:text-zinc-100">
 		{$t('global.not_logged_in.for_comment')}
 	</p>
@@ -17,11 +15,7 @@
 		{$t('global.not_logged_in.for_work')}
 	</p>
 
-
 	<LoginLink />
-
-
-
 
 	<!-- <a
 		href="/login"

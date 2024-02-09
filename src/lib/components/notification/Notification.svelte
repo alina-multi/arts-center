@@ -7,7 +7,6 @@
 	import ProfileApproved from '$lib/components/notification/ProfileApproved.svelte';
 	import NewFollower from '$lib/components/notification/NewFollower.svelte';
 
-
 	export let notification;
 
 	// Dirty workaround for now, until there is a new release for svelte-french-toast

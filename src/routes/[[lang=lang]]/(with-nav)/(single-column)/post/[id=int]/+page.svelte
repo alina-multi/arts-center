@@ -41,8 +41,9 @@
 		</div>
 	</div>
 	{#each data.post.body as row}
-		<div class='highlight-links'>
+		<div class="highlight-links">
 			{#if row.type === 'text'}
+				<!-- eslint-disable svelte/no-at-html-tags -->
 				{@html row.text}
 			{:else if row.type === 'image'}
 				<Picture photo={data.post.images.get(row?.image_id.toString())} />

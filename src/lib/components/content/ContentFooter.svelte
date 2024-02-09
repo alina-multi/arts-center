@@ -21,7 +21,7 @@
 <div
 	class="flex max-md:flex-col-reverse justify-beetwen items-stretch lg:items-start lg:mt-6 gap-6 dark:text-gray-300"
 >
-	<TagsGroup tags={tags} media="flex w-full  md:hidden" />
+	<TagsGroup {tags} media="flex w-full  md:hidden" />
 
 	<div class="lg:w-4/6">
 		<CommentBlocks {comments} {commentable_id} {commentable_type} {commentsCount} />
