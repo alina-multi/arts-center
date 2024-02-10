@@ -17,8 +17,13 @@ jobs:
         with:
           sparse-checkout: 'frontend'
           sparse-checkout-cone-mode: false
-      - name: Select folder
-        run: cd frontend
+      - name: Move app files to root
+        run: |
+          ls -lah
+          shopt -s dotglob
+          mv frontend/* .
+          rm -rf frontend
+          ls -lah
       - uses: pnpm/action-setup@v2
         name: Install pnpm
         with:
