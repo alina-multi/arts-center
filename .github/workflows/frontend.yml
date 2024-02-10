@@ -1,15 +1,24 @@
-name: CI
-on: push
+name: Frontend CI
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
+      - uses: actions/checkout@v3
+        with:
+          sparse-checkout: 'frontend'
+          sparse-checkout-cone-mode: false
+      - name: Move files to root
+        run: mv frontend/* .
       - uses: pnpm/action-setup@v2
         name: Install pnpm
         with:
