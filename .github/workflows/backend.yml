@@ -16,9 +16,8 @@ jobs:
         with:
           sparse-checkout: 'backend'
           sparse-checkout-cone-mode: false
-          path: './'
-      - name: Double check file structure
-        run: ls -lah
+      - name: Select folder
+        run: cd backend
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Install Dependencies
