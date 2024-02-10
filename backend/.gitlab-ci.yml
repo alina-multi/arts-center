@@ -1,0 +1,21 @@
+image: docker:20
+
+variables:
+  MOUNT_POINT: /builds/$CI_PROJECT_PATH/mnt
+  DOCKER_TLS_CERTDIR: "/certs"
+
+services:
+  - docker:20-dind
+
+before_script:
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+build:
+  stage: build
+  script:
+    - docker pull $CI_REGISTRY_IMAGE:latest || true
+    - docker build --cache-from $CI_REGISTRY_IMAGE:latest -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA .
+    - docker run --entrypoint php $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA php artisan config:clear && artisan test
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA $CI_REGISTRY_IMAGE:latest
+    - docker push $CI_REGISTRY_IMAGE:latest

@@ -1,0 +1,124 @@
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The Laravel Framework.",
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
+    "license": "MIT",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/stepanorda/html-to-quill"
+        },
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/NovaQuill"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "ably/laravel-broadcaster": "^1.0",
+        "arandilopez/laravel-profane": "^0.5.0",
+        "darkaonline/l5-swagger": "^8.0",
+        "doctrine/dbal": "^3.0",
+        "everyday/html-to-quill": "dev-quote",
+        "google/cloud-ai-platform": "^0.23.0",
+        "google/cloud-translate": "^1.7",
+        "intervention/image": "^2.7",
+        "itsgoingd/clockwork": "^5.0",
+        "laravel/cashier": "^14.12",
+        "laravel/framework": "^10.0",
+        "laravel/horizon": "^5.2",
+        "laravel/nova": "4.22.2",
+        "laravel/octane": "^v2.0.6",
+        "laravel/sanctum": "^3.2",
+        "laravel/scout": "^10.2",
+        "laravel/socialite": "^5.9",
+        "laravel/telescope": "*",
+        "laravel/tinker": "^2.0",
+        "league/flysystem-aws-s3-v3": "^3.0",
+        "meilisearch/meilisearch-php": "^1.2",
+        "monarobase/country-list": "^3.2",
+        "nadar/quill-delta-parser": "*",
+        "nunomaduro/collision": "^7.0",
+        "pusher/pusher-php-server": "^7.0",
+        "sentry/sentry-laravel": "*",
+        "spiral/roadrunner-cli": "^2.5",
+        "spiral/roadrunner-http": "^3.1",
+        "stepanorda/nova-quill": "*",
+        "symfony/http-client": "^6.3",
+        "symfony/mailgun-mailer": "^6.3",
+        "tigroid3/php-imaginary": "^1.03"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "^1.4",
+        "laravel-lang/common": "^3.1",
+        "laravel/breeze": "^1.19",
+        "mockery/mockery": "^1.0",
+        "pestphp/pest": "^2.9",
+        "pestphp/pest-plugin-drift": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0",
+        "phpunit/phpunit": "^10.0",
+        "spatie/laravel-ignition": "^2.0"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "http-basic": {
+            "nova.laravel.com": {
+                "username": "stepanorda87@gmail.com",
+                "password": "YB0aINcaivjtRdbRExdSZSFnxlX1XAFTpkcpK7zFZBjcqx9E82"
+            }
+        },
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+                "laravel/telescope"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan horizon:publish --ansi",
+            "@php artisan nova:publish"
+        ]
+    }
+}

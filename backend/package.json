@@ -1,0 +1,12 @@
+{
+    "name": "backend",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "git@gitlab.com:new-arts/backend.git",
+    "author": "Stepan Orda <stepanorda87@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+        "build-nova-quill": "cd nova-components/NovaQuill && npm run dev",
+        "build-nova-quill-prod": "cd nova-components/NovaQuill && npm run prod"
+    }
+}

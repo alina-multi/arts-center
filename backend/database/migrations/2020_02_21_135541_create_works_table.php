@@ -1,0 +1,37 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateWorksTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('works', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger('image_id');
+            $table->smallInteger('rating')->default(0);
+            $table->smallInteger('comments')->default(0);
+            $table->integer('hosts')->default(0);
+            $table->unsignedInteger('price');
+            $table->bigInteger('old_id')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('works');
+    }
+}

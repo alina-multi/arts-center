@@ -1,0 +1,15 @@
+[
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/env/-",
+    "value": {
+      "name": "PHP_OPCACHE_VALIDATE_TIMESTAMPS",
+      "value": "1"
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/spec/replicas",
+    "value": 1
+  }
+]

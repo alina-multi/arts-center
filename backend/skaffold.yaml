@@ -1,0 +1,12 @@
+apiVersion: skaffold/v2beta19
+kind: Config
+metadata:
+  name: arts2
+build:
+  artifacts:
+  - image: registry.gitlab.com/new-arts/backend
+    context: .
+deploy:
+  kustomize:
+    paths:
+    - k8s/overlays/staging

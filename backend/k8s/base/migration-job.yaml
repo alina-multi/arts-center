@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: migrate
+spec:
+  template:
+    spec:
+      containers:
+        - name: migrate
+          image: registry.gitlab.com/new-arts/backend
+          args: ["php", "/var/www/artisan", "migrate", "--force"]
+      restartPolicy: Never

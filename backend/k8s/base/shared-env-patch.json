@@ -1,0 +1,170 @@
+[
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/env",
+    "value": [
+      {
+        "name": "DB_HOST",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "mysql-pass",
+            "key": "host"
+          }
+        }
+      },
+      {
+        "name": "DB_PORT",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "mysql-pass",
+            "key": "port"
+          }
+        }
+      },
+      {
+        "name": "DB_DATABASE",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "mysql-pass",
+            "key": "db"
+          }
+        }
+      },
+      {
+        "name": "DB_USERNAME",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "mysql-pass",
+            "key": "user"
+          }
+        }
+      },
+      {
+        "name": "DB_PASSWORD",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "mysql-pass",
+            "key": "password"
+          }
+        }
+      },
+      {
+        "name": "OLD_DB_PASSWORD",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "mysql-pass",
+            "key": "password"
+          }
+        }
+      },
+      {
+        "name": "S3_ACCESS_KEY_ID",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "s3-pass",
+            "key": "id"
+          }
+        }
+      },
+      {
+        "name": "S3_SECRET_ACCESS_KEY",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "s3-pass",
+            "key": "key"
+          }
+        }
+      },
+      {
+        "name": "S3_URL",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "s3-pass",
+            "key": "url"
+          }
+        }
+      },
+      {
+        "name": "S3_BUCKET",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "s3-pass",
+            "key": "bucket"
+          }
+        }
+      },
+      {
+        "name": "S3_DEFAULT_REGION",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "s3-pass",
+            "key": "region"
+          }
+        }
+      },
+      {
+        "name": "STRIPE_KEY",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "stripe-pass",
+            "key": "key"
+          }
+        }
+      },
+      {
+        "name": "STRIPE_PASS",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "stripe-pass",
+            "key": "secret"
+          }
+        }
+      },
+      {
+        "name": "APP_ENV",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "app",
+            "key": "env"
+          }
+        }
+      },
+      {
+        "name": "REDIS_HOST",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "redis-pass",
+            "key": "host"
+          }
+        }
+      },
+      {
+        "name": "REDIS_PASSWORD",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "redis-pass",
+            "key": "password"
+          }
+        }
+      },
+      {
+        "name": "REDIS_PORT",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "redis-pass",
+            "key": "port"
+          }
+        }
+      },
+      {
+        "name": "REDIS_SCHEME",
+        "valueFrom": {
+          "secretKeyRef": {
+            "name": "redis-pass",
+            "key": "scheme"
+          }
+        }
+      }
+    ]
+  }
+]
