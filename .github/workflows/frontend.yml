@@ -6,7 +6,7 @@ on:
     branches: [ "develop" ]
 
 jobs:
-  build:
+  frontend-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Install Node.js
@@ -17,8 +17,9 @@ jobs:
         with:
           sparse-checkout: 'frontend'
           sparse-checkout-cone-mode: false
-      - name: Move files to root
-        run: mv frontend/* .
+          path: './'
+      - name: Double check file structure
+        run: ls -lah
       - uses: pnpm/action-setup@v2
         name: Install pnpm
         with:

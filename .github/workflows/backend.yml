@@ -16,8 +16,9 @@ jobs:
         with:
           sparse-checkout: 'backend'
           sparse-checkout-cone-mode: false
-      - name: Move files to root
-        run: mv backend/* .
+          path: './'
+      - name: Double check file structure
+        run: ls -lah
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Install Dependencies
