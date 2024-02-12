@@ -3,7 +3,7 @@
 	import BlogEditRow from '$lib/components/input/BlogEditRow.svelte';
 	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
 	import FileUploader from '$lib/components/input/FileUploader.svelte';
-	import { fetchData, magicFetch } from '$lib/helpers/fetchData';
+	import { magicFetch } from '$lib/helpers/fetchData';
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
 	import InputGroup from '$lib/components/input/InputGroup.svelte';
 	import { afterNavigate } from '$app/navigation';
