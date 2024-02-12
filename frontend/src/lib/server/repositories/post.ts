@@ -57,8 +57,7 @@ export function userAllPostsQuery(user_id: string) {
 		select: postSelect,
 		where: {
 			user_id,
-			deleted_at: null,
-			published_at: { lte: new Date() }
+			deleted_at: null
 		},
 		orderBy: {
 			published_at: 'desc'

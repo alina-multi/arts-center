@@ -94,12 +94,11 @@
 	}
 
 	async function save() {
-		const response = await fetchData('PUT', localePath($locale, `/api/post/${data.post.id}`), {
+		const json = await magicFetch('PUT', localePath($locale, `/api/post/${data.post.id}`), {
 			title,
 			body,
 			published_at
 		});
-		const json = await response.json();
 		errors = json?.errors;
 	}
 </script>
