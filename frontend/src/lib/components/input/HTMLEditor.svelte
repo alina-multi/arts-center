@@ -29,39 +29,38 @@
 			editable.enable(inputElement, { normalize: true });
 			editable
 				.selection((element, selection) => {
-					if (element === inputElement) {
-						if (selection?.isSelection) {
-							lastSelection = selection;
-							menu = 'menu';
-						}
+					if (element !== inputElement) return;
+					if (selection?.isSelection) {
+						lastSelection = selection;
+						menu = 'menu';
 					}
 				})
 				.blur((element) => {
-					if (element === inputElement) {
-						if (menu === 'menu') {
-							menu = 'hidden';
-						}
+					if (element !== inputElement) return;
+					if (menu === 'menu') {
+						menu = 'hidden';
 					}
 				})
 				.on('switch', (element, direction) => {
-					if (element === inputElement) {
-						direction === 'up' ? dispatch('moveUp') : dispatch('moveDown');
-					}
+					if (element !== inputElement) return;
+					direction === 'up' ? dispatch('moveUp') : dispatch('moveDown');
 				})
 				.on('merge', (element) => {
-					if (element === inputElement) {
-						dispatch('removeBlock');
-					}
+					if (element !== inputElement) return;
+					dispatch('removeBlock');
 				})
 				.on('split', (element) => {
-					if (element === inputElement) {
-						dispatch('addBlock');
-					}
+					if (element !== inputElement) return;
+					dispatch('addBlock');
 				})
 				.on('insert', (element) => {
-					if (element === inputElement) {
-						dispatch('addBlock');
-					}
+					if (element !== inputElement) return;
+					dispatch('addBlock');
+				})
+				.on('paste', (element, blocks, cursor) => {
+					if (element !== inputElement) return;
+					if (blocks.length !== 1) return;
+					cursor.insertBefore(blocks.shift());
 				});
 		}
 	});
@@ -81,6 +80,7 @@
 			element?.focus();
 		}
 	}
+
 	async function openLinkInput() {
 		menu = 'link';
 		url = '';
@@ -166,13 +166,13 @@
 		{tabindex}
 	/>
 </div>
-{value}
 
 <style>
 	:global(.highlight-links a) {
 		color: blue;
 		text-decoration: underline !important;
 	}
+
 	:global(.highlight-links a:hover) {
 		color: lightblue;
 	}
