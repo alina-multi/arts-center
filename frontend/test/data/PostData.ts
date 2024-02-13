@@ -15,7 +15,7 @@ export const post_raw_data = {
 			text: 'This is my first post on my new blog.'
 		}
 	],
-	user: user_basic_data_raw,
+	owner: user_basic_data_raw,
 	image: image_raw_data,
 	images: [{ image: image_raw_data }]
 } satisfies PostRaw;

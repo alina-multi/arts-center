@@ -55,7 +55,7 @@
 	</div>
 
 	<div>
-		<!----------- Discussions ----------->
+		<!----------- Posts ----------->
 
 		<div class="border-b pb-3 mb-6 dark:border-zinc-800 flex items-center gap-3">
 			<h2 class="text-lg xs:text-2xl font-bold">{$t('global.main_page.featured_posts')}</h2>

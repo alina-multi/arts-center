@@ -80,11 +80,7 @@ test('postMap', () => {
 		      "src": "https://picsum.photos/id/1/400/600",
 		    },
 		  },
-		  "published_at": 2023-01-01T00:00:00.000Z,
-		  "rating": 5,
-		  "title": "My First Post",
-		  "updated_at": 2023-01-01T00:00:00.000Z,
-		  "user": {
+		  "owner": {
 		    "country": undefined,
 		    "id": 12n,
 		    "name": "Name",
@@ -92,6 +88,10 @@ test('postMap', () => {
 		    "username": "username",
 		    "verified_at": null,
 		  },
+		  "published_at": 2023-01-01T00:00:00.000Z,
+		  "rating": 5,
+		  "title": "My First Post",
+		  "updated_at": 2023-01-01T00:00:00.000Z,
 		}
 	`);
 });

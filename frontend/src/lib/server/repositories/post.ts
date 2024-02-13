@@ -12,7 +12,7 @@ const postSelect = {
 	title: true,
 	body: true,
 	language: true,
-	user: {
+	owner: {
 		select: userSelect
 	},
 	image: imageSelect,

@@ -23,5 +23,5 @@ export interface PostRaw {
 	body: PostRow[];
 	image?: ImageRaw;
 	images: { image: ImageRaw }[];
-	user: UserBasicRaw;
+	owner: UserBasicRaw;
 }
