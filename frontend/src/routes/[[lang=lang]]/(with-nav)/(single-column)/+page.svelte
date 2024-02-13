@@ -59,50 +59,28 @@
 		<!----------- Discussions ----------->
 
 		<div class="border-b pb-3 mb-6 dark:border-zinc-800 flex items-center gap-3">
-			<h2 class="text-lg xs:text-2xl font-bold">{$t('global.main_page.discussions')}</h2>
+			<h2 class="text-lg xs:text-2xl font-bold">{$t('global.main_page.featured_posts')}</h2>
 			<Icon src={ChatBubbleBottomCenterText} class="w-7 h-7 " />
 		</div>
 
 		<div class="space-y-6 h-36">
-			{#each data.comments as comment (comment.id)}
+			{#each data.posts as post (post.id)}
 				<div class="flex gap-3 sm:gap-6">
 					<a
-						href={localePath($locale, `/work/${comment.work.id}`)}
+						href={localePath($locale, `/post/${post.id}`)}
 						class="flex w-4/12 h-fit rounded-sm overflow-hidden shrink-0 hover:opacity-90"
 					>
-						<Picture
-							photo={comment.work.preview}
-							alt={'title'}
-							class={'aspect-[3/12] flex object-cover w-full h-36 '}
-						/>
-					</a>
-
-					<div>
 						<Time
-							relative
-							timestamp={comment.created_at}
-							class="text-zinc-500 text-xs leading-none"
+								relative
+								timestamp={post.published_at}
+								class="text-zinc-500 text-xs leading-none"
 						/>
-						<div class="text-sm mt-1 flex flex-wrap items-center gap-1">
-							<a
-								href={localePath($locale, `/${comment.owner.username} `)}
-								class="font-semibold hover:underline">{comment.owner.name}</a
-							>
-							<span class="dark:text-zinc-300">{$t('global.main_page.comment_work')}</span>
-							<a
-								href={localePath($locale, `/work/${comment.work.id}`)}
-								class="font-semibold hover:underline"
-								>"{languageFind(comment.work.titles, $locale)?.title}"</a
-							>
-						</div>
-
+						{post.title}
 						<a
-							href={localePath($locale, `/work/${comment.work.id}#${comment.id}`)}
-							class="block w-fit prose prose-sm text-sm border mt-2 border-zinc-200 p-3 rounded-md bg-zinc-50 dark:bg-zinc-900 dark:text-white dark:border-zinc-800 space-y-2"
+								href={localePath($locale, `/${post.owner.username} `)}
+								class="font-semibold hover:underline">{post.owner.name}</a
 						>
-							<div class="line-clamp-2 whitespace-pre-wrap">{comment.text}</div>
-						</a>
-					</div>
+					</a>
 				</div>
 			{/each}
 		</div>

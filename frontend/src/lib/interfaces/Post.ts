@@ -11,6 +11,6 @@ export interface Post {
 	title: string;
 	body: PostRow[];
 	images: Map<string, Picture | null>;
-	user: UserBasic;
+	owner: UserBasic;
 	image: Picture | null;
 }
