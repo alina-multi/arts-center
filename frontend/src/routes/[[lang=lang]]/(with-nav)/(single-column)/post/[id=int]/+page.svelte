@@ -11,8 +11,6 @@
 
 	const t = getContext('t');
 	export let data: PageData;
-
-	
 </script>
 
 <MetaGroups

@@ -200,6 +200,8 @@ model posts {
   body         Json?
   image_id     BigInt?      @db.UnsignedBigInt
   user_id      BigInt       @db.UnsignedBigInt
+  featured     Int          @default(0) @db.TinyInt
+  language     String       @db.Char(2)
   image        images?      @relation(fields: [image_id], references: [id])
   user         users        @relation(fields: [user_id], references: [id])
   images       imageables[]

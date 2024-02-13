@@ -2,8 +2,10 @@
 
 namespace App\Nova;
 
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Code;
 use Laravel\Nova\Fields\Markdown;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Http\Requests\NovaRequest as Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
@@ -49,6 +51,8 @@ class Post extends Resource
             Text::make('title')->required(),
             Code::make('body')->json(),
             Number::make('Rating')->onlyOnIndex(),
+            Boolean::make('featured'),
+            Select::make('language')->options(array_combine(config('app.languages'),config('app.languages')))->required(),
             DateTime::make('published_at'),
             DateTime::make('created_at')->onlyOnDetail(),
             DateTime::make('updated_at')->onlyOnDetail(),

@@ -10,8 +10,9 @@
 	import type { Picture } from '$lib/interfaces/Picture';
 	import DateInput from '$lib/components/input/DateInput.svelte';
 	import { getContext } from 'svelte';
-	import { localePath } from '$lib/translations';
+	import { availableLocales, localePath } from '$lib/translations';
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
+	import LanguageSelect from '$lib/components/input/LanguageSelect.svelte';
 
 	let t = getContext('t');
 	let locale = getContext('locale');
@@ -25,11 +26,12 @@
 	let images: Map<string, Picture>,
 		body = [],
 		title: string,
-		published_at: Date;
-	({ body, images, title, published_at } = data.post);
+		published_at: Date,
+		language: availableLocales;
+	({ body, images, title, published_at, language } = data.post);
 	published_at = published_at?.toISOString().split('T')[0];
 	afterNavigate(() => {
-		({ body, images, title, published_at } = data.post);
+		({ body, images, title, published_at, language } = data.post);
 		published_at = published_at?.toISOString().split('T')[0];
 	});
 
@@ -97,7 +99,8 @@
 		const json = await magicFetch('PUT', localePath($locale, `/api/post/${data.post.id}`), {
 			title,
 			body,
-			published_at
+			published_at,
+			language
 		});
 		errors = json?.errors;
 	}
@@ -141,9 +144,9 @@
 	</div>
 
 	<FormGroup h1={$t('my.add_work_page.ready_to_publish')} class="mt-auto  xl:ml-16">
-		<div class=" max-sm:space-y-6 max-md:flex max-md:flex-col md:columns-2">
+		<div class=" max-sm:space-y-6 max-md:flex max-md:flex-col md:columns-3">
 			<DateInput bind:value={published_at} min={published_at} max={maxDate} name="published_at" />
-
+			<LanguageSelect bind:value={language} />
 			<ActionButton class="block w-full bg-blue-600 hover:bg-blue-500" on:click={save}>
 				{$t('global.buttons.save')}
 			</ActionButton>

@@ -35,6 +35,10 @@ class PostRequest extends FormRequest
                 'date',
                 'nullable'
             ],
+            'language' => [
+                'required',
+                Rule::in(config('app.languages'))
+            ],
             'body' => [
                 'array'
             ],

@@ -16,7 +16,8 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'published_at' => Carbon::now()->subMinutes($this->faker->randomNumber())
+            'published_at' => Carbon::now()->subMinutes($this->faker->randomNumber()),
+            'language' => 'en'
         ];
     }
 }

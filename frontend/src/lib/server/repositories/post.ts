@@ -11,6 +11,7 @@ const postSelect = {
 	updated_at: true,
 	title: true,
 	body: true,
+	language: true,
 	user: {
 		select: userSelect
 	},

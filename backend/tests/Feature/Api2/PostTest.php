@@ -19,7 +19,7 @@ test('Delete post', function () {
     $post = Post::factory()->create([
         'user_id' => $user->id,
     ]);
-    $this->actingAs($user)->deleteJson('/api2/post/'.$post->id)->assertNoContent();
+    $this->actingAs($user)->deleteJson('/api2/post/' . $post->id)->assertNoContent();
     $this->assertDatabaseHas('posts', [
         'id' => $post->id,
         'deleted_at' => now(),
@@ -28,12 +28,13 @@ test('Delete post', function () {
 
 test('Save post', function () {
     [$user, $wrongUser] = User::factory()->count(2)->create();
-    $post = Post::create(['user_id' => $user->id]);
+    $post = Post::factory()->create(['user_id' => $user->id]);
     $image = Image::factory()->create();
     $work = Work::factory()->create();
 
     $validBody = [
         'title' => 'test title',
+        'language' => 'en',
         'body' => [
             [
                 'type' => 'text',
@@ -68,7 +69,7 @@ test('Save post', function () {
             ],
         ]
     ])->assertInvalid([
-        'title', 'body.0.text',  'body.1.image_id', 'body.2.works'
+        'title', 'body.0.text', 'body.1.image_id', 'body.2.works', 'language'
     ]);
 
     // Test work and image fields exist

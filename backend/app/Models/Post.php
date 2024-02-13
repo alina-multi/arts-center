@@ -14,7 +14,7 @@ class Post extends Model
     protected $hidden = ['created_at', 'deleted_at', 'updated_at'];
 
     protected $fillable = [
-        'user_id', 'published_at', 'title', 'body'
+        'user_id', 'published_at', 'title', 'body', 'language'
     ];
 
     protected $casts = [

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 
 class PostController extends Controller
 {
@@ -29,6 +30,7 @@ class PostController extends Controller
     {
         return Post::create([
             'user_id' => $request->user()->id,
+            'language' => Lang::locale(),
             'body' => []
         ]);
     }
