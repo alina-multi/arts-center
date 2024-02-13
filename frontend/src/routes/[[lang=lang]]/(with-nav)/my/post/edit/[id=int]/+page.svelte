@@ -103,7 +103,6 @@
 	}
 </script>
 
-Focus: {focus}
 <div class=" lg:mt-3 min-h-screen flex flex-col lg:mx-12 xl:ml-6 xl:mr-0">
 	<InputGroup
 		error={errors?.title}

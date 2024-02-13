@@ -41,9 +41,6 @@
 </script>
 
 <div class="flex group {isFocused ? ' ring-0 ring-transparent' : 'ring-transparent'}">
-	<div class="w-6 text-gray-300">
-		#{tabindex}
-	</div>
 	<div class="md:w-16 w-9">
 		{#if displayPlus}
 			<button class:rotate-45={displayTypeButtons} on:click={toggleTypeButtons}>
