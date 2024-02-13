@@ -1,10 +1,9 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import MetaGroups from '$lib/components/MetaGroups.svelte';
-	import { languageFind, localePath } from '$lib/translations';
+	import { localePath } from '$lib/translations';
 	import { ChatBubbleBottomCenterText, CheckBadge } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import Picture from '$lib/components/atoms/Picture.svelte';
 	import Time from 'svelte-time/src/Time.svelte';
 	import UserPreview from '$lib/components/user/UserPreview.svelte';
 
@@ -71,14 +70,14 @@
 						class="flex w-4/12 h-fit rounded-sm overflow-hidden shrink-0 hover:opacity-90"
 					>
 						<Time
-								relative
-								timestamp={post.published_at}
-								class="text-zinc-500 text-xs leading-none"
+							relative
+							timestamp={post.published_at}
+							class="text-zinc-500 text-xs leading-none"
 						/>
 						{post.title}
 						<a
-								href={localePath($locale, `/${post.owner.username} `)}
-								class="font-semibold hover:underline">{post.owner.name}</a
+							href={localePath($locale, `/${post.owner.username} `)}
+							class="font-semibold hover:underline">{post.owner.name}</a
 						>
 					</a>
 				</div>
