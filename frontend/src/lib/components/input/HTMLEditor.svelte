@@ -61,6 +61,7 @@
 					if (element !== inputElement) return;
 					if (blocks.length !== 1) return;
 					cursor.insertBefore(blocks.shift());
+					forceChange();
 				});
 		}
 	});
