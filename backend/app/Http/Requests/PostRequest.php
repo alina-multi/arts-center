@@ -39,6 +39,10 @@ class PostRequest extends FormRequest
                 'required',
                 Rule::in(config('app.languages'))
             ],
+            'image_id' => [
+                'nullable',
+                'exists:images,id'
+            ],
             'body' => [
                 'array'
             ],

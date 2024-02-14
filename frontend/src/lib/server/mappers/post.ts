@@ -7,6 +7,7 @@ export function postMap(data: PostRaw): Post {
 	return {
 		...data,
 		owner: ownerMap(data.owner),
+		image: pictureMap(data.image),
 		images: new Map(
 			data.images
 				?.filter((image) => image.image?.variants?.length > 0)
