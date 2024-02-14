@@ -7,10 +7,7 @@ module.exports = {
 	mode: 'jit',
 	theme: {
 		extend: {},
-		fontFamily: {
-			sans: ['Helvetica, sans-serif'],
-			serif: ['ui-serif', 'Georgia']
-		},
+	
 		screens: {
 			xs: '500px',
 			...defaultTheme.screens

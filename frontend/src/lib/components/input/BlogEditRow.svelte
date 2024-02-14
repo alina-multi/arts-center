@@ -44,7 +44,7 @@
 	<div class="md:w-16 w-9">
 		{#if displayPlus}
 			<button class:rotate-45={displayTypeButtons} on:click={toggleTypeButtons}>
-				<Icon src={PlusCircle} class="w-8 h-8 xs:w-10 xs:h-10 stroke-1 mt-1" />
+				<Icon src={PlusCircle} class="w-8 h-8 xs:w-10 xs:h-10 stroke-[0.7] mt-1" />
 			</button>
 		{/if}
 		{#if displayRowActions}
