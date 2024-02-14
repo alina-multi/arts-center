@@ -203,7 +203,7 @@ model posts {
   featured     Int          @default(0) @db.TinyInt
   language     String       @db.Char(2)
   image        images?      @relation(fields: [image_id], references: [id])
-  user         users        @relation(fields: [user_id], references: [id])
+  owner        users        @relation(fields: [user_id], references: [id])
   images       imageables[]
 
   @@index([comments], map: "posts_comments_index")
