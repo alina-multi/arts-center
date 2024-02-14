@@ -7,7 +7,7 @@ module.exports = {
 	mode: 'jit',
 	theme: {
 		extend: {},
-	
+
 		screens: {
 			xs: '500px',
 			...defaultTheme.screens
