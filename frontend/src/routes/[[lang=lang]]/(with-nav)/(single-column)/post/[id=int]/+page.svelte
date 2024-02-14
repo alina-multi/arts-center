@@ -33,9 +33,7 @@
 			</span>
 		</div>
 
-		<h1
-			class="text-2xl text-center py-4 sm:py-6 font-bold sm:text-4xl text-gray-00 dark:text-gray-100"
-		>
+		<h1 class="text-2xl py-4 sm:py-6 font-bold sm:text-4xl text-gray-00 dark:text-gray-100">
 			{data.post.title}
 		</h1>
 	</div>
@@ -71,13 +69,3 @@
 	comments={data.comments}
 	owners={[data.post.user]}
 />
-
-<style>
-	:global(.highlight-links a) {
-		text-decoration: underline !important;
-	}
-
-	:global(.highlight-links a:hover) {
-		color: #1d4ed8;
-	}
-</style>

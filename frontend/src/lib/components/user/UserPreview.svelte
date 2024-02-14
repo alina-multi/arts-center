@@ -33,7 +33,7 @@
 		<div class="flex items-center gap-3 max-md:justify-between">
 			<a
 				{href}
-				class="flex hover:text-zinc-800 dark:hover:text-zinc-300 cursor-pointer text-base items-center gap-2"
+				class="flex hover:text-zinc-800 dark:hover:text-zinc-300 cursor-pointer text-base items-center gap-2 font-medium"
 			>
 				<div class="flex gap-2">
 					{user.name}

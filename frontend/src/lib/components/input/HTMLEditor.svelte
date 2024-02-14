@@ -167,14 +167,3 @@
 		{tabindex}
 	/>
 </div>
-
-<style>
-	:global(.highlight-links a) {
-		color: blue;
-		text-decoration: underline !important;
-	}
-
-	:global(.highlight-links a:hover) {
-		color: lightblue;
-	}
-</style>

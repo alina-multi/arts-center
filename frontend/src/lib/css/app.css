@@ -39,3 +39,13 @@ body {
 		margin: 0;
 	}
 }
+
+@layer components {
+	.highlight-links a {
+		text-decoration: underline !important;
+		text-underline-offset: 4px;
+	}
+	.highlight-links a:hover {
+		color: #1d4ed8;
+	}
+}
