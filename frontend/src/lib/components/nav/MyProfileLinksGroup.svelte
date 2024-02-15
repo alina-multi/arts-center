@@ -56,14 +56,14 @@
 			path: '/my/post/add',
 			src: ArrowUpOnSquareStack,
 			text: 'add_post',
-			show: $user.admin
+			show: $user.role > 0
 		},
 		{
 			path: '/my/post',
 			src: RectangleStack,
 			text: 'posts',
 			exact: true,
-			show: $user.admin
+			show: $user.role > 0
 		},
 		{
 			path: '/my/transactions',

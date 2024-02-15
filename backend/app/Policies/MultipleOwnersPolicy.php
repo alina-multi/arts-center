@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\UserRoles;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -16,7 +17,7 @@ class MultipleOwnersPolicy
                 return true;
             }
         }
-        return $user->isAdmin();
+        return $user->role === UserRoles::SuperAdmin;
     }
 
     public function delete(User $user, $model)
@@ -46,6 +47,6 @@ class MultipleOwnersPolicy
 
     public function restore(User $user)
     {
-        return $user->isAdmin();
+        return $user->role === UserRoles::SuperAdmin;
     }
 }
