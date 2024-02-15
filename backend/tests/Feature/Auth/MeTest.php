@@ -34,6 +34,7 @@ it('Returns valid data', function () {
                 'verified_at' => 'string',
                 'email_verified_at' => 'string',
                 'unread' => 'integer',
+                'role'=> 'integer'
             ])
         );
 });

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\UserRoles;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Builder;
@@ -29,7 +30,6 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     protected $visible = ['id', 'name', 'username', 'created_at', 'photo', 'premium'];
-
     /**
      * The attributes that should be cast to native types.
      *
@@ -39,6 +39,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'verified_at' => 'datetime',
         'approved_at' => 'datetime',
+        'role' => UserRoles::class
     ];
 
     public function toSearchableArray(): array
@@ -151,11 +152,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function posts()
     {
         return $this->hasMany(Post::class);
-    }
-
-    public function isAdmin()
-    {
-        return $this->email === 'stepanorda87@gmail.com';
     }
 
     public function receivesBroadcastNotificationsOn(): string

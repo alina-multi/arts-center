@@ -21,6 +21,7 @@ class MeController extends Controller
         $favoriteFolders = $user->favoriteFolders->toArray();
         return [
             ...$user->toArray(),
+            'role' => $user->role,
             'approved_at' => $user->approved_at,
             'verified_at' => $user->verified_at,
             'email_verified_at' => $user->email_verified_at,
@@ -30,8 +31,7 @@ class MeController extends Controller
                 'works' => $favorites,
                 'folders' => $favoriteFolders
             ],
-            'unread' => $user->unreadNotifications->count(),
-            ...$user->isAdmin() ? ['admin' => true] : []
+            'unread' => $user->unreadNotifications->count()
         ];
     }
 }

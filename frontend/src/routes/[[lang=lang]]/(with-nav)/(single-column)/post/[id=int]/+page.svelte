@@ -38,7 +38,7 @@
 		</h1>
 	</div>
 	<div class="space-y-6">
-		{#each data.post.body as row}
+		{#each data.post?.body || [] as row}
 			<div class="highlight-links">
 				{#if row.type === 'text'}
 					<!-- eslint-disable svelte/no-at-html-tags -->
