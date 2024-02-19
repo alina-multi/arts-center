@@ -3,7 +3,8 @@ import type { Post } from '$lib/interfaces/Post';
 import { pictureMap } from '$lib/server/mappers/pictures';
 import { ownerMap } from '$lib/server/mappers/owners';
 
-export function postMap(data: PostRaw): Post {
+export function postMap(data: PostRaw | null): Post | null {
+	if (!data) return null;
 	return {
 		...data,
 		owner: ownerMap(data.owner),
