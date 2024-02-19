@@ -14,17 +14,17 @@
 </script>
 
 <MetaGroups
-	title={$t('global.seo.title.work', { name: data.post.user.name, title: data.post.title })}
-	author={data.post.user.name}
+	title={$t('global.seo.title.work', { name: data.post.owner.name, title: data.post.title })}
+	author={data.post.owner.name}
 />
 
 <div class="flex flex-col gap-3 mx-auto dark:lg:bg-zinc-900 py-3 md:w-5/6 xl:w-2/3 px-3 md:px-0">
 	<div class="flex flex-col gap-3 dark:text-gray-400">
 		<div class="flex justify-between items-center pt-1 pb-4 sm:py-6 border-b">
 			<div class="flex items-center gap-3">
-				<AvatarLink user={data.post.user} withName size={'w-8 h-8'} />
+				<AvatarLink user={data.post.owner} withName size={'w-8 h-8'} />
 				<div>
-					<FollowButton size={'sm'} user={data.post.user} />
+					<FollowButton size={'sm'} user={data.post.owner} />
 				</div>
 			</div>
 			<span class="text-zinc-500 text-sm"
@@ -33,14 +33,12 @@
 			</span>
 		</div>
 
-		<h1
-			class="text-2xl text-center py-4 sm:py-6 font-bold sm:text-4xl text-gray-00 dark:text-gray-100"
-		>
+		<h1 class="text-2xl py-4 sm:py-6 font-bold sm:text-4xl text-gray-00 dark:text-gray-100">
 			{data.post.title}
 		</h1>
 	</div>
 	<div class="space-y-6">
-		{#each data.post.body as row}
+		{#each data.post?.body || [] as row}
 			<div class="highlight-links">
 				{#if row.type === 'text'}
 					<!-- eslint-disable svelte/no-at-html-tags -->
@@ -69,15 +67,5 @@
 	commentable_type="post"
 	commentsCount={data.post.comments}
 	comments={data.comments}
-	owners={[data.post.user]}
+	owners={[data.post.owner]}
 />
-
-<style>
-	:global(.highlight-links a) {
-		text-decoration: underline !important;
-	}
-
-	:global(.highlight-links a:hover) {
-		color: #1d4ed8;
-	}
-</style>

@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\UserRoles;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -14,7 +15,7 @@ class SingleOwnerPolicy
         if ($model->user_id === $user->id) {
             return true;
         }
-        return $user->isAdmin();
+        return $user->role === UserRoles::SuperAdmin;
     }
 
     public function delete(User $user, $model)
@@ -44,6 +45,6 @@ class SingleOwnerPolicy
 
     public function restore(User $user)
     {
-        return $user->isAdmin();
+        return $user->role === UserRoles::SuperAdmin;
     }
 }

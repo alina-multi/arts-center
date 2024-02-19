@@ -10,6 +10,7 @@ export interface Post {
 	updated_at: Date;
 	title: string;
 	body: PostRow[];
+	language: string;
 	images: Map<string, Picture | null>;
 	owner: UserBasic;
 	image: Picture | null;

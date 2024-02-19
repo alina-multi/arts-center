@@ -10,7 +10,7 @@ export const load = (async ({ params, parent }) => {
 	if (!postRaw) {
 		throw error(404);
 	}
-	if (postRaw?.user?.id != user.id) {
+	if (postRaw?.owner?.id != user.id) {
 		throw error(403, {
 			message: 'Unauthorized'
 		});

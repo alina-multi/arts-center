@@ -55,13 +55,15 @@
 		{
 			path: '/my/post/add',
 			src: ArrowUpOnSquareStack,
-			text: 'add_post'
+			text: 'add_post',
+			show: $user.role > 0
 		},
 		{
 			path: '/my/post',
 			src: RectangleStack,
 			text: 'posts',
-			exact: true
+			exact: true,
+			show: $user.role > 0
 		},
 		{
 			path: '/my/transactions',
@@ -91,8 +93,12 @@
 	];
 </script>
 
-{#each links as { path, src, text, exact } (path)}
-	<SideNavLink href={localePath($locale, path)} {exact}>
-		<Icon {src} theme="solid" class="h-6 w-6 " aria-hidden="true" />{$t('global.my_links.' + text)}
-	</SideNavLink>
+{#each links as { path, src, text, exact, show } (path)}
+	{#if show === undefined || show}
+		<SideNavLink href={localePath($locale, path)} {exact}>
+			<Icon {src} theme="solid" class="h-6 w-6 " aria-hidden="true" />{$t(
+				'global.my_links.' + text
+			)}
+		</SideNavLink>
+	{/if}
 {/each}

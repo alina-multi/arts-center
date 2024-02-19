@@ -9,10 +9,10 @@ export const load = (async ({ params }) => {
 	const [post, comments] = await Promise.all([
 		get(params.id, {
 			published_at: { lte: new Date() }
-		}).then((postRaw) => postMap(postRaw, params.lang)),
+		}).then((postRaw) => postMap(postRaw)),
 		getComments(BigInt(params.id), 'post').then((comments) => commentsMap(comments))
 	]);
-	if (!post) {
+	if (!post || post?.language != params.lang) {
 		throw error(404);
 	}
 	return {
