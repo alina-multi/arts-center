@@ -15,50 +15,22 @@ test('postMap', () => {
 		  "comments": 0,
 		  "id": 1234567890123456n,
 		  "image": {
-		    "folder": "preview",
-		    "id": 11n,
-		    "variants": [
+		    "original": {
+		      "height": 1024,
+		      "src": "https://picsum.photos/id/5/400/600",
+		      "width": 1280,
+		    },
+		    "sources": [
 		      {
-		        "extension": "jpeg",
-		        "height": 250,
-		        "id": 1n,
-		        "original": false,
-		        "size": 67558,
-		        "width": 300,
+		        "srcset": "https://picsum.photos/id/2/400/600 300w, https://picsum.photos/id/4/400/600 600w",
+		        "type": "image/webp",
 		      },
 		      {
-		        "extension": "webp",
-		        "height": 250,
-		        "id": 2n,
-		        "original": false,
-		        "size": 0,
-		        "width": 300,
-		      },
-		      {
-		        "extension": "webp",
-		        "height": 500,
-		        "id": 4n,
-		        "original": false,
-		        "size": 0,
-		        "width": 600,
-		      },
-		      {
-		        "extension": "jpeg",
-		        "height": 500,
-		        "id": 3n,
-		        "original": false,
-		        "size": 0,
-		        "width": 600,
-		      },
-		      {
-		        "extension": "jpeg",
-		        "height": 1024,
-		        "id": 5n,
-		        "original": true,
-		        "size": 67558,
-		        "width": 1280,
+		        "srcset": "https://picsum.photos/id/1/400/600 300w, https://picsum.photos/id/3/400/600 600w",
+		        "type": "image/jpeg",
 		      },
 		    ],
+		    "src": "https://picsum.photos/id/1/400/600",
 		  },
 		  "images": Map {
 		    "11" => {

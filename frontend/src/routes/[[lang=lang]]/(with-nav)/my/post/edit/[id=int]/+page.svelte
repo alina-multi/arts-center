@@ -7,12 +7,16 @@
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
 	import InputGroup from '$lib/components/input/InputGroup.svelte';
 	import { afterNavigate } from '$app/navigation';
-	import type { Picture } from '$lib/interfaces/Picture';
+	import type { Picture as PictureType } from '$lib/interfaces/Picture';
 	import DateInput from '$lib/components/input/DateInput.svelte';
 	import { getContext } from 'svelte';
 	import { availableLocales, localePath } from '$lib/translations';
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
 	import LanguageSelect from '$lib/components/input/LanguageSelect.svelte';
+	import { Icon } from '@steeze-ui/svelte-icon';
+	import { Photo } from '@steeze-ui/heroicons';
+	import { imageEditorOptions } from '$lib/helpers/transloadit';
+	import Picture from '$lib/components/atoms/Picture.svelte';
 
 	let t = getContext('t');
 	let locale = getContext('locale');
@@ -23,21 +27,24 @@
 		type: 'text',
 		text: ''
 	};
-	let images: Map<string, Picture>,
+	let images: Map<string, PictureType>,
 		body = [],
 		title: string,
 		published_at: Date,
-		language: availableLocales;
-	({ body, images, title, published_at, language } = data.post);
+		language: availableLocales,
+		image: PictureType | null;
+
+	({ body, images, title, published_at, language, image } = data.post);
 	published_at = published_at?.toISOString().split('T')[0];
 	afterNavigate(() => {
-		({ body, images, title, published_at, language } = data.post);
+		({ body, images, title, published_at, language, image } = data.post);
 		published_at = published_at?.toISOString().split('T')[0];
 	});
 
 	let focus: number | undefined = undefined;
 	let titleElement: HTMLInputElement;
 	let uploadImage: number | undefined;
+	let mainImageUploadModal = false;
 	let errors;
 	$: if (focus === -1) {
 		titleElement?.focus();
@@ -100,16 +107,29 @@
 			title,
 			body,
 			published_at,
-			language
+			language,
+			image_id: image?.id || undefined // It will have id only for newly uploaded
 		});
 		errors = json?.errors;
+	}
+
+	async function mainImageUploaded({ detail }) {
+		const tmpImage = `temp/images/${detail[0].file}`;
+		const result = await magicFetch('POST', '/api/image', {
+			imageable_id: data.post.id.toString(),
+			imageable_type: 'post',
+			folder: 'posts',
+			images: [tmpImage]
+		});
+		image = result[0];
+		mainImageUploadModal = false;
 	}
 </script>
 
 <div class=" lg:mt-3 min-h-screen flex flex-col lg:mx-12 xl:ml-6 xl:mr-0">
 	<InputGroup
 		error={errors?.title}
-		class="lg:pr-3 md:px-16 lg:px-12 lg:pl-16 pt-3 max-md:ml-9  mb-9   {focus === -1
+		class="relative lg:pr-3 md:px-16 lg:px-12 lg:pl-16 pt-3 max-md:ml-9  mb-9   {focus === -1
 			? ' border-y-0 border-l-0 border-black  border-2 ring-gray-300'
 			: ''}"
 	>
@@ -124,6 +144,15 @@
 			placeholder={$t('my.blog.create_title')}
 			bind:value={title}
 		/>
+		<div class="absolute left-0 top-3">
+			<button on:click={() => (mainImageUploadModal = true)}>
+				{#if image}
+					<Picture photo={image} class="w-10 h-10" />
+				{:else}
+					<Icon src={Photo} class="w-10 h-10" />
+				{/if}
+			</button>
+		</div>
 	</InputGroup>
 
 	<div class="space-y-9 mb-9 md:max-lg:mr-16 max-md:ml-2">
@@ -160,4 +189,17 @@
 	class="w-auto"
 >
 	<FileUploader {...data.transloadit} maxNumberOfFiles={1} on:complete={uploadComplete} />
+</ModalWindow>
+
+<ModalWindow
+	open={mainImageUploadModal}
+	on:close={() => (mainImageUploadModal = false)}
+	class="w-auto"
+>
+	<FileUploader
+		{...data.transloadit}
+		maxNumberOfFiles={1}
+		{imageEditorOptions}
+		on:complete={mainImageUploaded}
+	/>
 </ModalWindow>

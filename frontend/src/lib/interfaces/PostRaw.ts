@@ -21,7 +21,8 @@ export interface PostRaw {
 	updated_at: Date;
 	title: string;
 	body: PostRow[];
+	language: string;
 	image?: ImageRaw;
-	images: { image: ImageRaw }[];
-	owner: UserBasicRaw;
+	images?: { image: ImageRaw }[];
+	owner?: UserBasicRaw;
 }

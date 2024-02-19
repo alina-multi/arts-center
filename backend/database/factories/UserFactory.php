@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\ImageExtentions;
+use App\Enums\UserRoles;
 use App\Models\Image;
 use App\Models\ImageVariant;
 use App\Models\User;
@@ -41,7 +42,8 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'image_id' => $image->id,
             'country' => $this->faker->countryCode,
-            'approved_at' => now()
+            'approved_at' => now(),
+            'role'=> UserRoles::User
         ];
     }
 }

@@ -6,26 +6,10 @@
 	import { invalidateAll } from '$app/navigation';
 	import { checkAuth } from '$lib/stores/auth';
 	import { getContext } from 'svelte';
+	import { imageEditorOptions } from '$lib/helpers/transloadit';
 
 	const t = getContext('t');
 	export let data;
-	const imageEditorOptions = {
-		actions: {
-			revert: true,
-			rotate: true,
-			granularRotate: false,
-			flip: true,
-			zoomIn: true,
-			zoomOut: true,
-			cropSquare: false,
-			cropWidescreen: false,
-			cropWidescreenVertical: false
-		},
-		cropperOptions: {
-			viewMode: 1,
-			aspectRatio: 1
-		}
-	};
 
 	async function uploadComplete({ detail }) {
 		const image = `temp/photos/${detail[0].file}`;

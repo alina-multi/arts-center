@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Enums\UserRoles;
 use App\Nova\Actions\ApproveRecord;
 use App\Nova\Actions\ClearCacheByTag;
 use App\Nova\Actions\ConvertUserImages;
@@ -15,6 +16,7 @@ use App\Nova\Metrics\NewUsers;
 use App\Nova\Metrics\UsersPerDay;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\URL;
 use Laravel\Nova\Http\Requests\NovaRequest as Request;
 use Laravel\Nova\Fields\Gravatar;
@@ -93,6 +95,10 @@ class User extends Resource
             Boolean::make('Verified', 'verified_at')->onlyOnIndex(),
             DateTime::make('Approved', 'approved_at')->nullable()->onlyOnForms(),
             DateTime::make('Verified', 'verified_at')->nullable()->onlyOnForms(),
+            Select::make('role')->options([
+                UserRoles::User->value => UserRoles::User->name,
+                UserRoles::SuperAdmin->value => UserRoles::SuperAdmin->name,
+            ])->displayUsingLabels(),
 
             Password::make('Password')
                 ->onlyOnForms()
