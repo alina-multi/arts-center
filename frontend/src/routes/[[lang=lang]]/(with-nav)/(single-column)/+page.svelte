@@ -100,7 +100,9 @@
 							href={localePath($locale, `/work/${comment.work.id}#${comment.id}`)}
 							class="block w-fit prose prose-sm text-sm border mt-2 border-zinc-200 p-3 rounded-md bg-zinc-50 dark:bg-zinc-900 dark:text-white dark:border-zinc-800 space-y-2"
 						>
-							<div class="line-clamp-2 whitespace-pre-wrap">{comment.text}</div>
+							<div class="line-clamp-2 whitespace-pre-wrap max-w-44 xs:max-w-xs">
+								{comment.text}
+							</div>
 						</a>
 					</div>
 				</div>
