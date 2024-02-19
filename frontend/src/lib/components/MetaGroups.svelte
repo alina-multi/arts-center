@@ -34,5 +34,3 @@
 		<meta property="article:author" content={author} />
 	{/if}
 </svelte:head>
-
-
