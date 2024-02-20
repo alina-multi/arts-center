@@ -6,9 +6,10 @@ import { pictureMap } from '$lib/server/mappers/pictures';
 
 export async function GET({ params, url }) {
 	const { t } = await loadTranslations(params.lang, url.pathname);
+	const localeSiteUrl = `${url.origin}${params.lang !== 'en' ? `/${params.lang}` : ''}`;
 	const feed = new Feed({
-		id: url.origin,
-		link: url.origin,
+		id: localeSiteUrl,
+		link: localeSiteUrl,
 		favicon: 'https://arts.center/favicon/favicon-96x96.png',
 		copyright: `All rights reserved ${new Date().getFullYear()}, Arts center online inc.`,
 		title: t.get('global.seo.title.index'),
