@@ -15,7 +15,7 @@
 	let showLikedByModal = false;
 </script>
 
-<div class="flex items-center gap-1 dark:text-zinc-300 text-base xl:text-lg">
+<div class="flex items-center gap-1 dark:text-zinc-300">
 	{#if votes.length > 0}
 		<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointe mr-1">
 			{$t('global.voting.liked_by')}
@@ -23,7 +23,7 @@
 
 		<div class="flex -space-x-3 cursor-pointer">
 			{#each votesPreview as user (user.id)}
-				<AvatarLink {user} size={'w-9 h-9'} />
+				<AvatarLink {user} size={'w-8 h-8'} />
 			{/each}
 			{#if isLiked}
 				<AvatarLink user={currentUser} size={'w-9 h-9'} />

@@ -116,6 +116,7 @@
 	"main_page": {
 		"comment_work": "прокоментував(ла) роботу",
 		"discussions": "Обговорення",
+		"featured_posts": "Рекомендовані публікації",
 		"last_verified": "Останні верифіковані"
 	},
 	"menu": {
@@ -167,6 +168,7 @@
 		"your_work": "Ваша робота"
 	},
 	"published_on": "опубліковано",
+	"updated": "oновлено",
 	"register": {
 		"page_title": "Зареєструватися",
 		"password_confirmation": "Підтвердьте пароль",
