@@ -1,5 +1,5 @@
 import { prisma } from '$lib/server/database/prisma';
-import { sitemapAllLanguages, createXml, sitemapAllLanguages } from '$lib/helpers/sitemap';
+import { sitemapAllLanguages, createXml } from '$lib/helpers/sitemap';
 import { urlsPerSitemap } from '../config';
 import { cacheGet } from '$lib/server/database/cache';
 
