@@ -7,7 +7,7 @@ export async function GET({ params, url }) {
 	const base = url.origin;
 	const body = await cacheGet(
 		'sitemap',
-		`wroks.${params.page}`,
+		`wroks2.${params.page}`,
 		async function () {
 			const works = await prisma.works.findMany({
 				take: urlsPerSitemap,

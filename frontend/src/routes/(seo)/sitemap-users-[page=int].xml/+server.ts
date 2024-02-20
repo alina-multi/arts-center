@@ -7,7 +7,7 @@ export async function GET({ params, url }) {
 	const base = url.origin;
 	const body = await cacheGet(
 		'sitemap',
-		`users.${params.page}`,
+		`users2.${params.page}`,
 		async function () {
 			const users = await prisma.users.findMany({
 				take: urlsPerSitemap,
