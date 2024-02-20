@@ -3,6 +3,7 @@ import { loadTranslations } from '$lib/translations';
 import { prisma } from '$lib/server/database/prisma';
 import { imageSelect } from '$lib/server/repositories/image';
 import { pictureMap } from '$lib/server/mappers/pictures';
+import { userSelect } from '$lib/server/repositories/user';
 
 export async function GET({ params, url }) {
 	const { t } = await loadTranslations(params.lang, url.pathname);
@@ -29,18 +30,32 @@ export async function GET({ params, url }) {
 			id: true,
 			title: true,
 			published_at: true,
-			image: imageSelect
+			body: true,
+			image: imageSelect,
+			owner: {
+				select: userSelect
+			}
 		},
 		orderBy: { published_at: 'desc' }
 	});
 
 	for (const post of posts) {
 		const postUrl = `${url.origin}/${params.lang !== 'en' ? `${params.lang}/` : ''}post/${post.id}`;
+		const userUrl = `${url.origin}/${params.lang !== 'en' ? `${params.lang}/` : ''}${
+			post.owner.username
+		}`;
 		feed.addItem({
 			id: postUrl,
 			link: postUrl,
 			title: post.title,
 			date: post.published_at,
+			author: [
+				{
+					name: post?.owner?.name,
+					link: userUrl
+				}
+			],
+			content: post?.body[0]?.text,
 			image: post?.image ? pictureMap(post?.image)?.original?.src : undefined
 		});
 	}
