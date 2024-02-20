@@ -5,7 +5,8 @@
 		description: string | null,
 		author: string | null = null,
 		image: string | null,
-		rss: string | null;
+		rss: string | null,
+		atom: string | null;
 </script>
 
 <svelte:head>
@@ -37,5 +38,8 @@
 
 	{#if rss}
 		<link rel="alternate" type="application/rss+xml" href={rss} />
+	{/if}
+	{#if atom}
+		<link rel="alternate" type="application/atom+xml" href={atom} />
 	{/if}
 </svelte:head>

@@ -19,7 +19,8 @@
 	title={$t('global.seo.title.index')}
 	description={$t('global.seo.description.index')}
 	image="https://i.arts.center/logo_white.png"
-	rss={localePath($locale, '/rss/featured')}
+	rss={localePath($locale, '/feed/rss/featured')}
+	atom={localePath($locale, '/feed/atom/featured')}
 />
 
 <div class="flex xl:flex-row flex-col max-xs:mx-1 xl:divide-x dark:divide-zinc-800">

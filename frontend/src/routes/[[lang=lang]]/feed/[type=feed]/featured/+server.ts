@@ -45,7 +45,9 @@ export async function GET({ params, url }) {
 		});
 	}
 
-	const response = new Response(feed.rss2());
+	const body = params.type === 'atom' ? feed.atom1() : feed.rss2();
+
+	const response = new Response(body);
 	response.headers.set('Cache-Control', 'max-age=0, s-maxage=3600');
 	response.headers.set('Content-Type', 'application/xml');
 	return response;
