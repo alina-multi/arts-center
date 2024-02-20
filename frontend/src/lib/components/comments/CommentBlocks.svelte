@@ -32,10 +32,10 @@
 		}
 	};
 
-		export let commentable_id: bigint,			
+	export let commentable_id: bigint,
 		commentsCount: number,
 		isMy: boolean,
-		commentable_type:  'work' | 'post';
+		commentable_type: 'work' | 'post';
 
 	commentable_id = commentable_id?.toString();
 	let parentComments = [...comments];
