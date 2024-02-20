@@ -31,7 +31,7 @@
 			<div
 				class="flex flex-col md:max-lg:shadow border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-sm"
 			>
-				<div class="px-6 py-6 bg-zinc-50"><UserPreview {user} /></div>
+				<div class="px-6 py-6 bg-zinc-50 dark:bg-zinc-900"><UserPreview {user} /></div>
 			</div>
 
 			{#if user.verified_at}

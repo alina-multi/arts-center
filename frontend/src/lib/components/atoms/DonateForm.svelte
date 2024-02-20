@@ -64,7 +64,9 @@
 	class="px-6 w-full xs:px-9 sm:w- md:px-6 sm:max-md:mx-auto py-6 xl:w-full border rounded-sm shadow bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-700"
 >
 	<div class=" space-y-6">
-		<div class="text-lg font-semibold text-center">{$t('global.donation.title')}</div>
+		<div class="text-lg font-semibold text-center dark:text-white">
+			{$t('global.donation.title')}
+		</div>
 		<div
 			class=" flex items-center justify-between sm:max-md:justify-center md:justify-around lg:justify-between xl:justify-around sm:max-md:gap-6"
 		>

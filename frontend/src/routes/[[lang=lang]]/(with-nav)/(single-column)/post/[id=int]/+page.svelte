@@ -18,16 +18,16 @@
 	author={data.post.owner.name}
 />
 
-<div class="flex flex-col gap-3 mx-auto dark:lg:bg-zinc-900 py-3 md:w-5/6 xl:w-2/3 px-3 md:px-0">
-	<div class="flex flex-col gap-3 dark:text-gray-400">
-		<div class="flex justify-between items-center pt-1 pb-4 sm:py-6 border-b">
+<div class="flex flex-col gap-3 mx-auto py-3 md:w-5/6 xl:w-2/3 px-3 md:px-0">
+	<div class="flex flex-col gap-3">
+		<div class="flex justify-between items-center pt-1 pb-4 sm:py-6 border-b dark:border-zinc-800">
 			<div class="flex items-center gap-3">
 				<AvatarLink user={data.post.owner} withName size={'w-8 h-8'} />
 				<div>
 					<FollowButton size={'sm'} user={data.post.owner} />
 				</div>
 			</div>
-			<span class="text-zinc-500 text-sm"
+			<span class="text-zinc-500 dark:text-zinc-100 text-sm"
 				>{$t('global.published_on')}
 				<LocaleDate date={data.post?.published_at} />
 			</span>
