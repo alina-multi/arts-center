@@ -11,6 +11,7 @@
 
 	const t = getContext('t');
 	export let data: PageData;
+	const currentDate = new Date().toDateString();
 </script>
 
 <MetaGroups
@@ -27,10 +28,17 @@
 					<FollowButton size={'sm'} user={data.post.owner} />
 				</div>
 			</div>
-			<span class="text-zinc-500 dark:text-zinc-100 text-sm"
-				>{$t('global.published_on')}
-				<LocaleDate date={data.post?.published_at} />
-			</span>
+			{#if currentDate === data.post.published_at.toDateString()}
+				<span class="text-zinc-500 dark:text-zinc-100 text-sm"
+					>{$t('global.published_on')}
+					<LocaleDate date={data.post?.published_at} />
+				</span>
+			{:else}
+				<span class="text-zinc-500 dark:text-zinc-100 text-sm"
+					>{$t('global.updated')}
+					<LocaleDate date={data.post?.updated_at} />
+				</span>
+			{/if}
 		</div>
 
 		<h1 class="text-2xl py-4 sm:py-6 font-bold sm:text-4xl text-gray-00 dark:text-gray-100">
@@ -57,8 +65,10 @@
 		{/each}
 	</div>
 
-	<div class="py-9 flex justify-end">
-		<RatingPreviewVote entity={data.post} votable_type={'post'} />
+	<div
+		class="w-full flex items-center justify-between gap-3 border-t py-4 dark:border-zinc-800 max-lg:border-b max-lg:mb-6 lg:py-6 sm:mt-3"
+	>
+		<RatingPreviewVote showVotedPreview entity={data.post} votable_type={'post'} />
 	</div>
 </div>
 

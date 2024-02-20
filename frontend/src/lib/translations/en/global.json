@@ -167,7 +167,8 @@
 		"to_your_comment": " to your comment",
 		"your_work": "your work"
 	},
-	"published_on": "Published on",
+	"published_on": "published on",
+	"updated": "updated",
 	"register": {
 		"page_title": "Register",
 		"password_confirmation": "Confirm password",

@@ -41,7 +41,7 @@
 		</div>
 
 		{#if post.image}
-			<div class="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 bg-red-50 aspect-1">
+			<div class="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 aspect-1">
 				<Picture alt={post.title} class="object-cover aspect-1" photo={post.image} />
 			</div>
 		{/if}
