@@ -1,15 +1,17 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import MetaGroups from '$lib/components/MetaGroups.svelte';
-	import { Sparkles, CheckBadge } from '@steeze-ui/heroicons';
+	import { CheckBadge, Rss } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import ArticlePreview from '$lib/components/post/ArticlePreview.svelte';
 	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
 	import FollowButton from '$lib/components/atoms/buttons/FollowButton.svelte';
 
 	import { getContext } from 'svelte';
+	import { localePath } from '$lib/translations';
 
 	const t = getContext('t');
+	const locale = getContext('locale');
 	export let data: PageData;
 </script>
 
@@ -24,7 +26,9 @@
 	<div class="xl:w-3/4 divide-y dark:divide-zinc-700 xl:pr-16">
 		<div class="mt-9 pb-6 dark:border-zinc-800 flex items-center gap-3">
 			<h2 class=" text-xl font-bold">{$t('global.main_page.featured_posts')}</h2>
-			<Icon src={Sparkles} class="w-6 h-6 stroke-amber-500 stroke-1" />
+			<a href={localePath($locale, '/rss/featured')}>
+				<Icon src={Rss} class="w-6 h-6 stroke-amber-500 stroke-1 hover:stroke-2" />
+			</a>
 		</div>
 
 		<div class=" divide-y dark:divide-zinc-800">
