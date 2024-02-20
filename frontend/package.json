@@ -67,6 +67,7 @@
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-storybook": "^0.6.15",
 		"eslint-plugin-svelte": "^2.35.1",
+		"feed": "^4.2.2",
 		"jsdom": "^22.1.0",
 		"locally-unique-id-generator": "^0.1.5",
 		"photoswipe": "^5.4.3",
