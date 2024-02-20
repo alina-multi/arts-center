@@ -39,7 +39,7 @@
 	</div>
 
 	<div class="flex flex-col md:flex-row md:justify-between md:items-center gap-1">
-		<h1 class="text-xl sm:text-2xl text-gray-00 dark:text-gray-100">
+		<h1 class="text-xl sm:text-2xl font-medium text-gray-00 dark:text-gray-100">
 			{title}
 		</h1>
 		<span class="text-zinc-500 text-sm"

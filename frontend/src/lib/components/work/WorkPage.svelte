@@ -15,13 +15,15 @@
 </script>
 
 <div
-	class="flex flex-col gap-3 mx-auto lg:border border-t-transparent dark:lg:bg-zinc-900 rounded-sm lg:px-28 py-3 dark:lg:border-zinc-800 dark:lg:border-t-transparent"
+	class="flex flex-col gap-3 mx-auto lg:border border-t-transparent dark:lg:bg-zinc-900 rounded-sm lg:px-28 pt-3 dark:lg:border-zinc-800 dark:lg:border-t-transparent"
 >
 	<WorkHeader {work} {isMy} />
 	<WorkBody {work} />
 	<div class="flex items-center justify-between gap-3">
-		<div class=" w-full flex gap-3 xs:gap-6 items-center rounded-sm lg:border-0">
-			<div class="w-full flex items-center justify-between gap-3 py-6">
+		<div
+			class=" w-full flex sm:gap-8 items-center border-t dark:border-0 py-4 max-lg:border-b max-lg:mb-6 lg:py-6 sm:mt-3"
+		>
+			<div class="w-full flex items-center justify-between gap-3">
 				<RatingPreviewVote entity={work} showVotedPreview votable_type={'work'} />
 			</div>
 			<BookmarkButton {work} />
