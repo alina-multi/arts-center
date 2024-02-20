@@ -32,10 +32,10 @@
 		}
 	};
 
-	export let commentable_id: bigint,
-		commentable_type: 'work' | 'post',
+		export let commentable_id: bigint,			
 		commentsCount: number,
-		isMy: boolean;
+		isMy: boolean,
+		commentable_type:  'work' | 'post';
 
 	commentable_id = commentable_id?.toString();
 	let parentComments = [...comments];
@@ -43,7 +43,7 @@
 	let new_comment: Comment | null = null;
 	let new_comment_loaded = false;
 	let url = '/api/comment';
-	let comments_length = comments.length;
+	$: comments_length = comments.length;
 
 	if (new_comment) {
 		new_comment = null;
@@ -97,7 +97,7 @@
 		{#if $user}
 			<CommentInput onSubmit={addNewComment} bind:value />
 		{/if}
-		{#if comments_length > 0}
+		{#if commentsCount > 0}
 			<ul id="parentBlock">
 				{#each parentComments as comment (comment.id)}
 					{#if comment.id === new_comment?.id}
