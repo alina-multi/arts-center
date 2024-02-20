@@ -1,5 +1,5 @@
 import { prisma } from '$lib/server/database/prisma';
-import { sitemapAllLanguages, createXml } from '$lib/helpers/sitemap';
+import { sitemapAllLanguages, urlsetResponse } from '$lib/helpers/sitemap';
 import { urlsPerSitemap } from '../config';
 import { cacheGet } from '$lib/server/database/cache';
 
@@ -29,5 +29,5 @@ export async function GET({ params, url }) {
 		},
 		params.page <= 15 ? 60 * 60 * 24 : 60 // Hardcode last page to have small TTL cache
 	);
-	return createXml(body);
+	return urlsetResponse(body);
 }

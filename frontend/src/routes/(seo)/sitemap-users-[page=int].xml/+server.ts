@@ -1,5 +1,5 @@
 import { prisma } from '$lib/server/database/prisma';
-import { sitemapAllLanguages, createXml } from '$lib/helpers/sitemap';
+import { sitemapAllLanguages, urlsetResponse } from '$lib/helpers/sitemap';
 import { urlsPerSitemap } from '../config';
 import { cacheGet } from '$lib/server/database/cache';
 
@@ -23,5 +23,5 @@ export async function GET({ params, url }) {
 		},
 		60
 	);
-	return createXml(body);
+	return urlsetResponse(body);
 }

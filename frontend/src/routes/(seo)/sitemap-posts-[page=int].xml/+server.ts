@@ -1,5 +1,5 @@
 import { prisma } from '$lib/server/database/prisma';
-import { createXml, sitemapEntityLanguage } from '$lib/helpers/sitemap';
+import { sitemapEntityLanguage, urlsetResponse } from '$lib/helpers/sitemap';
 import { urlsPerSitemap } from '../config';
 
 export async function GET({ params, url }) {
@@ -20,5 +20,5 @@ export async function GET({ params, url }) {
 		orderBy: { id: 'asc' }
 	});
 	const body = sitemapEntityLanguage(posts, base, 'id', 'post');
-	return createXml(body);
+	return urlsetResponse(body);
 }
