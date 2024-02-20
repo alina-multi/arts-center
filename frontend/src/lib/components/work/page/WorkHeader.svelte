@@ -13,8 +13,8 @@
 	const t = getContext('t');
 	const locale = getContext('locale');
 
-	export let work: Work;
-	export let isMy = false;
+	export let work: Work, isMy: boolean;
+
 	let title = languageFind(work.titles, $locale)?.title;
 	let modalOpen = false;
 </script>

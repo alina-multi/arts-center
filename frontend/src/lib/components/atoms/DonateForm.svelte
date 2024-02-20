@@ -3,7 +3,7 @@
 	import { XMark } from '@steeze-ui/heroicons';
 	import TubeIcon from './TubeIcon.svelte';
 	import { localePath } from '$lib/translations';
-	import type { User } from '$lib/interfaces/User';
+	import type { UserBasic } from '$lib/interfaces/User';
 	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
 	import newUniqueId from 'locally-unique-id-generator';
 	import { getContext, tick } from 'svelte';
@@ -12,7 +12,7 @@
 
 	const t = getContext('t');
 	const locale = getContext('locale');
-	export let user: User;
+	export let user: UserBasic;
 	let open = false,
 		quantity = 1;
 

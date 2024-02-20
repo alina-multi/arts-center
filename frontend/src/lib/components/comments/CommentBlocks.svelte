@@ -11,6 +11,7 @@
 	import { user } from '$lib/stores/auth';
 
 	const t = getContext('t');
+	const comments: Comment[] = getContext('comments');
 
 	// Todo, just use them in place
 	const commentMassage = {
@@ -31,10 +32,11 @@
 		}
 	};
 
-	export let comments,
-		commentable_id: bigint,
+	export let commentable_id: bigint,
 		commentable_type: 'work' | 'post',
-		commentsCount: number;
+		commentsCount: number,
+		isMy: boolean;
+
 	commentable_id = commentable_id?.toString();
 	let parentComments = [...comments];
 	$: value = '';
@@ -78,10 +80,6 @@
 
 <div class="flex flex-col text-black dark:text-gray-300">
 	<div class="border py-3 bg-zinc-50 dark:bg-zinc-900 dark:border-zinc-800 rounded-t-sm">
-		<!-- <span class="font-semibold px-3 md:px-6"
-				>{comments_length} {$t('global.comment.comments').toLowerCase()}</span
-			> -->
-
 		<span class="font-semibold px-3 md:px-6"
 			>{commentsCount}
 			{commentsCount === 1
@@ -108,7 +106,13 @@
 								? 'opacity-100'
 								: 'opacity-50'}"
 						>
-							<CommentBlock {comment} {commentable_id} bind:parentComments bind:commentsCount />
+							<CommentBlock
+								{isMy}
+								{comment}
+								{commentable_id}
+								bind:parentComments
+								bind:commentsCount
+							/>
 						</li>
 					{:else}
 						<CommentBlock {comment} {commentable_id} bind:parentComments bind:commentsCount />

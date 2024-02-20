@@ -4,13 +4,16 @@
 	import WorkHeader from '$lib/components/work/page/WorkHeader.svelte';
 	import WorkBody from '$lib/components/work/page/WorkBody.svelte';
 	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
-	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import BookmarkButton from '$lib/components/atoms/buttons/BookmarkButton.svelte';
-	import { user } from '$lib/stores/auth';
 	import ContentFooter from '$lib/components/content/ContentFooter.svelte';
+	import { setContext } from 'svelte';
+	import { handleIsMy } from '$lib/helpers/handleIsMy';
+	import { user } from '$lib/stores/auth';
 
 	export let work: Work;
 	export let comments: Comment[];
+	setContext('work', work);
+	setContext('comments', comments);
 	$: isMy = work.owners.some((owner) => handleIsMy($user, owner.id));
 </script>
 
@@ -30,10 +33,4 @@
 		</div>
 	</div>
 </div>
-<ContentFooter
-	owners={work.owners}
-	commentable_id={work.id}
-	commentsCount={work.comments}
-	tags={work.tags}
-	{comments}
-/>
+<ContentFooter commentable_type="work" {isMy} />

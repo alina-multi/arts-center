@@ -4,11 +4,9 @@
 	import EllipsisButton from '$lib/components/atoms/buttons/EllipsisButton.svelte';
 	import BlockButton from '$lib/components/atoms/buttons/BlockButton.svelte';
 	import ReportButton from '$lib/components/atoms/buttons/ReportButton.svelte';
-	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import { user } from '$lib/stores/auth';
 	import ReportModal from '../atoms/ReportModal.svelte';
 	import type { Comment } from '$lib/interfaces/Comment';
-	import { page } from '$app/stores';
 	import { getContext } from 'svelte';
 
 	const t = getContext('t');
@@ -16,9 +14,8 @@
 	export let comment: Comment,
 		onEdit: () => void,
 		deleteComment: (comment_id: string) => Promise<void>,
-		parentComments: [Comment] | [];
-
-	$: isMy = $page.data.work.owners.some((owner: { id: string }) => handleIsMy($user, owner.id));
+		parentComments: [Comment] | [],
+		isMy: boolean;
 
 	let reportModalOpen = false;
 	const comment_id = comment?.id?.toString();

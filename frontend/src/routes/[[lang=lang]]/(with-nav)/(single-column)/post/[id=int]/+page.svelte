@@ -8,10 +8,17 @@
 	import MetaGroups from '$lib/components/MetaGroups.svelte';
 	import ContentFooter from '$lib/components/content/ContentFooter.svelte';
 	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
+	import { setContext } from 'svelte';
+	import { handleIsMy } from '$lib/helpers/handleIsMy';
+	import { user } from '$lib/stores/auth';
 
 	const t = getContext('t');
 	export let data: PageData;
 	const currentDate = new Date().toDateString();
+	setContext('post', { ...data.post, owners: [data.post.owner] });
+	setContext('comments', data.comments);
+
+	$: isMy = handleIsMy($user, data.post.owner.id);
 </script>
 
 <MetaGroups
@@ -72,10 +79,4 @@
 	</div>
 </div>
 
-<ContentFooter
-	commentable_id={data.post.id}
-	commentable_type="post"
-	commentsCount={data.post.comments}
-	comments={data.comments}
-	owners={[data.post.owner]}
-/>
+<ContentFooter commentable_type="post" {isMy} />
