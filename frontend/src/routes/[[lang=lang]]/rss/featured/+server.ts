@@ -34,9 +34,10 @@ export async function GET({ params, url }) {
 	});
 
 	for (const post of posts) {
+		const postUrl = `${url.origin}/${params.lang !== 'en' ? `${params.lang}/` : ''}post/${post.id}`;
 		feed.addItem({
-			id: post.id,
-			link: `${url.origin}/${params.lang !== 'en' ? `${params.lang}/` : ''}post/${post.id}`,
+			id: postUrl,
+			link: postUrl,
 			title: post.title,
 			date: post.published_at,
 			image: post?.image ? pictureMap(post?.image)?.original?.src : undefined
