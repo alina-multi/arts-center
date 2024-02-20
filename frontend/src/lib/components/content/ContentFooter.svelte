@@ -7,10 +7,11 @@
 	import { user } from '$lib/stores/auth';
 	import DonateForm from '$lib/components/atoms/DonateForm.svelte';
 	import type { Work } from '$lib/interfaces/Work';
+	import type { Post } from '$lib/interfaces/Post';
 
 	import { getContext } from 'svelte';
 	export let commentable_type: 'work' | 'post', isMy: boolean;
-	const entity: Work = getContext(commentable_type);
+	const entity: Work | Post = getContext(commentable_type);
 </script>
 
 <div
