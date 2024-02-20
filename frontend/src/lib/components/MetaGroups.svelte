@@ -4,7 +4,8 @@
 	export let title: string,
 		description: string | null,
 		author: string | null = null,
-		image: string | null;
+		image: string | null,
+		rss: string | null;
 </script>
 
 <svelte:head>
@@ -32,5 +33,9 @@
 		<meta property="og:type" content="article" />
 		<meta name="author" content={author} />
 		<meta property="article:author" content={author} />
+	{/if}
+
+	{#if rss}
+		<link rel="alternate" type="application/rss+xml" href={rss} />
 	{/if}
 </svelte:head>

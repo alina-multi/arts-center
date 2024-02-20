@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import MetaGroups from '$lib/components/MetaGroups.svelte';
-	import { CheckBadge, Rss } from '@steeze-ui/heroicons';
+	import { CheckBadge, Sparkles } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import ArticlePreview from '$lib/components/post/ArticlePreview.svelte';
 	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
@@ -19,6 +19,7 @@
 	title={$t('global.seo.title.index')}
 	description={$t('global.seo.description.index')}
 	image="https://i.arts.center/logo_white.png"
+	rss={localePath($locale, '/rss/featured')}
 />
 
 <div class="flex xl:flex-row flex-col max-xs:mx-1 xl:divide-x dark:divide-zinc-800">
@@ -26,9 +27,7 @@
 	<div class="xl:w-3/4 divide-y dark:divide-zinc-700 xl:pr-16">
 		<div class="mt-9 pb-6 dark:border-zinc-800 flex items-center gap-3">
 			<h2 class=" text-xl font-bold">{$t('global.main_page.featured_posts')}</h2>
-			<a href={localePath($locale, '/rss/featured')}>
-				<Icon src={Rss} class="w-6 h-6 stroke-amber-500 stroke-1 hover:stroke-2" />
-			</a>
+			<Icon src={Sparkles} class="w-6 h-6 stroke-amber-500 stroke-1" />
 		</div>
 
 		<div class=" divide-y dark:divide-zinc-800">
