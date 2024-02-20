@@ -19,10 +19,19 @@ export async function GET({ url }) {
 		}
 	});
 	const users = await prisma.users.count();
+	const posts = await prisma.posts.count({
+		where: {
+			NOT: {
+				published_at: null
+			}
+		}
+	});
 
 	const body = sitemapindex([
 		{ pages: createPagesArray(works), slug: 'works' },
-		{ pages: createPagesArray(users), slug: 'users' }
+		{ pages: createPagesArray(users), slug: 'users' },
+		// Todo: fix this when we have >50k posts :D
+		{ pages: createPagesArray(posts), slug: 'posts' }
 	]);
 
 	const response = createXml(body);

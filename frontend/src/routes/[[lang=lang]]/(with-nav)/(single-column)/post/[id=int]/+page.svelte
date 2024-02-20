@@ -22,8 +22,9 @@
 </script>
 
 <MetaGroups
-	title={$t('global.seo.title.work', { name: data.post.owner.name, title: data.post.title })}
+	title={$t('global.seo.title.post', { name: data.post.owner.name, title: data.post.title })}
 	author={data.post.owner.name}
+	image={data.post?.image?.original.src}
 />
 
 <div class="flex flex-col gap-3 mx-auto py-3 md:w-5/6 xl:w-2/3 px-3 md:px-0">

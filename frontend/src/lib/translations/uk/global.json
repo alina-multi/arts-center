@@ -168,7 +168,6 @@
 		"your_work": "Ваша робота"
 	},
 	"published_on": "опубліковано",
-	"updated": "oновлено",
 	"register": {
 		"page_title": "Зареєструватися",
 		"password_confirmation": "Підтвердьте пароль",
@@ -210,6 +209,7 @@
 		"title": {
 			"gallery": "{{order}} {{tag}} галерея – ARTS CENTER",
 			"index": "ARTS CENTER - Сучасний дім для традиційного мистецтва",
+			"post": "{{title}} від {{name}} – ARTS CENTER",
 			"user": "{{name}} галерея художника – ARTS CENTER",
 			"users": "{{order}} митці у категорії: {{category}} з: {{country}} сторінка: {{page}} - ARTS CENTER",
 			"work": "{{title}} від {{name}} – ARTS CENTER"
@@ -229,6 +229,7 @@
 		"why_subscribe_description_2": "Ось чому наша платформа пропонує допомогу та надає інструменти, які допоможуть вам привернути увагу до свого таланту, продемонструвати свою роботу світові та перетворити її на прибуток",
 		"why_subscribe_title": "Навіщо підписуватися і які переваги?"
 	},
+	"updated": "oновлено",
 	"user": {
 		"bio": "біографія",
 		"on_arts_since": "митець на ARTS від",
