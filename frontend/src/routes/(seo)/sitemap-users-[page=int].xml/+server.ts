@@ -1,5 +1,5 @@
 import { prisma } from '$lib/server/database/prisma';
-import { sitemap, createXml } from '$lib/helpers/sitemap';
+import { sitemapAllLanguages, createXml } from '$lib/helpers/sitemap';
 import { urlsPerSitemap } from '../config';
 import { cacheGet } from '$lib/server/database/cache';
 
@@ -7,7 +7,7 @@ export async function GET({ params, url }) {
 	const base = url.origin;
 	const body = await cacheGet(
 		'sitemap',
-		`users.${params.page}`,
+		`users2.${params.page}`,
 		async function () {
 			const users = await prisma.users.findMany({
 				take: urlsPerSitemap,
@@ -19,7 +19,7 @@ export async function GET({ params, url }) {
 				},
 				orderBy: { id: 'asc' }
 			});
-			return sitemap(users, base, 'username');
+			return sitemapAllLanguages(users, base, 'username');
 		},
 		60
 	);

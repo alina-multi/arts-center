@@ -168,7 +168,6 @@
 		"your_work": "your work"
 	},
 	"published_on": "published on",
-	"updated": "updated",
 	"register": {
 		"page_title": "Register",
 		"password_confirmation": "Confirm password",
@@ -210,6 +209,7 @@
 		"title": {
 			"gallery": "{{order}} {{tag}} gallery - ARTS CENTER",
 			"index": "ARTS CENTER - A modern home for traditional art",
+			"post": "{{title}} by {{name}} - ARTS CENTER",
 			"user": "{{name}} artist gallery - ARTS CENTER",
 			"users": "{{order}} artists in category: {{category}} from: {{country}} page: {{page}} - ARTS CENTER",
 			"work": "{{title}} by {{name}} - ARTS CENTER"
@@ -229,6 +229,7 @@
 		"why_subscribe_description_2": "That's why our platform offers assistance and provides tools to help you draw attention to your talent, showcase your work to the world, and turn it into profit",
 		"why_subscribe_title": "Why subscribe and what are the benefits?"
 	},
+	"updated": "updated",
 	"user": {
 		"bio": "biography",
 		"on_arts_since": "on arts since",
