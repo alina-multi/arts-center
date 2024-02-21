@@ -27,7 +27,7 @@
 	<VotedList {votes} {isLiked} currentUser={$user} />
 {/if}
 
-<div class="inline-flex items-center gap-2 dark:text-zinc-100 cursor-pointer">
+<div class="inline-flex items-center gap-2 dark:text-white cursor-pointer">
 	<div
 		class="{votable_type === 'work' || votable_type === 'post'
 			? ''
@@ -35,9 +35,9 @@
 	>
 		{#if votable_type === 'work' || votable_type === 'post'}
 			<span
-				class=" flex items-center border-r dark:border-zinc-700 pr-4 text-zinc-900 dark:text-white"
+				class=" flex items-center border-r dark:border-zinc-700 pr-4 text-black dark:text-white"
 			>
-				<span> {$t('global.voting.like')} </span>
+				<span class="hidden sm:block"> {$t('global.voting.like')} </span>
 				<span class="ml-1">{rating}</span></span
 			>
 		{/if}

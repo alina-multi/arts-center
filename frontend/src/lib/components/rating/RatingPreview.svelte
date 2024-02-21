@@ -1,21 +1,19 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { ChatBubbleLeftRight, Heart } from '@steeze-ui/heroicons';
+	import { ChatBubbleOvalLeft, Heart } from '@steeze-ui/heroicons';
 
 	export let rating: number, comments: number;
 </script>
 
-<div
-	class="flex items-center gap-2 overflow-hidden sm:text-sm text-sm font-medium p-1 dark:text-zinc-100"
->
-	{#if rating > 0}<span class="inline-flex items-center gap-1">
-			<Icon src={Heart} class=" w-4 h-4 sm:w-6 sm:h-6 " />
+<div class="flex items-center gap-2 overflow-hidden text-sm xl:text-xs p-1 dark:text-zinc-100">
+	{#if rating > 0}<span class="inline-flex items-center gap-[0.5]">
+			<Icon src={Heart} class=" w-5 h-5 md:w-4 md:h-4   stroke-1" />
 			<span>{rating}</span>
 		</span>
 	{/if}
 	{#if comments > 0}
-		<span class="inline-flex items-center gap-1">
-			<Icon src={ChatBubbleLeftRight} class=" w-4 h-4 sm:w-6 sm:h-6" />
+		<span class="inline-flex items-center gap-[0.5]">
+			<Icon src={ChatBubbleOvalLeft} class=" w-5 h-5 md:w-4 md:h-4 stroke-1" />
 			<span>{comments}</span>
 		</span>
 	{/if}

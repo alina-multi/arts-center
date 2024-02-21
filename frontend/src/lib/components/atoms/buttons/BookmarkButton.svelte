@@ -80,16 +80,16 @@
 	<button
 		type="button"
 		on:click={isBookmarked ? remove : () => (open = true)}
-		class="  dark:text-zinc-300 text-zinc-600 dark:border-zinc-700 flex items-center"
+		class="  dark:text-zinc-300 text-black dark:border-zinc-700 flex items-center"
 	>
 		{#if isBookmarked}
-			<span class=" border-r dark:border-zinc-700 px-2 xs:px-3 max-sm:hidden text-zinc-400"
+			<span class=" border-r dark:border-zinc-700 pr-4 max-sm:hidden text-zinc-400"
 				>{$t('global.bookmark.saved')}</span
 			>
-			<span class="px-2 xs:px-3 py-2">
+			<span class="pl-4">
 				<Icon
 					src={Bookmark}
-					class="h-7 w-7 group-hover:scale-105  stroke-amber-400  fill-amber-400 dark:fill-amber-500  dark:stroke-amber-500    "
+					class="h-7 w-7 group-hover:scale-105 stroke-1  stroke-amber-400  fill-amber-400 dark:fill-amber-500  dark:stroke-amber-500    "
 					aria-hidden="true"
 				/>
 			</span>
@@ -100,7 +100,7 @@
 			<span class="pl-4">
 				<Icon
 					src={Bookmark}
-					class="h-7 w-7 group-hover:scale-105 stroke-1  stroke-zinc-600 dark:stroke-zinc-300    "
+					class="h-7 w-7 group-hover:scale-105 stroke-1  stroke-black dark:stroke-zinc-300    "
 					aria-hidden="true"
 				/></span
 			>

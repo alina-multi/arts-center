@@ -24,7 +24,7 @@
 	<WorkBody {work} />
 	<div class="flex items-center justify-between gap-3">
 		<div
-			class=" w-full flex sm:gap-8 items-center border-t dark:border-0 py-4 max-lg:border-b max-lg:mb-6 lg:py-6 sm:mt-3"
+			class=" w-full flex sm:gap-8 items-center border-t dark:border-zinc-800 py-4 max-lg:border-b max-lg:mb-6 lg:py-6 sm:mt-3"
 		>
 			<div class="w-full flex items-center justify-between gap-3">
 				<RatingPreviewVote entity={work} showVotedPreview votable_type={'work'} />

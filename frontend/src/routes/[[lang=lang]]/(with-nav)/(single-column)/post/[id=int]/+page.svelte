@@ -33,19 +33,20 @@
 			<div class="flex items-center gap-3">
 				<AvatarLink user={data.post.owner} withName size={'w-8 h-8'} />
 				<div>
-					<FollowButton size={'sm'} user={data.post.owner} />
+					<FollowButton size={'xs sm:text-sm'} user={data.post.owner} />
 				</div>
 			</div>
 			{#if currentDate === data.post.published_at.toDateString()}
-				<span class="text-zinc-500 dark:text-zinc-100 text-sm"
-					>{$t('global.published_on')}
+				<div class="text-zinc-500 dark:text-zinc-100 text-sm">
+					<span class="hidden xs:inline"> {$t('global.published_on')} </span>
 					<LocaleDate date={data.post?.published_at} />
-				</span>
+				</div>
 			{:else}
-				<span class="text-zinc-500 dark:text-zinc-100 text-sm"
-					>{$t('global.updated')}
+				<div class="text-zinc-500 dark:text-zinc-100 text-sm">
+					<span class="hidden xs:inline">{$t('global.updated')}</span>
+
 					<LocaleDate date={data.post?.updated_at} />
-				</span>
+				</div>
 			{/if}
 		</div>
 
@@ -53,7 +54,7 @@
 			{data.post.title}
 		</h1>
 	</div>
-	<div class="space-y-6">
+	<div class="space-y-3">
 		{#each data.post?.body || [] as row}
 			<div class="highlight-links">
 				{#if row.type === 'text'}
@@ -61,7 +62,7 @@
 
 					<div class="highlight-links text-lg">{@html row.text}</div>
 				{:else if row.type === 'image'}
-					<div class="flex justify-center py-3">
+					<div class="flex justify-center">
 						<Picture
 							alt={data.post.title}
 							class="w-full"

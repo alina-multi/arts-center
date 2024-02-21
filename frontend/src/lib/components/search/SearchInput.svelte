@@ -84,7 +84,7 @@
 			class=" block w-full rounded-sm pl-8 py-3 lg:py-0.5 dark:bg-zinc-700 dark:border-zinc-700 border-gray-300 border placeholder:text-zinc-400 focus:ring-0 focus:border-gray-500 sm:text-sm sm:leading-6"
 		/>
 		<div class="hidden lg:flex absolute inset-y-0 z-50 px-2 pt-[5px]">
-			<Icon src={MagnifyingGlass} class="text-zinc-400  h-5 w-5" />
+			<Icon src={MagnifyingGlass} class="text-zinc-400  h-5 w-5 stroke-1" />
 		</div>
 		{#if loading && value.length > 0}
 			<div class="absolute inset-y-0 right-0 z-50 py-3 pr-16 lg:pr-12 lg:py-1">

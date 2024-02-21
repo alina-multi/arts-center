@@ -25,15 +25,13 @@
 		{/if}
 	</div>
 	{#if withDesription}
-		<div
-			class=" inline-flex items-center justify-between font-medium text-black dark:text-gray-100"
-		>
-			<div class="flex items-center sm:justify-between w-full">
+		<div class=" inline-flex items-center justify-between text-black dark:text-gray-100">
+			<div class="flex items-center sm:justify-between w-full font-medium">
 				<h3 class="lg:text-sm">{title}</h3>
 				<PriceLabel price={work.price} style={'py-0.5 text-sm md:text-xs  px-2'} />
 			</div>
 
-			<div class="flex sm:hidden text-gray-500">
+			<div>
 				<RatingPreview rating={work.rating} comments={work.comments} />
 			</div>
 		</div>

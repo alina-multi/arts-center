@@ -1,5 +1,4 @@
 <script lang="ts">
-	import RatingPreview from '$lib/components/rating/RatingPreview.svelte';
 	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
 	import type { Work } from '$lib/interfaces/Work';
 	import CrownIcon from '../atoms/CrownIcon.svelte';
@@ -12,13 +11,6 @@
 <li class="flex flex-col gap-1 lg:gap-0 overflow-hidden {work.subscribed ? ' ' : ''} ">
 	<div class="group/item relative">
 		<ImageWork {work} withDesription />
-		<div class="hidden sm:block">
-			<div
-				class="group/edit hidden group-hover/item:block absolute top-3 right-3 text-white bg-black/50 pt-1 px-1 transition-all rounded-sm"
-			>
-				<RatingPreview rating={work.rating} comments={work.comments} />
-			</div>
-		</div>
 	</div>
 
 	<div class="flex justify-between items-center lg:text-xs text-sm mt-auto">

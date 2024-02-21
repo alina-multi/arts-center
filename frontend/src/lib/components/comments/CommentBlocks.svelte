@@ -88,11 +88,7 @@
 		>
 	</div>
 
-	<div
-		class=" {comments_length > 0 || $user
-			? ' md:border border-t-transparent dark:border-t-transparent md:px-6 pb-6 gap-6 md:rounded-b-sm dark:border-zinc-800'
-			: ''}  flex flex-col"
-	>
+	<div class=" {comments_length > 0 || $user ? '  pb-6 gap-6 ' : ''}  flex flex-col">
 		<h3 class="sr-only">Comments</h3>
 		{#if $user}
 			<CommentInput onSubmit={addNewComment} bind:value />
