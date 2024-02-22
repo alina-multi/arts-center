@@ -41,11 +41,13 @@
 </script>
 
 <div class="flex group {isFocused ? ' ring-0 ring-transparent' : 'ring-transparent'}">
-	<div class="md:w-16 w-9">
+	<div class="md:w-16 w-9 relative">
 		{#if displayPlus}
 			<button class:rotate-45={displayTypeButtons} on:click={toggleTypeButtons}>
 				<Icon src={PlusCircle} class="w-8 h-8 xs:w-10 xs:h-10 stroke-[0.7] mt-1" />
 			</button>
+		{:else}
+			<div class="absolute top-2 right-1 text-gray-200 text-sm">#p{tabindex}</div>
 		{/if}
 		{#if displayRowActions}
 			<button on:click={removeBlock}>
