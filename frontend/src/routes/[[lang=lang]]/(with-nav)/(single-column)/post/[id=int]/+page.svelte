@@ -54,7 +54,7 @@
 			{data.post.title}
 		</h1>
 	</div>
-	<div class="space-y-3">
+	<div class="space-y-6">
 		{#each data.post?.body || [] as row, index}
 			{@const tabindex = index + 1}
 			<div>
