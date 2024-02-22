@@ -6,32 +6,34 @@
 
 	import { user } from '$lib/stores/auth';
 	import DonateForm from '$lib/components/atoms/DonateForm.svelte';
-	import type { Tag } from '$lib/interfaces/Tag';
-	import type { Comment } from '$lib/interfaces/Comment';
-	import type { UserBasic } from '$lib/interfaces/User';
+	import type { Work } from '$lib/interfaces/Work';
+	import type { Post } from '$lib/interfaces/Post';
 
-	export let owners: UserBasic[],
-		tags: Tag[],
-		comments: Comment,
-		commentsCount: number,
-		commentable_id: bigint,
-		commentable_type: string = 'work';
+	import { getContext } from 'svelte';
+	export let commentable_type: 'work' | 'post', isMy: boolean;
+	const entity: Work | Post = getContext(commentable_type);
 </script>
 
 <div
-	class="flex max-md:flex-col-reverse justify-beetwen items-stretch lg:items-start lg:mt-6 gap-6 dark:text-gray-300"
+	class="flex max-lg:flex-col-reverse justify-beetwen items-stretch lg:items-start lg:mt-6 gap-6 dark:text-gray-300"
 >
-	<TagsGroup {tags} media="flex w-full  md:hidden" />
-
-	<div class="lg:w-4/6">
-		<CommentBlocks {comments} {commentable_id} {commentable_type} {commentsCount} />
+	{#if entity.tags}
+		<TagsGroup tags={entity.tags} media="flex w-full  md:hidden" />
+	{/if}
+	<div class="lg:w-3/5">
+		<CommentBlocks
+			{commentable_type}
+			commentsCount={entity.comments}
+			commentable_id={entity.id}
+			{isMy}
+		/>
 	</div>
-	<div class="flex flex-col lg:w-1/3 gap-6">
-		{#each owners as user (user.id)}
+	<div class="flex flex-col lg:w-2/5 gap-6">
+		{#each entity.owners as user (user.id)}
 			<div
-				class="flex flex-col md:max-lg:shadow border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 rounded-sm"
+				class="flex flex-col border-y py-6 dark:bg-zinc-900 dark:pl-3 xl:border xl:p-6 border-zinc-200 dark:border-zinc-800 xl:dark:bg-zinc-900 rounded-sm"
 			>
-				<div class="px-6 py-6 bg-zinc-50"><UserPreview {user} /></div>
+				<UserPreview {user} />
 			</div>
 
 			{#if user.verified_at}
@@ -42,6 +44,8 @@
 		{#if !$user}
 			<div><AuthStub /></div>
 		{/if}
-		<TagsGroup {tags} media="hidden md:flex" />
+		{#if entity.tags}
+			<TagsGroup tags={entity.tags} media="hidden md:flex" />
+		{/if}
 	</div>
 </div>

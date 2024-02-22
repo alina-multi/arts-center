@@ -1,21 +1,31 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import LoginLink from '../nav/LoginLink.svelte';
+	import { localePath } from '$lib/translations';
 
 	const t = getContext('t');
+	const locale = getContext('locale');
 </script>
 
 <div
-	class="flex flex-col gap-3 border px-6 xs:px-9 py-6 rounded-sm dark:border-zinc-800 dark:bg-zinc-900"
+	class="flex flex-col gap-6 max-lg:items-center border-b dark:border-zinc-900 pb-6 xs:max-lg:px-6"
 >
-	<p class="lg:text-lg font-semibold dark:text-zinc-100">
+	<p class="text-lg font-semibold dark:text-zinc-100">
 		{$t('global.not_logged_in.for_comment')}
 	</p>
-	<p class=" text-gray-500 dark:text-zinc-400 text-sm">
+
+	<p class=" text-gray-500 dark:text-zinc-400 lg:text-sm md:max-lg:w-2/3 max-lg:text-center">
 		{$t('global.not_logged_in.for_work')}
 	</p>
 
-	<LoginLink />
+	<div class="flex items-center gap-6">
+		<LoginLink />
+		<a
+			href={localePath($locale, '/register')}
+			class=" text-center sm:max-lg:w-fit rounded-sm px-3 py-0.5 border border-zinc-600 shadow-sm hover:bg-amber-500 dark:text-gray-100 hover:text-white cursor-pointer"
+			>{$t('global.buttons.register')}</a
+		>
+	</div>
 
 	<!-- <a
 		href="/login"

@@ -1,26 +1,25 @@
 import type { PageServerLoad } from './$types';
 import { query } from '$lib/server/repositories/user';
 import { usersMap } from '$lib/server/mappers/users';
-import { latest } from '$lib/server/repositories/comment';
-import { lastCommentsMap } from '$lib/server/mappers/comments';
+import { query as postQuery } from '$lib/server/repositories/post';
+import { postsMap } from '$lib/server/mappers/post';
 
 export const load = (async ({ setHeaders, params }) => {
 	setHeaders({
 		'cache-control': 'max-age=60'
 	});
-	const users = await query(
-		{
-			verified_at: { not: null }
-		},
-		{
-			verified_at: 'desc'
-		}
-	);
 
-	const comments = await latest();
+	const [users, posts] = await Promise.all([
+		query({ verified_at: { not: null } }, { verified_at: 'desc' }).then((usersRaw) =>
+			usersMap(usersRaw, params.lang)
+		),
+		postQuery({ featured: 1, language: params.lang }, { published_at: 'desc' }).then((postsRaw) =>
+			postsMap(postsRaw)
+		)
+	]);
 
 	return {
-		users: await usersMap(users, params.lang),
-		comments: await lastCommentsMap(comments)
+		users,
+		posts
 	};
 }) satisfies PageServerLoad;

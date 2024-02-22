@@ -10,10 +10,8 @@
 </script>
 
 {#if tags.length > 0}
-	<div
-		class="{media} flex-wrap items-center justify-start border border-gray-200 dark:border-zinc-800 dark:bg-zinc-900 sm:p-6 gap-6 md:py-6 p-3 rounded-sm"
-	>
-		<span class="font-semibold">{$t('global.filters.tags')}:</span>
+	<div class="{media} flex-wrap items-center justify-start gap-6">
+		<span class="font-semibold text-lg">{$t('global.filters.tags')}:</span>
 		{#each tags as { title } (title)}
 			<TagButton
 				href={localePath($locale, `/tag/${title}/popular`)}

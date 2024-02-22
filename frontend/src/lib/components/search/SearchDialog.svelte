@@ -27,5 +27,5 @@
 
 <Button on:click={() => (open = !open)} type={'button'}>
 	<span class="sr-only">Search</span>
-	<Icon src={MagnifyingGlass} theme="solid" class="h-8 w-8" />
+	<Icon src={MagnifyingGlass} class="h-8 w-8 stroke-1" />
 </Button>

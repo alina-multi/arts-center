@@ -11,6 +11,7 @@
 	import { user } from '$lib/stores/auth';
 
 	const t = getContext('t');
+	const comments: Comment[] = getContext('comments');
 
 	// Todo, just use them in place
 	const commentMassage = {
@@ -31,17 +32,18 @@
 		}
 	};
 
-	export let comments,
-		commentable_id: bigint,
-		commentable_type: 'work' | 'post',
-		commentsCount: number;
+	export let commentable_id: bigint,
+		commentsCount: number,
+		isMy: boolean,
+		commentable_type: 'work' | 'post';
+
 	commentable_id = commentable_id?.toString();
 	let parentComments = [...comments];
 	$: value = '';
 	let new_comment: Comment | null = null;
 	let new_comment_loaded = false;
 	let url = '/api/comment';
-	let comments_length = comments.length;
+	$: comments_length = comments.length;
 
 	if (new_comment) {
 		new_comment = null;
@@ -78,10 +80,6 @@
 
 <div class="flex flex-col text-black dark:text-gray-300">
 	<div class="border py-3 bg-zinc-50 dark:bg-zinc-900 dark:border-zinc-800 rounded-t-sm">
-		<!-- <span class="font-semibold px-3 md:px-6"
-				>{comments_length} {$t('global.comment.comments').toLowerCase()}</span
-			> -->
-
 		<span class="font-semibold px-3 md:px-6"
 			>{commentsCount}
 			{commentsCount === 1
@@ -90,16 +88,12 @@
 		>
 	</div>
 
-	<div
-		class=" {comments_length > 0 || $user
-			? ' md:border border-t-transparent dark:border-t-transparent md:px-6 pb-6 gap-6 md:rounded-b-sm dark:border-zinc-800'
-			: ''}  flex flex-col"
-	>
+	<div class=" {comments_length > 0 || $user ? '  pb-6 gap-6 ' : ''}  flex flex-col">
 		<h3 class="sr-only">Comments</h3>
 		{#if $user}
 			<CommentInput onSubmit={addNewComment} bind:value />
 		{/if}
-		{#if comments_length > 0}
+		{#if commentsCount > 0}
 			<ul id="parentBlock">
 				{#each parentComments as comment (comment.id)}
 					{#if comment.id === new_comment?.id}
@@ -108,7 +102,13 @@
 								? 'opacity-100'
 								: 'opacity-50'}"
 						>
-							<CommentBlock {comment} {commentable_id} bind:parentComments bind:commentsCount />
+							<CommentBlock
+								{isMy}
+								{comment}
+								{commentable_id}
+								bind:parentComments
+								bind:commentsCount
+							/>
 						</li>
 					{:else}
 						<CommentBlock {comment} {commentable_id} bind:parentComments bind:commentsCount />

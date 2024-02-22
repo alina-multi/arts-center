@@ -8,36 +8,53 @@
 	import MetaGroups from '$lib/components/MetaGroups.svelte';
 	import ContentFooter from '$lib/components/content/ContentFooter.svelte';
 	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
+	import { setContext } from 'svelte';
+	import { handleIsMy } from '$lib/helpers/handleIsMy';
+	import { user } from '$lib/stores/auth';
 
 	const t = getContext('t');
 	export let data: PageData;
+	const currentDate = new Date().toDateString();
+	setContext('post', { ...data.post, owners: [data.post.owner] });
+	setContext('comments', data.comments);
+
+	$: isMy = handleIsMy($user, data.post.owner.id);
 </script>
 
 <MetaGroups
-	title={$t('global.seo.title.work', { name: data.post.owner.name, title: data.post.title })}
+	title={$t('global.seo.title.post', { name: data.post.owner.name, title: data.post.title })}
 	author={data.post.owner.name}
+	image={data.post?.image?.original.src}
 />
 
-<div class="flex flex-col gap-3 mx-auto dark:lg:bg-zinc-900 py-3 md:w-5/6 xl:w-2/3 px-3 md:px-0">
-	<div class="flex flex-col gap-3 dark:text-gray-400">
-		<div class="flex justify-between items-center pt-1 pb-4 sm:py-6 border-b">
+<div class="flex flex-col gap-3 mx-auto py-3 md:w-5/6 xl:w-2/3 px-3 md:px-0">
+	<div class="flex flex-col gap-3">
+		<div class="flex justify-between items-center pt-1 pb-4 sm:py-6 border-b dark:border-zinc-800">
 			<div class="flex items-center gap-3">
 				<AvatarLink user={data.post.owner} withName size={'w-8 h-8'} />
 				<div>
-					<FollowButton size={'sm'} user={data.post.owner} />
+					<FollowButton size={'xs sm:text-sm'} user={data.post.owner} />
 				</div>
 			</div>
-			<span class="text-zinc-500 text-sm"
-				>{$t('global.published_on')}
-				<LocaleDate date={data.post?.published_at} />
-			</span>
+			{#if currentDate === data.post.published_at.toDateString()}
+				<div class="text-zinc-500 dark:text-zinc-100 text-sm">
+					<span class="hidden xs:inline"> {$t('global.published_on')} </span>
+					<LocaleDate date={data.post?.published_at} />
+				</div>
+			{:else}
+				<div class="text-zinc-500 dark:text-zinc-100 text-sm">
+					<span class="hidden xs:inline">{$t('global.updated')}</span>
+
+					<LocaleDate date={data.post?.updated_at} />
+				</div>
+			{/if}
 		</div>
 
 		<h1 class="text-2xl py-4 sm:py-6 font-bold sm:text-4xl text-gray-00 dark:text-gray-100">
 			{data.post.title}
 		</h1>
 	</div>
-	<div class="space-y-6">
+	<div class="space-y-3">
 		{#each data.post?.body || [] as row}
 			<div class="highlight-links">
 				{#if row.type === 'text'}
@@ -45,7 +62,7 @@
 
 					<div class="highlight-links text-lg">{@html row.text}</div>
 				{:else if row.type === 'image'}
-					<div class="flex justify-center py-3">
+					<div class="flex justify-center">
 						<Picture
 							alt={data.post.title}
 							class="w-full"
@@ -57,15 +74,11 @@
 		{/each}
 	</div>
 
-	<div class="py-9 flex justify-end">
-		<RatingPreviewVote entity={data.post} votable_type={'post'} />
+	<div
+		class="w-full flex items-center justify-between gap-3 border-t py-4 dark:border-zinc-800 max-lg:border-b max-lg:mb-6 lg:py-6 sm:mt-3"
+	>
+		<RatingPreviewVote showVotedPreview entity={data.post} votable_type={'post'} />
 	</div>
 </div>
 
-<ContentFooter
-	commentable_id={data.post.id}
-	commentable_type="post"
-	commentsCount={data.post.comments}
-	comments={data.comments}
-	owners={[data.post.owner]}
-/>
+<ContentFooter commentable_type="post" {isMy} />

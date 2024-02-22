@@ -3,7 +3,7 @@
 	import { XMark } from '@steeze-ui/heroicons';
 	import TubeIcon from './TubeIcon.svelte';
 	import { localePath } from '$lib/translations';
-	import type { User } from '$lib/interfaces/User';
+	import type { UserBasic } from '$lib/interfaces/User';
 	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
 	import newUniqueId from 'locally-unique-id-generator';
 	import { getContext, tick } from 'svelte';
@@ -12,7 +12,7 @@
 
 	const t = getContext('t');
 	const locale = getContext('locale');
-	export let user: User;
+	export let user: UserBasic;
 	let open = false,
 		quantity = 1;
 
@@ -60,17 +60,19 @@
 	$: disabled = quantity === 0;
 </script>
 
+<!-- sm:max-lg:justify-center   xl:justify-around  sm:max-md:gap-6 max-lg:gap-9 -->
+
 <div
-	class="px-6 w-full xs:px-9 sm:w- md:px-6 sm:max-md:mx-auto py-6 xl:w-full border rounded-sm shadow bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-700"
+	class=" w-full xs:px-9 md:px-6 sm:max-md:mx-auto xs:py-6 xl:w-full xs:border rounded-sm xs:shadow xs:bg-zinc-50 max-xs:dark:p-3 dark:bg-zinc-800 dark:border-zinc-700"
 >
-	<div class=" space-y-6">
-		<div class="text-lg font-semibold text-center">{$t('global.donation.title')}</div>
-		<div
-			class=" flex items-center justify-between sm:max-md:justify-center md:justify-around lg:justify-between xl:justify-around sm:max-md:gap-6"
-		>
+	<div class=" flex flex-col gap-6 md:max-lg:items-center">
+		<div class="text-lg font-semibold text-center dark:text-white">
+			{$t('global.donation.title')}
+		</div>
+		<div class=" flex items-center justify-around sm:gap-6 sm:justify-center lg:max-xl:gap-1">
 			<TubeIcon />
 
-			<Icon src={XMark} class="w-6  text-gray-600  dark:text-white" />
+			<Icon src={XMark} class="w-6 h-6 text-gray-600  dark:text-white" />
 
 			<fieldset class=" font-semibold flex gap-4 xs:gap-6 md:gap-3 items-center text-[16px]">
 				{#each options as option (option)}
@@ -120,7 +122,7 @@
 			{disabled}
 			class="{disabled
 				? 'bg-zinc-400 dark:bg-zinc-500 dark:text-zinc-700 cursor-not-allowed '
-				: 'bg-zinc-600  cursor-pointer  hover:scale-[1.02] transform transition-transform'}  text-white w-full rounded-sm text-[16px] font-semibold py-2 shadow flex items-center justify-center gap-3 mb-3"
+				: 'bg-zinc-600  cursor-pointer  hover:scale-[1.02] transform transition-transform'}  md:max-lg:w-2/3 text-white w-full rounded-sm text-[16px] font-semibold py-2 shadow flex items-center justify-center gap-3 mb-3"
 		>
 			<span>{$t('global.donation.support')}</span>
 			<span>{quantity * 5} €</span>

@@ -4,21 +4,20 @@
 	import EllipsisButton from '$lib/components/atoms/buttons/EllipsisButton.svelte';
 	import BlockButton from '$lib/components/atoms/buttons/BlockButton.svelte';
 	import ReportButton from '$lib/components/atoms/buttons/ReportButton.svelte';
-	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import { user } from '$lib/stores/auth';
 	import ReportModal from '../atoms/ReportModal.svelte';
 	import type { Comment } from '$lib/interfaces/Comment';
-	import { page } from '$app/stores';
 	import { getContext } from 'svelte';
+	import { Icon } from '@steeze-ui/svelte-icon';
+	import { PencilSquare, Trash } from '@steeze-ui/heroicons';
 
 	const t = getContext('t');
 
 	export let comment: Comment,
 		onEdit: () => void,
 		deleteComment: (comment_id: string) => Promise<void>,
-		parentComments: [Comment] | [];
-
-	$: isMy = $page.data.work.owners.some((owner: { id: string }) => handleIsMy($user, owner.id));
+		parentComments: [Comment] | [],
+		isMy: boolean;
 
 	let reportModalOpen = false;
 	const comment_id = comment?.id?.toString();
@@ -31,7 +30,7 @@
 	}
 </script>
 
-<div class="flex items-center justify-between pr-3">
+<div class="flex items-center justify-between pr-3 mb-2">
 	<div class="flex items-center gap-2">
 		<div class="flex font-semibold">
 			<AvatarLink user={comment.owner} withName={true} size={'w-8 h-8 '} />
@@ -44,11 +43,13 @@
 		>
 			{#if $user && Number($user.id) === Number(comment.owner.id)}
 				{#if isEditable()}<button class="px-3" on:click={() => onEdit()}>
-						{$t('global.buttons.edit')}
+						<span class=" hidden sm:block">{$t('global.buttons.edit')}</span>
+						<Icon src={PencilSquare} class="w-5 h-5 sm:hidden" />
 					</button>{/if}
 				{#if !isMy}
 					<button class="px-3" on:click={() => deleteComment(comment_id)}>
-						{$t('global.buttons.delete')}
+						<span class=" hidden sm:block">{$t('global.buttons.delete')}</span>
+						<Icon src={Trash} class="w-5 h-5 sm:hidden" />
 					</button>{/if}
 			{/if}
 

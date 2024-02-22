@@ -11,7 +11,7 @@
 	const locale = getContext('locale');
 
 	export let user: User,
-		avatar_size = 'h-16 w-16',
+		avatar_size = 'h-12 w-12 xs:h-16 xs:w-16 lg:max-xl:h-12 lg:max-xl:w-12',
 		crown_size = 'w-4 h-4',
 		followButton: boolean | undefined = true;
 
@@ -30,18 +30,18 @@
 	</div>
 
 	<div class="flex flex-col gap-1 flex-1">
-		<div class="flex items-center gap-3 max-md:justify-between">
+		<div class="flex items-center gap-3">
 			<a
 				{href}
-				class="flex hover:text-zinc-800 dark:hover:text-zinc-300 cursor-pointer text-base items-center gap-2 font-medium"
+				class="flex dark:text-white cursor-pointer text-base items-center gap-2 font-medium"
 			>
-				<div class="flex gap-2">
-					{user.name}
+				<div class="flex items-center flex-wrap gap-2 sm:text-lg lg:max-xl:text-base">
+					<span>{user.name}</span>
 					<VerificationBadge user_verified={user.verified_at} />
 				</div>
 			</a>
 			{#if followButton}
-				<span><FollowButton {user} size={'sm'} /></span>
+				<span class=""><FollowButton {user} size={'xs xs:text-sm '} /></span>
 			{/if}
 		</div>
 		<UserDetails {user} />

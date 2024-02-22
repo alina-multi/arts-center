@@ -15,7 +15,8 @@
 	export let comment: Comment,
 		commentable_id: string,
 		parentComments: [Comment] | [],
-		commentsCount: number;
+		commentsCount: number,
+		isMy: boolean;
 	let url = '/api/comment';
 
 	const comment_id = comment?.id?.toString();
@@ -133,7 +134,7 @@
 	id={comment_id}
 >
 	<div class="pt-6 space-y-1">
-		<CommentHeader {comment} {onEdit} {deleteComment} {parentComments} />
+		<CommentHeader {isMy} {comment} {onEdit} {deleteComment} {parentComments} />
 		<CommentBody {comment} bind:value {isEdited} {isEditing} {editing_comment} />
 
 		{#if $commentsState.replyCommentId === comment.id}

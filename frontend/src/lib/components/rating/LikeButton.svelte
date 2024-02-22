@@ -65,7 +65,7 @@
 		><Icon
 			src={HandThumbUp}
 			theme="outline"
-			class=" {size} stroke-zinc-700 hover:scale-110 dark:stroke-zinc-100   "
+			class=" {size} stroke-1 hover:scale-110 dark:stroke-white   "
 		/></button
 	>
 {/if}
