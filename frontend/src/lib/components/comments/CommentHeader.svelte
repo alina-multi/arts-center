@@ -8,6 +8,8 @@
 	import ReportModal from '../atoms/ReportModal.svelte';
 	import type { Comment } from '$lib/interfaces/Comment';
 	import { getContext } from 'svelte';
+	import { Icon } from '@steeze-ui/svelte-icon';
+	import { PencilSquare, Trash } from '@steeze-ui/heroicons';
 
 	const t = getContext('t');
 
@@ -28,7 +30,7 @@
 	}
 </script>
 
-<div class="flex items-center justify-between pr-3">
+<div class="flex items-center justify-between pr-3 mb-2">
 	<div class="flex items-center gap-2">
 		<div class="flex font-semibold">
 			<AvatarLink user={comment.owner} withName={true} size={'w-8 h-8 '} />
@@ -41,11 +43,13 @@
 		>
 			{#if $user && Number($user.id) === Number(comment.owner.id)}
 				{#if isEditable()}<button class="px-3" on:click={() => onEdit()}>
-						{$t('global.buttons.edit')}
+						<span class=" hidden sm:block">{$t('global.buttons.edit')}</span>
+						<Icon src={PencilSquare} class="w-5 h-5 sm:hidden" />
 					</button>{/if}
 				{#if !isMy}
 					<button class="px-3" on:click={() => deleteComment(comment_id)}>
-						{$t('global.buttons.delete')}
+						<span class=" hidden sm:block">{$t('global.buttons.delete')}</span>
+						<Icon src={Trash} class="w-5 h-5 sm:hidden" />
 					</button>{/if}
 			{/if}
 

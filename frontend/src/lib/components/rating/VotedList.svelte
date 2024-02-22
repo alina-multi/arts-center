@@ -26,7 +26,7 @@
 				<AvatarLink {user} size={'w-8 h-8'} />
 			{/each}
 			{#if isLiked}
-				<AvatarLink user={currentUser} size={'w-9 h-9'} />
+				<AvatarLink user={currentUser} size={'w-8 h-8'} />
 			{/if}
 		</div>
 	{/if}

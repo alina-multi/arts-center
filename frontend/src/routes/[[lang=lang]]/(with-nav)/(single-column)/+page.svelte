@@ -48,7 +48,7 @@
 
 			<div class="space-y-6">
 				{#each data.users as user (user.id)}
-					<div class="flex items-center justify-between gap-3">
+					<div class="flex items-center xl:justify-between gap-6">
 						<AvatarLink {user} withName size={'w-8 h-8'} />
 
 						<div><FollowButton size={'xs'} {user} /></div>
