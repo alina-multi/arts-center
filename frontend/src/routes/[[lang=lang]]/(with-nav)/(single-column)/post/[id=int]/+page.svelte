@@ -55,12 +55,13 @@
 		</h1>
 	</div>
 	<div class="space-y-3">
-		{#each data.post?.body || [] as row}
-			<div class="highlight-links">
+		{#each data.post?.body || [] as row, index}
+			{@const tabindex = index + 1}
+			<div>
 				{#if row.type === 'text'}
 					<!-- eslint-disable svelte/no-at-html-tags -->
 
-					<div class="highlight-links text-lg">{@html row.text}</div>
+					<a id={`p${tabindex}`} class="highlight-links text-lg">{@html row.text}</a>
 				{:else if row.type === 'image'}
 					<div class="flex justify-center">
 						<Picture
