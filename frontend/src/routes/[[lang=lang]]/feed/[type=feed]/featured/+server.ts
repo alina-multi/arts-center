@@ -21,9 +21,8 @@ export async function GET({ params, url }) {
 	const posts = await prisma.posts.findMany({
 		take: 100,
 		where: {
-			NOT: {
-				published_at: null
-			},
+			NOT: { published_at: null },
+			featured: 1,
 			language: params.lang
 		},
 		select: {
