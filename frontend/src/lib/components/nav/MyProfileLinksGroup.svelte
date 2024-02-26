@@ -96,9 +96,7 @@
 {#each links as { path, src, text, exact, show } (path)}
 	{#if show === undefined || show}
 		<SideNavLink href={localePath($locale, path)} {exact}>
-			<Icon {src} theme="solid" class="h-6 w-6 " aria-hidden="true" />{$t(
-				'global.my_links.' + text
-			)}
+			<Icon {src} class="h-6 w-6 stroke-1" aria-hidden="true" />{$t('global.my_links.' + text)}
 		</SideNavLink>
 	{/if}
 {/each}

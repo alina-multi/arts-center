@@ -10,9 +10,9 @@
 		preload="tap"
 		{href}
 		{exact}
-		class=" flex items-center gap-x-3 py-2 px-6  font-semibold "
+		class=" flex items-center gap-x-3 py-2 px-6  font-medium "
 		activeClass="bg-zinc-100 text-black dark:bg-zinc-700 dark:text-white rounded-sm"
-		inactiveClass="text-black/80  hover:bg-zinc-100 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-700 rounded-sm"
+		inactiveClass="text-black/80  hover:bg-zinc-100 dark:text-white  dark:hover:bg-zinc-700 rounded-sm"
 	>
 		<slot />
 	</BaseLink>
