@@ -67,18 +67,17 @@
 {/if}
 
 <div class="space-y-3 p-6 border-t dark:border-zinc-700">
-	<p class=" text-black dark:text-white font-medium text-base">Want to get in touch?</p>
-	<p>We’d love to hear from you!</p>
-	<p class=" text-black dark:text-white font-medium text-base">
+	<p class=" text-black dark:text-white font-medium text-base">{$t(`global.contact.h1`)}</p>
+	<p>{$t(`global.contact.p1`)}</p>
+	<p>{$t(`global.contact.p2`)}</p>
+	<p class=" text-black dark:text-white font-medium">
 		<a href="mailto:info@arts.center">info@arts.center</a>
 	</p>
 </div>
 <div>
-	<ul
-		class="flex xs:gap-9 xl:grid grid-cols-5 xl:gap-3 border-t dark:border-zinc-700 px-6 py-3 max-xs:justify-between"
-	>
+	<ul class="flex xs:gap-9 border-t dark:border-zinc-700 px-6 py-3 max-xs:justify-between">
 		{#each social_links as social}
-			<li>
+			<li class={$locale !== 'uk' && social.name === 'Instagram' ? 'hidden' : 'block'}>
 				<a
 					target="_blank"
 					href={social.href}
