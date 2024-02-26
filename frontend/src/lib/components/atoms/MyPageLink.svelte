@@ -11,7 +11,7 @@
 </script>
 
 <SideNavLink href={localePath($locale, href)}
-	><Icon src={Home} theme="solid" class="h-5 w-5 inline" aria-hidden="true" />{$t(
+	><Icon src={Home} class="h-6 w-6 stroke-1" aria-hidden="true" />{$t(
 		'global.my_links.my_profile'
 	)}</SideNavLink
 >
