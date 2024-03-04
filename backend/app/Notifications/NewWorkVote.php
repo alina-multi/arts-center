@@ -9,6 +9,7 @@ use App\Traits\UsesNotificationPreferences;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use App\Models\User;
 
 class NewWorkVote extends Notification
 {
