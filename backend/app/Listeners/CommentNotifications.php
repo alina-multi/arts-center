@@ -5,7 +5,7 @@ namespace App\Listeners;
 use App\Events\CommentCreated;
 use App\Models\Work;
 use App\Notifications\NewWorkComment;
-use App\Notifications\NewReply;
+use App\Notifications\NewWorkReply;
 
 class CommentNotifications
 {
@@ -26,7 +26,7 @@ class CommentNotifications
             });
             if ($comment->parent) {
                 if ($comment?->parent?->user->id !== $ownerId) {
-                    $comment?->parent?->user?->notify(new NewReply($comment));
+                    $comment?->parent?->user?->notify(new NewWorkReply($comment));
                 }
             }
         }

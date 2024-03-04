@@ -19,5 +19,9 @@ return [
     "profile" => [
         "approved" => "Your profile was approved by moderator, it is now visible on site",
         "verified" => "Your documents were verified by moderator, you can now receive money from site"
+    ],
+    "vote" => [
+        "received" => "You have received new vote to your work!",
+        "view" => "View vote on site"
     ]
 ];

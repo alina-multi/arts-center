@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('notification_preferences', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedSmallInteger('type');
             $table->unsignedSmallInteger('channel');
-            $table->primary(['user_id', 'type', 'channel']);
+            $table->unique(['user_id', 'type', 'channel']);
         });
     }
 

@@ -2,15 +2,18 @@
 
 namespace App\Notifications;
 
+use App\Enums\NotificationTypes;
 use App\Helpers\UrlHelper;
 use App\Models\Comment;
+use App\Models\User;
+use App\Traits\UsesNotificationPreferences;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class NewWorkComment extends Notification
 {
-    use Queueable;
+    use Queueable, UsesNotificationPreferences;
 
     /**
      * Create a new notification instance.
@@ -25,13 +28,13 @@ class NewWorkComment extends Notification
      *
      * @return array<int, string>
      */
-    public function via(object $notifiable): array
+    public function via(User $user): array
     {
-        return [
+        return $this->filterChannelsByUserPreferences($user, NotificationTypes::MyContentComment, [
             'broadcast',
             'database',
             'mail'
-        ];
+        ]);
     }
 
     /**
@@ -57,6 +60,6 @@ class NewWorkComment extends Notification
             ->subject(__('notifications.comment.received'))
             ->line($this->comment->text)
             ->line(__('notifications.comment.from', ['name' => $this->comment->user->name]))
-            ->action(__('notifications.comment.view'), UrlHelper::localePath("/work/{$this->comment->commentable->id}#{$this->comment->id}"));
+            ->action(__('notifications.comment.view'), UrlHelper::localePath("/{$this->comment->commentable_type}/{$this->comment->commentable_id}#{$this->comment->id}"));
     }
 }

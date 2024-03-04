@@ -2,7 +2,8 @@
 
 namespace App\Enums;
 
-enum NotificationChannel: int
+enum NotificationChannels: int
 {
     case Mail = 1;
+    case Web = 2;
 }
