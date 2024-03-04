@@ -71,3 +71,15 @@ test('Notification preferences works', function () {
     $user->notificationPreferences()->create(['type' => NotificationTypes::MyContentComment, 'channel'=> NotificationChannels::Web]);
     checkNotification($notification, $user, []);
 });
+
+test('Get notification preferences', function () {
+    [$user, $user2] = User::factory()->count(2)->create();
+    $user->notificationPreferences()->create(['type' => NotificationTypes::MyContentComment, 'channel'=> NotificationChannels::Mail]);
+    $user2->notificationPreferences()->create(['type' => NotificationTypes::MyContentVote, 'channel'=> NotificationChannels::Web]);
+    actingAs($user)->getJson('/api2/notification-preferences')->assertExactJson([
+        'preferences'=> [
+            ['type' => NotificationTypes::MyContentComment->value, 'channel'=> NotificationChannels::Mail->value]
+        ]
+    ]);
+});
+

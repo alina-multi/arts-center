@@ -12,6 +12,7 @@ class NotificationPreference extends Model
     use HasFactory;
 
     protected $fillable = ['type', 'channel', 'user_id'];
+    protected $visible = ['type', 'channel'];
     public $timestamps = false;
     protected $casts = [
         'type' => NotificationTypes::class,
