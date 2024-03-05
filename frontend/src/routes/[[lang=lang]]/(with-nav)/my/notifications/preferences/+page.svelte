@@ -1,28 +1,39 @@
 <script lang="ts">
 	import FilteredTable from '$lib/components/table/FilteredTable.svelte';
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
+	import Switch from '$lib/components/forms/Switch.svelte';
 
-	export let data;
+	let data = {
+		preferences: [
+			{ type: 1, channel: 1 },
+			{ type: 1, channel: 2 },
+			{ type: 20, channel: 1 }
+		]
+	};
 
 	const columns = [
 		{
-			title: 'Name',
+			title: 'Preferences',
 			field: 'field'
 		},
 		{
 			title: 'Email',
-			valueFn: (row) => {
-				return `<input type="checkbox" class="form-checkbox" name="${row.type}_1" ${
-					row.channels.includes(1) ? 'checked' : ''
-				}>`;
+			component: Switch,
+			additionalProps: (row) => {
+				return {
+					name: `${row.type}_1`,
+					checked: row.channels.includes(1)
+				};
 			}
 		},
 		{
 			title: 'Web',
-			valueFn: (row) => {
-				return `<input type="checkbox" class="form-checkbox" name="${row.type}_2" ${
-					row.channels.includes(2) ? 'checked' : ''
-				}>`;
+			component: Switch,
+			additionalProps: (row) => {
+				return {
+					name: `${row.type}_2`,
+					checked: row.channels.includes(2)
+				};
 			}
 		}
 	];

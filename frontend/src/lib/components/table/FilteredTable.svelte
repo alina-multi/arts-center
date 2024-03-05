@@ -6,6 +6,7 @@
 		field?: string; // defaults to title if not set
 		sortable?: boolean;
 		filterable?: boolean;
+		additionalProps?: any;
 
 		valueFn?();
 
@@ -23,6 +24,18 @@
 			return row[column.field];
 		}
 	}
+
+function getProps (row, column) {
+if(column.additionalProps(row, column)) {
+	return{ 
+		...row,
+		...column.additionalProps(row, column)}
+} else {
+	return {...row}
+}
+ 
+}
+
 </script>
 
 <table class="min-w-full divide-y divide-zinc-300 dark:divide-zinc-700">
@@ -44,7 +57,7 @@
 				{#each columns as column}
 					<td class="px-3 py-4 text-sm text-zinc-500 dark:text-zinc-400">
 						{#if column?.component}
-							<svelte:component this={column.component} {...row} />
+							<svelte:component this={column.component}  {...getProps(row, column)} />
 						{:else}
 							<!-- eslint-disable-next-line -->
 							{@html getCellValue(row, column)}
