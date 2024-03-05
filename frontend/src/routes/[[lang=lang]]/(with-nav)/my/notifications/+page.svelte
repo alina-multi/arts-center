@@ -1,15 +1,17 @@
 <script lang="ts">
 	import HeaderLayout from '$lib/components/my/HeaderLayout.svelte';
 	import Notification from '$lib/components/notification/Notification.svelte';
-	import { Check } from '@steeze-ui/heroicons';
+	import { Check, Cog6Tooth } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { fetchData } from '$lib/helpers/fetchData.js';
 	import { user } from '$lib/stores/auth.js';
 	import { invalidateAll } from '$app/navigation';
 	import type { UserMe } from '$lib/interfaces/User.js';
 	import { getContext } from 'svelte';
+	import { localePath } from '$lib/translations';
 
 	const t = getContext('t');
+	const locale = getContext('locale');
 
 	export let data;
 	async function markAllAsRead() {
@@ -42,16 +44,21 @@
 			<span class="hidden xs:block"> {$t('my.notifications.unread')}</span>
 		</div>
 
-		<button
-			on:click={markAllAsRead}
-			slot="buttons"
-			class="flex items-center gap-3 group hover:bg-gray-100 dark:hover:bg-zinc-700 pl-3 transition-all"
-		>
-			<span class="text-sm sm:text-base">{$t(`global.notifications.mark_all_as_read`)} </span>
-			<span class="border border-black dark:border-white rounded-sm"
-				><Icon src={Check} class="w-5 h-5 " /></span
+		<div slot="buttons" class="flex items-center gap-6 -mr-6">
+			<button
+				on:click={markAllAsRead}
+				class="flex items-center gap-3 group hover:underline pl-3 transition-all"
 			>
-		</button>
+				<span class="text-sm sm:text-base">{$t(`global.notifications.mark_all_as_read`)} </span>
+				<span class="border border-black dark:border-white rounded-sm active:border-green-500"
+					><Icon src={Check} class="w-5 h-5  active:text-green-500" /></span
+				>
+			</button>
+
+			<a href={localePath($locale, `/my/notifications/preferences`)}>
+				<Icon src={Cog6Tooth} class="w-7 h-7 stroke-1" />
+			</a>
+		</div>
 	</HeaderLayout>
 
 	{#if data.notifications?.length > 0}
