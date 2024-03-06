@@ -10,7 +10,7 @@
 	export let published_at: number;
 </script>
 
-<div class="flex items-center max-xs:gap-6 flex-col xs:flex-row gap-3">
+<div class="flex items-center gap-6 max-xs:gap-6 flex-col xs:flex-row justify-end">
 	<a href={localePath($locale, `/my/post/edit/${id}`)}>
 		<Icon src={Pencil} theme="solid" class="h-5 w-5 inline" aria-hidden="true" />
 	</a>

@@ -6,5 +6,5 @@
 </script>
 
 {#if preview?.src}
-	<Picture photo={preview} class="xs:aspect-[4/3] w-32 object-cover" />
+	<Picture photo={preview} class="aspect-[4/3] w-32 object-cover" />
 {/if}

@@ -10,7 +10,7 @@
 	export let status: number;
 </script>
 
-<div class="flex items-center max-xs:gap-6 flex-col xs:flex-row gap-3">
+<div class="flex items-center max-xs:gap-6 flex-col xs:flex-row gap-6 justify-end">
 	<a href={localePath($locale, `/my/work/${id}/form`)}>
 		<Icon src={Pencil} theme="solid" class="h-5 w-5 inline" aria-hidden="true" />
 	</a>
