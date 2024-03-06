@@ -3,30 +3,34 @@ import { api } from '$lib/server/api';
 import { createFullPreferencesData } from '$lib/helpers/createNotifPreferData';
 
 export const load = (async (event) => {
-	const response = await api({ method: 'GET', path: '/api2/notification-preferences', event });
-	const preferences = await response.json();
+	const data = await api({ method: 'GET', path: '/api2/notification-preferences', event });
+	const preferences = await data.json();
 
 	return preferences;
 }) satisfies PageServerLoad;
 
 export const actions: Actions = {
-	default: async ({ request }) => {
-		const formData = await request.formData();
-		let allPreferences = createFullPreferencesData();
+	default: async (event) => {
+		const formData = await event.request.formData();
+		let preferences = createFullPreferencesData();
 
 		for (const [channel, type] of formData) {
-			allPreferences = allPreferences.filter(
+			preferences = preferences.filter(
 				(pref) => !(pref.type === Number(type) && pref.channel === Number(channel))
 			);
 		}
 
-		// At this point, allPreferences contains only those preferences that were not 'on' (thus, they are unchecked).
-		console.log('Remaining unchecked preferences:', allPreferences);
+		const response = await api({
+			method: 'PUT',
+			path: '/api2/notification-preferences',
+			data: { preferences },
+			event
+		});
 
-		return {
-			allPreferences,
-			success: true,
-			message: 'Preferences updated successfully.'
-		};
+		if (response.ok) {
+			return {
+				success: true
+			};
+		}
 	}
 };
