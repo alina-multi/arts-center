@@ -2,70 +2,65 @@
 	import FilteredTable from '$lib/components/table/FilteredTable.svelte';
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
 	import Switch from '$lib/components/forms/Switch.svelte';
+	import HeaderLayout from '$lib/components/my/HeaderLayout.svelte';
+	import { Icon } from '@steeze-ui/svelte-icon';
+	import { Check } from '@steeze-ui/heroicons';
+	import { getContext } from 'svelte';
+	import { createTablePreferencesData } from '$lib/helpers/createNotifPreferData';
+	import { enhance } from '$app/forms';
+	import toast from 'svelte-french-toast';
 
-	let data = {
-		preferences: [
-			{ type: 1, channel: 1 },
-			{ type: 1, channel: 2 },
-			{ type: 20, channel: 1 }
-		]
-	};
+	export let data, form;
+
+	const t = getContext('t');
+	if (form?.success) toast.success(form.message);
 
 	const columns = [
-		{
-			title: 'Preferences',
-			field: 'field'
-		},
+		{ title: 'Preferences', field: 'field' },
 		{
 			title: 'Email',
 			component: Switch,
-			additionalProps: (row) => {
-				return {
-					name: `${row.type}_1`,
-					checked: row.channels.includes(1)
-				};
-			}
+			additionalProps: (row) => ({ name: 1, checked: !row.channels.includes(1) })
 		},
 		{
 			title: 'Web',
 			component: Switch,
-			additionalProps: (row) => {
-				return {
-					name: `${row.type}_2`,
-					checked: row.channels.includes(2)
-				};
-			}
+			additionalProps: (row) => ({ name: 2, checked: !row.channels.includes(2) })
 		}
 	];
 
-	let preferencesList = [
-		{ type: 1, field: 'Site News' },
-		{ type: 20, field: 'Featured Posts' },
-		{ type: 40, field: 'Feedback comments notifications' },
-		{ type: 41, field: 'Votes notifications' },
-		{ type: 60, field: 'Subscribed posts' },
-		{ type: 61, field: 'Subscribed artworks' }
-	];
+	let disableTrigger = false;
+	let preferencesList = createTablePreferencesData();
 
-	let tableData = preferencesList.map((pref) => {
-		let channels: number[] = [];
-		data.preferences.map((item) => {
-			if (item.type === pref.type) {
-				channels.push(item.channel);
-			}
-		});
-		return {
-			...pref,
-			channels: channels
-		};
-	});
-	console.log(tableData);
+	$: tableData = preferencesList.map((pref) => ({
+		...pref,
+		field: $t(`my.notifications.${pref.field}`),
+		channels: disableTrigger
+			? [1, 2]
+			: data.preferences.filter((item) => item.type === pref.value).map((item) => item.channel)
+	}));
 </script>
 
-<form method="POST" class="space-y-6">
-	<FilteredTable {columns} data={tableData} keyColumn="type" />
+<form method="POST" use:enhance>
+	<fieldset>
+		<legend class="w-full">
+			<HeaderLayout title={$t('my.notifications.notifications')}>
+				<div slot="buttons">
+					<button
+						on:click|preventDefault={() => (disableTrigger = true)}
+						class="flex items-center gap-3 group hover:underline pl-3 transition-all"
+					>
+						<span class="text-sm">{$t(`global.notifications.mark_all_as_read`)}</span>
+						<Icon src={Check} class="w-4 h-4 active:border-green-500" />
+					</button>
+				</div>
+			</HeaderLayout>
+		</legend>
 
-	<div class="text-end">
-		<ActionButton class="bg-blue-500 ">Update Preferences</ActionButton>
-	</div>
+		<FilteredTable {columns} data={tableData} keyColumn="value" />
+
+		<div class="text-end mt-6">
+			<ActionButton class="bg-zinc-600">Update Preferences</ActionButton>
+		</div>
+	</fieldset>
 </form>

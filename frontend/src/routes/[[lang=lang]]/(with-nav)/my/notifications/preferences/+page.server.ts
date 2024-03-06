@@ -1,5 +1,6 @@
 import type { Actions, PageServerLoad } from './$types';
 import { api } from '$lib/server/api';
+import { createFullPreferencesData } from '$lib/helpers/createNotifPreferData';
 
 export const load = (async (event) => {
 	const response = await api({ method: 'GET', path: '/api2/notification-preferences', event });
@@ -11,20 +12,19 @@ export const load = (async (event) => {
 export const actions: Actions = {
 	default: async ({ request }) => {
 		const formData = await request.formData();
+		let allPreferences = createFullPreferencesData();
 
-		const preferences = [];
-
-		for (const entry of formData) {
-			const [type, channel] = entry[0].split('_');
-			if (entry[1] === 'on') {
-				preferences.push({ type: parseInt(type, 10), channel: parseInt(channel, 10) });
-			}
+		for (const [channel, type] of formData) {
+			allPreferences = allPreferences.filter(
+				(pref) => !(pref.type === Number(type) && pref.channel === Number(channel))
+			);
 		}
 
-		console.log('Saved preferences:', preferences);
+		// At this point, allPreferences contains only those preferences that were not 'on' (thus, they are unchecked).
+		console.log('Remaining unchecked preferences:', allPreferences);
 
 		return {
-			preferences,
+			allPreferences,
 			success: true,
 			message: 'Preferences updated successfully.'
 		};
