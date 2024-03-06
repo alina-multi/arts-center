@@ -31,7 +31,7 @@
 
 <Button on:click={() => (open = !open)} type={'button'}>
 	<span class="sr-only">Open main menu</span>
-	<Icon src={Bars4} class="h-9 w-9  dark:text-white" aria-hidden="true" />
+	<Icon src={Bars4} class="h-9 w-9  stroke-1 dark:text-white" aria-hidden="true" />
 </Button>
 
 <Transition show={open} class="hidden">
