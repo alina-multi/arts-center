@@ -20,36 +20,39 @@ export function urlsetResponse(urlset: string) {
 		</urlset>`);
 }
 
-export function sitemapAllLanguages(entity, site, key, slug = null) {
+export function sitemapAllLanguages(entity, site, key, slug = null, priority = '0.5') {
 	let urlset = '';
 	for (const item of entity) {
 		for (const lang of availableLocales) {
 			urlset += url(
 				`${site}/${lang !== 'en' ? `${lang}/` : ''}${slug ? `${slug}/` : ''}${item[key]}`,
-				item.updated_at
+				item.updated_at,
+				priority
 			);
 		}
 	}
 	return urlset;
 }
 
-export function sitemapEntityLanguage(entity, site, key, slug = null) {
+export function sitemapEntityLanguage(entity, site, key, slug = null, priority = '0.5') {
 	let urlset = '';
 	for (const item of entity) {
 		urlset += url(
 			`${site}/${item.language !== 'en' ? `${item.language}/` : ''}${slug ? `${slug}/` : ''}${
 				item[key]
 			}`,
-			item.updated_at
+			item.updated_at,
+			priority
 		);
 	}
 	return urlset;
 }
 
-export function url(loc: string, lastmod: Date) {
+export function url(loc: string, lastmod: Date, priority = '0.5') {
 	return `
 	<url>
 		<loc>${loc}</loc>
 		<lastmod>${lastmod.toISOString()}</lastmod>
+		<priority>${priority}</priority>
 	</url>`;
 }

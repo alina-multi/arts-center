@@ -19,6 +19,6 @@ export async function GET({ params, url }) {
 		},
 		orderBy: { id: 'asc' }
 	});
-	const body = sitemapEntityLanguage(posts, base, 'id', 'post');
+	const body = sitemapEntityLanguage(posts, base, 'id', 'post', '0.9');
 	return urlsetResponse(body);
 }
