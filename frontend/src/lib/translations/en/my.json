@@ -89,6 +89,18 @@
 	"notifications": {
 		"no_notifications": "All your notifications will be here",
 		"notifications": "Notifications",
+		"preferences": {
+			"disable": "Disable all notifications",
+			"FeaturedPosts": "Featured Posts",
+			"MyContentComment": "Сomments on your publications, works, and replies to your comments",
+			"MyContentVote": "Likes of your publications and works",
+			"SiteNews": "Site News",
+			"SubscriptionPost": "New publications from authors you are subscribed to",
+			"SubscriptionWork": "New works from artists you are subscribed to",
+			"success_updated": "Preferences updated successfully",
+			"title": "Notification preferences",
+			"update_btn": "Update preferences"
+		},
 		"unread": "unread"
 	},
 	"people": "people",
@@ -123,18 +135,5 @@
 			"waiting": "Waiting"
 		},
 		"titles": "Work titles"
-	},
-
-	"notifications_pref": {
-		"title": "Notification preferences",
-		"disable": "Disable all notifications",
-		"siteNews": "Site News",
-		"featuredPosts": "Featured Posts",
-		"myContentComment": "Сomments on your publications, works, and replies to your comments",
-		"myContentVote": "Likes of your publications and works",
-		"subscriptionPost": "New publications from authors you are subscribed to",
-		"subscriptionWork": "New works from artists you are subscribed to",
-		"success_updated": "Preferences updated successfully",
-		"update_btn": "Update preferences"
 	}
 }
