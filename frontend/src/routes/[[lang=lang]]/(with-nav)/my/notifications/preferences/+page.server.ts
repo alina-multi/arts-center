@@ -1,6 +1,5 @@
 import type { Actions, PageServerLoad } from './$types';
 import { api } from '$lib/server/api';
-import { createFullPreferencesData } from '$lib/helpers/createNotifPreferData';
 
 export const load = (async (event) => {
 	const data = await api({ method: 'GET', path: '/api2/notification-preferences', event });
@@ -12,13 +11,11 @@ export const load = (async (event) => {
 export const actions: Actions = {
 	default: async (event) => {
 		const formData = await event.request.formData();
-		let preferences = createFullPreferencesData();
 
-		for (const [channel, type] of formData) {
-			preferences = preferences.filter(
-				(pref) => !(pref.type === Number(type) && pref.channel === Number(channel))
-			);
-		}
+		const preferences = Array.from(formData.keys()).map((key) => {
+			const [type, channel] = key.split('_');
+			return { type, channel };
+		});
 
 		const response = await api({
 			method: 'PUT',

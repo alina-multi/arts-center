@@ -6,7 +6,7 @@
 		field?: string; // defaults to title if not set
 		sortable?: boolean;
 		filterable?: boolean;
-		additionalProps();
+		propsFn?();
 		valueFn?();
 
 		component?: SvelteComponent;
@@ -25,14 +25,10 @@
 	}
 
 	function getProps(row, column) {
-		if (column.additionalProps) {
-			return {
-				...row,
-				...column.additionalProps(row, column)
-			};
-		} else {
-			return { ...row };
-		}
+		return {
+			...row,
+			...(column.propsFn ? column?.propsFn(row, column) : {})
+		};
 	}
 </script>
 
