@@ -10,7 +10,7 @@
 
 	export let data, form;
 	const t = getContext('t');
-	$: if (form?.success) toast.success($t(`my.notifications_pref.success_updated`));
+	$: if (form?.success) toast.success($t(`my.notifications.preferences.success_updated`));
 
 	const columns = [
 		{ title: '', field: 'title' },
@@ -27,7 +27,7 @@
 	];
 
 	$: tableData = Array.from(NotificationTypes, ([type, title]) => ({
-		title,
+		title: $t(`my.notifications.preferences.${title}`),
 		type,
 		// In channels, we would have an array of actually unchecked notification channels ids
 		channels:
@@ -38,7 +38,7 @@
 <form method="POST" use:enhance>
 	<fieldset>
 		<legend class="w-full">
-			<HeaderLayout title={$t('my.notifications_pref.title')}>
+			<HeaderLayout title={$t('my.notifications.preferences.title')}>
 				<!--
 todo: make convenience buttons to to toggle all and/or group
 <button
@@ -60,7 +60,7 @@ todo: make convenience buttons to to toggle all and/or group
 		<FilteredTable {columns} data={tableData} keyColumn="type" />
 
 		<div class="text-end mt-6">
-			<ActionButton class="bg-zinc-600">{$t(`my.notifications_pref.update_btn`)}</ActionButton>
+			<ActionButton class="bg-zinc-600">{$t(`my.notifications.preferences.update_btn`)}</ActionButton>
 		</div>
 	</fieldset>
 </form>
