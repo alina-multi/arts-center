@@ -19,7 +19,7 @@ export async function GET({ params, url }) {
 				},
 				orderBy: { id: 'asc' }
 			});
-			return sitemapAllLanguages(users, base, 'username');
+			return sitemapAllLanguages(users, base, 'username', null, '0.7');
 		},
 		60
 	);
