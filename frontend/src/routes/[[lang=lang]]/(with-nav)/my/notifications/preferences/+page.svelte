@@ -60,7 +60,9 @@ todo: make convenience buttons to to toggle all and/or group
 		<FilteredTable {columns} data={tableData} keyColumn="type" />
 
 		<div class="text-end mt-6">
-			<ActionButton class="bg-zinc-600">{$t(`my.notifications.preferences.update_btn`)}</ActionButton>
+			<ActionButton class="bg-zinc-600"
+				>{$t(`my.notifications.preferences.update_btn`)}</ActionButton
+			>
 		</div>
 	</fieldset>
 </form>
