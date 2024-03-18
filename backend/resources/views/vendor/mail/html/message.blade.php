@@ -22,6 +22,8 @@
 @slot('footer')
 @component('mail::footer')
 © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
+<br>
+<a href="{{route('notifications.preferences')}}">@lang('Notification settings')</a>
 @endcomponent
 @endslot
 @endcomponent

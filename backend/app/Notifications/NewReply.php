@@ -25,6 +25,6 @@ class NewReply extends NewWorkComment
             ->subject(__('notifications.comment.reply'))
             ->line($this->comment->text)
             ->line(__('notifications.comment.from', ['name' => $this->comment->user->name]))
-            ->action(__('notifications.comment.view'), UrlHelper::localePath("/work/{$this->comment->commentable->id}#{$this->comment->id}"));
+            ->action(__('notifications.comment.view'), UrlHelper::localePath("/{$this->comment->commentable_type}/{$this->comment->commentable_id}#{$this->comment->id}"));
     }
 }

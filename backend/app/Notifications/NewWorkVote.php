@@ -2,13 +2,18 @@
 
 namespace App\Notifications;
 
+use App\Enums\NotificationTypes;
+use App\Helpers\UrlHelper;
 use App\Models\Vote;
+use App\Traits\UsesNotificationPreferences;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use App\Models\User;
 
 class NewWorkVote extends Notification
 {
-    use Queueable;
+    use Queueable, UsesNotificationPreferences;
 
     /**
      * Create a new notification instance.
@@ -23,12 +28,13 @@ class NewWorkVote extends Notification
      *
      * @return array<int, string>
      */
-    public function via(object $notifiable): array
+    public function via(User $user): array
     {
-        return [
+        return $this->filterChannelsByUserPreferences($user, NotificationTypes::MyContentVote, [
             'broadcast',
-            'database'
-        ];
+            'database',
+            'mail'
+        ]);
     }
 
     /**
@@ -44,5 +50,14 @@ class NewWorkVote extends Notification
             'work_id' => $this->vote->votable->id,
             'work_titles' => $this->vote->votable->titles
         ];
+    }
+
+
+    public function toMail(): MailMessage
+    {
+        return (new MailMessage)
+            ->subject(__('notifications.vote.received'))
+            ->line(__('notifications.comment.from', ['name' => $this->vote->user->name]))
+            ->action(__('notifications.vote.view'), UrlHelper::localePath("/work/{$this->vote->votable_id}"));
     }
 }

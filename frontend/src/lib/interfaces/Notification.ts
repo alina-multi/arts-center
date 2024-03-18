@@ -6,6 +6,20 @@ type BaseNotification = {
 	id: string;
 };
 
+export const NotificationTypes = new Map([
+	[1, 'SiteNews'],
+	[20, 'FeaturedPosts'],
+	[40, 'MyContentComment'],
+	[41, 'MyContentVote'],
+	[60, 'SubscriptionPost'],
+	[61, 'SubscriptionWork']
+]);
+
+export const NotificationChannels = new Map([
+	[1, 'Mail'],
+	[2, 'Web']
+]);
+
 export type NewWorkCommentNotification = BaseNotification & {
 	type: 'App\\Notifications\\NewWorkComment';
 	text: string;

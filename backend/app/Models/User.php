@@ -14,6 +14,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Cache;
 use App\Notifications\MailResetPasswordNotification;
 use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\Relations\{HasMany, MorphToMany, HasOne};
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -62,37 +63,37 @@ class User extends Authenticatable implements MustVerifyEmail
         return $query->with(['photo', 'photo.variants', 'bios']);
     }
 
-    public function sendPasswordResetNotification($token)
+    public function sendPasswordResetNotification($token): void
     {
         $this->notify(new MailResetPasswordNotification($token));
     }
 
-    public function photo()
+    public function photo(): HasOne
     {
         return $this->hasOne(Image::class, 'id', 'image_id');
     }
 
-    public function images()
+    public function images(): MorphToMany
     {
         return $this->morphToMany(Image::class, 'imageable');
     }
 
-    public function ratings()
+    public function ratings(): HasMany
     {
         return $this->hasMany(UserRatings::class);
     }
 
-    public function comments()
+    public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
     }
 
-    public function works()
+    public function works(): MorphToMany
     {
         return $this->morphedByMany(Work::class, 'ownable', 'ownables');
     }
 
-    public function bios()
+    public function bios(): HasMany
     {
         return $this->hasMany(UserBio::class);
     }
@@ -109,49 +110,54 @@ class User extends Authenticatable implements MustVerifyEmail
         });
     }
 
-    public function feeds()
+    public function feeds(): HasMany
     {
         return $this->hasMany(Feed::class);
     }
 
-    public function follows()
+    public function follows(): HasMany
     {
         return $this->hasMany(Follow::class);
     }
 
-    public function followingWorks(): \Illuminate\Database\Eloquent\Relations\MorphToMany
+    public function followingWorks(): MorphToMany
     {
         return $this->morphedByMany(Work::class, 'followable','follows');
     }
 
-    public function followingUsers(): \Illuminate\Database\Eloquent\Relations\MorphToMany
+    public function followingUsers(): MorphToMany
     {
         return $this->morphedByMany(User::class, 'followable','follows');
     }
 
-    public function blacklists()
+    public function blacklists(): HasMany
     {
         return $this->hasMany(Blacklist::class);
     }
 
-    public function favorites()
+    public function favorites(): HasMany
     {
         return $this->hasMany(Favorite::class);
     }
 
-    public function favoriteFolders()
+    public function favoriteFolders(): HasMany
     {
         return $this->hasMany(FavoriteFolder::class);
     }
 
-    public function transactions()
+    public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class, 'to_user_id');
     }
 
-    public function posts()
+    public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function notificationPreferences(): HasMany
+    {
+        return $this->hasMany(NotificationPreference::class);
     }
 
     public function receivesBroadcastNotificationsOn(): string

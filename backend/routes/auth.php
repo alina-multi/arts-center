@@ -34,3 +34,4 @@ Route::prefix('/auth')->group(function () {
 });
 // Laravel want's this. Why? Idk :)
 Route::get('/dashboard', fn()=>'');
+Route::get('/my/notifications/preferences/', fn()=>'')->name('notifications.preferences');
