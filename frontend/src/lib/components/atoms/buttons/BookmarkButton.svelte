@@ -76,14 +76,14 @@
 	}
 </script>
 
-<div class="flex group">
+<div class="flex group ">
 	<button
 		type="button"
 		on:click={isBookmarked ? remove : () => (open = true)}
 		class="  dark:text-zinc-300 text-black dark:border-zinc-700 flex items-center"
 	>
 		{#if isBookmarked}
-			<span class=" border-r dark:border-zinc-700 pr-4 max-sm:hidden text-zinc-400"
+			<span class="min-w-16 border-r dark:border-zinc-700 pr-4 max-sm:hidden text-zinc-400"
 				>{$t('global.bookmark.saved')}</span
 			>
 			<span class="pl-4">
@@ -94,7 +94,7 @@
 				/>
 			</span>
 		{:else}
-			<span class=" border-r dark:border-zinc-700 pr-4 max-sm:hidden"
+			<span class="min-w-16 border-r dark:border-zinc-700 pr-4 max-sm:hidden"
 				>{$t('global.bookmark.save')}</span
 			>
 			<span class="pl-4">
