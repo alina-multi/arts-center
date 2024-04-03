@@ -12,6 +12,7 @@
 
 	let galleryID = 'work-gallery';
 
+
 	onMount(() => {
 		let lightbox = new PhotoSwipeLightbox({
 			gallery: '#' + galleryID,
@@ -31,11 +32,11 @@
 	<ImageLightBox image={work.full} alt={work.titles[0].alt} style={'w-full h-full'} original />
 	<div class="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3">
 		{#each grid as image}
-			<ImageLightBox {image} alt={'??? doesnt exist'} />
+			<ImageLightBox {image} alt={work.titles[0].alt} />
 		{/each}
 	</div>
 	{#if lastChild}
-		<ImageLightBox image={lastChild} alt={'??? doesnt exist'} />
+		<ImageLightBox image={lastChild} alt={work.titles[0].alt} />
 	{/if}
 </div>
 <p class="whitespace-pre-line">{description ?? ''}</p>
