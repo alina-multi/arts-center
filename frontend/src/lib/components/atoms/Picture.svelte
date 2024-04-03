@@ -3,6 +3,7 @@
 	export let photo;
 	let clazz: string;
 	export { clazz as class };
+
 </script>
 
 <picture class={clazz}>
@@ -11,5 +12,5 @@
 			<source {srcset} {type} />
 		{/each}
 	{/if}
-	<img src={photo?.src} {alt} class={clazz} />
+	<img src={photo?.src} {alt} class={clazz} width={photo.original.width} height={photo.original.height} />
 </picture>
