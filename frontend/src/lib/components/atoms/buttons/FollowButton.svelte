@@ -4,7 +4,7 @@
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import AuthModal from '../AuthModal.svelte';
 	import { fetchData } from '$lib/helpers/fetchData';
-	import { user as currentUser } from '$lib/stores/auth';
+	import { user as currentUser, isUserLoading } from '$lib/stores/auth';
 	import { getContext } from 'svelte';
 
 	const t = getContext('t');
@@ -42,7 +42,7 @@
 	}
 </script>
 
-{#if !isMy}
+
 	{#if isFollowing}
 		<button
 			class="w-full font-medium {`text-${size}`} border text-zinc-600 dark:text-zinc-300 flex items-center justify-center gap-1 rounded-sm pl-2 pr-1.5 py-1 shadow cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-700 dark:border-zinc-700 dark:bg-zinc-800"
@@ -53,7 +53,7 @@
 		</button>
 	{:else}
 		<button
-			class="w-full font-medium {`text-${size}`} {user.subscribed
+			class="w-full font-medium {`text-${size}`} {isMy || $isUserLoading ? "invisible": " block" } {user.subscribed
 				? ' boder-2 border  bg-blue-700 dark:bg-blue-900 text-white border-blue-700 dark:border-blue-900  dark:hover:bg-blue-700 dark:hover:border-blue-700 hover:bg-blue-600 hover:border-blue-600 '
 				: 'border ring-zinc-500 dark:bg-zinc-800 hover:bg-zinc-50  dark:border-zinc-700 dark:hover:bg-zinc-700'}  dark:text-white flex items-center justify-center gap-1 rounded-sm pl-2 pr-1.5 py-1 shadow cursor-pointer"
 			on:click={() => handleFollow()}
@@ -62,7 +62,7 @@
 			<Icon src={PlusCircle} class="w-4 h-4  dark:text-white " />
 		</button>
 	{/if}
-{/if}
+
 
 {#if open}
 	<AuthModal bind:open type={$t('global.not_logged_in.follow')} />
