@@ -120,7 +120,7 @@
 			</fieldset>
 		</div>
 		<p>
-			<b>{$t('global.donation.be_patron')}</b>, {$t('global.donation.p2')}
+			<b>{$t('global.donation.be_patron')}</b>{$t('global.donation.p2')}
 		</p>
 		<div class="w-full xl:px-6">
 			<button

@@ -11,7 +11,7 @@
 
 <div class="w-full">
 	<div
-		class="w-full h-32 rounded-sm flex flex-col items-center bg-zinc-100 dark:bg-zinc-900 border  dark:border-zinc-800"
+		class="w-full h-32 rounded-sm flex flex-col items-center bg-zinc-100 dark:bg-zinc-900 border dark:border-zinc-800"
 	/>
 	<div
 		class="border rounded-sm border-t-transparent dark:border-zinc-800 dark:border-t-transparent w-full pb-6 dark:bg-zinc-950"
@@ -47,5 +47,3 @@
 		</div>
 	</div>
 </div>
-
-

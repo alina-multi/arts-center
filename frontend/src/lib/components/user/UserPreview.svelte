@@ -16,16 +16,15 @@
 	$: href = localePath($locale, `/${user.username}`);
 </script>
 
-<div class="flex items-center gap-3 w-full ">
+<div class="flex items-center gap-3 w-full">
 	<AvatarLink {user} size={avatar_size} />
 
 	<div class="flex flex-col flex-1">
 		<div class="flex items-center justify-between gap-6 lg:gap-3">
-			<a
-				{href}
-				class="flex dark:text-white cursor-pointer text-base items-center gap-2 "
-			>
-				<div class="flex items-center flex-wrap gap-2  max-sm:text-sm text-base xl:text-sm font-semibold">
+			<a {href} class="flex dark:text-white cursor-pointer text-base items-center gap-2">
+				<div
+					class="flex items-center flex-wrap gap-2 max-sm:text-sm text-base xl:text-sm font-semibold"
+				>
 					<span>{user.name}</span>
 					<VerificationBadge user_verified={user.verified_at} />
 				</div>
