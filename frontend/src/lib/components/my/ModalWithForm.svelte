@@ -26,7 +26,10 @@
 			<slot name="header" />
 		</div>
 
-		<form on:submit|preventDefault={condition ? submiInput : submitFromList} class="flex flex-col gap-6 pb-6 px-9">
+		<form
+			on:submit|preventDefault={condition ? submiInput : submitFromList}
+			class="flex flex-col gap-6 pb-6 px-9"
+		>
 			{#if length > 0}
 				<div class="relative border-zinc-200 dark:border-zinc-800 space-y-6">
 					<slot name="list" />

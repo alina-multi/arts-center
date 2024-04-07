@@ -16,7 +16,7 @@
 			<TagButton
 				href={localePath($locale, `/tag/${title}/popular`)}
 				{title}
-				styles={'px-3 py-1 dark:border-zinc-700 '}
+				styles={'px-3 py-1 border-zinc-800   text-zinc-800 dark:text-zinc-100  dark:border-zinc-700 '}
 			/>
 		{/each}
 	</div>
