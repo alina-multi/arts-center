@@ -56,8 +56,8 @@
 			src={HandThumbUp}
 			theme="solid"
 			class=" {size}   {votable_type === 'comment'
-				? 'fill-blue-700 '
-				: 'fill-blue-400 dark:fill-blue-500'}"
+				? 'fill-sky-700 '
+				: 'fill-sky-700 dark:fill-sky-600'}"
 		/></button
 	>
 {:else}

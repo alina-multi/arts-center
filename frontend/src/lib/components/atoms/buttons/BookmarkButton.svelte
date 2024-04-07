@@ -76,92 +76,76 @@
 	}
 </script>
 
-<div class="flex group ">
-	<button
-		type="button"
-		on:click={isBookmarked ? remove : () => (open = true)}
-		class="  dark:text-zinc-300 text-black dark:border-zinc-700 flex items-center"
-	>
-		{#if isBookmarked}
-			<span class="min-w-16 border-r dark:border-zinc-700 pr-4 max-sm:hidden text-zinc-400"
-				>{$t('global.bookmark.saved')}</span
+<button
+	type="button"
+	on:click={isBookmarked ? remove : () => (open = true)}
+	class="  dark:text-zinc-300 text-black dark:border-zinc-700 flex items-center"
+>
+	<span class="pl-4">
+		<Icon
+			src={Bookmark}
+			class="h-7 w-7 scale-105 stroke-1 {isBookmarked
+				? 'stroke-rose-700  fill-rose-700 dark:fill-rose-500  dark:stroke-rose-500  '
+				: ' stroke-black dark:stroke-zinc-300  '} "
+			aria-hidden="true"
+		/>
+	</span>
+</button>
+
+<ModalWithForm
+	bind:open
+	length={folders?.length}
+	condition={showInput || folders?.length === 0}
+	submitFromList={saveInExistingFolder}
+	submiInput={createFolder}
+	not_logged_in_messsage={$t('global.not_logged_in.bookmark')}
+	action_button={'save'}
+>
+	<svelte:fragment slot="header">
+		<h2 class="text-base font-semibold">{$t('global.bookmark.save_work_to')}</h2>
+
+		{#if folders?.length > 0}
+			<button
+				on:click={() => ((showInput = true), (folderID = 0))}
+				type="button"
+				class="flex items-center text-sm hover:text-gray-700 text-black dark:text-white dark:hover:text-zinc-300 cursor-pointer focus-outline-none focus:ring-transparent"
 			>
-			<span class="pl-4">
-				<Icon
-					src={Bookmark}
-					class="h-7 w-7 group-hover:scale-105 stroke-1  stroke-amber-400  fill-amber-400 dark:fill-amber-500  dark:stroke-amber-500    "
-					aria-hidden="true"
-				/>
-			</span>
-		{:else}
-			<span class="min-w-16 border-r dark:border-zinc-700 pr-4 max-sm:hidden"
-				>{$t('global.bookmark.save')}</span
-			>
-			<span class="pl-4">
-				<Icon
-					src={Bookmark}
-					class="h-7 w-7 group-hover:scale-105 stroke-1  stroke-black dark:stroke-zinc-300    "
-					aria-hidden="true"
-				/></span
-			>
+				<Icon src={FolderPlus} class="h-7 w-7 " aria-hidden="true" />
+			</button>
 		{/if}
-	</button>
+	</svelte:fragment>
 
-	<ModalWithForm
-		bind:open
-		length={folders?.length}
-		condition={showInput || folders?.length === 0}
-		submitFromList={saveInExistingFolder}
-		submiInput={createFolder}
-		not_logged_in_messsage={$t('global.not_logged_in.bookmark')}
-		action_button={'save'}
-	>
-		<svelte:fragment slot="header">
-			<h2 class="text-base font-semibold">{$t('global.bookmark.save_work_to')}</h2>
-
-			{#if folders?.length > 0}
-				<button
-					on:click={() => ((showInput = true), (folderID = 0))}
-					type="button"
-					class="flex items-center text-sm hover:text-gray-700 text-black dark:text-white dark:hover:text-zinc-300 cursor-pointer focus-outline-none focus:ring-transparent"
+	<svelte:fragment slot="list">
+		{#if error && !showInput}
+			<span class="text-red-500 text-xs absolute -top-5 left-0">{error}</span>
+		{/if}
+		{#each folders as folder (folder?.id)}
+			<div class="relative flex items-center justify-between">
+				<RadioButton
+					id={folder?.id}
+					label={folder?.title}
+					name={folder?.id}
+					value={folder?.id}
+					checked={folderID === folder?.id}
+					{onChange}
 				>
-					<Icon src={FolderPlus} class="h-7 w-7 " aria-hidden="true" />
-				</button>
-			{/if}
-		</svelte:fragment>
+					<Icon src={Folder} class="h-7 w-7 " aria-hidden="true" />
+				</RadioButton>
+			</div>
+		{/each}
+	</svelte:fragment>
 
-		<svelte:fragment slot="list">
-			{#if error && !showInput}
-				<span class="text-red-500 text-xs absolute -top-5 left-0">{error}</span>
-			{/if}
-			{#each folders as folder (folder?.id)}
-				<div class="relative flex items-center justify-between">
-					<RadioButton
-						id={folder?.id}
-						label={folder?.title}
-						name={folder?.id}
-						value={folder?.id}
-						checked={folderID === folder?.id}
-						{onChange}
-					>
-						<Icon src={Folder} class="h-7 w-7 " aria-hidden="true" />
-					</RadioButton>
-				</div>
-			{/each}
-		</svelte:fragment>
+	<svelte:fragment slot="showInput">
+		{#if error}
+			<span class="text-red-500 text-xs absolute top-[42px] left-0">{error}</span>
+		{/if}
 
-		<svelte:fragment slot="showInput">
-			{#if error}
-				<span class="text-red-500 text-xs absolute top-[42px] left-0">{error}</span>
-			{/if}
-
-			<TextInput
-				id="folder"
-				name="folder"
-				bind:value={folderName}
-				placeholder={$t('global.bookmark.create_folder')}
-				bind:error
-			/>
-		</svelte:fragment>
-	</ModalWithForm>
-</div>
+		<TextInput
+			id="folder"
+			name="folder"
+			bind:value={folderName}
+			placeholder={$t('global.bookmark.create_folder')}
+			bind:error
+		/>
+	</svelte:fragment>
+</ModalWithForm>
