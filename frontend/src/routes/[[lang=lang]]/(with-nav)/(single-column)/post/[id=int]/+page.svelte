@@ -50,7 +50,9 @@
 			{/if}
 		</div>
 
-		<h1 class="text-2xl py-4 sm:py-6 font-bold sm:text-4xl text-gray-00 dark:text-gray-100">
+		<h1
+			class="text-2xl font-serif py-4 sm:py-6 font-bold sm:text-3xl text-gray-00 dark:text-gray-100"
+		>
 			{data.post.title}
 		</h1>
 	</div>

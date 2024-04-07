@@ -49,7 +49,9 @@
 				on:click={markAllAsRead}
 				class="flex items-center gap-3 group hover:underline pl-3 transition-all"
 			>
-				<span class="text-sm">{$t(`global.notifications.mark_all_as_read`)} </span>
+				<span class="max-xs:text-xs max-xs:text-end text-sm"
+					>{$t(`global.notifications.mark_all_as_read`)}
+				</span>
 				<span class="border border-black dark:border-white rounded-sm active:border-green-500 p-0.5"
 					><Icon src={Check} class="w-4 h-4  active:text-green-500" /></span
 				>

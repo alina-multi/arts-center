@@ -74,7 +74,12 @@
 			"title": "Thank you for your generous donation!"
 		},
 		"support": "Support",
-		"title": "Buy supplies for the artist"
+		"title1": "Shape the art of tomorrow",
+		"title2": "Support an artist today",
+		"p1": "By supporting an artist with a donation, you help them to continue their creative path, provide an opportunity for experimentation and give them a sense of freedom in the creative process",
+		"be_patron": "Become a patron",
+		"p2": " of the arts by contributing to the development of the art world. Shape the cultural heritage and lay the foundation for future generations, inspiring them by your example",
+		"p3": "Your participation not only recognizes the talents of today, but also contributes to the growth and prosperity of tomorrow's culture."
 	},
 	"error": {
 		"api": "Unknown API server error"
@@ -148,6 +153,9 @@
 		"follow": "follow this artist",
 		"for_comment": "Sign in to comment this work",
 		"for_follow": "You need to login or register to follow",
+		"title": "Join the community of people who appreciate art",
+		"p1": "Influence the future of culture together with like-minded people who love art.",
+		"p2": "Your participation makes us stronger, together we create change.",
 		"for_work": "Join the community of people who love this work.  Sign in with your email address to follow this work. ",
 		"like": "rate this work",
 		"login_to": "Login to",

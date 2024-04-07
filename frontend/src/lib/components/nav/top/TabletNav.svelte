@@ -18,9 +18,9 @@
 		<UaFlag />
 	</div>
 
-	<div class="hidden lg:block w-[400px] pl-9"><SearchInput /></div>
+	<div class="hidden lg:block pl-9 flex-1"><SearchInput /></div>
 
-	<div class="flex items-center gap-6 h-full justify-end ml-9 max-md:mr-3">
+	<div class="flex items-center gap-6 lg:w-[300px] h-full justify-end ml-9 max-md:mr-3">
 		{#if !$isUserLoading}
 			<div class="lg:hidden flex justify-center"><Search /></div>
 

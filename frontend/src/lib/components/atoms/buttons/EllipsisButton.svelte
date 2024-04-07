@@ -15,29 +15,23 @@
 {#if isMy && type === 'vertical'}
 	<a
 		href={localePath($locale, `/my/work/${workId}/form`)}
-		class="flex"
+		class="flex cursor-pointer"
 		data-testid="edit-work-button"
 	>
 		<span class="sr-only">Edit work</span>
 
-		<Icon src={PencilSquare} class="w-7 h-7 text-gray-700 hover:text-gray-500 dark:text-zinc-400" />
+		<Icon
+			src={PencilSquare}
+			class="w-7 h-7 max-xs:w-5 max-xs:h-5 stroke-1 text-zinc-700 hover:text-zinc-500 dark:text-zinc-400"
+		/>
 	</a>
 {:else}
 	<Dropdown style="-right-1 z-10 min-w-40 text-sm mt-2 " z={20}>
-		<div
-			slot="button"
-			class="hover:bg-gray-100 cursor-pointer dark:hover:bg-zinc-800 rounded-sm py-1 focus:outline-none"
-		>
+		<div slot="button" class="cursor-pointer">
 			{#if type === 'horizontal'}
-				<Icon
-					src={EllipsisHorizontal}
-					class="w-7 h-7 text-gray-400 hover:text-gray-500 dark:text-zinc-400"
-				/>
+				<Icon src={EllipsisHorizontal} class="w-7 h-7 text-zinc-400 " />
 			{:else}
-				<Icon
-					src={EllipsisVertical}
-					class="w-7 h-7 text-gray-700 hover:text-gray-500 dark:text-zinc-400"
-				/>
+				<Icon src={EllipsisVertical} class="w-7 h-7 text-zinc-700 dark:text-zinc-300" />
 			{/if}
 		</div>
 

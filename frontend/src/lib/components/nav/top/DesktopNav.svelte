@@ -30,7 +30,7 @@
 
 	<SearchInput />
 
-	<div class=" items-center flex gap-6 justify-end flex-1">
+	<div class=" items-center flex {$user ? 'gap-3' : 'gap-6 '} justify-end flex-1">
 		{#if !$isUserLoading}
 			<AddWorkButton />
 

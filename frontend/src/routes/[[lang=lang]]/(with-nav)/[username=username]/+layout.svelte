@@ -12,30 +12,27 @@
 	let userTags = data.user.ratings.map((rating) => rating.tag);
 </script>
 
-<div class="container mx-auto gap-6 px-3 flex flex-col xl:flex-row mt-6 dark:text-white mb-6">
-	<div class=" xl:w-4/12 space-y-6 flex flex-col items-center w-full">
+<main class="container mx-auto gap-6 px-3 xl:flex xl:flex-row mt-6 dark:text-white">
+	<div class=" xl:w-4/12 space-y-6 sm:w-3/4 lg:max-xl:w-2/3 sm:max-xl:mx-auto mb-6">
 		<UserCard user={data.user} />
 
-		<div class="flex max-md:flex-col xl:flex-col items-start gap-6 w-full justify-center">
-			{#if data.user.verified_at}
-				<DonateForm user={data.user} />
-			{/if}
-			{#if data.user.ratings?.length}
-				<div
-					class="border w-full dark:bg-zinc-900 shrink-0 rounded-sm dark:border-zinc-800 py-6 px-6 xs:px-9 sm:w-3/4 sm:max-md:mx-auto md:w-1/2 md:px-6 xl:w-full space-y-2"
-				>
-					<TotalRating user={data.user} />
+		{#if data.user.ratings?.length}
+			<div class="w-full dark:bg-zinc-950 shrink-0 border dark:border-zinc-800 space-y-3">
+				<TotalRating user={data.user} />
+				<RatingTags user={data.user} />
+			</div>
+		{/if}
 
-					<RatingTags user={data.user} />
-				</div>
-			{/if}
-		</div>
+		{#if data.user.verified_at}
+			<DonateForm user={data.user} />
+		{/if}
 	</div>
-	<main class="flex flex-col gap-6 xl:pl-3 xl:w-8/12">
+
+	<div class="flex flex-col gap-6 xl:pl-3 xl:w-8/12">
 		{#if userTags.length > 0}
 			<div class="w-full relative"><WorkFilters tags={userTags} params={data.params} /></div>
 		{/if}
 		<Biography user={data.user} />
 		<slot />
-	</main>
-</div>
+	</div>
+</main>
