@@ -6,9 +6,7 @@
 		style = 'aspect-[4/3] flex object-cover';
 </script>
 
-<div
-	class=" rounded-sm bg-gray-100 dark:bg-zinc-900 overflow-hidden {original ? '' : 'aspect-[4/3]'}"
->
+<div class="rounded-sm bg-zinc-900 dark:bg-zinc-900 overflow-hidden {original ? '' : 'aspect-[4/3]'}">
 	<a
 		href={image?.original?.src}
 		data-pswp-width={image?.original?.width}

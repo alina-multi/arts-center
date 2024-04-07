@@ -9,6 +9,7 @@
 	import type { Work } from '$lib/interfaces/Work';
 	import { getContext } from 'svelte';
 	import LocaleDate from '$lib/components/atoms/LocaleDate.svelte';
+	import VerificationBadge from '$lib/components/atoms/VerificationBadge.svelte';
 
 	const t = getContext('t');
 	const locale = getContext('locale');
@@ -23,9 +24,12 @@
 	<div class="flex justify-between items-center">
 		{#each work.owners as user (user.id)}
 			<div class="flex items-center gap-3">
-				<AvatarLink {user} withName size={'w-8 h-8'} />
-
-				<div><FollowButton size={'sm'} {user} /></div>
+				<div class="flex items-center gap-1">
+					<AvatarLink {user} withName size={'w-8 h-8'} nameStyles={'font-medium max-sm:text-sm'} />
+					<VerificationBadge user_verified={user.verified_at} size={'w-4 h-4'} />
+				</div>
+				<div class="h-1 w-1 rounded-full bg-zinc-600 dark:bg-zinc-400"></div>
+				<FollowButton size={'sm  font-medium w-max '} {user} />
 			</div>
 		{/each}
 
@@ -39,10 +43,10 @@
 	</div>
 
 	<div class="flex flex-col md:flex-row md:justify-between md:items-center gap-1">
-		<h1 class="text-xl sm:text-2xl font-medium text-gray-00 dark:text-gray-100">
+		<h1 class="text-xl sm:text-2xl font-bold font-serif dark:text-white">
 			{title}
 		</h1>
-		<span class="text-zinc-500 text-sm"
+		<span class="text-zinc-600 dark:text-zinc-300 text-sm"
 			>{$t('global.published_on')} <LocaleDate date={work?.published_at} />
 		</span>
 
