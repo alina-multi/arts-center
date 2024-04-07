@@ -39,7 +39,7 @@
 
 {#if media === 'desktop'}
 	<div
-		class="flex items-stretch gap-3 border-b dark:border-zinc-700 w-full px-6 h-12 text-black dark:text-white"
+		class="flex items-stretch gap-3 shadow dark:border-zinc-700 w-full px-6 h-12 text-black dark:text-white"
 	>
 		<TopNavLangLink lang="en" />
 		<TopNavLangLink lang="uk" />
@@ -54,7 +54,7 @@
 		</li>
 	</ul>
 
-	<div class="flex flex-col dark:border-zinc-700 text-xs pb-6">
+	<div class="flex flex-col dark:border-zinc-700 text-xs pb-6 border-b">
 		<a
 			class=" dark:hover:bg-zinc-700 hover:bg-gray-100 py-1.5 px-6 block"
 			href={localePath($locale, '/s/privacy')}>{$t('global.footer.privacy')}</a
@@ -66,7 +66,7 @@
 	</div>
 {/if}
 
-<div class="space-y-3 p-6 border-t dark:border-zinc-700">
+<div class="space-y-3 p-6">
 	<p class=" text-black dark:text-white font-medium text-base">{$t(`global.contact.h1`)}</p>
 	<p>{$t(`global.contact.p1`)}</p>
 	<p>{$t(`global.contact.p2`)}</p>
@@ -75,13 +75,13 @@
 	</p>
 </div>
 <div>
-	<ul class="flex xs:gap-9 border-t dark:border-zinc-700 px-6 py-3 max-xs:justify-between">
+	<ul class=" border-t px-6 flex xs:gap-9 dark:border-zinc-700 py-3 gap-9">
 		{#each social_links as social}
 			<li class={$locale !== 'uk' && social.name === 'Instagram' ? 'hidden' : 'block'}>
 				<a
 					target="_blank"
 					href={social.href}
-					class="inline-flex py-3 px-3 last-of-type:pr-0 first-of-type:pl-0 w-full justify-start text-zinc-500 dark:text-white focus:outline-offset-0 hover:text-zinc-700 dark:hover:text-white hover:scale-105 transition-all"
+					class="inline-flex py-3 px-3 last-of-type:pr-0 first-of-type:pl-0 w-full justify-start text-zinc-800 dark:text-white focus:outline-offset-0 hover:text-zinc-700 dark:hover:text-white hover:scale-105 transition-all"
 				>
 					<span class="sr-only">{social.name}</span>
 					<!-- eslint-disable svelte/no-at-html-tags -->
@@ -95,8 +95,10 @@
 </div>
 
 {#if media === 'mobile'}
-	<div class="mt-auto mb-12 border-y dark:border-zinc-700 text-zinc-600 dark:text-zinc-100 text-">
-		<ul class="flex flex-col justify-center gap-3 py-3 pl-6">
+	<div
+		class="mt-auto pt-6 border-t dark:border-zinc-700 font-medium text-zinc-600 dark:text-zinc-100"
+	>
+		<ul class="flex flex-col justify-center text-xs gap-3 pl-6">
 			<li>
 				<a href={localePath($locale, '/s/about')}>{$t('global.footer.about')}</a>
 			</li>

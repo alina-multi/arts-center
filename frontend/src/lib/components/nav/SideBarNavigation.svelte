@@ -41,7 +41,7 @@
 			enter="transition-opacity ease-linear duration-300"
 			enterFrom="opacity-0"
 			enterTo="opacity-100"
-			leave="transition-opacity ease-linear duration-300"
+			leave="transition-opacity ease-linear duration-0"
 			leaveFrom="opacity-100"
 			leaveTo="opacity-0"
 		>
@@ -52,62 +52,60 @@
 			enter="transition ease-in-out duration-300 transform"
 			enterFrom="-translate-x-full"
 			enterTo="translate-x-0"
-			leave="transition ease-in-out duration-300 transform"
+			leave="transition ease-in-out duration-0 transform"
 			leaveFrom="translate-x-0"
 			leaveTo="-translate-x-full"
 		>
 			<DialogDescription>
-				<div class=" h-screen flex flex-col">
-					<TopNav>
-						<Logo />
-						<div class="flex items-center gap-6 ml-6 h-full">
-							<TopNavLangLink lang="en" />
-							<TopNavLangLink lang="uk" />
+				<TopNav>
+					<Logo />
+					<div class="flex items-center gap-6 ml-6 h-full">
+						<TopNavLangLink lang="en" />
+						<TopNavLangLink lang="uk" />
 
-							<Button on:click={() => (open = !open)} type={'button'} class="ml-6">
-								<span class="sr-only">Close main menu</span>
-								<Icon src={XMark} theme="solid" class="h-7 w-7" aria-hidden="true" />
-							</Button>
-						</div>
-					</TopNav>
+						<Button on:click={() => (open = !open)} type={'button'} class="ml-6">
+							<span class="sr-only">Close main menu</span>
+							<Icon src={XMark} theme="solid" class="h-7 w-7" aria-hidden="true" />
+						</Button>
+					</div>
+				</TopNav>
 
-					<div class="flex flex-col p-6 gap-3 w-full">
+				<div class="flex flex-col w-full font-medium divide-y tracking-wider pl-1">
+					<div>
 						<TopNavLink media={'mobile'} exact href={localePath($locale, '/tag/all/popular')}
-							>{$t('global.menu.gallery')}</TopNavLink
-						>
+							>{$t('global.menu.gallery')}
+						</TopNavLink>
+					</div>
+					<div>
 						<TopNavLink media={'mobile'} href={localePath($locale, '/users')}
 							>{$t('global.menu.users')}</TopNavLink
 						>
 					</div>
-
-					{#if $user}
-						<div class="flex flex-col gap-3 pb-3">
-							<div
-								class="flex justify-between gap-3 pl-6 pr-3 min-[500px]:pr-6 items-center w-full border-y dark:border-zinc-800 py-3"
-							>
-								<AvatarLink user={$user} size={'w-12 h-12 '} withName nameStyles="font-semibold" />
-
-								<AddWorkButton />
-							</div>
-
-							<ul class=" flex flex-col gap-2">
-								<MyProfileLinksGroup />
-								<li>
-									<LogoutButton />
-								</li>
-							</ul>
-						</div>
-					{:else}
-						<div class="flex items-center py-6 justify-center gap-6 border-y dark:border-zinc-800">
-							<AddWorkButton />
-							<LoginLink />
-						</div>
-					{/if}
-
-					<div />
-
-					<FooterContent media="mobile" />
 				</div>
+
+				{#if $user}
+					<div class=" pl-6 pr-3 w-full border-y dark:border-zinc-800 py-3">
+						<AvatarLink user={$user} size={'w-10 h-10 '} withName nameStyles="font-semibold" />
+					</div>
+
+					<ul class=" text-sm border-b pb-6">
+						<MyProfileLinksGroup />
+						<li>
+							<LogoutButton />
+						</li>
+					</ul>
+				{:else}
+					<div
+						class="flex items-center px-6 pt-9 pb-6 justify-start gap-6 border-t dark:border-zinc-800"
+					>
+						<AddWorkButton />
+						<LoginLink />
+					</div>
+				{/if}
+
+				<div />
+
+				<FooterContent media="mobile" />
 			</DialogDescription>
 		</TransitionChild>
 	</Dialog>

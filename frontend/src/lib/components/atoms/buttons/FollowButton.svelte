@@ -2,7 +2,7 @@
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import AuthModal from '../AuthModal.svelte';
 	import { fetchData } from '$lib/helpers/fetchData';
-	import { user as currentUser, isUserLoading } from '$lib/stores/auth';
+	import { user as currentUser } from '$lib/stores/auth';
 	import { getContext } from 'svelte';
 	import { localePath } from '$lib/translations';
 
@@ -48,7 +48,7 @@
 {#if isMy}
 	<a
 		href={localePath($locale, '/my/profile')}
-		class="  {`text-${size}`}  w-full transition-all dark:border-zinc-700 dark:hover:bg-zinc-700 dark:text-white cursor-pointer"
+		class="  {`text-${size}`} w-full transition-all dark:border-zinc-700 dark:hover:bg-zinc-700 dark:text-white cursor-pointer"
 	>
 		<span>{$t('global.my_links.edit_profile')}</span>
 	</a>

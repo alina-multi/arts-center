@@ -42,7 +42,7 @@
 
 			<FollowButton
 				{user}
-				size={'base font-medium py-2 w-3/4 md:w-2/3 lg:w-1/2 xl:w-3/4 border rounded-sm border-zinc-900 rounded-sm dark:bg-zinc-800 bg-white hover:bg-zinc-50'}
+				size={'base text-center font-medium py-2 w-3/4 md:w-2/3 lg:w-1/2 xl:w-3/4 border rounded-sm border-zinc-900 rounded-sm dark:bg-zinc-800 bg-white hover:bg-zinc-50'}
 			/>
 		</div>
 	</div>
