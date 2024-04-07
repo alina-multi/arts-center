@@ -36,20 +36,18 @@
 			<AvatarLink user={comment.owner} withName={true} size={'w-8 h-8 '} />
 		</div>
 		<span class="h-1 w-1 bg-zinc-500 rounded-full" />
-		<Time relative timestamp={comment.created_at} class="text-zinc-500" />
+		<Time relative timestamp={comment.created_at} class="text-zinc-500 text-xs" />
 
 		<div
-			class="flex divide-x font-semibold text-zinc-500 dark:text-zinc-400 dark:divide-zinc-800 mr-3"
+			class="flex divide-x font-semibold text-zinc-500 dark:text-zinc-400 dark:divide-zinc-800 mr-3 text-xs"
 		>
 			{#if $user && Number($user.id) === Number(comment.owner.id)}
 				{#if isEditable()}<button class="px-3" on:click={() => onEdit()}>
-						<span class=" hidden sm:block">{$t('global.buttons.edit')}</span>
-						<Icon src={PencilSquare} class="w-5 h-5 sm:hidden" />
+						<Icon src={PencilSquare} class="w-4 h-4 " />
 					</button>{/if}
 				{#if !isMy}
 					<button class="px-3" on:click={() => deleteComment(comment_id)}>
-						<span class=" hidden sm:block">{$t('global.buttons.delete')}</span>
-						<Icon src={Trash} class="w-5 h-5 sm:hidden" />
+						<Icon src={Trash} class="w-4 h-4 " />
 					</button>{/if}
 			{/if}
 
