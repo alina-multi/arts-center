@@ -23,5 +23,7 @@ return [
     "vote" => [
         "received" => "You have received new vote to your work!",
         "view" => "View vote on site"
-    ]
+    ],
+ 
+
 ];

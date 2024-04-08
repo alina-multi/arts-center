@@ -51,7 +51,7 @@ class NewFollower extends Notification
     public function toMail(): MailMessage
     {
         return (new MailMessage)
-            ->subject(__('notifications.new_follower.subject'))
+            ->subject(__('notifications.follower.subject'))
             ->action($this->follower->name, UrlHelper::localePath("/{$this->follower->username}"))
             ->line(__('notifications.follower.started_following_you'));
     }
