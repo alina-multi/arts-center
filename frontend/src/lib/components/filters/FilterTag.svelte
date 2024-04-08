@@ -38,7 +38,7 @@
 
 			{#if hiddenTags.length > 0}
 				<PopoverButton
-					class="flex items-center gap-2  border px-3 py-1 rounded-sm hover:border-amber-500 dark:bg-zinc-900 dark:border-zinc-800 dark:hover:border-amber-500"
+					class="flex items-center gap-2  border border-zinc-300 px-3 py-1  hover:border-amber-500 dark:bg-zinc-900 dark:border-zinc-800 dark:hover:border-amber-500"
 				>
 					{$t('global.filters.more')}
 
