@@ -128,7 +128,7 @@
 				{disabled}
 				class="{disabled
 					? 'bg-zinc-400 dark:bg-zinc-500 dark:text-zinc-700 cursor-not-allowed '
-					: 'bg-zinc-800  cursor-pointer  hover:scale-[1.02] transform transition-transform'}  sm:max-lg:w-2/3 lg:max-xl:w-1/2 text-white w-full text-lg font-semibold py-3 gap-3 mb-3"
+					: 'bg-zinc-800 dark:bg-emerald-600  cursor-pointer  hover:scale-[1.02] transform transition-transform'}  sm:max-lg:w-2/3 lg:max-xl:w-1/2 text-white w-full text-lg font-semibold py-3 gap-3 mb-3"
 			>
 				<span>{$t('global.donation.support')}</span>
 				<span>{quantity * 5} €</span>
