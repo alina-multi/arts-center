@@ -20,21 +20,17 @@
 		});
 		lightbox.init();
 	});
-
-	let calculateGrid = Math.round(work.images.length / 2);
 </script>
 
-<div class="pswp-gallery {work.images.length > 1 ? 'space-y-2 sm:space-y-3' : ''}" id={galleryID}>
+<div class="pswp-gallery" id={galleryID}>
 	<ImageLightBox image={work.full} alt={work.titles[0].alt} style={'w-full h-full'} original />
-	<div
-		class="{work.images.length >= 6
-			? 'grid grid-cols-3 sm:flex '
-			: `grid grid-cols-${calculateGrid}`}  gap-2 sm:gap-3"
-	>
-		{#each work.images as image}
-			<ImageLightBox {image} alt={work.titles[0].alt} />
-		{/each}
-	</div>
+	{#if work.images.length > 0}
+		<div class="pt-3 grid grid-cols-4 xl:grid-cols-5 gap-3 {description ? 'border-b pb-6' : ''}">
+			{#each work.images as image}
+				<ImageLightBox {image} alt={work.titles[0].alt} />
+			{/each}
+		</div>
+	{/if}
 </div>
 {#if description}
 	<p class="whitespace-pre-line text-lg font-serif mt-3">{description ?? ''}</p>

@@ -13,7 +13,7 @@
 	>
 		<span class="text-lg">{$t('global.user.total_rating')} </span>
 		<div class="flex items-center gap-1 text-lg">
-			<Icon src={Star} theme="solid" class="  w-5 fill-amber-500 stroke-amber-500 " />
+			<Icon src={Star} theme="solid" class="  w-5 h-5 fill-amber-500 stroke-amber-500 " />
 			<span> {user.rating}</span>
 		</div>
 	</div>

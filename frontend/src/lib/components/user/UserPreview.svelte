@@ -19,21 +19,16 @@
 <div class="flex items-center gap-3 w-full">
 	<AvatarLink {user} size={avatar_size} />
 
-	<div class="flex flex-col flex-1">
+	<div class="flex flex-col flex-1 gap-1.5">
 		<div class="flex items-center justify-between gap-6 lg:gap-3">
-			<a {href} class="flex dark:text-white cursor-pointer text-base items-center gap-2">
-				<div
-					class="flex items-center flex-wrap gap-2 max-sm:text-sm text-base xl:text-sm font-semibold"
-				>
+			<a {href} class="flex dark:text-white cursor-pointer items-center gap-2">
+				<div class="flex items-center flex-wrap gap-2 text-base font-semibold">
 					<span>{user.name}</span>
 					<VerificationBadge user_verified={user.verified_at} />
 				</div>
 			</a>
 			{#if followButton}
-				<FollowButton
-					{user}
-					size={'sm max-sm:text-xs xl:text-xs   border border border-zinc-500 border-zinc-800 text-zinc-800 dark:bg-zinc-800  w-min px-3 py-1 text-center'}
-				/>
+				<FollowButton {user} size={'xs w-min'} />
 			{/if}
 		</div>
 		<UserDetails {user} />

@@ -16,10 +16,10 @@
 
 <div class="py-6">
 	{#if withAuthor}
-		<div class="flex items-center gap-3 mb-4">
-			<AvatarLink user={post.owner} withName size={'w-6 h-6'} />
+		<div class="flex items-center gap-3 mb-4 text-sm">
+			<AvatarLink user={post.owner} withName size={'w-6 h-6'} nameStyles="font-medium" />
 
-			<div class="flex items-center gap-2 text-zinc-500 dark:text-zinc-100 text-sm">
+			<div class="flex items-center gap-2 text-zinc-500 dark:text-zinc-100 text-xs">
 				<div class="h-0.5 w-0.5 bg-gray-400 rounded-full" />
 				<LocaleDate date={post?.published_at} />
 			</div>
