@@ -2,7 +2,7 @@
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import AuthModal from '../AuthModal.svelte';
 	import { fetchData } from '$lib/helpers/fetchData';
-	import { user as currentUser } from '$lib/stores/auth';
+	import { user as currentUser, isUserLoading } from '$lib/stores/auth';
 	import { getContext } from 'svelte';
 	import { localePath } from '$lib/translations';
 
@@ -19,8 +19,8 @@
 
 	// isFollowing - some problem with reactiviity
 
-	let follows = $currentUser?.follows?.user;
-	let isFollowing = follows?.some((id) => id === Number(user.id));
+	$: follows = $currentUser?.follows?.user;
+	$: isFollowing = follows?.some((id) => id === Number(user.id));
 
 	const handleFollow = () => {
 		if ($currentUser) {
@@ -45,24 +45,28 @@
 	}
 </script>
 
-{#if isMy}
-	<a
-		href={localePath($locale, '/my/profile')}
-		class="  {`text-${size}`} border border-zinc-600 text-zinc-800 dark:bg-zinc-800 px-3 py-1 text-center w-full transition-all dark:border-zinc-700 dark:hover:bg-zinc-700 dark:text-white cursor-pointer"
-	>
-		<span>{$t('global.my_links.edit')}</span>
-	</a>
-{:else}
-	<button
-		class="  {`text-${size}`}  {isFollowing
-			? 'opacity-50'
-			: ''} border border-zinc-600 text-zinc-800 dark:bg-zinc-800 px-3 py-1 text-center w-full transition-all dark:hover:bg-zinc-700 dark:border-zinc-700 dark:text-white cursor-pointer"
-		on:click={() => handleFollow()}
-	>
-		<span
-			>{isFollowing ? `${$t('global.buttons.following')}` : `${$t('global.buttons.follow')}`}</span
+{#if !$isUserLoading}
+	{#if isMy}
+		<a
+			href={localePath($locale, '/my/profile')}
+			class="  {`text-${size}`} border border-zinc-600 text-zinc-800 dark:bg-zinc-800 px-3 py-1 text-center transition-all dark:border-zinc-700 dark:hover:bg-zinc-700 dark:text-white cursor-pointer"
 		>
-	</button>
+			<span>{$t('global.my_links.edit')}</span>
+		</a>
+	{:else}
+		<button
+			class="  {`text-${size}`}  {isFollowing
+				? 'opacity-50'
+				: ''} border border-zinc-600 text-zinc-800 dark:bg-zinc-800 px-3 py-1 text-center transition-all dark:hover:bg-zinc-700 dark:border-zinc-700 dark:text-white cursor-pointer"
+			on:click={() => handleFollow()}
+		>
+			<span
+				>{isFollowing
+					? `${$t('global.buttons.following')}`
+					: `${$t('global.buttons.follow')}`}</span
+			>
+		</button>
+	{/if}
 {/if}
 
 {#if open}

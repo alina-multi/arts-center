@@ -34,7 +34,7 @@
 				<DonateForm {user} />
 			{/if}
 			<div
-				class="flex flex-col border-y dark:bg-zinc-900 dark:border max-xl:px-3 py-6 dark:border-zinc-800 sm:max-xl:px-6"
+				class="flex flex-col border-y dark:px-3 dark:bg-zinc-900 dark:border max-xl:px-3 py-6 dark:border-zinc-800 sm:max-xl:px-6"
 			>
 				<UserPreview {user} />
 			</div>

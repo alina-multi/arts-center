@@ -25,7 +25,11 @@
 <div class="pswp-gallery" id={galleryID}>
 	<ImageLightBox image={work.full} alt={work.titles[0].alt} style={'w-full h-full'} original />
 	{#if work.images.length > 0}
-		<div class="pt-3 grid grid-cols-4 xl:grid-cols-5 gap-3 {description ? 'border-b pb-6' : ''}">
+		<div
+			class="pt-3 grid grid-cols-4 xl:grid-cols-5 gap-3 {description
+				? 'border-b dark:border-zinc-800 pb-6'
+				: ''}"
+		>
 			{#each work.images as image}
 				<ImageLightBox {image} alt={work.titles[0].alt} />
 			{/each}

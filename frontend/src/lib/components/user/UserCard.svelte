@@ -11,10 +11,10 @@
 
 <div class="w-full">
 	<div
-		class="w-full h-32 rounded-sm flex flex-col items-center bg-zinc-100 dark:bg-zinc-900 border dark:border-zinc-800"
+		class="w-full h-32 rounded-t-sm flex flex-col items-center bg-zinc-800 dark:bg-zinc-900 dark:border dark:border-zinc-800"
 	/>
 	<div
-		class="border rounded-sm border-t-transparent dark:border-zinc-800 dark:border-t-transparent w-full pb-6 dark:bg-zinc-950"
+		class=" bg-zinc-50 rounded-b-sm border-x border-b dark:border-zinc-800 dark:border-t-transparent w-full pb-6 dark:bg-zinc-950"
 	>
 		<div class=" flex flex-col gap-3 items-center w-full px-6 xs:px-9">
 			<div class=" -mt-20">
@@ -40,10 +40,12 @@
 				<OnArtSince {user} />
 			</div>
 
-			<FollowButton
-				{user}
-				size={'base mt-3 text-center font-medium py-2 w-3/4 md:w-2/3 lg:w-1/2 xl:w-3/4  rounded-sm hover:bg-zinc-50'}
-			/>
+			<div class=" h-12 w-60 flex items-center">
+				<FollowButton
+					{user}
+					size={'base bg-white  text-center font-medium  w-full  rounded-sm hover:scale-105 hover:shadow '}
+				/>
+			</div>
 		</div>
 	</div>
 </div>
