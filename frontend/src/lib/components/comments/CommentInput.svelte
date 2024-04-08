@@ -39,7 +39,7 @@
 				<button
 					class="border {enabled
 						? ' border-emerald-600  text-white bg-emerald-600 dark:text-zinc-200 border  hover:bg-emerald-500 hover:text-white hover:border-emerald-500 '
-						: 'text-zinc-500  dark:bg-zinc-800 dark:text-zinc-600 border-zinc-300  '} bg-white px-3 py-2 dark:border-0 text-sm font-semibold"
+						: 'text-zinc-500  dark:bg-zinc-800 dark:text-zinc-600 border-zinc-300 bg-white '}  px-3 py-2 dark:border-0 text-sm font-semibold"
 				>
 					{isReplying
 						? $t('global.comment.reply')
