@@ -17,7 +17,7 @@
 		size = 'w-7 h-7';
 	let votes = entity?.votes;
 	let rating = entity?.rating;
-	let isLiked = entity?.votes?.some((vote) => vote?.id?.toString() === $user?.id?.toString());
+	$: isLiked = entity?.votes?.some((vote) => vote?.id?.toString() === $user?.id?.toString());
 	let isDownVoted = false;
 	let open = false;
 	let votable_id = entity?.id.toString();

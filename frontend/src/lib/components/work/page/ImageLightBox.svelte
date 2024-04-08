@@ -7,7 +7,7 @@
 </script>
 
 <div
-	class="rounded-sm bg-zinc-900 dark:bg-zinc-900 overflow-hidden {original ? '' : 'aspect-[4/3]'}"
+	class="rounded-sm bg-zinc-200 dark:bg-zinc-800 overflow-hidden {original ? '' : 'aspect-[4/3]'}"
 >
 	<a
 		href={image?.original?.src}

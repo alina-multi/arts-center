@@ -28,11 +28,12 @@
 					<AvatarLink {user} withName size={'w-8 h-8'} nameStyles={'font-medium text-sm'} />
 					<VerificationBadge user_verified={user.verified_at} size={'  w-4 h-4'} />
 				</div>
-
-				<FollowButton
-					size={'xs   w-max   border border border-zinc-500 border-zinc-800 text-zinc-900 dark:bg-zinc-800  w-min px-3 py-1 text-center'}
-					{user}
-				/>
+				<div class="flex w-28">
+					<FollowButton
+						size={'xs   w-max   border border border-zinc-500 border-zinc-800 text-zinc-900 dark:bg-zinc-800  w-min px-3 py-1 text-center'}
+						{user}
+					/>
+				</div>
 			</div>
 		{/each}
 

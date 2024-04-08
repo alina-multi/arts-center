@@ -51,7 +51,7 @@
 					<div class="flex items-center justify-between gap-6 xl:text-sm">
 						<AvatarLink {user} withName size={'w-8 h-8 '} nameStyles="font-medium" />
 
-						<div>
+						<div class="flex justify-end w-28">
 							<FollowButton
 								size={'xs max-sm:text-xs xl:text-xs   border border border-zinc-500 border-zinc-800 text-zinc-800 dark:bg-zinc-800  w-min px-3 py-1 text-center'}
 								{user}
