@@ -25,11 +25,14 @@
 		{#each work.owners as user (user.id)}
 			<div class="flex items-center gap-3">
 				<div class="flex items-center gap-1">
-					<AvatarLink {user} withName size={'w-8 h-8'} nameStyles={'font-medium max-sm:text-sm'} />
-					<VerificationBadge user_verified={user.verified_at} size={'w-4 h-4'} />
+					<AvatarLink {user} withName size={'w-8 h-8'} nameStyles={'font-medium text-sm'} />
+					<VerificationBadge user_verified={user.verified_at} size={'  w-4 h-4'} />
 				</div>
-				<div class="h-1 w-1 rounded-full bg-zinc-600 dark:bg-zinc-400"></div>
-				<FollowButton size={'sm  font-medium w-max '} {user} />
+
+				<FollowButton
+					size={'xs   w-max   border border border-zinc-500 border-zinc-800 text-zinc-900 dark:bg-zinc-800  w-min px-3 py-1 text-center'}
+					{user}
+				/>
 			</div>
 		{/each}
 
@@ -46,7 +49,7 @@
 		<h1 class="text-xl sm:text-2xl font-bold font-serif dark:text-white">
 			{title}
 		</h1>
-		<span class="text-zinc-600 dark:text-zinc-300 text-sm"
+		<span class="text-zinc-600 dark:text-zinc-300 text-xs"
 			>{$t('global.published_on')} <LocaleDate date={work?.published_at} />
 		</span>
 

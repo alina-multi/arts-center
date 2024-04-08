@@ -56,7 +56,7 @@
 			leaveFrom="translate-x-0"
 			leaveTo="-translate-x-full"
 		>
-			<DialogDescription>
+			<DialogDescription class="mb-16">
 				<TopNav>
 					<Logo />
 					<div class="flex items-center gap-6 ml-6 h-full">
@@ -70,7 +70,7 @@
 					</div>
 				</TopNav>
 
-				<div class="flex flex-col w-full font-medium divide-y tracking-wider pl-1">
+				<div class="flex flex-col w-full divide-y dark:divide-zinc-800 pl-1">
 					<div>
 						<TopNavLink media={'mobile'} exact href={localePath($locale, '/tag/all/popular')}
 							>{$t('global.menu.gallery')}
@@ -84,22 +84,22 @@
 				</div>
 
 				{#if $user}
-					<div class=" pl-6 pr-3 w-full border-y dark:border-zinc-800 py-3">
+					<div class=" pl-6 pr-3 w-full border-y dark:border-zinc-800 pb-1 text-sm pt-9">
 						<AvatarLink user={$user} size={'w-10 h-10 '} withName nameStyles="font-semibold" />
 					</div>
 
-					<ul class=" text-sm border-b pb-6">
+					<ul class=" text-sm border-b pb-6 pt-3">
 						<MyProfileLinksGroup />
 						<li>
-							<LogoutButton />
+							<LogoutButton sty />
 						</li>
 					</ul>
 				{:else}
 					<div
-						class="flex items-center px-6 pt-9 pb-6 justify-start gap-6 border-t dark:border-zinc-800"
+						class="flex sm:grid sm:grid-cols-2 items-center px-6 pt-9 pb-6 justify-start gap-6 border-t dark:border-zinc-800"
 					>
 						<AddWorkButton />
-						<LoginLink />
+						<LoginLink styles="w-full" />
 					</div>
 				{/if}
 

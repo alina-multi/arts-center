@@ -12,8 +12,8 @@
 </script>
 
 {#if country}
-	<div class="inline-flex items-center gap-1 sm:gap-2">
-		<div class="rounded-full h-1 w-1 bg-zinc-600 dark:bg-zinc-300"></div>
+	<div class="inline-flex items-center gap-1.5">
+		<div class="rounded-full h-0.5 w-0.5 bg-zinc-400 dark:bg-zinc-300"></div>
 		<span>{country}</span>
 	</div>
 {/if}

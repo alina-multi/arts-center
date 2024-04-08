@@ -84,7 +84,7 @@
 		{#if !$isUserLoading}
 			{#if $user}
 				<div
-					class="md:bg-zinc-50 md:border md:pt-3 md:pb-4 md:px-9 xl:py-6  max-xl:mt-9 xl:dark:bg-zinc-900 xl:dark:border xl:dark:border-zinc-800"
+					class="md:bg-zinc-50 md:border md:pt-3 md:pb-4 md:px-9 xl:py-6 max-xl:mt-9 xl:dark:bg-zinc-900 xl:dark:border xl:dark:border-zinc-800"
 				>
 					<CommentInput onSubmit={addNewComment} bind:value />
 				</div>
@@ -95,9 +95,11 @@
 	</div>
 
 	<div
-		class="border-y xl:border-t-transparent border-zinc-200 dark:px-6 dark:border dark:border-zinc-800 dark:bg-zinc-900 py-3 font-semibold"
+		class="max-xl:bg-zinc-100 max-xl:shadow xl:border-b border-zinc-200 dark:px-6 dark:border dark:border-zinc-800 dark:bg-zinc-900 py-3 font-semibold"
 	>
-		<span>{$t('global.comment.comments')} {commentsCount > 0 ? commentsCount : ''}</span>
+		<span class="max-xl:px-3"
+			>{$t('global.comment.comments')} {commentsCount > 0 ? commentsCount : ''}</span
+		>
 	</div>
 
 	{#if commentsCount > 0}

@@ -23,7 +23,7 @@
 
 			<div class="flex gap-3 items-start sm:items-center xl:px-6">
 				<p
-					class="text-lg text-center md:text-xl font-semibold text-black dark:text-gray-100 flex gap-2"
+					class=" text-center text-xl font-medium text-black dark:text-zinc-100 flex gap-2 items-center"
 				>
 					{user.name}
 					<VerificationBadge user_verified={user.verified_at} size="w-6 h-6" />
@@ -42,7 +42,7 @@
 
 			<FollowButton
 				{user}
-				size={'base text-center font-medium py-2 w-3/4 md:w-2/3 lg:w-1/2 xl:w-3/4 border rounded-sm border-zinc-900 rounded-sm dark:bg-zinc-800 bg-white hover:bg-zinc-50'}
+				size={'base mt-3 text-center font-medium py-2 w-3/4 md:w-2/3 lg:w-1/2 xl:w-3/4  rounded-sm hover:bg-zinc-50'}
 			/>
 		</div>
 	</div>

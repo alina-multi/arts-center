@@ -14,7 +14,5 @@
 	data-sveltekit-preload-data="tap"
 	data-sveltekit-reload
 >
-	<Icon src={Power}  class="h-6 w-6 stroke-1" aria-hidden="true" />{$t(
-		'global.my_links.logout'
-	)}
+	<Icon src={Power} class="h-6 w-6 stroke-1" aria-hidden="true" />{$t('global.my_links.logout')}
 </button>

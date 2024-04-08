@@ -25,7 +25,7 @@
 			</span>
 			<span>:</span>
 			<div
-				class=" ml-2 inline-flex items-center gap-2 border-amber-600 text-sm  border px-3 py-1 dark:text-zinc-200 dark:bg-zinc-800"
+				class=" ml-2 inline-flex items-center gap-2 border-amber-600 text-sm border px-3 py-1 dark:text-zinc-200 dark:bg-zinc-800"
 			>
 				{#if selected === 'popular' || selected === 'new'}
 					{$t(`global.filters.${selected}`)}
