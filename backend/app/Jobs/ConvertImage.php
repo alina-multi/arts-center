@@ -20,8 +20,8 @@ class ConvertImage implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private array $targets = [
-        ImageFolders::Works->name => [600, 1200, 2400],
-        ImageFolders::Preview->name => [150, 200, 250, 300, 600],
+        ImageFolders::Works->name => [300, 400, 600, 1200, 2400],
+        ImageFolders::Preview->name => [150, 200, 250, 300, 400, 600],
         ImageFolders::Photos->name => [64, 300, 600],
         ImageFolders::Grids->name => [150, 300, 600, 1200, 2400],
         ImageFolders::Posts->name => [150, 300, 600, 1200],
@@ -59,15 +59,15 @@ class ConvertImage implements ShouldQueue
     public function convert($width, $extension, \Intervention\Image\Image $og)
     {
         if ($this
-            ->image->variants
+            ->image->variants()
             ->where('width', $width)
             ->where('extension', $extension)
             ->count()
         ) {
-            return;
+            return false;
         }
         if ($width >= $og->width()) {
-            return;
+            return false;
         }
         $newImage = $og->resize($width, null, function ($constraint) {
             $constraint->aspectRatio();
