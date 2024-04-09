@@ -6,9 +6,7 @@
 
 	const t = getContext('t');
 
-	export let votes: User[] = [],
-		isLiked = false,
-		currentUser: User = null;
+	export let votes: User[] = [];
 	// For now let's just show the first 3 votes
 	// Later, this can be friends first like on FB
 	let votesPreview = votes?.slice(0, 3);
@@ -16,7 +14,7 @@
 </script>
 
 <div class="flex items-center gap-1 dark:text-zinc-300">
-	{#if votes.length > 0}
+	{#if votes.length > 3}
 		<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointe mr-1">
 			{$t('global.voting.liked_by')}
 		</button>
@@ -25,13 +23,7 @@
 			{#each votesPreview as user (user.id)}
 				<AvatarLink {user} size={'w-8 h-8'} />
 			{/each}
-			{#if isLiked}
-				<AvatarLink user={currentUser} size={'w-8 h-8'} />
-			{/if}
 		</div>
-	{/if}
-
-	{#if votes.length > 3}
 		<div class=" hidden min-[400px]:block">
 			<span class="text-zinc-500 dark:text-zinc-400 max-sm:hidden">{$t('global.voting.and')}</span>
 			<button
@@ -52,7 +44,7 @@
 	<ul
 		class=" flex flex-col gap-3 lg:max-h-96 h-2/3 overflow-y-scroll px-6 border-y py-3 dark:border-zinc-800"
 	>
-		{#each votes as user (user.id)}
+		{#each votes as user}
 			<li class="flex items-center gap-3">
 				<AvatarLink
 					{user}

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { XMark } from '@steeze-ui/heroicons';
-	import TubeIcon from './TubeIcon.svelte';
+	import DonateIcon from './DonateIcon.svelte';
 	import { localePath } from '$lib/translations';
 	import type { UserBasic } from '$lib/interfaces/User';
 	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
@@ -60,23 +60,26 @@
 	$: disabled = quantity === 0;
 </script>
 
-<!-- sm:max-lg:justify-center   xl:justify-around  sm:max-md:gap-6 max-lg:gap-9 -->
-
-<div
-	class=" w-full xs:px-9 md:px-6 sm:max-md:mx-auto xs:py-6 xl:w-full xs:border rounded-sm xs:shadow xs:bg-zinc-50 max-xs:dark:p-3 dark:bg-zinc-800 dark:border-zinc-700"
->
-	<div class=" flex flex-col gap-6 md:max-lg:items-center">
-		<div class="text-lg font-semibold text-center dark:text-white">
-			{$t('global.donation.title')}
+<div class=" shadow p-6 xs:p-9 bg-zinc-100 dark:bg-zinc-800 dark:border-zinc-700">
+	<div class="text-center space-y-6">
+		<div class="text-xl font-semibold dark:text-white">
+			<h3>{$t('global.donation.title1')}</h3>
+			<h4>{$t('global.donation.title2')}</h4>
 		</div>
-		<div class=" flex items-center justify-around sm:gap-6 sm:justify-center lg:max-xl:gap-1">
-			<TubeIcon />
+		<p>
+			{$t('global.donation.p1')}
+		</p>
 
-			<Icon src={XMark} class="w-6 h-6 text-gray-600  dark:text-white" />
+		<div
+			class=" flex items-center justify-between sm:justify-center sm:gap-6 sm:w-full xl:justify-around"
+		>
+			<DonateIcon />
 
-			<fieldset class=" font-semibold flex gap-4 xs:gap-6 md:gap-3 items-center text-[16px]">
+			<Icon src={XMark} class="w-6 h-6  dark:text-white" />
+
+			<fieldset class=" gap-6 flex xl:justify-around text-[16px] font-semibold">
 				{#each options as option (option)}
-					<div class="flex relative">
+					<div class="flex relative max-sm:last-of-type:hidden xl:last-of-type:hidden">
 						<input
 							on:focus={() => {
 								value = quantity;
@@ -90,7 +93,7 @@
 						/>
 						<label
 							for="price-{option}"
-							class="py-2 px-4 rounded-full shadow flex cursor-pointer border border-amber-500 peer-checked:hover:border-amber-500 hover:border-amber-600 justify-center items-center peer-checked:bg-amber-500 peer-checked:text-white"
+							class="py-2 px-4 rounded-full dark:bg-zinc-600 dark:border-zinc-500 flex cursor-pointer border border-zinc-900 peer-checked:hover:border-amber-500 hover:border-amber-600 justify-center items-center peer-checked:bg-amber-500 peer-checked:border-amber-500 peer-checked:text-white"
 							>{option}</label
 						>
 					</div>
@@ -111,22 +114,29 @@
 					type="number"
 					name="price-custom"
 					id="price-custom"
-					class="block text-center shadow py-2 px-1 rounded-sm border-0 text-zinc-900 dark:text-white hover:ring-amber-600 dark:hover:ring-amber-600 dark:focus:ring-amber-600 dark:focus:bg-zinc-500 ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 dark:bg-zinc-600 dark:placeholder:text-zinc-200 dark:ring-zinc-500 focus:ring-inset focus:ring-1 focus:ring-zinc-600"
+					class="block text-center py-2 px-1 border-0 text-zinc-900 dark:text-white hover:ring-amber-600 dark:hover:ring-amber-600 dark:focus:ring-amber-600 dark:focus:bg-zinc-500 ring-1 ring-inset ring-zinc-200 placeholder:text-zinc-400 dark:bg-zinc-600 dark:placeholder:text-zinc-200 dark:ring-zinc-500 focus:ring-inset focus:ring-1 focus:ring-zinc-600"
 					placeholder="10"
 				/>
 			</fieldset>
 		</div>
-
-		<button
-			on:click={checkout}
-			{disabled}
-			class="{disabled
-				? 'bg-zinc-400 dark:bg-zinc-500 dark:text-zinc-700 cursor-not-allowed '
-				: 'bg-zinc-600  cursor-pointer  hover:scale-[1.02] transform transition-transform'}  md:max-lg:w-2/3 text-white w-full rounded-sm text-[16px] font-semibold py-2 shadow flex items-center justify-center gap-3 mb-3"
-		>
-			<span>{$t('global.donation.support')}</span>
-			<span>{quantity * 5} €</span>
-		</button>
+		<p>
+			<b>{$t('global.donation.be_patron')}</b>{$t('global.donation.p2')}
+		</p>
+		<div class="w-full xl:px-6">
+			<button
+				on:click={checkout}
+				{disabled}
+				class="{disabled
+					? 'bg-zinc-400 dark:bg-zinc-500 dark:text-zinc-700 cursor-not-allowed '
+					: 'bg-zinc-800 dark:bg-emerald-600  cursor-pointer  hover:scale-[1.02] transform transition-transform'}  sm:max-lg:w-2/3 lg:max-xl:w-1/2 text-white w-full text-lg font-semibold py-3 gap-3 mb-3"
+			>
+				<span>{$t('global.donation.support')}</span>
+				<span>{quantity * 5} €</span>
+			</button>
+		</div>
+		<p>
+			{$t('global.donation.p3')}
+		</p>
 	</div>
 </div>
 

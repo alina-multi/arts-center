@@ -5,15 +5,13 @@
 
 	const t = getContext('t');
 	const locale = getContext('locale');
-	export let primary: boolean = false;
+	export let styles = '';
 
 	$: redirect = $page.url.pathname.length > 1 ? `?redirect=${$page.url.pathname}` : '';
 </script>
 
 <a
 	href={localePath($locale, `/login${redirect}`)}
-	class="  rounded-sm {primary
-		? 'w-full  bg-amber-600 text-white text-lg font-semibold  hover:bg-amber-500 px-3 py-1.5'
-		: ' border border-black text-black text-sm  dark:text-white dark:border-zinc-500 dark:bg-zinc-800  hover:border-amber-600 hover:text-amber-600 dark:hover:bg-zinc-900 dark:hover:text-amber-500 dark:hover:border-amber-500 px-3 py-1'} text-center hover:shadow-xl shadow-md"
+	class=" {styles}  border border-black text-black text-sm dark:text-white dark:border-zinc-500 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 px-3 py-2 text-center"
 	>{$t('global.buttons.login').toUpperCase()}</a
 >

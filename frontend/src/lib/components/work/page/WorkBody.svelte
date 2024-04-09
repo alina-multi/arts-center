@@ -20,22 +20,22 @@
 		});
 		lightbox.init();
 	});
-
-	let grid = work.images;
-	let isOdd = grid.length % 2 !== 0;
-	grid = isOdd ? grid.slice(0, grid.length - 1) : grid;
-	let lastChild = isOdd ? grid[grid.length - 1] : null;
 </script>
 
-<div class="pswp-gallery {grid.length > 1 ? 'space-y-2 sm:space-y-3' : ''}" id={galleryID}>
+<div class="pswp-gallery" id={galleryID}>
 	<ImageLightBox image={work.full} alt={work.titles[0].alt} style={'w-full h-full'} original />
-	<div class="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3">
-		{#each grid as image}
-			<ImageLightBox {image} alt={'??? doesnt exist'} />
-		{/each}
-	</div>
-	{#if lastChild}
-		<ImageLightBox image={lastChild} alt={'??? doesnt exist'} />
+	{#if work.images.length > 0}
+		<div
+			class="pt-3 grid grid-cols-4 xl:grid-cols-5 gap-3 {description
+				? 'border-b dark:border-zinc-800 pb-6'
+				: ''}"
+		>
+			{#each work.images as image}
+				<ImageLightBox {image} alt={work.titles[0].alt} />
+			{/each}
+		</div>
 	{/if}
 </div>
-<p class="whitespace-pre-line">{description ?? ''}</p>
+{#if description}
+	<p class="whitespace-pre-line text-lg font-serif mt-3">{description ?? ''}</p>
+{/if}

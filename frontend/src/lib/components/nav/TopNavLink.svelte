@@ -10,7 +10,7 @@
 	let style;
 
 	let styleDesktop = 'border-b-2 px-1 pt-1';
-	let styleMobile = 'border-l-2 px-3 py-1 ';
+	let styleMobile = 'border-l-2 px-6 py-4 w-full  ';
 
 	if (media === 'desktop') {
 		style = styleDesktop;

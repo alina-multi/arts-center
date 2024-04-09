@@ -8,7 +8,8 @@
 	import { getContext, tick } from 'svelte';
 	import NoResultsStub from './NoResultsStub.svelte';
 	import { fetchData } from '$lib/helpers/fetchData';
-	import { user } from '$lib/stores/auth';
+	import { user, isUserLoading } from '$lib/stores/auth';
+	import AuthStub from '$lib/components/content/AuthStub.svelte';
 
 	const t = getContext('t');
 	const comments: Comment[] = getContext('comments');
@@ -43,7 +44,6 @@
 	let new_comment: Comment | null = null;
 	let new_comment_loaded = false;
 	let url = '/api/comment';
-	$: comments_length = comments.length;
 
 	if (new_comment) {
 		new_comment = null;
@@ -78,45 +78,53 @@
 	}
 </script>
 
-<div class="flex flex-col text-black dark:text-gray-300">
-	<div class="border py-3 bg-zinc-50 dark:bg-zinc-900 dark:border-zinc-800 rounded-t-sm">
-		<span class="font-semibold px-3 md:px-6"
-			>{commentsCount}
-			{commentsCount === 1
-				? $t('global.comment.comment').toLowerCase()
-				: $t('global.comment.comments').toLowerCase()}</span
+<div class=" flex flex-col">
+	<h3 class="sr-only">Comments</h3>
+	<div class=" h-56 w-full">
+		{#if !$isUserLoading}
+			{#if $user}
+				<div
+					class="md:bg-zinc-50 md:border md:pt-3 md:pb-4 md:px-9 xl:py-6 max-xl:mt-9 md:dark:bg-zinc-900 md:dark:border md:dark:border-zinc-800"
+				>
+					<CommentInput onSubmit={addNewComment} bind:value />
+				</div>
+			{:else}
+				<AuthStub />
+			{/if}
+		{/if}
+	</div>
+
+	<div
+		class="max-xl:bg-zinc-100 max-xl:shadow xl:border-b border-zinc-200 dark:px-6 dark:border dark:border-zinc-800 dark:bg-zinc-900 py-3 font-semibold"
+	>
+		<span class="max-xl:px-3"
+			>{$t('global.comment.comments')} {commentsCount > 0 ? commentsCount : ''}</span
 		>
 	</div>
 
-	<div class=" {comments_length > 0 || $user ? '  pb-6 gap-6 ' : ''}  flex flex-col">
-		<h3 class="sr-only">Comments</h3>
-		{#if $user}
-			<CommentInput onSubmit={addNewComment} bind:value />
-		{/if}
-		{#if commentsCount > 0}
-			<ul id="parentBlock">
-				{#each parentComments as comment (comment.id)}
-					{#if comment.id === new_comment?.id}
-						<li
-							class=" transition-opacity delay-500 {new_comment_loaded
-								? 'opacity-100'
-								: 'opacity-50'}"
-						>
-							<CommentBlock
-								{isMy}
-								{comment}
-								{commentable_id}
-								bind:parentComments
-								bind:commentsCount
-							/>
-						</li>
-					{:else}
-						<CommentBlock {comment} {commentable_id} bind:parentComments bind:commentsCount />
-					{/if}
-				{/each}
-			</ul>
-		{:else}
-			<NoResultsStub />
-		{/if}
-	</div>
+	{#if commentsCount > 0}
+		<ul id="parentBlock">
+			{#each parentComments as comment (comment.id)}
+				{#if comment.id === new_comment?.id}
+					<li
+						class=" transition-opacity delay-500 {new_comment_loaded
+							? 'opacity-100'
+							: 'opacity-50'}"
+					>
+						<CommentBlock
+							{isMy}
+							{comment}
+							{commentable_id}
+							bind:parentComments
+							bind:commentsCount
+						/>
+					</li>
+				{:else}
+					<CommentBlock {comment} {commentable_id} bind:parentComments bind:commentsCount />
+				{/if}
+			{/each}
+		</ul>
+	{:else}
+		<NoResultsStub />
+	{/if}
 </div>

@@ -4,25 +4,17 @@
 	import { getContext } from 'svelte';
 
 	const t = getContext('t');
-	export let user,
-		forSubscribed = false;
+	export let user;
 </script>
 
 {#if user?.rating}
-	{#if user.subscribed && forSubscribed}
-		<div class="flex items-center text-sm text-zinc-600 gap-1 dark:text-zinc-300">
-			<Icon src={Star} theme="solid" class="  w-4 fill-amber-600 stroke-amber-600 " />
-			<span>{$t('global.user.total_rating')}: {user.rating}</span>
+	<div
+		class="flex rounded-sm items-center font-semibold justify-between py-3 border-b bg-zinc-100 dark:bg-zinc-900 dark:border-zinc-800 px-9"
+	>
+		<span class="text-lg">{$t('global.user.total_rating')} </span>
+		<div class="flex items-center gap-1 text-lg">
+			<Icon src={Star} theme="solid" class="  w-5 h-5 fill-amber-500 stroke-amber-500 " />
+			<span> {user.rating}</span>
 		</div>
-	{/if}
-
-	{#if !forSubscribed}
-		<div class="flex items-center font-semibold justify-between">
-			<span>{$t('global.user.total_rating')} </span>
-			<div class="flex items-center gap-1">
-				<Icon src={Star} theme="solid" class="  w-[18px] fill-amber-500 stroke-amber-500 " />
-				<span> {user.rating}</span>
-			</div>
-		</div>
-	{/if}
+	</div>
 {/if}

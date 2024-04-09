@@ -48,10 +48,15 @@
 
 			<div class="space-y-6">
 				{#each data.users as user (user.id)}
-					<div class="flex items-center xl:justify-between gap-6">
-						<AvatarLink {user} withName size={'w-8 h-8'} />
+					<div class="flex items-center justify-between gap-6 xl:text-sm">
+						<AvatarLink {user} withName size={'w-8 h-8 '} nameStyles="font-medium" />
 
-						<div><FollowButton size={'xs'} {user} /></div>
+						<div class="flex justify-end w-28">
+							<FollowButton
+								size={'xs max-sm:text-xs xl:text-xs   border border border-zinc-500 border-zinc-800 text-zinc-800 dark:bg-zinc-800  w-min px-3 py-1 text-center'}
+								{user}
+							/>
+						</div>
 					</div>
 				{/each}
 			</div>

@@ -14,7 +14,7 @@ return [
     ],
     "follower" => [
         "started_following_you" => "is now following you",
-        "subject" => ":name is now following you"
+        "subject" => "You have a new follower. Your art has found another admirer!"
     ],
     "profile" => [
         "approved" => "Your profile was approved by moderator, it is now visible on site",
@@ -23,5 +23,7 @@ return [
     "vote" => [
         "received" => "You have received new vote to your work!",
         "view" => "View vote on site"
-    ]
+    ],
+ 
+
 ];

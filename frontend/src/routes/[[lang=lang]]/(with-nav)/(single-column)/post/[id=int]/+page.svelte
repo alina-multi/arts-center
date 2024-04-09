@@ -27,13 +27,13 @@
 	image={data.post?.image?.original.src}
 />
 
-<div class="flex flex-col gap-3 mx-auto py-3 md:w-5/6 xl:w-2/3 px-3 md:px-0">
+<div class="flex flex-col gap-3 mx-auto pt-3 xl:w-2/3 px-3 md:px-0">
 	<div class="flex flex-col gap-3">
 		<div class="flex justify-between items-center pt-1 pb-4 sm:py-6 border-b dark:border-zinc-800">
-			<div class="flex items-center gap-3">
+			<div class="flex items-center gap-3 text-sm font-medium">
 				<AvatarLink user={data.post.owner} withName size={'w-8 h-8'} />
 				<div>
-					<FollowButton size={'xs sm:text-sm'} user={data.post.owner} />
+					<FollowButton size={'xs w-min'} user={data.post.owner} />
 				</div>
 			</div>
 			{#if currentDate === data.post.published_at.toDateString()}
@@ -42,7 +42,7 @@
 					<LocaleDate date={data.post?.published_at} />
 				</div>
 			{:else}
-				<div class="text-zinc-500 dark:text-zinc-100 text-sm">
+				<div class="text-zinc-500 dark:text-zinc-100 text-xs">
 					<span class="hidden xs:inline">{$t('global.updated')}</span>
 
 					<LocaleDate date={data.post?.updated_at} />
@@ -50,7 +50,9 @@
 			{/if}
 		</div>
 
-		<h1 class="text-2xl py-4 sm:py-6 font-bold sm:text-4xl text-gray-00 dark:text-gray-100">
+		<h1
+			class="text-2xl py-4 sm:py-6 font-semibold sm:text-3xl text-gray-00 dark:text-gray-100 tracking-wide"
+		>
 			{data.post.title}
 		</h1>
 	</div>
@@ -76,10 +78,12 @@
 	</div>
 
 	<div
-		class="w-full flex items-center justify-between gap-3 border-t py-4 dark:border-zinc-800 max-lg:border-b max-lg:mb-6 lg:py-6 sm:mt-3"
+		class="w-full flex items-center justify-between gap-3 border-t py-4 dark:border-zinc-800 max-lg:border-b lg:py-6 sm:mt-3"
 	>
 		<RatingPreviewVote showVotedPreview entity={data.post} votable_type={'post'} />
 	</div>
 </div>
 
-<ContentFooter commentable_type="post" {isMy} />
+<div class="xl:border-t mx-auto">
+	<ContentFooter commentable_type="post" {isMy} />
+</div>

@@ -3,8 +3,8 @@
 	export let works;
 </script>
 
-<div class="grid grid-cols-3 gap-1 overflow-hidden w-full">
+<div class="grid grid-cols-3 md:max-lg:grid-cols-2 gap-1 overflow-hidden w-full">
 	{#each works as work (work.id)}
-		<div><ImageWork {work} /></div>
+		<div class="md:max-lg:last-of-type:hidden"><ImageWork {work} /></div>
 	{/each}
 </div>

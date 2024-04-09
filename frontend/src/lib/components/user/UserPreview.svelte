@@ -3,7 +3,6 @@
 	import UserDetails from '$lib/components/user/UserDetails.svelte';
 	import { localePath } from '$lib/translations';
 	import FollowButton from '$lib/components/atoms/buttons/FollowButton.svelte';
-	import Crown from '$lib/components/atoms/CrownIcon.svelte';
 	import type { User } from '$lib/interfaces/User';
 	import VerificationBadge from '../atoms/VerificationBadge.svelte';
 	import { getContext } from 'svelte';
@@ -11,37 +10,25 @@
 	const locale = getContext('locale');
 
 	export let user: User,
-		avatar_size = 'h-12 w-12 xs:h-16 xs:w-16 lg:max-xl:h-12 lg:max-xl:w-12',
-		crown_size = 'w-4 h-4',
+		avatar_size = 'h-12 w-12 xs:h-16 xs:w-16 lg:max-xl:h-12 lg:max-xl:w-12 xl:h-14 xl:w-14 ',
 		followButton: boolean | undefined = true;
 
 	$: href = localePath($locale, `/${user.username}`);
 </script>
 
 <div class="flex items-center gap-3 w-full">
-	<div class="relative">
-		<AvatarLink {user} size={avatar_size} />
+	<AvatarLink {user} size={avatar_size} />
 
-		{#if user.subscribed}
-			<div class="absolute -top-1 -left-1 p-1 bg-gray-400/50 rounded-full">
-				<Crown style="{crown_size} stroke-white" />
-			</div>
-		{/if}
-	</div>
-
-	<div class="flex flex-col gap-1 flex-1">
-		<div class="flex items-center gap-3">
-			<a
-				{href}
-				class="flex dark:text-white cursor-pointer text-base items-center gap-2 font-medium"
-			>
-				<div class="flex items-center flex-wrap gap-2 sm:text-lg lg:max-xl:text-base">
-					<span>{user.name}</span>
+	<div class="flex flex-col flex-1 gap-1">
+		<div class="flex items-center justify-between gap-3">
+			<a {href} class="flex dark:text-white cursor-pointer items-center gap-2">
+				<div class="flex items-center flex-wrap gap-2 text-base font-semibold">
+					<span class="leading-7">{user.name}</span>
 					<VerificationBadge user_verified={user.verified_at} />
 				</div>
 			</a>
 			{#if followButton}
-				<span class=""><FollowButton {user} size={'xs xs:text-sm '} /></span>
+				<div class="flex justify-end w-28"><FollowButton {user} size={'xs w-min'} /></div>
 			{/if}
 		</div>
 		<UserDetails {user} />

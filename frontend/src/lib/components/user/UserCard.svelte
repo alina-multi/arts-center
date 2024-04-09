@@ -4,7 +4,6 @@
 	import FollowButton from '../atoms/buttons/FollowButton.svelte';
 	import Country from './UserCountry.svelte';
 	import OnArtSince from '../atoms/OnArtsSince.svelte';
-	import Crown from '../atoms/CrownIcon.svelte';
 	import VerificationBadge from '../atoms/VerificationBadge.svelte';
 
 	export let user: User;
@@ -12,24 +11,19 @@
 
 <div class="w-full">
 	<div
-		class="w-full h-32 rounded-sm flex flex-col items-center bg-zinc-600 dark:bg-zinc-700 shadow"
+		class="w-full h-32 rounded-t-sm flex flex-col items-center bg-zinc-800 dark:bg-zinc-900 dark:border dark:border-zinc-800"
 	/>
 	<div
-		class="border rounded-sm border-t-transparent dark:border-zinc-800 dark:border-t-transparent w-full flex flex-col items-center pb-6 dark:bg-zinc-900"
+		class=" bg-zinc-50 rounded-b-sm border-x border-b dark:border-zinc-800 dark:border-t-transparent w-full pb-6 dark:bg-zinc-950"
 	>
-		<div class=" flex flex-col gap-3 items-center max-sm:w-full w-fit px-6 xs:px-9">
+		<div class=" flex flex-col gap-3 items-center w-full px-6 xs:px-9">
 			<div class=" -mt-20">
 				<Avatar {user} size={' w-32 h-32  max-xl:w-28 max-xl:h-28 '} />
-				{#if user.subscribed}
-					<div class="absolute -top-1.5 right-3 p-1.5 bg-amber-500/60 rounded-full">
-						<Crown style="{'w-4 h-4'} stroke-white" />
-					</div>
-				{/if}
 			</div>
 
 			<div class="flex gap-3 items-start sm:items-center xl:px-6">
 				<p
-					class="text-lg text-center md:text-xl font-semibold text-black dark:text-gray-100 flex gap-2"
+					class=" text-center text-xl font-medium text-black dark:text-zinc-100 flex gap-2 items-center"
 				>
 					{user.name}
 					<VerificationBadge user_verified={user.verified_at} size="w-6 h-6" />
@@ -37,7 +31,7 @@
 			</div>
 
 			<div class="flex flex-col gap-1 xl:px-6 items-center">
-				<div class="flex flex-wrap items-center xl:gap-3 gap-1 sm:max-xl:gap-3 xl:justify-center">
+				<div class="flex flex-wrap items-center xl:gap-3 gap-1 sm:gap-2 xl:justify-center">
 					<span>@{user?.username}</span>
 
 					<Country {user} />
@@ -46,16 +40,12 @@
 				<OnArtSince {user} />
 			</div>
 
-			<!-- Followers and Supporters buttons for future  -->
-
-			<!-- <div
-				class="flex xl:flex-col items-center gap-3 sm:gap-9 xl:gap-3 px-6 font-semibold max-xs:flex-col mb-3"
-			>
-				<span>Followers 10</span>
-
-				<span>Supporters 234</span>
-			</div> -->
-			<FollowButton {user} size={'base font-semibold'} />
+			<div class=" h-12 w-60 flex items-center">
+				<FollowButton
+					{user}
+					size={'base bg-white  text-center font-medium  w-full  rounded-sm hover:scale-105 hover:shadow '}
+				/>
+			</div>
 		</div>
 	</div>
 </div>

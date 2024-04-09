@@ -32,14 +32,14 @@
 				bind:value
 				placeholder="{$t('global.comment.placeholder')}..."
 				rows="2"
-				class="block w-full text-black placeholder:text-sm rounded-sm dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:placeholder:text-zinc-300 focus:ring-0 focus:border-zinc-400 dark:focus:border-zinc-500 shadow-sm border-gray-300"
+				class="block w-full text-black rounded-sm placeholder:text-sm font-medium placeholder:text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:placeholder:text-zinc-300 focus:ring-0 focus:border-zinc-400 dark:focus:border-zinc-500 border-zinc-300"
 			/>
 
 			<div class="flex flex-row-reverse mt-3 gap-3">
 				<button
 					class="border {enabled
-						? 'text-zinc-600   dark:bg-zinc-900  dark:text-zinc-200 border dark:ring-1 dark:ring-zinc-800 hover:bg-blue-600 hover:text-white hover:border-blue-600 dark:hover:bg-blue-700'
-						: 'text-zinc-400 dark:bg-zinc-800 dark:text-zinc-600  '}  px-3 py-2 shadow-sm dark:border-0 text-sm font-semibold rounded-sm"
+						? ' border-emerald-600  text-white bg-emerald-600 dark:text-zinc-200 border  hover:bg-emerald-500 hover:text-white hover:border-emerald-500 '
+						: 'text-zinc-500 dark:text-zinc-200  dark:bg-zinc-800  border-zinc-300 bg-white '}  px-3 py-2 dark:border-0 text-sm font-semibold"
 				>
 					{isReplying
 						? $t('global.comment.reply')
