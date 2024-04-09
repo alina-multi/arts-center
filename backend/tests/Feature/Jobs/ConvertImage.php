@@ -8,10 +8,9 @@ uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 test('Converts image', function () {
     Storage::fake('s3');
-    $image =App\Models\Image::withoutEvents(function () {
-     return App\Models\Image::factory(['folder' => \App\Enums\ImageFolders::Works])
-            ->hasVariants(1, ['original' => true, 'width' => 2400, 'height' => 2400])->create();
-    });
+    $image = App\Models\Image::withoutEvents(fn() => App\Models\Image::factory(['folder' => \App\Enums\ImageFolders::Works])
+        ->hasVariants(1, ['original' => true, 'width' => 2400, 'height' => 2400])->create()
+    );
     $testFile = Illuminate\Http\UploadedFile::fake()->image("test.jpeg", 2400, 2400);
     Storage::putFileAs('', $testFile, "{$image->folder->value}/{$image->variants()->first()->file}");
     \App\Jobs\ConvertImage::dispatchSync($image);
@@ -31,7 +30,7 @@ test('Converts image', function () {
         $this->assertEquals($croppedImage->height(), 1200);
     }
 
-    // It shouldn't create second one with the same
+    // It shouldn't create a second one with the same
     // extensions and size, original covers this already
     $this->assertDatabaseMissing('image_variants', [
         'image_id' => $image->id,
@@ -40,4 +39,10 @@ test('Converts image', function () {
         'extension' => \App\Enums\ImageExtentions::jpeg,
         'original' => false
     ]);
+
+    // Make sure not to create the same files again if run multiple times
+    $imageVariantsCountBefore = \App\Models\ImageVariant::count();
+    \App\Jobs\ConvertImage::dispatchSync($image);
+    $this->assertDatabaseCount('image_variants', $imageVariantsCountBefore);
 });
+
