@@ -17,5 +17,6 @@
 		class={clazz}
 		width={photo.original.width}
 		height={photo.original.height}
+		loading="lazy"
 	/>
 </picture>
