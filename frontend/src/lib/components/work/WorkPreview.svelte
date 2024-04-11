@@ -5,12 +5,12 @@
 
 	import ImageWork from '$lib/components/atoms/ImageWork.svelte';
 
-	export let work: Work;
+	export let work: Work, loading;
 </script>
 
 <li class="flex flex-col gap-1 lg:gap-0 overflow-hidden {work.subscribed ? ' ' : ''} ">
 	<div class="group/item relative">
-		<ImageWork {work} withDesription />
+		<ImageWork {work} withDesription {loading} />
 	</div>
 
 	<div class="flex justify-between items-center lg:text-xs text-sm mt-auto">
