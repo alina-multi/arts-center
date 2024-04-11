@@ -6,7 +6,8 @@
 	import { getContext } from 'svelte';
 
 	export let work,
-		withDesription: boolean = false;
+		withDesription: boolean = false,
+		loading;
 
 	const locale = getContext('locale');
 
@@ -21,6 +22,7 @@
 				photo={work.preview}
 				alt={title}
 				class={'aspect-[4/3] flex object-cover w-full h-full'}
+				{loading}
 			/>
 		{/if}
 	</div>
