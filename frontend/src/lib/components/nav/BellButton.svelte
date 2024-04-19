@@ -12,7 +12,7 @@
 <a
 	href={localePath($locale, '/my/notifications')}
 	on:click={() => invalidateAll()}
-	class="relative hover:bg-gray-100 dark:hover:bg-zinc-700 flex items-center justify-center rounded-full p-1 transition-all"
+	class="relative hover:bg-gray-100 dark:hover:bg-zinc-700 hidden xs:flex items-center justify-center rounded-full p-1 transition-all "
 >
 	<Icon src={Bell} class="h-8 w-8  stroke-1" aria-hidden="true" />
 	{#if $user?.unread > 0}
