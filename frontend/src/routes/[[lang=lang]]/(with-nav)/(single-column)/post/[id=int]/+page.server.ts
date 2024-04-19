@@ -13,7 +13,7 @@ export const load = (async ({ params }) => {
 		getComments(BigInt(params.id), 'post').then((comments) => commentsMap(comments))
 	]);
 	if (!post || post?.language != params.lang) {
-		throw error(404);
+		error(404);
 	}
 	return {
 		post,

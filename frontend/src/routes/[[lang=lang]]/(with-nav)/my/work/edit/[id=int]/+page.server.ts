@@ -13,11 +13,11 @@ export const load = (async (event) => {
 	const { user } = await event.parent();
 	// Check that you are the owner
 	if (!data.owners.filter(({ id }) => id === user.id)?.length) {
-		throw error(404, 'Not found');
+		error(404, 'Not found');
 	}
 	data.titles = languageFilter(data.titles, event.params.lang);
 	if (!data.id || !data.published_at) {
-		throw error(404, 'Not found');
+		error(404, 'Not found');
 	}
 	return data;
 }) satisfies PageServerLoad;
@@ -37,7 +37,7 @@ export const actions = {
 			}
 		});
 		if (response.ok) {
-			throw redirect(302, localePath(event.params.lang, `/work/${event.params.id}`));
+			redirect(302, localePath(event.params.lang, `/work/${event.params.id}`));
 		}
 		return await response.json();
 	},
@@ -48,7 +48,7 @@ export const actions = {
 			event
 		});
 		if (response.ok) {
-			throw redirect(302, localePath(event.params.lang, `/my/work/draft`));
+			redirect(302, localePath(event.params.lang, `/my/work/draft`));
 		}
 		return await response.json();
 	}

@@ -21,7 +21,7 @@ export const load = (async ({ params, url, setHeaders }) => {
 		userCountries()
 	]);
 	return {
-		users: usersMap(users, params.lang),
+		users: await usersMap(users, params.lang),
 		categories: tagsMap(categories, params.lang),
 		countries: userCountriesMap(countries, params.lang),
 		params

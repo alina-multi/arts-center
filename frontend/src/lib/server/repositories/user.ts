@@ -120,7 +120,7 @@ export async function filteredQuery(
 	}
 	if (category !== 'all') {
 		const id = await titleToId(category, lang);
-		if (!id) throw error(404, `Tag not found, ${category}`);
+		if (!id) error(404, `Tag not found, ${category}`);
 		where = {
 			...where,
 			ratings: {

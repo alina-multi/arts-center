@@ -23,10 +23,10 @@ export const actions = {
 			};
 		}
 		if (response.ok) {
-			throw redirect(
-				301,
-				event.url.searchParams.get('redirect') || localePath(event.params.lang, '/my/profile')
-			);
+			redirect(
+            				301,
+            				event.url.searchParams.get('redirect') || localePath(event.params.lang, '/my/profile')
+            			);
 		} else {
 			return {
 				...(await response.json()),
