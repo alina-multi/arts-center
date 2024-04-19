@@ -36,7 +36,7 @@ return [
     |
     */
 
-    'server' => env('OCTANE_SERVER', 'roadrunner'),
+    'server' => env('OCTANE_SERVER', 'swoole'),
 
     /*
     |--------------------------------------------------------------------------
@@ -216,7 +216,7 @@ return [
     |
     */
 
-    'max_execution_time' => 30,
+    'max_execution_time' => 60,
 
     'swoole' => [
         'options' => [
