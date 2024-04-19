@@ -63,8 +63,8 @@ export function checkUrlLocale(event: RequestEvent): AvailableLocales {
 	const lang = event.params.lang || defaultLocale;
 	if (!correctLocale(lang)) {
 		error(404, {
-        			message: 'Language not supported'
-        		});
+			message: 'Language not supported'
+		});
 	}
 	if (event.url.pathname.startsWith(`/${defaultLocale}`)) {
 		const newUrl = event.url.pathname.replace(`/${defaultLocale}`, '') || '/';

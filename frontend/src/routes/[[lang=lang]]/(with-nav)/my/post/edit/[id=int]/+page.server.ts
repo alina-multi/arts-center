@@ -12,13 +12,13 @@ export const load = (async ({ params, parent }) => {
 	}
 	if (postRaw?.owner?.id != user.id) {
 		error(403, {
-        			message: 'Unauthorized'
-        		});
+			message: 'Unauthorized'
+		});
 	}
 	if (!process.env.TRANSLOADIT_IMAGE_TEMPLATE) {
 		error(500, {
-        			message: 'Missing Transloadit Image Template'
-        		});
+			message: 'Missing Transloadit Image Template'
+		});
 	}
 	return {
 		post: postMap(postRaw),

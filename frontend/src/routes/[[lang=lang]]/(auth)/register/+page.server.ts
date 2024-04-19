@@ -24,9 +24,9 @@ export const actions = {
 		}
 		if (response.ok) {
 			redirect(
-            				301,
-            				event.url.searchParams.get('redirect') || localePath(event.params.lang, '/my/profile')
-            			);
+				301,
+				event.url.searchParams.get('redirect') || localePath(event.params.lang, '/my/profile')
+			);
 		} else {
 			return {
 				...(await response.json()),
