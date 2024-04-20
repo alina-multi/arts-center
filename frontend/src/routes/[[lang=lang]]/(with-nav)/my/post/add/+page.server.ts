@@ -11,7 +11,7 @@ export const load = (async (event) => {
 	});
 	const { id } = await response.json();
 	if (!id) {
-		throw error(500, 'Could not create post');
+		error(500, 'Could not create post');
 	}
-	throw redirect(301, localePath(event.params.lang, `/my/post/edit/${id}`));
+	redirect(301, localePath(event.params.lang, `/my/post/edit/${id}`));
 }) satisfies PageServerLoad;

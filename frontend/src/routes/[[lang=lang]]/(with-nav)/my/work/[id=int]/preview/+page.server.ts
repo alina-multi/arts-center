@@ -12,7 +12,7 @@ export const load = (async ({ params }) => {
 		}))
 	};
 	if (!data?.work?.id || data?.work?.published_at) {
-		throw redirect(302, localePath(params.lang, `/work/${data.work.id}`));
+		redirect(302, localePath(params.lang, `/work/${data.work.id}`));
 	}
 	return data;
 }) satisfies PageLoad;
@@ -29,7 +29,7 @@ export const actions = {
 			}
 		});
 		if (response.ok) {
-			throw redirect(302, localePath(event.params.lang, `/work/${event.params.id}`));
+			redirect(302, localePath(event.params.lang, `/work/${event.params.id}`));
 		}
 		return await response.json();
 	}
