@@ -26,7 +26,7 @@
 			class="fixed inset-0 bg-gray-200/60 dark:bg-black/30 backdrop-blur-sm transition-opacity h-screen overflow-y-scroll"
 		>
 			<DialogDescription
-				class="mx-auto z-10 items-end justify-center sm:items-center transform overflow-y-auto  bg-white dark:bg-zinc-900 dark:text-zinc-300 transition-all  {clazz}"
+				class=" container mx-auto z-10 items-end justify-center sm:items-center transform overflow-y-auto  bg-white dark:bg-zinc-900 dark:text-zinc-300 transition-all  {clazz}"
 			>
 				<div class="flex flex-col gap-3">
 					{#if $$slots?.header}
