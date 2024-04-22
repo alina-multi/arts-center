@@ -29,7 +29,7 @@
 	}
 </script>
 
-<div class=" mt-3 space-y-3">
+<div class=" mt-3 space-y-3 container mx-auto px-3">
 	{#key $locale}
 		<GalleryFilters {categories} {params} />
 	{/key}

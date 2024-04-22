@@ -26,8 +26,8 @@
 	author={data.post.owner.name}
 	image={data.post?.image?.original.src}
 />
-
-<div class="flex flex-col gap-3 mx-auto pt-3 xl:w-2/3 px-3 md:px-0">
+<div class="container mx-auto px-3 pb-12">
+<div class="flex flex-col gap-3 mx-auto pt-3 xl:w-2/3 px-3 md:px-0 ">
 	<div class="flex flex-col gap-3">
 		<div class="flex justify-between items-center pt-1 pb-4 sm:py-6 border-b dark:border-zinc-800">
 			<div class="flex items-center gap-3 text-sm font-medium">
@@ -86,4 +86,5 @@
 
 <div class="xl:border-t mx-auto">
 	<ContentFooter commentable_type="post" {isMy} />
+</div>
 </div>
