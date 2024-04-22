@@ -8,7 +8,8 @@
 	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
 	import WorkPage from '$lib/components/work/WorkPage.svelte';
 	import { page } from '$app/stores';
-	import { beforeNavigate, preloadData, pushState } from '$app/navigation';
+	import globalLoading from '$lib/stores/loading';
+	import { beforeNavigate, goto, preloadData, pushState } from '$app/navigation';
 
 	const locale = getContext('locale');
 	export let gallery;
@@ -19,6 +20,7 @@
 	let loading = false;
 	let hasMore = gallery.length >= 20;
 	$: gallery = [...gallery, ...newBatch];
+
 	async function fetchData() {
 		loading = true;
 		let url = localePath($locale, `/api/tag/${params.tag}/${params.order}/${currentPage}`);
@@ -35,13 +37,20 @@
 	beforeNavigate(async (navigation: import('@sveltejs/kit').BeforeNavigate) => {
 		if (navigation.to?.route.id === '/[[lang=lang]]/(with-nav)/(single-column)/work/[id=int]') {
 			navigation.cancel();
+			globalLoading.set(true);
 			const preloaded = await preloadData(navigation.to?.url.href);
-			pushState(navigation.to?.url.href, {
-				workModal: {
-					work: preloaded.data.work,
-					comments: preloaded.data.comments
-				}
-			});
+			globalLoading.set(false);
+			if (preloaded.type === 'loaded') {
+				pushState(navigation.to?.url.href, {
+					workModal: {
+						work: preloaded.data.work,
+						comments: preloaded.data.comments
+					}
+				});
+				// Fallback if for any reason preload fails
+			} else {
+				goto(navigation.to?.url.href);
+			}
 		}
 	});
 </script>
