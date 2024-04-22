@@ -17,24 +17,23 @@
 	$: isMy = work.owners.some((owner) => handleIsMy($user, owner.id));
 </script>
 
-
 <div class="container mx-auto px-3 pb-12">
-<div
-	class="flex flex-col gap-3 mx-auto pt-3 lg:pt-6 lg:border xl:border-t-transparent dark:lg:bg-zinc-900 lg:px-28 xl:px-36 dark:lg:border-zinc-800 dark:lg:border-t-transparent"
->
-	<WorkHeader {work} {isMy} />
-	<WorkBody {work} />
+	<div
+		class="flex flex-col gap-3 mx-auto pt-3 lg:pt-6 lg:border xl:border-t-transparent dark:lg:bg-zinc-900 lg:px-28 xl:px-36 dark:lg:border-zinc-800 dark:lg:border-t-transparent"
+	>
+		<WorkHeader {work} {isMy} />
+		<WorkBody {work} />
 
-	<div class="flex items-center justify-between gap-3">
-		<div
-			class=" w-full flex sm:gap-3 items-center mt-3 border-y lg:border-b-transparent lg:dark:border-b-transparent dark:border-zinc-800 py-4 lg:py-6"
-		>
-			<div class="w-full flex items-center justify-between gap-3">
-				<RatingPreviewVote entity={work} showVotedPreview votable_type={'work'} />
+		<div class="flex items-center justify-between gap-3">
+			<div
+				class=" w-full flex sm:gap-3 items-center mt-3 border-y lg:border-b-transparent lg:dark:border-b-transparent dark:border-zinc-800 py-4 lg:py-6"
+			>
+				<div class="w-full flex items-center justify-between gap-3">
+					<RatingPreviewVote entity={work} showVotedPreview votable_type={'work'} />
+				</div>
+				<BookmarkButton {work} />
 			</div>
-			<BookmarkButton {work} />
 		</div>
 	</div>
-</div>
-<ContentFooter commentable_type="work" {isMy} />
+	<ContentFooter commentable_type="work" {isMy} />
 </div>

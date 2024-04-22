@@ -27,64 +27,66 @@
 	image={data.post?.image?.original.src}
 />
 <div class="container mx-auto px-3 pb-12">
-<div class="flex flex-col gap-3 mx-auto pt-3 xl:w-2/3 px-3 md:px-0 ">
-	<div class="flex flex-col gap-3">
-		<div class="flex justify-between items-center pt-1 pb-4 sm:py-6 border-b dark:border-zinc-800">
-			<div class="flex items-center gap-3 text-sm font-medium">
-				<AvatarLink user={data.post.owner} withName size={'w-8 h-8'} />
-				<div>
-					<FollowButton size={'xs w-min'} user={data.post.owner} />
+	<div class="flex flex-col gap-3 mx-auto pt-3 xl:w-2/3 px-3 md:px-0">
+		<div class="flex flex-col gap-3">
+			<div
+				class="flex justify-between items-center pt-1 pb-4 sm:py-6 border-b dark:border-zinc-800"
+			>
+				<div class="flex items-center gap-3 text-sm font-medium">
+					<AvatarLink user={data.post.owner} withName size={'w-8 h-8'} />
+					<div>
+						<FollowButton size={'xs w-min'} user={data.post.owner} />
+					</div>
 				</div>
-			</div>
-			{#if currentDate === data.post.published_at.toDateString()}
-				<div class="text-zinc-500 dark:text-zinc-100 text-sm">
-					<span class="hidden xs:inline"> {$t('global.published_on')} </span>
-					<LocaleDate date={data.post?.published_at} />
-				</div>
-			{:else}
-				<div class="text-zinc-500 dark:text-zinc-100 text-xs">
-					<span class="hidden xs:inline">{$t('global.updated')}</span>
+				{#if currentDate === data.post.published_at.toDateString()}
+					<div class="text-zinc-500 dark:text-zinc-100 text-sm">
+						<span class="hidden xs:inline"> {$t('global.published_on')} </span>
+						<LocaleDate date={data.post?.published_at} />
+					</div>
+				{:else}
+					<div class="text-zinc-500 dark:text-zinc-100 text-xs">
+						<span class="hidden xs:inline">{$t('global.updated')}</span>
 
-					<LocaleDate date={data.post?.updated_at} />
-				</div>
-			{/if}
-		</div>
-
-		<h1
-			class="text-2xl py-4 sm:py-6 font-semibold sm:text-3xl text-gray-00 dark:text-gray-100 tracking-wide"
-		>
-			{data.post.title}
-		</h1>
-	</div>
-	<div class="space-y-6">
-		{#each data.post?.body || [] as row, index}
-			{@const tabindex = index + 1}
-			<div>
-				{#if row.type === 'text'}
-					<!-- eslint-disable svelte/no-at-html-tags -->
-
-					<a id={`p${tabindex}`} class="highlight-links text-lg">{@html row.text}</a>
-				{:else if row.type === 'image'}
-					<div class="flex justify-center">
-						<Picture
-							alt={data.post.title}
-							class="w-full"
-							photo={data.post.images.get(row?.image_id.toString())}
-						/>
+						<LocaleDate date={data.post?.updated_at} />
 					</div>
 				{/if}
 			</div>
-		{/each}
+
+			<h1
+				class="text-2xl py-4 sm:py-6 font-semibold sm:text-3xl text-gray-00 dark:text-gray-100 tracking-wide"
+			>
+				{data.post.title}
+			</h1>
+		</div>
+		<div class="space-y-6">
+			{#each data.post?.body || [] as row, index}
+				{@const tabindex = index + 1}
+				<div>
+					{#if row.type === 'text'}
+						<!-- eslint-disable svelte/no-at-html-tags -->
+
+						<a id={`p${tabindex}`} class="highlight-links text-lg">{@html row.text}</a>
+					{:else if row.type === 'image'}
+						<div class="flex justify-center">
+							<Picture
+								alt={data.post.title}
+								class="w-full"
+								photo={data.post.images.get(row?.image_id.toString())}
+							/>
+						</div>
+					{/if}
+				</div>
+			{/each}
+		</div>
+
+		<div
+			class="w-full flex items-center justify-between gap-3 border-t py-4 dark:border-zinc-800 max-lg:border-b lg:py-6 sm:mt-3"
+		>
+			<RatingPreviewVote showVotedPreview entity={data.post} votable_type={'post'} />
+		</div>
 	</div>
 
-	<div
-		class="w-full flex items-center justify-between gap-3 border-t py-4 dark:border-zinc-800 max-lg:border-b lg:py-6 sm:mt-3"
-	>
-		<RatingPreviewVote showVotedPreview entity={data.post} votable_type={'post'} />
+	<div class="xl:border-t mx-auto">
+		<ContentFooter commentable_type="post" {isMy} />
 	</div>
-</div>
-
-<div class="xl:border-t mx-auto">
-	<ContentFooter commentable_type="post" {isMy} />
-</div>
 </div>

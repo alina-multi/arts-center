@@ -63,6 +63,7 @@
 			</dl>
 
 			<p class="pt-3 pb-9">
+				<!-- eslint-disable svelte/no-at-html-tags -->
 				{@html $t(`static.about.mission.p2`)}
 			</p>
 		</SectionLayout>
@@ -87,6 +88,7 @@
 	<ColorLayout details="bg-zinc-100">
 		<SectionLayout>
 			<p class="font-normal">
+				<!-- eslint-disable svelte/no-at-html-tags -->
 				{@html $t(`static.about.mission.p6`)}
 			</p>
 		</SectionLayout>

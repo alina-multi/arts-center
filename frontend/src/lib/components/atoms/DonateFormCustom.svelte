@@ -100,18 +100,16 @@
 		/>
 	</fieldset>
 
-
-		<button
-			on:click={checkout}
-			{disabled}
-			class="{disabled
-				? 'bg-zinc-400 dark:bg-zinc-500 dark:text-zinc-700 cursor-not-allowed '
-				: 'bg-zinc-900 dark:bg-teal-600  cursor-pointer  hover:scale-[1.02] transform transition-transform'}   text-white w-full text-xl font-medium py-4 gap-3 tracking-widest"
-		>
-			<span>{$t('global.donation.support').toUpperCase()}</span>
-			<span>{quantity * 5} €</span>
-		</button>
-
+	<button
+		on:click={checkout}
+		{disabled}
+		class="{disabled
+			? 'bg-zinc-400 dark:bg-zinc-500 dark:text-zinc-700 cursor-not-allowed '
+			: 'bg-zinc-900 dark:bg-teal-600  cursor-pointer  hover:scale-[1.02] transform transition-transform'}   text-white w-full text-xl font-medium py-4 gap-3 tracking-widest"
+	>
+		<span>{$t('global.donation.support').toUpperCase()}</span>
+		<span>{quantity * 5} €</span>
+	</button>
 </div>
 
 <ModalWindow
