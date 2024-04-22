@@ -29,6 +29,8 @@ jobs:
         with:
           run_install: true
           version: latest
+      - name: Build svelte kit
+        run: pnpm build
       - name: Unit tests
         run: pnpm test:unit
       - name: Lint
