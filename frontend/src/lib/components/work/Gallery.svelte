@@ -5,10 +5,10 @@
 	import { localePath } from '$lib/translations/';
 	import { parse } from 'devalue';
 	import { getContext } from 'svelte';
-	import ModalWindow from "$lib/components/atoms/ModalWindow.svelte";
-	import WorkPage from "$lib/components/work/WorkPage.svelte";
+	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
+	import WorkPage from '$lib/components/work/WorkPage.svelte';
 	import { page } from '$app/stores';
-	import {beforeNavigate, preloadData, pushState} from "$app/navigation";
+	import { beforeNavigate, preloadData, pushState } from '$app/navigation';
 
 	const locale = getContext('locale');
 	export let gallery;
@@ -32,9 +32,9 @@
 		loading = false;
 	}
 
-	beforeNavigate(async (navigation: import('@sveltejs/kit').BeforeNavigate)=>{
-		if (navigation.to?.route.id === "/[[lang=lang]]/(with-nav)/(single-column)/work/[id=int]") {
-			navigation.cancel()
+	beforeNavigate(async (navigation: import('@sveltejs/kit').BeforeNavigate) => {
+		if (navigation.to?.route.id === '/[[lang=lang]]/(with-nav)/(single-column)/work/[id=int]') {
+			navigation.cancel();
 			const preloaded = await preloadData(navigation.to?.url.href);
 			pushState(navigation.to?.url.href, {
 				workModal: {
@@ -43,7 +43,7 @@
 				}
 			});
 		}
-	})
+	});
 </script>
 
 <div class=" mt-3 space-y-3">
@@ -68,7 +68,7 @@
 </div>
 
 {#if $page.state.workModal}
-	<ModalWindow on:close={() => history.back()} open="{true}">
+	<ModalWindow on:close={() => history.back()} open={true}>
 		<WorkPage {...$page.state.workModal} />
 	</ModalWindow>
 {/if}

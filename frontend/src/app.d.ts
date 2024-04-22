@@ -2,7 +2,7 @@
 // for information about these interfaces
 // and what to do when importing types
 import type { User } from './lib/interfaces/User';
-import type {Work} from "$lib/interfaces/Work";
+import type { Work } from '$lib/interfaces/Work';
 
 declare namespace App {
 	// interface Error {}
@@ -13,8 +13,8 @@ declare namespace App {
 	// interface Platform {}
 	interface PageState {
 		workModal: {
-			work: Work,
-			comments: Comment[]
+			work: Work;
+			comments: Comment[];
 		};
 	}
 }
