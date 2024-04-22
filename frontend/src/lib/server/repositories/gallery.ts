@@ -74,7 +74,7 @@ export async function userQuery(user_id: bigint, tag = 'all', lang = 'en', page 
 	let where = {};
 	if (tag !== 'all') {
 		const id = await titleToId(tag, lang);
-		if (!id) throw error(404, { message: `Tag: ${tag} not found` });
+		if (!id) error(404, { message: `Tag: ${tag} not found` });
 		where = {
 			tags: {
 				some: {
@@ -142,7 +142,7 @@ export async function filteredQuery(
 	let where = {};
 	if (tag !== 'all') {
 		const id = await titleToId(tag, lang);
-		if (!id) throw error(404, { message: `Tag: ${tag} not found` });
+		if (!id) error(404, { message: `Tag: ${tag} not found` });
 		where = {
 			tags: {
 				some: {

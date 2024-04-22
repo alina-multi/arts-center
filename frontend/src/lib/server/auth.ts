@@ -25,6 +25,6 @@ export async function checkAuth(
 export async function redirectIfAuthorized({ parent, params }: ServerLoadEvent) {
 	const { user } = await parent();
 	if (user?.id) {
-		throw redirect(302, localePath(params.lang, '/'));
+		redirect(302, localePath(params.lang, '/'));
 	}
 }

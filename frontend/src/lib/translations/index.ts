@@ -62,13 +62,13 @@ export function correctLocale(lang: string): boolean {
 export function checkUrlLocale(event: RequestEvent): AvailableLocales {
 	const lang = event.params.lang || defaultLocale;
 	if (!correctLocale(lang)) {
-		throw error(404, {
+		error(404, {
 			message: 'Language not supported'
 		});
 	}
 	if (event.url.pathname.startsWith(`/${defaultLocale}`)) {
 		const newUrl = event.url.pathname.replace(`/${defaultLocale}`, '') || '/';
-		throw redirect(301, newUrl);
+		redirect(301, newUrl);
 	}
 	return lang;
 }

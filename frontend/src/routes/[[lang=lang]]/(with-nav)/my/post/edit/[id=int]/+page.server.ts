@@ -8,15 +8,15 @@ export const load = (async ({ params, parent }) => {
 	const { user } = await parent();
 	const postRaw = await get(params.id);
 	if (!postRaw) {
-		throw error(404);
+		error(404);
 	}
 	if (postRaw?.owner?.id != user.id) {
-		throw error(403, {
+		error(403, {
 			message: 'Unauthorized'
 		});
 	}
 	if (!process.env.TRANSLOADIT_IMAGE_TEMPLATE) {
-		throw error(500, {
+		error(500, {
 			message: 'Missing Transloadit Image Template'
 		});
 	}

@@ -38,10 +38,12 @@
 </script>
 
 <SideMenu>
-	<svelte:fragment slot="nav"
-		><UsersFilters tags={categories} {countries} {params} /></svelte:fragment
-	>
-	{#if users.length === 0}
+	<svelte:fragment slot="nav">
+		<UsersFilters tags={categories} {countries} {params} />
+	</svelte:fragment>
+	{#each users as user (user.id)}
+		<UserPreviewWithWorks {user} />
+	{:else}
 		<div
 			class="flex flex-col items-center py-6 border rounded-sm dark:bg-zinc-900 dark:border-zinc-800"
 		>
@@ -52,17 +54,13 @@
 				<use href="{cat}#icon-cat-not-found" />
 			</svg>
 		</div>
-	{:else}
-		{#each users as user (user.id)}
-			<UserPreviewWithWorks {user} />
-		{/each}
-		<InfiniteScroll
-			{hasMore}
-			{loading}
-			on:loadMore={() => {
-				page++;
-				fetchData();
-			}}
-		/>
-	{/if}
+	{/each}
+	<InfiniteScroll
+		{hasMore}
+		{loading}
+		on:loadMore={() => {
+			page++;
+			fetchData();
+		}}
+	/>
 </SideMenu>

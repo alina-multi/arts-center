@@ -17,7 +17,7 @@ export const actions = {
 			data
 		});
 		if (response.ok) {
-			throw redirect(302, localePath(event.params.lang, `/my/work/${event.params.id}/preview`));
+			redirect(302, localePath(event.params.lang, `/my/work/${event.params.id}/preview`));
 		}
 		return {
 			...(await response.json()),

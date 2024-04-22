@@ -23,7 +23,7 @@ export const actions = {
 			};
 		}
 		if (response.ok) {
-			throw redirect(
+			redirect(
 				301,
 				event.url.searchParams.get('redirect') || localePath(event.params.lang, '/my/profile')
 			);

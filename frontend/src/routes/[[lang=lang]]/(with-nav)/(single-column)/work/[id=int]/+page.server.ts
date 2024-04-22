@@ -11,7 +11,7 @@ export const load = (async ({ params }) => {
 		getComments(BigInt(params.id), 'work').then((comments) => commentsMap(comments))
 	]);
 	if (!work || work.status < 10) {
-		throw error(404);
+		error(404);
 	}
 	return {
 		work,

@@ -6,7 +6,7 @@ import { checkAuth } from '$lib/server/auth';
 export const load = (async (event) => {
 	const user = await checkAuth(event);
 	if (!user?.id) {
-		throw redirect(301, localePath(event.params.lang, '/login?redirect=' + event.url.pathname));
+		redirect(301, localePath(event.params.lang, '/login?redirect=' + event.url.pathname));
 	}
 	return { user };
 }) satisfies LayoutServerLoad;
