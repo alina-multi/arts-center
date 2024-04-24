@@ -11,6 +11,9 @@
 	import globalLoading from '$lib/stores/loading';
 	import { beforeNavigate, goto, preloadData, pushState } from '$app/navigation';
 
+	import NavigationArrows from './NavigationArrows.svelte';
+	import Divider from '../atoms/Divider.svelte';
+
 	const locale = getContext('locale');
 	export let gallery;
 	export let categories;
@@ -20,6 +23,14 @@
 	let loading = false;
 	let hasMore = gallery.length >= 20;
 	$: gallery = [...gallery, ...newBatch];
+
+	let initialHref = $page.url.href;
+
+	$: currentWorkIndex = -1;
+
+	$: if ($page?.state?.workModal) {
+		currentWorkIndex = gallery.findIndex((work) => work.id === $page.state.workModal.work.id);
+	}
 
 	async function fetchData() {
 		loading = true;
@@ -47,12 +58,17 @@
 						comments: preloaded.data.comments
 					}
 				});
+
 				// Fallback if for any reason preload fails
 			} else {
-				goto(navigation.to?.url.href);
+				goto(preloaded.data.work);
 			}
 		}
 	});
+
+	function gotoGallery() {
+		pushState(initialHref);
+	}
 </script>
 
 <div class=" mt-3 space-y-3">
@@ -76,8 +92,17 @@
 	/>
 </div>
 
-{#if $page.state.workModal}
-	<ModalWindow on:close={() => history.back()} open={true}>
+{#if $page?.state?.workModal}
+	<ModalWindow
+		class="container px-4 py-10 xs:px-6 xs:py-3 md:py-6 md:px-9 lg:px-0 lg:pb-12 xl:px-16 xs:my-12 xs:rounded-md  "
+		on:close={gotoGallery}
+		open={true}
+		closeButtonAddStyle="max-xs:bg-white xs:text-white"
+	>
+		<div slot="otherEl" class="hidden xs:block">
+			<NavigationArrows {currentWorkIndex} {gallery} />
+		</div>
+
 		<WorkPage {...$page.state.workModal} />
 	</ModalWindow>
 {/if}
