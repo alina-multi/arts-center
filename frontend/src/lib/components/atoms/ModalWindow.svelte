@@ -28,7 +28,7 @@
 {#if open}
 	<Dialog initialFocus={closeButton} bind:open on:close={onClose} class="relative z-50 ">
 		<DialogOverlay
-			class="  fixed inset-0 bg-black/85 dark:bg-black/30  transition-opacity min-h-screen overflow-y-scroll xs:px-9 "
+			class="  fixed inset-0 bg-black/85 dark:bg-black/30 backdrop-blur-sm  transition-opacity min-h-screen overflow-y-scroll xs:px-9 "
 		>
 			<button
 				on:click={onClose}
@@ -42,7 +42,7 @@
 			<slot name="otherEl" />
 
 			<DialogDescription
-				class="  {clazz} mx-auto  bg-white  items-end justify-center sm:items-center transform overflow-y-auto   dark:bg-zinc-900 dark:text-zinc-300 transition-all  "
+				class="  {clazz} mx-auto  bg-white  items-end justify-center sm:items-center transform overflow-y-auto  dark:border  dark:bg-zinc-950 dark:border-zinc-800 dark:text-zinc-300 transition-all  "
 			>
 				<div class="flex flex-col gap-3">
 					{#if $$slots?.header}
