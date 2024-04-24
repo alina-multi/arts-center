@@ -47,7 +47,7 @@
 	</div>
 
 	<div class="flex flex-col md:flex-row md:justify-between md:items-center gap-1">
-		<h1 class="text-xl sm:text-2xl font-bold font-serif dark:text-white">
+		<h1 class="text-xl sm:text-2xl font-medium tracking-wider dark:text-white">
 			{title}
 		</h1>
 		<span class="text-zinc-600 dark:text-zinc-300 text-xs"
