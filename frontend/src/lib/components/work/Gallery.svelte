@@ -10,9 +10,7 @@
 	import { page } from '$app/stores';
 	import globalLoading from '$lib/stores/loading';
 	import { beforeNavigate, goto, preloadData, pushState } from '$app/navigation';
-
 	import NavigationArrows from './NavigationArrows.svelte';
-	import Divider from '../atoms/Divider.svelte';
 
 	const locale = getContext('locale');
 	export let gallery;
