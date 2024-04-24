@@ -19,7 +19,7 @@
 
 <div class="container mx-auto px-3 pb-12">
 	<div
-		class="flex flex-col gap-3 mx-auto pt-3 lg:pt-6 lg:border xl:border-t-transparent dark:lg:bg-zinc-900 lg:px-28 xl:px-36 dark:lg:border-zinc-800 dark:lg:border-t-transparent"
+		class="flex flex-col gap-3 lg:gap-9 mx-auto pt-3 lg:pt-9 dark:lg:bg-zinc-900 lg:px-28 xl:px-36"
 	>
 		<WorkHeader {work} {isMy} />
 		<WorkBody {work} />

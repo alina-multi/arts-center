@@ -29,6 +29,10 @@ jobs:
         with:
           run_install: true
           version: latest
+      - name: Prisma
+        run: pnpm prisma generate
+      - name: Build svelte kit
+        run: pnpm build
       - name: Unit tests
         run: pnpm test:unit
       - name: Lint
