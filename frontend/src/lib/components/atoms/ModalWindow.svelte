@@ -28,11 +28,11 @@
 {#if open}
 	<Dialog initialFocus={closeButton} bind:open on:close={onClose} class="relative z-50 ">
 		<DialogOverlay
-			class="  fixed inset-0 bg-black/85 dark:bg-black/30 backdrop-blur-sm  transition-opacity min-h-screen overflow-y-scroll xs:px-9 "
+			class="  fixed inset-0 bg-black/85 dark:bg-black/30 backdrop-blur-sm  transition-opacity min-h-screen overflow-y-scroll xs:px-12 sm:px-16 "
 		>
 			<button
 				on:click={onClose}
-				class="{closeButtonAddStyle} pr-6 xs:pr-3 fixed top-0 left-0 w-full h-12 z-50 cursor-pointer"
+				class="{closeButtonAddStyle}  pr-3 fixed top-0 left-0 w-full h-12 z-50 cursor-pointer"
 			>
 				<div bind:this={closeButton} class="flex w-full h-full justify-end items-center">
 					<Icon src={XMark} class="w-6 h-6 xs:w-8 xs:h-8 " />

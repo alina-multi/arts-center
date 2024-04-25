@@ -16,7 +16,7 @@
 
 <button
 	on:click={() => changeWork(-1)}
-	class="fixed h-screen top-0 left-0 xs:px-3  z-40 cursor-pointer"
+	class="fixed h-screen top-0 left-0 xs:px-3 z-40 cursor-pointer"
 	class:hidden={currentWorkIndex === 0}
 	aria-label="Previous Work"
 >
