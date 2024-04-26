@@ -33,5 +33,5 @@
 	{/if}
 </div>
 {#if description}
-	<p class="whitespace-pre-line text-lg tracking-wider mt-3">{description ?? ''}</p>
+	<p class="whitespace-pre-line md:text-lg mt-3">{description ?? ''}</p>
 {/if}
