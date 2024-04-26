@@ -42,7 +42,7 @@
 			<slot name="otherEl" />
 
 			<DialogDescription
-				class="  {clazz} mx-auto  bg-white  items-end justify-center sm:items-center transform overflow-y-auto  dark:border  dark:bg-zinc-950 dark:border-zinc-800 dark:text-zinc-300 transition-all  "
+				class="dark:border   {clazz} mx-auto  bg-white  items-end justify-center sm:items-center transform overflow-y-auto  dark:bg-zinc-950 dark:border-zinc-800 dark:text-zinc-300 transition-all  "
 			>
 				<div class="flex flex-col gap-3">
 					{#if $$slots?.header}
