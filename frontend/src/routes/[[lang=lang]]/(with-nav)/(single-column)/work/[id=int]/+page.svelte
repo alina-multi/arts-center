@@ -23,5 +23,6 @@
 	{author}
 	{image}
 />
-
-<WorkPage {...data} />
+<div class="container mx-auto px-3 pb-12">
+	<WorkPage {...data} />
+</div>
