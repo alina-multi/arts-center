@@ -5,6 +5,8 @@
 	import { checkAuth } from '$lib/stores/auth';
 	import NotificationToasts from '$lib/components/notification/NotificationToasts.svelte';
 
+	import AuthModal from '$lib/components/atoms/AuthModal.svelte';
+
 	if (browser) {
 		checkAuth();
 	}
@@ -16,3 +18,5 @@
 {/if}
 <MainNav />
 <slot />
+
+<AuthModal />

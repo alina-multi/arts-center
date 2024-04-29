@@ -1,21 +1,22 @@
 <script lang="ts">
 	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
-	import LoginLink from '../nav/LoginLink.svelte';
 	import { getContext } from 'svelte';
+	import AuthPage from '../auth/AuthPage.svelte';
+	import { page } from '$app/stores';
+	import BeforeNavigateLayout from './BeforeNavigateLayout.svelte';
 
 	const t = getContext('t');
-	export let open: boolean, type;
+
 </script>
 
-<ModalWindow
-	bind:open
-	class=" p-9 xl:p-12  xl:w-4/12  max-sm:mx-6 sm:w-3/4 md:w-2/3 lg:w-1/2 rounded-sm my-24  "
->
-	<p class="text-gray-700 dark:text-gray-300 text-xl text-center font-semibold pb-6">
-		{$t('global.not_logged_in.login_to')}
-		{type}
-	</p>
-	<div class="flex gap-3 justify-center items-center">
-		<LoginLink styles="bg-zinc-900 text-white border-amber-500 w-2/3 font-bold tracking-widest" />
-	</div>
-</ModalWindow>
+<BeforeNavigateLayout keysToInclude={['form', ]}  route={'/[[lang=lang]]/(auth)/login'} stateName={'auth'}>
+	<ModalWindow
+		on:close={() => history.back()}
+		open={true}
+		class="px-3  max-xs:h-screen md:w-4/5 lg:w-2/3 xs:my-12 xl:w-1/2 2xl:w-2/5 2xl:pb-16  xs:pb-12 sm:bg-zinc-50 max-xs:rounded-md max-md:w-full "
+		closeButtonAddStyle="max-xs:bg-white xs:text-white max-xs:dark:bg-black"
+	>
+		<AuthPage {...$page.state.auth} />
+	</ModalWindow>
+
+</BeforeNavigateLayout>
