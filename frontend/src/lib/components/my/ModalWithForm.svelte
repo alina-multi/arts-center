@@ -17,7 +17,7 @@
 		submiInput: () => Promise<void>;
 </script>
 
-{#if $user}
+
 	<ModalWindow
 		bind:open
 		class="xl:w-1/3 rounded-sm my-24  xs:max-sm:mx-6 sm:max-md:mx-9 md:w-2/3 lg:w-1/2"
@@ -53,6 +53,4 @@
 			</ButtonsGroup>
 		</form>
 	</ModalWindow>
-{:else}
-	<AuthModal bind:open type={not_logged_in_messsage} />
-{/if}
+

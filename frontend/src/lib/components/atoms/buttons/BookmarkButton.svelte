@@ -8,6 +8,8 @@
 	import ModalWithForm from '$lib/components/my/ModalWithForm.svelte';
 	import { user } from '$lib/stores/auth';
 	import { getContext } from 'svelte';
+	import { goto } from '$app/navigation';
+	import { localePath } from '$lib/translations';
 
 	const t = getContext('t');
 	export let work;
@@ -21,6 +23,8 @@
 	let folderID = 0;
 	let folderName = '';
 	$: folders = $user?.favorites?.folders;
+
+	const locale = getContext('locale');
 
 	function onChange(e: Event & { target: HTMLInputElement }) {
 		folderID = Number(e.target.value);
@@ -74,11 +78,23 @@
 		await fetchData('DELETE', url, { work_id: workID });
 		isBookmarked = false;
 	}
+
+	function onBookmarkButton() {
+		if (!$user) {
+			goto(localePath($locale, `/login`));
+			return;
+		}
+		if (isBookmarked) {
+			remove();
+		} else {
+			open = true;
+		}
+	}
 </script>
 
 <button
 	type="button"
-	on:click={isBookmarked ? remove : () => (open = true)}
+	on:click={onBookmarkButton}
 	class="  dark:text-zinc-300 text-black dark:border-zinc-700 flex items-center"
 >
 	<span class="pl-4">
