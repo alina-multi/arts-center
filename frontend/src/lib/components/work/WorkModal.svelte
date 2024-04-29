@@ -2,9 +2,9 @@
 	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
 	import WorkPage from '$lib/components/work/WorkPage.svelte';
 	import { page } from '$app/stores';
-	import globalLoading from '$lib/stores/loading';
-	import { beforeNavigate, goto, preloadData, pushState } from '$app/navigation';
+	import {  pushState } from '$app/navigation';
 	import NavigationArrows from './NavigationArrows.svelte';
+	import BeforeNavigateLayout from '../atoms/BeforeNavigateLayout.svelte';
 
 	export let gallery;
 
@@ -15,31 +15,14 @@
 		currentWorkIndex = gallery.findIndex((work) => work.id === $page.state.workModal.work.id);
 	}
 
-	beforeNavigate(async (navigation: import('@sveltejs/kit').BeforeNavigate) => {
-		if (navigation.to?.route.id === '/[[lang=lang]]/(with-nav)/(single-column)/work/[id=int]') {
-			navigation.cancel();
-			globalLoading.set(true);
-			const preloaded = await preloadData(navigation.to?.url.href);
-			globalLoading.set(false);
-			if (preloaded.type === 'loaded') {
-				pushState(navigation.to?.url.href, {
-					workModal: {
-						work: preloaded.data.work,
-						comments: preloaded.data.comments
-					}
-				});
-
-				// Fallback if for any reason preload fails
-			} else {
-				goto(preloaded.data.work);
-			}
-		}
-	});
 
 	function gotoGallery() {
 		pushState(initialHref);
 	}
 </script>
+
+<BeforeNavigateLayout  route={'/[[lang=lang]]/(with-nav)/(single-column)/work/[id=int]'}
+stateName={'workModal'} keysToInclude={['work', 'comments']}> 
 
 {#if $page?.state?.workModal}
 	<ModalWindow
@@ -55,3 +38,5 @@
 		<WorkPage {...$page.state.workModal} />
 	</ModalWindow>
 {/if}
+
+</BeforeNavigateLayout>
