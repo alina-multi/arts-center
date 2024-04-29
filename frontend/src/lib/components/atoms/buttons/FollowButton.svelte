@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
-	import AuthModal from '../AuthModal.svelte';
 	import { fetchData } from '$lib/helpers/fetchData';
 	import { user as currentUser, isUserLoading } from '$lib/stores/auth';
 	import { getContext } from 'svelte';
 	import { localePath } from '$lib/translations';
+	import { goto } from '$app/navigation';
 
 	const t = getContext('t');
 	const locale = getContext('locale');
@@ -14,10 +14,6 @@
 
 	let isMy = false;
 	$: isMy = handleIsMy($currentUser, user.id);
-
-	let open = false;
-
-	// isFollowing - some problem with reactiviity
 
 	$: follows = $currentUser?.follows?.user;
 	$: isFollowing = follows?.some((id) => id === Number(user.id));
@@ -30,7 +26,7 @@
 				onFollow();
 			}
 		} else {
-			open = true;
+			goto(localePath($locale, `/login`));
 		}
 	};
 
@@ -67,8 +63,4 @@
 			>
 		</button>
 	{/if}
-{/if}
-
-{#if open}
-	<AuthModal bind:open type={$t('global.not_logged_in.follow')} />
 {/if}
