@@ -5,7 +5,6 @@
 	import VotedList from '$lib/components/rating/VotedList.svelte';
 	import LikeButton from './LikeButton.svelte';
 	import DislikeButton from './DislikeButton.svelte';
-	import AuthModal from '../atoms/AuthModal.svelte';
 	import { user } from '$lib/stores/auth';
 	import { getContext } from 'svelte';
 
@@ -19,7 +18,6 @@
 	let rating = entity?.rating;
 	$: isLiked = entity?.votes?.some((vote) => vote?.id?.toString() === $user?.id?.toString());
 	let isDownVoted = false;
-	let open = false;
 	let votable_id = entity?.id.toString();
 </script>
 
@@ -46,7 +44,6 @@
 			bind:isLiked
 			bind:isDownVoted
 			bind:rating
-			bind:open
 			{votes}
 			{votable_type}
 			{votable_id}
@@ -63,18 +60,9 @@
 			bind:isLiked
 			bind:isDownVoted
 			bind:rating
-			bind:open
 			{votable_type}
 			{votable_id}
 		/>
 	{/if}
 </div>
 
-{#if open}
-	<AuthModal
-		bind:open
-		type={votable_type === 'comment'
-			? $t('global.not_logged_in.comment')
-			: $t('global.not_logged_in.like')}
-	/>
-{/if}
