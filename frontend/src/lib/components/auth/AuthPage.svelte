@@ -7,11 +7,41 @@
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
 	import { localePath } from '$lib/translations';
 	import { getContext } from 'svelte';
+	import { showAuthModal } from '$lib/stores/auth';
+	import { deserialize } from '$app/forms';
+	import { checkAuth } from '$lib/stores/auth';
+	import { enhance, applyAction } from '$app/forms';
+	import { goto } from '$app/navigation';
 
 	const t = getContext('t');
 	const locale = getContext('locale');
 
-	export let form: ActionData;
+	export let form: ActionData | undefined;
+
+	async function onSubmit({ formData, cancel }) {
+		if ($showAuthModal) {
+			cancel();
+
+			const response = await fetch('/login', {
+				method: 'POST',
+				body: formData
+			});
+			const result = deserialize(await response.text());
+			form = result?.data;
+
+			if (result.type === 'redirect') {
+				checkAuth();
+				showAuthModal.set(false);
+			}
+		}
+
+		return async ({ result }) => {
+			form = result.data;
+			if (result.type === 'redirect') {
+				goto(result.location);
+			}
+		};
+	}
 </script>
 
 <div class="flex min-h-full flex-col pt-12 sm:px-6 lg:px-8 bg:white sm:bg-gray-50 dark:bg-black">
@@ -29,7 +59,7 @@
 
 	<div class=" sm:mx-auto sm:w-full sm:max-w-md">
 		<div class="bg-white dark:bg-zinc-900 px-3 py-6 sm:p-9 sm:shadow rounded-sm">
-			<form class="space-y-6" method="POST">
+			<form class="space-y-6" method="POST" use:enhance={onSubmit}>
 				{#if form?.message}
 					<p class="text-red-600">{form?.message}</p>
 				{/if}

@@ -4,6 +4,7 @@ import { redirect } from '@sveltejs/kit';
 import { localePath } from '$lib/translations';
 import { redirectIfAuthorized } from '$lib/server/auth';
 
+
 export const actions = {
 	default: async (event) => {
 		const data = await event.request.formData();

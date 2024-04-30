@@ -12,6 +12,7 @@ export const user: Writable<UserMe> = writable();
 export const isUserLoading: Writable<boolean> = writable(true);
 
 export const notifications: Writable<Notification[]> = writable([]);
+export const showAuthModal: Writable<boolean> = writable(false);
 
 export async function checkAuth() {
 	fetchData('post', '/me').then(async (response) => {
