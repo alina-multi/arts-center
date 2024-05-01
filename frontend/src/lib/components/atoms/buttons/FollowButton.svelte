@@ -25,7 +25,7 @@
 				onFollow();
 			}
 		} else {
-			showAuthModal.set(true)
+			showAuthModal.set(true);
 		}
 	};
 

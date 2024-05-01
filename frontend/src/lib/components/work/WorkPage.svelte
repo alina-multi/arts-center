@@ -16,8 +16,6 @@
 	setContext('work', work);
 	setContext('comments', comments);
 	$: isMy = work.owners.some((owner) => handleIsMy($user, owner.id));
-
-
 </script>
 
 <div
