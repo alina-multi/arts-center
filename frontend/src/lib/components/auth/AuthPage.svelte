@@ -103,13 +103,15 @@
 				>{$t('global.buttons.register')}</a
 			>
 
-			<!--			<div class="mt-6"><Divider>{$t('global.common.continue_with')}</Divider></div>-->
-			<!--				-->
-			<!--				<div class="mt-6">-->
-			<!--				<SocialMediaButtons />-->
+			{#if false}
+				<!--			<div class="mt-6"><Divider>{$t('global.common.continue_with')}</Divider></div>-->
+				<!--				-->
+				<!--				<div class="mt-6">-->
+				<!--				<SocialMediaButtons />-->
 
-			<!--				-->
-			<!--			</div>-->
+				<!--				-->
+				<!--			</div>-->
+			{/if}
 		</div>
 	</div>
 </div>
