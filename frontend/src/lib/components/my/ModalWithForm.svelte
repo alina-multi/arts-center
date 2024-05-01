@@ -3,15 +3,12 @@
 	import ButtonsGroup from '../forms/ButtonsGroup.svelte';
 	import ActionButton from '../forms/ActionButton.svelte';
 	import CancelButton from '../forms/CancelButton.svelte';
-	import AuthModal from '../atoms/AuthModal.svelte';
-	import { user } from '$lib/stores/auth';
 	import { getContext } from 'svelte';
 
 	const t = getContext('t');
 	export let open: boolean,
 		condition: boolean,
 		length: number = 0,
-		not_logged_in_messsage = '',
 		action_button = 'send',
 		submitFromList: () => Promise<void>,
 		submiInput: () => Promise<void>;

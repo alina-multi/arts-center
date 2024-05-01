@@ -6,10 +6,8 @@
 	import RadioButton from '$lib/components/input/RadioButton.svelte';
 	import TextInput from '$lib/components/input/TextInput.svelte';
 	import ModalWithForm from '$lib/components/my/ModalWithForm.svelte';
-	import { user } from '$lib/stores/auth';
+	import { showAuthModal, user } from '$lib/stores/auth';
 	import { getContext } from 'svelte';
-	import { goto } from '$app/navigation';
-	import { localePath } from '$lib/translations';
 
 	const t = getContext('t');
 	export let work;
@@ -24,7 +22,6 @@
 	let folderName = '';
 	$: folders = $user?.favorites?.folders;
 
-	const locale = getContext('locale');
 
 	function onChange(e: Event & { target: HTMLInputElement }) {
 		folderID = Number(e.target.value);
@@ -81,7 +78,7 @@
 
 	function onBookmarkButton() {
 		if (!$user) {
-			goto(localePath($locale, `/login`));
+			showAuthModal.set(true)
 			return;
 		}
 		if (isBookmarked) {
@@ -114,7 +111,6 @@
 	condition={showInput || folders?.length === 0}
 	submitFromList={saveInExistingFolder}
 	submiInput={createFolder}
-	not_logged_in_messsage={$t('global.not_logged_in.bookmark')}
 	action_button={'save'}
 >
 	<svelte:fragment slot="header">

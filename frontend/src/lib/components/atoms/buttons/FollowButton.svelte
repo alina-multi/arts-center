@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import { fetchData } from '$lib/helpers/fetchData';
-	import { user as currentUser, isUserLoading } from '$lib/stores/auth';
+	import { user as currentUser, isUserLoading, showAuthModal } from '$lib/stores/auth';
 	import { getContext } from 'svelte';
 	import { localePath } from '$lib/translations';
-	import { goto } from '$app/navigation';
 
 	const t = getContext('t');
 	const locale = getContext('locale');
@@ -26,7 +25,7 @@
 				onFollow();
 			}
 		} else {
-			goto(localePath($locale, `/login`));
+			showAuthModal.set(true)
 		}
 	};
 
