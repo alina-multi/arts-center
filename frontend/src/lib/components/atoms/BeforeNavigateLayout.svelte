@@ -16,7 +16,6 @@
 					if (Object.prototype.hasOwnProperty.call(preloaded.data, key)) {
 						acc[key] = preloaded.data[key];
 					}
-
 					return acc;
 				}, {});
 				pushState(navigation.to?.url.href, {
@@ -25,7 +24,7 @@
 
 				// Fallback if for any reason preload fails
 			} else {
-				goto(preloaded.data.work);
+				goto(navigation.to?.url.href);
 			}
 		}
 	});
