@@ -2,22 +2,19 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { HandThumbDown } from '@steeze-ui/heroicons';
 	import { fetchData } from '$lib/helpers/fetchData';
-	import { user } from '$lib/stores/auth';
+	import { user, showAuthModal } from '$lib/stores/auth';
 
 	export let size: string,
 		isLiked: boolean,
 		isDownVoted: boolean,
 		rating: number,
-		open: boolean,
 		votable_type: string,
 		votable_id: string;
 	let url = '/api/vote';
 
-	let currentUser = $user;
-
 	async function dislike() {
-		if (!currentUser) {
-			open = true;
+		if (!$user) {
+			showAuthModal.set(true);
 			return;
 		}
 

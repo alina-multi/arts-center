@@ -5,7 +5,7 @@
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
 	import MetaGroups from '$lib/components/MetaGroups.svelte';
 	import { getContext } from 'svelte';
-	import WorkModal from '../work/WorkModal.svelte';
+	import WorkModal from '$lib/components/work/WorkModal.svelte';
 
 	const t = getContext('t');
 	const locale = getContext('locale');

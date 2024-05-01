@@ -2,14 +2,18 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ChevronLeft, ChevronRight } from '@steeze-ui/heroicons';
 	import { goto } from '$app/navigation';
+	import { localePath } from '$lib/translations';
+	import { getContext } from 'svelte';
 
 	export let currentWorkIndex;
 	export let gallery;
 
+	const locale = getContext('locale');
+
 	function changeWork(direction) {
 		const newIndex = currentWorkIndex + direction;
 		if (newIndex >= 0 && newIndex < gallery.length) {
-			goto(`/work/${gallery[newIndex].id}`);
+			goto(localePath($locale, `/work/${gallery[newIndex].id}`), { replaceState: true });
 		}
 	}
 </script>

@@ -5,7 +5,7 @@
 	import { localePath } from '$lib/translations/';
 	import { parse } from 'devalue';
 	import { getContext } from 'svelte';
-	import WorkModal from './WorkModal.svelte';
+	import WorkModal from '$lib/components/work/WorkModal.svelte';
 
 	const locale = getContext('locale');
 	export let gallery;
