@@ -5,8 +5,10 @@
 	import VotedList from '$lib/components/rating/VotedList.svelte';
 	import LikeButton from './LikeButton.svelte';
 	import DislikeButton from './DislikeButton.svelte';
+
 	import { user } from '$lib/stores/auth';
 	import { getContext } from 'svelte';
+	
 
 	const t = getContext('t');
 	export let entity: Work | Comment | Post,
@@ -18,7 +20,9 @@
 	let rating = entity?.rating;
 	$: isLiked = entity?.votes?.some((vote) => vote?.id?.toString() === $user?.id?.toString());
 	let isDownVoted = false;
+	let open = false;
 	let votable_id = entity?.id.toString();
+
 </script>
 
 {#if showVotedPreview}
@@ -29,7 +33,7 @@
 	<div
 		class="{votable_type === 'work' || votable_type === 'post'
 			? ''
-			: 'hover:text-zinc-100'} flex items-end gap-4 dark:text-white"
+			: 'hover:text-zinc-900'} flex items-end gap-4 dark:text-white"
 	>
 		{#if votable_type === 'work' || votable_type === 'post'}
 			<span
@@ -44,6 +48,7 @@
 			bind:isLiked
 			bind:isDownVoted
 			bind:rating
+			bind:open
 			{votes}
 			{votable_type}
 			{votable_id}
@@ -60,9 +65,11 @@
 			bind:isLiked
 			bind:isDownVoted
 			bind:rating
+			bind:open
 			{votable_type}
 			{votable_id}
 		/>
 	{/if}
 </div>
+
 
