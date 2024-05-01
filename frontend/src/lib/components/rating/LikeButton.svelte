@@ -10,7 +10,6 @@
 		isDownVoted: boolean,
 		votes: [],
 		rating: number,
-		open: boolean,
 		votable_id: string;
 
 	let url = '/api/vote';
@@ -36,7 +35,7 @@
 
 	async function cancelVote() {
 		if (!$user) {
-			open = true;
+			showAuthModal.set(true);
 			return;
 		}
 		isLiked = false;

@@ -8,7 +8,6 @@
 
 	import { user } from '$lib/stores/auth';
 	import { getContext } from 'svelte';
-	
 
 	const t = getContext('t');
 	export let entity: Work | Comment | Post,
@@ -20,9 +19,7 @@
 	let rating = entity?.rating;
 	$: isLiked = entity?.votes?.some((vote) => vote?.id?.toString() === $user?.id?.toString());
 	let isDownVoted = false;
-	let open = false;
 	let votable_id = entity?.id.toString();
-
 </script>
 
 {#if showVotedPreview}
@@ -48,7 +45,6 @@
 			bind:isLiked
 			bind:isDownVoted
 			bind:rating
-			bind:open
 			{votes}
 			{votable_type}
 			{votable_id}
@@ -60,16 +56,6 @@
 	{/if}
 
 	{#if allowDownVote}
-		<DislikeButton
-			{size}
-			bind:isLiked
-			bind:isDownVoted
-			bind:rating
-			bind:open
-			{votable_type}
-			{votable_id}
-		/>
+		<DislikeButton {size} bind:isLiked bind:isDownVoted bind:rating {votable_type} {votable_id} />
 	{/if}
 </div>
-
-

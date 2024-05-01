@@ -22,7 +22,6 @@
 	let folderName = '';
 	$: folders = $user?.favorites?.folders;
 
-
 	function onChange(e: Event & { target: HTMLInputElement }) {
 		folderID = Number(e.target.value);
 		showInput = false;
@@ -78,7 +77,7 @@
 
 	function onBookmarkButton() {
 		if (!$user) {
-			showAuthModal.set(true)
+			showAuthModal.set(true);
 			return;
 		}
 		if (isBookmarked) {
