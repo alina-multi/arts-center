@@ -3,7 +3,7 @@
 	import { beforeNavigate, goto, preloadData, pushState } from '$app/navigation';
 	import { page } from '$app/stores';
 	export let route: string, stateName;
-    export let keysToInclude: Array<string>; 
+	export let keysToInclude: Array<string>;
 
 	beforeNavigate(async (navigation: import('@sveltejs/kit').BeforeNavigate) => {
 		if (navigation.to?.route.id === route) {
@@ -13,13 +13,14 @@
 			globalLoading.set(false);
 			if (preloaded.type === 'loaded') {
 				const modalData = keysToInclude.reduce((acc, key) => {
-                    if (preloaded.data.hasOwnProperty(key)) {
-                        acc[key] = preloaded.data[key];
-                    }
-                    return acc;
-                }, {});
+					if (Object.prototype.hasOwnProperty.call(preloaded.data, key)) {
+						acc[key] = preloaded.data[key];
+					}
+
+					return acc;
+				}, {});
 				pushState(navigation.to?.url.href, {
-					[stateName]:  modalData
+					[stateName]: modalData
 				});
 
 				// Fallback if for any reason preload fails

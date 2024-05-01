@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { ActionData } from './$types';
 	import Logo from '$lib/components/atoms/Logo.svelte';
 	import EmailInput from '$lib/components/input/EmailInput.svelte';
 	import PasswordInput from '$lib/components/input/PasswordInput.svelte';
@@ -10,7 +11,7 @@
 	import { showAuthModal } from '$lib/stores/auth';
 	import { deserialize } from '$app/forms';
 	import { checkAuth } from '$lib/stores/auth';
-	import { enhance, applyAction } from '$app/forms';
+	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
 
 	const t = getContext('t');
