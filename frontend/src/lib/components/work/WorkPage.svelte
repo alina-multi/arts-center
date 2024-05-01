@@ -9,12 +9,15 @@
 	import { setContext } from 'svelte';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import { user } from '$lib/stores/auth';
+	import AuthModal from '../atoms/AuthModal.svelte';
 
 	export let work: Work;
 	export let comments: Comment[];
 	setContext('work', work);
 	setContext('comments', comments);
 	$: isMy = work.owners.some((owner) => handleIsMy($user, owner.id));
+
+
 </script>
 
 <div
@@ -35,3 +38,5 @@
 	</div>
 </div>
 <ContentFooter commentable_type="work" {isMy} />
+
+<AuthModal />
