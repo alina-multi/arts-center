@@ -56,17 +56,16 @@ export function query(
 	});
 }
 
-export function indexQuery(page = 1) {
+export function indexQuery() {
 	return query(
 		{
-			rating: {
-				gte: 20
-			}
+			featured_at: { lte: new Date() },
 		},
 		{
-			published_at: 'desc'
+			featured_at: 'desc'
 		},
-		page
+		1,
+		12
 	);
 }
 
