@@ -30,6 +30,7 @@ class Work extends Model
 
     protected $casts = [
         'published_at' => 'datetime',
+        'featured_at' => 'datetime',
         'status' => WorkStatuses::class
     ];
 
