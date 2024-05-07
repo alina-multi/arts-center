@@ -797,11 +797,41 @@
 									</translation>
 								</translations>
 							</concept_node>
+							<concept_node>
+								<name>p3</name>
+								<description/>
+								<comment/>
+								<translations>
+									<translation>
+										<language>en-US</language>
+										<approved>false</approved>
+									</translation>
+									<translation>
+										<language>uk-UA</language>
+										<approved>false</approved>
+									</translation>
+								</translations>
+							</concept_node>
 						</children>
 					</folder_node>
 					<folder_node>
 						<name>donation</name>
 						<children>
+							<concept_node>
+								<name>be_patron</name>
+								<description/>
+								<comment/>
+								<translations>
+									<translation>
+										<language>en-US</language>
+										<approved>false</approved>
+									</translation>
+									<translation>
+										<language>uk-UA</language>
+										<approved>false</approved>
+									</translation>
+								</translations>
+							</concept_node>
 							<folder_node>
 								<name>confirmation</name>
 								<children>
@@ -868,6 +898,51 @@
 								</children>
 							</folder_node>
 							<concept_node>
+								<name>p1</name>
+								<description/>
+								<comment/>
+								<translations>
+									<translation>
+										<language>en-US</language>
+										<approved>false</approved>
+									</translation>
+									<translation>
+										<language>uk-UA</language>
+										<approved>false</approved>
+									</translation>
+								</translations>
+							</concept_node>
+							<concept_node>
+								<name>p2</name>
+								<description/>
+								<comment/>
+								<translations>
+									<translation>
+										<language>en-US</language>
+										<approved>false</approved>
+									</translation>
+									<translation>
+										<language>uk-UA</language>
+										<approved>false</approved>
+									</translation>
+								</translations>
+							</concept_node>
+							<concept_node>
+								<name>p3</name>
+								<description/>
+								<comment/>
+								<translations>
+									<translation>
+										<language>en-US</language>
+										<approved>false</approved>
+									</translation>
+									<translation>
+										<language>uk-UA</language>
+										<approved>false</approved>
+									</translation>
+								</translations>
+							</concept_node>
+							<concept_node>
 								<name>support</name>
 								<description/>
 								<comment/>
@@ -883,7 +958,22 @@
 								</translations>
 							</concept_node>
 							<concept_node>
-								<name>title</name>
+								<name>title1</name>
+								<description/>
+								<comment/>
+								<translations>
+									<translation>
+										<language>en-US</language>
+										<approved>false</approved>
+									</translation>
+									<translation>
+										<language>uk-UA</language>
+										<approved>false</approved>
+									</translation>
+								</translations>
+							</concept_node>
+							<concept_node>
+								<name>title2</name>
 								<description/>
 								<comment/>
 								<translations>
@@ -1563,6 +1653,21 @@
 								</translations>
 							</concept_node>
 							<concept_node>
+								<name>edit</name>
+								<description/>
+								<comment/>
+								<translations>
+									<translation>
+										<language>en-US</language>
+										<approved>false</approved>
+									</translation>
+									<translation>
+										<language>uk-UA</language>
+										<approved>false</approved>
+									</translation>
+								</translations>
+							</concept_node>
+							<concept_node>
 								<name>edit_profile</name>
 								<description/>
 								<comment/>
@@ -1838,6 +1943,36 @@
 								</translations>
 							</concept_node>
 							<concept_node>
+								<name>p1</name>
+								<description/>
+								<comment/>
+								<translations>
+									<translation>
+										<language>en-US</language>
+										<approved>false</approved>
+									</translation>
+									<translation>
+										<language>uk-UA</language>
+										<approved>false</approved>
+									</translation>
+								</translations>
+							</concept_node>
+							<concept_node>
+								<name>p2</name>
+								<description/>
+								<comment/>
+								<translations>
+									<translation>
+										<language>en-US</language>
+										<approved>false</approved>
+									</translation>
+									<translation>
+										<language>uk-UA</language>
+										<approved>false</approved>
+									</translation>
+								</translations>
+							</concept_node>
+							<concept_node>
 								<name>reply</name>
 								<description/>
 								<comment/>
@@ -1854,6 +1989,21 @@
 							</concept_node>
 							<concept_node>
 								<name>sign_in_with_email</name>
+								<description/>
+								<comment/>
+								<translations>
+									<translation>
+										<language>en-US</language>
+										<approved>false</approved>
+									</translation>
+									<translation>
+										<language>uk-UA</language>
+										<approved>false</approved>
+									</translation>
+								</translations>
+							</concept_node>
+							<concept_node>
+								<name>title</name>
 								<description/>
 								<comment/>
 								<translations>
@@ -4637,11 +4787,56 @@
 									</translation>
 								</translations>
 							</concept_node>
+							<concept_node>
+								<name>hero_h1</name>
+								<description/>
+								<comment/>
+								<translations>
+									<translation>
+										<language>en-US</language>
+										<approved>false</approved>
+									</translation>
+									<translation>
+										<language>uk-UA</language>
+										<approved>false</approved>
+									</translation>
+								</translations>
+							</concept_node>
+							<concept_node>
+								<name>hero_text</name>
+								<description/>
+								<comment/>
+								<translations>
+									<translation>
+										<language>en-US</language>
+										<approved>false</approved>
+									</translation>
+									<translation>
+										<language>uk-UA</language>
+										<approved>false</approved>
+									</translation>
+								</translations>
+							</concept_node>
 							<folder_node>
 								<name>history</name>
 								<children>
 									<concept_node>
 										<name>h1</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>uk-UA</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>h2</name>
 										<description/>
 										<comment/>
 										<translations>
@@ -4771,7 +4966,42 @@
 											</translation>
 											<translation>
 												<language>uk-UA</language>
-												<approved>true</approved>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+								</children>
+							</folder_node>
+							<folder_node>
+								<name>join_us</name>
+								<children>
+									<concept_node>
+										<name>h1</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>uk-UA</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>p1</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>uk-UA</language>
+												<approved>false</approved>
 											</translation>
 										</translations>
 									</concept_node>
@@ -4840,6 +5070,51 @@
 											</translation>
 										</translations>
 									</concept_node>
+									<concept_node>
+										<name>p4</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>uk-UA</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>p5</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>uk-UA</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>p6</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>uk-UA</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
 								</children>
 							</folder_node>
 							<folder_node>
@@ -4902,6 +5177,71 @@
 											<translation>
 												<language>uk-UA</language>
 												<approved>true</approved>
+											</translation>
+										</translations>
+									</concept_node>
+								</children>
+							</folder_node>
+							<folder_node>
+								<name>support</name>
+								<children>
+									<concept_node>
+										<name>h1</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>uk-UA</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>p1</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>uk-UA</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>p2</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>uk-UA</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>p3</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>uk-UA</language>
+												<approved>false</approved>
 											</translation>
 										</translations>
 									</concept_node>
