@@ -4,6 +4,9 @@
 	import { browser } from '$app/environment';
 	import { checkAuth } from '$lib/stores/auth';
 	import NotificationToasts from '$lib/components/notification/NotificationToasts.svelte';
+	import { page } from '$app/stores';
+
+	import AuthModal from '$lib/components/atoms/AuthModal.svelte';
 
 	if (browser) {
 		checkAuth();
@@ -16,3 +19,7 @@
 {/if}
 <MainNav />
 <slot />
+
+{#if !$page.state?.workModal && $page.route.id !== '/[[lang=lang]]/(with-nav)/(single-column)/work/[id=int]'}
+	<AuthModal />
+{/if}

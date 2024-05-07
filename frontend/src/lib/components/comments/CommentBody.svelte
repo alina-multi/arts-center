@@ -1,9 +1,8 @@
 <script lang="ts">
 	import type { Comment } from '$lib/interfaces/Comment';
 	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
-	import AuthModal from '$lib/components/atoms/AuthModal.svelte';
 	import { commentsState } from '$lib/stores/comment';
-	import { user as currentUser } from '$lib/stores/auth';
+	import { user as currentUser, showAuthModal } from '$lib/stores/auth';
 	import { getContext } from 'svelte';
 
 	const t = getContext('t');
@@ -13,11 +12,9 @@
 		isEditing: boolean,
 		editing_comment: Comment | null;
 
-	let modalOpenNotLogged = false;
-
 	function onReply() {
 		if (!$currentUser) {
-			modalOpenNotLogged = true;
+			showAuthModal.set(true);
 			return;
 		}
 		commentsState.showReplyForm(comment);
@@ -57,7 +54,3 @@
 		</div>
 	</div>
 </a>
-
-{#if modalOpenNotLogged}
-	<AuthModal bind:open={modalOpenNotLogged} type={$t('global.not_logged_in.reply')} />
-{/if}

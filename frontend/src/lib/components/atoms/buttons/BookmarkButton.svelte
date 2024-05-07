@@ -6,7 +6,7 @@
 	import RadioButton from '$lib/components/input/RadioButton.svelte';
 	import TextInput from '$lib/components/input/TextInput.svelte';
 	import ModalWithForm from '$lib/components/my/ModalWithForm.svelte';
-	import { user } from '$lib/stores/auth';
+	import { showAuthModal, user } from '$lib/stores/auth';
 	import { getContext } from 'svelte';
 
 	const t = getContext('t');
@@ -74,11 +74,23 @@
 		await fetchData('DELETE', url, { work_id: workID });
 		isBookmarked = false;
 	}
+
+	function onBookmarkButton() {
+		if (!$user) {
+			showAuthModal.set(true);
+			return;
+		}
+		if (isBookmarked) {
+			remove();
+		} else {
+			open = true;
+		}
+	}
 </script>
 
 <button
 	type="button"
-	on:click={isBookmarked ? remove : () => (open = true)}
+	on:click={onBookmarkButton}
 	class="  dark:text-zinc-300 text-black dark:border-zinc-700 flex items-center"
 >
 	<span class="pl-4">
@@ -98,7 +110,6 @@
 	condition={showInput || folders?.length === 0}
 	submitFromList={saveInExistingFolder}
 	submiInput={createFolder}
-	not_logged_in_messsage={$t('global.not_logged_in.bookmark')}
 	action_button={'save'}
 >
 	<svelte:fragment slot="header">

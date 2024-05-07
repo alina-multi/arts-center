@@ -9,6 +9,7 @@
 	import { setContext } from 'svelte';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import { user } from '$lib/stores/auth';
+	import AuthModal from '../atoms/AuthModal.svelte';
 
 	export let work: Work;
 	export let comments: Comment[];
@@ -18,7 +19,7 @@
 </script>
 
 <div
-	class="flex flex-col gap-3 mx-auto pt-3 lg:pt-6 lg:border xl:border-t-transparent dark:lg:bg-zinc-900 lg:px-28 xl:px-36 dark:lg:border-zinc-800 dark:lg:border-t-transparent"
+	class="flex flex-col gap-3 lg:gap-9 mx-auto pt-3 lg:pt-9 dark:lg:bg-zinc-900 lg:px-28 xl:px-36 lg:dark:border lg:dark:border-zinc-800 lg:dark:border-t-transparent"
 >
 	<WorkHeader {work} {isMy} />
 	<WorkBody {work} />
@@ -35,3 +36,5 @@
 	</div>
 </div>
 <ContentFooter commentable_type="work" {isMy} />
+
+<AuthModal />

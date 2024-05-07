@@ -2,7 +2,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { HandThumbUp } from '@steeze-ui/heroicons';
 	import { fetchData } from '$lib/helpers/fetchData';
-	import { user } from '$lib/stores/auth';
+	import { user, showAuthModal } from '$lib/stores/auth';
 
 	export let size = 'w-6 h-6',
 		votable_type: string,
@@ -10,14 +10,13 @@
 		isDownVoted: boolean,
 		votes: [],
 		rating: number,
-		open: boolean,
 		votable_id: string;
 
 	let url = '/api/vote';
 
 	async function like() {
 		if (!$user) {
-			open = true;
+			showAuthModal.set(true);
 			return;
 		}
 		if (!isDownVoted) {
@@ -36,7 +35,7 @@
 
 	async function cancelVote() {
 		if (!$user) {
-			open = true;
+			showAuthModal.set(true);
 			return;
 		}
 		isLiked = false;

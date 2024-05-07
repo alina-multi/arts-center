@@ -96,6 +96,7 @@ class Work extends Resource
             Number::make('price')->sortable(),
             Text::make('status', fn (\App\Models\Work $work) => $work->status->name),
             DateTime::make('Published', 'published_at')->readonly()->sortable(),
+            DateTime::make('Featured', 'featured_at')->sortable(),
         ];
     }
 

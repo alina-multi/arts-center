@@ -1,8 +1,11 @@
 {
 	"about": {
 		"h1": "About us",
+		"hero_h1": "SHAPE ART WITH US",
+		"hero_text": "The original version of the arts.in.ua website was created in 2009 and became the first online platform in Ukraine for traditional artists. The platform has quickly grown into a large community and artist gallery with over 10,000 registered artists and nearly half a million artworks.",
 		"history": {
 			"h1": "History",
+			"h2": "From the founder of ARTS.CENTER",
 			"p1": "The original version of the site arts.in.ua was created in 2009 as a pet project by Stepan Orda. It quickly grew to a big artist community and gallery with more than 10k registered artists and almost half a million of artwork.",
 			"p2": "Over the years it became somewhat profitable but not enough to be a full-time job. Most of the profit was coming from the advertisement since the site wasn’t taking any commissions on sales.",
 			"p3": "In 2014, when russia first time in modern history invaded Ukraine, site income came to a grinding halt. Site was hacked multiple times by russian special forces, they posted propaganda and ended up making a mass mailing accusing the site administration of standard russian propaganda talking points. At this point, the site stopped being profitable and wasn’t even paying for servers.",
@@ -12,17 +15,30 @@
 			"p7": "And right after that, the full-scale invasion started. My house was destroyed in the first days but luckily we were all in Egypt at the time. So the project was postponed again while I re-settled in Portugal.",
 			"p8": "At the start of 2023, I finally settled and was ready to continue. It was clear that the site was really far from ideal, so I started rewriting the frontend again to the new hyped framework SvelteKit (keeping the backend code mostly intact) and the new design. This is the third iteration of the site you are seeing right now."
 		},
+		"join_us": {
+			"h1": "JOIN US",
+			"p1": "If you share our passion and values and want to be part of global change, join us. Together we can create, support and celebrate art that will leave a lasting impression on the hearts of future generations."
+		},
 		"mission": {
 			"h1": "Mission",
 			"p1": "The goal of arts.center is to help the other 99% of professional artists to ensure fair compensation for their talent.",
 			"p2": "It is no secret that most professional artists struggle financially. There are many ways to sell cheap amateur art at some scale. The top 1% of artists that pass the industry gatekeepers earn a lot. But there are a lot of artists in between these 2 extremes.",
-			"p3": "We want to combine all possible ways of monetization and create a democratic platform for every artist."
+			"p3": "We want to combine all possible ways of monetization and create a democratic platform for every artist.",
+			"p4": "We believe that it is this approach that can destroy the existing barriers between artists and the audience, promote the emergence of new ideas and views that can renew the art world.",
+			"p5": "In the 21st century, it is time to rethink traditional approaches to exhibiting and selling art, ensuring greater inclusivity and openness, allowing every artist to have the opportunity to be heard and valued for their contribution.",
+			"p6": "The project develops without external funding or sponsorship and exists at the expense of the founder Stepan Orda, who gathered a team of like-minded people willing to make their own contribution to the support and development of independent art. We take every step independently and are inspired by our community. <br/> Thank you to everyone who is with us! Together to victory! 🇺🇦"
 		},
 		"stats": {
 			"artists": "Artists",
 			"artworks": "Artworks",
 			"comments": "Comments",
 			"h1": "Stats"
+		},
+		"support": {
+			"h1": "SUPPORT US",
+			"p1": "If you think our work is valuable, you can support us with a donation. We will direct all donations to create a quality platform, popularize artists and pay for the work of the team.",
+			"p2": "Your support makes our existence and development possible. And you become an integral part of our artistic community.",
+			"p3": "Thank you for your contribution to culture and support!"
 		},
 		"team": {
 			"stepan": {

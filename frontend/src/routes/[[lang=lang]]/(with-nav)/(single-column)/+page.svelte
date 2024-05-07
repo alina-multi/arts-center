@@ -23,7 +23,9 @@
 	atom={localePath($locale, '/feed/atom/featured')}
 />
 
-<div class="flex xl:flex-row flex-col max-xs:mx-1 xl:divide-x dark:divide-zinc-800">
+<div
+	class="container mx-auto px-3 pb-12 flex xl:flex-row flex-col max-xs:mx-1 xl:divide-x dark:divide-zinc-800"
+>
 	<!------- Blogs ------>
 	<div class="xl:w-3/4 divide-y dark:divide-zinc-700 xl:pr-16">
 		<div class="mt-9 pb-6 dark:border-zinc-800 flex items-center gap-3">

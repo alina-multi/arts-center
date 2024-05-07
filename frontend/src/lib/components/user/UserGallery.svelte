@@ -5,6 +5,7 @@
 	import InfiniteScroll from '$lib/components/atoms/InfiniteScroll.svelte';
 	import MetaGroups from '$lib/components/MetaGroups.svelte';
 	import { getContext } from 'svelte';
+	import WorkModal from '$lib/components/work/WorkModal.svelte';
 
 	const t = getContext('t');
 	const locale = getContext('locale');
@@ -37,7 +38,7 @@
 <MetaGroups title={$t('global.seo.title.user', user)} description={user?.bio} image={user?.photo} />
 
 <ul class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-	{#each gallery as work, index}
+	{#each gallery as work, index (work.id)}
 		<li>
 			<ImageWork {work} withDesription loading={index > 9 ? 'lazy' : 'eager'} />
 		</li>
@@ -51,3 +52,5 @@
 		}}
 	/>
 </ul>
+
+<WorkModal {gallery} />

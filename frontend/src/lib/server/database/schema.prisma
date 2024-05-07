@@ -443,6 +443,7 @@ model works {
   show_uk       Boolean       @default(false)
   deleted_at    DateTime?     @db.Timestamp(0)
   status        Int           @db.UnsignedSmallInt()
+  featured_at   DateTime?     @db.Timestamp(0)
   titles        work_titles[]
   owners        ownables[]
   preview       images?       @relation("previewWorkImage", fields: [image_id], references: [id])

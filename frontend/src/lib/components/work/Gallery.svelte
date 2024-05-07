@@ -5,19 +5,21 @@
 	import { localePath } from '$lib/translations/';
 	import { parse } from 'devalue';
 	import { getContext } from 'svelte';
+	import WorkModal from '$lib/components/work/WorkModal.svelte';
 
 	const locale = getContext('locale');
 	export let gallery;
 	export let categories;
 	export let params;
 	let newBatch = [];
-	let page = params.page;
+	let currentPage = params.page;
 	let loading = false;
 	let hasMore = gallery.length >= 20;
 	$: gallery = [...gallery, ...newBatch];
+
 	async function fetchData() {
 		loading = true;
-		let url = localePath($locale, `/api/tag/${params.tag}/${params.order}/${page}`);
+		let url = localePath($locale, `/api/tag/${params.tag}/${params.order}/${currentPage}`);
 		const response = await fetch(url);
 		const text = await response.text();
 		const data = parse(text);
@@ -29,7 +31,7 @@
 	}
 </script>
 
-<div class=" mt-3 space-y-3">
+<div class=" mt-3 space-y-3 container mx-auto px-3">
 	{#key $locale}
 		<GalleryFilters {categories} {params} />
 	{/key}
@@ -44,8 +46,10 @@
 		{hasMore}
 		{loading}
 		on:loadMore={() => {
-			page++;
+			currentPage++;
 			fetchData();
 		}}
 	/>
 </div>
+
+<WorkModal {gallery} />
