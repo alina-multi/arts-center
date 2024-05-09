@@ -13,9 +13,15 @@
 
 	export let work: Work;
 	export let comments: Comment[];
-	setContext('work', work);
-	setContext('comments', comments);
+
 	$: isMy = work.owners.some((owner) => handleIsMy($user, owner.id));
+
+	$: if (comments) {
+		setContext('comments', comments);
+	}
+	$: if (work) {
+		setContext('work', work);
+	}
 </script>
 
 {#key work.id}
@@ -36,6 +42,7 @@
 			</div>
 		</div>
 	</div>
+
 	<ContentFooter commentable_type="work" {isMy} />
 {/key}
 <AuthModal />
