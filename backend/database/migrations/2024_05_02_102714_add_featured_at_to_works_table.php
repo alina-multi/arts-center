@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('works', function (Blueprint $table) {
-            $table->timestamp('featured_at')->nullable()->index();
-        });
+        if (!Schema::hasColumn('works', 'featured_at')) {
+            Schema::table('works', function (Blueprint $table) {
+                $table->timestamp('featured_at')->nullable()->index();
+            });
+        }
     }
 
     /**
@@ -21,8 +23,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('works', function (Blueprint $table) {
-            $table->dropColumn('featured_at');
-        });
+        if (Schema::hasColumn('works', 'featured_at')) {
+            Schema::table('works', function (Blueprint $table) {
+                $table->dropColumn('featured_at');
+            });
+        }
     }
 };
