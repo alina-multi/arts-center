@@ -104,7 +104,8 @@
 		"contacts": "Contacts",
 		"privacy": "Privacy policy",
 		"subscriptions": "SUBSCRIPTION",
-		"terms": "Terms and conditions"
+		"terms": "Terms and conditions",
+		"folow_us":"Follow us on social media"
 	},
 	"login": {
 		"contact_us": "Contact us.",
@@ -124,7 +125,23 @@
 		"comment_work": "commented on the work",
 		"discussions": "Discussions",
 		"featured_posts": "Featured posts",
-		"last_verified": "Last verified artists"
+		"last_verified": "Last verified artists",
+		"hero": {
+			"h1": "Exclusive art space and community.",
+			"h2": "Only traditional art",
+			"p": "A place for meet-ups, information on new shows, discovering new artists, discussing new trends in art or just browsing some latest collections and artists"
+		 },
+		 "category": {
+			"trending": "Trending",
+			"rising": "New & Rising"
+		 },
+		 "view_more": "view more",
+		 "join" :{
+			"h": "Join our community",
+			"p": "If you art lover who have created, promoted, bought and collected art for the love of it!"
+		 
+		 }
+		
 	},
 	"menu": {
 		"gallery": "GALLERY",
