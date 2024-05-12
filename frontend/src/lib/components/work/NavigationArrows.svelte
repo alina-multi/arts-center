@@ -28,7 +28,7 @@
 </button>
 <button
 	on:click={() => changeWork(1)}
-	class=" fixed h-screen top-0 right-0 xs:px-3 md:px-6 z-40 cursor-pointer "
+	class=" fixed h-screen top-0 right-0 xs:px-3 md:px-6 z-40 cursor-pointer"
 	class:hidden={currentWorkIndex === gallery.length - 1}
 	aria-label="Next Work"
 >

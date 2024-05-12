@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	export let listStyles: string = ""
-	const t = getContext('t');
+	export let listStyles: string = '';
+
 	const locale = getContext('locale');
 
 	const social_links = [
@@ -40,7 +40,7 @@
 			<a
 				target="_blank"
 				href={social.href}
-				class="inline-flex py-3 px-3 last-of-type:pr-0 first-of-type:pl-0 w-full justify-start focus:outline-offset-0   hover:scale-110 transition-all"
+				class="inline-flex py-3 px-3 last-of-type:pr-0 first-of-type:pl-0 w-full justify-start focus:outline-offset-0 hover:scale-110 transition-all"
 			>
 				<span class="sr-only">{social.name}</span>
 				<!-- eslint-disable svelte/no-at-html-tags -->

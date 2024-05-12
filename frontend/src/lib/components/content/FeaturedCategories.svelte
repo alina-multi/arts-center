@@ -6,7 +6,6 @@
 	import WorkModal from '$lib/components/work/WorkModal.svelte';
 
 	const t = getContext('t');
-	const locale = getContext('locale');
 	export let featuredCategories;
 
 	let gallery;
@@ -36,7 +35,7 @@
 			<div
 				class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-3 gap-y-6 sm:gap-4 lg:max-xl:gap-3 xl:gap-6"
 			>
-				{#each category.works as work, index (work.id)}
+				{#each category.works as work}
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
 					<!-- svelte-ignore a11y-no-static-element-interactions -->
 					<div class="lg:last-of-type:hidden" on:click={() => onClick(work.id)}>

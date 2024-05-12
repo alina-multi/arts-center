@@ -3,15 +3,12 @@
 	import MetaGroups from '$lib/components/MetaGroups.svelte';
 	import { CheckBadge, Sparkles } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { ChevronRight } from '@steeze-ui/heroicons';
 	import ArticlePreview from '$lib/components/post/ArticlePreview.svelte';
 	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
 	import FollowButton from '$lib/components/atoms/buttons/FollowButton.svelte';
-	import WorkPreview from '$lib/components/work/WorkPreview.svelte';
 	import { getContext } from 'svelte';
 	import { localePath } from '$lib/translations';
 	import ColorLayout from '$lib/components/static_pages/ColorLayout.svelte';
-	import WorkModal from '$lib/components/work/WorkModal.svelte';
 	import Hero from '$lib/components/content/Hero.svelte';
 	import FeaturedCategories from '$lib/components/content/FeaturedCategories.svelte';
 
@@ -26,14 +23,6 @@
 		{ name: 'trending', works: [...data.works.slice(0, 6)], href: '?' },
 		{ name: 'rising', works: [...data.works.slice(6, 12)], href: '?' }
 	];
-
-	let gallery;
-	$: currentOpenWork = null;
-
-	function onClick(workId) {
-		gallery = featuredCategories.filter((obj) => obj.works.find((work) => work.id === workId));
-		currentOpenWork = workId;
-	}
 </script>
 
 <MetaGroups

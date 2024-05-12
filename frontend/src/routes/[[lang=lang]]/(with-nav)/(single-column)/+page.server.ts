@@ -3,8 +3,8 @@ import { query } from '$lib/server/repositories/user';
 import { usersMap } from '$lib/server/mappers/users';
 import { query as postQuery } from '$lib/server/repositories/post';
 import { postsMap } from '$lib/server/mappers/post';
-import { indexQuery } from '$lib/server/repositories/gallery'
-import {worksPreviewMap} from "$lib/server/mappers/gallery";
+import { indexQuery } from '$lib/server/repositories/gallery';
+import { worksPreviewMap } from '$lib/server/mappers/gallery';
 
 export const load = (async ({ setHeaders, params }) => {
 	setHeaders({
@@ -18,9 +18,7 @@ export const load = (async ({ setHeaders, params }) => {
 		postQuery({ featured: 1, language: params.lang }, { published_at: 'desc' }).then((postsRaw) =>
 			postsMap(postsRaw)
 		),
-		indexQuery().then((worksRaw) =>
-			worksPreviewMap(worksRaw)
-		)
+		indexQuery().then((worksRaw) => worksPreviewMap(worksRaw))
 	]);
 
 	return {

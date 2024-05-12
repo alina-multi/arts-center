@@ -59,7 +59,7 @@ export function query(
 export function indexQuery() {
 	return query(
 		{
-			featured_at: { lte: new Date() },
+			featured_at: { lte: new Date() }
 		},
 		{
 			featured_at: 'desc'

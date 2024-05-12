@@ -3,13 +3,10 @@
 	import TopNavLangLink from '../nav/TopNavLangLink.svelte';
 	import { getContext } from 'svelte';
 	import SocialButtons from '../content/SocialButtons.svelte';
-	import SocialMediaButtons from '../atoms/buttons/SocialMediaButtons.svelte';
 
 	const t = getContext('t');
 	const locale = getContext('locale');
 	export let media: string;
-
-
 </script>
 
 {#if media === 'desktop'}
@@ -50,8 +47,9 @@
 	</p>
 </div>
 
-	<SocialButtons listStyles={"border-t dark:border-zinc-700 px-6 xs:gap-9 text-zinc-800 dark:text-white py-2"}/>
-
+<SocialButtons
+	listStyles={'border-t dark:border-zinc-700 px-6 xs:gap-9 text-zinc-800 dark:text-white py-2'}
+/>
 
 {#if media === 'mobile'}
 	<div

@@ -7,8 +7,8 @@
 	const locale = getContext('locale');
 </script>
 
-<footer class="bg-zinc-900 text-white py-12 max-lg:px-6 ">
-	<div class="container mx-auto md:flex font-light tracking-widest max-md:space-y-12 ">
+<footer class="bg-zinc-900 text-white py-12 max-lg:px-6">
+	<div class="container mx-auto md:flex font-light tracking-widest max-md:space-y-12">
 		<div class="space-y-6 md:w-2/3 xl:w-3/4 md:pr-12 xl:pr-40 text-base">
 			<h2 class="text-2xl">{$t(`global.contact.h1`)}</h2>
 
@@ -33,9 +33,9 @@
 				<SocialButtons />
 			</div>
 
-			<div class="space-y-3 pt-9 font-medium tracking-widest ">
+			<div class="space-y-3 pt-9 font-medium tracking-widest">
 				<a
-					class="dark:hover:bg-zinc-700 hover:bg-gray-100 block text-lg "
+					class="dark:hover:bg-zinc-700 hover:bg-gray-100 block text-lg"
 					href={localePath($locale, '/s/about')}>{$t('global.footer.about')}</a
 				>
 				<a
