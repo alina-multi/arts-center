@@ -24,6 +24,6 @@
 	<Avatar {user} {size} />
 
 	{#if withName}
-		<p class="hover:underline flex-1 {nameStyles}  ">{user?.name}</p>
+		<p class="hover:underline flex-1 line-clamp-1 {nameStyles}  ">{user?.name}</p>
 	{/if}
 </a>
