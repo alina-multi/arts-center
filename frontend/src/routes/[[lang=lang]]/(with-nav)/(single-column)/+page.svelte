@@ -20,7 +20,7 @@
 	export let data: PageData;
 
 	let featuredCategories = [
-		{ name: 'trending', works: [...data.works.slice(0, 6)], href: '?' },
+		{ name: 'trending', works: [...data.works.slice(3, 9)], href: '?' },
 		{ name: 'rising', works: [...data.works.slice(6, 12)], href: '?' }
 	];
 </script>
@@ -40,20 +40,24 @@
 	<!-- Join Us -->
 
 	<ColorLayout details="bg-zinc-900 dark:border-t-transparent text-white xs:py-12">
-		<section
-			class="container tracking-widest mx-auto space-y-6 px-3 md:flex items-center lg:items-end gap-12"
-		>
-			<div class="space-y-6">
-				<h2 class="text-4xl font-extralight">{$t(`global.main_page.join.h`)}</h2>
+		<section class="container tracking-widest mx-auto space-y-6 px-3 md:flex items-center gap-16">
+			<div class="space-y-3 font-light">
+				<h2 class="text-3xl">{$t(`global.main_page.join.h`)}</h2>
 
-				<p class="text-lg">
+				<p class="sm:text-lg">
 					{$t(`global.main_page.join.p`)}
+				</p>
+				<p class="text-xs lg:pr-12">
+					**Зверніть увагу: платформа призначена виключно для традиційного мистецтва. <br /> Проєкти
+					цифрового мистецтва не приймаються.
 				</p>
 			</div>
 
-			<div class=" flex justify-center gap-9 ml-auto md:max-xl:flex-col">
+			<div
+				class=" flex justify-center gap-6 md:gap-9 sm:max-md:flex-row max-xl:flex-col flex-col lg:w-2/5"
+			>
 				<LoginLink
-					styles="py-3 px-6 tracking-widest lg:text-lg  border-zinc-300 bg-zinc-800 text-white w-full"
+					styles="py-3 px-6 tracking-widest lg:text-lg  border-zinc-300 bg-zinc-800 text-white w-full hover:bg-zinc-700"
 				/>
 				<a
 					href="/"
@@ -70,7 +74,7 @@
 			<div class="xl:w-3/4 divide-y dark:divide-zinc-700 xl:pr-16 xl:pb-16">
 				<div class="mt-16 pb-6 dark:border-zinc-800 flex items-center gap-3">
 					<h2 class=" text-2xl font-medium">{$t('global.main_page.featured_posts')}</h2>
-					<Icon src={Sparkles} class="w-6 h-6 stroke-amber-500 stroke-1" />
+					<Icon src={Sparkles} theme="solid" class="w-7 h-7 text-amber-500 stroke-1" />
 				</div>
 
 				<div class=" divide-y dark:divide-zinc-800">
@@ -87,7 +91,8 @@
 						<h2 class=" text-2xl font-medium">
 							{$t('global.main_page.last_verified')}
 						</h2>
-						<Icon src={CheckBadge} class="w-6 h-6 text-emerald-500 stroke-1" />
+
+						<Icon src={CheckBadge} theme="solid" class="w-7 h-7 text-emerald-500 stroke-1" />
 					</div>
 
 					<div class="space-y-6">

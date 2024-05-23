@@ -129,7 +129,8 @@
 		"hero": {
 			"h1": "Exclusive art space and community.",
 			"h2": "Only traditional art",
-			"p": "A place for meet-ups, information on new shows, discovering new artists, discussing new trends in art or just browsing some latest collections and artists"
+			"p1": "The community for art lovers who have created, promoted, bought, and collected art for the love of it!",
+			"p2": "The online platform is specifically designed for artists and art enthusiasts, aiming to share artworks, foster communication, receive feedback, build networks of professional and friendly contacts, explore collaboration opportunities, exchange information, and inspire creativity."
 		},
 		"category": {
 			"trending": "Trending",
@@ -138,7 +139,7 @@
 		"view_more": "view more",
 		"join": {
 			"h": "Join our community",
-			"p": "If you art lover who have created, promoted, bought and collected art for the love of it!"
+			"p": "Share your art, enjoy the work of others, be among like-minded people, get feedback and inspiration, and expand your network of contacts and opportunities."
 		}
 	},
 	"menu": {
