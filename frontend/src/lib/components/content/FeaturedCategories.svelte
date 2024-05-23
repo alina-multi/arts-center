@@ -58,7 +58,9 @@
 			</a> -->
 
 			<a href={category.href} class="flex sm:hidden justify-end tracking-wider text-xl mt-9">
-				<div class="flex gap-3 items-center px-6 border border-zinc-900 rounded-full dark:bg-zinc-900 dark:border-zinc-700">
+				<div
+					class="flex gap-3 items-center px-6 border border-zinc-900 rounded-full dark:bg-zinc-900 dark:border-zinc-700"
+				>
 					<span>{$t(`global.main_page.view_more`)}</span>
 
 					<Icon src={ArrowLongRight} class="h-10 w-10 stroke-[1]" />
