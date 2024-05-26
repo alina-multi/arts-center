@@ -4,8 +4,10 @@
 	import WorkPreview from '$lib/components/work/WorkPreview.svelte';
 	import { getContext } from 'svelte';
 	import WorkModal from '$lib/components/work/WorkModal.svelte';
+	import { localePath } from '$lib/translations';
 
 	const t = getContext('t');
+	const locale = getContext('locale');
 	export let featuredCategories;
 
 	let gallery;
@@ -30,7 +32,7 @@
 				</h3>
 
 				<a
-					href={category.href}
+					href={localePath($locale, category.href)}
 					class="hidden sm:flex items-center gap-3 text-lg hover:text-amber-600"
 					>{$t(`global.main_page.view_more`)}
 					<Icon src={ArrowRightCircle} class="h-8 w-8 stroke-[1]" />
@@ -48,14 +50,14 @@
 				{/each}
 			</div>
 			<!-- <a
-				href={category.href}
-				class="flex   sm:hidden justify-end gap-3 items-center rounded-t-lg tracking-wider text-xl font-medium border-b border-zinc-900 lg:hover:text-amber-600 p-3   mt-9 "
-			>
-				{$t(`global.main_page.view_more`)}
+                href={category.href}
+                class="flex   sm:hidden justify-end gap-3 items-center rounded-t-lg tracking-wider text-xl font-medium border-b border-zinc-900 lg:hover:text-amber-600 p-3   mt-9 "
+            >
+                {$t(`global.main_page.view_more`)}
 
-				
-				<Icon src={ArrowRightCircle} class="h-12 w-12 stroke-[1]" />
-			</a> -->
+
+                <Icon src={ArrowRightCircle} class="h-12 w-12 stroke-[1]" />
+            </a> -->
 
 			<a href={category.href} class="flex sm:hidden justify-end tracking-wider text-xl mt-9">
 				<div

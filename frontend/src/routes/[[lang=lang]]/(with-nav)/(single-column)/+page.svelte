@@ -20,8 +20,8 @@
 	export let data: PageData;
 
 	let featuredCategories = [
-		{ name: 'trending', works: [...data.works.slice(3, 9)], href: '?' },
-		{ name: 'rising', works: [...data.works.slice(6, 12)], href: '?' }
+		{ name: 'trending', works: [...data.trendingWorks], href: '/tag/all/trending' },
+		{ name: 'rising', works: [...data.newAndRisingWorks], href: '/tag/all/rising' }
 	];
 </script>
 

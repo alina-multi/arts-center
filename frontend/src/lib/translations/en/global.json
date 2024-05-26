@@ -95,17 +95,19 @@
 		"no_results": "no results found",
 		"order": "Order by",
 		"popular": "popular",
+		"rising": "new and rising",
 		"sale": "sale",
-		"tags": "Tags"
+		"tags": "Tags",
+		"trending": "trending"
 	},
 	"footer": {
 		"about": "ABOUT",
 		"blog": "Blog",
 		"contacts": "Contacts",
+		"folow_us": "Follow us on social media",
 		"privacy": "Privacy policy",
 		"subscriptions": "SUBSCRIPTION",
-		"terms": "Terms and conditions",
-		"folow_us": "Follow us on social media"
+		"terms": "Terms and conditions"
 	},
 	"login": {
 		"contact_us": "Contact us.",
@@ -122,25 +124,25 @@
 		"sign_in": "Sign in"
 	},
 	"main_page": {
+		"category": {
+			"rising": "New & Rising",
+			"trending": "Trending"
+		},
 		"comment_work": "commented on the work",
 		"discussions": "Discussions",
 		"featured_posts": "Featured posts",
-		"last_verified": "Last verified artists",
 		"hero": {
 			"h1": "Exclusive art space and community.",
 			"h2": "Only traditional art",
 			"p1": "The community for art lovers who have created, promoted, bought, and collected art for the love of it!",
 			"p2": "The online platform is specifically designed for artists and art enthusiasts, aiming to share artworks, foster communication, receive feedback, build networks of professional and friendly contacts, explore collaboration opportunities, exchange information, and inspire creativity."
 		},
-		"category": {
-			"trending": "Trending",
-			"rising": "New & Rising"
-		},
-		"view_more": "view more",
 		"join": {
 			"h": "Join our community",
 			"p": "Share your art, enjoy the work of others, be among like-minded people, get feedback and inspiration, and expand your network of contacts and opportunities."
-		}
+		},
+		"last_verified": "Last verified artists",
+		"view_more": "view more"
 	},
 	"menu": {
 		"gallery": "GALLERY",

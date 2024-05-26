@@ -20,6 +20,12 @@
 			},
 			{
 				title: 'new'
+			},
+			{
+				title: 'trending'
+			},
+			{
+				title: 'rising'
 			}
 		]
 	};
