@@ -13,13 +13,14 @@
 	import H3 from '$lib/components/static_pages/H3.svelte';
 	import LoginLink from '$lib/components/nav/LoginLink.svelte';
 	import ColorLayout from '$lib/components/static_pages/ColorLayout.svelte';
+	import FooterMain from '$lib/components/footer/FooterMain.svelte';
 
 	const t = getContext('t');
 
 	export let data: PageData;
 </script>
 
-<div class=" text-lg font-light leading-7 xs:leading-9 tracking-wider">
+<main class=" text-lg font-light leading-7 xs:leading-9 tracking-wider">
 	<ColorLayout details="bg-zinc-900 dark:border-t-transparent text-white xs:py-12">
 		<SectionLayout>
 			<H1 text="static.about.hero_h1" />
@@ -188,20 +189,6 @@
 			</div>
 		</SectionLayout>
 	</div>
-	<ColorLayout details="bg-zinc-100 xl:py-12">
-		<SectionLayout>
-			<H2 text={`global.contact.h1`} />
+</main>
 
-			<div class="text-center space-y-3">
-				<p class="font-medium">
-					{$t(`global.contact.p3`)}
-				</p>
-				<p>{$t(`global.contact.p1`)}</p>
-				<p class="font-medium">
-					{$t(`global.contact.email`)} <a href="mailto:info@arts.center">info@arts.center</a>
-				</p>
-				<p>{$t(`global.contact.legal_name`)}</p>
-			</div>
-		</SectionLayout>
-	</ColorLayout>
-</div>
+<FooterMain />

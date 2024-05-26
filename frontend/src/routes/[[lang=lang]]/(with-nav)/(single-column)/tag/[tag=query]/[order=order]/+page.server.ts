@@ -8,7 +8,7 @@ export const load = (async ({ params, setHeaders, url }) => {
 	setHeaders({
 		'cache-control': 'max-age=600'
 	});
-	params.order ??= 'popular';
+	params.order ??= 'trending';
 	params.tag ??= 'all';
 	params.page ??= 1;
 

@@ -1,5 +1,5 @@
 import type { ParamMatcher } from '@sveltejs/kit';
 
 export const match = ((param) => {
-	return param === 'new' || param === 'sale';
+	return ['new', 'popular', 'trending', 'rising'].includes(param);
 }) satisfies ParamMatcher;

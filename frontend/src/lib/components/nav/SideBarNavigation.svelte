@@ -96,7 +96,7 @@
 					</ul>
 				{:else}
 					<div
-						class="grid grid-cols-2 items-center px-6 pt-9 pb-6 justify-start gap-6 border-t dark:border-zinc-800"
+						class="grid grid-cols-2 items-center px-6 pt-9 pb-6 justify-start gap-4 xs:gap-6 border-t dark:border-zinc-800"
 					>
 						<AddWorkButton />
 						<LoginLink />
