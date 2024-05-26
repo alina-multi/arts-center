@@ -22,7 +22,7 @@
 		<Logo />
 		<UaFlag />
 	</div>
-	<TopNavLink exact href={localePath($locale, '/tag/all/popular')}
+	<TopNavLink exact href={localePath($locale, '/tag/all/trending')}
 		>{$t('global.menu.gallery')}</TopNavLink
 	>
 
