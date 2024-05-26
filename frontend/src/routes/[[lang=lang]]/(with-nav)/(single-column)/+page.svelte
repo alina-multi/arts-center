@@ -48,9 +48,8 @@
 					{$t(`global.main_page.join.p`)}
 				</p>
 				<p class="text-xs lg:pr-12">
-					**{$t(`global.main_page.join.note1`)} <br/>
+					**{$t(`global.main_page.join.note1`)} <br />
 					**{$t(`global.main_page.join.note2`)}
-
 				</p>
 			</div>
 

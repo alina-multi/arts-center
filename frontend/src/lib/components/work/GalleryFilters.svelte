@@ -18,20 +18,17 @@
 			{
 				title: 'trending'
 			},
-		
+
 			{
 				title: 'rising'
 			},
-			
-		
+
 			{
 				title: 'new'
 			},
 			{
 				title: 'popular'
-			},
-		
-		
+			}
 		]
 	};
 
