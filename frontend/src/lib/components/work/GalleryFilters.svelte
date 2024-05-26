@@ -16,24 +16,29 @@
 		tags: categories,
 		order: [
 			{
-				title: 'popular'
+				title: 'trending'
 			},
+		
+			{
+				title: 'rising'
+			},
+			
+		
 			{
 				title: 'new'
 			},
 			{
-				title: 'trending'
+				title: 'popular'
 			},
-			{
-				title: 'rising'
-			}
+		
+		
 		]
 	};
 
 	let urlGenerator = (type: string, title: string, params: { tag?: string; order?: string }) => {
 		const selected = {
 			tags: 'all',
-			order: 'popular'
+			order: 'trending'
 		};
 
 		if (params?.tag) {
