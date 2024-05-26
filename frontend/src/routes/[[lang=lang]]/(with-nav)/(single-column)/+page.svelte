@@ -48,8 +48,9 @@
 					{$t(`global.main_page.join.p`)}
 				</p>
 				<p class="text-xs lg:pr-12">
-					**Зверніть увагу: платформа призначена виключно для традиційного мистецтва. <br /> Проєкти
-					цифрового мистецтва не приймаються.
+					**{$t(`global.main_page.join.note1`)} <br/>
+					**{$t(`global.main_page.join.note2`)}
+
 				</p>
 			</div>
 

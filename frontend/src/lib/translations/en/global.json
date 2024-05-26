@@ -95,7 +95,7 @@
 		"no_results": "no results found",
 		"order": "Order by",
 		"popular": "popular",
-		"rising": "new and rising",
+		"rising": "rising",
 		"sale": "sale",
 		"tags": "Tags",
 		"trending": "trending"
@@ -139,7 +139,9 @@
 		},
 		"join": {
 			"h": "Join our community",
-			"p": "Share your art, enjoy the work of others, be among like-minded people, get feedback and inspiration, and expand your network of contacts and opportunities."
+			"p": "Share your art, enjoy the work of others, be among like-minded people, get feedback and inspiration, and expand your network of contacts and opportunities.",
+			"note1": "Please note that the platform is exclusively for traditional art",
+			"note2": "Digital art projects are not accepted."
 		},
 		"last_verified": "Last verified artists",
 		"view_more": "view more"
