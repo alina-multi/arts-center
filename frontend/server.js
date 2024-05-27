@@ -14,7 +14,7 @@ const TusServer = new Server({
 		return `temp/${id}.${extension}`;
 	},
 	generateUrl(req, { proto, host, path, id }) {
-		return `${proto}://${host}${path}/${id}`;
+		return `https://${host}${path}/${id}`;
 	},
 	getFileIdFromRequest({ url }) {
 		const id = url.split('/').pop();
