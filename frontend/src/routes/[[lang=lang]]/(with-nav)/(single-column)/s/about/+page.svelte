@@ -174,7 +174,7 @@
 			<Icon5 class="w-28 h-28 dark:fill-zinc-700" />
 			<H2 text="static.about.join_us.h1" />
 
-			<p class=" {$user ? 'text-center' : 'xl:w-2/3 '} mx-auto ">
+			<p class=" {$user ? 'text-center' : 'xl:w-2/3 '} mx-auto">
 				{$t(`static.about.join_us.p1`)}
 			</p>
 			{#if !$user}
