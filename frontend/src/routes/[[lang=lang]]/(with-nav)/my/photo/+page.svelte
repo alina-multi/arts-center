@@ -12,7 +12,7 @@
 	export let data;
 
 	async function uploadComplete({ detail }) {
-		const image = `temp/photos/${detail[0].file}`;
+		const image = `temp/${detail[0].file}`;
 		await magicFetch('POST', '/api/photo', {
 			image
 		});
