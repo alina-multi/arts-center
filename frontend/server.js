@@ -13,7 +13,7 @@ const TusServer = new Server({
 		const id = crypto.randomBytes(16).toString('hex');
 		return `temp/${id}.${extension}`;
 	},
-	generateUrl(req, { proto, host, path, id }) {
+	generateUrl(req, { host, path, id }) {
 		return `https://${host}${path}/${id}`;
 	},
 	getFileIdFromRequest({ url }) {
