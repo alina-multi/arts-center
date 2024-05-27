@@ -8,6 +8,7 @@ COPY svelte.config.js .
 COPY tailwind.config.cjs .
 COPY tsconfig.json .
 COPY vite.config.ts .
+COPY server.js .
 RUN corepack enable
 RUN pnpm install
 COPY ./src ./src
@@ -18,5 +19,5 @@ RUN pnpm build
 
 EXPOSE 3000
 
-CMD ["node", "build/index.js"]
+CMD ["node", "server.js"]
 

@@ -59,6 +59,7 @@ class ImageHelper
             'original' => true
         ]);
         Storage::move($tmpPath, "$folder/$variant->file");
+        Storage::setVisibility("$folder/$variant->file", 'public');
         ImageCreated::dispatch($image);
         return $image;
     }

@@ -12,7 +12,7 @@
 	export let work;
 
 	async function uploadComplete({ detail }) {
-		const images = detail.map(({ file }) => `temp/works/${file}`);
+		const images = detail.map(({ file }) => `temp/${file}`);
 		// Depending on how we use this, for new work or adding images we have 2 backend endpoints
 		const json = await magicFetch('POST', work?.id ? `/api/work/${work.id}/images` : '/api/work', {
 			images

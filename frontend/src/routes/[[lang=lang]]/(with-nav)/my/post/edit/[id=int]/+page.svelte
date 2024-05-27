@@ -81,7 +81,7 @@
 	}
 
 	async function uploadComplete({ detail }) {
-		const image = `temp/images/${detail[0].file}`;
+		const image = `temp/${detail[0].file}`;
 		const result = await magicFetch('POST', '/api/image', {
 			imageable_id: data.post.id.toString(),
 			imageable_type: 'post',

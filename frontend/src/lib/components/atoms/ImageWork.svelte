@@ -29,7 +29,7 @@
 	{#if withDesription}
 		<div class=" inline-flex items-center justify-between text-black dark:text-gray-100">
 			<div class="flex items-center sm:justify-between w-full font-medium">
-				<h3 class="lg:text-sm">{title}</h3>
+				<h3 class="text-sm line-clamp-1">{title}</h3>
 				<PriceLabel price={work.price} style={'py-0.5 text-sm md:text-xs  px-2'} />
 			</div>
 
