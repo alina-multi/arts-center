@@ -14,6 +14,7 @@
 	import LoginLink from '$lib/components/nav/LoginLink.svelte';
 	import ColorLayout from '$lib/components/static_pages/ColorLayout.svelte';
 	import FooterMain from '$lib/components/footer/FooterMain.svelte';
+	import { user } from '$lib/stores/auth';
 
 	const t = getContext('t');
 
@@ -168,25 +169,26 @@
 		</SectionLayout>
 	</ColorLayout>
 
-	<div class=" py-9">
+	<div class=" py-12">
 		<SectionLayout>
 			<Icon5 class="w-28 h-28 dark:fill-zinc-700" />
 			<H2 text="static.about.join_us.h1" />
 
-			<p class=" xl:w-2/3 mx-auto">
+			<p class=" {$user ? 'text-center' : 'xl:w-2/3 '} mx-auto ">
 				{$t(`static.about.join_us.p1`)}
 			</p>
-
-			<div
-				class="mx-auto sm:grid sm:grid-cols-2 xl:w-2/3 flex max-sm:flex-col gap-6 sm:gap-9 justify-center items-center font-medium"
-			>
-				<LoginLink styles="py-4 tracking-widest text-lg  w-full" />
-				<a
-					href="/"
-					class="tracking-widest w-full text-lg text-center px-3 py-4 border border-zinc-900 dark:border-zinc-500 dark:bg-zinc-800 shadow-sm hover:bg-amber-600 hover:border-amber-600 dark:text-zinc-100 hover:text-white cursor-pointer"
-					>{$t(`global.menu.register`)}</a
+			{#if !$user}
+				<div
+					class="mx-auto sm:grid sm:grid-cols-2 xl:w-2/3 flex max-sm:flex-col gap-6 sm:gap-9 justify-center items-center font-medium"
 				>
-			</div>
+					<LoginLink styles="py-4 tracking-widest text-lg  w-full" />
+					<a
+						href="/"
+						class="tracking-widest w-full text-lg text-center px-3 py-4 border border-zinc-900 dark:border-zinc-500 dark:bg-zinc-800 shadow-sm hover:bg-amber-600 hover:border-amber-600 dark:text-zinc-100 hover:text-white cursor-pointer"
+						>{$t(`global.menu.register`)}</a
+					>
+				</div>
+			{/if}
 		</SectionLayout>
 	</div>
 </main>
