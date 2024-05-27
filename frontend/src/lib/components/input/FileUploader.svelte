@@ -5,7 +5,7 @@
 	import type { ImageEditorOptions } from '@uppy/image-editor';
 	import ImageEditor from '@uppy/image-editor';
 	import { createEventDispatcher, getContext, onMount } from 'svelte';
-	import Transloadit from '@uppy/transloadit';
+	import Tus from '@uppy/tus';
 	import Ukrainian from '@uppy/locales/lib/uk_UA';
 	// Remember the CSS: core and UI components + plugins you are using
 	import '@uppy/core/dist/style.css';
@@ -16,11 +16,7 @@
 	const t = getContext('t');
 	const locale = getContext('locale');
 
-	export let key: string,
-		signature: string,
-		expires: string,
-		template_id: string,
-		imageEditorOptions: ImageEditorOptions,
+	export let imageEditorOptions: ImageEditorOptions,
 		maxNumberOfFiles = 10;
 
 	const dispatch = createEventDispatcher();
@@ -31,6 +27,7 @@
 	onMount(async () => {
 		const UppyOptions = {
 			locale: locale.get() === 'uk' ? Ukrainian : undefined,
+			onBeforeFileAdded: () => true,
 			restrictions: {
 				maxFileSize: 10485760,
 				maxNumberOfFiles,
@@ -45,28 +42,21 @@
 			doneButtonHandler: null,
 			autoOpenFileEditor: !!imageEditorOptions
 		};
-		uppy = new Uppy(UppyOptions).use(Webcam, { modes: 'picture' }).use(Transloadit, {
-			assemblyOptions: {
-				params: {
-					auth: { key, expires },
-					template_id
-				},
-				signature
-			},
-			waitForEncoding: true
-		});
+		uppy = new Uppy(UppyOptions)
+			.use(Webcam, { modes: 'picture' })
+			.use(Tus, { endpoint: '/uploads' });
 		if (imageEditorOptions) {
 			uppy.use(ImageEditor, imageEditorOptions);
 		}
 		uppy.on('thumbnail:generated', (file, preview) => {
 			previews.set(file.name, preview);
 		});
-		uppy.on('transloadit:complete', (assembly) => {
+		uppy.on('complete', ({ successful }) => {
 			dispatch(
 				'complete',
-				assembly.uploads?.map((upload) => ({
-					file: `${upload.original_id}.${upload.ext}`,
-					preview: previews.get(upload.name)
+				successful?.map(({ name, uploadURL }) => ({
+					file: `${uploadURL.split('/').pop()}`,
+					preview: previews.get(name)
 				})) ?? []
 			);
 		});
