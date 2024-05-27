@@ -7,6 +7,7 @@ import * as crypto from 'crypto';
 const TusServer = new Server({
 	path: '/uploads',
 	maxSize: 10485760,
+	respectForwardedHeaders: true,
 	namingFunction(req, metadata) {
 		const extension = metadata.type.split('/')[1];
 		const id = crypto.randomBytes(16).toString('hex');
