@@ -179,7 +179,7 @@ export async function filteredQuery(
 		where = {
 			...where,
 			rating: {
-				gte: 5
+				gte: 30
 			}
 		};
 	}
