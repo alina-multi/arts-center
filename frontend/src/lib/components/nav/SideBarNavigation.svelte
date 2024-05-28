@@ -72,7 +72,7 @@
 
 				<div class="flex flex-col w-full divide-y dark:divide-zinc-800 pl-1">
 					<div>
-						<TopNavLink media={'mobile'} exact href={localePath($locale, '/tag/all/popular')}
+						<TopNavLink media={'mobile'} exact href={localePath($locale, '/tag/all/trending')}
 							>{$t('global.menu.gallery')}
 						</TopNavLink>
 					</div>

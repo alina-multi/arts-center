@@ -39,7 +39,7 @@
 				</a>
 			</div>
 			<div
-				class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 2xl:grid-cols-6 gap-x-3 gap-y-9 sm:gap-4 lg:max-xl:gap-3 xl:gap-6"
+				class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 2xl:grid-cols-6 gap-x-3 gap-y-9 sm:gap-4 lg:gap-3"
 			>
 				{#each category.works as work}
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
