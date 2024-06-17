@@ -50,6 +50,16 @@
 		titleElement?.focus();
 	}
 
+	function splitBlock(e: CustomEvent, curIndex: number, nextIndex: number) {
+		const { before, after } = e.detail;
+
+		body[curIndex].text = before;
+
+		body = body.toSpliced(nextIndex, 0, { type: 'text', text: after });
+
+		moveFocus(nextIndex);
+	}
+
 	function addBlock(index: number | undefined) {
 		index ??= body.length;
 		body = body.toSpliced(index, 0, { ...defaultBlock });
@@ -162,6 +172,7 @@
 				on:moveUp={() => moveFocus(tabindex - 1)}
 				on:moveDown={() => moveFocus(tabindex + 1)}
 				on:addBlock={() => addBlock(tabindex)}
+				on:splitBlock={(e) => splitBlock(e, index, tabindex)}
 				on:removeBlock={() => removeBlock(index)}
 				on:uploadImage={() => (uploadImage = index)}
 				{tabindex}
