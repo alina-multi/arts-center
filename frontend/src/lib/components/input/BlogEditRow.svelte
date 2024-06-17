@@ -71,6 +71,7 @@
 			{#if row.type === 'text'}
 				<BlogEditText
 					on:addBlock
+					on:splitBlock
 					on:removeBlock
 					on:moveUp
 					on:moveDown

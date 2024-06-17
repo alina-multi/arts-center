@@ -10,7 +10,7 @@
 	import type { Picture as PictureType } from '$lib/interfaces/Picture';
 	import DateInput from '$lib/components/input/DateInput.svelte';
 	import { getContext } from 'svelte';
-	import { availableLocales, localePath } from '$lib/translations';
+	import { localePath } from '$lib/translations';
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
 	import LanguageSelect from '$lib/components/input/LanguageSelect.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
@@ -48,6 +48,16 @@
 	let errors;
 	$: if (focus === -1) {
 		titleElement?.focus();
+	}
+
+	function splitBlock(e: CustomEvent, curIndex: number, nextIndex: number) {
+		const { before, after } = e.detail;
+
+		body[curIndex].text = before;
+
+		body = body.toSpliced(nextIndex, 0, { type: 'text', text: after });
+
+		moveFocus(nextIndex);
 	}
 
 	function addBlock(index: number | undefined) {
@@ -162,6 +172,7 @@
 				on:moveUp={() => moveFocus(tabindex - 1)}
 				on:moveDown={() => moveFocus(tabindex + 1)}
 				on:addBlock={() => addBlock(tabindex)}
+				on:splitBlock={(e) => splitBlock(e, index, tabindex)}
 				on:removeBlock={() => removeBlock(index)}
 				on:uploadImage={() => (uploadImage = index)}
 				{tabindex}
