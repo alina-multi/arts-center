@@ -10,7 +10,7 @@
 	import type { Picture as PictureType } from '$lib/interfaces/Picture';
 	import DateInput from '$lib/components/input/DateInput.svelte';
 	import { getContext } from 'svelte';
-	import { localePath } from '$lib/translations';
+	import { availableLocales, localePath } from '$lib/translations';
 	import FormGroup from '$lib/components/input/FormGroup.svelte';
 	import LanguageSelect from '$lib/components/input/LanguageSelect.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
