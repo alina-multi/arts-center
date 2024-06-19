@@ -207,9 +207,5 @@
 	on:close={() => (mainImageUploadModal = false)}
 	class="w-auto"
 >
-	<FileUploader
-		maxNumberOfFiles={1}
-		{imageEditorOptions}
-		on:complete={mainImageUploaded}
-	/>
+	<FileUploader maxNumberOfFiles={1} {imageEditorOptions} on:complete={mainImageUploaded} />
 </ModalWindow>
