@@ -124,7 +124,7 @@
 	}
 
 	async function mainImageUploaded({ detail }) {
-		const tmpImage = `temp/images/${detail[0].file}`;
+		const tmpImage = `temp/${detail[0].file}`;
 		const result = await magicFetch('POST', '/api/image', {
 			imageable_id: data.post.id.toString(),
 			imageable_type: 'post',
@@ -199,7 +199,7 @@
 	on:close={() => (uploadImage = undefined)}
 	class="w-auto"
 >
-	<FileUploader {...data.transloadit} maxNumberOfFiles={1} on:complete={uploadComplete} />
+	<FileUploader maxNumberOfFiles={1} on:complete={uploadComplete} />
 </ModalWindow>
 
 <ModalWindow
@@ -208,7 +208,6 @@
 	class="w-auto"
 >
 	<FileUploader
-		{...data.transloadit}
 		maxNumberOfFiles={1}
 		{imageEditorOptions}
 		on:complete={mainImageUploaded}
