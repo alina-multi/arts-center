@@ -14,6 +14,7 @@
 		bind:value
 		on:removeBlock
 		on:addBlock
+		on:splitBlock
 		on:moveUp
 		on:moveDown
 	/>

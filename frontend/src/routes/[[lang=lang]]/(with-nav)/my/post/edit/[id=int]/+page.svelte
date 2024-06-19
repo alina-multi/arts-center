@@ -50,6 +50,16 @@
 		titleElement?.focus();
 	}
 
+	function splitBlock(e: CustomEvent, curIndex: number, nextIndex: number) {
+		const { before, after } = e.detail;
+
+		body[curIndex].text = before;
+
+		body = body.toSpliced(nextIndex, 0, { type: 'text', text: after });
+
+		moveFocus(nextIndex);
+	}
+
 	function addBlock(index: number | undefined) {
 		index ??= body.length;
 		body = body.toSpliced(index, 0, { ...defaultBlock });
@@ -114,7 +124,7 @@
 	}
 
 	async function mainImageUploaded({ detail }) {
-		const tmpImage = `temp/images/${detail[0].file}`;
+		const tmpImage = `temp/${detail[0].file}`;
 		const result = await magicFetch('POST', '/api/image', {
 			imageable_id: data.post.id.toString(),
 			imageable_type: 'post',
@@ -162,6 +172,7 @@
 				on:moveUp={() => moveFocus(tabindex - 1)}
 				on:moveDown={() => moveFocus(tabindex + 1)}
 				on:addBlock={() => addBlock(tabindex)}
+				on:splitBlock={(e) => splitBlock(e, index, tabindex)}
 				on:removeBlock={() => removeBlock(index)}
 				on:uploadImage={() => (uploadImage = index)}
 				{tabindex}
@@ -188,7 +199,7 @@
 	on:close={() => (uploadImage = undefined)}
 	class="w-auto"
 >
-	<FileUploader {...data.transloadit} maxNumberOfFiles={1} on:complete={uploadComplete} />
+	<FileUploader maxNumberOfFiles={1} on:complete={uploadComplete} />
 </ModalWindow>
 
 <ModalWindow
@@ -196,10 +207,5 @@
 	on:close={() => (mainImageUploadModal = false)}
 	class="w-auto"
 >
-	<FileUploader
-		{...data.transloadit}
-		maxNumberOfFiles={1}
-		{imageEditorOptions}
-		on:complete={mainImageUploaded}
-	/>
+	<FileUploader maxNumberOfFiles={1} {imageEditorOptions} on:complete={mainImageUploaded} />
 </ModalWindow>

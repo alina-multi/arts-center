@@ -49,10 +49,14 @@
 					if (element !== inputElement) return;
 					dispatch('removeBlock');
 				})
-				.on('split', (element) => {
+				.on('split', (element, before, after) => {
 					if (element !== inputElement) return;
-					dispatch('addBlock');
+					dispatch('splitBlock', {
+						before: before.textContent,
+						after: after.textContent
+					});
 				})
+
 				.on('insert', (element) => {
 					if (element !== inputElement) return;
 					dispatch('addBlock');
