@@ -24,13 +24,13 @@
 	class:hidden={currentWorkIndex === 0}
 	aria-label="Previous Work"
 >
-	<Icon src={ChevronLeft} class="w-8 h-8 text-white" />
+	<Icon src={ChevronLeft} class="w-6 h-6 text-white" />
 </button>
 <button
 	on:click={() => changeWork(1)}
-	class=" fixed h-screen top-0 right-0 xs:px-3 md:px-6 z-40 cursor-pointer"
+	class=" fixed h-screen top-0 right-2 xs:px-3 md:px-6 z-40 cursor-pointer"
 	class:hidden={currentWorkIndex === gallery.length - 1}
 	aria-label="Next Work"
 >
-	<Icon src={ChevronRight} class="w-8 h-8 text-white" />
+	<Icon src={ChevronRight} class="w-6 h-6 text-white" />
 </button>
