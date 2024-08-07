@@ -7,7 +7,7 @@ use App\Events\WorkPublished;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class SendNotifications
+class SendNotifications implements ShouldQueue
 {
     /**
      * Create the event listener.

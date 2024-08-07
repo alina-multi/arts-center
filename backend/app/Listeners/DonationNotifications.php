@@ -6,9 +6,10 @@ use App\Enums\TransactionTypes;
 use App\Events\TransactionCreated;
 use App\Notifications\DonationReceived;
 use App\Notifications\DonationSent;
+use DragonCode\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Notification;
 
-class DonationNotifications
+class DonationNotifications implements ShouldQueue
 {
     public function handle(TransactionCreated $event): void
     {
