@@ -6,8 +6,9 @@ use App\Events\CommentCreated;
 use App\Models\Work;
 use App\Notifications\NewWorkComment;
 use App\Notifications\NewReply;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CommentNotifications
+class CommentNotifications implements ShouldQueue
 {
     /**
      * Handle the event.
