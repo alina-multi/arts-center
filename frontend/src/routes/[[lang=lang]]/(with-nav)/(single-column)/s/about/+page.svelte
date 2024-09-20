@@ -3,14 +3,14 @@
 	import type { PageData } from './$types';
 	import DonateFormCustom from '$lib/components/atoms/DonateFormCustom.svelte';
 	import Icon1 from '$lib/components/static_pages/icons/Icon1.svelte';
-	import Icon2 from '$lib/components/static_pages/icons/Icon2.svelte';
 	import Icon3 from '$lib/components/static_pages/icons/Icon3.svelte';
 	import Icon4 from '$lib/components/static_pages/icons/Icon4.svelte';
 	import Icon5 from '$lib/components/static_pages/icons/Icon5.svelte';
 	import SectionLayout from '$lib/components/static_pages/SectionLayout.svelte';
 	import H1 from '$lib/components/static_pages/H1.svelte';
 	import H2 from '$lib/components/static_pages/H2.svelte';
-	import H3 from '$lib/components/static_pages/H3.svelte';
+	// import H3 from '$lib/components/static_pages/H3.svelte';
+	// import Icon2 from '$lib/components/static_pages/icons/Icon2.svelte';
 	import LoginLink from '$lib/components/nav/LoginLink.svelte';
 	import ColorLayout from '$lib/components/static_pages/ColorLayout.svelte';
 	import FooterMain from '$lib/components/footer/FooterMain.svelte';
@@ -87,15 +87,15 @@
 		</SectionLayout>
 	</div>
 
-	<ColorLayout details="bg-zinc-100">
+	<!-- <ColorLayout details="bg-zinc-100">
 		<SectionLayout>
 			<p class="font-normal">
-				<!-- eslint-disable svelte/no-at-html-tags -->
+
 				{@html $t(`static.about.mission.p6`)}
 			</p>
 		</SectionLayout>
-	</ColorLayout>
-
+	</ColorLayout> -->
+	<!-- 
 	<div class="py-12 space-y-9">
 		<SectionLayout>
 			<Icon2 class="h-28 w-28 fill-amber-600" />
@@ -141,7 +141,7 @@
 				</div>
 			</div>
 		</SectionLayout>
-	</div>
+	</div> -->
 
 	<ColorLayout details="bg-zinc-900 text-white xl:py-12">
 		<SectionLayout>
@@ -174,7 +174,7 @@
 			<Icon5 class="w-28 h-28 dark:fill-zinc-700" />
 			<H2 text="static.about.join_us.h1" />
 
-			<p class=" {$user ? 'text-center' : 'xl:w-2/3 '} mx-auto">
+			<p class=" {$user ? 'text-center' : ''} mx-auto">
 				{$t(`static.about.join_us.p1`)}
 			</p>
 			{#if !$user}

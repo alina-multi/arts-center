@@ -22,9 +22,9 @@
 				</p>
 			</div>
 
-			<p>
+			<!-- <p>
 				{$t(`global.contact.legal_name`)}
-			</p>
+			</p> -->
 		</div>
 
 		<div class="flex flex-col justify-between">
