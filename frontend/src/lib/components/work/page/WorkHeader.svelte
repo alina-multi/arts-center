@@ -20,7 +20,7 @@
 	let modalOpen = false;
 </script>
 
-<div class=" flex flex-col gap-3 dark:text-gray-400">
+<div class=" flex flex-col gap-3 dark:text-gray-400 max-sm:px-4">
 	<div class="flex justify-between items-center">
 		{#each work.owners as user (user.id)}
 			<div class="flex items-center gap-3">
@@ -46,13 +46,14 @@
 		</div>
 	</div>
 
-	<div class="flex flex-col md:flex-row md:justify-between md:items-center gap-1">
+	<div class="flex justify-between items-center gap-1">
 		<h1 class="text-xl sm:text-2xl font-medium tracking-wider dark:text-white">
 			{title}
 		</h1>
-		<span class="text-zinc-600 dark:text-zinc-300 text-xs"
-			>{$t('global.published_on')} <LocaleDate date={work?.published_at} />
-		</span>
+		<div class="text-zinc-600 dark:text-zinc-300 text-xs">
+			<span class=" hidden md:inline">{$t('global.published_on')}</span>
+			<LocaleDate date={work?.published_at} />
+		</div>
 
 		<PriceLabel price={work.price} style={'px-3 py-1 '} />
 	</div>

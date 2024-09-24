@@ -25,7 +25,7 @@
 <div class="pswp-gallery" id={galleryID}>
 	<ImageLightBox image={work.full} alt={work.titles[0].alt} style={'w-full h-full'} original />
 	{#if work.images.length > 0}
-		<div class="pt-3 grid grid-cols-4 xl:grid-cols-5 gap-3">
+		<div class="pt-3 grid sm:grid-cols-4 xl:grid-cols-5 gap-3">
 			{#each work.images as image}
 				<ImageLightBox {image} alt={work.titles[0].alt} />
 			{/each}
@@ -33,5 +33,5 @@
 	{/if}
 </div>
 {#if description}
-	<p class="whitespace-pre-line md:text-lg mt-3">{description ?? ''}</p>
+	<p class="whitespace-pre-line md:text-lg mt-3 max-sm:px-4">{description ?? ''}</p>
 {/if}

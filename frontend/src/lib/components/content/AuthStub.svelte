@@ -8,7 +8,7 @@
 </script>
 
 <div
-	class=" dark:p-6 dark:bg-zinc-900 dark:border dark:border-zinc-800 max-lg:text-cente max-xl:mt-5 w-full space-y-3 max-lg:px-3"
+	class=" dark:p-6 dark:bg-zinc-900 dark:border dark:border-zinc-800 max-lg:text-cente max-xl:mt-5 w-full space-y-3 max-lg:px-6"
 >
 	<p class="text-xl text-emerald-700 font-semibold dark:text-emerald-500">
 		{$t('global.not_logged_in.title')}

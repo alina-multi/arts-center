@@ -93,7 +93,7 @@
 	on:click={onBookmarkButton}
 	class="  dark:text-zinc-300 text-black dark:border-zinc-700 flex items-center"
 >
-	<span class="pl-4">
+	<span class="pl-4 max-sm:pr-4">
 		<Icon
 			src={Bookmark}
 			class="h-7 w-7 scale-105 stroke-1 {isBookmarked

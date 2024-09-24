@@ -6,7 +6,7 @@
 </script>
 
 <div
-	class="mt-3 border-b flex pb-9 justify-between xl:justify-start items-end text-sm gap-6 border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 dark:p-3 sm:dark:p-6 dark:border"
+	class="  max-xs:px-4 mt-3 border-b flex pb-9 justify-between xl:justify-start items-end text-sm gap-6 border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 dark:p-3 sm:dark:p-6 dark:border"
 >
 	<div class="flex flex-col text-gray-600 dark:text-zinc-100">
 		<span class="leading-5"> {$t('global.comment.stub.no_comments')}</span>
