@@ -97,13 +97,13 @@
 	<div
 		class="max-xl:bg-zinc-100 max-xl:shadow xl:border-b border-zinc-200 dark:px-6 dark:border dark:border-zinc-800 dark:bg-zinc-900 py-3 font-semibold"
 	>
-		<span class="max-xl:px-3"
+		<span class="max-xl:px-4"
 			>{$t('global.comment.comments')} {commentsCount > 0 ? commentsCount : ''}</span
 		>
 	</div>
 
 	{#if commentsCount > 0}
-		<ul id="parentBlock">
+		<ul id="parentBlock" class=" max-xs:px-4">
 			{#each parentComments as comment (comment.id)}
 				{#if comment.id === new_comment?.id}
 					<li

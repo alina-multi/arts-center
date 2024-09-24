@@ -27,10 +27,10 @@
 >
 	{#if $page?.state?.workModal}
 		<ModalWindow
-			class="container px-4 py-10 xs:px-6 xs:py-3 md:py-6 md:px-9 lg:px-0 lg:pb-12 xl:px-16  xs:my-12 xs:rounded-md dark:lg:rounded-none lg:dark:px-0 dark:lg:pt-0   lg:dark:border-x-0 lg:dark:border-b-0 "
+			class="container py-10 xs:px-6 xs:py-3 md:py-6 md:px-9 lg:px-0 lg:pb-12 xl:px-16  xs:my-12 xs:rounded-md dark:lg:rounded-none lg:dark:px-0 dark:lg:pt-0   lg:dark:border-x-0 lg:dark:border-b-0 "
 			on:close={gotoGallery}
 			open={true}
-			closeButtonAddStyle="max-xs:bg-white xs:text-white max-xs:dark:bg-black"
+			closeButtonAddStyle=" xs:text-white "
 		>
 			<div slot="otherEl" class="hidden xs:block">
 				<NavigationArrows {currentWorkIndex} {gallery} />

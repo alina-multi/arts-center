@@ -33,12 +33,10 @@
 			: 'hover:text-zinc-900'} flex items-end gap-4 dark:text-white"
 	>
 		{#if votable_type === 'work' || votable_type === 'post'}
-			<span
-				class=" flex items-center border-r dark:border-zinc-700 pr-4 text-black dark:text-white"
-			>
+			<div class=" flex items-center border-r dark:border-zinc-700 pr-4 text-black dark:text-white">
 				<span class="hidden sm:block"> {$t('global.voting.like')} </span>
-				<span class="ml-1">{rating}</span></span
-			>
+				<span class="ml-1">{rating > 0 ? rating : ''}</span>
+			</div>
 		{/if}
 		<LikeButton
 			{size}
