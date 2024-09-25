@@ -11,12 +11,11 @@
 
 {#if tags.length > 0}
 	<div class="{media} flex-wrap items-center justify-start gap-6">
-		<span class="font-semibold text-lg">{$t('global.filters.tags')}:</span>
 		{#each tags as { title } (title)}
 			<TagButton
 				href={localePath($locale, `/tag/${title}/popular`)}
 				{title}
-				styles={'px-3 py-1 border-zinc-800   text-zinc-800 dark:text-zinc-100  dark:border-zinc-700 '}
+				styles={'px-3 py-1 border-zinc-800   text-zinc-800 dark:text-zinc-100  dark:border-zinc-700 rounded-2xl '}
 			/>
 		{/each}
 	</div>
