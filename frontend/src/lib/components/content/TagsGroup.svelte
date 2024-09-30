@@ -3,7 +3,6 @@
 	import { localePath } from '$lib/translations';
 	import { getContext } from 'svelte';
 
-	const t = getContext('t');
 	const locale = getContext('locale');
 	export let tags = [],
 		media: string;

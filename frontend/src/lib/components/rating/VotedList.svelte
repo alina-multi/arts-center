@@ -13,7 +13,7 @@
 	let showLikedByModal = false;
 </script>
 
-<div class="flex items-center gap-1 dark:text-zinc-300">
+<div class="flex items-center gap-1 dark:text-zinc-300 font-medium">
 	{#if votes.length > 3}
 		<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointe mr-1">
 			{$t('global.voting.liked_by')}

@@ -122,11 +122,11 @@
 		<p>
 			<b>{$t('global.donation.be_patron')}</b>{$t('global.donation.p2')}
 		</p>
-		<div class="w-full xl:px-6">
+		<div class="w-full">
 			<button
 				on:click={checkout}
 				{disabled}
-				class="{disabled
+				class=" {disabled
 					? 'bg-zinc-400 dark:bg-zinc-500 dark:text-zinc-700 cursor-not-allowed '
 					: 'bg-zinc-800 dark:bg-emerald-600  cursor-pointer  hover:scale-[1.02] transform transition-transform'}  sm:max-lg:w-2/3 lg:max-xl:w-1/2 text-white w-full text-lg font-semibold py-3 gap-3 mb-3"
 			>

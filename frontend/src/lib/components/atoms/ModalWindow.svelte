@@ -29,7 +29,7 @@
 	<Dialog initialFocus={closeButton} bind:open on:close={onClose} class="relative z-50 ">
 		<button
 			on:click={onClose}
-			class="{closeButtonAddStyle}  pr-3 md:pr-6 fixed top-0 right-2 h-12 z-50 cursor-pointer"
+			class="{closeButtonAddStyle}  px-3 md:px-6 fixed top-0 right-2 h-12 z-50 cursor-pointer"
 		>
 			<div bind:this={closeButton} class="flex w-full h-full justify-end items-center">
 				<Icon src={XMark} class="w-6 h-6  " />

@@ -27,7 +27,7 @@
 >
 	{#if $page?.state?.workModal}
 		<ModalWindow
-			class="container py-10 xs:px-6 xs:py-3 md:py-6 md:px-9 lg:px-0 lg:pb-12 xl:px-16  xs:my-12 xs:rounded-md dark:lg:rounded-none lg:dark:px-0 dark:lg:pt-0   lg:dark:border-x-0 lg:dark:border-b-0 "
+			class="container py-9 xs:my-9  xs:rounded-2xl dark:px-12 pb-12  xs:p-6 md:max-lg:p-12"
 			on:close={gotoGallery}
 			open={true}
 			closeButtonAddStyle=" xs:text-white "
