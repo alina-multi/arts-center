@@ -80,7 +80,7 @@
 
 <div class=" flex flex-col">
 	<h3 class="sr-only">Comments</h3>
-	<div class=" h-[270px] xs:h-60 w-full">
+	<div class=" h-[270px] xs:h-64 w-full">
 		{#if !$isUserLoading}
 			{#if $user}
 				<div
