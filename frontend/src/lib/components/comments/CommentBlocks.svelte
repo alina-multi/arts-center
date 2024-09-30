@@ -80,11 +80,11 @@
 
 <div class=" flex flex-col">
 	<h3 class="sr-only">Comments</h3>
-	<div class=" h-56 w-full">
+	<div class=" h-[270px] xs:h-60 w-full">
 		{#if !$isUserLoading}
 			{#if $user}
 				<div
-					class="md:bg-zinc-50 md:border md:pt-3 md:pb-4 md:px-9 xl:py-6 max-xl:mt-9 md:dark:bg-zinc-900 md:dark:border md:dark:border-zinc-800"
+					class="md:bg-zinc-100 md:shadow md:px-6 xl:py-6 max-xl:mt-9 md:dark:bg-zinc-900 md:dark:border md:dark:border-zinc-800"
 				>
 					<CommentInput onSubmit={addNewComment} bind:value />
 				</div>

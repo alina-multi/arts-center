@@ -80,13 +80,11 @@
 		</div>
 
 		<div
-			class="w-full flex items-center justify-between gap-3 border-t py-4 dark:border-zinc-800 max-lg:border-b lg:py-6 sm:mt-3"
+			class="w-full flex items-center justify-between gap-3 border-t py-4 dark:border-zinc-800 lg:py-6 sm:mt-3"
 		>
 			<RatingPreviewVote showVotedPreview entity={data.post} votable_type={'post'} />
 		</div>
 	</div>
 
-	<div class="xl:border-t mx-auto">
-		<ContentFooter commentable_type="post" {isMy} />
-	</div>
+	<ContentFooter commentable_type="post" {isMy} />
 </div>

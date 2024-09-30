@@ -11,7 +11,7 @@
 	const entity: Work | Post = getContext(commentable_type);
 </script>
 
-<div class="flex xl:gap-12 max-xl:flex-col-reverse mt-6 xl:mt-12 lg:max-xl:px-28">
+<div class="flex xl:gap-9 max-xl:flex-col-reverse mt-6 lg:max-xl:px-28">
 	{#if entity?.tags}
 		<TagsGroup
 			tags={entity.tags}
@@ -19,7 +19,7 @@
 		/>
 	{/if}
 
-	<div class="xl:w-8/12 mb-12">
+	<div class="xl:w-7/12 mb-12">
 		<CommentBlocks
 			{commentable_type}
 			commentsCount={entity.comments}
@@ -28,7 +28,7 @@
 		/>
 	</div>
 
-	<div class=" xl:w-4/12 flex flex-col gap-9">
+	<div class=" xl:w-5/12 flex flex-col gap-9">
 		{#each entity.owners as user (user.id)}
 			{#if user.verified_at}
 				<DonateForm {user} />

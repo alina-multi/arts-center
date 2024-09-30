@@ -20,7 +20,7 @@
 	let modalOpen = false;
 </script>
 
-<div class=" flex flex-col gap-3 dark:text-gray-400 max-sm:px-4">
+<div class=" flex flex-col gap-3 dark:text-gray-400 max-xl:px-4">
 	<div class="flex justify-between items-center">
 		{#each work.owners as user (user.id)}
 			<div class="flex items-center gap-3">
@@ -30,7 +30,7 @@
 				</div>
 				<div class="flex w-28">
 					<FollowButton
-						size={'xs   w-max   border border border-zinc-500 border-zinc-800 text-zinc-900 dark:bg-zinc-800  w-min px-3 py-1 text-center'}
+						size={'xs rounded-full  w-max   border border border-zinc-500 border-zinc-800 text-zinc-900 dark:bg-zinc-800  w-min px-3 py-1 text-center'}
 						{user}
 					/>
 				</div>
