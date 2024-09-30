@@ -11,7 +11,7 @@
 	const entity: Work | Post = getContext(commentable_type);
 </script>
 
-<div class="flex xl:gap-9 max-xl:flex-col-reverse mt-6 lg:max-xl:px-28">
+<div class="flex xl:gap-9 max-xl:flex-col-reverse mt-6 dark:xl:px-9">
 	{#if entity?.tags}
 		<TagsGroup
 			tags={entity.tags}
