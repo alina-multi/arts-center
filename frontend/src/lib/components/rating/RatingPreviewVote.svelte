@@ -35,6 +35,7 @@
 		{#if votable_type === 'work' || votable_type === 'post'}
 			<div class=" flex items-center border-r dark:border-zinc-700 pr-4 text-black dark:text-white">
 				<span class="hidden sm:block"> {$t('global.voting.like')} </span>
+
 				<span class="ml-1">{rating > 0 ? rating : ''}</span>
 			</div>
 		{/if}

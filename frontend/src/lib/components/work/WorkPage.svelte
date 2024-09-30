@@ -26,16 +26,16 @@
 
 {#key work.id}
 	<div
-		class="flex flex-col gap-3 lg:gap-9 mx-auto pt-3 lg:pt-9 dark:lg:bg-zinc-900 lg:px-28 xl:px-36 lg:dark:border lg:dark:border-zinc-800 lg:dark:border-t-transparent"
+		class="flex flex-col gap-3 lg:gap-6 mx-auto pt-3 lg:pt-9 dark:lg:bg-zinc-900 lg:px-28 xl:px-36"
 	>
 		<WorkHeader {work} {isMy} />
 		<WorkBody {work} />
 
 		<div class="flex items-center justify-between gap-3">
 			<div
-				class=" w-full flex sm:gap-3 items-center mt-3 border-y lg:border-b-transparent lg:dark:border-b-transparent dark:border-zinc-800 py-4 lg:py-6"
+				class=" w-full flex sm:gap-3 items-center sm:mt-3 sm:border-y lg:border-b-transparent lg:dark:border-b-transparent dark:border-zinc-800 py-4 lg:py-6"
 			>
-				<div class="w-full flex items-center justify-between gap-3">
+				<div class="w-full flex items-center justify-between gap-3 max-sm:ml-3">
 					<RatingPreviewVote entity={work} showVotedPreview votable_type={'work'} />
 				</div>
 				<BookmarkButton {work} />
@@ -43,6 +43,8 @@
 		</div>
 	</div>
 
-	<ContentFooter commentable_type="work" {isMy} />
+	<div class="flex flex-col gap-3 lg:gap-6 px-4 xs:mx-auto lg:pt-9 lg:px-28 xl:px-36 dark:xl:px-0">
+		<ContentFooter commentable_type="work" {isMy} />
+	</div>
 {/key}
 <AuthModal />

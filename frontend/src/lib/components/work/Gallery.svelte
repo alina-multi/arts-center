@@ -31,7 +31,7 @@
 	}
 </script>
 
-<div class=" mt-6 space-y-6 container mx-auto px-3">
+<div class=" mt-6 space-y-6 container mx-auto max-xl:px-3">
 	{#key $locale}
 		<GalleryFilters {categories} {params} />
 	{/key}
