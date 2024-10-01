@@ -43,7 +43,9 @@
 		</div>
 	</div>
 
-	<div class="flex flex-col gap-3 lg:gap-6 px-4 xs:mx-auto lg:pt-9 lg:px-28 xl:px-36 dark:xl:px-0">
+	<div
+		class="flex flex-col gap-3 lg:gap-6 px-4 xs:mx-auto lg:pt-9 lg:px-28 xl:px-36 dark:xl:px-0 w-full"
+	>
 		<ContentFooter commentable_type="work" {isMy} />
 	</div>
 {/key}
