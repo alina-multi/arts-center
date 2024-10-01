@@ -16,7 +16,7 @@
 </script>
 
 <a {href} class="grid gap-1">
-	<div class="rounded-sm bg-gray-200 dark:bg-zinc-900 overflow-hidden aspect-[4/3]">
+	<div class="rounded-lg bg-gray-200 dark:bg-zinc-900 overflow-hidden aspect-[4/3]">
 		{#if work.preview}
 			<Picture
 				photo={work.preview}
