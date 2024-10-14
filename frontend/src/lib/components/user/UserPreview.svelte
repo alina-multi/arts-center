@@ -28,7 +28,7 @@
 				</div>
 			</a>
 			{#if followButton}
-				<div class="flex justify-end w-28"><FollowButton {user} size={'xs w-min'} /></div>
+				<div class="flex justify-end w-28"><FollowButton {user} addStyles={'text-xs w-min'} /></div>
 			{/if}
 		</div>
 		<UserDetails {user} />

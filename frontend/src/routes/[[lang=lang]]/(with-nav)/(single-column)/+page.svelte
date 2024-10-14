@@ -107,7 +107,7 @@
 
 								<div class="flex justify-end w-28">
 									<FollowButton
-										size={'xs max-sm:text-xs xl:text-xs   border border border-zinc-500 border-zinc-800 text-zinc-800 dark:bg-zinc-800  w-min px-3 py-1 text-center'}
+									addStyles={'text-xs max-sm:text-xs xl:text-xs   border border border-zinc-500 border-zinc-800 text-zinc-800 dark:bg-zinc-800  w-min px-3 py-1 text-center'}
 										{user}
 									/>
 								</div>
