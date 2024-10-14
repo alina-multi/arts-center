@@ -84,7 +84,7 @@
 		{#if !$isUserLoading}
 			{#if $user}
 				<div
-					class="md:bg-zinc-100 md:shadow md:px-6 xl:py-6 max-xl:mt-9 md:dark:bg-zinc-900 md:dark:border md:dark:border-zinc-800"
+					class="md:bg-zinc-100 md:shadow md:px-9 xl:py-6 max-xl:mt-9 md:dark:bg-zinc-900 md:dark:border md:dark:border-zinc-800 "
 				>
 					<CommentInput onSubmit={addNewComment} bind:value />
 				</div>
