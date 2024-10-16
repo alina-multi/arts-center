@@ -44,13 +44,13 @@
 	{#if isMy}
 		<a
 			href={localePath($locale, '/my/profile')}
-			class=" {addStyles} border border-zinc-600 dark:bg-zinc-800 px-3 py-1 text-center transition-all dark:hover:bg-zinc-700 dark:border-zinc-700 dark:text-white cursor-pointer"
+			class=" {addStyles} border rounded-full   border-zinc-600 dark:bg-zinc-800 px-3 py-1 text-center transition-all dark:hover:bg-zinc-700 dark:border-zinc-700 dark:text-white cursor-pointer"
 		>
 			<span>{$t('global.my_links.edit')}</span>
 		</a>
 	{:else}
 		<button
-			class=" {addStyles} border border-zinc-600 dark:bg-zinc-800 px-3 py-1 text-center transition-all dark:hover:bg-zinc-700 dark:border-zinc-700 dark:text-white cursor-pointer  {isFollowing
+			class=" {addStyles} border rounded-full   border-zinc-600 dark:bg-zinc-800 px-3 py-1 text-center transition-all dark:hover:bg-zinc-700 dark:border-zinc-700 dark:text-white cursor-pointer  {isFollowing
 				? 'opacity-50'
 				: ''} "
 			on:click={() => handleFollow()}

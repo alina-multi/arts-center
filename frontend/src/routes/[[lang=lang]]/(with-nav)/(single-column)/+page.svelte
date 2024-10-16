@@ -63,7 +63,7 @@
 					/>
 					<a
 						href="/"
-						class="tracking-widest lg:text-lg w-full text-center px-6 py-3 border border-zinc-300 bg-zinc-800 dark:border-zinc-500 dark:bg-zinc-800 shadow-sm hover:bg-amber-600 hover:border-amber-600 dark:text-zinc-100 hover:text-white cursor-pointer"
+						class="tracking-widest lg:text-lg w-full rounded-full text-center px-6 py-3 border border-zinc-300 bg-zinc-800 dark:border-zinc-500 dark:bg-zinc-800 shadow-sm hover:bg-amber-600 hover:border-amber-600 dark:text-zinc-100 hover:text-white cursor-pointer"
 						>{$t(`global.menu.register`)}</a
 					>
 				</div>

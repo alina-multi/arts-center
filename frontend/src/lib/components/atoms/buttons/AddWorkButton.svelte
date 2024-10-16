@@ -17,7 +17,7 @@
 
 <a
 	{href}
-	class=" inline-flex items-center justify-center shrink-0 text-sm hover:bg-amber-500 hover:border-amber-500 border border-amber-600 px-3 py-2 bg-amber-600 text-white hover:shadow"
+	class="rounded-full inline-flex items-center justify-center shrink-0 text-sm hover:bg-amber-500 hover:border-amber-500 border border-amber-600 px-4 py-2 bg-amber-600 text-white hover:shadow"
 >
 	<span class="sr-only">{$t('global.buttons.addwork')}</span>
 
