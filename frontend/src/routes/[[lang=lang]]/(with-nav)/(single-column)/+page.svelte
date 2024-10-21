@@ -14,6 +14,7 @@
 	import { user } from '$lib/stores/auth';
 
 	import LoginLink from '$lib/components/nav/LoginLink.svelte';
+	import RegisterButton from '$lib/components/atoms/buttons/RegisterButton.svelte';
 	import FooterMain from '$lib/components/footer/FooterMain.svelte';
 
 	const t = getContext('t');
@@ -61,11 +62,9 @@
 					<LoginLink
 						styles="py-3 px-6 tracking-widest lg:text-lg  border-zinc-300 bg-zinc-800 text-white w-full hover:bg-zinc-700"
 					/>
-					<a
-						href="/"
-						class="tracking-widest lg:text-lg w-full rounded-full text-center px-6 py-3 border border-zinc-300 bg-zinc-800 dark:border-zinc-500 dark:bg-zinc-800 shadow-sm hover:bg-amber-600 hover:border-amber-600 dark:text-zinc-100 hover:text-white cursor-pointer"
-						>{$t(`global.menu.register`)}</a
-					>
+					<RegisterButton
+						styles="tracking-widest lg:text-lg w-full  px-6 py-3  border-zinc-300 bg-zinc-800 dark:border-zinc-500 "
+					/>
 				</div>
 			</section>
 		</ColorLayout>
@@ -107,7 +106,7 @@
 
 								<div class="flex justify-end w-28">
 									<FollowButton
-									addStyles={'text-xs max-sm:text-xs xl:text-xs   border border border-zinc-500 border-zinc-800 text-zinc-800 dark:bg-zinc-800  w-min px-3 py-1 text-center'}
+										addStyles={'text-xs max-sm:text-xs xl:text-xs   border border border-zinc-500 border-zinc-800 text-zinc-800 dark:bg-zinc-800  w-min px-3 py-1 text-center'}
 										{user}
 									/>
 								</div>
