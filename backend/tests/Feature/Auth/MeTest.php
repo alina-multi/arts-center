@@ -21,7 +21,7 @@ it('Returns valid data', function () {
         ->create(['verified_at' => now()]);
     // Have to do this as a separate step because we need $user
     Thread::factory()
-        ->has(Participant::factory()->count(2)
+        ->has(Participant::factory(['approved_at'=>now()])->count(2)
             ->state(new Sequence(['user_id' => $user->id], ['user_id' => 999])))
         ->create();
     actingAs($user)->getJson('/api2/me')->assertOk()
