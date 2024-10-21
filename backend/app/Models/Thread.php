@@ -25,7 +25,7 @@ class Thread extends Model
 
     public function participants(): HasMany
     {
-        return $this->hasMany(Participant::class);
+        return $this->hasMany(Participant::class)->whereNotNull('approved_at');
     }
 
     public function messages(): HasMany

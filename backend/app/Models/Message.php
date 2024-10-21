@@ -17,6 +17,10 @@ class Message extends Model
         'id', 'user_id', 'message', 'created_at'
     ];
 
+    protected $fillable = [
+        'message', 'user_id'
+    ];
+
     function thread(): BelongsTo
     {
         return $this->belongsTo(Thread::class);
