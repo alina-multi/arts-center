@@ -43,7 +43,7 @@ test('Update thread', function () {
     ])->assertForbidden();
 
     // Now this should work
-    $thread->participants()->create(['user_id' => $this->user->id]);
+    $thread->participants()->create(['user_id' => $this->user->id, 'approved_at' => now()]);
     actingAs($this->user)->putJson("/api2/thread/$thread->id", [
         'title' => 'New thread',
     ])->assertOk();
