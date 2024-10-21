@@ -3,7 +3,6 @@
 use App\Models\User;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
-use function Pest\Laravel\assertDatabaseMissing;
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
