@@ -69,6 +69,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('image', ImageController::class);
     Route::put('notification-preferences', [\App\Http\Controllers\Api2\NotificationPreferencesController::class, 'update']);
     Route::get('notification-preferences', [\App\Http\Controllers\Api2\NotificationPreferencesController::class, 'index']);
+    Route::apiResource('thread', \App\Http\Controllers\Api2\ThreadController::class)->except('destroy');
 });
 
 // These ones are not requited to have auth

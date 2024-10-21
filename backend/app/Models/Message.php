@@ -13,6 +13,10 @@ class Message extends Model
 
     protected $touches = ['thread'];
 
+    protected $visible = [
+        'id', 'user_id', 'message', 'created_at'
+    ];
+
     function thread(): BelongsTo
     {
         return $this->belongsTo(Thread::class);

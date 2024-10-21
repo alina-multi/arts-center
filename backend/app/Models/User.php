@@ -162,7 +162,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function threads(): BelongsToMany
     {
-        return $this->belongsToMany(Thread::class, Participant::class)->withPivot('last_read');
+        return $this->belongsToMany(Thread::class, Participant::class)->withPivot('last_read')->wherePivotNotNull('approved_at');
     }
 
     public function receivesBroadcastNotificationsOn(): string

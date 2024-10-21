@@ -15,8 +15,21 @@ class Thread extends Model
         'type' => ThreadType::class,
     ];
 
+    protected $fillable = [
+        'title'
+    ];
+
+    protected $visible = [
+      'id', 'title', 'created_at', 'updated_at', 'participants', 'messages'
+    ];
+
     public function participants(): HasMany
     {
         return $this->hasMany(Participant::class);
+    }
+
+    public function messages(): HasMany
+    {
+        return $this->hasMany(Message::class);
     }
 }
