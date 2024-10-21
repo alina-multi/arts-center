@@ -18,6 +18,10 @@ return [
 
     'driver' => env('MAIL_DRIVER', 'smtp'),
 
+    'client' => [
+        'http_version' => '1.1',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | SMTP Host Address

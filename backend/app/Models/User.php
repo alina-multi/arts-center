@@ -14,7 +14,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Cache;
 use App\Notifications\MailResetPasswordNotification;
 use Laravel\Scout\Searchable;
-use Illuminate\Database\Eloquent\Relations\{HasMany, MorphToMany, HasOne};
+use Illuminate\Database\Eloquent\Relations\{BelongsToMany, HasMany, HasManyThrough, MorphToMany, HasOne};
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -158,6 +158,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function notificationPreferences(): HasMany
     {
         return $this->hasMany(NotificationPreference::class);
+    }
+
+    public function threads(): BelongsToMany
+    {
+        return $this->belongsToMany(Thread::class, Participant::class)->withPivot('last_read');
     }
 
     public function receivesBroadcastNotificationsOn(): string
