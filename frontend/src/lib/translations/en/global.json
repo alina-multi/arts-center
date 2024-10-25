@@ -29,7 +29,9 @@
 		"show": "Show",
 		"show_less": "Show less",
 		"show_more": "Show more",
-		"unblock": "Unblock"
+		"unblock": "Unblock",
+		"get_in_touch": "Get in touch",
+		"send_message": "Send message"
 	},
 	"comment": {
 		"add": {
@@ -66,6 +68,17 @@
 		"p1": "Don't hesitate to contact us if you have any questions.",
 		"p2": "We’d love to hear from you!",
 		"p3": "We are open to your ideas and proposals for cooperation, and will be happy to consider opportunities for joint projects."
+	},
+	"connect_artist": {
+		"connect": "Connect with ",
+		"label": "I am interested in..",
+		"buying": "buying an artwork",
+		"commision": "commissioning a work",
+		"cooperation": "the possibility of collaborating with the artist",
+		"your_message": "Write your message",
+		"message_sent_1": "Your message is on its way to the artist",
+		"message_sent_2": "The artist will receive it as soon as it's checked for spam.",
+		"got_it": "Got it"
 	},
 	"donation": {
 		"be_patron": "Become a patron",
