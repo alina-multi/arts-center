@@ -8,7 +8,7 @@
 	export let work: Work, loading;
 </script>
 
-<li class="flex flex-col gap-1 lg:gap-0 overflow-hidden {work.subscribed ? ' ' : ''} ">
+<li class="flex flex-col gap-1 lg:gap-0 overflow-hidden">
 	<div class="group/item relative">
 		<ImageWork {work} withDesription {loading} />
 	</div>

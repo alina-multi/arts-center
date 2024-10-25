@@ -29,7 +29,7 @@
 		{name}
 		bind:value
 		{rows}
-		class="block w-full text-black placeholder:text-sm rounded-sm border-gray-300 dark:border-zinc-900 dark:bg-zinc-900 dark:text-gray-300 dark:placeholder:text-gray-300 dark:focus:border-blue-700 dark:focus:ring-blue-700 shadow-sm focus:border-blue-600/50 focus:ring-blue-600/50 {error
+		class="block w-full text-black placeholder:text-sm rounded-sm border-gray-300 dark:border-zinc-900 dark:bg-zinc-900 dark:text-zinc-300 dark:placeholder:text-zinc-300 dark:focus:border-zinc-700 dark:focus:ring-zinc-700 shadow-sm focus:border-zinc-600 focus:ring-zinc-600/50 {error
 			? 'border-red-300 focus:border-red-300 focus:ring-red-200'
 			: 'border-zinc-300 focus:border-blue-300 focus:ring-blue-200'}"
 	/>

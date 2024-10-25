@@ -30,7 +30,7 @@
 				</div>
 				<div class="flex w-28">
 					<FollowButton
-						size={'xs rounded-full  w-max   border border border-zinc-500 border-zinc-800 text-zinc-900 dark:bg-zinc-800  w-min px-3 py-1 text-center'}
+						addStyles={'text-xs rounded-full  w-max   border border border-zinc-500 border-zinc-800 text-zinc-900 dark:bg-zinc-800  w-min px-3 py-1 text-center'}
 						{user}
 					/>
 				</div>
