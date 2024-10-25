@@ -9,7 +9,7 @@
 </script>
 
 <div
-	class=" dark:xl:p-9 dark:bg-zinc-900 dark:border dark:border-zinc-800 max-xl:mt-5 w-full space-y-3 max-sm:pt-9 dark:p-6"
+	class=" max-sm:text-center max-sm:px-6 dark:xl:p-9 dark:bg-zinc-900 dark:border dark:border-zinc-800 max-xl:mt-5 w-full space-y-3 max-sm:pt-9 dark:p-6"
 >
 	<p class="text-2xl font-semibold">
 		{$t('global.not_logged_in.title')}
