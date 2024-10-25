@@ -4,8 +4,7 @@
 	import TextAreaInput from '$lib/components/input/TextAreaInput.svelte';
 	import { getContext } from 'svelte';
 	import RadioButton from '$lib/components/input/RadioButton.svelte';
-	import { user as currentUser, isUserLoading, showAuthModal } from '$lib/stores/auth';
-	import { fetchData } from '$lib/helpers/fetchData';
+	import { user as currentUser, isUserLoading } from '$lib/stores/auth';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { RocketLaunch } from '@steeze-ui/heroicons';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
@@ -57,7 +56,7 @@
 	{#if !isMy}
 		<button
 			on:click={() => (open = true)}
-			class=" w-full py-2 px-4 border  text-center  hover:border-zinc-800 bg-white dark:bg-zinc-800 dark:border-zinc-700 font-semibold"
+			class=" w-full py-2 px-4 border text-center hover:border-zinc-800 bg-white dark:bg-zinc-800 dark:border-zinc-700 font-semibold"
 			>{$t('global.buttons.get_in_touch')}</button
 		>
 	{/if}

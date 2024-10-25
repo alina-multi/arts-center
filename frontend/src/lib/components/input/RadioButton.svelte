@@ -7,12 +7,11 @@
 		onChange: (e: Event & { target: HTMLInputElement }) => void;
 </script>
 
-
 {#if label}
-<label for={id} class="min-w-0 flex-1 flex gap-3 items-center select-none cursor-pointer">
-	<slot />
-	{label}
-</label>
+	<label for={id} class="min-w-0 flex-1 flex gap-3 items-center select-none cursor-pointer">
+		<slot />
+		{label}
+	</label>
 {/if}
 
 <input

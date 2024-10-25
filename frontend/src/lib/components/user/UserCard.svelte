@@ -40,13 +40,13 @@
 
 				<OnArtSince {user} />
 			</div>
-			<div class="flex grid-cols-2 gap-6 w-full items-center mt-6 h-11 ">
+			<div class="flex grid-cols-2 gap-6 w-full items-center mt-6 h-11">
 				<FollowButton
 					{user}
 					addStyles={'text-base border-zinc-800  bg-white   text-center font-medium  w-full py-2 block'}
 				/>
 
-				<GetInTouchButton {user}  />
+				<GetInTouchButton {user} />
 			</div>
 		</div>
 	</div>

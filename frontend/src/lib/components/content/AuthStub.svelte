@@ -1,11 +1,9 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import LoginLink from '../nav/LoginLink.svelte';
-	import { localePath } from '$lib/translations';
 	import RegisterButton from '$lib/components/atoms/buttons/RegisterButton.svelte';
 
 	const t = getContext('t');
-	const locale = getContext('locale');
 </script>
 
 <div
