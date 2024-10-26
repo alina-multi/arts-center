@@ -21,7 +21,7 @@ class MeController extends Controller
         })->toArray();
         $favorites = $user->favorites->pluck('work_id')->toArray();
         $favoriteFolders = $user->favoriteFolders->toArray();
-        $threads = $user->threads()->where('type', ThreadType::Direct)->with('participants', fn ($query) => $query->where('user_id', '!=', $user->id))->get()->mapWithKeys(fn (Thread $thread) => [$thread?->participants?->first()?->user_id ?? 0 => $thread->id]);
+        $threads = $user->threads()->where('type', ThreadType::Direct)->with('participants', fn($query) => $query->where('user_id', '!=', $user->id))->get()->mapWithKeys(fn(Thread $thread) => [strval($thread?->participants?->first()?->user_id) ?? 0 => $thread->id]);
         return [
             ...$user->toArray(),
             'role' => $user->role,
