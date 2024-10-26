@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\UserRoles;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
@@ -13,7 +14,9 @@ class MessagePolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        if ($user->role === UserRoles::SuperAdmin) {
+            return true;
+        }
     }
 
     /**
@@ -21,7 +24,9 @@ class MessagePolicy
      */
     public function view(User $user, Message $message): bool
     {
-        //
+        if ($user->role === UserRoles::SuperAdmin) {
+            return true;
+        }
     }
 
     /**
@@ -45,6 +50,9 @@ class MessagePolicy
      */
     public function delete(User $user, Message $message): bool
     {
+        if ($user->role === UserRoles::SuperAdmin) {
+            return true;
+        }
         return $message->user_id === $user->id;
     }
 
@@ -53,6 +61,9 @@ class MessagePolicy
      */
     public function restore(User $user, Message $message): bool
     {
+        if ($user->role === UserRoles::SuperAdmin) {
+            return true;
+        }
         return $message->user_id === $user->id;
     }
 
