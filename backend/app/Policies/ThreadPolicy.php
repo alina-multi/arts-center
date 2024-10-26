@@ -65,6 +65,6 @@ class ThreadPolicy
 
     private function userIsParticipant(User $user, Thread $thread): bool
     {
-        return $thread->participants()->where('user_id', $user->id)->exists();
+        return $thread->participants()->where('user_id', $user->id)->whereNotNull('approved_at')->exists();
     }
 }
