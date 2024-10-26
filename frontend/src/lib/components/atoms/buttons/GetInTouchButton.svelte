@@ -8,39 +8,36 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { RocketLaunch } from '@steeze-ui/heroicons';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
+	import {fetchData} from '$lib/helpers/fetchData';
 
-	const options = [
-		{ id: 1, title: 'buying' },
-		{ id: 2, title: 'commision' },
-		{ id: 3, title: 'cooperation' }
-	];
+	const options = ['buying', 'commision', 'cooperation'];
 	let isMy = false;
 	$: isMy = handleIsMy($currentUser, user.id);
 
 	const t = getContext('t');
 
-	export let user, origin;
+	export let user;
 	let open = false;
-	let optionID = 0;
-	let url = '/api/';
+	let topic = null;
 	let message = '';
 	$: message_sent = false;
 
 	async function onSendMessage() {
-		console.log(message);
+		if (!topic) return;
+		let threadId = $currentUser?.threads?.[user.id];
+		if (!threadId) {
+			const response = await fetchData('POST', '/api/thread', {
+				title: $t(`global.connect_artist.${topic}`),
+				participants: [user.id.toString()]
+			});
+			let data = await response.json();
+			threadId = data.id;
+			$currentUser.threads[user.id] = threadId;
+		}
 
-		// const response = await fetchData('POST', url, {
-		// 	from: $currentUser,
-		// 	to: user,
-		// 	origin: origin.type ??????? to discuss
-		// 	subject: optionID,
-		// 	message: message;
-
-		// });
-
-		// const data = await response.json();
-
-		// resetForm();
+		await fetchData('POST', `/api/thread/${threadId}/message`, {
+			message
+		});
 
 		message_sent = true;
 		resetForm();
@@ -48,7 +45,7 @@
 
 	function resetForm() {
 		message = '';
-		optionID = 0;
+		topic = null;
 	}
 </script>
 
@@ -91,16 +88,15 @@
 					{$t(`global.connect_artist.label`)}
 				</p>
 				<ul class="space-y-3">
-					{#each options as option (option?.id)}
+					{#each options as option (option)}
 						<li class="flex text-sm">
 							<RadioButton
-								id={option?.id}
-								label={$t(`global.connect_artist.${option?.title}`)}
-								name={option?.id}
-								value={option?.id}
-								checked={optionID === option?.id}
+									label={$t(`global.connect_artist.${option}`)}
+									name={option}
+									value={option}
+									checked={topic === option}
 								onChange={(e) => {
-									optionID = Number(e.target.value);
+									topic = e.target.value;
 								}}
 							/>
 						</li>
@@ -120,7 +116,9 @@
 				</div>
 
 				<button
+						disabled={!topic}
 					class="bg-zinc-900 w-full dark:bg-teal-600 rounded-full px-4 py-4 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 dark:bg-emerald"
+						class:!bg-zinc-300={!topic}
 				>
 					{$t(`global.buttons.send_message`)}
 				</button>
