@@ -24,6 +24,8 @@ return [
         "received" => "You have received new vote to your work!",
         "view" => "View vote on site"
     ],
- 
-
+    "message" => [
+        "received" => "You have received a new message!",
+        "subject" => ":name just messaged you",
+    ]
 ];

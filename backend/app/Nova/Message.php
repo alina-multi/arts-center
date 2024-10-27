@@ -2,7 +2,9 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\ApproveMessage;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -16,6 +18,8 @@ class Message extends Resource
      * @var class-string<\App\Models\Message>
      */
     public static $model = \App\Models\Message::class;
+
+    public static $with = ['thread', 'thread.participants'];
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -47,6 +51,9 @@ class Message extends Resource
             BelongsTo::make('thread'),
             Text::make('message')->required(),
             DateTime::make('Created At'),
+            Boolean::make('Approved', function (\App\Models\Message $message) {
+                return $message?->thread?->participants->whereNull('approved_at')->count() === 0;
+            }),
         ];
     }
 
@@ -91,6 +98,6 @@ class Message extends Resource
      */
     public function actions(NovaRequest $request)
     {
-        return [];
+        return [new ApproveMessage()];
     }
 }

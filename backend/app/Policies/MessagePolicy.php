@@ -42,6 +42,9 @@ class MessagePolicy
      */
     public function update(User $user, Message $message): bool
     {
+        if ($user->role === UserRoles::SuperAdmin) {
+            return true;
+        }
         return ($message->user_id === $user->id) && ($message->created_at->diffInMinutes(now()) < 10);
     }
 
