@@ -37,7 +37,7 @@
 
 			<div class="flex flex-row-reverse mt-3 gap-3">
 				<button
-					class="border {enabled
+					class="border rounded-full {enabled
 						? ' border-emerald-600  text-white bg-emerald-600 dark:text-zinc-200 border  hover:bg-emerald-500 hover:text-white hover:border-emerald-500 '
 						: 'text-zinc-500 dark:text-zinc-200  dark:bg-zinc-800  border-zinc-300 bg-white '}  px-3 py-2 dark:border-0 text-sm font-semibold"
 				>

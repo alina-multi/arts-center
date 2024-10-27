@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\Api2\{
+use App\Http\Controllers\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Api2\{NotificationPreferencesController,
+    ThreadController,
+    ThreadMessageController,
     VoteController,
     ProfileController,
     WorkController,
@@ -16,8 +19,7 @@ use App\Http\Controllers\Api2\{
     PhotoController,
     PostController,
     NotificationController,
-    ImageController
-};
+    ImageController};
 
 use Illuminate\Broadcasting\BroadcastController;
 
@@ -62,13 +64,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
     )->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
     Route::get('notifications', [NotificationController::class, 'index']);
     Route::post('notifications/mark-all-read', [NotificationController::class, 'markAllRead']);
-    Route::post('verification-notification', [\App\Http\Controllers\Auth\EmailVerificationNotificationController::class, 'store'])
+    Route::post('verification-notification', [EmailVerificationNotificationController::class, 'store'])
         ->middleware(['auth', 'throttle:6,1'])
         ->name('verification.send');
     Route::apiResource('post', PostController::class);
     Route::apiResource('image', ImageController::class);
-    Route::put('notification-preferences', [\App\Http\Controllers\Api2\NotificationPreferencesController::class, 'update']);
-    Route::get('notification-preferences', [\App\Http\Controllers\Api2\NotificationPreferencesController::class, 'index']);
+    Route::put('notification-preferences', [NotificationPreferencesController::class, 'update']);
+    Route::get('notification-preferences', [NotificationPreferencesController::class, 'index']);
+    Route::apiResource('thread', ThreadController::class)->except('destroy');
+    Route::apiResource('thread.message', ThreadMessageController::class)->except('index', 'show');
 });
 
 // These ones are not requited to have auth

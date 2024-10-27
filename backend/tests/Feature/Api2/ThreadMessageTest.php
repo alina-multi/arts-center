@@ -1,0 +1,67 @@
+<?php
+
+use App\Models\User;
+use function Pest\Laravel\actingAs;
+use function Pest\Laravel\assertDatabaseHas;
+
+uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
+
+beforeEach(function () {
+    $this->user = User::factory()->create();
+    $this->user2 = User::factory()->create();
+});
+
+test('Create message', function () {
+    $thread = \App\Models\Thread::factory()->create();
+    // We are not a part of this thread
+    actingAs($this->user)->postJson("/api2/thread/$thread->id/message", [
+        'message' => 'Test message',
+    ])->assertForbidden();
+    $participant = $thread->participants()->create(['user_id' => $this->user->id]);
+    // Not approved, so still not a part of it
+    actingAs($this->user)->postJson("/api2/thread/$thread->id/message", [
+        'message' => 'Test message',
+    ])->assertForbidden();
+    // Now it should be allowed
+    $participant->approved_at = now();
+    $participant->save();
+    actingAs($this->user)->postJson("/api2/thread/$thread->id/message", [
+        'message' => 'Test message',
+    ])->assertCreated();
+    assertDatabaseHas('messages', ['message' => 'Test message', 'thread_id' => $thread->id]);
+});
+
+test('Delete message', function () {
+    $thread = \App\Models\Thread::factory()->has(\App\Models\Participant::factory(['user_id' => $this->user, 'approved_at' => now()]))->create();
+    // Can't delete other user messages
+    $message = $thread->messages()->create(['message' => 'Test message', 'user_id' => $this->user2->id]);
+    actingAs($this->user)->deleteJson("/api2/thread/$thread->id/message/$message->id")->assertForbidden();
+    $message->user_id = $this->user->id;
+    $message->save();
+    actingAs($this->user)->deleteJson("/api2/thread/$thread->id/message/$message->id")->assertOk();
+    $message->refresh();
+    expect($message->deleted_at)->toEqualWithDelta(now(), 10);
+});
+
+test('Update message', function () {
+    $thread = \App\Models\Thread::factory()->has(\App\Models\Participant::factory(['user_id' => $this->user, 'approved_at' => now()]))->create();
+    // Can't edit other user messages
+    $message = $thread->messages()->create(['message' => 'Test message', 'user_id' => $this->user2->id]);
+    actingAs($this->user)->putJson("/api2/thread/$thread->id/message/$message->id", [
+        'message' => 'Hello :)',
+    ])->assertForbidden();
+    $message->user_id = $this->user->id;
+    $message->created_at = now()->subMinutes(15);
+    $message->save();
+    // 15 minutes past, can't edit
+    actingAs($this->user)->putJson("/api2/thread/$thread->id/message/$message->id", [
+        'message' => 'Hello :)',
+    ])->assertForbidden();
+    $message->created_at = now()->subMinutes(9);
+    $message->save();
+    // Now we are the owner, and it was less than 10 minutes ago, should work
+    actingAs($this->user)->putJson("/api2/thread/$thread->id/message/$message->id", [
+        'message' => 'Hello :)',
+    ])->assertOk();
+    assertDatabaseHas('messages', ['message' => 'Hello :)', 'thread_id' => $thread->id]);
+});

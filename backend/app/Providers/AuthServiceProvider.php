@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use App\Models\{Work, Post, Image};
-use App\Policies\{MultipleOwnersPolicy, SingleOwnerPolicy};
+use App\Models\{Message, Thread, Work, Post, Image};
+use App\Policies\{MessagePolicy, MultipleOwnersPolicy, SingleOwnerPolicy, ThreadPolicy};
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -18,6 +18,8 @@ class AuthServiceProvider extends ServiceProvider
         Work::class => MultipleOwnersPolicy::class,
         Post::class => SingleOwnerPolicy::class,
         Image::class => SingleOwnerPolicy::class,
+        Thread::class => ThreadPolicy::class,
+        Message::class => MessagePolicy::class,
     ];
 
     /**

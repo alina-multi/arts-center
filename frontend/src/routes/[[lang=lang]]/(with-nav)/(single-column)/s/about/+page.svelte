@@ -184,7 +184,7 @@
 					<LoginLink styles="py-4 tracking-widest text-lg  w-full" />
 					<a
 						href="/"
-						class="tracking-widest w-full text-lg text-center px-3 py-4 border border-zinc-900 dark:border-zinc-500 dark:bg-zinc-800 shadow-sm hover:bg-amber-600 hover:border-amber-600 dark:text-zinc-100 hover:text-white cursor-pointer"
+						class="tracking-widest w-full text-lg text-center rounded-full py-4 border border-zinc-900 dark:border-zinc-500 dark:bg-zinc-800 shadow-sm hover:bg-amber-600 hover:border-amber-600 dark:text-zinc-100 hover:text-white cursor-pointer"
 						>{$t(`global.menu.register`)}</a
 					>
 				</div>

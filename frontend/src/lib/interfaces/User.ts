@@ -42,4 +42,5 @@ export interface UserMe extends UserBasic {
 	email_verified_at: string | null;
 	role: number;
 	unread: number;
+	threads: object;
 }

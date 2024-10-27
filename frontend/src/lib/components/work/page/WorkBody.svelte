@@ -33,5 +33,7 @@
 	{/if}
 </div>
 {#if description}
-	<p class="whitespace-pre-line md:text-lg mt-3 max-sm:px-4">{description ?? ''}</p>
+	<p class="whitespace-pre-line md:text-lg mt-3 max-sm:px-4 border-b dark:border-zinc-800 pb-9">
+		{description ?? ''}
+	</p>
 {/if}

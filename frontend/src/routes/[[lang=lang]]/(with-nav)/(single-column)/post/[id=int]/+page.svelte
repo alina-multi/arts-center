@@ -35,7 +35,7 @@
 				<div class="flex items-center gap-3 text-sm font-medium">
 					<AvatarLink user={data.post.owner} withName size={'w-8 h-8'} />
 					<div>
-						<FollowButton size={'xs w-min'} user={data.post.owner} />
+						<FollowButton addStyles={'text-xs w-min'} user={data.post.owner} />
 					</div>
 				</div>
 				{#if currentDate === data.post.published_at.toDateString()}

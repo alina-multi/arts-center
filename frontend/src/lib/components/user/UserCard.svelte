@@ -5,6 +5,7 @@
 	import Country from './UserCountry.svelte';
 	import OnArtSince from '../atoms/OnArtsSince.svelte';
 	import VerificationBadge from '../atoms/VerificationBadge.svelte';
+	import GetInTouchButton from '$lib/components/atoms/buttons/GetInTouchButton.svelte';
 
 	export let user: User;
 </script>
@@ -14,7 +15,7 @@
 		class="w-full h-32 rounded-t-sm flex flex-col items-center bg-zinc-800 dark:bg-zinc-900 dark:border dark:border-zinc-800"
 	/>
 	<div
-		class=" bg-zinc-50 rounded-b-sm border-x border-b dark:border-zinc-800 dark:border-t-transparent w-full pb-6 dark:bg-zinc-950"
+		class=" bg-zinc-50 rounded-b-sm border-x border-b dark:border-zinc-800 dark:border-t-transparent w-full pb-9 dark:bg-zinc-950"
 	>
 		<div class=" flex flex-col gap-3 items-center w-full px-6 xs:px-9">
 			<div class=" -mt-20">
@@ -39,12 +40,13 @@
 
 				<OnArtSince {user} />
 			</div>
-
-			<div class=" h-12 w-60 flex items-center">
+			<div class="flex grid-cols-2 gap-6 w-full items-center mt-6 h-11">
 				<FollowButton
 					{user}
-					size={'base bg-white  text-center font-medium  w-full  rounded-sm hover:scale-105 hover:shadow '}
+					addStyles={'text-base border-zinc-800  bg-white   text-center font-medium  w-full py-2 block'}
 				/>
+
+				<GetInTouchButton {user} />
 			</div>
 		</div>
 	</div>

@@ -29,7 +29,7 @@
 							/>
 						</div>
 
-						<div><FollowButton {user} size="base" /></div>
+						<div><FollowButton {user} addStyles="text-base" /></div>
 					</li>
 				{/each}
 			</ul>
