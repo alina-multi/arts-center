@@ -1,8 +1,8 @@
 <script lang="ts">
 	export let label: string,
 		id: string | number,
-			name: unknown,
-			value: unknown,
+		name: unknown,
+		value: unknown,
 		checked: boolean,
 		onChange: (e: Event & { target: HTMLInputElement }) => void;
 </script>

@@ -8,7 +8,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { RocketLaunch } from '@steeze-ui/heroicons';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
-	import {fetchData} from '$lib/helpers/fetchData';
+	import { fetchData } from '$lib/helpers/fetchData';
 
 	const options = ['buying', 'commision', 'cooperation'];
 	let isMy = false;
@@ -91,10 +91,10 @@
 					{#each options as option (option)}
 						<li class="flex text-sm">
 							<RadioButton
-									label={$t(`global.connect_artist.${option}`)}
-									name={option}
-									value={option}
-									checked={topic === option}
+								label={$t(`global.connect_artist.${option}`)}
+								name={option}
+								value={option}
+								checked={topic === option}
 								onChange={(e) => {
 									topic = e.target.value;
 								}}
@@ -116,9 +116,9 @@
 				</div>
 
 				<button
-						disabled={!topic}
+					disabled={!topic}
 					class="bg-zinc-900 w-full dark:bg-teal-600 rounded-full px-4 py-4 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 dark:bg-emerald"
-						class:!bg-zinc-300={!topic}
+					class:!bg-zinc-300={!topic}
 				>
 					{$t(`global.buttons.send_message`)}
 				</button>
