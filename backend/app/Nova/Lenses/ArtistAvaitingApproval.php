@@ -38,10 +38,11 @@ class ArtistPendingApproval extends Lens
                 ->join('ownables', 'users.id', '=', 'ownables.user_id')
                 ->join('works', 'ownables.ownable_id', '=', 'works.id')
                 ->where('ownable_type', 'work')
-                ->where('works.status', '>=', WorkStatuses::READY->value)
+                ->where('works.status', WorkStatuses::READY)
                 ->whereNull('users.approved_at')
                 ->whereNotNull('users.last_seen')
                 ->groupBy('users.id')
+                ->limit(10)
         ), fn ($query) => $query->orderBy('users.created_at', 'desc'));
     }
     protected static function columns()
