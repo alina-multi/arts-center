@@ -35,7 +35,7 @@
         "laravel/cashier": "^14.12",
         "laravel/framework": "^10.0",
         "laravel/horizon": "^5.2",
-        "laravel/nova": "4.22.2",
+        "laravel/nova": "4.35.4",
         "laravel/octane": "^v2.0.6",
         "laravel/sanctum": "^3.2",
         "laravel/scout": "^10.2",

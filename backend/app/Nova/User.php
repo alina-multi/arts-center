@@ -12,6 +12,7 @@ use App\Nova\Filters\ModelApproved;
 use App\Nova\Filters\UserCountry;
 use App\Nova\Filters\UserNotCountry;
 use App\Nova\Filters\UserVerified;
+use App\Nova\Lenses\ArtistPendingApproval;
 use App\Nova\Metrics\NewUsers;
 use App\Nova\Metrics\UsersPerDay;
 use Laravel\Nova\Fields\Boolean;
@@ -90,9 +91,11 @@ class User extends Resource
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
             Text::make('Country'),
+            DateTime::make('Created at'),
 
             Boolean::make('Approved', 'approved_at')->onlyOnIndex(),
             Boolean::make('Verified', 'verified_at')->onlyOnIndex(),
+            DateTime::make('Last Seen')->onlyOnIndex()->sortable(),
             DateTime::make('Approved', 'approved_at')->nullable()->onlyOnForms(),
             DateTime::make('Verified', 'verified_at')->nullable()->onlyOnForms(),
             Select::make('role')->options([
@@ -150,7 +153,9 @@ class User extends Resource
      */
     public function lenses(Request $request)
     {
-        return [];
+        return [
+            new ArtistPendingApproval()
+        ];
     }
 
     /**
