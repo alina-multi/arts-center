@@ -11,6 +11,7 @@
 	import BellButton from '../BellButton.svelte';
 	import UaFlag from '../UaFlag.svelte';
 	import { getContext } from 'svelte';
+	import ChatButton from '$lib/components/chat/ChatButton.svelte';
 
 	const t = getContext('t');
 	const locale = getContext('locale');
@@ -33,8 +34,10 @@
 	<div class=" items-center flex {$user ? 'gap-3' : 'gap-6 '} justify-end flex-1">
 		{#if !$isUserLoading}
 			<AddWorkButton />
+	
 
 			{#if $user}
+			<ChatButton />
 				<BellButton />
 				<UserDropdown />
 			{:else}
