@@ -15,7 +15,7 @@
 
 <SideNav>
 	{#each threads as { id, title, lastMessage, exact }}
-		<SideNavLink href={localePath($locale, `/thread/${id}`)} {exact}>
+		<SideNavLink href={localePath($locale, `/my/thread/${id}`)} {exact}>
 			<Avatar user={$user} size="h-14 w-14" />
 			<div>
 				<h3 class="font-semibold">{title}</h3>

@@ -10,7 +10,7 @@
 
 {#if !$isUserLoading}
 
-	<a href={localePath($locale, `/thread`)}>
+	<a href={localePath($locale, `/my/thread`)}>
 		<Icon src={ChatBubbleOvalLeftEllipsis} class="h-8 w-8 stroke-1" /></a>
 {/if}
 
