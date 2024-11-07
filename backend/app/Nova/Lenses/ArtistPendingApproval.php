@@ -128,6 +128,6 @@ class ArtistPendingApproval extends Lens
      */
     public function uriKey()
     {
-        return 'artists-avaiting-approval';
+        return 'artists-pending-approval';
     }
 }

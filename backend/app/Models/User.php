@@ -171,4 +171,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return 'user.'.$this->id;
     }
+
+    public function scopeAdmins(Builder $query): void
+    {
+        $query->where('role', UserRoles::SuperAdmin);
+    }
 }
