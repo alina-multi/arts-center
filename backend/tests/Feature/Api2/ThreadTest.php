@@ -60,6 +60,7 @@ test('Index shows correct threads', function () {
     [$unrelated, $unapproved, $valid] = \App\Models\Thread::factory()->hasMessages(3, ['user_id' => $this->user->id])->count(3)->create();
     $unapproved->participants()->create(['user_id' => $this->user->id]);
     $valid->participants()->create(['user_id' => $this->user->id, 'approved_at' => now()]);
+    $valid->participants()->create(['user_id' => $this->user2->id, 'approved_at' => now()]);
     actingAs($this->user)->getJson("/api2/thread")->assertOk()->assertJsonCount(1)->assertExactJson([
         [
             "id" => $valid->id,
@@ -67,7 +68,8 @@ test('Index shows correct threads', function () {
             "type" => $valid->type,
             "created_at" => $valid->created_at,
             "updated_at" => $valid->updated_at,
-            "participants" => $valid->participants->toArray(),
+            // For convenience on the frontend, we shouldn't receive our own user here
+            "participants" => $valid->participants()->where('user_id', '!=', $this->user->id)->get()->toArray(),
             "last_message" => $valid->messages->last()->load('user', 'user.photo')->toArray(),
             "pivot" => [
                 "last_read" => null,

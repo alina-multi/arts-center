@@ -14,9 +14,16 @@ class ThreadController extends Controller
     {
         $this->authorizeResource(Thread::class);
     }
+
     public function index(Request $request)
     {
-        return $request->user()->threads->load('participants', 'participants.user', 'participants.user.photo', 'lastMessage', 'lastMessage.user', 'lastMessage.user.photo');
+        return $request
+            ->user()
+            ->threads()
+            ->with([
+                'participants' => fn($query) => $query->where('user_id', '!=', $request->user()->id),
+                'participants.user', 'participants.user.photo', 'lastMessage', 'lastMessage.user', 'lastMessage.user.photo'
+            ])->get();
     }
 
     /**
