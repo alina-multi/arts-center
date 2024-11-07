@@ -16,7 +16,7 @@ class ThreadController extends Controller
     }
     public function index(Request $request)
     {
-        return $request->user()->threads->load('participants', 'participants.user', 'participants.user.photo', 'messages');
+        return $request->user()->threads->load('participants', 'participants.user', 'participants.user.photo', 'lastMessage', 'lastMessage.user', 'lastMessage.user.photo');
     }
 
     /**

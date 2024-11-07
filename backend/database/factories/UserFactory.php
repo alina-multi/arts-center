@@ -32,7 +32,6 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        $image = Image::factory()->converted()->create(['folder' => 'photos']);
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
@@ -40,7 +39,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => Hash::make('paSSword1'),
             'remember_token' => Str::random(10),
-            'image_id' => $image->id,
+            'image_id' => Image::factory(['folder' => 'photos'])->converted(),
             'country' => $this->faker->countryCode,
             'approved_at' => now(),
             'role'=> UserRoles::User

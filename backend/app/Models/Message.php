@@ -13,8 +13,8 @@ class Message extends Model
 
     protected $touches = ['thread'];
 
-    protected $visible = [
-        'id', 'user_id', 'message', 'created_at'
+    protected $hidden = [
+        'deleted_at', 'user_id'
     ];
 
     protected $fillable = [
