@@ -47,7 +47,8 @@ class Thread extends Resource
             Text::make('Title'),
             DateTime::make('Created At'),
             DateTime::make('Updated At'),
-            HasMany::make('Participants')
+            HasMany::make('Participants'),
+            HasMany::make('Messages'),
         ];
     }
 

@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateThreadRequest;
 use App\Http\Requests\UpdateThreadRequest;
 use App\Models\Thread;
+use App\Models\User;
+use App\Notifications\NewThreadCreated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class ThreadController extends Controller
 {
@@ -33,6 +36,7 @@ class ThreadController extends Controller
             'user_id' => $request->user()->id,
             'approved_at' => now()
         ]);
+        Notification::send(User::admins()->get(), new NewThreadCreated($thread));
         return $thread->load('participants');
     }
 
