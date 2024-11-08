@@ -79,3 +79,19 @@ test('Index shows correct threads', function () {
         ]
     ]);
 });
+
+test('Thread messages', function () {
+    $thread = \App\Models\Thread::factory()->hasMessages(3, ['user_id' => $this->user->id])->create();
+    $thread->participants()->create(['user_id' => $this->user->id, 'approved_at' => now()]);
+    $thread->participants()->create(['user_id' => $this->user2->id, 'approved_at' => now()]);
+    actingAs($this->user)->getJson("/api2/thread/$thread->id")->assertOk()->assertExactJson([
+            "id" => $thread->id,
+            "title" => $thread->title,
+            "type" => $thread->type,
+            "created_at" => $thread->created_at,
+            "updated_at" => $thread->updated_at,
+            // For convenience on the frontend, we shouldn't receive our own user here
+            "participants" => $thread->participants()->where('user_id', '!=', $this->user->id)->with('user', 'user.photo')->get()->toArray(),
+            "messages" => $thread->messages->load('user', 'user.photo')->toArray(),
+    ]);
+});
