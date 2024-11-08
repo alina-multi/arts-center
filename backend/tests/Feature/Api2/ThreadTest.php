@@ -69,7 +69,7 @@ test('Index shows correct threads', function () {
             "created_at" => $valid->created_at,
             "updated_at" => $valid->updated_at,
             // For convenience on the frontend, we shouldn't receive our own user here
-            "participants" => $valid->participants()->where('user_id', '!=', $this->user->id)->get()->toArray(),
+            "participants" => $valid->participants()->where('user_id', '!=', $this->user->id)->with('user', 'user.photo')->get()->toArray(),
             "last_message" => $valid->messages->last()->load('user', 'user.photo')->toArray(),
             "pivot" => [
                 "last_read" => null,
