@@ -15,8 +15,8 @@ class Participant extends Model
         'last_read' => 'datetime',
     ];
 
-    protected $visible = [
-        'id', 'user_id', 'last_read', 'approved_at',
+    protected $hidden = [
+        'deleted_at'
     ];
 
     protected $fillable = [
