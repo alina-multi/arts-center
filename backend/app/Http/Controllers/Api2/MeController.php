@@ -22,6 +22,7 @@ class MeController extends Controller
         $favorites = $user->favorites->pluck('work_id')->toArray();
         $favoriteFolders = $user->favoriteFolders->toArray();
         $threads = $user->threads()->where('type', ThreadType::Direct)->with('participants', fn($query) => $query->where('user_id', '!=', $user->id))->get()->mapWithKeys(fn(Thread $thread) => [strval($thread?->participants?->first()?->user_id) ?? 0 => $thread->id]);
+        $user->update(['last_seen'=>now()]);
         return [
             ...$user->toArray(),
             'role' => $user->role,

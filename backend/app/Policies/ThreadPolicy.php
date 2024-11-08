@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\UserRoles;
 use App\Models\Thread;
 use App\Models\User;
 
@@ -20,6 +21,9 @@ class ThreadPolicy
      */
     public function view(User $user, Thread $thread): bool
     {
+        if ($user->role === UserRoles::SuperAdmin) {
+            return true;
+        }
         return $this->userIsParticipant($user, $thread);
     }
 
@@ -36,6 +40,9 @@ class ThreadPolicy
      */
     public function update(User $user, Thread $thread): bool
     {
+        if ($user->role === UserRoles::SuperAdmin) {
+            return true;
+        }
         return $this->userIsParticipant($user, $thread);
     }
 

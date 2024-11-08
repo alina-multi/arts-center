@@ -27,7 +27,8 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
         'name',
-        'country'
+        'country',
+        'last_seen'
     ];
 
     protected $visible = ['id', 'name', 'username', 'created_at', 'photo', 'premium'];
@@ -40,6 +41,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'verified_at' => 'datetime',
         'approved_at' => 'datetime',
+        'last_seen' => 'datetime',
         'role' => UserRoles::class
     ];
 
@@ -162,7 +164,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function threads(): BelongsToMany
     {
-        return $this->belongsToMany(Thread::class, Participant::class)->withPivot('last_read')->wherePivotNotNull('approved_at');
+        return $this->belongsToMany(Thread::class, Participant::class)->withPivot('last_read')->wherePivotNotNull('approved_at')->orderBy('updated_at', 'desc');
     }
 
     public function receivesBroadcastNotificationsOn(): string
