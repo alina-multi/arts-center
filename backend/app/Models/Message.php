@@ -14,7 +14,7 @@ class Message extends Model
     protected $touches = ['thread'];
 
     protected $hidden = [
-        'deleted_at', 'user_id'
+        'deleted_at'
     ];
 
     protected $fillable = [
