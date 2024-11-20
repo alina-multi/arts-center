@@ -1,7 +1,7 @@
 <script lang="ts">
 	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
 	import { user } from '$lib/stores/auth';
-	import Time from '$lib/components/chat/Time.svelte';
+	import Time from '$lib/components/thread/Time.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Trash } from '@steeze-ui/heroicons';
 	import { afterUpdate, getContext } from 'svelte';

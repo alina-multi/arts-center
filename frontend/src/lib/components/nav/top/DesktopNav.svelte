@@ -11,7 +11,7 @@
 	import BellButton from '../BellButton.svelte';
 	import UaFlag from '../UaFlag.svelte';
 	import { getContext } from 'svelte';
-	import ChatButton from '$lib/components/chat/ChatButton.svelte';
+	import ChatButton from '$lib/components/thread/ChatButton.svelte';
 
 	const t = getContext('t');
 	const locale = getContext('locale');

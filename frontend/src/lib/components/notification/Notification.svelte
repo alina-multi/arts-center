@@ -6,6 +6,7 @@
 	import ProfileVerified from '$lib/components/notification/ProfileVerified.svelte';
 	import ProfileApproved from '$lib/components/notification/ProfileApproved.svelte';
 	import NewFollower from '$lib/components/notification/NewFollower.svelte';
+	import NewMessage from '$lib/components/notification/NewMessage.svelte';
 
 	export let notification;
 
@@ -22,7 +23,8 @@
 		['App\\Notifications\\DonationReceived', DonationReceived],
 		['App\\Notifications\\ProfileVerified', ProfileVerified],
 		['App\\Notifications\\ProfileApproved', ProfileApproved],
-		['App\\Notifications\\NewFollower', NewFollower]
+		['App\\Notifications\\NewFollower', NewFollower],
+		['App\\Notifications\\NewMessage', NewMessage]
 	]);
 	let component = typeToComponent.get(notification.type);
 </script>
