@@ -24,3 +24,12 @@ export async function scrollToBottom(id: string) {
 		element?.scrollIntoView({ behavior: 'instant', block: 'end', inline: 'nearest' });
 	}
 }
+
+
+export function isEditable(date): boolean {
+	const now = new Date();
+	const createdAt = new Date(date);
+	const elapsedMinutes = (now - createdAt) / (1000 * 60);
+	return elapsedMinutes < 5;
+}
+
