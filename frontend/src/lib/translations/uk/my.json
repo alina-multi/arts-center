@@ -89,6 +89,7 @@
 	"notifications": {
 		"no_notifications": "Усі ваші сповіщення будуть тут",
 		"notifications": "Сповіщення",
+		"viewed": "Переглянуті сповіщення",
 		"preferences": {
 			"disable": "Вимкнути всі сповіщення",
 			"FeaturedPosts": "Рекомендовані публікації",
@@ -135,5 +136,10 @@
 			"waiting": "Очікування"
 		},
 		"titles": "Назви робіт"
+	},
+	"messages": {
+		"messages": "Повідомлення",
+		"welcome": "Ваші повідомлення — тут!"
+	
 	}
 }
