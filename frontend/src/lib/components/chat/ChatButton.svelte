@@ -1,5 +1,4 @@
 <script lang="ts">
-
 	import { user as currentUser, isUserLoading } from '$lib/stores/auth';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ChatBubbleOvalLeftEllipsis } from '@steeze-ui/heroicons';
@@ -9,9 +8,18 @@
 </script>
 
 {#if !$isUserLoading}
+	<a
+		href={localePath($locale, `/my/thread`)}
+		class="relative hover:bg-gray-100 dark:hover:bg-zinc-700 hidden xs:flex items-center justify-center rounded-full p-1 transition-all"
+	>
+		<Icon src={ChatBubbleOvalLeftEllipsis} class="h-8 w-8 stroke-1" />
 
-	<a href={localePath($locale, `/my/thread`)}>
-		<Icon src={ChatBubbleOvalLeftEllipsis} class="h-8 w-8 stroke-1" /></a>
+		<span
+			class="absolute right-1 top-1 bg-red-500 text-white text-xs rounded-full leading-3 px-1 py-0.5"
+		>
+			?  
+		</span>
+	</a>
 {/if}
 
 
