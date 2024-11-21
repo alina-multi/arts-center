@@ -9,6 +9,7 @@
 	import { user, isUserLoading } from '$lib/stores/auth';
 	import UaFlag from '../UaFlag.svelte';
 	import BellButton from '../BellButton.svelte';
+	import ChatButton from '$lib/components/thread/ChatButton.svelte';
 </script>
 
 <div class="hidden sm:max-xl:flex items-center w-full max-lg:justify-between">
@@ -27,6 +28,7 @@
 			<div class="hidden md:flex"><AddWorkButton /></div>
 
 			{#if $user}
+			<ChatButton />
 				<BellButton />
 				<UserDropdown />
 			{:else}
