@@ -11,7 +11,6 @@
 
 	let { user, thread_id } = notification;
 	let href = localePath($locale, `/${thread_id}`);
-	console.log(notification);
 </script>
 
 <a
