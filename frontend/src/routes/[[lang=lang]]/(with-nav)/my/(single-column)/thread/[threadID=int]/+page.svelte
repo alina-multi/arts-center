@@ -12,8 +12,6 @@
 	export let data: PageData;
 	export let form: ActionData;
 
-
-
 	const locale = getContext('locale');
 	let href = localePath($locale, `/my/thread`);
 
@@ -44,8 +42,6 @@
 <div class="flex-1 overflow-y-auto p-4">
 	<Thread thread={data.thread} on:edit={onEdit} />
 </div>
-
-
 
 {#key data.thread.id}
 	<MessageForm bind:editID bind:editedValue threadID={data.thread.id} {form} />

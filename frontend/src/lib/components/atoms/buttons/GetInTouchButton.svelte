@@ -16,7 +16,6 @@
 
 	export let user;
 	let open = false;
-	let topic = null;
 	let message = '';
 	$: message_sent = false;
 
@@ -37,12 +36,7 @@
 		});
 
 		message_sent = true;
-		resetForm();
-	}
-
-	function resetForm() {
 		message = '';
-		topic = null;
 	}
 </script>
 

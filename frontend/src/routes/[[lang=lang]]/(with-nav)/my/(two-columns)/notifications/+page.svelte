@@ -67,7 +67,6 @@
 		{#if unread_notifications.length > 0}
 			<ul class="divide-y dark:divide-zinc-800 border-b dark:border-zinc-800 mb-6">
 				{#each unread_notifications as notification (notification.id)}
-		
 					<li
 						class="flex justify-between items-center gap-x-6 px-3 sm:px-6 bg-gray-50 dark:bg-zinc-900 hover:shadow-lg hover:bg-white transition-all dark:hover:bg-zinc-800"
 					>
@@ -81,7 +80,7 @@
 		{#if viewed_notifications.length > 0}
 			<div class="px-3 sm:px-6 py-3 font-semibold">
 				{$t('my.notifications.viewed')}
-				</div>
+			</div>
 			<ul class="divide-y dark:divide-zinc-800 border-y dark:border-zinc-900">
 				{#each viewed_notifications as notification (notification.id)}
 					<li

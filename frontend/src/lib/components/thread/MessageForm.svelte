@@ -1,15 +1,13 @@
 <script lang="ts">
 	import { enhance, applyAction } from '$app/forms';
 	import TextAreaInput from '$lib/components/input/TextAreaInput.svelte';
-	import { invalidateAll, goto } from '$app/navigation';
-
-	import { PaperAirplane, XMark, Check, ArrowLongLeft } from '@steeze-ui/heroicons';
+	import { invalidateAll } from '$app/navigation';
+	import { PaperAirplane, XMark, Check } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { fetchData } from '$lib/helpers/fetchData';
 
 	export let editID: number | null, editedValue: string | null, threadID: number;
 
-	export let data, form;
 	let newMessage = '';
 
 	async function editSubmit() {

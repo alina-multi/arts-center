@@ -10,7 +10,7 @@
 	import { getContext } from 'svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { PencilSquare, Trash } from '@steeze-ui/heroicons';
-	import {isEditable} from '$lib/helpers/comments'
+	import { isEditable } from '$lib/helpers/comments';
 
 	const t = getContext('t');
 
