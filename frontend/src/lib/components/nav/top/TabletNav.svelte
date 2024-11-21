@@ -28,7 +28,7 @@
 			<div class="hidden md:flex"><AddWorkButton /></div>
 
 			{#if $user}
-			<ChatButton />
+				<ChatButton />
 				<BellButton />
 				<UserDropdown />
 			{:else}
