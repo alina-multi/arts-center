@@ -4,16 +4,19 @@
 	import Time from '$lib/components/thread/Time.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Trash } from '@steeze-ui/heroicons';
-	import { afterUpdate, getContext } from 'svelte';
+	import { afterUpdate, getContext, createEventDispatcher } from 'svelte';
 	import { fetchData } from '$lib/helpers/fetchData';
 	import { invalidateAll } from '$app/navigation';
 	import ActionModal from '$lib/components/my/ActionModal.svelte';
 	import { Edit } from '@steeze-ui/material-design-icons';
 	import { isEditable } from '$lib/helpers/comments';
 
-	export let thread, onEdit;
+
+	export let thread;
 
 	const t = getContext('t');
+	const dispatch = createEventDispatcher();
+
 	let deleteMessageModal = false;
 	$: currentMessageId = null;
 
@@ -33,7 +36,7 @@
 	}
 </script>
 
-{#each thread.messages as message, i}
+{#each thread.messages as message (message.id)}
 	<div
 		id="message-{message.id}"
 		class="group mb-4 flex {$user?.id === message?.user.id ? 'justify-end' : 'justify-start'}"
@@ -54,7 +57,7 @@
 						<Icon src={Trash} class="h-4 w-4" />
 					</button>
 
-					{#if isEditable(message.created_at)}<button class="" on:click={() => onEdit(message)}>
+					{#if isEditable(message.created_at)}<button type="button"  on:click={() =>   dispatch('edit', {message})}>
 							<Icon src={Edit} class="h-4 w-4" />
 						</button>{/if}
 				</div>
@@ -63,16 +66,16 @@
 			<div>
 				<div
 					title={new Date(message.created_at).toUTCString()}
-					class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 {$user?.id === message?.user.id
-						? 'border-gray-200 bg-blue-600 text-white rounded-l-xl rounded-tr-xl'
-						: ' border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl'}   dark:bg-gray-700"
+					class="flex flex-col w-full max-w-[320px] leading-1.5 px-4 py-2 {$user?.id === message?.user.id
+						? 'border-zinc-200 bg-blue-600 dark:hover:bg-blue-500  text-white rounded-l-xl rounded-tr-xl'
+						: ' border-zinc-200 bg-zinc-100 dark:bg-zinc-600 rounded-e-xl rounded-es-xl text-white'}   "
 				>
-					<p class="text-sm font-normal pb-2.5">
+					<p class="text-sm font-normal ">
 						{message?.message}
 					</p>
 				</div>
 				<div class="flex justify-end items-center gap-3">
-					<div class="text-xs text-gray-500 mt-1">
+					<div class="text-xs font-light text-zinc-500 mt-1">
 						<Time date={message.created_at} />
 					</div>
 					<!-- {#if $user?.id === message?.user.id}

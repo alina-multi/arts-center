@@ -3,16 +3,17 @@
 	import { user } from '$lib/stores/auth';
 	import { page } from '$app/stores';
 	import { getContext } from 'svelte';
-	const t = getContext('t');
+
 	export let data;
+	const t = getContext('t');
 </script>
 
 {#if $user}
 	<main>
-		<div class=" w-full container mx-auto h-[calc(100vh-108px)] flex flex-col">
+		<div class=" w-full container mx-auto h-[calc(100vh-108px)] flex flex-col ">
 			<div class="flex-1 flex overflow-hidden">
 				<div
-					class="md:w-1/3 md:border-x overflow-y-auto {$page.params.threadID
+					class="md:w-1/3 md:border-x dark:border-x-zinc-800 overflow-y-auto {$page.params.threadID
 						? 'hidden md:flex md:flex-col'
 						: 'flex flex-col w-full'}"
 				>
@@ -25,7 +26,7 @@
 					</div>
 				</div>
 				<div
-					class=" md:border-r {$page.params.threadID
+					class=" md:border-r dark:border-r-zinc-800 {$page.params.threadID
 						? 'flex-1 flex flex-col  '
 						: 'hidden md:flex-1 md:flex md:flex-col'}  "
 				>

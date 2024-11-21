@@ -1,14 +1,14 @@
 <script lang="ts">
-	import type { NewReplyNotification } from '$lib/interfaces/Notification';
 	import { localePath } from '$lib/translations';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Envelope } from '@steeze-ui/heroicons';
 	import { getContext } from 'svelte';
 
+	export let notification;
+
 	const t = getContext('t');
 	const locale = getContext('locale');
 
-	export let notification: NewReplyNotification;
 	let { user, thread_id } = notification;
 	let href = localePath($locale, `/${thread_id}`);
 	console.log(notification);
@@ -25,6 +25,8 @@
 		<a {href} class="font-semibold mr-1 hover:underline">{user.name}</a>
 
 		<span class="text-sm">{$t(`global.notifications.new_message`)}</span>
-		<span class="ml-3 p-1 font-semibold text-red-500 underline">{$t(`global.notifications.go_to_message`)} </span>
+		<span class="ml-3 p-1 font-semibold text-red-500 underline"
+			>{$t(`global.notifications.go_to_message`)}
+		</span>
 	</div>
 </a>

@@ -13,7 +13,7 @@
 </script>
 
 <SideNav>
-	{#each threads as { id, title, last_message, participants, exact }}
+	{#each threads as { id, title, last_message, participants, exact } (id)}
 		<SideNavLink href={localePath($locale, `/my/thread/${id}`)} {exact}>
 			<!--temporary fix, need improving -->
 

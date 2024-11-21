@@ -36,12 +36,9 @@ export const actions = {
 				errors: { ...errors, ...json.errors }
 			};
 		}
-	},
 
-
+		if (response.ok) {
+			return { success: true };
+		}
+	}
 } satisfies Actions;
-
-
-
-
-
