@@ -17,9 +17,16 @@ class ThreadController extends Controller
     {
         $this->authorizeResource(Thread::class);
     }
+
     public function index(Request $request)
     {
-        return $request->user()->threads->load('participants', 'participants.user', 'participants.user.photo', 'messages');
+        return $request
+            ->user()
+            ->threads()
+            ->with([
+                'participants' => fn($query) => $query->where('user_id', '!=', $request->user()->id),
+                'participants.user', 'participants.user.photo', 'lastMessage', 'lastMessage.user', 'lastMessage.user.photo'
+            ])->get();
     }
 
     /**
@@ -43,9 +50,10 @@ class ThreadController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Thread $thread)
+    public function show(Request $request, Thread $thread)
     {
-        return $thread->load('messages', 'messages.user');
+        return $thread->load(['participants' => fn($query) => $query->where('user_id', '!=', $request->user()->id),
+                'participants.user', 'participants.user.photo', 'messages', 'messages.user', 'messages.user.photo']);
     }
 
     /**

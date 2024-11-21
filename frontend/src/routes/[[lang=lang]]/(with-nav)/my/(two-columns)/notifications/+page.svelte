@@ -78,7 +78,9 @@
 		{/if}
 
 		{#if viewed_notifications.length > 0}
-			<div class="px-3 sm:px-6 py-3 font-semibold">Viewed notifications</div>
+			<div class="px-3 sm:px-6 py-3 font-semibold">
+				{$t('my.notifications.viewed')}
+			</div>
 			<ul class="divide-y dark:divide-zinc-800 border-y dark:border-zinc-900">
 				{#each viewed_notifications as notification (notification.id)}
 					<li

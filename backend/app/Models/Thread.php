@@ -6,10 +6,15 @@ use App\Enums\ThreadType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Thread extends Model
 {
     use HasFactory;
+
+    protected $attributes = [
+        'type' => ThreadType::Direct
+    ];
 
     protected $casts = [
         'type' => ThreadType::class,
@@ -19,8 +24,8 @@ class Thread extends Model
         'title'
     ];
 
-    protected $visible = [
-      'id', 'title', 'created_at', 'updated_at', 'participants', 'messages'
+    protected $hidden = [
+        'deleted_at'
     ];
 
     public function participants(): HasMany
@@ -31,5 +36,10 @@ class Thread extends Model
     public function messages(): HasMany
     {
         return $this->hasMany(Message::class);
+    }
+
+    public function lastMessage(): HasOne
+    {
+        return $this->hasOne(Message::class)->latestOfMany();
     }
 }

@@ -11,7 +11,7 @@
 	}
 </script>
 
-{#if user.photo}
+{#if user?.photo}
 	<div class=" {size} shrink-0 bg-zinc-300 dark:bg-gray-800 rounded-full overflow-hidden shadow-sm">
 		<Picture photo={user.photo} alt={user?.username} class={size + ' object-cover '} />
 	</div>

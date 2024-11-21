@@ -12,7 +12,7 @@ beforeEach(function () {
 });
 
 test('Create message', function () {
-    $thread = \App\Models\Thread::factory()->create();
+    $thread = \App\Models\Thread::factory(['updated_at'=>now()->subDays(2)])->create();
     // We are not a part of this thread
     actingAs($this->user)->postJson("/api2/thread/$thread->id/message", [
         'message' => 'Test message',
@@ -29,6 +29,8 @@ test('Create message', function () {
         'message' => 'Test message',
     ])->assertCreated();
     assertDatabaseHas('messages', ['message' => 'Test message', 'thread_id' => $thread->id]);
+    // Posting a new message should change updated_at of a thread
+    expect($thread->refresh()->updated_at)->toEqualWithDelta(now(), 2);
 });
 
 test('Delete message', function () {

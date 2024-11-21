@@ -3,14 +3,12 @@
 	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
 	import TextAreaInput from '$lib/components/input/TextAreaInput.svelte';
 	import { getContext } from 'svelte';
-	import RadioButton from '$lib/components/input/RadioButton.svelte';
 	import { user as currentUser, isUserLoading } from '$lib/stores/auth';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { RocketLaunch } from '@steeze-ui/heroicons';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import { fetchData } from '$lib/helpers/fetchData';
 
-	const options = ['buying', 'commision', 'cooperation'];
 	let isMy = false;
 	$: isMy = handleIsMy($currentUser, user.id);
 
@@ -18,16 +16,14 @@
 
 	export let user;
 	let open = false;
-	let topic = null;
 	let message = '';
 	$: message_sent = false;
 
 	async function onSendMessage() {
-		if (!topic) return;
 		let threadId = $currentUser?.threads?.[user.id];
 		if (!threadId) {
 			const response = await fetchData('POST', '/api/thread', {
-				title: $t(`global.connect_artist.${topic}`),
+				title: 'empty', // temporary fix!!!!!!!!!
 				participants: [user.id.toString()]
 			});
 			let data = await response.json();
@@ -40,12 +36,7 @@
 		});
 
 		message_sent = true;
-		resetForm();
-	}
-
-	function resetForm() {
 		message = '';
-		topic = null;
 	}
 </script>
 
@@ -83,27 +74,6 @@
 				<h3 class="text-xl font-semibold">{$t(`global.connect_artist.connect`)} {user?.name}</h3>
 			</div>
 
-			<div class="space-y-3">
-				<p class=" text-sm font-bold">
-					{$t(`global.connect_artist.label`)}
-				</p>
-				<ul class="space-y-3">
-					{#each options as option (option)}
-						<li class="flex text-sm">
-							<RadioButton
-								label={$t(`global.connect_artist.${option}`)}
-								name={option}
-								value={option}
-								checked={topic === option}
-								onChange={(e) => {
-									topic = e.target.value;
-								}}
-							/>
-						</li>
-					{/each}
-				</ul>
-			</div>
-
 			<form on:submit|preventDefault={onSendMessage} class="space-y-9">
 				<div class="space-y-3">
 					<p
@@ -116,9 +86,7 @@
 				</div>
 
 				<button
-					disabled={!topic}
 					class="bg-zinc-900 w-full dark:bg-teal-600 rounded-full px-4 py-4 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 dark:bg-emerald"
-					class:!bg-zinc-300={!topic}
 				>
 					{$t(`global.buttons.send_message`)}
 				</button>

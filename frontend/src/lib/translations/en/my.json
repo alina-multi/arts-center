@@ -89,6 +89,7 @@
 	"notifications": {
 		"no_notifications": "All your notifications will be here",
 		"notifications": "Notifications",
+		"viewed": "Viewed notifications",
 		"preferences": {
 			"disable": "Disable all notifications",
 			"FeaturedPosts": "Featured Posts",
@@ -135,5 +136,9 @@
 			"waiting": "Waiting"
 		},
 		"titles": "Work titles"
+	},
+	"messages": {
+		"messages": "Messages",
+		"welcome": "Welcome to Your Messages!"
 	}
 }

@@ -10,6 +10,7 @@
 	import { getContext } from 'svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { PencilSquare, Trash } from '@steeze-ui/heroicons';
+	import { isEditable } from '$lib/helpers/comments';
 
 	const t = getContext('t');
 
@@ -21,13 +22,6 @@
 
 	let reportModalOpen = false;
 	const comment_id = comment?.id?.toString();
-
-	function isEditable(): boolean {
-		const now = new Date();
-		const createdAt = new Date(comment.created_at);
-		const elapsedMinutes = (now - createdAt) / (1000 * 60);
-		return elapsedMinutes < 5;
-	}
 </script>
 
 <div class="flex items-center justify-between pr-3 mb-2">
@@ -42,7 +36,7 @@
 			class="flex divide-x font-semibold text-zinc-500 dark:text-zinc-400 dark:divide-zinc-800 mr-3 text-xs"
 		>
 			{#if $user && Number($user.id) === Number(comment.owner.id)}
-				{#if isEditable()}<button class="px-3" on:click={() => onEdit()}>
+				{#if isEditable(comment.created_at)}<button class="px-3" on:click={() => onEdit()}>
 						<Icon src={PencilSquare} class="w-4 h-4 " />
 					</button>{/if}
 				{#if !isMy}

@@ -209,7 +209,9 @@
 		"replied": "replied",
 		"started_following_you": "is now following you",
 		"to_your_comment": " to your comment",
-		"your_work": "your work"
+		"your_work": "your work",
+		"new_message": "wants to get in touch with you.",
+		"go_to_message": "Go to the message"
 	},
 	"published_on": "published on",
 	"register": {
