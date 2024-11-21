@@ -70,8 +70,8 @@
 					title={new Date(message.created_at).toUTCString()}
 					class="flex flex-col w-full max-w-[320px] leading-1.5 px-4 py-2 {$user?.id ===
 					message?.user.id
-						? 'border-zinc-200 bg-blue-600 dark:hover:bg-blue-500  text-white rounded-l-xl rounded-tr-xl'
-						: ' border-zinc-200 bg-zinc-100 dark:bg-zinc-600 rounded-e-xl rounded-es-xl text-white'}   "
+						? 'border-zinc-200 bg-blue-600 dark:hover:bg-blue-500 text-white rounded-l-xl rounded-tr-xl'
+						: ' border-zinc-200 bg-zinc-100 dark:bg-zinc-600 rounded-e-xl rounded-es-xl '}   "
 				>
 					<p class="text-sm font-normal">
 						{message?.message}
