@@ -33,7 +33,7 @@
 			applyAction(result);
 		};
 	}}
-	class="flex gap-4 p-4  max-md:fixed max-md:bottom-0 max-md:left-0 max-md:w-full max-md:bg-white max-md:dark:bg-white"
+	class="flex gap-4 p-4 max-md:fixed max-md:bottom-0 max-md:left-0 max-md:w-full max-md:bg-white max-md:dark:bg-black"
 >
 	{#if editID}
 		<TextAreaInput name={'edit_message'} bind:value={editedValue} rows={1} />

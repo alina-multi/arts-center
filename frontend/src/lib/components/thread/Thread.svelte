@@ -4,7 +4,7 @@
 	import Time from '$lib/components/thread/Time.svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Trash } from '@steeze-ui/heroicons';
-	import { afterUpdate, getContext, createEventDispatcher } from 'svelte';
+	import { getContext, createEventDispatcher } from 'svelte';
 	import { fetchData } from '$lib/helpers/fetchData';
 	import { invalidateAll } from '$app/navigation';
 	import ActionModal from '$lib/components/my/ActionModal.svelte';
@@ -18,12 +18,6 @@
 
 	let deleteMessageModal = false;
 	$: currentMessageId = null;
-
-	afterUpdate(() => {
-		let lastElement = thread.messages[thread.messages.length - 1];
-		const el = document.getElementById(`message-${lastElement?.id}`);
-		el.scrollIntoView({ behavior: 'instant', block: 'end' });
-	});
 
 	async function deleteMessage() {
 		const url = `/api/thread/${thread.id}/message/${currentMessageId}`;

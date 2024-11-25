@@ -25,13 +25,8 @@
 						<TreadList threads={data.threads} />
 					</div>
 				</div>
-				<div
-					class=" md:border-r dark:border-r-zinc-800 {$page.params.threadID
-						? 'flex-1 flex flex-col  '
-						: 'hidden md:flex-1 md:flex md:flex-col'}  "
-				>
-					<slot />
-				</div>
+
+				<slot />
 			</div>
 		</div>
 	</main>
