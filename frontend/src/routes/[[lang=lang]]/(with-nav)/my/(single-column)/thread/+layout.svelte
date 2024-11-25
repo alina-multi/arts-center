@@ -11,7 +11,7 @@
 {#if $user}
 	<main>
 		<div
-			class=" w-full container mx-auto h-[calc(100vh-150px)] md:h-[calc(100vh-108px)] flex flex-col"
+			class=" w-full container mx-auto h-[calc(100vh-162px)] md:h-[calc(100vh-108px)] flex flex-col"
 		>
 			<div class="flex-1 flex overflow-hidden">
 				<div
