@@ -52,7 +52,10 @@
 		/>
 	</h2>
 
-	<div class="flex-1 overflow-y-auto p-4 max-md:mb-12 max-h-[calc(100vh-208px)]" id="scroll-container">
+	<div
+		class="flex-1 overflow-y-auto p-4 max-md:mb-12 max-h-[calc(100vh-208px)]"
+		id="scroll-container"
+	>
 		<div id="thread-{data.thread.id}">
 			<Thread thread={data.thread} on:edit={onEdit} />
 		</div>
