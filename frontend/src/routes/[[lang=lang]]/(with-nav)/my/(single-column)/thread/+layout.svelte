@@ -10,7 +10,7 @@
 
 {#if $user}
 	<main>
-		<div class=" w-full container mx-auto h-[calc(100vh-108px)] flex flex-col">
+		<div class=" w-full container mx-auto h-[calc(100vh-150px)]    md:h-[calc(100vh-108px)]   flex flex-col">
 			<div class="flex-1 flex overflow-hidden">
 				<div
 					class="md:w-1/3 md:border-x dark:border-x-zinc-800 overflow-y-auto {$page.params.threadID
