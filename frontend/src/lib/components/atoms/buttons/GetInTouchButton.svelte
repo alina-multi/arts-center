@@ -3,7 +3,7 @@
 	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
 	import TextAreaInput from '$lib/components/input/TextAreaInput.svelte';
 	import { getContext } from 'svelte';
-	import { user as currentUser, isUserLoading } from '$lib/stores/auth';
+	import { user as currentUser, isUserLoading, showAuthModal } from '$lib/stores/auth';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { RocketLaunch } from '@steeze-ui/heroicons';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
@@ -38,12 +38,20 @@
 		message_sent = true;
 		message = '';
 	}
+
+	const handleGetInTouch = () => {
+		if ($currentUser) {
+			open = true;
+		} else {
+			showAuthModal.set(true);
+		}
+	};
 </script>
 
 {#if !$isUserLoading}
 	{#if !isMy}
 		<button
-			on:click={() => (open = true)}
+			on:click={handleGetInTouch}
 			class=" w-full py-2 px-4 border text-center hover:border-zinc-800 bg-white dark:bg-zinc-800 dark:border-zinc-700 font-semibold"
 			>{$t('global.buttons.get_in_touch')}</button
 		>
