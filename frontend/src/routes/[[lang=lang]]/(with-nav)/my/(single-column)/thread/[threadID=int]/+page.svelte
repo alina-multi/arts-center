@@ -39,7 +39,7 @@
 	/>
 </h2>
 
-<div class="flex-1 overflow-y-auto p-4">
+<div class="flex-1 overflow-y-auto p-4 max-md:mb-12 ">
 	<Thread thread={data.thread} on:edit={onEdit} />
 </div>
 
