@@ -25,9 +25,9 @@
 
 	afterUpdate(() => {
 		const el = document.getElementById(`thread-${data.thread.id}`);
-		const container = document.getElementById('scroll-container');
-		if (el && container) {
-			container.scrollTo({ top: container.scrollHeight, behavior: 'instant' });
+
+		if (el) {
+			el.scrollTo({ top: el.scrollHeight, behavior: 'instant' });
 		}
 	});
 </script>
@@ -52,13 +52,8 @@
 		/>
 	</h2>
 
-	<div
-		class="flex-1 overflow-y-auto p-4 max-md:mb-12 max-h-[calc(100vh-208px)]"
-		id="scroll-container"
-	>
-		<div id="thread-{data.thread.id}">
-			<Thread thread={data.thread} on:edit={onEdit} />
-		</div>
+	<div class="flex-1 overflow-y-auto p-4 max-md:mb-12" id="thread-{data.thread.id}">
+		<Thread thread={data.thread} on:edit={onEdit} />
 	</div>
 
 	{#key data.thread.id}
