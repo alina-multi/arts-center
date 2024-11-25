@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { ActionData, PageData } from './$types';
 	import Thread from '$lib/components/thread/Thread.svelte';
-	import { getContext, afterUpdate, onMount } from 'svelte';
+	import { getContext, afterUpdate } from 'svelte';
 	import { ArrowLongLeft } from '@steeze-ui/heroicons';
 	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
 	import { page } from '$app/stores';
