@@ -4,7 +4,7 @@
 	const t = getContext('t');
 </script>
 
-<div class="h-full md:flex items-center justify-center hidden flex-1  flex-col">
+<div class="h-full md:flex items-center justify-center hidden flex-1 flex-col">
 	<div class="flex flex-col items-center justify-center gap-6">
 		<svg class="h-32 w-full text-gray-400 dark:fill-zinc-400">
 			<use href="{cat}#icon-cat-with-ball" />
