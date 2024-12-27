@@ -31,7 +31,8 @@
 		"show_more": "Show more",
 		"unblock": "Unblock",
 		"get_in_touch": "Get in touch",
-		"send_message": "Send message"
+		"send_message": "Send message",
+		"continue": "Continue"
 	},
 	"comment": {
 		"add": {
@@ -287,5 +288,32 @@
 		"like": "Like",
 		"liked_by": "Liked by",
 		"others": "others"
+	},
+	"intent": {
+		"title": "What is your main goal for using arts.center?",
+		"explore_art": {
+			"title": "Explore Art",
+			"description": "Discover talented artists, unique artworks, and handmade crafts from around the world. Learn about the unique techniques and crafts from different cultures."
+		},
+		"showcase_art": {
+			"title": "Share Your Creativity",
+			"description": "Increase the visibility of your artworks to a global audience, receive feedback, and monetize your creativity."
+		},
+		"promote_art": {
+			"title": "Promote Art",
+			"description": "Share your knowledge and experience with others, tell stories, develop your expertise, build your career, and help others explore the world of art."
+		},
+		"networking": {
+			"title": "Network and Connect Professionally",
+			"description": "Engage with artists, art enthusiasts, and collectors, and establish connections with experts in the field."
+		},
+		"become_patron": {
+			"title": "Become a Patron",
+			"description": "Become part of history and leave your online legacy in the art world. Support your favorite artists and emerging talents, help develop and preserve authentic art and crafts for future generations."
+		},
+		"create_art_space": {
+			"title": "Create Your Art Space",
+			"description": "Share your art collection and transform it into a source of inspiration for yourself and others. Share your favorite works and create your own gallery."
+		}
 	}
 }
