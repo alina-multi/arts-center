@@ -10,6 +10,7 @@ COPY tsconfig.json .
 COPY vite.config.ts .
 COPY server.js .
 RUN corepack enable
+RUN corepack prepare pnpm@10.0.0 --activate #Workaround, remove later
 RUN pnpm install
 COPY ./src ./src
 COPY ./static ./static
