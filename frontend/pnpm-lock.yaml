@@ -97,8 +97,8 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2
       '@steeze-ui/svelte-icon':
-        specifier: ^1.6.2
-        version: 1.6.2(svelte@4.2.19)
+        specifier: 1.5.0
+        version: 1.5.0(svelte@4.2.19)
       '@storybook/addon-essentials':
         specifier: ^7.6.20
         version: 7.6.20(@types/react@18.2.79)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2382,10 +2382,10 @@ packages:
   '@steeze-ui/material-design-icons@1.1.2':
     resolution: {integrity: sha512-p1csJ9RR8J2zG+ED3JJehVHxIi88B0ilUhg0ScbduVe54lgTZ1suAu5d94zOrBww/ImKDPhFshEXUWodVpELLw==}
 
-  '@steeze-ui/svelte-icon@1.6.2':
-    resolution: {integrity: sha512-Q2WP/RkM1JhMueX0FJogSj4J1bncSHaAiiPCqjcseRcHKqfpjYFPJa8bA50I+4KbyOVJ9fdUvTQ3ww9X0ITRxQ==}
+  '@steeze-ui/svelte-icon@1.5.0':
+    resolution: {integrity: sha512-Y0S7Qk2kO6byzOlD5SQGbOF2ZaKXJgfTkH78QUPcq579wiWMQJ5H14zL4XwtsPJ0DfkoL5qa3WaIdYkWb9A6AA==}
     peerDependencies:
-      svelte: ^5.0.0
+      svelte: ^4.0.0
 
   '@storybook/addon-actions@7.6.20':
     resolution: {integrity: sha512-c/GkEQ2U9BC/Ew/IMdh+zvsh4N6y6n7Zsn2GIhJgcu9YEAa5aF2a9/pNgEGBMOABH959XE8DAOMERw/5qiLR8g==}
@@ -9349,7 +9349,7 @@ snapshots:
 
   '@steeze-ui/material-design-icons@1.1.2': {}
 
-  '@steeze-ui/svelte-icon@1.6.2(svelte@4.2.19)':
+  '@steeze-ui/svelte-icon@1.5.0(svelte@4.2.19)':
     dependencies:
       svelte: 4.2.19
 
