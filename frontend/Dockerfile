@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:lts-alpine
 
 WORKDIR /var/www
 COPY package.json .
@@ -9,8 +9,10 @@ COPY tailwind.config.cjs .
 COPY tsconfig.json .
 COPY vite.config.ts .
 COPY server.js .
-RUN corepack enable
-RUN corepack prepare pnpm@10.0.0 --activate #Workaround, remove later
+#Workaround, remove 2 lines later
+RUN apk update \
+  && apk add openssl
+RUN corepack prepare pnpm@10.0.0 --activate
 RUN pnpm install
 COPY ./src ./src
 COPY ./static ./static
