@@ -1,7 +1,7 @@
 import { MeiliSearch } from 'meilisearch';
 
 const client = new MeiliSearch({
-	host: process.env?.MEILISEARCH_HOST || 'https://ms-592552fd0ab4-4380.fra.meilisearch.io/',
+	host: 'https://search.arts.center/',
 	apiKey: process.env.MEILISEARCH_KEY
 });
 
