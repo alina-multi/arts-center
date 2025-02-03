@@ -13,6 +13,7 @@ COPY server.js .
 RUN apk update \
   && apk add openssl
 RUN corepack prepare pnpm@10.0.0 --activate
+RUN corepack enable
 RUN pnpm install
 COPY ./src ./src
 COPY ./static ./static
