@@ -43,4 +43,12 @@ export interface UserMe extends UserBasic {
 	role: number;
 	unread: number;
 	threads: object;
+	intent:
+		| 'explore_art'
+		| 'showcase_art'
+		| 'promote_art'
+		| 'networking'
+		| 'become_patron'
+		| 'create_art_space'
+		| null;
 }

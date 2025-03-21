@@ -27,6 +27,7 @@ class MeController extends Controller
             ...$user->toArray(),
             'role' => $user->role,
             'approved_at' => $user->approved_at,
+            'intent' => $user->intent,
             'verified_at' => $user->verified_at,
             'email_verified_at' => $user->email_verified_at,
             'blacklists' => $blacklists,

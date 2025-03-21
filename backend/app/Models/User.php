@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\UserRoles;
+use App\Enums\UserIntents;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Builder;
@@ -42,7 +43,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'verified_at' => 'datetime',
         'approved_at' => 'datetime',
         'last_seen' => 'datetime',
-        'role' => UserRoles::class
+        'role' => UserRoles::class,
+        'intent' => UserIntents::class
     ];
 
     public function toSearchableArray(): array

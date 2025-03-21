@@ -19,7 +19,8 @@ use App\Http\Controllers\Api2\{NotificationPreferencesController,
     PhotoController,
     PostController,
     NotificationController,
-    ImageController};
+    ImageController,
+    UserIntentController};
 
 use Illuminate\Broadcasting\BroadcastController;
 
@@ -52,7 +53,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('blacklist', BlacklistController::class . '@store');
     Route::delete('blacklist', BlacklistController::class . '@destroy');
     Route::get('blacklist', BlacklistController::class . '@index');
-    Route::get('blacklist', BlacklistController::class . '@index');
+    Route::put('intent', [UserIntentController::class, 'update']);
     Route::post('favorite', FavoriteController::class . '@store');
     Route::delete('favorite', FavoriteController::class . '@destroy');
     Route::apiResource('favorite-folder', FavoriteFolderController::class);
