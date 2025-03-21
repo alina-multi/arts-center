@@ -23,9 +23,9 @@ export const actions = {
 			};
 		}
 		if (response.ok) {
-			redirect(
+			throw redirect(
 				301,
-				event.url.searchParams.get('redirect') || localePath(event.params.lang, '/intent')
+				event.url.searchParams.get('redirect') || localePath(event.params.lang || 'en', '/intent')
 			);
 		} else {
 			return {

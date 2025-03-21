@@ -2,6 +2,8 @@
 	import Logo from '$lib/components/atoms/Logo.svelte';
 	import { getContext } from 'svelte';
 	import RadioButton from '$lib/components/input/RadioButton.svelte';
+	import { goto } from '$app/navigation';
+	import { enhance } from '$app/forms';
 
 	const intents = [
 		'explore_art',
@@ -15,6 +17,12 @@
 	const t = getContext('t');
 
 	$: checked = '';
+
+	export let form;
+
+	$: if (form?.redirect) {
+		goto(form.redirect);
+	}
 </script>
 
 <div class="text-center min-h-screen py-12 bg:white sm:bg-gray-50 dark:bg-black">
@@ -24,7 +32,7 @@
 		{$t(`global.intent.title`)}
 	</h1>
 
-	<form method="POST" class=" space-y-6 sm:mx-auto sm:max-w-3xl lg:max-w-5xl">
+	<form method="POST" use:enhance class=" space-y-6 sm:mx-auto sm:max-w-3xl lg:max-w-5xl">
 		<fieldset
 			class="   max-sm:space-y-4 sm:grid sm:grid-rows-3 lg:grid-rows-2 grid-flow-col gap-6 items-stretch"
 		>
