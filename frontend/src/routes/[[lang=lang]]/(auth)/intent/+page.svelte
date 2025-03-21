@@ -6,12 +6,10 @@
 	import { enhance } from '$app/forms';
 
 	const intents = [
-		'explore_art',
-		'showcase_art',
-		'promote_art',
-		'networking',
-		'become_patron',
-		'create_art_space'
+		'explore',
+		'buy',
+		'sell',
+		'network'
 	];
 
 	const t = getContext('t');
