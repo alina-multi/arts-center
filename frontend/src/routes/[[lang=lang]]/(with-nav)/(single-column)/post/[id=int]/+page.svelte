@@ -6,11 +6,13 @@
 	import FollowButton from '$lib/components/atoms/buttons/FollowButton.svelte';
 	import { getContext } from 'svelte';
 	import MetaGroups from '$lib/components/MetaGroups.svelte';
-	import ContentFooter from '$lib/components/content/ContentFooter.svelte';
+
 	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
 	import { setContext } from 'svelte';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import { user } from '$lib/stores/auth';
+	import CommentBlocks from '$lib/components/comments/CommentBlocks.svelte';
+	import ShareButton from '$lib/components/atoms/buttons/ShareButton.svelte';
 
 	const t = getContext('t');
 	export let data: PageData;
@@ -26,7 +28,7 @@
 	author={data.post.owner.name}
 	image={data.post?.image?.original.src}
 />
-<div class="container mx-auto px-3 pb-12">
+<div class="container pb-12 mx-auto">
 	<div class="flex flex-col gap-3 mx-auto pt-3 xl:w-2/3 px-3 md:px-0">
 		<div class="flex flex-col gap-3">
 			<div
@@ -80,11 +82,18 @@
 		</div>
 
 		<div
-			class="w-full flex items-center justify-between gap-3 border-t py-4 dark:border-zinc-800 lg:py-6 sm:mt-3"
+			class="w-full flex justify-between gap-2 sm:gap-4 border-t py-4 dark:border-zinc-800 lg:py-6 sm:mt-3"
 		>
 			<RatingPreviewVote showVotedPreview entity={data.post} votable_type={'post'} />
+			<div class="sm:hidden"><ShareButton /></div>
 		</div>
 	</div>
-
-	<ContentFooter commentable_type="post" {isMy} />
+	<div class=" lg:mt-16 xl:w-2/3 mx-auto">
+		<CommentBlocks
+			commentable_type="post"
+			commentsCount={data.post.comments}
+			commentable_id={data.post.id}
+			{isMy}
+		/>
+	</div>
 </div>
