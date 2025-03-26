@@ -39,10 +39,10 @@
 		<slot name="otherEl" />
 
 		<DialogOverlay
-			class="  fixed inset-0 bg-black/45 dark:bg-black/30 backdrop-blur-sm  transition-opacity min-h-screen overflow-y-scroll xs:px-12 sm:px-16 "
+			class="  fixed inset-0 bg-black/45 dark:bg-black/30   min-h-screen overflow-y-scroll sm:px-9 lg:px-9 xl:px-16 "
 		>
 			<DialogDescription
-				class="dark:border static  {clazz} mx-auto  bg-white   items-end justify-center sm:items-center transform overflow-y-auto  dark:bg-zinc-950 dark:border-0 dark:sm:border-zinc-800 dark:text-zinc-300 transition-all  "
+				class="dark:border static  {clazz} mx-auto  bg-white   items-end justify-center sm:items-center transform overflow-y-auto  dark:bg-zinc-950 dark:border-0 dark:sm:border-zinc-800 dark:text-zinc-300  "
 			>
 				<div class="flex flex-col gap-3">
 					{#if $$slots?.header}
