@@ -52,7 +52,7 @@
 	{#if !isMy}
 		<button
 			on:click={handleGetInTouch}
-			class=" w-full py-2 px-4 border text-center hover:border-zinc-800 bg-white dark:bg-zinc-800 dark:border-zinc-700 font-semibold"
+			class=" rounded-full py-2 px-4 border border-zinc-800 text-center hover:border-zinc-800 dark:bg-zinc-800 dark:border-zinc-700 font-semibold"
 			>{$t('global.buttons.get_in_touch')}</button
 		>
 	{/if}
