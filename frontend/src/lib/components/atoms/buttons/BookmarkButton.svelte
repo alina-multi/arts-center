@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { Bookmark, Folder, FolderPlus } from '@steeze-ui/heroicons';
+	import { Bookmark, Folder, FolderPlus, BookmarkSlash } from '@steeze-ui/heroicons';
 	import toast from 'svelte-french-toast';
 	import { fetchData } from '$lib/helpers/fetchData';
 	import RadioButton from '$lib/components/input/RadioButton.svelte';
@@ -93,12 +93,10 @@
 	on:click={onBookmarkButton}
 	class="  dark:text-zinc-300 text-black dark:border-zinc-700 flex items-center"
 >
-	<span class="pl-4 max-sm:pr-4">
+	<span class="pl-2 sm:pl-4 max-sm:pr-4">
 		<Icon
-			src={Bookmark}
-			class="h-7 w-7 scale-105 stroke-1 {isBookmarked
-				? 'stroke-rose-700  fill-rose-700 dark:fill-rose-500  dark:stroke-rose-500  '
-				: ' stroke-black dark:stroke-zinc-300  '} "
+			src={isBookmarked ? BookmarkSlash : Bookmark}
+			class="h-7 w-7 stroke-1 {isBookmarked ? 'stroke-zinc-400' : ''} "
 			aria-hidden="true"
 		/>
 	</span>
