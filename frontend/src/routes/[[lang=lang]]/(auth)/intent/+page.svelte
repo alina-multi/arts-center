@@ -5,12 +5,7 @@
 	import { goto } from '$app/navigation';
 	import { enhance } from '$app/forms';
 
-	const intents = [
-		'explore',
-		'buy',
-		'sell',
-		'network'
-	];
+	const intents = ['buy', 'sell', 'explore', 'network'];
 
 	const t = getContext('t');
 
@@ -30,10 +25,8 @@
 		{$t(`global.intent.title`)}
 	</h1>
 
-	<form method="POST" use:enhance class=" space-y-6 sm:mx-auto sm:max-w-3xl lg:max-w-5xl">
-		<fieldset
-			class="   max-sm:space-y-4 sm:grid sm:grid-rows-3 lg:grid-rows-2 grid-flow-col gap-6 items-stretch"
-		>
+	<form method="POST" use:enhance class=" space-y-6 sm:mx-auto sm:max-w-3xl lg:max-w-3xl">
+		<fieldset class="   max-sm:space-y-4 sm:grid grid-cols-2 gap-6 items-stretch">
 			{#each intents as intent (intent)}
 				<label
 					for={intent}
@@ -53,7 +46,7 @@
 						/>
 					</div>
 
-					<p class="text-xs text-zinc-600 dark:text-zinc-400">
+					<p class="text-sm text-zinc-600 dark:text-zinc-400">
 						{$t(`global.intent.${intent}.description`)}
 					</p>
 				</label>
