@@ -9,7 +9,6 @@
 	import { getContext } from 'svelte';
 	import VerificationBadge from '$lib/components/atoms/VerificationBadge.svelte';
 
-	const t = getContext('t');
 	const locale = getContext('locale');
 
 	export let work: Work, isMy: boolean;
@@ -45,6 +44,7 @@
 
 	<div class=" flex justify-between flex-wrap gap-3 items-center">
 		<h1 class="text-xl sm:text-2xl font-bold dark:text-white inline-flex">
+			<!-- eslint-disable svelte/no-at-html-tags -->
 			{@html title}
 		</h1>
 	</div>

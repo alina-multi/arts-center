@@ -12,5 +12,5 @@
 </script>
 
 {#if country}
-		<span>{country}</span>
+	<span>{country}</span>
 {/if}

@@ -19,7 +19,7 @@
 	import MoreWorksFromUser from '../work/page/MoreWorksFromUser.svelte';
 
 	import { getContext } from 'svelte';
-	export let commentable_type = 'work',
+	export let commentable_type: 'work' | 'post' = 'work',
 		isMy: boolean;
 
 	export let work: Work;
@@ -63,10 +63,11 @@
 				<div class="lg:space-y-3 text-xs max-lg:flex justify-between items-start">
 					<div class=" flex items-center gap-1">
 						<VerificationBadge user_verified={user} size={'  w-4 h-4 '} />
-						<span class=" text-emerald-500 font-semibold text-sm">{$t('global.work_page.artist_verified')}</span>
+						<span class=" text-emerald-500 font-semibold text-sm"
+							>{$t('global.work_page.artist_verified')}</span
+						>
 					</div>
 					<div class="space-y-3">
-					
 						<!-- 
 						we will need  it in the future
 						<p class="text-zinc-600 font-semibold max-lg:text-right">{$t('global.work_page.not_available')}</p> -->

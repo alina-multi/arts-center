@@ -38,7 +38,7 @@
 		isMy: boolean,
 		commentable_type: 'work' | 'post';
 
-	commentable_id 
+	commentable_id;
 	let parentComments = [...comments];
 	$: value = '';
 	let new_comment: Comment | null = null;
@@ -121,7 +121,13 @@
 						/>
 					</li>
 				{:else}
-					<CommentBlock {comment}	{commentable_type} {commentable_id} bind:parentComments bind:commentsCount />
+					<CommentBlock
+						{comment}
+						{commentable_type}
+						{commentable_id}
+						bind:parentComments
+						bind:commentsCount
+					/>
 				{/if}
 			{/each}
 		</ul>
