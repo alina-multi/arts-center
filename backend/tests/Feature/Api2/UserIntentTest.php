@@ -12,14 +12,14 @@ test('user can update their intent', function () {
     $user = User::factory()->create();
     
     $response = actingAs($user)->putJson('/api2/intent', [
-        'intent' => UserIntents::ShowcaseArt->value,
+        'intent' => UserIntents::Explore->value,
     ]);
     
     $response->assertNoContent();
     
     assertDatabaseHas('users', [
         'id' => $user->id,
-        'intent' => UserIntents::ShowcaseArt->value,
+        'intent' => UserIntents::Explore->value,
     ]);
 });
 
@@ -44,7 +44,7 @@ test('intent is required', function () {
 
 test('unauthenticated user cannot update intent', function () {
     $response = putJson('/api2/intent', [
-        'intent' => UserIntents::ShowcaseArt->value,
+        'intent' => UserIntents::Explore->value,
     ]);
     
     $response->assertStatus(401);
