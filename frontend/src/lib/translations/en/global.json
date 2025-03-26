@@ -67,7 +67,7 @@
 		"h1": "Contact us",
 		"legal_name": "Legal name: \"arts center online, Inc.\" registered in Delaware, USA",
 		"p1": "Don't hesitate to contact us if you have any questions.",
-		"p2": "We’d love to hear from you!",
+		"p2": "We'd love to hear from you!",
 		"p3": "We are open to your ideas and proposals for cooperation, and will be happy to consider opportunities for joint projects."
 	},
 	"connect_artist": {
@@ -291,29 +291,21 @@
 	},
 	"intent": {
 		"title": "What is your main goal for using arts.center?",
-		"explore_art": {
-			"title": "Explore Art",
-			"description": "Discover talented artists, unique artworks, and handmade crafts from around the world. Learn about the unique techniques and crafts from different cultures."
+		"explore": {
+			"title": "Just Browsing",
+			"description": "Looking for inspiration, new ideas, and exploring different art techniques"
 		},
-		"showcase_art": {
-			"title": "Share Your Creativity",
-			"description": "Increase the visibility of your artworks to a global audience, receive feedback, and monetize your creativity."
+		"buy": {
+			"title": "Buy",
+			"description": "Purchasing unique artworks and handmade pieces directly from artists"
 		},
-		"promote_art": {
-			"title": "Promote Art",
-			"description": "Share your knowledge and experience with others, tell stories, develop your expertise, build your career, and help others explore the world of art."
+		"sell": {
+			"title": "Sell",
+			"description": "Showcasing my works to a new audience, find buyers and make a profit from my creativity"
 		},
-		"networking": {
-			"title": "Network and Connect Professionally",
-			"description": "Engage with artists, art enthusiasts, and collectors, and establish connections with experts in the field."
-		},
-		"become_patron": {
-			"title": "Become a Patron",
-			"description": "Become part of history and leave your online legacy in the art world. Support your favorite artists and emerging talents, help develop and preserve authentic art and crafts for future generations."
-		},
-		"create_art_space": {
-			"title": "Create Your Art Space",
-			"description": "Share your art collection and transform it into a source of inspiration for yourself and others. Share your favorite works and create your own gallery."
+		"network": {
+			"title": "Networking & Community",
+			"description": "Becoming part of a creative community—sharing work, exchanging feedback, and connecting with  and meet like-minded people"
 		}
 	}
 }
