@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Picture from '$lib/components/atoms/Picture.svelte';
 	export let image, picture_class, alt;
-	let clazz: string;
+	let clazz: string = '';
 	export { clazz as class };
 </script>
 
