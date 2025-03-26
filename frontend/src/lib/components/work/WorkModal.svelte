@@ -27,12 +27,12 @@
 >
 	{#if $page?.state?.workModal}
 		<ModalWindow
-			class="container py-9 xs:my-9  xs:rounded-2xl  pb-12  xs:p-6 md:max-lg:px-12 md:max-lg:pb-12 lg:px-0 lg:pb-12 dark:lg:pt-0"
+			class=" lg:px-16  xs:my-9 xs:rounded-2xl  pb-12  "
 			on:close={gotoGallery}
 			open={true}
-			closeButtonAddStyle=" xs:text-white "
+			closeButtonAddStyle=" xs:text-white max-xs:bg-zinc-50/30  max-xs:rounded-full max-xs:mt-3 text-zinc-500"
 		>
-			<div slot="otherEl" class="hidden xs:block">
+			<div slot="otherEl" class="hidden sm:block">
 				<NavigationArrows {currentWorkIndex} {gallery} />
 			</div>
 
