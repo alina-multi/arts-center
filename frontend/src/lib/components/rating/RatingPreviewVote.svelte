@@ -22,39 +22,43 @@
 	let votable_id = entity?.id.toString();
 </script>
 
-{#if showVotedPreview}
-	<VotedList {votes} {isLiked} currentUser={$user} />
-{/if}
+<div class="flex justify-between w-full">
+	{#if showVotedPreview}
+		<VotedList {votes} {isLiked} currentUser={$user} />
+	{/if}
 
-<div class="inline-flex items-center gap-2 dark:text-white cursor-pointer">
-	<div
-		class="{votable_type === 'work' || votable_type === 'post'
-			? ''
-			: 'hover:text-zinc-900'} flex items-end gap-4 dark:text-white"
-	>
-		{#if votable_type === 'work' || votable_type === 'post'}
-			<div class=" flex items-center border-r dark:border-zinc-700 pr-4 text-black dark:text-white">
-				<span class="hidden sm:block"> {$t('global.voting.like')} </span>
+	<div class="inline-flex items-center gap-2 dark:text-white cursor-pointer">
+		<div
+			class="{votable_type === 'work' || votable_type === 'post'
+				? ''
+				: 'hover:text-zinc-900'} flex max-sm:flex-row-reverse items-center sm:gap-4 dark:text-white"
+		>
+			{#if votable_type === 'work' || votable_type === 'post'}
+				<div
+					class=" flex items-center border-r dark:border-zinc-700 pr-2 sm:pr-4 text-black dark:text-white font-bold text-sm"
+				>
+					<span class="hidden sm:block"> {$t('global.voting.like')} </span>
 
-				<span class="ml-1">{rating > 0 ? rating : ''}</span>
-			</div>
+					<span class="ml-1">{rating > 0 ? rating : ''}</span>
+				</div>
+			{/if}
+			<LikeButton
+				{size}
+				bind:isLiked
+				bind:isDownVoted
+				bind:rating
+				{votes}
+				{votable_type}
+				{votable_id}
+			/>
+		</div>
+
+		{#if votable_type === 'comment' && rating > 0}
+			<span class={rating > 0 ? 'border-r dark:border-zinc-700 pr-3' : ''}>{rating}</span>
 		{/if}
-		<LikeButton
-			{size}
-			bind:isLiked
-			bind:isDownVoted
-			bind:rating
-			{votes}
-			{votable_type}
-			{votable_id}
-		/>
+
+		{#if allowDownVote}
+			<DislikeButton {size} bind:isLiked bind:isDownVoted bind:rating {votable_type} {votable_id} />
+		{/if}
 	</div>
-
-	{#if votable_type === 'comment' && rating > 0}
-		<span class={rating > 0 ? 'border-r dark:border-zinc-700 pr-3' : ''}>{rating}</span>
-	{/if}
-
-	{#if allowDownVote}
-		<DislikeButton {size} bind:isLiked bind:isDownVoted bind:rating {votable_type} {votable_id} />
-	{/if}
 </div>
