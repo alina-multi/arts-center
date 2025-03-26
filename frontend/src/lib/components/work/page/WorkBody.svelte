@@ -1,14 +1,10 @@
 <script lang="ts">
-	import { getContext, onMount } from 'svelte';
-	import { languageFind } from '$lib/translations';
+	import { onMount } from 'svelte';
 	import PhotoSwipeLightbox from 'photoswipe/lightbox';
 	import ImageLightBox from './ImageLightBox.svelte';
 	import 'photoswipe/style.css';
 
-	const locale = getContext('locale');
-
 	export let work;
-	let description = languageFind(work.titles, $locale)?.description;
 
 	let galleryID = 'work-gallery';
 
@@ -22,18 +18,28 @@
 	});
 </script>
 
-<div class="pswp-gallery" id={galleryID}>
-	<ImageLightBox image={work.full} alt={work.titles[0].alt} style={'w-full h-full'} original />
+<div
+	id={galleryID}
+	class="pswp-gallery flex flex-col-reverse lg:flex-row lg:min-h-[calc(100vh-200px)] gap-4 lg:gap-9"
+>
 	{#if work.images.length > 0}
-		<div class="pt-3 grid sm:grid-cols-4 xl:grid-cols-5 gap-3">
+		<div
+			class=" flex max-lg:justify-center lg:flex-col gap-3 flex-none overflow-x-scroll lg:overflow-y-scroll"
+		>
 			{#each work.images as image}
-				<ImageLightBox {image} alt={work.titles[0].alt} />
+				<ImageLightBox
+					alt={work.titles[0].alt}
+					{image}
+					class="flex-none"
+					picture_class="w-16 h-16  object-cover  hover:opacity-80"
+				/>
 			{/each}
 		</div>
 	{/if}
+
+	<ImageLightBox
+		image={work.full}
+		alt={work.titles[0].alt}
+		picture_class=" md:max-h-screen lg:max-h-[calc(100vh-200px)] object-contain   "
+	/>
 </div>
-{#if description}
-	<p class="whitespace-pre-line md:text-lg mt-3 max-sm:px-4 border-b dark:border-zinc-800 pb-9">
-		{description ?? ''}
-	</p>
-{/if}
