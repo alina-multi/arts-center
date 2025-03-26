@@ -17,6 +17,5 @@
 		</div>
 		<div class="rounded-full h-0.5 w-0.5 bg-zinc-400 dark:bg-zinc-300"></div>
 	{/if}
-	<span>@{user?.username}</span>
 	<Country {user} />
 </div>
