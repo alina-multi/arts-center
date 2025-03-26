@@ -38,7 +38,7 @@
 		isMy: boolean,
 		commentable_type: 'work' | 'post';
 
-	commentable_id = commentable_id?.toString();
+	commentable_id 
 	let parentComments = [...comments];
 	$: value = '';
 	let new_comment: Comment | null = null;
@@ -56,7 +56,7 @@
 		new_comment_loaded = false;
 
 		const fetch = fetchData('POST', url, {
-			commentable_id,
+			commentable_id: Number(commentable_id),
 			commentable_type,
 			text: value
 		});
@@ -84,7 +84,7 @@
 		{#if !$isUserLoading}
 			{#if $user}
 				<div
-					class="md:bg-zinc-100 md:shadow md:px-9 xl:py-6 max-xl:mt-9 md:dark:bg-zinc-900 md:dark:border md:dark:border-zinc-800"
+					class="bg-zinc-100 p-3 md:shadow md:px-9 xl:py-6 max-xl:mt-9 md:dark:bg-zinc-900 md:dark:border md:dark:border-zinc-800"
 				>
 					<CommentInput onSubmit={addNewComment} bind:value />
 				</div>
@@ -95,7 +95,7 @@
 	</div>
 
 	<div
-		class="max-xl:bg-zinc-100 max-xl:shadow xl:border-b border-zinc-200 dark:px-6 dark:border dark:border-zinc-800 dark:bg-zinc-900 py-3 font-semibold"
+		class="max-xl:bg-zinc-100 max-xl:shadow border-zinc-200 dark:px-6 dark:border dark:border-zinc-800 dark:bg-zinc-900 py-3 font-semibold"
 	>
 		<span class="max-xl:px-4"
 			>{$t('global.comment.comments')} {commentsCount > 0 ? commentsCount : ''}</span
@@ -115,12 +115,13 @@
 							{isMy}
 							{comment}
 							{commentable_id}
+							{commentable_type}
 							bind:parentComments
 							bind:commentsCount
 						/>
 					</li>
 				{:else}
-					<CommentBlock {comment} {commentable_id} bind:parentComments bind:commentsCount />
+					<CommentBlock {comment}	{commentable_type} {commentable_id} bind:parentComments bind:commentsCount />
 				{/if}
 			{/each}
 		</ul>

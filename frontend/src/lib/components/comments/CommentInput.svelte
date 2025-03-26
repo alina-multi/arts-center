@@ -10,7 +10,7 @@
 		onSubmit: (comment_id: string) => Promise<void>,
 		commentID: string | undefined = undefined,
 		value: string;
-	commentID = commentID?.toString();
+	commentID;
 	let textarea: HTMLTextAreaElement;
 	$: enabled = value.length > 3;
 
