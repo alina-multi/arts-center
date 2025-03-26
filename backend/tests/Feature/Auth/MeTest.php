@@ -45,6 +45,7 @@ it('Returns valid data', function () {
                 'threads' => 'array',
                 // Easy way to check that user=>thread a format works
                 'threads.999' => 'integer',
+                'intent' => ['string', 'null'],
             ])
         );
 });

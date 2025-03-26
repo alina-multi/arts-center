@@ -1,4 +1,4 @@
-import {MeiliSearch} from 'meilisearch';
+import { MeiliSearch } from 'meilisearch';
 
 const client = new MeiliSearch({
 	host: 'https://search.arts.center/',
