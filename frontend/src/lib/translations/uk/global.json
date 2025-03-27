@@ -291,6 +291,8 @@
 	"work_page": {
 		"ask_artist": "Зв'язатися з митцем",
 		"artist_verified": "митець верифікований",
-		"not_available": "не доступно для покупки"
+		"not_available": "не доступно для покупки",
+		"more_works": "Більше робіт від",
+		"description": "Опис роботи"
 	}
 }
