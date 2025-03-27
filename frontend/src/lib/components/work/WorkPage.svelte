@@ -1,6 +1,7 @@
 <script lang="ts">
-	import type { Work } from '$lib/interfaces/Work';
+	import type { Work, WorkPreview } from '$lib/interfaces/Work';
 	import type { Comment } from '$lib/interfaces/Comment';
+	import type { UserWithLastWorks } from '$lib/interfaces/User';
 	import WorkHeader from '$lib/components/work/page/WorkHeader.svelte';
 	import WorkBody from '$lib/components/work/page/WorkBody.svelte';
 	import RatingPreviewVote from '$lib/components/rating/RatingPreviewVote.svelte';
@@ -19,12 +20,13 @@
 	import MoreWorksFromUser from '../work/page/MoreWorksFromUser.svelte';
 
 	import { getContext } from 'svelte';
-	export let commentable_type: 'work' | 'post' = 'work',
-		isMy: boolean;
+	export let commentable_type: 'work' | 'post' = 'work';
 
-	export let work: Work;
+	export let work: Work & { owners: UserWithLastWorks[] };
 	export let comments: Comment[];
 	const t = getContext('t');
+
+	console.log(work.owners);
 
 	$: isMy = work.owners.some((owner) => handleIsMy($user, owner.id));
 
@@ -34,6 +36,9 @@
 	$: if (work) {
 		setContext('work', work);
 	}
+
+	$: ownerWorksMap = new Map(work.owners?.map(({ id, last_works }) => [id, last_works]) || []);
+	console.log(ownerWorksMap);
 </script>
 
 {#key work.id}
@@ -90,8 +95,9 @@
 					<div class="  bg-zinc-100 dark:bg-zinc-900 lg:py-12">
 						<OwnerCard {user} {commentable_type} entity={work} />
 						<div class="block lg:hidden"><DonateForm {user} /></div>
-						<!-- last works -->
-						<MoreWorksFromUser {user} works={work.images} />
+						{#if user.last_works?.length}
+							<MoreWorksFromUser {user} />
+						{/if}
 					</div>
 
 					<CommentBlocks
