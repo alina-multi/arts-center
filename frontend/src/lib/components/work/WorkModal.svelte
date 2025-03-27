@@ -23,7 +23,7 @@
 <BeforeNavigateLayout
 	route={'/[[lang=lang]]/(with-nav)/(single-column)/work/[id=int]'}
 	stateName={'workModal'}
-	keysToInclude={['work', 'comments']}
+	keysToInclude={['work', 'comments', 'ownerWorks']}
 >
 	{#if $page?.state?.workModal}
 		<ModalWindow
