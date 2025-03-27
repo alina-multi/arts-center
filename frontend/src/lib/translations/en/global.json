@@ -291,6 +291,8 @@
 	"work_page": {
 		"ask_artist": "Ask artist",
 		"artist_verified": "artist verified",
-		"not_available": "not available to buy"
+		"not_available": "not available to buy",
+		"more_works": "More works from",
+		"description": "Original artwork description"
 	}
 }
