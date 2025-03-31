@@ -9,9 +9,9 @@
 
 	const t = getContext('t');
 
-	$: checked = '';
+	let checked = '';
 
-	export let form;
+	export let form: { redirect?: string } = {};
 
 	$: if (form?.redirect) {
 		goto(form.redirect);
