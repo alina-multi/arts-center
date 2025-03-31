@@ -10,13 +10,23 @@ export const load = (async (event) => {
 export const actions = {
 	default: async (event) => {
 		const data = await event.request.formData();
+		const intent = data.get('intent');
+
+		if (!intent) {
+			return {
+				errors: {
+					intent: 'Please select an intent'
+				}
+			};
+		}
+
 		let response;
 
 		try {
 			response = await api({
 				method: 'PUT',
 				path: '/api2/intent',
-				data: { intent: data.get('intent') },
+				data: { intent },
 				event
 			});
 
@@ -25,7 +35,7 @@ export const actions = {
 					event.url.searchParams.get('redirect') ||
 					localePath((event.params.lang as 'en' | 'uk') || 'en', '/');
 				return {
-					status: 301,
+					status: 303,
 					redirect: redirectUrl
 				};
 			} else {
