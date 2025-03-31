@@ -17,7 +17,7 @@
 
 <a
 	{href}
-	class="bg-gradient-to-r animate-gradient from-amber-500 via-rose-500 to-orange-400 inline-flex items-center justify-center shrink-0 text-sm hover:bg-amber-500 hover:border-amber-500 border border-amber-600 px-4 py-2 bg-amber-600 text-white hover:shadow"
+	class="bg-gradient-to-r animate-gradient from-amber-500 via-rose-500 to-orange-400 inline-flex items-center justify-center shrink-0 text-sm hover:bg-amber-500 hover:border-amber-500   px-4 py-2 bg-amber-600 text-white hover:shadow"
 >
 	<span class="sr-only">{$t('global.buttons.addwork')}</span>
 
