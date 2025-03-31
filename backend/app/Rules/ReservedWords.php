@@ -161,7 +161,7 @@ class ReservedWords implements ValidationRule
         'yaml',
         'yml'];
     public array $usedInUrl = [
-        'login', 'logout', 'forgot-password', 'password-reset', 'search', 'users', 'health', intent
+        'login', 'logout', 'forgot-password', 'password-reset', 'search', 'users', 'health', 'intent'
     ];
 
     /**
