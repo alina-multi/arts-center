@@ -1,16 +1,16 @@
 <script lang="ts">
 	import '$lib/css/app.css';
 	import { navigating, page } from '$app/stores';
-	import { derived } from 'svelte/store';
+	import type { Navigation } from '@sveltejs/kit';
+	import { writable } from 'svelte/store';
 	import LoaderLayout from '$lib/components/atoms/LoaderLayout.svelte';
 	import { browser } from '$app/environment';
 	import { onMount, setContext } from 'svelte';
 	import loading from '$lib/stores/loading';
 	import { switchLocalePath } from '$lib/translations';
 
-	BigInt.prototype.toJSON = (val) => val.toString();
-
-	let navigationIsDelayed, timer;
+	let timer: ReturnType<typeof setTimeout>;
+	const navigationIsDelayed = writable(false);
 
 	export let data;
 	setContext('t', data.t);
@@ -20,18 +20,23 @@
 		if (browser) {
 			const currentLocale = data.locale.get();
 			let storedLang = localStorage.getItem('lang');
-			if (storedLang && storedLang != currentLocale) {
-				window.location.href = switchLocalePath(currentLocale, storedLang, $page.url.pathname);
+			if (storedLang && storedLang !== currentLocale) {
+				window.location.href = switchLocalePath(
+					currentLocale,
+					storedLang as 'en' | 'uk',
+					$page.url.pathname
+				);
 			}
 
-			navigationIsDelayed = derived(navigating, (newValue, set) => {
+			return navigating.subscribe((value: Navigation | null) => {
 				if (timer) {
 					clearTimeout(timer);
 				}
-				if (newValue) {
-					timer = setTimeout(() => set(true), 500);
+				if (value !== null) {
+					timer = setTimeout(() => navigationIsDelayed.set(true), 500);
+				} else {
+					navigationIsDelayed.set(false);
 				}
-				set(false);
 			});
 		}
 	});

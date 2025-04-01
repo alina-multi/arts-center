@@ -47,4 +47,5 @@ export interface UserMe extends UserBasic {
 	role: number;
 	unread: number;
 	threads: object;
+	intent: 'explore' | 'buy' | 'sell' | 'network' | null;
 }

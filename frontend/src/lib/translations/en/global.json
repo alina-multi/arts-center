@@ -31,7 +31,8 @@
 		"show_more": "Show more",
 		"unblock": "Unblock",
 		"get_in_touch": "Get in touch",
-		"send_message": "Send message"
+		"send_message": "Send message",
+		"continue": "Continue"
 	},
 	"comment": {
 		"add": {
@@ -293,6 +294,24 @@
 		"artist_verified": "artist verified",
 		"not_available": "not available to buy",
 		"more_works": "More works from",
-		"description": "Original artwork description"
+		"description": "Original artwork description",
+	"intent": {
+		"title": "What is your main goal for using arts.center?",
+		"explore": {
+			"title": "Just Browsing",
+			"description": "Looking for inspiration, new ideas, and exploring different art techniques"
+		},
+		"buy": {
+			"title": "Buy",
+			"description": "Purchasing unique artworks and handmade pieces directly from artists"
+		},
+		"sell": {
+			"title": "Sell",
+			"description": "Showcasing my works to a new audience, find buyers and make a profit from my creativity"
+		},
+		"network": {
+			"title": "Networking & Community",
+			"description": "Becoming part of a creative community—sharing work, exchanging feedback, and connecting with  and meet like-minded people"
+		}
 	}
 }
