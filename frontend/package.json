@@ -113,7 +113,8 @@
 		"redis": "^4.7.0",
 		"svelte-french-toast": "^1.2.0",
 		"svelte-time": "^0.8.3",
-		"svelte-use-click-outside": "^1.0.0"
+		"svelte-use-click-outside": "^1.0.0",
+		"tailwind-scrollbar-hide": "^2.0.0"
 	},
 	"type": "module",
 	"prisma": {

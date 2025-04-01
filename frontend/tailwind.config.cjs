@@ -27,7 +27,8 @@ module.exports = {
 			...defaultTheme.screens
 		}
 	},
-	plugins: [require('@tailwindcss/forms'), require('@tailwindcss/aspect-ratio')],
+	plugins: [require('@tailwindcss/forms'), require('@tailwindcss/aspect-ratio'), 	require('tailwind-scrollbar-hide')],
+
 	safelist: [
 		'bg-black',
 		'bg-white',
