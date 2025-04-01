@@ -294,7 +294,8 @@
 		"artist_verified": "artist verified",
 		"not_available": "not available to buy",
 		"more_works": "More works from",
-		"description": "Original artwork description",
+		"description": "Original artwork description"
+	},
 	"intent": {
 		"title": "What is your main goal for using arts.center?",
 		"explore": {

@@ -294,7 +294,8 @@
 		"artist_verified": "митець верифікований",
 		"not_available": "не доступно для покупки",
 		"more_works": "Більше робіт від",
-		"description": "Опис роботи",
+		"description": "Опис роботи"
+	},
 	"intent": {
 		"title": "Яка ваша головна мета використання arts.center?",
 		"explore": {
@@ -315,3 +316,4 @@
 		}
 	}
 }
+
