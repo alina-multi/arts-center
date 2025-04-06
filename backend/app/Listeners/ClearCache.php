@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App;
 use App\Models\User;
 use App\Models\Work;
 use Illuminate\Support\Facades\Redis;
@@ -25,7 +26,7 @@ class ClearCache
                 $key = "frontend.user.{$event->model->username}";
             }
         }
-        if (!empty($key)) {
+        if (!empty($key) && !App::environment('testing')) {
             Redis::connection('externalCache')->del($key);
         }
     }

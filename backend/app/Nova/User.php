@@ -7,6 +7,7 @@ use App\Nova\Actions\ApproveRecord;
 use App\Nova\Actions\ClearCacheByTag;
 use App\Nova\Actions\ConvertUserImages;
 use App\Nova\Actions\SendBlogPost;
+use App\Nova\Actions\SoftDeleteUser;
 use App\Nova\Actions\VerifyUser;
 use App\Nova\Filters\ModelApproved;
 use App\Nova\Filters\UserCountry;
@@ -171,7 +172,8 @@ class User extends Resource
             new ApproveRecord(),
             new VerifyUser(),
             new SendBlogPost(),
-            new ConvertUserImages()
+            new ConvertUserImages(),
+            new SoftDeleteUser()
         ];
     }
 }

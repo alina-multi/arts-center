@@ -15,11 +15,12 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Cache;
 use App\Notifications\MailResetPasswordNotification;
 use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\{BelongsToMany, HasMany, HasManyThrough, MorphToMany, HasOne};
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, Notifiable, HasFactory, Billable, Searchable, Actionable;
+    use HasApiTokens, Notifiable, HasFactory, Billable, Searchable, Actionable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
