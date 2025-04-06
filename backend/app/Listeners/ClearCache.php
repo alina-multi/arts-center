@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App;
 use App\Models\User;
 use App\Models\Work;
 use Illuminate\Support\Facades\Redis;
