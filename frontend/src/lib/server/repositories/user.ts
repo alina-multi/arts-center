@@ -38,6 +38,7 @@ export function query(
 			approved_at: {
 				not: null
 			},
+			deleted_at: null,
 			...where
 		},
 		orderBy
@@ -97,7 +98,8 @@ export function userCountries() {
 		where: {
 			country: {
 				notIn: ['ru']
-			}
+			},
+			deleted_at: null
 		}
 	});
 }

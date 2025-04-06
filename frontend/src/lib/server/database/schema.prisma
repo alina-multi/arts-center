@@ -379,6 +379,7 @@ model users {
   bios              user_bios[]
   approved_at       DateTime?      @db.Timestamp(0)
   verified_at       DateTime?      @db.Timestamp(0)
+  deleted_at        DateTime?      @db.Timestamp(0)
   posts             posts[]
 
   @@index([country], map: "users_country_index")
