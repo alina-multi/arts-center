@@ -4,11 +4,13 @@ use App\Jobs\SoftDeleteUser;
 use App\Models\User;
 use App\Models\Comment;
 use App\Models\Work;
+use Illuminate\Support\Facades\Event;
 use function Pest\Laravel\assertSoftDeleted;
 
 uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 test('it soft deletes user and related data', function () {
+    Event::fake();
     // Create a user with comments and works
     $user = User::factory()->create();
     

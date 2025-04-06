@@ -26,7 +26,7 @@ class ClearCache
                 $key = "frontend.user.{$event->model->username}";
             }
         }
-        if (!empty($key) && !App::environment('testing')) {
+        if (!empty($key)) {
             Redis::connection('externalCache')->del($key);
         }
     }
