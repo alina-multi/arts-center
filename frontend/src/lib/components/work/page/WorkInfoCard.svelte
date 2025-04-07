@@ -24,7 +24,8 @@
 
 			<div class="space-y-3 text-xs">
 				<div class="flex items-center gap-1">
-					<VerificationBadge user_verified={owner} size={'w-4 h-4 lg:hidden'} />
+					{owner.verified_at}
+					<VerificationBadge user_verified={owner.verified_at} size={'w-4 h-4 lg:hidden'} />
 
 					{#if owner.verified_at}
 						<p class="text-emerald-500 font-semibold max-xl:text-sm">
