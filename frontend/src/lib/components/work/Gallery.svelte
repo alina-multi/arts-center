@@ -11,10 +11,10 @@
 	export let gallery;
 	export let categories;
 	export let params;
-	let newBatch = [];
-	let currentPage = params.page;
+	$: newBatch = [];
+	$: currentPage = params.page;
 	let loading = false;
-	let hasMore = gallery.length >= 20;
+	$: hasMore = gallery.length >= 20;
 	$: gallery = [...gallery, ...newBatch];
 
 	async function fetchData() {
