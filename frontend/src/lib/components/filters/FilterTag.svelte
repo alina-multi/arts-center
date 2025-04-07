@@ -90,7 +90,7 @@
 <div class="flex lg:hidden text-left z-20 flex-row-reverse">
 	<Popover class=" w-full flex-1  text-black dark:text-zinc-200  " let:open>
 		<PopoverButton
-			class="w-full flex items-center justify-between gap-2  border px-4 py-2 rounded-sm  dark:border-zinc-800 overflow-hidden dark:bg-zinc-900"
+			class="w-full flex items-center justify-between gap-2  border px-4 py-2 rounded-sm border-zinc-900 font-medium  dark:border-zinc-800 overflow-hidden dark:bg-zinc-900"
 		>
 			<div class="flex items-center gap-3">
 				<Icon src={AdjustmentsHorizontal} class="w-5" />
