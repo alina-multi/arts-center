@@ -86,7 +86,7 @@
 		<div class=" w-full">
 			{#if $user}
 				<div
-					class="w-full bg-zinc-100 px-4 py-9 xl:p-9 xl:px-9 md:dark:bg-zinc-900 xl:dark:border md:dark:border-zinc-800"
+					class="w-full bg-zinc-100 dark:bg-black px-4 py-9 xl:p-9 xl:px-9 md:dark:bg-zinc-900 xl:dark:border md:dark:border-zinc-800"
 				>
 					<div class="xl:max-w-4xl xl:mx-auto">
 						<CommentInput onSubmit={addNewComment} bind:value />

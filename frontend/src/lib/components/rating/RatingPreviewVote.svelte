@@ -22,7 +22,7 @@
 	let votable_id = entity?.id.toString();
 </script>
 
-<div class="flex justify-between w-full">
+<div class="flex justify-between w-full max-md:ml-4">
 	{#if showVotedPreview}
 		<VotedList {votes} {isLiked} currentUser={$user} />
 	{/if}

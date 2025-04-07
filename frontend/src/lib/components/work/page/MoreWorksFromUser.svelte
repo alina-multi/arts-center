@@ -12,7 +12,7 @@
 <div
 	class="space-y-9 max-lg:mb-9 max-xl:pt-9 px-4 md:px-6 lg:px-0 {user.verified_at
 		? ' xl:bg-zinc-100 xl:dark:bg-transparent xl:dark:mt-9 xl:px-9 xl:p-9 xl:pt-1 mb-16'
-		: '   '} "
+		: ' my-12  '} "
 >
 	<div class="inline-flex items-center gap-2 font-bold text-lg">
 		<p class="inline">{$t('global.work_page.more_works')}</p>
