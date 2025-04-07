@@ -12,7 +12,7 @@
 
 <div class="w-full">
 	<div
-		class="w-full h-32 rounded-t-sm flex flex-col items-center bg-zinc-800 dark:bg-zinc-900 dark:border dark:border-zinc-800"
+		class="w-full h-32 rounded-t-sm flex flex-col items-center bg-zinc-900 dark:bg-zinc-900 dark:border dark:border-zinc-800"
 	/>
 	<div
 		class=" bg-zinc-50 rounded-b-sm border-x border-b dark:border-zinc-800 dark:border-t-transparent w-full pb-9 dark:bg-zinc-950"
@@ -32,11 +32,9 @@
 			</div>
 
 			<div class="flex flex-col gap-1 xl:px-6 items-center">
-				<div class="flex flex-wrap items-center xl:gap-3 gap-1 sm:gap-2 xl:justify-center">
-					<span>@{user?.username}</span>
+				<span>@{user?.username}</span>
 
-					<Country {user} />
-				</div>
+				<Country {user} />
 
 				<OnArtSince {user} />
 			</div>

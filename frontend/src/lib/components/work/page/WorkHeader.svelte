@@ -17,13 +17,13 @@
 	let modalOpen = false;
 </script>
 
-<div class=" space-y-3">
+<div class=" space-y-3 xl:space-y-6">
 	<div class="flex justify-between items-center">
 		{#each work.owners as user (user.id)}
 			<div class="flex items-center gap-3">
 				<div class="flex items-center gap-1">
-					<AvatarLink {user} withName size={'w-8 h-8'} nameStyles={'font-medium text-sm '} />
-					<VerificationBadge user_verified={user.verified_at} size={'  w-4 h-4 lg:hidden'} />
+					<AvatarLink {user} withName size={'w-8 h-8'} nameStyles={'font-medium text-sm w-fit '} />
+					<VerificationBadge user_verified={user.verified_at} size={'  w-4 h-4 xl:hidden'} />
 				</div>
 
 				<FollowButton
@@ -34,7 +34,7 @@
 		{/each}
 
 		<div>
-			<EllipsisButton workId={work.id} {isMy} type="horizontal">
+			<EllipsisButton workId={work.id} {isMy} type="vertical">
 				<div slot="description" class="flex flex-col">
 					<ReportButton bind:open={modalOpen} />
 				</div>

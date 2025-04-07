@@ -61,8 +61,9 @@
 <div class=" lg:shadow pb-6 bg-zinc-100 dark:bg-zinc-800 dark:border-zinc-700">
 	<div class="px-6 py-9 bg-zinc-900 dark:text-white text-white">
 		<div class="pb-6"><Icon3 class="w-20 h-20 fill-amber-600 " /></div>
-		Напевно,<span class=" underline font-bold">{user.name}</span> прямо зараз створює щось унікальне.
-		Якщо подобається творчість митця — підтримай кавою!
+		<!-- eslint-disable svelte/no-at-html-tags -->
+		{@html $t('global.donation.creating', { name: user.name })}
+		{$t('global.donation.support_text')}
 	</div>
 	<div class="space-y-6">
 		<div class="p-6 flex items-center sm:gap-6 w-full justify-around">

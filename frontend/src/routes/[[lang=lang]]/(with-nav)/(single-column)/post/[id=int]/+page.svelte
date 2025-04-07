@@ -88,7 +88,7 @@
 			<div class="sm:hidden"><ShareButton /></div>
 		</div>
 	</div>
-	<div class=" lg:mt-16 xl:w-2/3 mx-auto">
+	<div class=" lg:mt-16 w-full">
 		<CommentBlocks
 			commentable_type="post"
 			commentsCount={data.post.comments}

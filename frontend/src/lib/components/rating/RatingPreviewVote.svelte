@@ -34,13 +34,15 @@
 				: 'hover:text-zinc-900'} flex max-sm:flex-row-reverse items-center sm:gap-4 dark:text-white"
 		>
 			{#if votable_type === 'work' || votable_type === 'post'}
-				<div
-					class=" flex items-center border-r dark:border-zinc-700 pr-2 sm:pr-4 text-black dark:text-white font-bold text-sm"
-				>
-					<span class="hidden sm:block"> {$t('global.voting.like')} </span>
+				{#if rating > 0}
+					<div
+						class=" flex items-center border-r dark:border-zinc-700 pr-4 text-black dark:text-white font-bold text-sm"
+					>
+						<span class="hidden sm:block"> {$t('global.voting.like')} </span>
 
-					<span class="ml-1">{rating > 0 ? rating : ''}</span>
-				</div>
+						<span class="ml-1">{rating}</span>
+					</div>
+				{/if}
 			{/if}
 			<LikeButton
 				{size}

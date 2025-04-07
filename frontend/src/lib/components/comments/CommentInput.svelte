@@ -21,7 +21,7 @@
 	});
 </script>
 
-<div class="flex flex-col gap-3 dark:border-zinc-800 mt-6 text-sm">
+<div class="flex flex-col gap-3 dark:border-zinc-800 mt-9 text-sm">
 	<div class="flex gap-3 w-full items-start">
 		{#if !isEditing}
 			<AvatarLink user={$user} size={'h-7 w-7 md:h-12 md:w-12'} />

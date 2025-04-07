@@ -23,6 +23,6 @@
 	{author}
 	{image}
 />
-<div class=" lg:container lg:px-4 xl:w-10/12 mx-auto pb-12">
+<div class=" sm:container lg:max-xl:w-[770px] mx-auto pb-12">
 	<WorkPage {...data} />
 </div>
