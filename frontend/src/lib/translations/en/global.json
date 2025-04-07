@@ -94,7 +94,9 @@
 		"p3": "Your participation not only recognizes the talents of today, but also contributes to the growth and prosperity of tomorrow's culture.",
 		"support": "Support",
 		"title1": "Shape the art of tomorrow",
-		"title2": "Support an artist today"
+		"title2": "Support an artist today",
+		"creating": "Probably, <span class=\"underline font-bold\">{{name}}</span> is creating something unique right now.",
+		"support_text": "Enjoying the artist’s work? Let them know — or treat them to a coffee!"
 	},
 	"error": {
 		"api": "Unknown API server error"
