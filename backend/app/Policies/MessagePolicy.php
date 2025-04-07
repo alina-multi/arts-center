@@ -17,6 +17,7 @@ class MessagePolicy
         if ($user->role === UserRoles::SuperAdmin) {
             return true;
         }
+        return false;
     }
 
     /**
@@ -27,6 +28,7 @@ class MessagePolicy
         if ($user->role === UserRoles::SuperAdmin) {
             return true;
         }
+        return false;
     }
 
     /**

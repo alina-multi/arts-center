@@ -52,6 +52,7 @@ export function query(
 		where: {
 			status: { gte: 40 },
 			published_at: { lte: new Date() },
+			deleted_at: null,
 			...where
 		},
 		orderBy
@@ -64,6 +65,7 @@ export async function trendingRandomIndexQuery() {
         FROM works
         WHERE rating >= ${trendingOrRisingRatingCutoff}
           AND featured_at <= NOW()
+          AND deleted_at IS NULL
         ORDER BY rand()
         LIMIT 0,6
     `;
