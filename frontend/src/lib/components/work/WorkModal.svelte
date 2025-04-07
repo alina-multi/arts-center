@@ -12,7 +12,7 @@
 	$: currentWorkIndex = -1;
 
 	$: if ($page?.state?.workModal) {
-		currentWorkIndex = gallery.findIndex((work) => work.id === $page.state.workModal.work.id);
+		currentWorkIndex = gallery.findIndex((work) => work.id === $page.state?.workModal.work.id);
 	}
 
 	function gotoGallery() {
@@ -27,12 +27,12 @@
 >
 	{#if $page?.state?.workModal}
 		<ModalWindow
-			class="container py-9 xs:my-9  xs:rounded-2xl  pb-12  xs:p-6 md:max-lg:px-12 md:max-lg:pb-12 lg:px-0 lg:pb-12 dark:lg:pt-0"
+			class=" md:px-9 xl:px-16 lg:max-xl:py-3  lg:my-9 rounded-t-[36px] dark:border-2 max-xs:dark:border-t-2  dark:border-zinc-700 shadow-sm  max-lg:mt-16 xs:rounded-2xl  pb-12  "
 			on:close={gotoGallery}
 			open={true}
-			closeButtonAddStyle=" xs:text-white "
+			closeButtonAddStyle=" text-white  mt-3 lg:mt-6 max-md:bg-zinc-500/20 max-lg:rounded-full   "
 		>
-			<div slot="otherEl" class="hidden xs:block">
+			<div slot="otherEl" class="hidden lg:block">
 				<NavigationArrows {currentWorkIndex} {gallery} />
 			</div>
 

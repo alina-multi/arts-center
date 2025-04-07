@@ -13,7 +13,7 @@
 	let showLikedByModal = false;
 </script>
 
-<div class="flex items-center gap-1 dark:text-zinc-300 font-medium">
+<div class="flex items-center gap-1 dark:text-zinc-300 font-semibold text-sm">
 	{#if votes.length > 3}
 		<button on:click={() => (showLikedByModal = true)} class="hover:underline cursor-pointe mr-1">
 			{$t('global.voting.liked_by')}
@@ -25,10 +25,12 @@
 			{/each}
 		</div>
 		<div class=" hidden min-[400px]:block">
-			<span class="text-zinc-500 dark:text-zinc-400 max-sm:hidden">{$t('global.voting.and')}</span>
+			<span class="text-zinc-500 dark:text-zinc-400 max-[500px]:hidden"
+				>{$t('global.voting.and')}</span
+			>
 			<button
 				on:click={() => (showLikedByModal = true)}
-				class="hover:underline cursor-pointer max-sm:hidden"
+				class="hover:underline cursor-pointer max-[500px]:hidden"
 			>
 				{$t('global.voting.others')}
 			</button>

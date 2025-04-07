@@ -4,17 +4,16 @@
 	import { getContext } from 'svelte';
 
 	const locale = getContext('locale');
-	export let tags = [],
-		media: string;
+	export let tags = [];
 </script>
 
 {#if tags.length > 0}
-	<div class="{media} flex-wrap items-center justify-start gap-6">
+	<div class="flex flex-wrap items-center justify-start gap-3">
 		{#each tags as { title } (title)}
 			<TagButton
 				href={localePath($locale, `/tag/${title}/popular`)}
 				{title}
-				styles={'px-3 py-1 border-zinc-800   text-zinc-800 dark:text-zinc-100  dark:border-zinc-700  '}
+				styles={'px-4 py-1 bg-zinc-100  text-zinc-600 dark:text-zinc-100  border-0 rounded-full  '}
 			/>
 		{/each}
 	</div>

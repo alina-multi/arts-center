@@ -38,7 +38,7 @@
 		isMy: boolean,
 		commentable_type: 'work' | 'post';
 
-	commentable_id = commentable_id?.toString();
+	commentable_id;
 	let parentComments = [...comments];
 	$: value = '';
 	let new_comment: Comment | null = null;
@@ -56,7 +56,7 @@
 		new_comment_loaded = false;
 
 		const fetch = fetchData('POST', url, {
-			commentable_id,
+			commentable_id: Number(commentable_id),
 			commentable_type,
 			text: value
 		});
@@ -78,53 +78,68 @@
 	}
 </script>
 
-<div class=" flex flex-col">
-	<h3 class="sr-only">Comments</h3>
-	<div class=" h-[270px] xs:h-64 w-full">
-		{#if !$isUserLoading}
+{#if !$isUserLoading}
+	<div
+		class=" flex flex-col xl:gap-12 xl:bg-zinc-100 md:dark:bg-black pb-16 xl:rounded-3xl overflow-hidden"
+	>
+		<h3 class="sr-only">Comments</h3>
+		<div class=" w-full">
 			{#if $user}
 				<div
-					class="md:bg-zinc-100 md:shadow md:px-9 xl:py-6 max-xl:mt-9 md:dark:bg-zinc-900 md:dark:border md:dark:border-zinc-800"
+					class="w-full bg-zinc-100 px-4 py-9 xl:p-9 xl:px-9 md:dark:bg-zinc-900 xl:dark:border md:dark:border-zinc-800"
 				>
-					<CommentInput onSubmit={addNewComment} bind:value />
+					<div class="xl:max-w-4xl xl:mx-auto">
+						<CommentInput onSubmit={addNewComment} bind:value />
+					</div>
 				</div>
 			{:else}
 				<AuthStub />
 			{/if}
-		{/if}
-	</div>
+		</div>
 
-	<div
-		class="max-xl:bg-zinc-100 max-xl:shadow xl:border-b border-zinc-200 dark:px-6 dark:border dark:border-zinc-800 dark:bg-zinc-900 py-3 font-semibold"
-	>
-		<span class="max-xl:px-4"
-			>{$t('global.comment.comments')} {commentsCount > 0 ? commentsCount : ''}</span
+		<div
+			class=" xl:w-2/3 xl:mx-auto xl:p-12 md:dark:p-0 md:bg-white md:dark:bg-black md:rounded-3xl"
 		>
-	</div>
-
-	{#if commentsCount > 0}
-		<ul id="parentBlock" class=" max-xs:px-4">
-			{#each parentComments as comment (comment.id)}
-				{#if comment.id === new_comment?.id}
-					<li
-						class=" transition-opacity delay-500 {new_comment_loaded
-							? 'opacity-100'
-							: 'opacity-50'}"
+			{#if commentsCount > 0}
+				<div
+					class="  border-b border-zinc-200 dark:px-6 dark:border dark:border-zinc-800 dark:bg-zinc-900 max-xl:py-6 xl:pb-6 dark:py-6 font-semibold"
+				>
+					<span class="px-4 md:px-9 lg:px-0"
+						>{$t('global.comment.comments')} {commentsCount > 0 ? commentsCount : ''}</span
 					>
-						<CommentBlock
-							{isMy}
-							{comment}
-							{commentable_id}
-							bind:parentComments
-							bind:commentsCount
-						/>
-					</li>
-				{:else}
-					<CommentBlock {comment} {commentable_id} bind:parentComments bind:commentsCount />
-				{/if}
-			{/each}
-		</ul>
-	{:else}
-		<NoResultsStub />
-	{/if}
-</div>
+				</div>
+
+				<ul id="parentBlock" class=" px-4 md:px-9 lg:px-0">
+					{#each parentComments as comment (comment.id)}
+						{#if comment.id === new_comment?.id}
+							<li
+								class=" transition-opacity delay-500 {new_comment_loaded
+									? 'opacity-100'
+									: 'opacity-50'}"
+							>
+								<CommentBlock
+									{isMy}
+									{comment}
+									{commentable_id}
+									{commentable_type}
+									bind:parentComments
+									bind:commentsCount
+								/>
+							</li>
+						{:else}
+							<CommentBlock
+								{comment}
+								{commentable_type}
+								{commentable_id}
+								bind:parentComments
+								bind:commentsCount
+							/>
+						{/if}
+					{/each}
+				</ul>
+			{:else}
+				<NoResultsStub />
+			{/if}
+		</div>
+	</div>
+{/if}

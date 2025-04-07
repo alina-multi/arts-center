@@ -62,6 +62,9 @@ importers:
       svelte-use-click-outside:
         specifier: ^1.0.0
         version: 1.0.0
+      tailwind-scrollbar-hide:
+        specifier: ^2.0.0
+        version: 2.0.0(tailwindcss@3.4.17)
     devDependencies:
       '@ably/laravel-echo':
         specifier: ^1.0.6
@@ -6252,6 +6255,11 @@ packages:
 
   synchronous-promise@2.0.17:
     resolution: {integrity: sha512-AsS729u2RHUfEra9xJrE39peJcc2stq2+poBXX8bcM08Y6g9j/i/PUzwNQqkaJde7Ntg1TO7bSREbR5sdosQ+g==}
+
+  tailwind-scrollbar-hide@2.0.0:
+    resolution: {integrity: sha512-lqiIutHliEiODwBRHy4G2+Tcayo2U7+3+4frBmoMETD72qtah+XhOk5XcPzC1nJvXhXUdfl2ajlMhUc2qC6CIg==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || >= 4.0.0 || >= 4.0.0-beta.8 || >= 4.0.0-alpha.20'
 
   tailwindcss@3.4.17:
     resolution: {integrity: sha512-w33E2aCvSDP0tW9RZuNXadXlkHXqFzSkQew/aIa2i/Sj8fThxwovwlXHSPXTbAHwEIhBFXAedUhP2tueAKP8Og==}
@@ -14097,6 +14105,10 @@ snapshots:
   symbol-tree@3.2.4: {}
 
   synchronous-promise@2.0.17: {}
+
+  tailwind-scrollbar-hide@2.0.0(tailwindcss@3.4.17):
+    dependencies:
+      tailwindcss: 3.4.17
 
   tailwindcss@3.4.17:
     dependencies:

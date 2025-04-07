@@ -16,6 +16,7 @@
 		commentable_id: string,
 		parentComments: [Comment] | [],
 		commentsCount: number,
+		commentable_type: 'post' | 'work',
 		isMy: boolean;
 	let url = '/api/comment';
 
@@ -59,8 +60,8 @@
 		new_comment_loaded = false;
 
 		const fetch = fetchData('POST', url, {
-			commentable_id,
-			commentable_type: 'work',
+			commentable_id: Number(commentable_id),
+			commentable_type,
 			comment_id,
 			text: value
 		});
@@ -170,6 +171,7 @@
 								<svelte:self
 									comment={reply}
 									{commentable_id}
+									{commentable_type}
 									bind:parentComments={answers}
 									bind:commentsCount
 								/>
@@ -178,6 +180,7 @@
 							<svelte:self
 								comment={reply}
 								{commentable_id}
+								{commentable_type}
 								bind:parentComments={answers}
 								bind:commentsCount
 							/>

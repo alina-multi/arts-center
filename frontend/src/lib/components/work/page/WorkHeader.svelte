@@ -2,16 +2,13 @@
 	import AvatarLink from '$lib/components/atoms/AvatarLink.svelte';
 	import EllipsisButton from '$lib/components/atoms/buttons/EllipsisButton.svelte';
 	import FollowButton from '$lib/components/atoms/buttons/FollowButton.svelte';
-	import PriceLabel from '$lib/components/atoms/PriceLabel.svelte';
 	import ReportButton from '$lib/components/atoms/buttons/ReportButton.svelte';
 	import { languageFind } from '$lib/translations';
 	import ReportModal from '$lib/components/atoms/ReportModal.svelte';
 	import type { Work } from '$lib/interfaces/Work';
 	import { getContext } from 'svelte';
-	import LocaleDate from '$lib/components/atoms/LocaleDate.svelte';
 	import VerificationBadge from '$lib/components/atoms/VerificationBadge.svelte';
 
-	const t = getContext('t');
 	const locale = getContext('locale');
 
 	export let work: Work, isMy: boolean;
@@ -20,20 +17,19 @@
 	let modalOpen = false;
 </script>
 
-<div class=" flex flex-col gap-3 dark:text-gray-400 max-xl:px-4">
+<div class=" space-y-3 xl:space-y-6">
 	<div class="flex justify-between items-center">
 		{#each work.owners as user (user.id)}
 			<div class="flex items-center gap-3">
 				<div class="flex items-center gap-1">
-					<AvatarLink {user} withName size={'w-8 h-8'} nameStyles={'font-medium text-sm'} />
-					<VerificationBadge user_verified={user.verified_at} size={'  w-4 h-4'} />
+					<AvatarLink {user} withName size={'w-8 h-8'} nameStyles={'font-medium text-sm w-fit '} />
+					<VerificationBadge user_verified={user.verified_at} size={'  w-4 h-4 xl:hidden'} />
 				</div>
-				<div class="flex w-28">
-					<FollowButton
-						addStyles={'text-xs rounded-full  w-max   border border border-zinc-500 border-zinc-800 text-zinc-900 dark:bg-zinc-800  w-min px-3 py-1 text-center'}
-						{user}
-					/>
-				</div>
+
+				<FollowButton
+					addStyles={'text-xs border-1 rounded-full py-0 dark:bg-zinc-900 lg:hidden'}
+					{user}
+				/>
 			</div>
 		{/each}
 
@@ -46,16 +42,11 @@
 		</div>
 	</div>
 
-	<div class="flex justify-between items-center gap-1">
-		<h1 class="text-xl sm:text-2xl font-medium tracking-wider dark:text-white">
-			{title}
+	<div class=" flex justify-between flex-wrap gap-3 items-center">
+		<h1 class="text-xl sm:text-2xl font-bold dark:text-white inline-flex">
+			<!-- eslint-disable svelte/no-at-html-tags -->
+			{@html title}
 		</h1>
-		<div class="text-zinc-600 dark:text-zinc-300 text-xs">
-			<span class=" hidden md:inline">{$t('global.published_on')}</span>
-			<LocaleDate date={work?.published_at} />
-		</div>
-
-		<PriceLabel price={work.price} style={'px-3 py-1 '} />
 	</div>
 </div>
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { HandThumbUp } from '@steeze-ui/heroicons';
+	import { Heart } from '@steeze-ui/heroicons';
 	import { fetchData } from '$lib/helpers/fetchData';
 	import { user, showAuthModal } from '$lib/stores/auth';
 
@@ -52,17 +52,17 @@
 {#if isLiked}
 	<button on:click={cancelVote}
 		><Icon
-			src={HandThumbUp}
+			src={Heart}
 			theme="solid"
 			class=" {size}   {votable_type === 'comment'
-				? 'fill-sky-700 '
-				: 'fill-sky-700 dark:fill-sky-600'}"
+				? 'fill-red-700 '
+				: 'fill-red-700 dark:fill-red-600'}"
 		/></button
 	>
 {:else}
 	<button on:click={like}
 		><Icon
-			src={HandThumbUp}
+			src={Heart}
 			theme="outline"
 			class=" {size} stroke-1 hover:scale-110 dark:stroke-white   "
 		/></button

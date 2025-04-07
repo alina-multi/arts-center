@@ -17,7 +17,7 @@
 
 <Listbox value={selectedOrder} class="relative inline-block text-left z-30" let:open>
 	<ListboxButton
-		class=" inline-flex space-x-2 justify-center items-center  border border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900 px-4 py-2  hover:bg-gray-50 dark:hover:bg-zinc-700  hover:shadow dark:text-white focus:outline-none focus-visible:ring-2 dark:focus-visible:ring-white/75"
+		class=" inline-flex space-x-2 justify-center items-center  font-medium border border-zinc-900 dark:border-zinc-800 dark:bg-zinc-900 px-4 py-2  hover:bg-gray-50 dark:hover:bg-zinc-700  hover:shadow dark:text-white focus:outline-none focus-visible:ring-2 dark:focus-visible:ring-white/75"
 	>
 		<span>{$t(`global.filters.${selectedOrder}`)}</span>
 

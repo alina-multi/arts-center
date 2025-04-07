@@ -18,19 +18,28 @@
 	}
 </script>
 
-<button
-	on:click={() => changeWork(-1)}
-	class="fixed h-screen top-0 left-0 xs:px-3 md:px-6 z-40 cursor-pointer"
-	class:hidden={currentWorkIndex === 0}
-	aria-label="Previous Work"
+<div
+	class="fixed top-1/2 -translate-y-1/2 left-0 xs:px-3 z-40 cursor-pointer flex items-center justify-center"
 >
-	<Icon src={ChevronLeft} class="w-6 h-6 text-white" />
-</button>
-<button
-	on:click={() => changeWork(1)}
-	class=" fixed h-screen top-0 right-2 xs:px-3 md:px-6 z-40 cursor-pointer"
-	class:hidden={currentWorkIndex === gallery.length - 1}
-	aria-label="Next Work"
+	<button
+		on:click={() => changeWork(-1)}
+		class="bg-zinc-300/20 p-3 rounded-full"
+		class:hidden={currentWorkIndex === 0}
+		aria-label="Previous Work"
+	>
+		<Icon src={ChevronLeft} class="w-5 h-5 text-white stroke-2 pr-0.5" />
+	</button>
+</div>
+
+<div
+	class="fixed top-1/2 -translate-y-1/2 right-0 xs:px-3 z-40 cursor-pointer flex items-center justify-center"
 >
-	<Icon src={ChevronRight} class="w-6 h-6 text-white" />
-</button>
+	<button
+		on:click={() => changeWork(1)}
+		class="bg-zinc-300/20 p-3 rounded-full"
+		class:hidden={currentWorkIndex === gallery.length - 1}
+		aria-label="Next Work"
+	>
+		<Icon src={ChevronRight} class="w-5 h-5 text-white stroke-2 pl-0.5" />
+	</button>
+</div>

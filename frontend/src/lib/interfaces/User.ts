@@ -11,6 +11,10 @@ export interface UserBasic {
 	verified_at: string | null;
 }
 
+export interface UserWithLastWorks extends UserBasic {
+	last_works: WorkPreview[];
+}
+
 export interface UserPreview extends UserBasic {
 	rating?: number;
 	works?: WorkPreview[];

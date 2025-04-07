@@ -10,7 +10,7 @@
 		onSubmit: (comment_id: string) => Promise<void>,
 		commentID: string | undefined = undefined,
 		value: string;
-	commentID = commentID?.toString();
+	commentID;
 	let textarea: HTMLTextAreaElement;
 	$: enabled = value.length > 3;
 
@@ -21,10 +21,10 @@
 	});
 </script>
 
-<div class="flex flex-col gap-3 dark:border-zinc-800 mt-6">
+<div class="flex flex-col gap-3 dark:border-zinc-800 mt-9 text-sm">
 	<div class="flex gap-3 w-full items-start">
 		{#if !isEditing}
-			<AvatarLink user={$user} size={'h-12 w-12'} />
+			<AvatarLink user={$user} size={'h-7 w-7 md:h-12 md:w-12'} />
 		{/if}
 		<form class="mx-auto w-full" method="POST" on:submit|preventDefault={() => onSubmit(commentID)}>
 			<textarea
@@ -39,7 +39,7 @@
 				<button
 					class="border rounded-full {enabled
 						? ' border-emerald-600  text-white bg-emerald-600 dark:text-zinc-200 border  hover:bg-emerald-500 hover:text-white hover:border-emerald-500 '
-						: 'text-zinc-500 dark:text-zinc-200  dark:bg-zinc-800  border-zinc-300 bg-white '}  px-3 py-2 dark:border-0 text-sm font-semibold"
+						: 'text-zinc-500 dark:text-zinc-200  dark:bg-zinc-800  border-zinc-300 bg-white '}  px-3 py-2 dark:border-0 text-xs font-semibold"
 				>
 					{isReplying
 						? $t('global.comment.reply')

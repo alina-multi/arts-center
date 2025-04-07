@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { Icon } from '@steeze-ui/svelte-icon';
-	import { XMark } from '@steeze-ui/heroicons';
-	import DonateIcon from './DonateIcon.svelte';
 	import { localePath } from '$lib/translations';
 	import type { UserBasic } from '$lib/interfaces/User';
 	import ModalWindow from '$lib/components/atoms/ModalWindow.svelte';
@@ -9,6 +6,7 @@
 	import { getContext, tick } from 'svelte';
 	import { magicFetch } from '$lib/helpers/fetchData';
 	import { getStripe } from '$lib/helpers/stripe';
+	import Icon3 from '../static_pages/icons/Icon3.svelte';
 
 	const t = getContext('t');
 	const locale = getContext('locale');
@@ -60,26 +58,18 @@
 	$: disabled = quantity === 0;
 </script>
 
-<div class=" shadow p-6 xs:p-9 bg-zinc-100 dark:bg-zinc-800 dark:border-zinc-700">
-	<div class="text-center space-y-6">
-		<div class="text-xl font-semibold dark:text-white">
-			<h3>{$t('global.donation.title1')}</h3>
-			<h4>{$t('global.donation.title2')}</h4>
-		</div>
-		<p>
-			{$t('global.donation.p1')}
-		</p>
-
-		<div
-			class=" flex items-center justify-between sm:justify-center sm:gap-6 sm:w-full xl:justify-around"
-		>
-			<DonateIcon />
-
-			<Icon src={XMark} class="w-6 h-6  dark:text-white" />
-
-			<fieldset class=" gap-6 flex xl:justify-around text-[16px] font-semibold">
+<div class=" lg:shadow pb-6 bg-zinc-100 dark:bg-zinc-800 dark:border-zinc-700">
+	<div class="px-6 py-9 bg-zinc-900 dark:text-white text-white">
+		<div class="pb-6"><Icon3 class="w-20 h-20 fill-amber-600 " /></div>
+		<!-- eslint-disable svelte/no-at-html-tags -->
+		{@html $t('global.donation.creating', { name: user.name })}
+		{$t('global.donation.support_text')}
+	</div>
+	<div class="space-y-6">
+		<div class="p-6 flex items-center sm:gap-6 w-full justify-around">
+			<fieldset class=" pt-6 gap-6 flex xl:justify-around font-semibold">
 				{#each options as option (option)}
-					<div class="flex relative max-sm:last-of-type:hidden xl:last-of-type:hidden">
+					<div class="flex relative">
 						<input
 							on:focus={() => {
 								value = quantity;
@@ -93,7 +83,7 @@
 						/>
 						<label
 							for="price-{option}"
-							class="py-2 px-4 rounded-full dark:bg-zinc-600 dark:border-zinc-500 flex cursor-pointer border border-zinc-900 peer-checked:hover:border-amber-500 hover:border-amber-600 justify-center items-center peer-checked:bg-amber-500 peer-checked:border-amber-500 peer-checked:text-white"
+							class="py-2 px-4 dark:bg-zinc-600 dark:border-zinc-500 flex cursor-pointer border border-zinc-900 peer-checked:hover:border-amber-500 hover:border-amber-600 justify-center items-center peer-checked:bg-amber-500 peer-checked:border-amber-500 peer-checked:text-white"
 							>{option}</label
 						>
 					</div>
@@ -119,24 +109,18 @@
 				/>
 			</fieldset>
 		</div>
-		<p>
-			<b>{$t('global.donation.be_patron')}</b>{$t('global.donation.p2')}
-		</p>
-		<div class="w-full">
+		<div class="w-full px-6 pb-6 text-center">
 			<button
 				on:click={checkout}
 				{disabled}
 				class=" {disabled
 					? 'bg-zinc-400 dark:bg-zinc-500 dark:text-zinc-700 cursor-not-allowed '
-					: 'bg-zinc-800 dark:bg-teal-600  cursor-pointer  hover:scale-[1.02] transform transition-transform'}  sm:max-lg:w-2/3 lg:max-xl:w-1/2 text-white w-full text-lg font-semibold py-3 gap-3 mb-3"
+					: 'bg-zinc-800 dark:bg-teal-600  cursor-pointer  hover:scale-[1.02] transform transition-transform'}  sm:max-lg:w-2/3 text-white w-full text-lg font-semibold py-3 gap-3"
 			>
 				<span>{$t('global.donation.support')}</span>
 				<span>{quantity * 5} €</span>
 			</button>
 		</div>
-		<p>
-			{$t('global.donation.p3')}
-		</p>
 	</div>
 </div>
 

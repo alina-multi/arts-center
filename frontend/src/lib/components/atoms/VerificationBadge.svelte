@@ -6,5 +6,5 @@
 </script>
 
 {#if user_verified}
-	<Icon src={CheckBadge} theme="solid" class="{size} fill-emerald-500" />
+	<Icon src={CheckBadge} theme="solid" class=" fill-emerald-500 {size}" />
 {/if}
