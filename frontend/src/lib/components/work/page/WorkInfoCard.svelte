@@ -3,6 +3,7 @@
 	import GetInTouchButton from '$lib/components/atoms/buttons/GetInTouchButton.svelte';
 	import VerificationBadge from '$lib/components//atoms/VerificationBadge.svelte';
 	import LocaleDate from '$lib/components/atoms/LocaleDate.svelte';
+
 	import { getContext } from 'svelte';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import { user } from '$lib/stores/auth';
