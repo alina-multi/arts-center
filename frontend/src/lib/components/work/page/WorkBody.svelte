@@ -20,7 +20,7 @@
 
 <div
 	id={galleryID}
-	class="pswp-gallery flex flex-col-reverse xl:flex-row xl:max-h-[calc(100vh-200px)] gap-4 lg:gap-9"
+	class="pswp-gallery flex flex-col-reverse xl:flex-row xl:aspect-[4/3] overflow-hidden gap-4 lg:gap-9"
 >
 	{#if work.images.length > 0}
 		<div
@@ -40,6 +40,6 @@
 	<ImageLightBox
 		image={work.full}
 		alt={work.titles[0].alt}
-		picture_class="  h-full w-full object-contain object-top "
+		picture_class="xl:aspect-[4/3]  h-full w-full object-contain object-top "
 	/>
 </div>

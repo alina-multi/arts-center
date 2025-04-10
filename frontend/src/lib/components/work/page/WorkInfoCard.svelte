@@ -3,6 +3,7 @@
 	import GetInTouchButton from '$lib/components/atoms/buttons/GetInTouchButton.svelte';
 	import VerificationBadge from '$lib/components//atoms/VerificationBadge.svelte';
 	import LocaleDate from '$lib/components/atoms/LocaleDate.svelte';
+
 	import { getContext } from 'svelte';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import { user } from '$lib/stores/auth';
@@ -34,9 +35,6 @@
 				</div>
 
 				<div class="space-y-3">
-					<!-- 
-                    we will need  it in the future
-                    <p class="text-zinc-600 font-semibold max-lg:text-right">{$t('global.work_page.not_available')}</p> -->
 					<div class="text-zinc-500 dark:text-zinc-300">
 						<span>{$t('global.published_on')}</span>
 						{#if work.published_at}
@@ -48,5 +46,3 @@
 		</div>
 	{/each}
 </div>
-
-<!-- {#if work.tags} <TagsGroup tags={work.tags}  /> {/if} -->
