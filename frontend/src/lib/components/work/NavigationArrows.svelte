@@ -5,8 +5,7 @@
 	import { localePath } from '$lib/translations';
 	import { getContext } from 'svelte';
 
-	export let currentWorkIndex;
-	export let gallery;
+	export let currentWorkIndex, gallery;
 
 	const locale = getContext('locale');
 
