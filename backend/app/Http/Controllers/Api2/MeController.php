@@ -14,7 +14,17 @@ class MeController extends Controller
     public function __invoke(Request $request)
     {
         /** @var User $user */
-        $user = $request->user()->load(['photo', 'threads', 'blacklists', 'follows', 'favorites']);
+        $user = $request->user()->load([
+            'photo',
+            'threads',
+            'blacklists',
+            'follows',
+            'favorites',
+            'participants.thread.messages' => function ($query) use ($request) {
+                $query->where('user_id', '!=', $request->user()->id);
+            }
+        ]);
+
         $blacklists = $user->blacklists->pluck('blacklist_user_id')->toArray();
         $follows = $user->follows->mapToGroups(function (Follow $follow) {
             return [$follow->followable_type => $follow->followable_id];
@@ -22,7 +32,16 @@ class MeController extends Controller
         $favorites = $user->favorites->pluck('work_id')->toArray();
         $favoriteFolders = $user->favoriteFolders->toArray();
         $threads = $user->threads()->where('type', ThreadType::Direct)->with('participants', fn($query) => $query->where('user_id', '!=', $user->id))->get()->mapWithKeys(fn(Thread $thread) => [strval($thread?->participants?->first()?->user_id) ?? 0 => $thread->id]);
-        $user->update(['last_seen'=>now()]);
+
+        // Count unread messages using participants relation, ignoring participants where approved_at is null
+        $unreadMessagesCount = $user->participants
+            ->whereNotNull('approved_at')
+            ->sum(fn($participant) => $participant->thread->messages
+                ->when($participant->last_read, fn($query) => $query->where('created_at', '>', $participant->last_read))
+                ->count()
+            );
+
+        $user->update(['last_seen' => now()]);
         return [
             ...$user->toArray(),
             'role' => $user->role,
@@ -37,6 +56,7 @@ class MeController extends Controller
                 'folders' => $favoriteFolders
             ],
             'unread' => $user->unreadNotifications->count(),
+            'unread_messages' => $unreadMessagesCount,
             'threads' => $threads
         ];
     }
