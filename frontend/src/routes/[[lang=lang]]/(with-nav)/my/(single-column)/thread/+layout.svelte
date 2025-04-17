@@ -9,10 +9,8 @@
 </script>
 
 {#if $user}
-	<main>
-		<div
-			class=" w-full container mx-auto h-[calc(100vh-162px)] md:h-[calc(100vh-108px)] flex flex-col"
-		>
+	<main class="lg:container lg:mx-auto max-xl:px-3">
+		<div class=" w-full h-[calc(100vh-162px)] md:h-[calc(100vh-108px)] flex flex-col">
 			<div class="flex-1 flex overflow-hidden">
 				<div
 					class="md:w-1/3 md:border-x dark:border-x-zinc-800 overflow-y-auto {$page.params.threadID
@@ -24,7 +22,7 @@
 					</div>
 
 					<div class=" flex-1 overflow-y-auto">
-						<TreadList threads={data.threads} />
+						<TreadList threads={data.threads.data} />
 					</div>
 				</div>
 

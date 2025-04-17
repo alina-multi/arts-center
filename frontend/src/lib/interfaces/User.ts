@@ -48,4 +48,5 @@ export interface UserMe extends UserBasic {
 	unread: number;
 	threads: object;
 	intent: 'explore' | 'buy' | 'sell' | 'network' | null;
+	unread_messages: number;
 }
