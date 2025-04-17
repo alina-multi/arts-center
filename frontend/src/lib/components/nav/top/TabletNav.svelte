@@ -21,19 +21,21 @@
 
 	<div class="hidden lg:block pl-9 flex-1"><SearchInput /></div>
 
-	<div class="flex items-center gap-6 lg:w-[300px] h-full justify-end ml-9 max-md:mr-3">
+	<div class=" lg:w-[280px] h-full ml-6 mr-3">
 		{#if !$isUserLoading}
-			<div class="lg:hidden flex justify-center"><Search /></div>
+			<div class="flex items-center gap-3 justify-end">
+				<div class="lg:hidden flex justify-center mr-3"><Search /></div>
 
-			<div class="hidden md:flex"><AddWorkButton /></div>
+				<div class="hidden md:flex"><AddWorkButton /></div>
 
-			{#if $user}
-				<ChatButton />
-				<BellButton />
-				<UserDropdown />
-			{:else}
-				<LoginLink />
-			{/if}
+				{#if $user}
+					<ChatButton />
+					<BellButton />
+					<UserDropdown />
+				{:else}
+					<LoginLink />
+				{/if}
+			</div>
 		{/if}
 	</div>
 </div>
