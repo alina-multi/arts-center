@@ -16,8 +16,6 @@
 		dispatch('login-click');
 	}
 
-	
-
 	$: redirect = $page.url.pathname.length > 1 ? `?redirect=${$page.url.pathname}` : '';
 </script>
 
