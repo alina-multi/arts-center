@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api2;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateThreadRequest;
 use App\Http\Requests\UpdateThreadRequest;
+use App\Http\Resources\ThreadResource;
 use App\Models\Thread;
 use App\Models\User;
 use App\Notifications\NewThreadCreated;
@@ -20,13 +21,13 @@ class ThreadController extends Controller
 
     public function index(Request $request)
     {
-        return $request
+        return ThreadResource::collection($request
             ->user()
             ->threads()
             ->with([
                 'participants' => fn($query) => $query->where('user_id', '!=', $request->user()->id),
-                'participants.user', 'participants.user.photo', 'lastMessage', 'lastMessage.user', 'lastMessage.user.photo'
-            ])->get();
+                'participants.user', 'participants.user.photo', 'messages', 'messages.user', 'messages.user.photo'
+            ])->get());
     }
 
     /**
@@ -52,8 +53,10 @@ class ThreadController extends Controller
      */
     public function show(Request $request, Thread $thread)
     {
+        // Update last read
+        $thread->participants()->where('user_id', $request->user()->id)->update(['last_read' => now()]);
         return $thread->load(['participants' => fn($query) => $query->where('user_id', '!=', $request->user()->id),
-                'participants.user', 'participants.user.photo', 'messages', 'messages.user', 'messages.user.photo']);
+            'participants.user', 'participants.user.photo', 'messages', 'messages.user', 'messages.user.photo']);
     }
 
     /**

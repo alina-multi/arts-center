@@ -62,19 +62,22 @@ test('Index shows correct threads', function () {
     $valid->participants()->create(['user_id' => $this->user->id, 'approved_at' => now()]);
     $valid->participants()->create(['user_id' => $this->user2->id, 'approved_at' => now()]);
     actingAs($this->user)->getJson("/api2/thread")->assertOk()->assertJsonCount(1)->assertExactJson([
-        [
-            "id" => $valid->id,
-            "title" => $valid->title,
-            "type" => $valid->type,
-            "created_at" => $valid->created_at,
-            "updated_at" => $valid->updated_at,
-            // For convenience on the frontend, we shouldn't receive our own user here
-            "participants" => $valid->participants()->where('user_id', '!=', $this->user->id)->with('user', 'user.photo')->get()->toArray(),
-            "last_message" => $valid->messages->last()->load('user', 'user.photo')->toArray(),
-            "pivot" => [
-                "last_read" => null,
-                "thread_id" => $valid->id,
-                "user_id" => $this->user->id
+        "data" => [
+            [
+                "id" => $valid->id,
+                "title" => $valid->title,
+                "type" => $valid->type,
+                "created_at" => $valid->created_at,
+                "updated_at" => $valid->updated_at,
+                // For convenience on the frontend, we shouldn't receive our own user here
+                "participants" => $valid->participants()->where('user_id', '!=', $this->user->id)->with('user', 'user.photo')->get()->toArray(),
+                "last_message" => $valid->messages->last()->load('user', 'user.photo')->toArray(),
+                "pivot" => [
+                    "last_read" => null,
+                    "thread_id" => $valid->id,
+                    "user_id" => $this->user->id
+                ],
+                'unread_messages' => 3
             ]
         ]
     ]);
@@ -85,13 +88,14 @@ test('Thread messages', function () {
     $thread->participants()->create(['user_id' => $this->user->id, 'approved_at' => now()]);
     $thread->participants()->create(['user_id' => $this->user2->id, 'approved_at' => now()]);
     actingAs($this->user)->getJson("/api2/thread/$thread->id")->assertOk()->assertExactJson([
-            "id" => $thread->id,
-            "title" => $thread->title,
-            "type" => $thread->type,
-            "created_at" => $thread->created_at,
-            "updated_at" => $thread->updated_at,
-            // For convenience on the frontend, we shouldn't receive our own user here
-            "participants" => $thread->participants()->where('user_id', '!=', $this->user->id)->with('user', 'user.photo')->get()->toArray(),
-            "messages" => $thread->messages->load('user', 'user.photo')->toArray(),
+        "id" => $thread->id,
+        "title" => $thread->title,
+        "type" => $thread->type,
+        "created_at" => $thread->created_at,
+        "updated_at" => $thread->updated_at,
+        // For convenience on the frontend, we shouldn't receive our own user here
+        "participants" => $thread->participants()->where('user_id', '!=', $this->user->id)->with('user', 'user.photo')->get()->toArray(),
+        "messages" => $thread->messages->load('user', 'user.photo')->toArray(),
     ]);
+    expect($thread->participants()->first()->last_read)->toEqualWithDelta(now(), 10);
 });
