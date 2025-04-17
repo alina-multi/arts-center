@@ -3,6 +3,9 @@
 	import { page } from '$app/stores';
 	import { getContext } from 'svelte';
 	import { showAuthModal } from '$lib/stores/auth';
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
 
 	const t = getContext('t');
 	const locale = getContext('locale');
@@ -10,6 +13,7 @@
 
 	function onClick() {
 		showAuthModal.set(true);
+		dispatch('login-click');
 	}
 
 	$: redirect = $page.url.pathname.length > 1 ? `?redirect=${$page.url.pathname}` : '';
