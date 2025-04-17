@@ -31,7 +31,7 @@
 
 <Button on:click={() => (open = !open)} type={'button'}>
 	<span class="sr-only">Open main menu</span>
-	<Icon src={Bars4} class="h-9 w-9  stroke-1 dark:text-white" aria-hidden="true" />
+	<Icon src={Bars4} class="h-9 w-9  stroke-1 dark:text-white" />
 </Button>
 
 <Transition show={open} class="hidden">
@@ -99,7 +99,8 @@
 						class="grid grid-cols-2 items-center px-6 pt-9 pb-6 justify-start gap-4 xs:gap-6 border-t dark:border-zinc-800"
 					>
 						<AddWorkButton />
-						<LoginLink />
+
+						<LoginLink on:login-click={() => (open = false)} />
 					</div>
 				{/if}
 

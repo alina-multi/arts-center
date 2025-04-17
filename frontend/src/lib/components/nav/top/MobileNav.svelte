@@ -11,12 +11,13 @@
 	<div class="flex items-center gap-3">
 		<SideBarNavigation />
 		<Logo />
-		<ChatButton />
+
 		<UaFlag />
 	</div>
 
-	<div class="flex items-center min-xs:hidden gap-3 xs:gap-6 xs:mr-3">
+	<div class="flex items-center min-xs:hidden gap-3 xs:mr-3">
 		<SearchDialog />
+		<ChatButton />
 		<BellButton />
 	</div>
 </div>
