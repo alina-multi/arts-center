@@ -37,6 +37,7 @@ class MeController extends Controller
         $unreadMessagesCount = $user->participants
             ->whereNotNull('approved_at')
             ->sum(fn($participant) => $participant->thread->messages
+                ->where('user_id', '!=', $user->id)
                 ->when($participant->last_read, fn($query) => $query->where('created_at', '>', $participant->last_read))
                 ->count()
             );

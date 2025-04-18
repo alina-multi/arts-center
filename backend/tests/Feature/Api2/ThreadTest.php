@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Models\Message;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -57,10 +58,12 @@ test('No delete route exists', function () {
 });
 
 test('Index shows correct threads', function () {
-    [$unrelated, $unapproved, $valid] = \App\Models\Thread::factory()->hasMessages(3, ['user_id' => $this->user->id])->count(3)->create();
+    [$unrelated, $unapproved, $valid] = \App\Models\Thread::factory()->hasMessages(3, ['user_id' => $this->user2->id])->count(3)->create();
     $unapproved->participants()->create(['user_id' => $this->user->id]);
     $valid->participants()->create(['user_id' => $this->user->id, 'approved_at' => now()]);
     $valid->participants()->create(['user_id' => $this->user2->id, 'approved_at' => now()]);
+    // Message from yourself should not be counted
+    Message::factory()->create(['thread_id' => $valid->id, 'user_id' => $this->user->id]);
     actingAs($this->user)->getJson("/api2/thread")->assertOk()->assertJsonCount(1)->assertExactJson([
         "data" => [
             [

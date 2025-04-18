@@ -32,6 +32,12 @@ it('Returns valid data', function () {
         'user_id' => $otherUserId,
         'created_at' => now()
     ]);
+    // This one should be ignored in count
+    Message::factory()->count(1)->create([
+        'thread_id' => $thread->id,
+        'user_id' => $user->id,
+        'created_at' => now()
+    ]);
     
     actingAs($user)->getJson('/api2/me')->assertOk()
         ->assertJson(fn(AssertableJson $json) => $json->where('id', $user->id)
