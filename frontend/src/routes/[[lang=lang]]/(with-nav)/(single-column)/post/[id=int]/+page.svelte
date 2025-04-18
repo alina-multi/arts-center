@@ -82,13 +82,13 @@
 		</div>
 
 		<div
-			class="w-full flex justify-between gap-2 sm:gap-4 border-t py-4 dark:border-zinc-800 lg:py-6 sm:mt-3"
+			class="w-full flex justify-between gap-2 sm:gap-4 border-t  dark:border-zinc-800 pt-6 mt-9"
 		>
 			<RatingPreviewVote showVotedPreview entity={data.post} votable_type={'post'} />
 			<div class="sm:hidden"><ShareButton /></div>
 		</div>
 	</div>
-	<div class=" lg:mt-16 w-full">
+	<div class="mt-16 w-full">
 		<CommentBlocks
 			commentable_type="post"
 			commentsCount={data.post.comments}
