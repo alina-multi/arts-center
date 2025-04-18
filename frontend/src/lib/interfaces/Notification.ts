@@ -11,6 +11,7 @@ export const NotificationTypes = new Map([
 	[20, 'FeaturedPosts'],
 	[40, 'MyContentComment'],
 	[41, 'MyContentVote'],
+	[42, 'MyDirectMessage'],
 	[60, 'SubscriptionPost'],
 	[61, 'SubscriptionWork']
 ]);

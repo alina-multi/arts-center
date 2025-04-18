@@ -2,15 +2,18 @@
 
 namespace App\Notifications;
 
+use App\Enums\NotificationTypes;
 use App\Helpers\UrlHelper;
 use App\Models\Message;
+use App\Models\User;
+use App\Traits\UsesNotificationPreferences;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class NewMessage extends Notification
 {
-    use Queueable;
+    use Queueable, UsesNotificationPreferences;
 
     public function __construct(public Message $message)
     {
@@ -21,13 +24,13 @@ class NewMessage extends Notification
      *
      * @return array<int, string>
      */
-    public function via(object $notifiable): array
+    public function via(User $user): array
     {
-        return [
+        return $this->filterChannelsByUserPreferences($user, NotificationTypes::MyDirectMessage, [
             'broadcast',
             'database',
             'mail'
-        ];
+        ]);
     }
 
     /**
