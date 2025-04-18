@@ -40,7 +40,7 @@ class NewMessage extends Notification
             ->from($this->message->user->email, $this->message->user->name)
             ->line(__('notifications.message.received'))
             ->line($this->message->message)
-            ->action($this->message->user->name, UrlHelper::localePath("/{$this->message->user->username}"));
+            ->action(__('notifications.message.go'), UrlHelper::localePath("/my/thread/{$this->message->thread_id}"));
     }
 
     /**
