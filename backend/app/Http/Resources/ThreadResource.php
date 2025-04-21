@@ -23,7 +23,7 @@ class ThreadResource extends JsonResource
             'last_message' => $this->messages->last(),
             'participants' => $this->participants,
             'pivot' => $this->pivot,
-            'unread_messages' => $this->messages->where('created_at', '>', $this->pivot->last_read ?? now()->subYear())->count(),
+            'unread_messages' => $this->messages->where('created_at', '>', $this->pivot->last_read ?? now()->subYear())->where('user_id', '!=', $request->user()->id)->where('type', '!=', 'deleted')->count(),
         ];
     }
 }

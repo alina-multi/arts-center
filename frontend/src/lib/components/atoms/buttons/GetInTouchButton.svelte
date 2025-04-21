@@ -60,7 +60,11 @@
 	{/if}
 {/if}
 
-<ModalWindow bind:open on:close class=" max-w-[484px] md:mx-auto rounded-[12px] sm:m-20 p-12 ">
+<ModalWindow
+	bind:open
+	on:close
+	class=" max-sm:mt-16 max-sm:mx-4 sm:w-3/4  lg:max-w-[484px] sm:mx-auto rounded-[12px]  sm:mt-20 py-12 px-6 xs:p-12 "
+>
 	{#if message_sent}
 		<div class="flex flex-col text-center items-center gap-3">
 			<Icon src={RocketLaunch} class="w-28 h-28 stroke-1" />
