@@ -81,9 +81,7 @@
 			{/each}
 		</div>
 
-		<div
-			class="w-full flex justify-between gap-2 sm:gap-4 border-t  dark:border-zinc-800 pt-6 mt-9"
-		>
+		<div class="w-full flex justify-between gap-2 sm:gap-4 border-t dark:border-zinc-800 pt-6 mt-9">
 			<RatingPreviewVote showVotedPreview entity={data.post} votable_type={'post'} />
 			<div class="sm:hidden"><ShareButton /></div>
 		</div>
