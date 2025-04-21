@@ -27,5 +27,6 @@ return [
     "message" => [
         "received" => "You have received a new message!",
         "subject" => ":name just messaged you",
+        "go" => "Go to the message"
     ]
 ];
