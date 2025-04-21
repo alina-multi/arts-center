@@ -8,7 +8,6 @@
 	export let stateName: string;
 	export let keysToInclude: string[];
 
-	
 	function safeSerializable(obj: Record<string, unknown>): Record<string, unknown> | null {
 		try {
 			return JSON.parse(
