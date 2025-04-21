@@ -18,7 +18,7 @@ class Message extends Model
     ];
 
     protected $fillable = [
-        'message', 'user_id'
+        'message', 'user_id', 'thread_id'
     ];
 
     function thread(): BelongsTo
