@@ -12,7 +12,9 @@
 	$: currentWorkIndex = -1;
 
 	$: if ($page?.state?.workModal) {
-		currentWorkIndex = gallery.findIndex((work) => work.id === $page.state?.workModal.work.id);
+		currentWorkIndex = gallery.findIndex(
+			(work) => Number(work.id) === Number($page.state?.workModal.work.id)
+		);
 	}
 
 	function gotoGallery() {
