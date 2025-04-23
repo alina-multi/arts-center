@@ -28,7 +28,6 @@ class NewMessage extends Notification
     {
         return $this->filterChannelsByUserPreferences($user, NotificationTypes::MyDirectMessage, [
             'broadcast',
-            'database',
             'mail'
         ]);
     }
@@ -60,5 +59,10 @@ class NewMessage extends Notification
             'thread_id' => $this->message->thread_id,
             'created_at' => $this->message->created_at,
         ];
+    }
+
+    public function broadcastOn(): string
+    {
+        return "user_messages.{$this->message->user_id}";
     }
 }
