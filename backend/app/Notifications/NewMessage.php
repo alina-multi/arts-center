@@ -16,7 +16,7 @@ class NewMessage extends Notification
 {
     use Queueable, UsesNotificationPreferences;
 
-    public function __construct(public Message $message)
+    public function __construct(public Message $message, public int $user_id)
     {
     }
 
@@ -64,6 +64,6 @@ class NewMessage extends Notification
 
     public function broadcastOn(): string
     {
-        return new PrivateChannel("user_messages.{$this->message->user_id}");
+        return new PrivateChannel("user_messages.{$this->user_id}");
     }
 }

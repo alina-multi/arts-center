@@ -22,7 +22,7 @@ class ThreadMessageController extends Controller
         $part = $thread->participants;
         $thread->participants
             ->where('user_id', '!=', $user_id)
-            ->each(fn(Participant $participant) => $participant->user->notify(new NewMessage($newMessage)));
+            ->each(fn(Participant $participant) => $participant->user->notify(new NewMessage($newMessage, $participant->user_id)));
         return $newMessage;
     }
 
