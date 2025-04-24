@@ -38,7 +38,7 @@
 		: 'hidden md:flex-1 md:flex md:flex-col'}  "
 >
 	<h2
-		class="text-xl font-semibold py-4 pl-4 md:pl-6 border-b dark:border-b-zinc-800 flex items-center gap-3"
+		class="text-xl font-semibold py-4  md:pl-6 border-b dark:border-b-zinc-800 flex items-center gap-3"
 	>
 		<a {href} class={$page.params.threadID ? 'block md:hidden' : 'block'}>
 			<Icon src={ArrowLongLeft} class="w-8 h-8 stroke-1" /></a
@@ -52,7 +52,7 @@
 		/>
 	</h2>
 
-	<div class="flex-1 overflow-y-auto p-4 max-md:mb-12" id="thread-{data.thread.id}">
+	<div class="flex-1 overflow-y-auto pt-4 md:p-4 max-md:mb-12" id="thread-{data.thread.id}">
 		<Thread thread={data.thread} on:edit={onEdit} />
 	</div>
 
