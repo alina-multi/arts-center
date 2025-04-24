@@ -7,6 +7,7 @@ use App\Helpers\UrlHelper;
 use App\Models\Message;
 use App\Models\User;
 use App\Traits\UsesNotificationPreferences;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
@@ -63,6 +64,6 @@ class NewMessage extends Notification
 
     public function broadcastOn(): string
     {
-        return "user_messages.{$this->message->user_id}";
+        return new PrivateChannel("user_messages.{$this->message->user_id}");
     }
 }
