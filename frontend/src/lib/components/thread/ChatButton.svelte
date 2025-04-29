@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { user as currentUser, isUserLoading } from '$lib/stores/auth';
+	import { user } from '$lib/stores/auth';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ChatBubbleOvalLeftEllipsis } from '@steeze-ui/heroicons';
 	import { localePath } from '$lib/translations';
 	import { getContext } from 'svelte';
+
 	const locale = getContext('locale');
 </script>
 

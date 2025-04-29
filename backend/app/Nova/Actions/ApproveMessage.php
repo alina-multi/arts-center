@@ -29,7 +29,7 @@ class ApproveMessage extends Action
             $message?->thread?->participants?->whereNull('approved_at')->each(function (Participant $participant) use ($message) {
                 $participant->approved_at = now();
                 $participant->save();
-                $participant->user->notify(new NewMessage($message));
+                $participant->user->notify(new NewMessage($message, $participant->user_id));
             });
         });
     }

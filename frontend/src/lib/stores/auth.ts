@@ -12,14 +12,17 @@ export const user: Writable<UserMe> = writable();
 export const isUserLoading: Writable<boolean> = writable(true);
 
 export const notifications: Writable<Notification[]> = writable([]);
+export const newMessages: Writable<Notification[]> = writable([]);
 export const showAuthModal: Writable<boolean> = writable(false);
+export const newMessage = writable(null);
+export const threadsStore = writable([]);
 
 export async function checkAuth() {
 	fetchData('post', '/me').then(async (response) => {
 		const text = await response.text();
 		const userObj = parse(text);
 		user.set(userObj?.id ? userObj : undefined);
-		isUserLoading.set(false);
+		isUserLoading.set(null);
 	});
 }
 
@@ -38,6 +41,10 @@ user.subscribe((user) => {
 		});
 		window.Echo.private(`user.${user.id}`).notification((notification) => {
 			notifications.update((current) => [...current, notification]);
+		});
+
+		window.Echo.private(`user_messages.${user.id}`).notification((notification) => {
+			newMessages.update((current) => [...current, notification]);
 		});
 	}
 });

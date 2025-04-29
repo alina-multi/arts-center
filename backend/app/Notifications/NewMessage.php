@@ -2,17 +2,21 @@
 
 namespace App\Notifications;
 
+use App\Enums\NotificationTypes;
 use App\Helpers\UrlHelper;
 use App\Models\Message;
+use App\Models\User;
+use App\Traits\UsesNotificationPreferences;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class NewMessage extends Notification
 {
-    use Queueable;
+    use Queueable, UsesNotificationPreferences;
 
-    public function __construct(public Message $message)
+    public function __construct(public Message $message, public int $user_id)
     {
     }
 
@@ -21,13 +25,12 @@ class NewMessage extends Notification
      *
      * @return array<int, string>
      */
-    public function via(object $notifiable): array
+    public function via(User $user): array
     {
-        return [
+        return $this->filterChannelsByUserPreferences($user, NotificationTypes::MyDirectMessage, [
             'broadcast',
-            'database',
             'mail'
-        ];
+        ]);
     }
 
     /**
@@ -53,9 +56,14 @@ class NewMessage extends Notification
         return [
             'id' => $this->message->id,
             'message' => $this->message->message,
-            'user' => $this->message->user,
+            'user' => $this->message->user->load('photo.variants'),
             'thread_id' => $this->message->thread_id,
             'created_at' => $this->message->created_at,
         ];
+    }
+
+    public function broadcastOn(): string
+    {
+        return new PrivateChannel("user_messages.{$this->user_id}");
     }
 }

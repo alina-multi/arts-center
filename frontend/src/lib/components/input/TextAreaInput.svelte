@@ -24,6 +24,7 @@
 	{/if}
 	<textarea
 		on:focus={() => (error = false)}
+		on:keydown
 		{id}
 		{placeholder}
 		{name}

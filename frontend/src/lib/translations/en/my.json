@@ -83,18 +83,29 @@
 		"approved": "Your profile is still waiting for review. You can start with filling up your profile and uploading couple of works. They will be visible for other users once your profile is approved.",
 		"email": "Please check your inbox and confirm your email address"
 	},
+	"messages": {
+		"messages": "Messages",
+		"welcome": "Welcome to Your Messages!",
+		"editPlaceholder": "Edit your message...",
+		"newPlaceholder": "Write a message...",
+		"cancelEdit": "Cancel editing",
+		"confirmEdit": "Confirm editing",
+		"sendMessage": "Send message",
+		"newMessages": "New messages",
+		"newMessage_from": "New message from"
+	},
 	"my_works": "My works",
 	"no_blocked": "There are no users in your blacklist",
 	"no_drafts": "There are no drafts",
 	"notifications": {
 		"no_notifications": "All your notifications will be here",
 		"notifications": "Notifications",
-		"viewed": "Viewed notifications",
 		"preferences": {
 			"disable": "Disable all notifications",
 			"FeaturedPosts": "Featured Posts",
 			"MyContentComment": "Сomments on your publications, works, and replies to your comments",
 			"MyContentVote": "Likes of your publications and works",
+			"MyDirectMessage": "Direct message",
 			"SiteNews": "Site News",
 			"SubscriptionPost": "New publications from authors you are subscribed to",
 			"SubscriptionWork": "New works from artists you are subscribed to",
@@ -102,7 +113,8 @@
 			"title": "Notification preferences",
 			"update_btn": "Update preferences"
 		},
-		"unread": "unread"
+		"unread": "unread",
+		"viewed": "Viewed notifications"
 	},
 	"people": "people",
 	"post": {
@@ -136,9 +148,5 @@
 			"waiting": "Waiting"
 		},
 		"titles": "Work titles"
-	},
-	"messages": {
-		"messages": "Messages",
-		"welcome": "Welcome to Your Messages!"
 	}
 }
