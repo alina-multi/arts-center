@@ -5,18 +5,25 @@ namespace App\Http\Controllers\Api2;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MessageRequest;
 use App\Models\Message;
+use App\Models\Participant;
 use App\Models\Thread;
-use Illuminate\Http\Request;
+use App\Notifications\NewMessage;
 
 class ThreadMessageController extends Controller
 {
     public function store(Thread $thread, MessageRequest $request)
     {
+        $user_id = $request->user()->id;
         $this->authorize('view', $thread);
-        return $thread->messages()->create([
+        $newMessage = $thread->messages()->create([
             ...$request->validated(),
-            'user_id' => $request->user()->id,
+            'user_id' => $user_id,
         ]);
+        $part = $thread->participants;
+        $thread->participants
+            ->where('user_id', '!=', $user_id)
+            ->each(fn(Participant $participant) => $participant->user->notify(new NewMessage($newMessage, $participant->user_id)));
+        return $newMessage;
     }
 
     public function update(Thread $thread, MessageRequest $request, Message $message)

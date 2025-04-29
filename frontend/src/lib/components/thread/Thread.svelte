@@ -34,7 +34,7 @@
 		id="message-{message.id}"
 		class="group mb-4 flex {$user?.id === message?.user.id ? 'justify-end' : 'justify-start'}"
 	>
-		<div class="flex gap-2.5">
+		<div class="flex items-start gap-2.5">
 			{#if $user?.id != message?.user.id}
 				<AvatarLink user={message?.user} size="w-8 h-8 " />
 			{/if}
@@ -62,17 +62,21 @@
 			<div>
 				<div
 					title={new Date(message.created_at).toUTCString()}
-					class="flex flex-col w-full max-w-[320px] leading-1.5 px-4 py-2 {$user?.id ===
+					class="flex flex-col w-full sm:max-w-[420px] leading-1.5 px-4 py-2 {$user?.id ===
 					message?.user.id
 						? 'border-zinc-200 bg-blue-600 dark:hover:bg-blue-500 text-white rounded-l-xl rounded-tr-xl'
-						: ' border-zinc-200 bg-zinc-100 dark:bg-zinc-600 rounded-e-xl rounded-es-xl '}   "
+						: ' border-zinc-200 bg-zinc-100 dark:bg-zinc-600 rounded-e-xl rounded-es-xl   '}   "
 				>
-					<p class="text-sm font-normal">
+					<p class="text-sm font-normal break-words whitespace-pre-wrap leading-relaxed">
 						{message?.message}
 					</p>
 				</div>
-				<div class="flex justify-end items-center gap-3">
-					<div class="text-xs font-light text-zinc-500 mt-1">
+				<div
+					class="flex {$user?.id === message?.user.id
+						? 'justify-end '
+						: 'justify-start'}   items-centergap-3"
+				>
+					<div class="text-[11px] font-light text-zinc-500 mt-1">
 						<Time date={message.created_at} />
 					</div>
 					<!-- {#if $user?.id === message?.user.id}

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Support\Facades\Notification;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -18,6 +19,7 @@ test('Create message', function () {
         'message' => 'Test message',
     ])->assertForbidden();
     $participant = $thread->participants()->create(['user_id' => $this->user->id]);
+    $participant2 = $thread->participants()->create(['user_id' => $this->user2->id, 'approved_at' => now()]);
     // Not approved, so still not a part of it
     actingAs($this->user)->postJson("/api2/thread/$thread->id/message", [
         'message' => 'Test message',
@@ -25,12 +27,15 @@ test('Create message', function () {
     // Now it should be allowed
     $participant->approved_at = now();
     $participant->save();
+    Notification::fake();
     actingAs($this->user)->postJson("/api2/thread/$thread->id/message", [
         'message' => 'Test message',
     ])->assertCreated();
     assertDatabaseHas('messages', ['message' => 'Test message', 'thread_id' => $thread->id]);
     // Posting a new message should change updated_at of a thread
     expect($thread->refresh()->updated_at)->toEqualWithDelta(now(), 2);
+    Notification::assertCount(1);
+    Notification::assertSentTo($this->user2, \App\Notifications\NewMessage::class);
 });
 
 test('Delete message', function () {

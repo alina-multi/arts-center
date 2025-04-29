@@ -13,6 +13,7 @@ enum NotificationTypes: int
     // My content
     case MyContentComment = 40;
     case MyContentVote = 41;
+    case MyDirectMessage = 42;
 
     // Subscriptions
     case SubscriptionPost = 60;
