@@ -23,7 +23,7 @@
 		><Icon src={Envelope} theme="solid" class="w-5 h-5 text-white" /></span
 	>
 	<div class="space-y-1">
-		<span class="text-sm"> Нове повідомлення від </span>
+		<span class="text-sm"> {$t('my.messages.newMessage_from')} </span>
 		<a {href} class="font-semibold mr-1 hover:underline"> {user.name}</a>
 
 		<div

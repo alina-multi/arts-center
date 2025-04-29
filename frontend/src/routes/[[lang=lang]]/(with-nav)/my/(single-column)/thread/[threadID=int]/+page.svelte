@@ -12,6 +12,8 @@
 	import { fade } from 'svelte/transition';
 	import { onDestroy } from 'svelte';
 
+const t = getContext('t');
+
 	export let data: PageData;
 	export let form: ActionData;
 
@@ -88,7 +90,7 @@
 				transition:fade
 				class="px-4 text-center py-2 mb-4 bg-amber-50 dark:bg-zinc-800 text-amber-800 dark:text-amber-200 rounded border border-amber-200 dark:border-zinc-700 shadow-sm text-sm font-medium"
 			>
-				Нові повідомлення
+			{$t('my.messages.newMessages')}
 			</div>
 
 			<div transition:fade>

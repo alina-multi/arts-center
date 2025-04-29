@@ -8,7 +8,7 @@
 	import { getContext } from 'svelte';
 
 	const t = getContext('t');
-	const locale = getContext('locale');
+
 
 	export let editID: number | null, editedValue: string | null, threadID: number;
 

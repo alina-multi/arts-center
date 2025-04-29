@@ -90,8 +90,9 @@
 		"newPlaceholder": "Write a message...",
 		"cancelEdit": "Cancel editing",
 		"confirmEdit": "Confirm editing",
-		"sendMessage": "Send message"
-
+		"sendMessage": "Send message",
+		"newMessages": "New messages",
+		"newMessage_from": "New message from"
 	},
 	"my_works": "My works",
 	"no_blocked": "There are no users in your blacklist",
