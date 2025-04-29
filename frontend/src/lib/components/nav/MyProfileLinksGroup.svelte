@@ -30,7 +30,8 @@
 			path: '/my/notifications',
 			src: Bell,
 			text: 'notifications',
-			badge: $user.unread
+			badge: $user.unread,
+			visibility: 'sm:hidden'
 		},
 		{
 			path: '/my/profile',
@@ -94,8 +95,9 @@
 	];
 </script>
 
-{#each links as { path, src, text, exact, show, badge } (path)}
+{#each links as { path, src, text, exact, show, badge, visibility } (path)}
 	{#if show === undefined || show}
+	<div class=" {visibility} ">
 		<SideNavLink href={localePath($locale, path)} {exact}>
 			<div class="flex items-center justify-between w-full">
 				<div class="flex items-center gap-3">
@@ -110,5 +112,6 @@
 				{/if}
 			</div>
 		</SideNavLink>
+	</div>
 	{/if}
 {/each}
