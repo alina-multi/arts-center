@@ -97,21 +97,23 @@
 
 {#each links as { path, src, text, exact, show, badge, visibility } (path)}
 	{#if show === undefined || show}
-	<div class=" {visibility} ">
-		<SideNavLink href={localePath($locale, path)} {exact}>
-			<div class="flex items-center justify-between w-full">
-				<div class="flex items-center gap-3">
-					<Icon {src} class="h-6 w-6 stroke-1" aria-hidden="true" />{$t('global.my_links.' + text)}
+		<div class=" {visibility} ">
+			<SideNavLink href={localePath($locale, path)} {exact}>
+				<div class="flex items-center justify-between w-full">
+					<div class="flex items-center gap-3">
+						<Icon {src} class="h-6 w-6 stroke-1" aria-hidden="true" />{$t(
+							'global.my_links.' + text
+						)}
+					</div>
+					{#if badge}
+						<span
+							class=" bg-red-500 text-white text-xs font-medium rounded-full px-1 min-w-4 h-4 leading-3 flex justify-center items-center"
+						>
+							{badge}
+						</span>
+					{/if}
 				</div>
-				{#if badge}
-					<span
-						class=" bg-red-500 text-white text-xs font-medium rounded-full px-1 min-w-4 h-4 leading-3 flex justify-center items-center"
-					>
-						{badge}
-					</span>
-				{/if}
-			</div>
-		</SideNavLink>
-	</div>
+			</SideNavLink>
+		</div>
 	{/if}
 {/each}
