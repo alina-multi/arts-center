@@ -8,11 +8,14 @@
 	import { RocketLaunch } from '@steeze-ui/heroicons';
 	import { handleIsMy } from '$lib/helpers/handleIsMy';
 	import { fetchData } from '$lib/helpers/fetchData';
+	import { goto } from '$app/navigation';
+	import { localePath } from '$lib/translations';
 
 	let isMy = false;
 	$: isMy = handleIsMy($currentUser, user.id);
 
 	const t = getContext('t');
+	const locale = getContext('locale');
 
 	export let user;
 	export let buttonText = $t('global.buttons.get_in_touch');
@@ -42,12 +45,20 @@
 	}
 
 	const handleGetInTouch = () => {
-		if ($currentUser) {
-			open = true;
-		} else {
-			showAuthModal.set(true);
-		}
-	};
+	if (!$currentUser) {
+		showAuthModal.set(true);
+		return;
+	}
+
+	const threadId = $currentUser.threads?.[user.id];
+
+	if (threadId) {
+		const path = localePath($locale, `/my/thread/${threadId}`);
+		goto(path);
+	} else {
+		open = true;
+	}
+};
 </script>
 
 {#if !$isUserLoading}
