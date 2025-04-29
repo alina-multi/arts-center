@@ -56,7 +56,7 @@ class NewMessage extends Notification
         return [
             'id' => $this->message->id,
             'message' => $this->message->message,
-            'user' => $this->message->user,
+            'user' => $this->message->user->load('photo.variants'),
             'thread_id' => $this->message->thread_id,
             'created_at' => $this->message->created_at,
         ];
