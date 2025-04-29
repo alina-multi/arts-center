@@ -45,20 +45,20 @@
 	}
 
 	const handleGetInTouch = () => {
-	if (!$currentUser) {
-		showAuthModal.set(true);
-		return;
-	}
+		if (!$currentUser) {
+			showAuthModal.set(true);
+			return;
+		}
 
-	const threadId = $currentUser.threads?.[user.id];
+		const threadId = $currentUser.threads?.[user.id];
 
-	if (threadId) {
-		const path = localePath($locale, `/my/thread/${threadId}`);
-		goto(path);
-	} else {
-		open = true;
-	}
-};
+		if (threadId) {
+			const path = localePath($locale, `/my/thread/${threadId}`);
+			goto(path);
+		} else {
+			open = true;
+		}
+	};
 </script>
 
 {#if !$isUserLoading}

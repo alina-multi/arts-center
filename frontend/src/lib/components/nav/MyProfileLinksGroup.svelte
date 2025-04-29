@@ -29,7 +29,7 @@
 		{
 			path: '/my/notifications',
 			src: Bell,
-			text: 'notifications', 
+			text: 'notifications',
 			badge: $user.unread
 		},
 		{

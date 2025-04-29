@@ -8,7 +8,7 @@
 </script>
 
 {#if !$isUserLoading}
-	{#if $currentUser }
+	{#if $currentUser}
 		<a
 			href={localePath($locale, `/my/thread`)}
 			class="relative hover:bg-gray-100 dark:hover:bg-zinc-700 flex items-center justify-center rounded-full p-1 transition-all"
