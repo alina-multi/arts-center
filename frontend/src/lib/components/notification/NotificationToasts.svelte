@@ -4,7 +4,7 @@
 	import Notification from '$lib/components/notification/Notification.svelte';
 	import type { UserMe } from '$lib/interfaces/User';
 
-	function showNotification(notification: any) {
+	function showNotification(notification) {
 		toast(Notification, {
 			duration: 2500,
 			position: 'top-right',

@@ -16,7 +16,7 @@
 
 <a
 	href={localePath($locale, `/my/thread/${thread_id}`)}
-	on:click={()=>invalidateAll()}
+	on:click={() => invalidateAll()}
 	class="flex gap-3 items-center text-sm w-full py-3"
 >
 	<span class="p-1.5 rounded-full bg-red-500"

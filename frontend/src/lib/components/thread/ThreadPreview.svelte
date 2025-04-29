@@ -3,8 +3,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { UserGroup } from '@steeze-ui/heroicons';
 	import { user as currentUser, newMessage, threadsStore } from '$lib/stores/auth';
-	import {  invalidateAll } from '$app/navigation';
-
+	import { invalidateAll } from '$app/navigation';
 
 	export let id, title, last_message, participants, unread_messages;
 
@@ -22,10 +21,10 @@
 			}
 			return threads;
 		});
-		
+
 		unread_messages = 0;
-        newMessage.set(null)
-		invalidateAll()
+		newMessage.set(null);
+		invalidateAll();
 	}
 </script>
 

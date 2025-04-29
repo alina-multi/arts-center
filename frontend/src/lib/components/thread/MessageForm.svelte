@@ -9,7 +9,6 @@
 
 	const t = getContext('t');
 
-
 	export let editID: number | null, editedValue: string | null, threadID: number;
 
 	let newMessage = '';

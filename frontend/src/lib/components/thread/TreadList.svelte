@@ -10,7 +10,6 @@
 
 	const locale = getContext('locale');
 	threadsStore.set(threads);
-	
 </script>
 
 <SideNav>
