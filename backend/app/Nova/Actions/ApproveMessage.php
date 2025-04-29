@@ -31,9 +31,9 @@ class ApproveMessage extends Action
                 $participant->approved_at = now();
                 $participant->save();
                 $participant->user->notify(new NewMessage($message, $participant->user_id));
-                $participant->user->update(['approved_at' => now()]);
-                $participant->user->notify(new ProfileApproved());
             });
+            $message->user->update(['approved_at' => now()]);
+            $message->user->notify(new ProfileApproved());
         });
     }
 
