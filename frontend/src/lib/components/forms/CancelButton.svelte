@@ -9,7 +9,7 @@
 
 <ActionButton
 	type="button"
-	class={'bg-zinc-500 hover:bg-zinc-600 focus-visible:outline-gray-600'}
+	class={'bg-zinc-400 dark:bg-zinc-700 hover:bg-zinc-500 focus-visible:outline-zinc-600'}
 	on:click={() => {
 		open = false;
 	}}
