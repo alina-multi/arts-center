@@ -15,7 +15,10 @@
 	{/if}
 	{#if comments > 0}
 		<span class="inline-flex items-center gap-1">
-			<Icon src={ChatBubbleOvalLeft} class=" w-4 h-4 sm:w-5 sm:h-5 md:w-3.5 md:h-3.5 sm:stroke-2 " />
+			<Icon
+				src={ChatBubbleOvalLeft}
+				class=" w-4 h-4 sm:w-5 sm:h-5 md:w-3.5 md:h-3.5 sm:stroke-2 "
+			/>
 			<span>{comments}</span>
 		</span>
 	{/if}
