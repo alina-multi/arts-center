@@ -39,11 +39,6 @@
 			text: 'edit_profile'
 		},
 		{
-			path: '/my/photo',
-			src: Camera,
-			text: 'avatar'
-		},
-		{
 			path: '/my/work/add',
 			src: PlusCircle,
 			text: 'add_work'

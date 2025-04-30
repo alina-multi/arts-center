@@ -84,8 +84,16 @@
 				</div>
 
 				{#if $user}
-					<div class=" pl-6 pr-3 w-full border-y dark:border-zinc-800 pb-1 text-sm pt-9">
+					<div
+						class="flex items-center justify-between pl-6 pr-3 w-full border-y dark:border-zinc-800 pb-6 text-sm pt-9"
+					>
 						<AvatarLink user={$user} size={'w-10 h-10 '} withName nameStyles="font-semibold" />
+						<a
+							href={localePath($locale, '/my/photo')}
+							class="border px-3 py-1 bg-zinc-100 rounded"
+							aria-label={$t('global.buttons.edit_photo')}
+							>{$t('global.buttons.edit_photo')}
+						</a>
 					</div>
 
 					<ul class=" text-sm border-b pb-6 pt-3">
