@@ -6,6 +6,12 @@
 	import OnArtSince from '../atoms/OnArtsSince.svelte';
 	import VerificationBadge from '../atoms/VerificationBadge.svelte';
 	import GetInTouchButton from '$lib/components/atoms/buttons/GetInTouchButton.svelte';
+	import { user as currentUser } from '$lib/stores/auth';
+	import { handleIsMy } from '$lib/helpers/handleIsMy';
+	import AvatarEditLink from '$lib/components/user/AvatarEditLink.svelte';
+
+	let isMy = false;
+	$: isMy = handleIsMy($currentUser, user.id);
 
 	export let user: User;
 </script>
@@ -19,7 +25,11 @@
 	>
 		<div class=" flex flex-col gap-3 items-center w-full px-6 xs:px-9">
 			<div class=" -mt-20">
-				<Avatar {user} size={' w-32 h-32  max-xl:w-28 max-xl:h-28 '} />
+				{#if isMy}
+					<AvatarEditLink user={$currentUser} size={' w-32 h-32  max-xl:w-28 max-xl:h-28 '} />
+				{:else}
+					<Avatar {user} size={' w-32 h-32  max-xl:w-28 max-xl:h-28 '} />
+				{/if}
 			</div>
 
 			<div class="flex gap-3 items-start sm:items-center xl:px-6">
