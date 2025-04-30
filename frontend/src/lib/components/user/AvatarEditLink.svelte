@@ -10,18 +10,19 @@
 	const locale = getContext('locale');
 
 	export let user: UserType;
+	export let size = "h-20 w-20"
 </script>
 
 <a
 	href={localePath($locale, '/my/photo')}
-	class="relative inline-flex items-center gap-2 text-transparent hover:text-gray-700"
+	class="relative inline-flex items-center gap-2 text-transparent hover:text-zinc-900 font-semibold"
 >
-	<Avatar {user} size="h-20 w-20" />
+	<Avatar {user} {size}/>
 	<div
 		class="absolute h-full w-full flex justify-center items-center rounded-full align-middle hover:bg-gray-50/50"
 	>
 		<div>
-			<Icon src={Pencil} class="w-4 h-4 inline-block" />
+			<Icon src={Pencil} class="w-5 h-5 inline-block" />
 			{$t('global.buttons.edit')}
 		</div>
 	</div>
