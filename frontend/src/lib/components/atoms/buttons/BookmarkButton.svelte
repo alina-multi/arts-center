@@ -16,7 +16,7 @@
 	$: isBookmarked = $user?.favorites?.works.some((favorite: number) => favorite === workID);
 
 	let open = false;
-	let showInput = false;
+	let showInput = true;
 	let error = '';
 	let folderID = 0;
 	let folderName = '';
@@ -119,7 +119,7 @@
 				type="button"
 				class="flex items-center text-sm hover:text-gray-700 text-black dark:text-white dark:hover:text-zinc-300 cursor-pointer focus-outline-none focus:ring-transparent"
 			>
-				<Icon src={FolderPlus} class="h-7 w-7 " aria-hidden="true" />
+				<Icon src={FolderPlus} class="h-7 w-7 text-white" aria-hidden="true" />
 			</button>
 		{/if}
 	</svelte:fragment>
