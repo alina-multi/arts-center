@@ -20,6 +20,7 @@
 
 	const t = getContext('t');
 	const locale = getContext('locale');
+	console.log( $user)
 
 	let folders = $user?.favorites?.folders;
 	const favorites_href =
@@ -32,21 +33,21 @@
 			badge: $user.unread,
 			visibility: 'sm:hidden'
 		},
-		{
-			path: '/my/profile',
-			src: PencilSquare,
-			text: 'edit_profile'
-		},
+	
 		{
 			path: '/my/work/add',
 			src: PlusCircle,
-			text: 'add_work'
+			text: 'add_work',
+			visibility: $user.intent === 'buy' || $user.intent === 'explore'  ? ' hidden' : ''
+		
+		
 		},
 		{
 			path: '/my/work',
 			src: FolderOpen,
 			text: 'works',
-			exact: true
+			exact: true,
+			visibility: $user.intent === 'buy' || $user.intent === 'explore'  ? ' hidden' : ''
 		},
 		{
 			path: '/my/post/add',
@@ -64,7 +65,8 @@
 		{
 			path: '/my/transactions',
 			src: CurrencyDollar,
-			text: 'transactions'
+			text: 'transactions',
+			visibility: $user.intent === 'buy' || $user.intent === 'explore'  ? ' hidden' : ''
 		},
 		{
 			path: favorites_href,
@@ -85,7 +87,12 @@
 			path: '/my/blacklist',
 			src: NoSymbol,
 			text: 'blocked'
-		}
+		},
+		{
+			path: '/my/profile',
+			src: PencilSquare,
+			text: 'edit_profile'
+		},
 	];
 </script>
 

@@ -13,17 +13,20 @@
 	let redirect = $page.url.pathname.length > 1 ? `?redirect=${$page.url.pathname}` : '';
 
 	$: href = $user ? localePath($locale, `/my/work/add`) : localePath($locale, `/login${redirect}`);
+	$: isArists = $user?.intent === 'buy' || $user?.intent === 'explore' ? ' hidden' : '';
 </script>
 
 {#if $user}
-	<a
-		{href}
-		class="bg-gradient-to-r animate-gradient p-1 rounded-full from-amber-500 via-rose-500 to-orange-400 inline-flex items-center justify-center shrink-0 text-sm hover:bg-amber-500 hover:border-amber-500 bg-amber-600 text-white hover:shadow"
-	>
-		<span class="sr-only">{$t('global.buttons.addwork')}</span>
+	{#if !isArists}
+		<a
+			{href}
+			class="bg-gradient-to-r animate-gradient p-1 rounded-full from-amber-500 via-rose-500 to-orange-400 inline-flex items-center justify-center shrink-0 text-sm hover:bg-amber-500 hover:border-amber-500 bg-amber-600 text-white hover:shadow"
+		>
+			<span class="sr-only">{$t('global.buttons.addwork')}</span>
 
-		<Icon src={PlusCircle} class="h-7 w-7 " aria-hidden="true" />
-	</a>
+			<Icon src={PlusCircle} class="h-7 w-7 " aria-hidden="true" />
+		</a>
+	{/if}
 {:else}
 	<a
 		{href}
