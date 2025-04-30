@@ -18,7 +18,9 @@
 	bind:open
 	class="xl:w-1/3 rounded-sm my-24  max-sm:w-11/12 sm:max-md:mx-9 md:w-2/3 lg:w-1/2"
 >
-	<div class="flex items-center bg-zinc-900 text-white  justify-between mb-3 py-6 px-9 border-b dark:border-zinc-800">
+	<div
+		class="flex items-center bg-zinc-900 text-white justify-between mb-3 py-6 px-9 border-b dark:border-zinc-800"
+	>
 		<slot name="header" />
 	</div>
 
