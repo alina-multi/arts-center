@@ -26,9 +26,9 @@
 		<div class=" flex flex-col gap-3 items-center w-full px-6 xs:px-9">
 			<div class=" -mt-20">
 				{#if isMy}
-			<AvatarEditLink user={$currentUser} size={' w-32 h-32  max-xl:w-28 max-xl:h-28 '} />
-			{:else}
-				<Avatar {user} size={' w-32 h-32  max-xl:w-28 max-xl:h-28 '} /> 
+					<AvatarEditLink user={$currentUser} size={' w-32 h-32  max-xl:w-28 max-xl:h-28 '} />
+				{:else}
+					<Avatar {user} size={' w-32 h-32  max-xl:w-28 max-xl:h-28 '} />
 				{/if}
 			</div>
 

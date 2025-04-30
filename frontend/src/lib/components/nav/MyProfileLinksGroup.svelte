@@ -6,7 +6,6 @@
 		ArrowUpOnSquareStack,
 		Bell,
 		Bookmark,
-		Camera,
 		CurrencyDollar,
 		FolderOpen,
 		NoSymbol,
