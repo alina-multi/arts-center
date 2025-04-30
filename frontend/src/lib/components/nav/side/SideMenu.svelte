@@ -3,7 +3,7 @@
 </script>
 
 <div
-	class="container mx-auto px-3 flex flex-col xl:flex-row max-xl:gap-3 mt-3 dark:text-white mb-6"
+	class="lg:container mx-auto px-3 flex flex-col xl:flex-row max-xl:gap-3 mt-3 dark:text-white mb-6"
 >
 	<div
 		class="{style} xl:w-3/12 border dark:bg-zinc-900 dark:border-zinc-800 rounded-sm overflow-hidden"

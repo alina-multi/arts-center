@@ -1,6 +1,7 @@
 import type { Actions, PageServerLoad } from './$types';
 import { localePath } from '$lib/translations';
 import { api, csrf } from '$lib/server/api';
+import { redirect } from '@sveltejs/kit';
 
 export const load = (async (event) => {
 	await csrf(event);
@@ -29,20 +30,6 @@ export const actions = {
 				data: { intent },
 				event
 			});
-
-			if (response.ok) {
-				const redirectUrl =
-					event.url.searchParams.get('redirect') ||
-					localePath((event.params.lang as 'en' | 'uk') || 'en', '/');
-				return {
-					status: 303,
-					redirect: redirectUrl
-				};
-			} else {
-				return {
-					...(await response.json())
-				};
-			}
 		} catch (e) {
 			return {
 				errors: {
@@ -50,5 +37,16 @@ export const actions = {
 				}
 			};
 		}
+
+		if (response.ok) {
+			const redirectUrl =
+				event.url.searchParams.get('redirect') ||
+				localePath((event.params.lang as 'en' | 'uk') || 'en', '/');
+			throw redirect(303, redirectUrl);
+		}
+
+		return {
+			...(await response.json())
+		};
 	}
 } satisfies Actions;

@@ -13,7 +13,7 @@
 		<ImageWork {work} withDesription {loading} />
 	</div>
 
-	<div class="flex justify-between items-center lg:text-xs text-sm mt-auto">
+	<div class="flex justify-between items-center lg:text-xs font-medium text-xs sm:text-sm mt-auto">
 		<div class="flex items-center gap-1">
 			{#each work.owners as user (user.id)}
 				<AvatarLink {user} withName={true} size="h-5 w-5" />
