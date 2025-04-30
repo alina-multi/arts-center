@@ -32,7 +32,9 @@
 		"show": "Show",
 		"show_less": "Show less",
 		"show_more": "Show more",
-		"unblock": "Unblock"
+		"unblock": "Unblock",
+		"edit_photo" : "Change photo"
+
 	},
 	"comment": {
 		"add": {
