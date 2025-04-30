@@ -148,5 +148,11 @@
 			"waiting": "Waiting"
 		},
 		"titles": "Work titles"
+	},
+	"settings": {
+		"my_intent": "Intent on the platform",
+		"no_chosen": "No option chosen",
+		"change": "Change",
+		"see_all": "See all"
 	}
 }
