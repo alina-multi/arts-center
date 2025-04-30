@@ -1,4 +1,9 @@
 {
+	"lang": {
+		"uk": "Ukrainian",
+		"en": "English",
+		"language": "Language"
+	},
 	"bookmark": {
 		"create_folder": "Create collection",
 		"enter_folder_name": "Please enter a collection name",
@@ -192,7 +197,7 @@
 		"add_post": "Add post",
 		"add_work": "Add Work",
 		"avatar": "Change photo",
-		"blocked": "Blocked",
+		"blocked": "Blacklist",
 		"edit": "Edit",
 		"edit_profile": "Edit Profile",
 		"favorites": "Favorites",
@@ -203,7 +208,8 @@
 		"notifications": "Notifications",
 		"posts": "Posts",
 		"transactions": "Transactions",
-		"works": "My works"
+		"works": "My works",
+		"settings": "Settings"
 	},
 	"not_logged_in": {
 		"bookmark": "save this work to your collection",
