@@ -7,23 +7,21 @@
 	const t = getContext('t');
 
 	export let data;
-	let followers = data.followers;
-	followers = [];
 </script>
 
 <div>
 	<HeaderLayout title={$t('my.follow.followers')}>
 		<div slot="details" class="flex gap-3 items-center leading-3">
-			{followers.length}
+			{data.followers?.length}
 			{$t('my.people')}
 		</div>
 	</HeaderLayout>
 
 	<div class="flex flex-col dark:border-zinc-800 dark:bg-zinc-900">
-		{#if followers?.length > 0}
-			<ul class="lg:divide-y dark:lg:divide-zinc-800">
-				{#each followers as user (user.id)}
-					<li class="flex justify-between items-center gap-x-6 py-3 px-3 sm:px-9">
+		{#if data.followers?.length > 0}
+			<ul class="">
+				{#each data.followers as user (user.id)}
+					<li class="flex justify-between items-center gap-x-6 py-3 px-3 sm:px-9 xl:pr-0">
 						<div>
 							<UserPreview
 								{user}
