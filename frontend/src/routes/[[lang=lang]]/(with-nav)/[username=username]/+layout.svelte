@@ -12,8 +12,8 @@
 	let userTags = data.user.ratings.map((rating) => rating.tag);
 </script>
 
-<main class="container mx-auto gap-6 px-3 xl:flex xl:flex-row mt-6 dark:text-white">
-	<div class=" xl:w-4/12 space-y-6 sm:w-3/4 lg:max-xl:w-2/3 sm:max-xl:mx-auto mb-6">
+<main class="lg:container mx-auto gap-6 px-3 xl:flex xl:flex-row mt-6 dark:text-white">
+	<div class=" xl:w-4/12 space-y-6 md:w-3/4 lg:max-xl:w-2/3 sm:max-xl:mx-auto mb-6">
 		<UserCard user={data.user} />
 
 		{#if data.user.ratings?.length}
