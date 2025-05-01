@@ -19,14 +19,12 @@
 	<div
 		class="flex items-center gap-6 w-full py-9 px-4 sm:p-9 bg-zinc-100 dark:bg-zinc-900 max-xl:dark:border-y dark:border-zinc-800"
 	>
-		<AvatarLink {user} size={' w-28 h-28 '} />
+		<AvatarLink {user} size={' w-24 h-24 sm:w-28 sm:h-28 '} />
 		<div>
 			<div class="flex flex-col flex-1 gap-2">
 				<div class="flex items-center justify-between gap-3">
 					<a {href} class="flex dark:text-white cursor-pointer items-center gap-2">
-						<div
-							class="flex items-center flex-wrap gap-2 text-xl lg:text-2xl font-bold lg:font-semibold"
-						>
+						<div class="flex items-center flex-wrap gap-2 lg:text-xl font-bold lg:font-semibold">
 							<span>{user.name}</span>
 							<VerificationBadge user_verified={user.verified_at} />
 						</div>

@@ -11,18 +11,18 @@
 
 <div>
 	<HeaderLayout title={$t('my.blocked')}>
-		<span slot="details"> {blacklist.length} {$t('my.people')} </span>
+		<span slot="details"> {blacklist.length} </span>
 	</HeaderLayout>
 
 	<div class="flex flex-col dark:border-zinc-800 dark:bg-zinc-900">
 		{#if blacklist?.length > 0}
 			<ul class="lg:divide-y dark:lg:divide-zinc-800">
 				{#each blacklist as user (user.id)}
-					<li class="flex justify-between items-center gap-x-6 py-3 px-3 sm:px-6">
-						<div>
+					<li class="flex justify-between items-center gap-x-6 py-3 sm:py-4 px-3 sm:px-6 md:px-9">
+						<div class="text-xs max-xs:font-bold font-semibold xs:text-sm xl:text-base">
 							<UserPreview
 								{user}
-								avatar_size={'w-12 h-12'}
+								avatar_size={'w-8 h-8 md:w-10 md:h-10'}
 								crown_size={'w-3 h-3'}
 								followButton={false}
 							/>

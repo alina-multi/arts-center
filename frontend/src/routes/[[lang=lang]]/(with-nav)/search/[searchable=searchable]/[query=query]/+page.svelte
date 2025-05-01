@@ -61,7 +61,7 @@
 			<div class="  dark:lg:bg-zinc-900 pt-3 lg:border dark:border-0 mb-3">
 				<ul role="search" class="lg:divide-y divide-gray-100 dark:lg:divide-zinc-800">
 					{#each results as user (user.id)}
-						<li class="flex justify-between gap-x-6 py-3 lg:px-9">
+						<li class="flex justify-between gap-x-6 py-3 lg:px-9 text-sm font-medium">
 							<div><UserPreview {user} avatar_size={'w-12 h-12'} crown_size={'w-3 h-3'} /></div>
 
 							<a

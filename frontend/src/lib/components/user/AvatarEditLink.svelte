@@ -19,11 +19,11 @@
 >
 	<Avatar {user} {size} />
 	<div
-		class="absolute h-full w-full flex justify-center items-center rounded-full align-middle hover:bg-gray-50/50"
+		class="absolute h-full w-full flex justify-center gap-1 font-medium flex-col text-sm items-center rounded-full align-middle hover:bg-gray-50/50"
 	>
-		<div>
-			<Icon src={Pencil} class="w-5 h-5 inline-block" />
+		<Icon src={Pencil} class="w-5 h-5 inline-block" />
+		<span>
 			{$t('global.buttons.edit')}
-		</div>
+		</span>
 	</div>
 </a>

@@ -17,11 +17,11 @@
 		</div>
 	</HeaderLayout>
 
-	<div class="flex flex-col dark:border-zinc-800 dark:bg-zinc-900">
+	<div class="flex flex-col dark:border-zinc-800 dark:bg-zinc-900 py-3 font-medium">
 		{#if data.followers?.length > 0}
 			<ul class="">
 				{#each data.followers as user (user.id)}
-					<li class="flex justify-between items-center gap-x-6 py-3 px-3 sm:px-9 xl:pr-0">
+					<li class="flex justify-between items-center gap-x-6 py-3 px-3 sm:px-9">
 						<div>
 							<UserPreview
 								{user}
@@ -31,7 +31,12 @@
 							/>
 						</div>
 
-						<div><FollowButton {user} addStyles="text-base" /></div>
+						<div>
+							<FollowButton
+								{user}
+								addStyles="text-sm bg-zinc-700 text-white font-medium rounded-full hover:bg-zinc-700/60 border-0"
+							/>
+						</div>
 					</li>
 				{/each}
 			</ul>
