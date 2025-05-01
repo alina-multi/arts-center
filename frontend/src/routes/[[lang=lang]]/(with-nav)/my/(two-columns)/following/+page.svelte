@@ -29,7 +29,12 @@
 							/>
 						</div>
 
-						<div><FollowButton {user} addStyles="text-base" /></div>
+						<div>
+							<FollowButton
+								{user}
+								addStyles="text-sm bg-zinc-700 text-white font-medium rounded-full hover:bg-zinc-700/60 border-0"
+							/>
+						</div>
 					</li>
 				{/each}
 			</ul>

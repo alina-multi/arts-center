@@ -22,7 +22,7 @@
 	<div class="flex flex-col flex-1 gap-1">
 		<div class="flex items-center justify-between gap-3">
 			<a {href} class="flex dark:text-white cursor-pointer items-center gap-2">
-				<div class="flex items-center flex-wrap gap-2 text-base font-semibold">
+				<div class="flex items-center flex-wrap gap-2 f">
 					<span class="leading-7">{user.name}</span>
 					<VerificationBadge user_verified={user.verified_at} />
 				</div>

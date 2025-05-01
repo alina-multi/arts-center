@@ -43,11 +43,13 @@
 			</a>
 		</div>
 
-		<div class=" flex gap-12 items-center justify-between pt-6 px-6 sm:pt-9 sm:px-9">
-			{$t('my.blocked')} - {$user.blacklists.length}
+		<div
+			class=" flex gap-6 xs:items-center flex-col xs:flex-row xs:justify-between pt-6 px-6 sm:pt-9 sm:px-9"
+		>
+			{$t('my.blocked')}: {$user.blacklists.length}
 			<a
 				href={localePath($locale, `/my/blacklist`)}
-				class="flex font-normal items-center gap-1 hover:underline hover:text-zinc-900/70 py-1 rounded"
+				class="flex font-medium max-xs:text-sm items-center gap-1 hover:underline hover:text-zinc-900/70 py-1 rounded-xl max-xs:bg-zinc-100 max-xs:px-6 max-xs:py-2 max-xs:justify-between"
 			>
 				{$t(`my.settings.see_all`)}
 				<Icon src={ChevronRight} class="h-6 w-6" />
@@ -68,7 +70,7 @@
 		{#if $page?.state?.blacklistModal}
 			<ModalWindow
 				on:close={() => history.back()}
-				class=" md:px-9 xl:px-16 lg:max-xl:py-3  lg:my-9 rounded-t-[36px] dark:border-2 max-xs:dark:border-t-2  dark:border-zinc-700 shadow-sm  max-lg:mt-16 xs:rounded-2xl  pb-12  "
+				class=" my-24 w-11/12  sm:w-3/4 md:w-4/5  xl:w-6/12 rounded-2xl p-6"
 				open={true}
 				closeButtonAddStyle=" text-white  mt-3 lg:mt-6 max-md:bg-zinc-500/20 max-lg:rounded-full   "
 			>

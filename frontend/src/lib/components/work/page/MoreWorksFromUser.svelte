@@ -14,7 +14,7 @@
 		? ' xl:bg-zinc-100 xl:dark:bg-transparent xl:dark:mt-9 xl:px-9 xl:p-9 xl:pt-1 mb-16'
 		: ' my-12  '} "
 >
-	<div class="inline-flex items-center gap-2 font-bold text-lg">
+	<div class="inline-flex items-center gap-2 font-bold xs:text-lg">
 		<p class="inline">{$t('global.work_page.more_works')}</p>
 
 		<a href={localePath($locale, `/${user.username}`)} class="underline">
