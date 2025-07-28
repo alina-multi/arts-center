@@ -17,7 +17,21 @@ export default defineConfig({
 	],
 	server: {
 		port: 3000,
-		strictPort: false
+		strictPort: false,
+		proxy: {
+			// Proxy API requests to Laravel backend
+			'/api': {
+				target: 'http://localhost:8000',
+				changeOrigin: true,
+				secure: false
+			},
+			// Proxy auth requests to Laravel backend
+			'/auth': {
+				target: 'http://localhost:8000',
+				changeOrigin: true,
+				secure: false
+			}
+		}
 	},
 	preview: {
 		port: 3000,
