@@ -1,9 +1,5 @@
 <script lang="ts">
-	import { getContext } from 'svelte';
 	import { page } from '$app/stores';
-
-	const t = getContext('t');
-	
 	// Build Google OAuth URL with current page as intended destination
 	$: googleAuthUrl = `/auth/google/redirect?intended=${encodeURIComponent($page.url.href)}`;
 </script>
