@@ -5,8 +5,10 @@ use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+
 Route::prefix('/auth')->group(function () {
     Route::post('/register', [RegisteredUserController::class, 'store'])
         ->middleware('guest')
@@ -31,7 +33,12 @@ Route::prefix('/auth')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
         ->middleware('auth')
         ->name('logout');
+
+    // Google OAuth routes
+    Route::get('/google/redirect', [SocialiteController::class, 'redirectToGoogle'])->name('google.redirect');
+    Route::get('/google/callback', [SocialiteController::class, 'handleGoogleCallback'])->name('google.callback');
 });
+
 // Laravel want's this. Why? Idk :)
 Route::get('/dashboard', fn()=>'');
 Route::get('/my/notifications/preferences/', fn()=>'')->name('notifications.preferences');
