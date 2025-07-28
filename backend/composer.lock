@@ -8397,7 +8397,7 @@
         },
         {
             "name": "stepanorda/nova-quill",
-            "version": "dev-main",
+            "version": "dev-google-auth",
             "dist": {
                 "type": "path",
                 "url": "./nova-components/NovaQuill",
