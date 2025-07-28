@@ -38,6 +38,39 @@ test('Create message', function () {
     Notification::assertSentTo($this->user2, \App\Notifications\NewMessage::class);
 });
 
+test('Unapproved participants should not receive notifications', function () {
+    $thread = \App\Models\Thread::factory()->create();
+    
+    // Create an approved participant (sender)
+    $approvedParticipant = $thread->participants()->create([
+        'user_id' => $this->user->id,
+        'approved_at' => now()
+    ]);
+    
+    // Create an unapproved participant
+    $unapprovedParticipant = $thread->participants()->create([
+        'user_id' => $this->user2->id,
+        'approved_at' => null
+    ]);
+    
+    Notification::fake();
+    
+    // Send a message as the approved participant
+    actingAs($this->user)->postJson("/api2/thread/$thread->id/message", [
+        'message' => 'Test message for unapproved participant',
+    ])->assertCreated();
+    
+    // Verify the message was created
+    assertDatabaseHas('messages', [
+        'message' => 'Test message for unapproved participant', 
+        'thread_id' => $thread->id
+    ]);
+    
+    // Verify no notification was sent to the unapproved participant
+    Notification::assertCount(0);
+    Notification::assertNotSentTo($this->user2, \App\Notifications\NewMessage::class);
+});
+
 test('Delete message', function () {
     $thread = \App\Models\Thread::factory()->has(\App\Models\Participant::factory(['user_id' => $this->user, 'approved_at' => now()]))->create();
     // Can't delete other user messages

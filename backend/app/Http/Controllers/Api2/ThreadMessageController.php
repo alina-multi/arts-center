@@ -22,6 +22,7 @@ class ThreadMessageController extends Controller
         $part = $thread->participants;
         $thread->participants
             ->where('user_id', '!=', $user_id)
+            ->whereNotNull('approved_at') // Only notify approved participants
             ->each(fn(Participant $participant) => $participant->user->notify(new NewMessage($newMessage, $participant->user_id)));
         return $newMessage;
     }

@@ -5,6 +5,7 @@ namespace App\Nova\Actions;
 use App\Models\Message;
 use App\Models\Participant;
 use App\Notifications\NewMessage;
+use App\Notifications\ProfileApproved;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;
@@ -31,6 +32,8 @@ class ApproveMessage extends Action
                 $participant->save();
                 $participant->user->notify(new NewMessage($message, $participant->user_id));
             });
+            $message->user->update(['approved_at' => now()]);
+            $message->user->notify(new ProfileApproved());
         });
     }
 
