@@ -35,6 +35,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'country',
         'last_seen',
         'google_id',
+        'last_seen',
+        'approved_at'
     ];
 
     protected $visible = ['id', 'name', 'username', 'created_at', 'photo', 'premium'];
