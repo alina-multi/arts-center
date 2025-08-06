@@ -68,9 +68,6 @@
     "spatie/laravel-ignition": "^2.0"
   },
   "config": {
-    "platform": {
-      "php": "8.2"
-    },
     "optimize-autoloader": true,
     "preferred-install": "dist",
     "sort-packages": true,
