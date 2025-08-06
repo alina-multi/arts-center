@@ -24,7 +24,6 @@ RUN composer dump-autoload --optimize
 
 COPY entrypoint.sh /usr/local/bin/
 COPY .env.production .env
-ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 8000
 
 RUN echo 'memory_limit = 512M' >> /usr/local/etc/php/conf.d/docker-php-ram-limit.ini

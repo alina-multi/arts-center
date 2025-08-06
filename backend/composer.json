@@ -47,6 +47,7 @@
     "monarobase/country-list": "^3.2",
     "nadar/quill-delta-parser": "*",
     "nunomaduro/collision": "^7.0",
+    "openspout/openspout": "4.24.5",
     "pusher/pusher-php-server": "^7.0",
     "sentry/sentry-laravel": "*",
     "spiral/roadrunner-cli": "^2.5",
