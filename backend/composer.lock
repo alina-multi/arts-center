@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "07c67b099cc09f3020d8e252d19f5d6c",
+    "content-hash": "05d1d336f5b36cfd765d54f7b82f0ad5",
     "packages": [
         {
             "name": "ably/ably-php",
@@ -8396,7 +8396,7 @@
         },
         {
             "name": "stepanorda/nova-quill",
-            "version": "dev-google-auth",
+            "version": "dev-main",
             "dist": {
                 "type": "path",
                 "url": "./nova-components/NovaQuill",
@@ -15623,7 +15623,7 @@
     },
     "platform-dev": {},
     "platform-overrides": {
-        "php": "8.4"
+        "php": "8.3"
     },
     "plugin-api-version": "2.6.0"
 }
