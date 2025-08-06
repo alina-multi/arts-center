@@ -6,6 +6,8 @@
 	import InputGroup from '$lib/components/input/InputGroup.svelte';
 	import CheckBox from '$lib/components/input/CheckBox.svelte';
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
+	import SocialMediaButtons from '$lib/components/atoms/buttons/SocialMediaButtons.svelte';
+	import Divider from '$lib/components/atoms/Divider.svelte';
 	import { localePath } from '$lib/translations';
 	import { getContext } from 'svelte';
 	import { showAuthModal } from '$lib/stores/auth';
@@ -103,15 +105,10 @@
 				>{$t('global.buttons.register')}</a
 			>
 
-			{#if false}
-				<!--			<div class="mt-6"><Divider>{$t('global.common.continue_with')}</Divider></div>-->
-				<!--				-->
-				<!--				<div class="mt-6">-->
-				<!--				<SocialMediaButtons />-->
-
-				<!--				-->
-				<!--			</div>-->
-			{/if}
+			<div class="mt-6"><Divider>{$t('global.common.continue_with')}</Divider></div>
+			<div class="mt-6">
+				<SocialMediaButtons />
+			</div>
 		</div>
 	</div>
 </div>
