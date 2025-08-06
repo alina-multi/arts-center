@@ -22,7 +22,6 @@ RUN chmod 0777 -R /var/www/storage/
 #And run scripts and generate autoloader
 RUN composer dump-autoload --optimize
 
-COPY entrypoint.sh /usr/local/bin/
 COPY .env.production .env
 EXPOSE 8000
 
