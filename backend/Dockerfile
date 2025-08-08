@@ -23,6 +23,11 @@ RUN chmod 0777 -R /var/www/storage/
 RUN composer dump-autoload --optimize
 
 COPY .env.production .env
+
+# Ensure Laravel is properly bootstrapped
+RUN php artisan config:cache
+RUN php artisan route:cache
+
 EXPOSE 8000
 
 RUN echo 'memory_limit = 512M' >> /usr/local/etc/php/conf.d/docker-php-ram-limit.ini
