@@ -22,14 +22,10 @@ RUN chmod 0777 -R /var/www/storage/
 #And run scripts and generate autoloader
 RUN composer dump-autoload --optimize
 
+COPY entrypoint.sh /usr/local/bin/
 COPY .env.production .env
-
-# Ensure Laravel is properly bootstrapped
-RUN php artisan config:cache
-RUN php artisan route:cache
-
 EXPOSE 8000
 
 RUN echo 'memory_limit = 512M' >> /usr/local/etc/php/conf.d/docker-php-ram-limit.ini
-ENTRYPOINT ["php"]
+ENTRYPOINT ["entrypoint.sh"]
 CMD ["artisan", "octane:start", "--host=0.0.0.0", "--log-level=notice"]
