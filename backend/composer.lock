@@ -8754,7 +8754,7 @@
         },
         {
             "name": "stepanorda/nova-quill",
-            "version": "dev-main",
+            "version": "dev-laravel-12-php8.4",
             "dist": {
                 "type": "path",
                 "url": "./nova-components/NovaQuill",
