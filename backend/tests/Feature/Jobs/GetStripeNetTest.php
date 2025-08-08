@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image as ImageEdit;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 

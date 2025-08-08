@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image as ImageEdit;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
@@ -32,7 +33,8 @@ test('Crops image', function () {
     $path = $work->preview->getOriginalPath();
 
     Storage::assertExists($path);
-    $croppedImage = ImageEdit::make(Storage::get($path));
+    $manager = new ImageManager(new Driver());
+    $croppedImage = $manager->read(Storage::get($path));
     $this->assertEquals($croppedImage->width(), 600);
     $this->assertEquals($croppedImage->height(), 450);
 });
