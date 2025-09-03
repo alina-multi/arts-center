@@ -35,6 +35,7 @@
     "laravel/cashier": "^15.4",
     "laravel/framework": "^12.0",
     "laravel/horizon": "^5.28",
+    "laravel/nightwatch": "^1.13",
     "laravel/nova": "^5.0",
     "laravel/octane": "^2.8",
     "laravel/sanctum": "^4.0",
