@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image as ImageEdit;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
@@ -25,7 +26,8 @@ test('Converts image', function () {
         $this->assertTrue(!empty($variant));
         $filename = "{$image->folder->value}/$variant->file";
         Storage::assertExists($filename);
-        $croppedImage = ImageEdit::make(Storage::get($filename));
+        $manager = new ImageManager(new Driver());
+        $croppedImage = $manager->read(Storage::get($filename));
         $this->assertEquals($croppedImage->width(), 1200);
         $this->assertEquals($croppedImage->height(), 1200);
     }
@@ -45,4 +47,3 @@ test('Converts image', function () {
     \App\Jobs\ConvertImage::dispatchSync($image);
     $this->assertDatabaseCount('image_variants', $imageVariantsCountBefore);
 });
-

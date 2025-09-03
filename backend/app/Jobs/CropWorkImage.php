@@ -12,7 +12,9 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Encoders\JpegEncoder;
 
 class CropWorkImage implements ShouldQueue
 {
@@ -27,10 +29,13 @@ class CropWorkImage implements ShouldQueue
      */
     public function handle(): void
     {
+        $manager = new ImageManager(new Driver());
         $original = $this->work->full->getOriginalFile();
-        $cropped = Image::make($original)->orientate()
+        $image = $manager->read($original);
+        
+        $cropped = $image->orient()
             ->crop($this->crop['width'], $this->crop['height'], $this->crop['x'], $this->crop['y'])
-            ->encode('jpg', 80);
+            ->encode(new JpegEncoder(quality: 80));
 
         $newImage = $this->work->preview()->create([
             'name' => $this->work->full->name,
@@ -41,12 +46,12 @@ class CropWorkImage implements ShouldQueue
         $newImage->variants()->create([
             ...$this->crop,
             'extension' => ImageExtentions::jpeg,
-            'size' => $cropped->filesize(),
+            'size' => strlen($cropped->toString()),
             'original' => true
         ]);
         $this->work->update(['image_id' => $newImage->id]);
         $filename = $newImage->getOriginalPath();
-        Storage::put($filename, (string)$cropped, 'public');
+        Storage::put($filename, $cropped->toString(), 'public');
         ImageCreated::dispatch($newImage);
     }
 }

@@ -12,8 +12,11 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image as ImageManipulator;
-
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Interfaces\ImageInterface;
+use Intervention\Image\Encoders\JpegEncoder;
+use Intervention\Image\Encoders\WebpEncoder;
 
 class ConvertImage implements ShouldQueue
 {
@@ -27,6 +30,7 @@ class ConvertImage implements ShouldQueue
         ImageFolders::Posts->name => [150, 300, 600, 1200],
     ];
     private Client $client;
+    private ImageManager $manager;
 
     /**
      * Create a new job instance.
@@ -35,6 +39,7 @@ class ConvertImage implements ShouldQueue
      */
     public function __construct(public Image $image)
     {
+        $this->manager = new ImageManager(new Driver());
     }
 
     /**
@@ -45,18 +50,15 @@ class ConvertImage implements ShouldQueue
     public function handle()
     {
         $this->image->load('variants');
-        $og = ImageManipulator::make($this->image->getOriginalFile())->orientate();
-        $og->backup();
         foreach ($this->targets[$this->image->folder->name] as $width) {
             foreach ([ImageExtentions::jpeg->value, ImageExtentions::webp->value] as $extension) {
-                $this->convert($width, $extension, $og);
-                $og->reset();
+                $this->convert($width, $extension);
             }
         }
         $this->image->save();
     }
 
-    public function convert($width, $extension, \Intervention\Image\Image $og)
+    public function convert($width, $extension)
     {
         if ($this
             ->image->variants()
@@ -66,21 +68,29 @@ class ConvertImage implements ShouldQueue
         ) {
             return false;
         }
+        
+        $og = $this->manager->read($this->image->getOriginalFile())->orient();
         if ($width >= $og->width()) {
             return false;
         }
-        $newImage = $og->resize($width, null, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-
+        $newImage = $og->scale(width: $width);
 
         $variant = $this->image->variants()->create([
             'width' => $width,
             'height' => $newImage->height(),
-            'size' => $newImage->filesize(),
+            'size' => strlen($this->encodeImage($newImage, $extension)->toString()),
             'extension' => $extension
         ]);
         $filename = "{$this->image->folder->value}/$variant->file";
-        Storage::put($filename, (string)$newImage->encode($extension), 'public');
+        Storage::put($filename, $this->encodeImage($newImage, $extension)->toString(), 'public');
+    }
+
+    private function encodeImage(ImageInterface $image, string $extension)
+    {
+        return match($extension) {
+            'jpeg', 'jpg' => $image->encode(new JpegEncoder(quality: 80)),
+            'webp' => $image->encode(new WebpEncoder(quality: 80)),
+            default => $image->encode(new JpegEncoder(quality: 80))
+        };
     }
 }

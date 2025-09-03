@@ -6,7 +6,8 @@ use App\Events\ImageCreated;
 use App\Models\Image;
 use GPBMetadata\Google\Api\Auth;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image as ImageManipulator;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class ImageHelper
 {
@@ -49,8 +50,10 @@ class ImageHelper
             "work_id" => $workId,
             "name" => ''
         ]);
-        $imageObj = ImageManipulator::make(Storage::get($tmpPath));
-        list (, $extension) = explode('/', $imageObj->mime());
+        $manager = new ImageManager(new Driver());
+        $imageObj = $manager->read(Storage::get($tmpPath));
+        $extension = $imageObj->origin()->mediaType();
+        $extension = explode('/', $extension)[1]; // Extract extension from mime type
         $variant = $image->variants()->create([
             'extension' => $extension,
             'width' => $imageObj->width(),
