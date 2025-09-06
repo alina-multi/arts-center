@@ -45,10 +45,10 @@
 <form
 	method="POST"
 	action="?/post"
-	use:enhance={({ formData, cancel }) => {
+	use:enhance={({ formData }) => {
 		formData.append('isPublished', String(Boolean(isPublished)));
 
-		return async ({ result, update }) => {
+		return async ({ update }) => {
 			await update({ reset: false });
 		};
 	}}

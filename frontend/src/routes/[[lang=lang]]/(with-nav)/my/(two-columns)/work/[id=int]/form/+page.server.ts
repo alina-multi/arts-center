@@ -26,7 +26,6 @@ export const actions = {
 				redirect(302, localePath(event.params.lang, `/my/work/${event.params.id}/preview`));
 			}
 
-			
 			const result = {
 				success: true,
 				work: responseData,
