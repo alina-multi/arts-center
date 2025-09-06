@@ -1,31 +1,38 @@
 <script>
-	import StyledTabPanel from '$lib/components/layout/StyledTabPanel.svelte';
-	import StyledTabList from '$lib/components/layout/StyledTabList.svelte';
-	import { Tab, TabGroup, TabList, TabPanels } from '@rgossiaux/svelte-headlessui';
-	import TextAreaInput from '$lib/components/input/TextAreaInput.svelte';
+	import FormGroup from '$lib/components/input/FormGroup.svelte';
 	import InputGroup from '$lib/components/input/InputGroup.svelte';
 	import SelectInput from '$lib/components/input/SelectInput.svelte';
-	import FormGroup from '$lib/components/input/FormGroup.svelte';
+	import TextAreaInput from '$lib/components/input/TextAreaInput.svelte';
 	import TextInput from '$lib/components/input/TextInput.svelte';
-	import StyledTab from '$lib/components/layout/StyledTab.svelte';
+	import { getContext, onDestroy } from 'svelte';
+	import { fade } from 'svelte/transition';
 	import ButtonsGroup from './ButtonsGroup.svelte';
-	import { getContext } from 'svelte';
 
 	const t = getContext('t');
 	export let form;
 	export let categories;
 	export let work;
-	// To force redraw of form
-	let version = 1;
-	$: {
-		if (form?.work) {
-			work = {
-				...work,
-				...form.work
-			};
-			version++;
+
+	let showMessage = false;
+	let messageTimeout;
+
+	$: if (form?.message) {
+		showMessage = true;
+
+		if (messageTimeout) {
+			clearTimeout(messageTimeout);
 		}
+
+		messageTimeout = setTimeout(() => {
+			showMessage = false;
+		}, 3000);
 	}
+
+	onDestroy(() => {
+		if (messageTimeout) {
+			clearTimeout(messageTimeout);
+		}
+	});
 
 	function tagToOption({ title, id }) {
 		return {
@@ -34,50 +41,68 @@
 		};
 	}
 
+	$: if (form?.work) {
+		validTitles = form.work;
+	}
+
 	let categoryOptions = categories.map(tagToOption);
+
+	// Custom tab functionality
+	let activeTabIndex = 0;
+	$: validTitles = (work?.titles || []).filter((title) => title && title.language);
 </script>
 
 <FormGroup h1={$t('my.add_work_page.main_info')}>
-	{#if form?.message}
-		<p class="text-red-600">{form?.message}</p>
+	{#if showMessage && form?.success && form?.message}
+		<p class="text-green-600" transition:fade={{ duration: 300 }}>{form?.message}</p>
+	{:else if showMessage && form?.message}
+		<p class="text-red-600" transition:fade={{ duration: 300 }}>{form?.message}</p>
 	{/if}
 	<InputGroup label={$t('my.add_work_page.category')} error={form?.errors?.category}>
-		{#key version}
-			<SelectInput
-				required
-				options={categoryOptions}
-				value={work.category}
-				name="category"
-				maxSelect={3}
-			/>
-		{/key}
+		<SelectInput
+			required
+			options={categoryOptions}
+			value={work.category}
+			name="category"
+			maxSelect={3}
+			placeholder=""
+		/>
 	</InputGroup>
 
-	<TabGroup>
-		{#if work?.titles?.length > 1}
-			<StyledTabList>
-				{#each work.titles as title (title.language)}
-					<StyledTab>
+	<!-- Custom Tab Implementation -->
+	<div>
+		{#if validTitles.length > 1}
+			<div class="flex border-b border-gray-200 mb-4">
+				{#each validTitles as title, index}
+					<button
+						type="button"
+						class="bg-transparent border-0 px-4 py-3 cursor-pointer border-b-2 border-transparent transition-all duration-200 font-medium hover:text-gray-700 hover:bg-gray-50 {activeTabIndex ===
+						index
+							? 'text-zinc-900 border-blue-600'
+							: 'text-zinc-500'}"
+						on:click={() => (activeTabIndex = index)}
+					>
 						{title.language}
-					</StyledTab>
+					</button>
 				{/each}
-			</StyledTabList>
-			<!-- without this hack with empty element it doesn't draw panels -->
-		{:else}
-			<TabList class="h-0">
-				<Tab />
-			</TabList>
+			</div>
 		{/if}
-		<TabPanels>
-			{#each work.titles as title, i (i)}
-				{#key version}
-					<StyledTabPanel>
+
+		<div>
+			{#each validTitles as title, i}
+				<div class={activeTabIndex === i ? 'block' : 'hidden'}>
+					<div class="py-4">
 						<div class="space-y-3">
 							<InputGroup
 								error={form?.errors?.[`titles.${i}.title`]}
 								label={$t('my.add_work_page.title')}
 							>
-								<TextInput name={`titles.${i}.title`} value={title.title} />
+								<TextInput
+									name={`titles.${i}.title`}
+									value={title.title || ''}
+									id={`titles.${i}.title`}
+									class=""
+								/>
 							</InputGroup>
 							<InputGroup
 								error={form?.errors?.[`titles.${i}.description`]}
@@ -85,17 +110,17 @@
 							>
 								<TextAreaInput
 									name={`titles.${i}.description`}
-									value={title.description}
+									value={title.description || ''}
 									rows={8}
 								/>
 							</InputGroup>
-							<input type="hidden" name={`titles.${i}.language`} value={title.language} />
+							<input type="hidden" name={`titles.${i}.language`} value={title.language || ''} />
 						</div>
-					</StyledTabPanel>
-				{/key}
+					</div>
+				</div>
 			{/each}
-		</TabPanels>
-	</TabGroup>
+		</div>
+	</div>
 	<slot>
 		<ButtonsGroup />
 	</slot>

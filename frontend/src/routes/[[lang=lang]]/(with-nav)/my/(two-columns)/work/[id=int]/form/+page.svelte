@@ -17,12 +17,15 @@
 
 	export let data: PageData;
 	export let form: ActionData;
-	const isPublished = data?.work?.status > 5 || data?.work?.published_at;
 	let deleteModal = false;
+	const isPublished = data?.work?.status > 5 || data?.work?.published_at;
+
+	$: currentWork = form?.work || data?.work;
+
 	// If we don't have title yet, add :)
 	$: {
-		if (!data?.work?.titles?.length) {
-			data.work.titles = [
+		if (!currentWork?.titles?.length) {
+			currentWork.titles = [
 				{
 					language: $locale,
 					title: '',
@@ -39,9 +42,19 @@
 	}
 </script>
 
-<form method="POST" action="?/post" use:enhance>
+<form
+	method="POST"
+	action="?/post"
+	use:enhance={({ formData, cancel }) => {
+		formData.append('isPublished', String(Boolean(isPublished)));
+
+		return async ({ result, update }) => {
+			await update({ reset: false });
+		};
+	}}
+>
 	<div class="columns-2 flex flex-col gap-3">
-		<WorkForm work={data?.work} categories={data?.categories} {form}>
+		<WorkForm work={currentWork} categories={data?.categories} {form}>
 			<ButtonsGroup>
 				{#if isPublished}
 					<ActionButton
