@@ -27,6 +27,7 @@ export interface UserList extends UserPreview {
 
 export interface User extends UserList {
 	bio?: string;
+	approved_at: string | null;
 }
 
 export interface UserMe extends UserBasic {

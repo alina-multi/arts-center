@@ -11,7 +11,8 @@ export const load = (async ({ params, setHeaders }) => {
 		`${params.username}.${params.lang}`,
 		async () => {
 			const userRaw = await get(params.username);
-			if (!userRaw || !userRaw.approved_at) error(404, 'User not found');
+
+			if (!userRaw) error(404, 'User not found');
 			const user = await userMap(userRaw, params.lang);
 			return {
 				user,
