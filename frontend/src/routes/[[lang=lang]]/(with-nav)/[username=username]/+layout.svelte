@@ -17,7 +17,6 @@
 		<UserCard user={data.user} />
 
 		{#if data.user.approved_at}
-			<div>{data.user.approved_at}</div>
 			{#if data.user.ratings?.length}
 				<div class="w-full dark:bg-zinc-950 shrink-0 border dark:border-zinc-800 space-y-3">
 					<TotalRating user={data.user} />
