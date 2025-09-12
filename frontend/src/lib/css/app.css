@@ -10,19 +10,28 @@ body {
 	scrollbar-color: initial !important;
 	scrollbar-width: initial !important;
 }
+
 @layer utilities {
-	.scrollbar-thin {
+	/* Base scrollbar styles */
+	.scrollbar-thin,
+	.scrollbar-panel {
 		scrollbar-width: thin;
-		scrollbar-color: theme(colors.zinc.400) transparent;
 	}
 
-	.scrollbar-thin::-webkit-scrollbar {
+	.scrollbar-thin::-webkit-scrollbar,
+	.scrollbar-panel::-webkit-scrollbar {
 		width: 4px;
 		height: 4px;
 	}
 
-	.scrollbar-thin::-webkit-scrollbar-track {
-		@apply bg-transparent;
+	.scrollbar-thin::-webkit-scrollbar-track,
+	.scrollbar-panel::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	/* Thin scrollbar - visible style */
+	.scrollbar-thin {
+		scrollbar-color: theme(colors.zinc.400) transparent;
 	}
 
 	.scrollbar-thin::-webkit-scrollbar-thumb {
@@ -35,6 +44,26 @@ body {
 		@apply bg-zinc-500;
 	}
 
+	/* Panel scrollbar - subtle style */
+	.scrollbar-panel {
+		scrollbar-color: rgba(156, 163, 175, 0.3) transparent;
+	}
+
+	.scrollbar-panel::-webkit-scrollbar-thumb {
+		background: rgba(156, 163, 175, 0.3);
+		border-radius: 2px;
+		transition: background-color 0.15s ease;
+	}
+
+	.scrollbar-panel::-webkit-scrollbar-thumb:hover {
+		background: rgba(156, 163, 175, 0.5);
+	}
+
+	.scrollbar-panel::-webkit-scrollbar-thumb:active {
+		background: rgba(156, 163, 175, 0.7);
+	}
+
+	/* Dark mode overrides */
 	@media (prefers-color-scheme: dark) {
 		.scrollbar-thin {
 			scrollbar-color: theme(colors.zinc.600) transparent;
@@ -46,6 +75,22 @@ body {
 
 		.scrollbar-thin::-webkit-scrollbar-thumb:hover {
 			@apply bg-zinc-500;
+		}
+
+		.scrollbar-panel {
+			scrollbar-color: rgba(113, 113, 122, 0.4) transparent;
+		}
+
+		.scrollbar-panel::-webkit-scrollbar-thumb {
+			background: rgba(113, 113, 122, 0.4);
+		}
+
+		.scrollbar-panel::-webkit-scrollbar-thumb:hover {
+			background: rgba(113, 113, 122, 0.6);
+		}
+
+		.scrollbar-panel::-webkit-scrollbar-thumb:active {
+			background: rgba(113, 113, 122, 0.8);
 		}
 	}
 }
