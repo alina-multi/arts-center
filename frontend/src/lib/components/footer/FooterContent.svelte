@@ -48,7 +48,7 @@
 </div>
 
 <SocialButtons
-	listStyles={'border-t dark:border-zinc-700 px-6 text-zinc-800 dark:text-white py-2'}
+	listStyles={'flex items-center justify-between border-t dark:border-zinc-700 px-6 text-zinc-800 dark:text-white py-2'}
 />
 
 {#if media === 'mobile'}
