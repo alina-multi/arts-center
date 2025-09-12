@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	export let listStyles: string = '';
+	export let listStyles: string = 'flex items-center justify-between';
 
 	const locale = getContext('locale');
 
@@ -40,7 +40,7 @@
 	];
 </script>
 
-<ul class="{listStyles} flex items-center justify-between">
+<ul class="{listStyles} ">
 	{#each social_links as social}
 		<li class={$locale !== 'uk' && social.name === 'Instagram' ? 'hidden' : 'block'}>
 			<a
