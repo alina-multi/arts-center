@@ -15,35 +15,35 @@ body {
 		scrollbar-width: thin;
 		scrollbar-color: theme(colors.zinc.400) transparent;
 	}
-	
+
 	.scrollbar-thin::-webkit-scrollbar {
 		width: 4px;
 		height: 4px;
 	}
-	
+
 	.scrollbar-thin::-webkit-scrollbar-track {
 		@apply bg-transparent;
 	}
-	
+
 	.scrollbar-thin::-webkit-scrollbar-thumb {
 		@apply bg-zinc-400 rounded-sm;
 		background-clip: padding-box;
 		border: 1px solid transparent;
 	}
-	
+
 	.scrollbar-thin::-webkit-scrollbar-thumb:hover {
 		@apply bg-zinc-500;
 	}
-	
+
 	@media (prefers-color-scheme: dark) {
 		.scrollbar-thin {
 			scrollbar-color: theme(colors.zinc.600) transparent;
 		}
-		
+
 		.scrollbar-thin::-webkit-scrollbar-thumb {
 			@apply bg-zinc-600;
 		}
-		
+
 		.scrollbar-thin::-webkit-scrollbar-thumb:hover {
 			@apply bg-zinc-500;
 		}

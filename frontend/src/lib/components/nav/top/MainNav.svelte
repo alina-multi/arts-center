@@ -3,7 +3,6 @@
 	import TabletMainNav from './TabletNav.svelte';
 	import DesktopNav from './DesktopNav.svelte';
 	import TopNav from './TopNav.svelte';
-
 </script>
 
 <TopNav>

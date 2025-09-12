@@ -47,13 +47,14 @@
 		// Minimal theme initialization to prevent flash of wrong theme
 		(function initTheme() {
 			if (typeof window === 'undefined') return;
-			
+
 			const theme = localStorage.getItem('theme') || 'system';
-			
+
 			// Apply theme immediately to prevent flash
-			const isDark = theme === 'dark' || 
+			const isDark =
+				theme === 'dark' ||
 				(theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-			
+
 			document.documentElement.classList.toggle('dark', isDark);
 		})();
 	</script>
