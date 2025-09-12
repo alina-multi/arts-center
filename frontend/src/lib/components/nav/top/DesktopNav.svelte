@@ -1,15 +1,15 @@
 <script lang="ts">
-	import AddWorkButton from '../../atoms/buttons/AddWorkButton.svelte';
-	import LoginLink from '../LoginLink.svelte';
+	import AddWorkButton from '$lib/components/atoms/buttons/AddWorkButton.svelte';
+	import LoginLink from '$lib/components/nav/LoginLink.svelte';
 	import { localePath } from '$lib/translations';
-	import TopNavLink from '../TopNavLink.svelte';
-	import UserDropdown from '../UserDropdown.svelte';
+	import TopNavLink from '$lib/components/nav/TopNavLink.svelte';
+	import UserDropdown from '$lib/components/nav/UserDropdown.svelte';
 	import SearchInput from '$lib/components/search/SearchInput.svelte';
 	import Logo from '$lib/components/atoms/Logo.svelte';
 	import FooterDropdown from '$lib/components/footer/FooterDropdown.svelte';
 	import { isUserLoading, user } from '$lib/stores/auth';
-	import BellButton from '../BellButton.svelte';
-	import UaFlag from '../UaFlag.svelte';
+	import BellButton from '$lib/components/nav/BellButton.svelte';
+	import UaFlag from '$lib/components/nav/UaFlag.svelte';
 	import { getContext } from 'svelte';
 	import ChatButton from '$lib/components/thread/ChatButton.svelte';
 
