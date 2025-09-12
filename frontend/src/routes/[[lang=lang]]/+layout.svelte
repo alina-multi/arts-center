@@ -44,29 +44,18 @@
 
 <svelte:head>
 	<script>
-		let dark = false;
-
-		function onLoad() {
-			if (document.body) {
-				document.body.classList.add('dark');
-			}
-		}
-
-		if (typeof window !== 'undefined') {
-			const themeStore = localStorage.getItem('dark');
-
-			if (themeStore === null) {
-				dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-				localStorage.setItem('dark', JSON.stringify(dark));
-			} else {
-				dark = JSON.parse(themeStore);
-			}
-
-			if (dark) {
-				document.documentElement.classList.add('dark');
-				window.onload = onLoad;
-			}
-		}
+		// Minimal theme initialization to prevent flash of wrong theme
+		(function initTheme() {
+			if (typeof window === 'undefined') return;
+			
+			const theme = localStorage.getItem('theme') || 'system';
+			
+			// Apply theme immediately to prevent flash
+			const isDark = theme === 'dark' || 
+				(theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+			
+			document.documentElement.classList.toggle('dark', isDark);
+		})();
 	</script>
 </svelte:head>
 

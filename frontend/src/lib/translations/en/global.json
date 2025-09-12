@@ -129,7 +129,8 @@
 		"folow_us": "Follow us on social media",
 		"privacy": "Privacy policy",
 		"subscriptions": "SUBSCRIPTION",
-		"terms": "Terms and conditions"
+		"terms": "Terms and conditions",
+		"theme": "Theme"
 	},
 	"intent": {
 		"buy": {
