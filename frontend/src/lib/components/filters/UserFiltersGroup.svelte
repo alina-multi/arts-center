@@ -46,30 +46,32 @@
 		/>
 	</DisclosureButton>
 
-	<DisclosurePanel class=" max-h-96 overflow-x-auto dark:border-zinc-900 dark:border" let:close>
-		<ul class="flex flex-col dark:bg-zinc-800 text-sm">
-			{#each options as option (option.title)}
-				<li>
-					<a
-						href={urlGenerator(params, { [group]: option.value ?? option.title })}
-						on:click={() => close()}
-						class="flex w-full cursor-pointer py-3 px-6 {option.title === selected
-							? 'bg-gray-100 hover:bg-gray-100 dark:border-l dark:border-amber-500  dark:bg-zinc-700 '
-							: 'text-black dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-zinc-700 '}"
-					>
-						<span>
-							{#if option.title === 'popular' || option.title === 'new'}
-								{$t(`global.filters.${option.title}`)}
-							{:else}
-								{option.title}
+	<DisclosurePanel class="dark:border-zinc-900 dark:border" let:close>
+		<div class="max-h-96 overflow-y-auto scrollbar-panel">
+			<ul class="flex flex-col dark:bg-zinc-800 text-sm">
+				{#each options as option (option.title)}
+					<li>
+						<a
+							href={urlGenerator(params, { [group]: option.value ?? option.title })}
+							on:click={() => close()}
+							class="flex w-full cursor-pointer py-3 px-6 {option.title === selected
+								? 'bg-gray-100 hover:bg-gray-100 dark:border-l dark:border-amber-500  dark:bg-zinc-700 '
+								: 'text-black dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-zinc-700 '}"
+						>
+							<span>
+								{#if option.title === 'popular' || option.title === 'new'}
+									{$t(`global.filters.${option.title}`)}
+								{:else}
+									{option.title}
+								{/if}
+							</span>
+							{#if option.count}
+								<span class="ml-auto text-gray-500">{option.count}</span>
 							{/if}
-						</span>
-						{#if option.count}
-							<span class="ml-auto text-gray-500">{option.count}</span>
-						{/if}
-					</a>
-				</li>
-			{/each}
-		</ul>
+						</a>
+					</li>
+				{/each}
+			</ul>
+		</div>
 	</DisclosurePanel>
 </Disclosure>

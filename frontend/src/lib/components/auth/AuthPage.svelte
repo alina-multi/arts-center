@@ -50,7 +50,7 @@
 <div class="flex min-h-full flex-col pt-12 sm:px-6 lg:px-8 bg:white sm:bg-gray-50 dark:bg-black">
 	<div class="sm:mx-auto sm:w-full sm:max-w-md">
 		<div class="flex items-center justify-center">
-			<Logo size="w-64 h-28" />
+			<Logo size="w-60 h-24" />
 		</div>
 
 		<h2

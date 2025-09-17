@@ -5,6 +5,8 @@
 	import { type AvailableLocales, switchLocalePath } from '$lib/translations';
 	import { getContext } from 'svelte';
 	import { page } from '$app/stores';
+	export let addClass =
+		'border border-zinc-300 dark:border-zinc-800  dark:bg-zinc-900 text-zinc-800 dark:text-white hover:bg-zinc-50 dark:hover:bg-zinc-900/50';
 
 	const t = getContext('t');
 	const locale = getContext('locale');
@@ -36,7 +38,7 @@
 
 <div class="relative w-full sm:max-w-[200px]" bind:this={dropdownRef}>
 	<button
-		class="inline-flex w-full justify-between items-center gap-2 rounded-xl border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-medium text-zinc-800 dark:text-white hover:bg-zinc-50 dark:hover:bg-zinc-900/50 shadow-sm transition"
+		class="{addClass} inline-flex w-full justify-between items-center gap-2 rounded-3xl px-4 py-2 text-sm font-medium shadow-sm transition"
 		on:click={toggleDropdown}
 		aria-haspopup="true"
 		aria-expanded={isOpen}

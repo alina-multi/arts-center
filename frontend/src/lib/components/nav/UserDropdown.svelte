@@ -1,9 +1,9 @@
 <script lang="ts">
-	import MyProfileLinksGroup from './MyProfileLinksGroup.svelte';
-	import LogoutButton from '../atoms/buttons/LogoutButton.svelte';
-	import Dropdown from '../atoms/Dropdown.svelte';
-	import Avatar from '../atoms/Avatar.svelte';
-	import MyPageLink from '../atoms/MyPageLink.svelte';
+	import MyProfileLinksGroup from '$lib/components/nav/MyProfileLinksGroup.svelte';
+	import LogoutButton from '$lib/components/atoms/buttons/LogoutButton.svelte';
+	import Dropdown from '$lib/components/atoms/Dropdown.svelte';
+	import Avatar from '$lib/components/atoms/Avatar.svelte';
+	import MyPageLink from '$lib/components/atoms/MyPageLink.svelte';
 	import { user } from '$lib/stores/auth';
 </script>
 
