@@ -14,7 +14,6 @@
 
 	const t = getContext('t');
 	const locale = getContext('locale');
-	console.log($user);
 </script>
 
 <div class="bg-zinc-100 dark:bg-zinc-900 md:p-12 rounded-md">

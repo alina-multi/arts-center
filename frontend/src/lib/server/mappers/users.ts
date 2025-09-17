@@ -46,6 +46,7 @@ export function userMap(user: UserFullRaw, lang: AvailableLocales): User {
 		username: user.username,
 		country: user.country?.toUpperCase(),
 		created_at: user.created_at,
+		approved_at: user.approved_at,
 		verified_at: user.verified_at,
 		rating: user.rating,
 		ratings: ratingsMap(user.ratings, lang),

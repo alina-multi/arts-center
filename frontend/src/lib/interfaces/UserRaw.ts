@@ -11,6 +11,7 @@ export interface UserBasicRaw {
 }
 
 export interface UserFullRaw extends UserBasicRaw {
+	approved_at: string | null;
 	created_at: Date;
 	ratings: UserRatingsRow[] | [];
 	bios: [
