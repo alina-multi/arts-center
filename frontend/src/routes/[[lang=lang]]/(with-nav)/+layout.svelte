@@ -19,7 +19,8 @@
 	<NotificationToasts />
 {/if}
 <MainNav />
-<div class="h-[66px] md:h-[106px] flex items-center justify-center">
+<div class="flex items-center justify-center">
+<!-- Enable reserved space once site is approved <div class="h-[66px] md:h-[106px] flex items-center justify-center">-->
 	<EzoicAd placeholderId={101} />
 </div>
 <slot />
