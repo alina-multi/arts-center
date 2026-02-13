@@ -5,6 +5,7 @@
 	import { checkAuth } from '$lib/stores/auth';
 	import NotificationToasts from '$lib/components/notification/NotificationToasts.svelte';
 	import { page } from '$app/stores';
+	import EzoicAd from '$lib/components/ads/EzoicAd.svelte';
 
 	import AuthModal from '$lib/components/atoms/AuthModal.svelte';
 
@@ -18,6 +19,9 @@
 	<NotificationToasts />
 {/if}
 <MainNav />
+<div class="h-[66px] md:h-[106px] flex items-center justify-center">
+	<EzoicAd placeholderId={101} />
+</div>
 <slot />
 
 {#if !$page.state?.workModal && $page.route.id !== '/[[lang=lang]]/(with-nav)/(single-column)/work/[id=int]'}

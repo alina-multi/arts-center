@@ -8,6 +8,7 @@
 	import { onMount, setContext } from 'svelte';
 	import loading from '$lib/stores/loading';
 	import { switchLocalePath } from '$lib/translations';
+	import { refreshEzoicAds } from '$lib/helpers/ezoic';
 
 	let timer: ReturnType<typeof setTimeout>;
 	const navigationIsDelayed = writable(false);
@@ -36,6 +37,8 @@
 					timer = setTimeout(() => navigationIsDelayed.set(true), 500);
 				} else {
 					navigationIsDelayed.set(false);
+					// Refresh Ezoic ads when navigation completes (SPA page change)
+					refreshEzoicAds();
 				}
 			});
 		}
