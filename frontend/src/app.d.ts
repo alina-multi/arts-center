@@ -31,5 +31,11 @@ declare module 'svelte' {
 declare global {
 	interface Window {
 		gtag;
+		ezstandalone: {
+			cmd: Array<() => void>;
+			showAds: (...placeholderIds: number[]) => void;
+			destroyPlaceholders: (...placeholderIds: number[]) => void;
+			destroyAll: () => void;
+		};
 	}
 }
