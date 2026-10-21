@@ -29,4 +29,4 @@ Vercel project settings:
 - Build command: `pnpm prisma generate && pnpm build`
 - Environment: `USE_MOCK_DATA=true`, `PUBLIC_ENV=production`
 
-Any email signs in as the demo artist Maya Chen. Uploads belong to that browser only. On Vercel, connect a Blob store so images survive refresh. Without `BLOB_READ_WRITE_TOKEN`, files are stored in `frontend/.demo-sessions`. Comments, messages, and payments stay disabled.
+Register/login create a browser-local demo account and a `demo_session` cookie. The signed-in account is also kept in an httpOnly `demo_account` cookie so auth still works on Vercel when the filesystem is read-only. On Vercel, connect a Blob store so uploads and richer session state survive refresh (`BLOB_READ_WRITE_TOKEN`). Without that token, local runs store files in `frontend/.demo-sessions` (or `/tmp/demo-sessions` on Vercel). Comments, messages, and payments stay disabled.

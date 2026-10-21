@@ -16,7 +16,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 	if (!useMockData()) return respond();
 	const sessionId = readSessionId(event.cookies);
 	event.locals.demoSessionId = sessionId;
-	const context = await openDemoContext(sessionId);
+	const secure = event.url.protocol === 'https:';
+	const context = await openDemoContext(sessionId, { cookies: event.cookies, secure });
 	const response = await runWithDemoSession(context, async () => respond());
 	if (sessionId) {
 		response.headers.set('cache-control', 'private, no-store');
