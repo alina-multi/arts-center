@@ -1,6 +1,8 @@
 import { prisma } from '$lib/server/database/prisma';
 import { unslug } from '$lib/helpers/url';
 import type { CategoryRaw } from '$lib/interfaces/CategoryRaw';
+import { useMockData } from '$lib/server/mock/mode';
+import { mockCategories } from '$lib/server/mock/read';
 
 let categoryCache: CategoryRaw[];
 
@@ -8,6 +10,10 @@ const categoryTitleToId = new Map();
 
 export async function getCategories() {
 	if (!categoryCache) {
+		if (useMockData()) {
+			categoryCache = mockCategories();
+			return categoryCache;
+		}
 		categoryCache = await prisma.tags.findMany({
 			select: {
 				id: true,
@@ -37,9 +43,13 @@ export async function titleToId(title: string, language: string) {
 		categories.forEach((tag) => {
 			tag.titles.forEach((title) => {
 				categoryTitleToId.set(`${title.language}.${title.title}`, tag.id);
+				categoryTitleToId.set(`${title.language}.${title.title.toLowerCase()}`, tag.id);
 			});
 		});
 	}
 	title = unslug(title);
-	return categoryTitleToId.get(`${language}.${title}`);
+	return (
+		categoryTitleToId.get(`${language}.${title}`) ??
+		categoryTitleToId.get(`${language}.${title.toLowerCase()}`)
+	);
 }

@@ -16,8 +16,8 @@
 		src={photo?.src}
 		{alt}
 		class={clazz}
-		width={photo.original.width}
-		height={photo.original.height}
+		width={photo?.original?.width}
+		height={photo?.original?.height}
 		{loading}
 	/>
 </picture>

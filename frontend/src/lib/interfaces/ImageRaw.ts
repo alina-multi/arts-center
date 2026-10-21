@@ -2,6 +2,7 @@ export interface ImageRaw {
 	id: bigint;
 	folder: ImageFolder;
 	variants: VariantsRaw[] | [];
+	url?: string;
 }
 
 export interface VariantsRaw {

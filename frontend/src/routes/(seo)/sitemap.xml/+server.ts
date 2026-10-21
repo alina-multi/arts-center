@@ -1,5 +1,7 @@
 import { prisma } from '$lib/server/database/prisma';
 import { createXmlResponse } from '$lib/helpers/sitemap';
+import { useMockData } from '$lib/server/mock/mode';
+import { mockPosts, mockUsers, mockWorks } from '$lib/server/mock/data';
 
 import { urlsPerSitemap } from '../config';
 
@@ -13,6 +15,17 @@ function createPagesArray(count: number) {
 
 export async function GET({ url }) {
 	site = url.origin;
+	if (useMockData()) {
+		const works = mockWorks.filter((work) => work.status >= 40).length;
+		const users = mockUsers.length;
+		const posts = mockPosts.filter((post) => post.published_at).length;
+		const body = sitemapindex([
+			{ pages: createPagesArray(works), slug: 'works' },
+			{ pages: createPagesArray(users), slug: 'users' },
+			{ pages: createPagesArray(posts), slug: 'posts' }
+		]);
+		return createXmlResponse(body);
+	}
 	const works = await prisma.works.count({
 		where: {
 			status: { gte: 40 }

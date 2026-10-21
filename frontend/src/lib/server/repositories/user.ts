@@ -4,6 +4,8 @@ import { titleToId } from './tag';
 import { error } from '@sveltejs/kit';
 import { imageSelect } from '$lib/server/repositories/image';
 import type { AvailableLocales } from '$lib/translations';
+import { useMockData } from '$lib/server/mock/mode';
+import { mockUserCountries, mockUserGet, mockUsersQuery } from '$lib/server/mock/read';
 
 export const userSelect = {
 	id: true,
@@ -24,6 +26,9 @@ export function query(
 	orderBy: Prisma.usersOrderByWithRelationInput = {},
 	page = 1
 ) {
+	if (useMockData()) {
+		return Promise.resolve(mockUsersQuery(where as Record<string, unknown>, orderBy, page));
+	}
 	page--;
 	return prisma.users.findMany({
 		take: PAGE_SIZE,
@@ -46,6 +51,9 @@ export function query(
 }
 
 export function get(username: string) {
+	if (useMockData()) {
+		return Promise.resolve(mockUserGet(username));
+	}
 	return prisma.users.findUnique({
 		select: {
 			...userSelect,
@@ -85,6 +93,9 @@ export function get(username: string) {
 }
 
 export function userCountries() {
+	if (useMockData()) {
+		return Promise.resolve(mockUserCountries());
+	}
 	return prisma.users.groupBy({
 		_count: {
 			country: true

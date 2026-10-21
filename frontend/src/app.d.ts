@@ -8,6 +8,7 @@ declare namespace App {
 	// interface Error {}
 	interface Locals {
 		user?: User;
+		demoSessionId?: string;
 	}
 	// interface PageData {}
 	// interface Platform {}
@@ -31,5 +32,6 @@ declare module 'svelte' {
 declare global {
 	interface Window {
 		gtag;
+		__DEMO__?: boolean;
 	}
 }

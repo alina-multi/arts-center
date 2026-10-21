@@ -7,9 +7,53 @@
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
 	import PrefixedInput from '$lib/components/input/PrefixedInput.svelte';
 	import { getContext } from 'svelte';
+	import { enhance } from '$app/forms';
+	import { page } from '$app/stores';
+	import { localePath } from '$lib/translations';
+	import { registerAccount, rememberCurrent } from '$lib/demo/accounts';
+	import { showAuthModal } from '$lib/stores/auth';
 
 	const t = getContext('t');
+	const locale = getContext('locale');
 	export let form: ActionData;
+
+	function currentLocale() {
+		if (locale && typeof locale.get === 'function') return locale.get();
+		return $page.params.lang || 'en';
+	}
+
+	async function onSubmit({ formData, cancel }) {
+		if (!$page.data.demo) return;
+		cancel();
+		const username = String(formData.get('username') || '');
+		const email = String(formData.get('email') || '');
+		try {
+			const result = registerAccount({
+				username,
+				email,
+				password: String(formData.get('password') || ''),
+				passwordConfirmation: String(formData.get('password_confirmation') || '')
+			});
+			if ('errors' in result) {
+				form = result;
+				return;
+			}
+			const response = await fetch('/api/demo-login', {
+				method: 'POST',
+				headers: { 'content-type': 'application/json' },
+				body: JSON.stringify(result.account)
+			});
+			if (!response.ok) {
+				form = { username, email, errors: { email: 'Could not start the demo session' } };
+				return;
+			}
+			rememberCurrent(result.account.sessionId);
+			showAuthModal.set(false);
+			window.location.assign(localePath(currentLocale(), '/intent'));
+		} catch (error) {
+			form = { username, email, errors: { email: 'Could not save this account in the browser' } };
+		}
+	}
 </script>
 
 <div class="flex min-h-full flex-col pt-12 sm:px-6 lg:px-8 bg:white sm:bg-gray-50 dark:bg-black">
@@ -27,7 +71,7 @@
 
 	<div class=" sm:mx-auto sm:w-full sm:max-w-md">
 		<div class="bg-white dark:bg-zinc-900 px-3 py-6 sm:p-9 sm:shadow rounded-sm">
-			<form class="space-y-6" method="POST">
+			<form class="space-y-6" method="POST" use:enhance={onSubmit}>
 				{#if form?.message}
 					<p class="text-red-600">{form?.message}</p>
 				{/if}

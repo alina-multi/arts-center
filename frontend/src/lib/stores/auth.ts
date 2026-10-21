@@ -33,7 +33,7 @@ export async function logout(lang) {
 
 // Since we make auth client-side, this should be safe
 user.subscribe((user) => {
-	if (user?.id && !window.Echo) {
+	if (user?.id && !window.Echo && !window.__DEMO__) {
 		window.Ably = Ably;
 		window.Echo = new Echo({
 			broadcaster: 'ably',

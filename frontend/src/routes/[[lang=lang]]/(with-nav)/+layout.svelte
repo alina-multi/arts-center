@@ -8,7 +8,10 @@
 
 	import AuthModal from '$lib/components/atoms/AuthModal.svelte';
 
+	export let data;
+
 	if (browser) {
+		window.__DEMO__ = Boolean(data.demo);
 		checkAuth();
 	}
 </script>

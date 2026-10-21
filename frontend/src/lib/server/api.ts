@@ -1,6 +1,11 @@
 import type { RequestEvent } from '@sveltejs/kit';
 import setCookie from 'set-cookie-parser';
 import { availableLocales, defaultLocale } from '$lib/translations';
+import { useMockData } from '$lib/server/mock/mode';
+
+const DEMO_ONLY = JSON.stringify({
+	message: 'This demo is read-only. Accounts and edits are turned off.'
+});
 
 interface ApiParams {
 	method: string;
@@ -10,6 +15,12 @@ interface ApiParams {
 }
 
 export async function api(params: ApiParams) {
+	if (useMockData()) {
+		return new Response(DEMO_ONLY, {
+			status: 503,
+			headers: { 'content-type': 'application/json' }
+		});
+	}
 	const base = process.env.API_URL;
 	const url = base + params.path;
 	const response = await fetch(url, {

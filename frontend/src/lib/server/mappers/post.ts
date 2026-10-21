@@ -11,7 +11,7 @@ export function postMap(data: PostRaw | null): Post | null {
 		image: pictureMap(data.image),
 		images: new Map(
 			data.images
-				?.filter((image) => image.image?.variants?.length > 0)
+				?.filter((image) => image.image?.url || image.image?.variants?.length > 0)
 				?.map(({ image }) => [image.id.toString(), pictureMap(image)])
 		)
 	};

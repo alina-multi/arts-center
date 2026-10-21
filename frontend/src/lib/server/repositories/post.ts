@@ -1,6 +1,8 @@
 import { prisma } from '$lib/server/database/prisma';
 import { imageSelect } from '$lib/server/repositories/image';
 import { userSelect } from '$lib/server/repositories/user';
+import { useMockData } from '$lib/server/mock/mode';
+import { mockPostGet, mockPostsQuery, mockUserPosts } from '$lib/server/mock/read';
 
 const PAGE_SIZE = 10;
 const postSelect = {
@@ -27,6 +29,9 @@ const postSelect = {
 };
 
 export function query(where = {}, orderBy = {}, page = 1) {
+	if (useMockData()) {
+		return Promise.resolve(mockPostsQuery(where as Record<string, unknown>, orderBy, page));
+	}
 	page--;
 	return prisma.posts.findMany({
 		take: PAGE_SIZE,
@@ -44,6 +49,9 @@ export function query(where = {}, orderBy = {}, page = 1) {
 }
 
 export function get(id: string, where = {}) {
+	if (useMockData()) {
+		return Promise.resolve(mockPostGet(id, where as Record<string, unknown>));
+	}
 	return prisma.posts.findUnique({
 		select: postSelect,
 		where: {
@@ -54,6 +62,9 @@ export function get(id: string, where = {}) {
 }
 
 export function userAllPostsQuery(user_id: string) {
+	if (useMockData()) {
+		return Promise.resolve(mockUserPosts(user_id));
+	}
 	return prisma.posts.findMany({
 		select: postSelect,
 		where: {

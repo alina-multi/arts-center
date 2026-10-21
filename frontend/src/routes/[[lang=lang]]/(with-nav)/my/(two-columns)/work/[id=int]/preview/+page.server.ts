@@ -4,6 +4,8 @@ import { redirect } from '@sveltejs/kit';
 import { get } from '$lib/server/repositories/work';
 import { workPreviewMap } from '$lib/server/mappers/work';
 import { localePath } from '$lib/translations';
+import { useMockData } from '$lib/server/mock/mode';
+import { publishDemoWork } from '$lib/server/mock/actions';
 
 export const load = (async ({ params }) => {
 	const data = {
@@ -20,6 +22,10 @@ export const load = (async ({ params }) => {
 export const actions = {
 	default: async (event) => {
 		const form = await event.request.formData();
+		if (useMockData()) {
+			await publishDemoWork(event.params.id, form.get('published_at'));
+			redirect(302, localePath(event.params.lang, `/work/${event.params.id}`));
+		}
 		const response = await api({
 			method: 'PUT',
 			path: `/api2/work/${event.params.id}/publish`,

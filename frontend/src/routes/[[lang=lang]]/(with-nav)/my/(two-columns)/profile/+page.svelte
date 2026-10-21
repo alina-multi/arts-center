@@ -12,13 +12,17 @@
 	import SelectInput from '$lib/components/input/SelectInput.svelte';
 	import ResendEmailVerification from '$lib/components/my/ResendEmailVerification.svelte';
 	import { getContext } from 'svelte';
+	import { enhance } from '$app/forms';
+	import { page } from '$app/stores';
+	import { updateStoredAccount } from '$lib/demo/accounts';
+	import { checkAuth } from '$lib/stores/auth';
 
 	const t = getContext('t');
 
 	export let data: PageData;
 	export let form: ActionData;
 
-	let profile = {
+	$: profile = {
 		...data.profile.data,
 		...(form?.data ?? {})
 	};
@@ -33,7 +37,26 @@
 	}
 </script>
 
-<form method="post" enctype="multipart/form-data" class="space-y-3">
+<form
+	method="post"
+	enctype="multipart/form-data"
+	class="space-y-3"
+	use:enhance={({ formData }) => {
+		return async ({ update, result }) => {
+			await update({ reset: false });
+			if ($page.data.demo && result.type === 'success') {
+				const password = String(formData.get('password') || '');
+				updateStoredAccount({
+					name: String(formData.get('name') || ''),
+					email: String(formData.get('email') || ''),
+					country: String(formData.get('country') || ''),
+					...(password ? { password } : {})
+				});
+				await checkAuth();
+			}
+		};
+	}}
+>
 	<FormGroup h1={$t('my.edit_page.personal_info')} h2={$t('my.edit_page.warning_personal_info')}>
 		<InputGroup
 			label={$t('my.edit_page.full_name')}

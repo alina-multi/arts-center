@@ -7,14 +7,16 @@ import { error } from '@sveltejs/kit';
 import { getOwnerWorks } from '$lib/server/repositories/owner';
 
 export const load = (async ({ params }) => {
-	const [work, comments] = await Promise.all([
-		get(BigInt(params.id)).then((work) => workMap(work, params.lang)),
+	const [raw, comments] = await Promise.all([
+		get(BigInt(params.id)),
 		getComments(BigInt(params.id), 'work').then((comments) => commentsMap(comments))
 	]);
 
-	if (!work || work.status < 10) {
+	if (!raw || raw.status < 10) {
 		error(404);
 	}
+
+	const work = workMap(raw, params.lang);
 
 	const ownerWorks = await Promise.all(
 		work.owners.map(async (owner) => ({

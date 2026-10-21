@@ -6,6 +6,7 @@
 	import { getContext, tick } from 'svelte';
 	import { magicFetch } from '$lib/helpers/fetchData';
 	import { getStripe } from '$lib/helpers/stripe';
+	import { page } from '$app/stores';
 	import Icon3 from '../static_pages/icons/Icon3.svelte';
 
 	const t = getContext('t');
@@ -17,12 +18,23 @@
 	let id;
 
 	let stripeCheckout;
+	let saved = false;
 
 	async function checkout() {
 		open = true;
 		id = newUniqueId();
 		await tick();
 		try {
+			if ($page.data.demo) {
+				await magicFetch('POST', localePath($locale, '/api/checkout'), {
+					user_id: user.id.toString(),
+					username: user.username,
+					type: 1,
+					quantity
+				});
+				saved = true;
+				return;
+			}
 			const { clientSecret } = await magicFetch('POST', localePath($locale, '/api/checkout'), {
 				user_id: user.id.toString(),
 				username: user.username,
@@ -129,5 +141,9 @@
 	on:close={onClose}
 	class="md:w-[70%] md:mx-auto rounded-[12px]  mx-6 my-6 sm:my-20 sm:mx-20 "
 >
-	<div class="xl:py-12 xl:bg-zinc-900 rounded-[12px] overflow-hidden" {id} />
+	{#if saved}
+		<p class="p-8 text-center text-lg">This demo saved your {quantity * 5} € support for {user.name}.</p>
+	{:else}
+		<div class="xl:py-12 xl:bg-zinc-900 rounded-[12px] overflow-hidden" {id} />
+	{/if}
 </ModalWindow>

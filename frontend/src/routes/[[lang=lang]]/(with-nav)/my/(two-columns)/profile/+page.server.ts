@@ -2,8 +2,11 @@ import type { PageServerLoad, Actions } from './$types';
 import { api } from '$lib/server/api';
 import { type AvailableLocales, availableLocales } from '$lib/translations';
 import { reloadCurrentUser } from '$lib/server/database/cache';
+import { useMockData } from '$lib/server/mock/mode';
+import { demoProfile, saveDemoProfile } from '$lib/server/mock/actions';
 
 export const load = (async (event) => {
+	if (useMockData()) return { profile: demoProfile() };
 	return {
 		profile: await api({
 			method: 'GET',
@@ -31,6 +34,10 @@ export const actions = {
 			)
 		};
 
+		if (useMockData()) {
+			await saveDemoProfile(data);
+			return { data, success: true };
+		}
 		const response = await api({ method: 'PUT', path: '/api2/profile', data, event });
 		if (!response.ok) {
 			const json = await response.json();

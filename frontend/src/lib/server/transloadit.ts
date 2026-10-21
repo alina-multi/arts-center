@@ -1,6 +1,10 @@
-const { createHmac } = await import('node:crypto');
+import { createHmac } from 'node:crypto';
+import { useMockData } from '$lib/server/mock/mode';
 
 export function generateSignature(template_id: string) {
+	if (useMockData()) {
+		return { key: '', signature: '', expires: '', template_id: template_id || '' };
+	}
 	const utcDateString = (ms: number) => {
 		return new Date(ms)
 			.toISOString()
