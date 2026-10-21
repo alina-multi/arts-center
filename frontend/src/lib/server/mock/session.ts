@@ -5,8 +5,11 @@ import { error } from '@sveltejs/kit';
 import type { Cookies } from '@sveltejs/kit';
 
 export const DEMO_COOKIE = 'demo_session';
+export const DEMO_ACCOUNT_COOKIE = 'demo_account';
 const DEMO_MAX_AGE = 60 * 60 * 24 * 30;
 const MAX_BYTES = 8 * 1024 * 1024;
+/** Keep under typical 4KB cookie limits once encoded. */
+const MAX_ACCOUNT_COOKIE_CHARS = 3000;
 
 const ALLOWED_TYPES: Record<string, string> = {
 	'image/jpeg': 'jpg',
@@ -124,7 +127,14 @@ export interface DemoState {
 interface DemoContext {
 	id: string;
 	state: DemoState;
+	cookies?: Cookies;
+	secure?: boolean;
 }
+
+export type DemoPersistOptions = {
+	cookies?: Cookies;
+	secure?: boolean;
+};
 
 const demoContext = new AsyncLocalStorage<DemoContext | undefined>();
 
@@ -154,6 +164,39 @@ export function setDemoCookie(cookies: Cookies, id: string, secure = false) {
 
 export function clearDemoCookie(cookies: Cookies, secure = false) {
 	cookies.delete(DEMO_COOKIE, { path: '/', secure });
+	cookies.delete(DEMO_ACCOUNT_COOKIE, { path: '/', secure });
+}
+
+export function setDemoAccountCookie(cookies: Cookies, account: DemoAccount, secure = false) {
+	const value = JSON.stringify(account);
+	if (value.length > MAX_ACCOUNT_COOKIE_CHARS) return;
+	cookies.set(DEMO_ACCOUNT_COOKIE, value, {
+		path: '/',
+		httpOnly: true,
+		sameSite: 'lax',
+		secure,
+		maxAge: DEMO_MAX_AGE
+	});
+}
+
+export function readDemoAccountCookie(cookies: Cookies): DemoAccount | undefined {
+	const raw = cookies.get(DEMO_ACCOUNT_COOKIE);
+	if (!raw) return undefined;
+	try {
+		const parsed = JSON.parse(raw) as Partial<DemoAccount>;
+		if (!parsed?.id || !parsed.username || !parsed.email) return undefined;
+		return {
+			id: String(parsed.id),
+			username: String(parsed.username),
+			name: String(parsed.name || parsed.username),
+			email: String(parsed.email),
+			country: String(parsed.country || 'US'),
+			bios: parsed.bios && typeof parsed.bios === 'object' ? parsed.bios : {},
+			intent: parsed.intent ?? 'explore'
+		};
+	} catch {
+		return undefined;
+	}
 }
 
 export function emptyDemoState(): DemoState {
@@ -192,9 +235,22 @@ export async function loadDemoState(sessionId: string): Promise<DemoState> {
 	}
 }
 
-export async function openDemoContext(sessionId: string | undefined) {
+export async function openDemoContext(
+	sessionId: string | undefined,
+	options: DemoPersistOptions = {}
+) {
 	if (!sessionId) return undefined;
-	return { id: sessionId, state: await loadDemoState(sessionId) };
+	const state = await loadDemoState(sessionId);
+	if (!state.account) {
+		const fromCookie = options.cookies ? readDemoAccountCookie(options.cookies) : undefined;
+		if (fromCookie) state.account = fromCookie;
+	}
+	return {
+		id: sessionId,
+		state,
+		cookies: options.cookies,
+		secure: options.secure
+	};
 }
 
 function requireContext() {
@@ -342,19 +398,38 @@ function normalizeState(value: Partial<DemoState> | null): DemoState {
 	};
 }
 
-export async function saveDemoState(sessionId: string, state: DemoState) {
+export async function saveDemoState(
+	sessionId: string,
+	state: DemoState,
+	options: DemoPersistOptions = {}
+) {
 	const body = JSON.stringify(state);
+	let persisted = false;
 	if (useBlob()) {
 		await putBlob(`${prefix(sessionId)}/state.json`, Buffer.from(body), 'application/json');
-		return;
+		persisted = true;
+	} else {
+		try {
+			await mkdir(localDir(sessionId), { recursive: true });
+			await writeFile(localPath(sessionId, 'state.json'), body);
+			persisted = true;
+		} catch {
+			// Serverless filesystems are often read-only; account cookie keeps auth working.
+		}
 	}
-	await mkdir(localDir(sessionId), { recursive: true });
-	await writeFile(localPath(sessionId, 'state.json'), body);
+	if (options.cookies && state.account) {
+		setDemoAccountCookie(options.cookies, state.account, options.secure);
+		persisted = true;
+	}
+	if (!persisted) {
+		throw new Error('Demo session storage is unavailable');
+	}
 }
 
 export async function seedDemoAccount(
 	sessionId: string,
-	input: { id: string; username: string; name?: string; email: string; country?: string }
+	input: { id: string; username: string; name?: string; email: string; country?: string },
+	options: DemoPersistOptions = {}
 ) {
 	const state = await loadDemoState(sessionId);
 	state.account = {
@@ -366,7 +441,7 @@ export async function seedDemoAccount(
 		bios: state.account?.bios ?? {},
 		intent: state.account?.intent ?? 'explore'
 	};
-	await saveDemoState(sessionId, state);
+	await saveDemoState(sessionId, state, options);
 	return state.account;
 }
 
@@ -382,7 +457,10 @@ function prefix(sessionId: string) {
 }
 
 function localDir(sessionId: string) {
-	return path.join(process.cwd(), '.demo-sessions', sessionId);
+	const root = process.env.VERCEL
+		? path.join('/tmp', 'demo-sessions')
+		: path.join(process.cwd(), '.demo-sessions');
+	return path.join(root, sessionId);
 }
 
 function localPath(sessionId: string, name: string) {
@@ -394,7 +472,10 @@ function useBlob() {
 }
 
 async function persist(current: DemoContext) {
-	await saveDemoState(current.id, current.state);
+	await saveDemoState(current.id, current.state, {
+		cookies: current.cookies,
+		secure: current.secure
+	});
 }
 
 async function putBlob(pathname: string, body: Buffer, contentType: string) {
@@ -403,6 +484,7 @@ async function putBlob(pathname: string, body: Buffer, contentType: string) {
 		access: 'public',
 		token: process.env.BLOB_READ_WRITE_TOKEN,
 		contentType,
+		// state.json gets a suffix so repeated saves never collide without overwrite support
 		addRandomSuffix: pathname.endsWith('state.json')
 	});
 	return blob.url;
@@ -416,5 +498,8 @@ async function findStateBlob(sessionId: string) {
 	});
 	return found.blobs
 		.filter((blob) => blob.pathname.includes('state'))
-		.sort((left, right) => new Date(right.uploadedAt).getTime() - new Date(left.uploadedAt).getTime())[0];
+		.sort(
+			(left, right) =>
+				new Date(right.uploadedAt).getTime() - new Date(left.uploadedAt).getTime()
+		)[0];
 }
