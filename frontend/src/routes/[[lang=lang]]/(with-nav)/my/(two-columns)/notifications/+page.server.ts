@@ -1,7 +1,12 @@
 import type { PageServerLoad } from './$types';
 import { api } from '$lib/server/api';
+import { useMockData } from '$lib/server/mock/mode';
+import { demoNotifications } from '$lib/server/mock/actions';
 
 export const load = (async (event) => {
+	if (useMockData()) {
+		return { notifications: demoNotifications() };
+	}
 	const response = await api({ method: 'GET', path: '/api2/notifications', event });
 	const notifications = await response.json();
 

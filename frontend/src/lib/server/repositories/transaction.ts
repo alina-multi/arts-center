@@ -1,6 +1,11 @@
 import { prisma } from '$lib/server/database/prisma';
+import { useMockData } from '$lib/server/mock/mode';
+import { demoDonations } from '$lib/server/mock/actions';
 
 export function get(to_user_id: bigint) {
+	if (useMockData()) {
+		return Promise.resolve(demoDonations());
+	}
 	return prisma.transactions.findMany({
 		select: {
 			id: true,

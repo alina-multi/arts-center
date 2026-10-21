@@ -1,7 +1,10 @@
 import type { PageServerLoad, Actions } from './$types';
 import { api } from '$lib/server/api';
+import { useMockData } from '$lib/server/mock/mode';
+import { addDemoMessage, getDemoThread } from '$lib/server/mock/actions';
 
 export const load = (async (event) => {
+	if (useMockData()) return { thread: getDemoThread(event.params.threadID) };
 	const response = await api({
 		method: 'GET',
 		path: `/api2/thread/${event.params.threadID}`,
@@ -23,6 +26,10 @@ export const actions = {
 			message: form.get('message')
 		};
 
+		if (useMockData()) {
+			await addDemoMessage(event.params.threadID, data.message);
+			return { success: true };
+		}
 		const response = await api({
 			method: 'POST',
 			path: `/api2/thread/${event.params.threadID}/message`,

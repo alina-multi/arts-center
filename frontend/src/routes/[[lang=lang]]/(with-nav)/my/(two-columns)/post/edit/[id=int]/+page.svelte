@@ -156,7 +156,7 @@
 		/>
 		<div class="absolute left-0 top-3">
 			<button on:click={() => (mainImageUploadModal = true)}>
-				{#if image}
+				{#if image?.src}
 					<Picture photo={image} class="w-10 h-10" />
 				{:else}
 					<Icon src={Photo} class="w-10 h-10" />

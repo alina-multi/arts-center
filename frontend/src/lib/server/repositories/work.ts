@@ -1,8 +1,13 @@
 import { prisma } from '$lib/server/database/prisma';
 import { userSelect } from './user';
 import { imageSelect } from '$lib/server/repositories/image';
+import { useMockData } from '$lib/server/mock/mode';
+import { mockWorkGet } from '$lib/server/mock/read';
 
 export function get(id: bigint) {
+	if (useMockData()) {
+		return Promise.resolve(mockWorkGet(id));
+	}
 	return prisma.works.findUnique({
 		select: {
 			id: true,

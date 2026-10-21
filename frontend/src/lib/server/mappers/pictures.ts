@@ -7,17 +7,26 @@ type ImageWithRelations = {
 
 export function picturesMap(images: ImageRaw[] | []): Picture[] | [] {
 	return images
-		?.filter((image) => image && image.variants && image.variants.length)
+		?.filter((image) => image && (image.url || image.variants?.length))
 		?.map((image) => pictureMap(image));
 }
 
 export function imagablePicturesMap(images: ImageWithRelations[] | []): Picture[] | [] {
 	return images
-		?.filter((image) => image.image?.variants?.length > 0)
+		?.filter((image) => image.image?.url || image.image?.variants?.length > 0)
 		?.map((image) => pictureMap(image.image));
 }
 
+export function pictureFromUrl(url: string): Picture {
+	return {
+		src: url,
+		sources: [],
+		original: { src: url, width: 1200, height: 900 }
+	};
+}
+
 export function pictureMap(image: ImageRaw | null): Picture | null {
+	if (image?.url) return pictureFromUrl(image.url);
 	const sourcesMap: Map<string, { type: string; srcset: string[] }> = new Map();
 	if (!image || !image.variants) {
 		return null;
@@ -56,6 +65,10 @@ export function pictureMap(image: ImageRaw | null): Picture | null {
 	//Fallback if we don't have over src
 	if (!src) {
 		src = original?.src;
+	}
+	if (!original && !src) return null;
+	if (!original) {
+		original = { src, width: 1200, height: 900 };
 	}
 	return {
 		original,

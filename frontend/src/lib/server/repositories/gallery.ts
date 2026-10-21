@@ -5,6 +5,8 @@ import { userSelect } from './user';
 import { imageSelect } from '$lib/server/repositories/image';
 import { prisma } from '$lib/server/database/prisma';
 import type { AvailableLocales } from '$lib/translations';
+import { useMockData } from '$lib/server/mock/mode';
+import { mockTrendingWorks, mockWorksQuery } from '$lib/server/mock/read';
 
 const trendingOrRisingRatingCutoff = 20;
 
@@ -41,6 +43,11 @@ export function query(
 	perPage = 20,
 	select = {}
 ) {
+	if (useMockData()) {
+		return Promise.resolve(
+			mockWorksQuery(where as Record<string, unknown>, orderBy, page, perPage)
+		);
+	}
 	page--;
 	return prisma.works.findMany({
 		take: perPage,
@@ -60,7 +67,10 @@ export function query(
 }
 
 export async function trendingRandomIndexQuery() {
-	const ids = await prisma.$queryRaw`
+	if (useMockData()) {
+		return mockTrendingWorks();
+	}
+	const ids = await prisma.$queryRaw<{ id: bigint }[]>`
         SELECT id
         FROM works
         WHERE rating >= ${trendingOrRisingRatingCutoff}

@@ -1,11 +1,30 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
+	import { checkAuth } from '$lib/stores/auth';
+	import { ensureGoogleAccount, rememberCurrent } from '$lib/demo/accounts';
 	// Build Google OAuth URL with current page as intended destination
 	$: googleAuthUrl = `/auth/google/redirect?intended=${encodeURIComponent($page.url.href)}`;
+
+	async function demoGoogle(event: MouseEvent) {
+		if (!$page.data.demo) return;
+		event.preventDefault();
+		const account = ensureGoogleAccount();
+		const response = await fetch('/api/demo-login', {
+			method: 'POST',
+			headers: { 'content-type': 'application/json' },
+			body: JSON.stringify(account)
+		});
+		if (!response.ok) return;
+		rememberCurrent(account.sessionId);
+		await checkAuth();
+		await goto('/my/work');
+	}
 </script>
 
 <a
 	href={googleAuthUrl}
+	on:click={demoGoogle}
 	class="flex w-full justify-center items-center gap-3 rounded bg-white dark:bg-zinc-800 border border-zinc-700 dark:text-white py-3 text-sm font-semibold text-zinc-900 shadow-sm focus-visible:ring-transparent"
 >
 	<svg class="h-5 w-5" viewBox="0 0 24 24">

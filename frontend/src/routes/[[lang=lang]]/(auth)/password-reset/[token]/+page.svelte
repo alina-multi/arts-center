@@ -5,10 +5,31 @@
 	import InputGroup from '$lib/components/input/InputGroup.svelte';
 	import ActionButton from '$lib/components/forms/ActionButton.svelte';
 	import { getContext } from 'svelte';
+	import { enhance } from '$app/forms';
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+	import { localePath } from '$lib/translations';
+	import { completePasswordReset } from '$lib/demo/accounts';
 
 	const t = getContext('t');
+	const locale = getContext('locale');
 
 	export let form: ActionData;
+
+	function onSubmit({ formData, cancel }) {
+		if (!$page.data.demo) return;
+		cancel();
+		const result = completePasswordReset(
+			$page.params.token,
+			$page.url.searchParams.get('email') || '',
+			String(formData.get('password') || '')
+		);
+		if ('errors' in result) {
+			form = result;
+			return;
+		}
+		goto(localePath(locale.get(), '/login'));
+	}
 </script>
 
 <div class="flex min-h-full flex-col pt-12 sm:px-6 lg:px-8 bg:white sm:bg-gray-50 dark:bg-black">
@@ -26,7 +47,7 @@
 
 	<div class="mt-3 sm:mx-auto sm:w-full sm:max-w-md">
 		<div class="bg-white dark:bg-zinc-900 px-3 py-6 sm:p-9 sm:shadow rounded-lg">
-			<form class="space-y-6" method="POST">
+			<form class="space-y-6" method="POST" use:enhance={onSubmit}>
 				{#if form?.message}
 					<p class="text-red-600">{form?.message}</p>
 				{/if}

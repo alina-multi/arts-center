@@ -1,8 +1,17 @@
 import type { RequestHandler } from './$types';
 
-import { doMeiliSearch } from '$lib/helpers/doMeiliSearch';
 import { cacheGet } from '$lib/server/database/cache';
 import { unslug } from '$lib/helpers/url';
+import { useMockData } from '$lib/server/mock/mode';
+import { mockSearch } from '$lib/server/mock/search';
+
+async function runSearch(searchable: string, query: string, page: string) {
+	if (useMockData()) {
+		return mockSearch(searchable, query, Number(page) || 1);
+	}
+	const { doMeiliSearch } = await import('$lib/helpers/doMeiliSearch');
+	return doMeiliSearch(searchable, query, page);
+}
 
 export const GET = (async ({ params, setHeaders }) => {
 	setHeaders({
@@ -16,11 +25,11 @@ export const GET = (async ({ params, setHeaders }) => {
 			async () => {
 				let search;
 				if (params.searchable !== 'all') {
-					search = await doMeiliSearch(params.searchable, params.query, params.page);
+					search = await runSearch(params.searchable, params.query, params.page);
 				} else {
 					const [users, works] = await Promise.all([
-						doMeiliSearch('users', params.query, params.page),
-						doMeiliSearch('works', params.query, params.page)
+						runSearch('users', params.query, params.page),
+						runSearch('works', params.query, params.page)
 					]);
 					search = { users, works };
 				}

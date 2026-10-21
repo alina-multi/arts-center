@@ -15,6 +15,8 @@
 	import { checkAuth } from '$lib/stores/auth';
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+	import { matchLogin, rememberCurrent } from '$lib/demo/accounts';
 
 	const t = getContext('t');
 	const locale = getContext('locale');
@@ -22,6 +24,29 @@
 	export let form: ActionData | undefined;
 
 	async function onSubmit({ formData, cancel }) {
+		if ($page.data.demo) {
+			cancel();
+			const email = String(formData.get('email') || '');
+			const account = matchLogin(email, String(formData.get('password') || ''));
+			if (!account) {
+				form = { email, errors: { email: 'These credentials do not match our records.' } };
+				return;
+			}
+			const response = await fetch('/api/demo-login', {
+				method: 'POST',
+				headers: { 'content-type': 'application/json' },
+				body: JSON.stringify(account)
+			});
+			if (!response.ok) {
+				form = { email, errors: { email: 'Could not start the demo session' } };
+				return;
+			}
+			rememberCurrent(account.sessionId);
+			await checkAuth();
+			showAuthModal.set(false);
+			await goto($page.url.searchParams.get('redirect') || '/my/work');
+			return;
+		}
 		if ($showAuthModal) {
 			cancel();
 
@@ -101,6 +126,11 @@
 			</form>
 			<a
 				href={localePath($locale, '/register')}
+				on:click|preventDefault={() => {
+					const target = localePath($locale, '/register');
+					showAuthModal.set(false);
+					window.location.assign(target);
+				}}
 				class="block mt-3 text-center bg-amber-500 rounded-sm hover:bg-amber-400 px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
 				>{$t('global.buttons.register')}</a
 			>

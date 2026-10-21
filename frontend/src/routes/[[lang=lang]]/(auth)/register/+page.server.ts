@@ -3,10 +3,18 @@ import { api, csrf } from '$lib/server/api';
 import { redirect } from '@sveltejs/kit';
 import { localePath } from '$lib/translations';
 import { redirectIfAuthorized } from '$lib/server/auth';
+import { useMockData } from '$lib/server/mock/mode';
 
 export const actions = {
 	default: async (event) => {
 		const data = await event.request.formData();
+		if (useMockData()) {
+			return {
+				username: data.get('username'),
+				email: data.get('email'),
+				errors: { email: 'Create the account in this browser first' }
+			};
+		}
 		let response;
 		try {
 			response = await api({

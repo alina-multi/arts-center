@@ -4,6 +4,7 @@ import type { RequestEvent } from '@sveltejs/kit';
 import type { RedisClientType } from 'redis';
 import { api } from '$lib/server/api';
 import { parse, stringify } from 'devalue';
+import { getDemoState } from '$lib/server/mock/session';
 
 let cache: NodeCache | RedisClientType;
 
@@ -24,6 +25,7 @@ export async function cacheGet(
 	storeFunction: () => Promise<object | string>,
 	ttl = 120
 ) {
+	if (getDemoState()?.id) return storeFunction();
 	const value = await cache.get(buildKey(namespace, key));
 	if (value) {
 		return parse(value);

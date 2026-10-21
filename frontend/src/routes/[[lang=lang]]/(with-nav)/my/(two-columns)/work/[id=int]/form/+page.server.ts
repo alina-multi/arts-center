@@ -3,6 +3,8 @@ import { api } from '$lib/server/api';
 import { formToObject } from '$lib/helpers/form';
 import { redirect } from '@sveltejs/kit';
 import { localePath } from '$lib/translations';
+import { useMockData } from '$lib/server/mock/mode';
+import { saveDemoWorkDetails } from '$lib/server/mock/actions';
 
 export const actions = {
 	post: async (event) => {
@@ -12,6 +14,13 @@ export const actions = {
 
 		const isPublished = form.get('isPublished') === 'true';
 
+		if (useMockData()) {
+			const saved = await saveDemoWorkDetails(event.params.id, data);
+			if (!isPublished) {
+				redirect(302, localePath(event.params.lang, `/my/work/${event.params.id}/preview`));
+			}
+			return { success: true, work: saved.work, message: saved.message };
+		}
 		const response = await api({
 			method: 'PUT',
 			path: `/api2/work/${event.params.id}`,

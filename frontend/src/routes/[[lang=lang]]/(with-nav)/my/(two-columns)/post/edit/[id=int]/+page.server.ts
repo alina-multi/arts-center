@@ -3,6 +3,7 @@ import { get } from '$lib/server/repositories/post';
 import { generateSignature } from '$lib/server/transloadit';
 import { error } from '@sveltejs/kit';
 import { postMap } from '$lib/server/mappers/post';
+import { useMockData } from '$lib/server/mock/mode';
 
 export const load = (async ({ params, parent }) => {
 	const { user } = await parent();
@@ -15,7 +16,7 @@ export const load = (async ({ params, parent }) => {
 			message: 'Unauthorized'
 		});
 	}
-	if (!process.env.TRANSLOADIT_IMAGE_TEMPLATE) {
+	if (!useMockData() && !process.env.TRANSLOADIT_IMAGE_TEMPLATE) {
 		error(500, {
 			message: 'Missing Transloadit Image Template'
 		});

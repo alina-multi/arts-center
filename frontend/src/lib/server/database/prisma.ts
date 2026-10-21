@@ -1,18 +1,34 @@
 import { PrismaClient } from '@prisma/client';
+import { useMockData } from '$lib/server/mock/mode';
 
-export const prisma = new PrismaClient({
-	log: [
-		{
-			emit: 'event',
-			level: 'query'
-		}
-	]
-});
+function createPrisma(): PrismaClient {
+	if (useMockData()) {
+		return new Proxy({} as PrismaClient, {
+			get(_target, prop) {
+				if (prop === 'then') return undefined;
+				throw new Error(`Prisma is disabled while USE_MOCK_DATA=true (${String(prop)})`);
+			}
+		});
+	}
 
-if (process?.env?.PRISMA_LOG) {
-	prisma.$on('query', (e) => {
-		console.log('Query: ' + e.query);
-		console.log('Params: ' + e.params);
-		console.log('Duration: ' + e.duration + 'ms');
+	const client = new PrismaClient({
+		log: [
+			{
+				emit: 'event',
+				level: 'query'
+			}
+		]
 	});
+
+	if (process?.env?.PRISMA_LOG) {
+		client.$on('query', (event) => {
+			console.log('Query: ' + event.query);
+			console.log('Params: ' + event.params);
+			console.log('Duration: ' + event.duration + 'ms');
+		});
+	}
+
+	return client;
 }
+
+export const prisma = createPrisma();

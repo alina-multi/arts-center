@@ -18,7 +18,7 @@
 </script>
 
 <form method="POST" action="?/post" use:enhance>
-	<WorkForm {data} errors={form?.errors}>
+	<WorkForm work={data} categories={data.categories} {form}>
 		<ButtonsGroup>
 			<ActionButton
 				type="button"
