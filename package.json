@@ -1,0 +1,11 @@
+{
+	"name": "arts-center",
+	"private": true,
+	"packageManager": "pnpm@9.15.9",
+	"scripts": {
+		"dev": "pnpm --dir frontend dev",
+		"build": "pnpm --dir frontend build",
+		"prisma": "pnpm --dir frontend exec prisma",
+		"check": "pnpm --dir frontend check"
+	}
+}
